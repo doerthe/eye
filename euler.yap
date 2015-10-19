@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10191346Z josd').
+version_info('EYE-Autumn15 10192012Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -885,9 +885,13 @@ opts(['--pvm', File|Argus], _) :-
 				)
 			)
 		),
-		assertz(':-'(term_expansion(T1, T1),
-				(	T1 = scope(Scope),
-					!,
+		assertz(':-'(term_expansion(flag(F1, F2), [':-'(dynamic(flag/2)), flag(F1, F2)]),
+				(	!
+				)
+			)
+		),
+		assertz(':-'(term_expansion(scope(Scope), scope(Scope)),
+				(	!,
 					nb_setval(current_scope, Scope)
 				)
 			)
@@ -8001,27 +8005,25 @@ exopred(P, S, O) :-
 unify(A, B) :-
 	nonvar(A),
 	A = exopred(P, S, O),
-	tpred(P, Q),
 	unify(S, T),
 	unify(O, R),
 	(	(	nonvar(B)
-		;	nonvar(Q)
+		;	nonvar(P)
 		)
-	->	B =.. [Q, T, R],
-		atom(Q)
+	->	B =.. [P, T, R],
+		atom(P)
 	),
 	!.
 unify(A, B) :-
 	nonvar(B),
 	B = exopred(P, S, O),
-	tpred(P, Q),
 	unify(S, T),
 	unify(O, R),
 	(	(	nonvar(A)
-		;	nonvar(Q)
+		;	nonvar(P)
 		)
-	->	A =.. [Q, T, R],
-		atom(Q)
+	->	A =.. [P, T, R],
+		atom(P)
 	),
 	!.
 unify(A, B) :-
@@ -8045,22 +8047,6 @@ unify(A, B) :-
 	unify(S, T),
 	unify(O, R).
 unify(A, A).
-
-
-tpred(A, A) :-
-	var(A),
-	!.
-tpred(A, B) :-
-	atom(A),
-	atom_concat(some, I, A),
-	!,
-	(	\+flag('no-qvars'),
-		\+flag('no-blank')	% DEPRECATED
-	->	atom_concat('_:sk', I, B)
-	;	nb_getval(var_ns, Vns),
-		atomic_list_concat(['<', Vns, 'sk', I, '>'], B)
-	).
-tpred(A, A).
 
 
 dn([A|B]) :-
