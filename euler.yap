@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10192048Z josd').
+version_info('EYE-Autumn15 10192139Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -473,9 +473,9 @@ gre(Argus) :-
 		retractall(input_statements(_)),
 		assertz(input_statements(SC)),
 		reset_gensym,
-		getcwd(_),
 		(	current_predicate(qsave:qsave_program/1)
-		->	qsave_program(File)
+		->	working_directory(_, '.'),
+			qsave_program(File)
 		;	save_program(File)
 		),
 		throw(halt)
