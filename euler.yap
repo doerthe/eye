@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10161557Z josd').
+version_info('EYE-Autumn15 10191346Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -895,6 +895,7 @@ opts(['--pvm', File|Argus], _) :-
 		assertz(':-'(term_expansion(T1, [T1, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]),
 				(	\+flag(nope),
 					T1 \= ':-'(_),
+					T1 \= flag(_, _),
 					T1 \= scope(_),
 					T1 \= pfx(_, _),
 					T1 \= pred(_),
