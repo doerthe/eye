@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10192139Z josd').
+version_info('EYE-Autumn15 10211134Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -474,8 +474,7 @@ gre(Argus) :-
 		assertz(input_statements(SC)),
 		reset_gensym,
 		(	current_predicate(qsave:qsave_program/1)
-		->	working_directory(_, '.'),
-			qsave_program(File)
+		->	qsave_program(File)
 		;	save_program(File)
 		),
 		throw(halt)
@@ -2860,16 +2859,6 @@ indentation(C) :-
 	nb_setval(indentation, B).
 
 
-answer(A1, A2, A3, A4, A5, A6, A7, A8) :-
-	pred(A1),
-	(	current_predicate(A1/7)
-	->	true
-	;	dynamic(A1/7)
-	),
-	B =.. [A1, A2, A3, A4, A5, A6, A7, A8],
-	call(B).
-
-
 % stretch relax
 
 strela(answer(cn(A)), cn(B)) :-
@@ -2920,16 +2909,16 @@ strelar(cn(A), cn(B)) :-
 	!,
 	strelar(A, B).
 strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
+	compound(O1),
+	O1 =.. [P2, S2, O2],
 	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
 	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
-	nonvar(O1),
-	O1 =.. [P2, S2, O2],
 	!.
 strelar(answer(P1, S1, O1, P, epsilon, epsilon, epsilon, epsilon), answer(P1, S1, S2, P2, O2, P, delta, delta)) :-
+	compound(O1),
+	O1 =.. [P2, S2, O2],
 	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
 	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
-	nonvar(O1),
-	O1 =.. [P2, S2, O2],
 	!.
 strelar([A|B], [C|D]) :-
 	!,
@@ -2941,6 +2930,16 @@ strelar(A, A).
 strelas(answer(A1, A2, A3, A4, A5, A6, A7, A8)) :-
 	atomic(A1),
 	!,
+	(	current_predicate(A1/7)
+	->	true
+	;	dynamic(A1/7),
+		assertz(':-'(answer(A1, B2, B3, B4, B5, B6, B7, B8),
+				(	C =.. [A1, B2, B3, B4, B5, B6, B7, B8],
+					call(C)
+				)
+			)
+		)
+	),
 	(	\+pred(A1)
 	->	assertz(pred(A1))
 	;	true

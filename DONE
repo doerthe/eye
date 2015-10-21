@@ -12,6 +12,7 @@
 <h1><img src="http://eulersharp.sourceforge.net/2003/03swap/eye.png" alt="EYE" height="37" width="37"/> EYE issues</h1>
 <pre>
 <span id="EYE-Autumn15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Autumn15/">EYE-Autumn15</a>]</span>
+- tuning strela (stretch relax) to improve the performance of queries
 - fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#getcwd">prolog:getcwd</a> builtin
 - fixing issue with exopred in log:conjunction (obs from Hong Sun)
 - fixing exception in pvm code generation without --nope
