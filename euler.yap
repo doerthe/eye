@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10221012Z josd').
+version_info('EYE-Autumn15 10222130Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2917,9 +2917,10 @@ strelan([A|B], [answer(A, zeta, zeta, zeta, zeta, zeta, zeta, zeta)|C]) :-
 strelan(A, A).
 
 
-strelar(cn(A), cn(B)) :-
+strelar(cn([A|B]), cn([C|D])) :-
 	!,
-	strelar(A, B).
+	strelar(A, C),
+	strelar(B, D).
 strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
 	compound(O1),
 	O1 =.. [P2, S2, O2],
@@ -2932,10 +2933,6 @@ strelar(answer(P1, S1, O1, P, epsilon, epsilon, epsilon, epsilon), answer(P1, S1
 	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
 	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
 	!.
-strelar([A|B], [C|D]) :-
-	!,
-	strelar(A, C),
-	strelar(B, D).
 strelar(A, A).
 
 
