@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10211134Z josd').
+version_info('EYE-Autumn15 10221012Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -432,6 +432,18 @@ gre(Argus) :-
 	;	true
 	),
 	args(Args),
+	(	implies(_, Conc, _),
+		(	var(Conc)
+		;	Conc \= cn([answer(_, _, _, _, _, _, _, _)|_]),
+			Conc \= answer(_, _, _, _, _, _, _, _),
+			Conc \= goal
+		)
+	->	true
+	;	(	\+flag(tactic, 'linear-select')
+		->	assertz(flag(tactic, 'linear-select'))
+		;	true
+		)
+	),
 	findall(Sc,
 		(	scope(Sc)
 		),
