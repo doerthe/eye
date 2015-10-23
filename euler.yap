@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10222130Z josd').
+version_info('EYE-Autumn15 10231222Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4526,13 +4526,17 @@ end(End, Env) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#wwwFormEncode>'(literal(X, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#wwwFormEncode>'(X, literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	ground(X)
 		;	ground(Y)
 		),
 		(	(	ground(X)
-			->	www_form_encode(X, Z),
+			->	(	number(X)
+				->	atom_number(T, X)
+				;	X = literal(T, _)
+				),
+				www_form_encode(T, Z),
 				atom_codes(Z, U),
 				subst([[[0'%, 0'2, 0'0], [0'+]]], U, V),
 				atom_codes(Y, V)
@@ -5160,7 +5164,7 @@ end(End, Env) :-
 
 '<http://www.w3.org/2000/10/swap/string#concatenation>'(X, literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
-		(	ground(X)
+		(	nonvar(X)
 		),
 		(	findall(S,
 				(	member(A, X),
