@@ -155,7 +155,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10231222Z josd').
+version_info('EYE-Autumn15 10231529Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4353,6 +4353,13 @@ end(End, Env) :-
 		(	getnumber(A, B)
 		)
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	within_scope(Sc),
+	with_output_to_codes(wh, C),
+	atom_codes(A, C),
+	retractall(wpfx(_)).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A) :-
