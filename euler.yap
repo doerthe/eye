@@ -71,12 +71,8 @@
 :- dynamic(bcnd/2).
 :- dynamic(bgot/3).
 :- dynamic(brake/0).
-:- dynamic(branch/0).
-:- dynamic(branching/0).
 :- dynamic(bref/2).
-:- dynamic(bstep/3).
 :- dynamic(bvar/1).
-:- dynamic(countermodel/1).
 :- dynamic(evar/2).
 :- dynamic(evar/3).
 :- dynamic(exopred/3).
@@ -89,8 +85,7 @@
 :- dynamic(fm/1).
 :- dynamic(forward/0).
 :- dynamic(fs/1).
-:- dynamic(goal/0).
-:- dynamic(got_answer/9).
+:- dynamic(got_answer/8).
 :- dynamic(got_dq/0).
 :- dynamic(got_labelvars/3).
 :- dynamic(got_pi/0).
@@ -109,7 +104,6 @@
 :- dynamic(ns/2).
 :- dynamic(pfx/2).
 :- dynamic(pi/3).
-:- dynamic(possible/8).
 :- dynamic(pred/1).
 :- dynamic(preda/1).
 :- dynamic(prfstep/8).
@@ -155,7 +149,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10231529Z josd').
+version_info('EYE-Autumn15 10241836Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -329,8 +323,8 @@ main :-
 		->	format(user_error, 'JITI prfstep/8 indexed ~w~n', [Indp8])
 		;	true
 		),
-		(	predicate_property(got_answer(_, _, _, _, _, _, _, _, _), indexed(Indg9))
-		->	format(user_error, 'JITI got_answer/9 indexed ~w~n', [Indg9])
+		(	predicate_property(got_answer(_, _, _, _, _, _, _, _), indexed(Indg8b))
+		->	format(user_error, 'JITI got_answer/8 indexed ~w~n', [Indg8b])
 		;	true
 		),
 		format(user_error, '~n', []),
@@ -367,7 +361,6 @@ gre(Argus) :-
 	nb_getval(var_ns, Vns),
 	nb_setval(exit_code, 0),
 	nb_setval(indentation, 0),
-	nb_setval(possible, not_started),
 	nb_setval(limit, -1),
 	nb_setval(bnet, not_done),
 	nb_setval(fnet, not_done),
@@ -434,9 +427,8 @@ gre(Argus) :-
 	args(Args),
 	(	implies(_, Conc, _),
 		(	var(Conc)
-		;	Conc \= cn([answer(_, _, _, _, _, _, _, _)|_]),
-			Conc \= answer(_, _, _, _, _, _, _, _),
-			Conc \= goal
+		;	Conc \= answer(_, _, _, _, _, _, _, _),
+			Conc \= cn([answer(_, _, _, _, _, _, _, _)|_])
 		)
 	->	true
 	;	(	\+flag(tactic, 'linear-select')
@@ -450,24 +442,6 @@ gre(Argus) :-
 		Scope
 	),
 	nb_setval(scope, Scope),
-	findall([Dlen, Dsort, implies(Prem, dn(D), Src)],
-		(	implies(Prem, dn(D), Src),
-			nonvar(D),
-			retract(implies(Prem, dn(D), Src)),
-			length(D, Dlen),
-			cflat([Prem|D], Df),
-			labelvars(Df, 0, _),
-			sort(Df, Dsort)
-		),
-		Dg
-	),
-	sort(Dg, Dh),
-	forall(
-		(	member([_, _, Di], Dh)
-		),
-		(	assertz(Di)
-		)
-	),
 	statistics(runtime, [_, T2]),
 	statistics(walltime, [_, T3]),
 	format(user_error, 'networking ~w [msec cputime] ~w [msec walltime]~n', [T2, T3]),
@@ -481,7 +455,6 @@ gre(Argus) :-
 			fail
 		;	true
 		),
-		retractall(implies(answer(_, _, _, _, _, _, _, _), goal, '<>')),
 		retractall(input_statements(_)),
 		assertz(input_statements(SC)),
 		reset_gensym,
@@ -499,17 +472,13 @@ gre(Argus) :-
 		throw(halt)
 	;	true
 	),
-	(	\+implies(answer(_, _, _, _, _, _, _, _), goal, '<>'),
+	(	\+implies(_, answer(_, _, _, _, _, _, _, _), _),
+		\+implies(_, cn([answer(_, _, _, _, _, _, _, _)|_]), _),
 		\+query(_, _),
 		\+flag('pass-only-new'),	% DEPRECATED
 		\+flag('multi-query'),
 		\+flag(strings)
 	->	throw(halt)
-	;	true
-	),
-	(	nb_getval(defcl, true),
-		\+flag('no-branch')	% DEPRECATED
-	->	assertz(flag('no-branch'))
 	;	true
 	),
 	(	flag(strings)
@@ -523,13 +492,6 @@ gre(Argus) :-
 			nl
 		),
 		nl
-	),
-	(	flag('no-branch')	% DEPRECATED
-	->	true
-	;	(	pfx('e:', _)
-		->	true
-		;	assertz(pfx('e:', '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>'))
-		)
 	),
 	(	flag(nope)
 	->	true
@@ -602,10 +564,9 @@ gre(Argus) :-
 				(	retract(answer(A1, A2, A3, A4, A5, A6, A7, A8))
 				)
 			),
-			retractall(got_answer(_, _, _, _, _, _, _, _, _)),
+			retractall(got_answer(_, _, _, _, _, _, _, _)),
 			retractall(implies(_, answer(_, _, _, _, _, _, _, _), _)),
 			retractall(implies(_, cn([answer(_, _, _, _, _, _, _, _)|_]), _)),
-			retractall(implies(answer(_, _, _, _, _, _, _, _), goal, '<>')),
 			retractall(query(_, _)),
 			retractall(prfstep(answer(_, _, _, _, _, _, _, _), _, _, _, _, _, _, _)),
 			retractall(lemma(_, _, _, _, _, _)),
@@ -1282,15 +1243,13 @@ args(['--trules', Arg|Args]) :-
 args(['--query', Arg|Args]) :-
 	!,
 	n3_n3p(Arg, query),
-	assertz(implies(answer(_, _, _, _, _, _, _, _), goal, '<>')),
 	args(Args).
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer')
 	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
-	;	assertz(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>')),
-		assertz(implies(answer(_, _, _, _, _, _, _, _), goal, '<>'))
+	;	assertz(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	),
 	(	flag(n3p)
 	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
@@ -1303,7 +1262,6 @@ args(['--pass-all'|Args]) :-
 			answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 	assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
 			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-	assertz(implies(answer(_, _, _, _, _, _, _, _), goal, '<>')),
 	(	flag(n3p)
 	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
 			answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
@@ -1317,7 +1275,6 @@ args(['--tquery', Arg|Args]) :-
 	!,
 	assertz(flag(tquery)),
 	n3_n3p(Arg, tquery),
-	assertz(implies(answer(_, _, _, _, _, _, _, _), goal, '<>')),
 	args(Args).
 args([Arg|Args]) :-
 	absolute_uri(Arg, A),
@@ -1800,7 +1757,7 @@ wh :-
 	).
 
 
-w3(U) :-
+w3 :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -1826,11 +1783,6 @@ w3(U) :-
 		->	fail
 		;	true
 		),
-		(	\+flag('no-branch'),	% DEPRECATED
-			\+got_answer(B1, B2, B3, B4, B5, B6, B7, B8, _)
-		->	assertz(got_answer(B1, B2, B3, B4, B5, B6, B7, B8, U))
-		;	true
-		),
 		relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
 		strela(answer(C), answer(C1, C2, C3, C4, C5, C6, C7, C8)),
 		indent,
@@ -1840,14 +1792,11 @@ w3(U) :-
 		nl,
 		cnt(output_statements),
 		fail
-	;	(	U = branch
-		->	true
-		;	nl
-		)
+	;	nl
 	).
-w3(U) :-
+w3 :-
 	(	prfstep(answer(Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8), _, _, _, _, _, _, _),
-		\+got_answer(Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8, _),
+		\+got_answer(Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8),
 		!,
 		indent,
 		write('[ '),
@@ -1871,9 +1820,9 @@ w3(U) :-
 			Rule =.. [P, S, O],
 			(	flag(think)	% DEPRECATED
 			->	true
-			;	\+got_answer(B1, B2, B3, B4, B5, B6, B7, B8, _)
+			;	\+got_answer(B1, B2, B3, B4, B5, B6, B7, B8)
 			),
-			assertz(got_answer(B1, B2, B3, B4, B5, B6, B7, B8, U)),
+			assertz(got_answer(B1, B2, B3, B4, B5, B6, B7, B8)),
 			relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
 			strela(answer(C), Cn),
 			\+got_wi(A, B, Pnd, C, Rule),
@@ -1890,7 +1839,7 @@ w3(U) :-
 		wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 		write(' {'),
 		indentation(2),
-		(	got_answer(B1, B2, B3, B4, B5, B6, B7, B8, U),
+		(	got_answer(B1, B2, B3, B4, B5, B6, B7, B8),
 			relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
 			strela(answer(C), answer(C1, C2, C3, C4, C5, C6, C7, C8)),
 			nl,
@@ -3031,7 +2980,7 @@ eam(Span) :-
 			TR >= BrakeLim
 		->	(	flag(strings)
 			->	true
-			;	w3(trunk)
+			;	w3
 			),
 			throw(maximimum_brake_count(TR))
 		;	true
@@ -3050,7 +2999,6 @@ eam(Span) :-
 		(	var(Conc)
 		->	true
 		;	Conc \= dn(_),
-			Conc \= goal,
 			(	\+flag(ances),	% DEPRECATED
 				\+flag(quiet)	% DEPRECATED
 			->	true
@@ -3061,10 +3009,6 @@ eam(Span) :-
 			\+flag('rule-histogram')
 		->	true
 		;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), Rule)
-		),
-		(	nb_getval(defcl, true)
-		->	true
-		;	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>'('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), _)
 		),
 		(	flag(debug)
 		->	format(user_error, '. eam/1 selecting rule ~w~n', [implies(Prem, Conc, Src)]),
@@ -3095,7 +3039,7 @@ eam(Span) :-
 			Step >= StepLim
 		->	(	flag(strings)
 			->	true
-			;	w3(trunk)
+			;	w3
 			),
 			throw(maximimum_step_count(Step))
 		;	true
@@ -3172,7 +3116,7 @@ eam(Span) :-
 			answer(_, _, _, _, _, _, _, _)
 		->	(	flag(strings)
 			->	true
-			;	w3(trunk)
+			;	w3
 			)
 		;	retract(brake),
 			fail
@@ -3190,27 +3134,7 @@ eam(Span) :-
 			eam(S)
 		;	(	flag(strings)
 			->	true
-			;	w3(trunk)
-			),
-			\+flag('no-branch'),	% DEPRECATED
-			assertz(branch),
-			eam([], 0, []),
-			(	nb_getval(cm, CM),
-				CM > 0
-			->	true
-			;	forall(
-					(	possible(A1, A2, A3, A4, A5, A6, A7, A8)
-					),
-					(	strela(answer(Ans), answer(A1, A2, A3, A4, A5, A6, A7, A8)),
-						wt(Ans),
-						write('.'),
-						nl
-					)
-				),
-				(	possible(_, _, _, _, _, _, _, _)
-				->	nl
-				;	true
-				)
+			;	w3
 			)
 		;	true
 		),
@@ -3237,8 +3161,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 		->	assertz(pred(P))
 		;	true
 		),
-		(	\+branch,
-			catch(call(Dn), _, fail)
+		(	catch(call(Dn), _, fail)
 		->	true
 		;	strelas(Dn),
 			(	flag('pass-only-new'),	% DEPRECATED
@@ -3287,8 +3210,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 			->	assertz(pred(P))
 			;	true
 			),
-			(	\+branch,
-				catch(call(Cn), _, fail)
+			(	catch(call(Cn), _, fail)
 			->	true
 			;	strelas(Cn),
 				(	flag('pass-only-new'),	% DEPRECATED
@@ -3322,14 +3244,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 istep(Src, Prem, Conc, Rule) :-
 	term_index(Conc, Cnd),
 	term_index(Prem, Pnd),
-	assertz(prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src)),
-	(	branch
-	->	(	\+bstep(Src, Prem, Conc)
-		->	assertz(bstep(Src, Prem, Conc))
-		;	true
-		)
-	;	true
-	).
+	assertz(prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src)).
 
 
 pstep(Rule) :-
@@ -3338,252 +3253,6 @@ pstep(Rule) :-
 	cnt(RTC),
 	lookup(RTP, tp, RuleL),
 	cnt(RTP).
-
-
-% DEPRECATED
-% Coherent Logic inspired by http://www.cs.vu.nl/~diem/research/ht/CL.pl
-
-eam(Grd, Pnum, Env) :-
-	cnt(br),
-	(	flag(debug)
-	->	format(user_error, 'eam/3 enter branch ~w~n', [Env]),
-		flush_output(user_error)
-	;	true
-	),
-	implies(Prem, Conc, Src),
-	ignore(Prem = exopred(_, _, _)),
-	(	flag(nope),
-		\+flag('rule-histogram')
-	->	true
-	;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), Rule)
-	),
-	(	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>'('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), _)
-	->	Gnew = Grd
-	;	(	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>'('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), [Grd, Gnew])
-		->	true
-		;	(	flag(debug)
-			->	format(user_error, '. eam/3 mismatch with current guard ~w for rule ~w~n', [Grd, implies(Prem, Conc, Src)]),
-				flush_output(user_error),
-				fail
-			)
-		)
-	),
-	(	flag(debug)
-	->	format(user_error, '. eam/3 selecting rule ~w~n', [implies(Prem, Conc, Src)]),
-		flush_output(user_error)
-	;	true
-	),
-	catch(call(Prem), _, fail),
-	(	Conc = answer(_, _, _, _, _, _, _, _)
-	->	true
-	;	commonvars(Prem, Conc, [])
-	),
-	(	flag('rule-histogram'),
-		copy_term(Rule, RuleL)
-	->	lookup(RBP, bp, RuleL),
-		cnt(RBP)
-	;	true
-	),
-	cnt(bp),
-	(	flag(step, StepLim),
-		nb_getval(tp, TP),
-		nb_getval(bp, BP),
-		Step is TP+BP,
-		Step >= StepLim
-	->	throw(maximimum_step_count(Step))
-	;	true
-	),
-	strelan(Conc, Concd),
-	(	flag(tactic, 'single-answer')
-	->	term_index(Prem, Pnd),
-		(	flag(think),	% DEPRECATED
-			\+flag(nope),
-			\+prfstep(_, _, Prem, Pnd, _, _, _, _)
-		->	true
-		;	(	\+call(Concd)
-			->	true
-			;	(	flag(debug),
-					flag(warn)
-				->	format(user_error, '.. eam/3 euler path so do not step in your own step ~w~n', [Concd]),
-					flush_output(user_error),
-					fail
-				)
-			)
-		),
-		(	flag('rule-histogram')
-		->	lookup(RBC, bc, RuleL),
-			cnt(RBC)
-		;	true
-		),
-		cnt(bc)
-	;	true
-	),
-	(	Concd = false
-	->	\+false(Prem),
-		C = false(Prem)
-	;	C = Concd
-	),
-	(	(	C = goal
-		->	true
-		;	C = false(_),
-			flag('quick-false')	% DEPRECATED
-		)
-	->	ances(Env),
-		(	flag(strings)
-		->	true
-		;	end(C, Env)
-		)
-	;	(	C = dn(D)
-		->	(	branching
-			->	true
-			;	assertz(branching)
-			),
-			(	flag('quick-possible')	% DEPRECATED
-			->	retract(implies(Prem, Concd, Src))
-			;	true
-			),
-			forall(
-				(	member(E, D)
-				),
-				(	(	memo(Src, Prem, Gnew, Pnum, E, [E|Env], Rule, RuleL)
-					->	true
-					;	(	\+failing(Env)
-						->	assertz(failing(Env))
-						;	true
-						)
-					)
-				)
-			),
-			(	flag('quick-possible')	% DEPRECATED
-			->	assertz(implies(Prem, Concd, Src))
-			;	true
-			),
-			(	retract(failing(Env))
-			->	Env = [],
-				\+flag(strings),
-				\+answer(_, _, _, _, _, _, _, _),
-				\+countermodel([]),
-				assertz(countermodel([])),
-				end(countermodel, []),
-				fail
-			;	true
-			)
-		;	memo(Src, Prem, Gnew, Pnum, C, Env, Rule, RuleL)
-		)
-	).
-
-
-% DEPRECATED
-memo(Src, Prem, Grd, Pnum, Conc, Env, Rule, RuleL) :-
-	term_index(Prem, Pnd),
-	(	flag(think),	% DEPRECATED
-		\+flag(nope),
-		\+prfstep(_, _, Prem, Pnd, _, _, _, _)
-	->	true
-	;	(	\+call(Conc)
-		->	true
-		;	(	flag(debug),
-				flag(warn)
-			->	format(user_error, '.. memo/8 euler path so do not step in your own step ~w~n', [Conc]),
-				flush_output(user_error),
-				fail
-			)
-		)
-	),
-	(	flag('rule-histogram')
-	->	lookup(RBC, bc, RuleL),
-		cnt(RBC)
-	;	true
-	),
-	cnt(bc),
-	copy_term(Conc, Cc),
-	(	Conc = false(_)
-	->	Pnew = Pnum
-	;	labelvars(Conc, Pnum, Pnew)
-	),
-	(	flag(debug)
-	->	format(user_error, '... memo/8 assert step ~w~n', [Conc]),
-		flush_output(user_error)
-	;	true
-	),
-	clist(La, Conc),
-	clist(Lb, Cc),
-	couple(La, La, Lb, Lc),
-	findall([D, F, E],
-		(	member([D, D, E], Lc),
-			unify(D, F),
-			(	flag(think),	% DEPRECATED
-				\+flag(nope)
-			->	true
-			;	catch(\+call(F), _, true)
-			)
-		),
-		Ld
-	),
-	couple(Ls, Le, Lf, Ld),
-	clist(Ls, Concs),
-	clist(Le, Concl),
-	clist(Lf, Clc),
-	astep(Src, Prem, Concs, Concl, Clc, Rule),
-	(	eam(Grd, Pnew, Env)
-	->	true
-	;	ances(Env),
-		(	flag(strings)
-		->	true
-		;	end(countermodel, Env)
-		)
-	),
-	(	flag(debug)
-	->	format(user_error, '... memo/8 retract step ~w~n', [Conc]),
-		flush_output(user_error)
-	;	true
-	),
-	dstep(Src, Prem, Concl, Rule).
-
-
-% DEPRECATED
-dstep(A, B, C, Rule) :-
-	term_index(B, Ind),
-	(	C = cn([D|E])
-	->	(	flag(think),	% DEPRECATED
-			D = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
-		->	retract(implies(Prem, Conc, A))
-		;	true
-		),
-		retract(D),
-		(	flag(nope),
-			\+flag(ances)	% DEPRECATED
-		->	true
-		;	term_index(D, Cnd),
-			retract(prfstep(D, Cnd, B, Ind, _, _, _, A))
-		),
-		(	E = [F]
-		->	true
-		;	F = cn(E)
-		),
-		dstep(A, B, F, Rule)
-	;	(	C = true
-		->	true
-		;	(	flag(think),	% DEPRECATED
-				C = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
-			->	retract(implies(Prem, Conc, A))
-			;	true
-			),
-			retract(C),
-			(	flag(nope),
-				\+flag(ances)	% DEPRECATED
-			->	true
-			;	term_index(C, Cnd),
-				retract(prfstep(C, Cnd, B, Ind, _, _, _, A))
-			)
-		)
-	),
-	forall(
-		(	retract(bstep(Sr, Pr, Cn))
-		),
-		(	retract(prfstep(Cn, _, Pr, _, _, _, _, Sr))
-		)
-	).
 
 
 % DEPRECATED
@@ -3684,384 +3353,6 @@ ances(Env) :-
 		)
 	;	true
 	).
-
-
-% DEPRECATED
-end(goal, Env) :-
-	\+false(_),
-	!,
-	retractall(got_answer(_, _, _, _, _, _, _, _, branch)),
-	(	\+branching
-	->	true
-	;	write('[ '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#possibleModel>'),
-		write(' '),
-		clist(Env, G),
-		indentation(2),
-		wg(G),
-		nl,
-		write('; '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#gives>'),
-		write(' {'),
-		nl,
-		indentation(2),
-		(	flag(strings)
-		->	true
-		;	retractall(lemma(_, _, _, _, _, _)),
-			w3(branch)
-		),
-		indentation(-2),
-		indent,
-		write('}'),
-		nl,
-		write('].'),
-		indentation(-2),
-		nl,
-		nl,
-		cnt(pm)
-	),
-	(	flag('quick-possible')	% DEPRECATED
-	->	true
-	;	(	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>'(_, _)
-		->	true
-		;	(	nb_getval(possible, started)
-			->	forall(
-					(	possible(A1, A2, A3, A4, A5, A6, A7, A8)
-					),
-					(	(	got_answer(A1, A2, A3, A4, A5, A6, A7, A8, branch)
-						->	true
-						;	retract(possible(A1, A2, A3, A4, A5, A6, A7, A8))
-						)
-					)
-				)
-			;	nb_setval(possible, started),
-				forall(
-					(	got_answer(A1, A2, A3, A4, A5, A6, A7, A8, branch)
-					),
-					(	assertz(possible(A1, A2, A3, A4, A5, A6, A7, A8))
-					)
-				)
-			)
-		)
-	).
-% DEPRECATED
-end(countermodel, Env) :-
-	\+false(_),
-	!,
-	write('[ '),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#counterModel>'),
-	write(' '),
-	clist(Env, G),
-	indentation(2),
-	wg(G),
-	indentation(-2),
-	nl,
-	write('].'),
-	nl,
-	nl,
-	cnt(cm).
-% DEPRECATED
-end(End, Env) :-
-	write('[ '),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#falseModel>'),
-	write(' '),
-	clist(Env, G),
-	indentation(2),
-	wg(G),
-	nl,
-	retractall(fd(_, _)),
-	(	(	End = false(F)
-		;	false(F)
-		),
-		write('; '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#because>'),
-		write(' [ '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#integrityConstraint>'),
-		write(' {'),
-		labelvars(F, 0, _, allv),
-		wg(F),
-		write(' '),
-		wp('<http://www.w3.org/2000/10/swap/log#implies>'),
-		write(' false}'),
-		(	cmember(A, F),
-			nl,
-			write('  ; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#selected>'),
-			write(' [ '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#triple>'),
-			write(' '),
-			wg(A),
-			nl,
-			(	flag(quiet)	% DEPRECATED
-			->	true
-			;	(	flag(nope),
-					\+flag(ances)	% DEPRECATED
-				->	throw(no_ances_flag)
-				;	true
-				),
-				findall(X,
-					(	ancestor(X, A)
-					),
-					L
-				),
-				distinct(L, Ls),
-				clist(Ls, U),
-				findall(X,
-					(	ancestor(A, X)
-					),
-					M
-				),
-				distinct(M, Ms),
-				clist(Ms, V),
-				findall(X,
-					(	false(Y),
-						cmember(X, Y)
-					),
-					I
-				),
-				distinct(I, Is),
-				clist(Is, Q),
-				findall(X,
-					(	cmember(X, U),
-						cmember(Y, Q),
-						unify(X, Y)
-					),
-					J
-				),
-				distinct(J, Js),
-				clist(Js, R),
-				write('    ; '),
-				wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#falseAncestors>'),
-				write(' '),
-				indentation(2),
-				wg(R),
-				nl,
-				findall(X,
-					(	cmember(X, V),
-						cmember(Y, Q),
-						unify(X, Y)
-					),
-					K
-				),
-				distinct(K, Ks),
-				clist(Ks, S),
-				write('    ; '),
-				wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#falseDescendents>'),
-				write(' '),
-				wg(S),
-				nl,
-				findall(X,
-					(	ancestor(X, A),
-						hstep(Y, true),
-						unify(X, Y)
-					),
-					T
-				),
-				distinct(T, Ts),
-				clist(Ts, Ua),
-				write('    ; '),
-				wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#assertedAncestors>'),
-				write(' [ '),
-				wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#triples>'),
-				write(' '),
-				wg(Ua),
-				nl,
-				(	cmember(Ca, Ua),
-					write('      ; '),
-					wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#selected>'),
-					write(' [ '),
-					wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ancestor>'),
-					write(' '),
-					wg(Ca),
-					nl,
-					findall(X,
-						(	ancestor(Ca, X)
-						),
-						D
-					),
-					distinct(D, Ds),
-					clist(Ds, Va),
-					write('        ; '),
-					wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#inferredDescendents>'),
-					write(' '),
-					indentation(2),
-					wg(Va),
-					indentation(-2),
-					nl,
-					write('        ]'),
-					nl,
-					fail
-				;	true
-				),
-				write('      ]'),
-				nl,
-				(	fd(A, _)
-				->	true
-				;	'<http://www.w3.org/2000/10/swap/log#conjunction>'([R, S], Fd),
-					assertz(fd(A, Fd))
-				),
-				(	flag(think)	% DEPRECATED
-				->	findall(X,
-						(	hstep(X, _),
-							X \= false(_),
-							X \= answer(_, _, _, _, _, _, _, _),
-							\+unify(X, A),
-							cgives(A, X)
-						),
-						N
-					),
-					distinct(N, Ns),
-					clist(Ns, W),
-					write('    ; '),
-					wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#consistentGives>'),
-					write(' '),
-					wg(W),
-					nl
-				;	true
-				),
-				indentation(-2)
-			),
-			write('    ]'),
-			fail
-		;	true
-		),
-		nl,
-		write('  ]'),
-		nl,
-		fail
-	;	true
-	),
-	(	flag(think),	% DEPRECATED
-		\+flag(quiet)	% DEPRECATED
-	->	findall(X,
-			(	hstep(X, _),
-				X \= false(_),
-				X \= answer(_, _, _, _, _, _, _, _),
-				forall(
-					(	false(H),
-						cmember(B, H)
-					),
-					(	\+unify(X, B),
-						cgives(B, X)
-					)
-				)
-			),
-			O
-		),
-		distinct(O, Os),
-		clist(Os, Z),
-		write('; '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#consistentGives>'),
-		write(' '),
-		wg(Z),
-		nl
-	;	true
-	),
-	(	flag('quick-false')	% DEPRECATED
-	->	true
-	;	findall(X,
-			(	false(X)
-			),
-			Ir
-		),
-		'<http://www.w3.org/2000/10/swap/log#conjunction>'(Ir, It),
-		findall([X, Y],
-			(	cmember(Y, It),
-				findall(1,
-					(	false(Ig),
-						cmember(Y, Ig)
-					),
-					Im
-				),
-				length(Im, X)
-			),
-			In
-		),
-		sort(In, Io),
-		findall(X,
-			(	member([_, X], Io)
-			),
-			Ip
-		),
-		reverse(Ip, Iq),
-		write('; '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#inconsistentTriplesOrdering>'),
-		write(' '),
-		wt(Iq),
-		nl,
-		(	flag(quiet)	% DEPRECATED
-		->	true
-		;	findall([X, Y],
-				(	cmember(Y, It),
-					fd(Y, Ig),
-					clist(Ih, Ig),
-					length(Ih, X)
-				),
-				Iu
-			),
-			sort(Iu, Iv),
-			findall(X,
-				(	member([_, X], Iv)
-				),
-				Iw
-			),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#closureInconsistentTriplesOrdering>'),
-			write(' '),
-			wt(Iw),
-			nl,
-			findall([X, Y],
-				(	cmember(Y, It),
-					findall(1,
-						(	false(Ig),
-							cmember(Y, Ig)
-						),
-						Im
-					),
-					length(Im, Xa),
-					fd(Y, Jg),
-					clist(Jh, Jg),
-					length(Jh, Xb),
-					X is Xb-Xa
-				),
-				Ju
-			),
-			sort(Ju, Jv),
-			findall(X,
-				(	member([_, X], Jv)
-				),
-				Jw
-			),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#maxResolveMinRemoveOrdering>'),
-			write(' '),
-			wt(Jw),
-			nl
-		),
-		write('; '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#gives>'),
-		write(' {'),
-		nl,
-		retractall(got_answer(_, _, _, _, _, _, _, _, branch)),
-		indentation(2),
-		(	flag(strings)
-		->	true
-		;	retractall(lemma(_, _, _, _, _, _)),
-			w3(branch)
-		),
-		indentation(-2),
-		indent,
-		write('}')
-	),
-	write('].'),
-	indentation(-2),
-	nl,
-	nl,
-	(	Env = []
-	->	throw(empty_false_model)
-	;	true
-	),
-	cnt(fm).
 
 
 
@@ -4767,8 +4058,7 @@ end(End, Env) :-
 
 '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y) :-
 	implies(X, Y, _),
-	Y \= answer(_, _, _, _, _, _, _, _),
-	Y \= goal.
+	Y \= answer(_, _, _, _, _, _, _, _).
 
 
 '<http://www.w3.org/2000/10/swap/log#includes>'(X, Y) :-
