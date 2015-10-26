@@ -149,7 +149,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10241836Z josd').
+version_info('EYE-Autumn15 10261246Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3766,9 +3766,7 @@ ances(Env) :-
 	(	flag(strings)
 	->	true
 	;	write('#TRACE '),
-		copy_term_nat(Y, Z),
-		labelvars(Z, 0, _, avar),
-		wg(Z),
+		wg(Y),
 		nl
 	).
 
@@ -4094,11 +4092,12 @@ ances(Env) :-
 	when(
 		(	nonvar(X)
 		),
-		(	nonvar(X),
-			(	semantics(X, Q)
+		(	(	semantics(X, Q)
 			->	Y = Q
-			;	sub_atom(X, 1, _, 1, Z),
-				n3_n3p(Z, semantics),
+			;	sub_atom(X, 0, 1, _, '<'),
+				sub_atom(X, _, 1, 0, '>'),
+				sub_atom(X, 1, _, 1, Z),
+				catch(n3_n3p(Z, semantics), _, fail),
 				semantics(X, Y)
 			)
 		)
