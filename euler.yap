@@ -149,7 +149,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10261323Z josd').
+version_info('EYE-Autumn15 10261401Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3763,9 +3763,11 @@ ances(Env) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#trace>'(X, Y) :-
 	ignore(get_time(X)),
-	write('#TRACE '),
+	tell(user_error),
+	write('TRACE '),
 	wg(Y),
-	nl.
+	nl,
+	told.
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tripleList>'(A, [B, C, D]) :-
