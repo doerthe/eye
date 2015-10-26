@@ -149,7 +149,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10261246Z josd').
+version_info('EYE-Autumn15 10261323Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3763,12 +3763,9 @@ ances(Env) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#trace>'(X, Y) :-
 	ignore(get_time(X)),
-	(	flag(strings)
-	->	true
-	;	write('#TRACE '),
-		wg(Y),
-		nl
-	).
+	write('#TRACE '),
+	wg(Y),
+	nl.
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tripleList>'(A, [B, C, D]) :-
@@ -4017,11 +4014,11 @@ ances(Env) :-
 
 '<http://www.w3.org/2000/10/swap/log#conjunction>'(A, B) :-
 	when(
-		(	ground(A)
+		(	nonvar(A)
 		),
 		(	cnt(graph),
 			nb_getval(graph, N),
-			conjoin(N, A, 0, _),
+			conjoin(N, A),
 			findall(C,
 				(	graph(N, C)
 				),
@@ -7472,17 +7469,15 @@ couple([A|B], [C|D], [E|F], [[A, C, E]|G]) :-
 	couple(B, D, F, G).
 
 
-conjoin(_, [], _, _) :-
+conjoin(_, []) :-
 	!.
-conjoin(N, [true|Y], I, J) :-
+conjoin(N, [true|Y]) :-
 	!,
-	conjoin(N, Y, I, J).
-conjoin(N, [X|Y], I, K) :-
+	conjoin(N, Y).
+conjoin(N, [X|Y]) :-
 	\+atom(X),
-	copy_term_nat(X, Z),
-	labelvars(Z, I, J, some),
-	agraph(N, Z),
-	conjoin(N, Y, J, K).
+	agraph(N, X),
+	conjoin(N, Y).
 
 
 agraph(N, cn([X|Y])) :-
