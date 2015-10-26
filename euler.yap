@@ -124,6 +124,7 @@
 :- dynamic(tuple/6).
 :- dynamic(tuple/7).
 :- dynamic(tuple/8).
+:- dynamic(unique/1).
 :- dynamic(wcache/2).
 :- dynamic(wpfx/1).
 :- dynamic(wtcache/2).
@@ -149,7 +150,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10261401Z josd').
+version_info('EYE-Autumn15 10261546Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3805,6 +3806,17 @@ ances(Env) :-
 				atomic_list_concat(['<', Vns, 't', A, '>'], X),
 				assertz(Z)
 			)
+		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#unique>'(_, A) :-
+	when(
+		(	nonvar(A)
+		),
+		(	unique(A)
+		->	fail
+		;	assertz(unique(A))
 		)
 	).
 
