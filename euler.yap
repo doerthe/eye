@@ -124,7 +124,7 @@
 :- dynamic(tuple/6).
 :- dynamic(tuple/7).
 :- dynamic(tuple/8).
-:- dynamic(unique/1).
+:- dynamic(unique/3).
 :- dynamic(wcache/2).
 :- dynamic(wpfx/1).
 :- dynamic(wtcache/2).
@@ -150,7 +150,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10261546Z josd').
+version_info('EYE-Autumn15 10272205Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3810,14 +3810,11 @@ ances(Env) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#unique>'(_, A) :-
-	when(
-		(	nonvar(A)
-		),
-		(	unique(A)
-		->	fail
-		;	assertz(unique(A))
-		)
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#unique>'(A, B) :-
+	catch(nb_getval(current_rule_index, C), _, fail),
+	(	unique(A, B, C)
+	->	fail
+	;	assertz(unique(A, B, C))
 	).
 
 
