@@ -77,14 +77,9 @@
 :- dynamic(evar/3).
 :- dynamic(exopred/3).
 :- dynamic(fact/1).
-:- dynamic(failing/1).
-:- dynamic(false/1).
-:- dynamic(fd/2).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
-:- dynamic(fm/1).
 :- dynamic(forward/0).
-:- dynamic(fs/1).
 :- dynamic(got_answer/8).
 :- dynamic(got_dq/0).
 :- dynamic(got_labelvars/3).
@@ -100,10 +95,8 @@
 :- dynamic(lemma/6).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
-:- dynamic(nodepth/0).
 :- dynamic(ns/2).
 :- dynamic(pfx/2).
-:- dynamic(pi/3).
 :- dynamic(pred/1).
 :- dynamic(preda/1).
 :- dynamic(prfstep/8).
@@ -150,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 10272205Z josd').
+version_info('EYE-Autumn15 11032122Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3292,7 +3285,6 @@ qstep(A, true) :-
 ancestor(A, B) :-
 	hstep(D, C),
 	C \= true,
-	D \= false(_),
 	D \= answer(_, _, _, _, _, _, _, _),
 	unify(B, D),
 	cmember(E, C),

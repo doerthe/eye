@@ -1,6 +1,6 @@
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL from http://www.swi-prolog.org/download/stable
+Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
 Install cURL from http://curl.haxx.se/download.html
 
 Run the installation script install.sh which will
