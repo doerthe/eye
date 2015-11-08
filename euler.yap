@@ -82,7 +82,7 @@
 :- dynamic(forward/0).
 :- dynamic(got_answer/8).
 :- dynamic(got_dq/0).
-:- dynamic(got_labelvars/3).
+:- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
 :- dynamic(got_sq/0).
 :- dynamic(got_wi/5).
@@ -117,7 +117,7 @@
 :- dynamic(tuple/6).
 :- dynamic(tuple/7).
 :- dynamic(tuple/8).
-:- dynamic(unique/3).
+:- dynamic(unique/2).
 :- dynamic(wcache/2).
 :- dynamic(wpfx/1).
 :- dynamic(wtcache/2).
@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11032122Z josd').
+version_info('EYE-Autumn15 11081938Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2985,10 +2985,6 @@ eam(Span) :-
 		;	true
 		),
 		implies(Prem, Conc, Src),
-		copy_term(implies(Prem, Conc, Src), Rc),
-		labelvars(Rc, 0, _),
-		term_index(Rc, Ind),
-		nb_setval(current_rule_index, Ind),
 		ignore(Prem = exopred(_, _, _)),
 		(	var(Conc)
 		->	true
@@ -3584,14 +3580,13 @@ ances(Env) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#labelvars>'(A, B) :-
-	catch(nb_getval(current_rule_index, C), _, fail),
-	(	got_labelvars(A, B, C)
+	(	got_labelvars(A, B)
 	->	true
 	;	copy_term_nat(A, B),
 		nb_getval(wn, W),
 		labelvars(B, W, N),
 		nb_setval(wn, N),
-		assertz(got_labelvars(A, B, C))
+		assertz(got_labelvars(A, B))
 	).
 
 
@@ -3803,10 +3798,9 @@ ances(Env) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#unique>'(A, B) :-
-	catch(nb_getval(current_rule_index, C), _, fail),
-	(	unique(A, B, C)
+	(	unique(A, B)
 	->	fail
-	;	assertz(unique(A, B, C))
+	;	assertz(unique(A, B))
 	).
 
 
