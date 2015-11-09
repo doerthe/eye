@@ -85,6 +85,7 @@
 :- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
 :- dynamic(got_sq/0).
+:- dynamic(got_unique/2).
 :- dynamic(got_wi/5).
 :- dynamic(graph/2).
 :- dynamic(hash_value/2).
@@ -117,7 +118,6 @@
 :- dynamic(tuple/6).
 :- dynamic(tuple/7).
 :- dynamic(tuple/8).
-:- dynamic(unique/2).
 :- dynamic(wcache/2).
 :- dynamic(wpfx/1).
 :- dynamic(wtcache/2).
@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11081938Z josd').
+version_info('EYE-Autumn15 11091617Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -809,24 +809,6 @@ opts(['--pvm', File|Argus], _) :-
 							T3
 						]
 					;	T2 = T3
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O), T2),
-				(	!,
-					term_index(S-O, SO),
-					(	\+ catch(call('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(_, _, _)), _, fail)
-					->	T2 = [	':-'(dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'/3)),
-							':-'(multifile('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'/3)),
-							':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
-								(	term_index(U-V, UV),
-									'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V, UV)
-								)
-							),
-							'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O, SO)
-						]
-					;	T2 = '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O, SO)
 					)
 				)
 			)
@@ -2919,20 +2901,6 @@ strelas(A) :-
 	),
 	B =.. [P, S1, S2, S3, O],
 	assertz(B).
-strelas('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B)) :-
-	!,
-	(	current_predicate('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'/3)
-	->	true
-	;	dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'/3),
-		assertz(':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(X, Y),
-				(	term_index(X-Y, Z),
-					'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(X, Y, Z)
-				)
-			)
-		)
-	),
-	term_index(A-B, C),
-	assertz('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B, C)).
 strelas(A) :-
 	ground(A),
 	A =.. [P, S, literal(O1, O2)],
@@ -3135,7 +3103,6 @@ eam(Span) :-
 
 
 astep(A, B, C, Cn, Cc, Rule) :-
-	term_index(B, Pnd),
 	(	Cn = cn([Dn|En]),
 		Cc = cn([Dc|Ec])
 	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
@@ -3170,6 +3137,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 			\+flag(ances)	% DEPRECATED
 		->	true
 		;	term_index(Dn, Cnd),
+			term_index(B, Pnd),
 			(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
 				Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 				prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
@@ -3219,6 +3187,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 				\+flag(ances)	% DEPRECATED
 			->	true
 			;	term_index(Cn, Cnd),
+				term_index(B, Pnd),
 				(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
 					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
@@ -3798,9 +3767,9 @@ ances(Env) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#unique>'(A, B) :-
-	(	unique(A, B)
+	(	got_unique(A, B)
 	->	fail
-	;	assertz(unique(A, B))
+	;	assertz(got_unique(A, B))
 	).
 
 
