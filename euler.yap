@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11091617Z josd').
+version_info('EYE-Autumn15 11112113Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -165,6 +165,7 @@ eye
 	--no-numerals			no numerals in the output
 	--no-distinct			no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
+	--multi-argument-jiti		enable multi-argument JITI
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
 	--tactic linear-select		select each rule only once
@@ -296,6 +297,11 @@ main :-
 				(	P =.. [Pred, _, _, _, _],
 					predicate_property(P, indexed(Ind4))
 				->	format(user_error, 'JITI ~w/4 indexed ~w~n', [Pred, Ind4])
+				;	true
+				),
+				(	P =.. [Pred, _, _, _, _, _],
+					predicate_property(P, indexed(Ind5))
+				->	format(user_error, 'JITI ~w/5 indexed ~w~n', [Pred, Ind5])
 				;	true
 				),
 				(	P =.. [Pred, _, _, _, _, _, _, _],
@@ -2883,6 +2889,26 @@ strelas(answer(A1, A2, A3, A4, A5, A6, A7, A8)) :-
 	;	true
 	),
 	B =.. [A1, A2, A3, A4, A5, A6, A7, A8],
+	assertz(B).
+strelas(A) :-
+	flag('multi-argument-jiti'),
+	ground(A),
+	A =.. [P, S, O],
+	!,
+	(	current_predicate(P/5)
+	->	true
+	;	dynamic(P/5),
+		X =.. [P, U, V],
+		assertz(':-'(X,
+				(	term_index(U-V, W),
+					Y =.. [P, U, V, W, delta, delta],
+					call(Y)
+				)
+			)
+		)
+	),
+	term_index(S-O, Z),
+	B =.. [P, S, O, Z, delta, delta],
 	assertz(B).
 strelas(A) :-
 	ground(A),
