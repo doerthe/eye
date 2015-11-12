@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11112113Z josd').
+version_info('EYE-Autumn15 11121552Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -165,7 +165,7 @@ eye
 	--no-numerals			no numerals in the output
 	--no-distinct			no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
-	--multi-argument-jiti		enable multi-argument JITI
+	--multi-argument-jiti <pred>	enable multi-argument JITI for <pred>
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
 	--tactic linear-select		select each rule only once
@@ -340,7 +340,8 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules', '--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic']),
+	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm','--turtle', '--proof', '--trules',
+			'--query', '--tquery', '--no-skolem', '--multi-argument-jiti', '--step', '--brake', '--tactic']),
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -705,7 +706,7 @@ gre(Argus) :-
 	;	Inf = ''
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-	format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Elaps, Speed]),
+	format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, RBC, RBP, Rule],
@@ -881,6 +882,11 @@ opts(['--yabc', File|Argus], Args) :-
 opts(['--no-skolem', Prefix|Argus], Args) :-
 	!,
 	assertz(flag('no-skolem', Prefix)),
+	opts(Argus, Args).
+opts(['--multi-argument-jiti', Pred|Argus], Args) :-
+	!,
+	atomic_list_concat(['<', Pred, '>'], P),
+	assertz(flag('multi-argument-jiti', P)),
 	opts(Argus, Args).
 opts(['--step', Lim|Argus], Args) :-
 	!,
@@ -2891,9 +2897,9 @@ strelas(answer(A1, A2, A3, A4, A5, A6, A7, A8)) :-
 	B =.. [A1, A2, A3, A4, A5, A6, A7, A8],
 	assertz(B).
 strelas(A) :-
-	flag('multi-argument-jiti'),
 	ground(A),
 	A =.. [P, S, O],
+	flag('multi-argument-jiti', P),
 	!,
 	(	current_predicate(P/5)
 	->	true
