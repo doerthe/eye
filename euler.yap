@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11121552Z josd').
+version_info('EYE-Autumn15 11121917Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -163,9 +163,9 @@ eye
 	--no-qnames			no qnames in the output
 	--no-qvars			no qvars in the output
 	--no-numerals			no numerals in the output
-	--no-distinct			no distinct answers in the output
+	--no-distinct-input		no distinct triples in the input
+	--no-distinct-output		no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
-	--multi-argument-jiti <pred>	enable multi-argument JITI for <pred>
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
 	--tactic linear-select		select each rule only once
@@ -341,7 +341,7 @@ argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
 	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm','--turtle', '--proof', '--trules',
-			'--query', '--tquery', '--no-skolem', '--multi-argument-jiti', '--step', '--brake', '--tactic']),
+			'--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic']),
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -788,6 +788,11 @@ opts(['--wget-path', Path|Argus], Args) :-
 	assertz(flag('wget-path', Path)),
 	opts(Argus, Args).
 % DEPRECATED
+opts(['--no-distinct'|Argus], Args) :-
+	!,
+	assertz(flag('no-distinct-output')),
+	opts(Argus, Args).
+% DEPRECATED
 opts(['--pcl'|Argus], Args) :-
 	!,
 	assertz(flag(n3p)),
@@ -882,11 +887,6 @@ opts(['--yabc', File|Argus], Args) :-
 opts(['--no-skolem', Prefix|Argus], Args) :-
 	!,
 	assertz(flag('no-skolem', Prefix)),
-	opts(Argus, Args).
-opts(['--multi-argument-jiti', Pred|Argus], Args) :-
-	!,
-	atomic_list_concat(['<', Pred, '>'], P),
-	assertz(flag('multi-argument-jiti', P)),
 	opts(Argus, Args).
 opts(['--step', Lim|Argus], Args) :-
 	!,
@@ -1081,6 +1081,7 @@ args(['--plugin', Argument|Args]) :-
 			),
 			(	Rt \= implies(_, _, _),
 				Rt \= scount(_),
+				\+flag('no-distinct-input'),
 				call(Rt)
 			->	true
 			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
@@ -1466,6 +1467,7 @@ n3_n3p(Argument, Mode) :-
 							throw(builtin_redefinition(Rt))
 						),
 						(	Rt \= implies(_, _, _),
+							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
 						;	strelas(Rt),
@@ -1585,7 +1587,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
+		(	flag('no-distinct-output')
 		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, Y)),
@@ -1614,7 +1616,7 @@ tr_n3p([X|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
+		(	flag('no-distinct-output')
 		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(true, X)),
@@ -2895,26 +2897,6 @@ strelas(answer(A1, A2, A3, A4, A5, A6, A7, A8)) :-
 	;	true
 	),
 	B =.. [A1, A2, A3, A4, A5, A6, A7, A8],
-	assertz(B).
-strelas(A) :-
-	ground(A),
-	A =.. [P, S, O],
-	flag('multi-argument-jiti', P),
-	!,
-	(	current_predicate(P/5)
-	->	true
-	;	dynamic(P/5),
-		X =.. [P, U, V],
-		assertz(':-'(X,
-				(	term_index(U-V, W),
-					Y =.. [P, U, V, W, delta, delta],
-					call(Y)
-				)
-			)
-		)
-	),
-	term_index(S-O, Z),
-	B =.. [P, S, O, Z, delta, delta],
 	assertz(B).
 strelas(A) :-
 	ground(A),

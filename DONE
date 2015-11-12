@@ -12,7 +12,7 @@
 <h1><img src="http://eulersharp.sourceforge.net/2003/03swap/eye.png" alt="EYE" height="37" width="37"/> EYE development</h1>
 <pre>
 <span id="EYE-Autumn15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Autumn15/">EYE-Autumn15</a>]</span>
-- adding --multi-argument-jiti &lt;pred&gt; command line switch to enable multi-argument JITI (Just In Time Indexing) for &lt;pred&gt;
+- adding --no-distinct-input command line switch to have no distinct triples in the input
 - improving the performance of EAM (Euler Abstract Machine)
 - fixing ProofEngine.java and Euler.jar (obs from Jean-Marc Vanel)
 - introducing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#unique">e:unique</a> built-in to succeed when the subject object pair is unique (obs from Hong Sun)
