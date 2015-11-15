@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11121917Z josd').
+version_info('EYE-Autumn15 11151356Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4086,7 +4086,7 @@ ances(Env) :-
 		(	nonvar(X)
 		;	nonvar(Y)
 		),
-		(	nonvar(X),
+		(	atomic(X),
 			(	atom_concat(some, V, X)
 			->	nb_getval(var_ns, Vns),
 				atomic_list_concat(['<', Vns, 'sk', V, '>'], U)
