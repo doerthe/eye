@@ -1,4 +1,4 @@
-![SEE](http://eulersharp.sourceforge.net/2003/03swap/see.png)
+# EYE
 
 - EYE is a reasoning engine supporting the [RGB semantic web layers] (http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).
 - It is a semibackward reasoner enhanced with [Euler path] (http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html) detection.
