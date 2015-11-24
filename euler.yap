@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11232013Z josd').
+version_info('EYE-Autumn15 11241714Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -379,6 +379,7 @@ gre(Argus) :-
 		\+memberchk('--tquery', Args),
 		\+memberchk('--pass', Args),
 		\+memberchk('--pass-all', Args),
+		\+memberchk('--pass-all-ground', Args),
 		\+memberchk('--pass-only-new', Args),	% DEPRECATED
 		\+flag('multi-query'),
 		\+flag(n3p),
@@ -391,7 +392,9 @@ gre(Argus) :-
 	->	opts(['--help'], _)
 	;	true
 	),
-	(	flag('no-qvars')
+	(	(	flag('no-qvars')
+		;	flag('pass-all-ground')
+		)
 	->	atomic_list_concat(['<', Vns, '>'], Vpfx),
 		assertz(pfx('var:', Vpfx))
 	;	true
@@ -882,6 +885,10 @@ opts(['--no-skolem', Prefix|Argus], Args) :-
 	!,
 	assertz(flag('no-skolem', Prefix)),
 	opts(Argus, Args).
+opts(['--pass-all-ground'|Argus], Args) :-
+	!,
+	assertz(flag('pass-all-ground')),
+	opts(['--pass-all'|Argus], Args).
 opts(['--step', Lim|Argus], Args) :-
 	!,
 	(	number(Lim)
@@ -2233,6 +2240,7 @@ wt0(X) :-
 	->	true
 	;	flag(nope)
 	),
+	\+flag('pass-all-ground'),
 	nb_getval(var_ns, Vns),
 	sub_atom(X, 1, I, _, Vns),
 	J is I+1,
@@ -3454,6 +3462,7 @@ ances(Env) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [A, B, C|D]) :-
 	within_scope(Sc),
+	nonvar(B),
 	\+is_list(B),
 	(	D = [F]
 	->	findall(A,
@@ -3618,6 +3627,7 @@ ances(Env) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A) :-
 	within_scope(Sc),
+	nonvar(A),
 	(	\+call(A)
 	->	true
 	;	call(A)
@@ -9562,7 +9572,12 @@ pathitem(VarID, []) -->
 	!,
 	{	atom_codes(Var, VarCodes),
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], VarCodes, VarTidy),
-		atom_codes(VarID, [0'_|VarTidy]),
+		atom_codes(VarAtom, [0'_|VarTidy]),
+		(	flag('pass-all-ground')
+		->	nb_getval(var_ns, Vns),
+			atomic_list_concat(['\'<', Vns, VarAtom, '>\''], VarID)
+		;	VarID = VarAtom
+		),
 		nb_setval(smod, false)
 	}.
 pathitem(Number, []) -->
