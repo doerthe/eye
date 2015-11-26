@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11241714Z josd').
+version_info('EYE-Autumn15 11260910Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4016,13 +4016,24 @@ ances(Env) :-
 
 '<http://www.w3.org/2000/10/swap/log#dtlit>'([A, B], C) :-
 	when(
-		(	ground([A, B])
+		(	ground(A)
 		;	nonvar(C)
 		),
-		(	ground([A, B]),
-			A = literal(E, _),
-			C = literal(E, type(B)),
-			!
+		(	ground(A),
+			(	var(B)
+			->	member(B, ['<http://www.w3.org/2001/XMLSchema#integer>', '<http://www.w3.org/2001/XMLSchema#double>', '<http://www.w3.org/2001/XMLSchema#dateTime>',
+				'<http://www.w3.org/2001/XMLSchema#date>', '<http://www.w3.org/2001/XMLSchema#time>', '<http://www.w3.org/2001/XMLSchema#duration>',
+				'<http://www.w3.org/2001/XMLSchema#yearMonthDuration>', '<http://www.w3.org/2001/XMLSchema#dayTimeDuration>', '<http://www.w3.org/2001/XMLSchema#boolean>']),
+				dtlit([A, B], C),
+				(	B = '<http://www.w3.org/2001/XMLSchema#boolean>'
+				->	getbool(C, D)
+				;	getnumber(C, D)
+				),
+				dtlit([_, B], D)
+			;	A = literal(E, _),
+				C = literal(E, type(B)),
+				!
+			)
 		;	nonvar(C),
 			dtlit([A, B], C)
 		)
@@ -8418,7 +8429,8 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://w
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#dateTime>'], B) :-
 	(	number(B)
 	->	datetime(B, C)
-	;	B = date(Year, Month, Day, Hour, Minute, Second, Offset, _, _),
+	;	nonvar(B),
+		B = date(Year, Month, Day, Hour, Minute, Second, Offset, _, _),
 		datetime(Year, Month, Day, Hour, Minute, Second, Offset, C)
 	),
 	!,
@@ -8426,7 +8438,8 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://w
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#date>'], B) :-
 	(	number(B)
 	->	date(B, C)
-	;	B = date(Year, Month, Day, _, _, _, Offset, _, _),
+	;	nonvar(B),
+		B = date(Year, Month, Day, _, _, _, Offset, _, _),
 		date(Year, Month, Day, Offset, C)
 	),
 	!,
@@ -8434,7 +8447,8 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://w
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#time>'], B) :-
 	(	number(B)
 	->	time(B, C)
-	;	B = date(_, _, _, Hour, Minute, Second, Offset, _, _),
+	;	nonvar(B),
+		B = date(_, _, _, Hour, Minute, Second, Offset, _, _),
 		time(Hour, Minute, Second, Offset, C)
 	),
 	!,
