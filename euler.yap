@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11260910Z josd').
+version_info('EYE-Autumn15 11271935Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4021,15 +4021,21 @@ ances(Env) :-
 		),
 		(	ground(A),
 			(	var(B)
-			->	member(B, ['<http://www.w3.org/2001/XMLSchema#integer>', '<http://www.w3.org/2001/XMLSchema#double>', '<http://www.w3.org/2001/XMLSchema#dateTime>',
-				'<http://www.w3.org/2001/XMLSchema#date>', '<http://www.w3.org/2001/XMLSchema#time>', '<http://www.w3.org/2001/XMLSchema#duration>',
-				'<http://www.w3.org/2001/XMLSchema#yearMonthDuration>', '<http://www.w3.org/2001/XMLSchema#dayTimeDuration>', '<http://www.w3.org/2001/XMLSchema#boolean>']),
-				dtlit([A, B], C),
-				(	B = '<http://www.w3.org/2001/XMLSchema#boolean>'
-				->	getbool(C, D)
-				;	getnumber(C, D)
-				),
-				dtlit([_, B], D)
+			->	(	member(B, ['<http://www.w3.org/2001/XMLSchema#integer>', '<http://www.w3.org/2001/XMLSchema#double>',
+					'<http://www.w3.org/2001/XMLSchema#date>', '<http://www.w3.org/2001/XMLSchema#time>', '<http://www.w3.org/2001/XMLSchema#dateTime>',
+					'<http://www.w3.org/2001/XMLSchema#yearMonthDuration>', '<http://www.w3.org/2001/XMLSchema#dayTimeDuration>', '<http://www.w3.org/2001/XMLSchema#duration>']),
+					dtlit([A, B], C),
+					getnumber(C, D),
+					dtlit([_, B], D)
+				->	true
+				;	(	dtlit([A, '<http://www.w3.org/2001/XMLSchema#boolean>'], C),
+						getbool(C, _),
+						B = '<http://www.w3.org/2001/XMLSchema#boolean>'
+					->	true
+					;	B = '<http://www.w3.org/2001/XMLSchema#string>',
+						C = A
+					)
+				)
 			;	A = literal(E, _),
 				C = literal(E, type(B)),
 				!
