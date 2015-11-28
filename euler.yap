@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11271935Z josd').
+version_info('EYE-Autumn15 11281521Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -200,6 +200,7 @@ eye
 	--query <n3-query>		output filtered with filter rules
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
+	--pass-all-ground		ground the rules and run --pass-all
 	--multi-query			query answer loop').
 
 
@@ -8371,6 +8372,7 @@ getlist(A, [B|C]) :-
 
 
 getcodes(literal(A, _), B) :-
+	nonvar(A),
 	!,
 	atom_codes(A, B).
 getcodes(A, B) :-
