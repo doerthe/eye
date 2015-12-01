@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 11281521Z josd').
+version_info('EYE-Autumn15 12011315Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2963,7 +2963,7 @@ eam(Span) :-
 		;	true
 		),
 		(	flag(debug)
-		->	format(user_error, 'eam/1 enter trunk span ~w~n', [Span]),
+		->	format(user_error, 'eam/1 entering span ~w~n', [Span]),
 			flush_output(user_error)
 		;	true
 		),
