@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12011315Z josd').
+version_info('EYE-Autumn15 12031400Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1901,7 +1901,8 @@ wi(A, B, C, Rule) :-
 	write('>').
 
 
-wj(Cnt, A, true, C, _) :-
+wj(Cnt, A, true, C, Rule) :-
+	var(Rule),
 	C \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
 	!,
 	write('<#lemma'),
@@ -2274,7 +2275,7 @@ wt0(X) :-
 	),
 	sub_atom(X, 1, _, _, Prefix),
 	!,
-	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, [X]),
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, ['no-skolem', Prefix, X]),
 	wt0(Y).
 wt0(X) :-
 	(	wtcache(X, W)

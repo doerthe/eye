@@ -12,6 +12,8 @@
 <h1><img src="http://eulersharp.sourceforge.net/2003/03swap/eye.png" alt="EYE" height="37" width="37"/> DONE</h1>
 <pre>
 <span id="EYE-Autumn15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Autumn15/">EYE-Autumn15</a>]</span>
+- fixing e:tuple for Skolem-IRIs (obs from Hong Sun)
+- improving proof output for rules with empty pemise (obs from Giovanni Mels)
 - introducing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#weight">e:weight</a> to express the weight in MLN (Markov Logic Network) inspired descriptions
 - fixing exception in string:concatenation (obs from Jean-Marc Vanel)
 - extending log:dtlit to find a possible datatype for the lexical value (obs from Jean-Marc Vanel)
