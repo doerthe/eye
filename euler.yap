@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12031400Z josd').
+version_info('EYE-Autumn15 12041614Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4472,7 +4472,7 @@ ances(Env) :-
 	).
 
 
-'<http://www.w3.org/2000/10/swap/string#contains>'(literal(X, _), literal(Y, _)) :-
+'<http://www.w3.org/2000/10/swap/string#contains>'(literal(X, Z), literal(Y, Z)) :-
 	when(
 		(	ground([X, Y])
 		),
@@ -4481,7 +4481,7 @@ ances(Env) :-
 	).
 
 
-'<http://www.w3.org/2000/10/swap/string#containsIgnoringCase>'(literal(X, _), literal(Y, _)) :-
+'<http://www.w3.org/2000/10/swap/string#containsIgnoringCase>'(literal(X, Z), literal(Y, Z)) :-
 	when(
 		(	ground([X, Y])
 		),
