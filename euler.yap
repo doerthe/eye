@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12051443Z josd').
+version_info('EYE-Autumn15 12051647Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -312,6 +312,10 @@ main :-
 				)
 			)
 		),
+		(	predicate_property(type_index(_, _), indexed(Indt2))
+		->	format(user_error, 'JITI type_index/2 indexed ~w~n', [Indt2])
+		;	true
+		),
 		(	predicate_property(implies(_, _, _), indexed(Indi3))
 		->	format(user_error, 'JITI implies/3 indexed ~w~n', [Indi3])
 		;	true
@@ -324,8 +328,8 @@ main :-
 		->	format(user_error, 'JITI prfstep/8 indexed ~w~n', [Indp8])
 		;	true
 		),
-		(	predicate_property(got_answer(_, _, _, _, _, _, _, _), indexed(Indg8b))
-		->	format(user_error, 'JITI got_answer/8 indexed ~w~n', [Indg8b])
+		(	predicate_property(got_answer(_, _, _, _, _, _, _, _), indexed(Indg8))
+		->	format(user_error, 'JITI got_answer/8 indexed ~w~n', [Indg8])
 		;	true
 		),
 		format(user_error, '~n', []),
