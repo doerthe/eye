@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12041614Z josd').
+version_info('EYE-Autumn15 12051443Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -170,6 +170,7 @@ eye
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
 	--tactic existing-path		Euler path using homomorphism
+	--multi-argument-indexing	enable multi-argument indexing
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 	--ignore-syntax-error		do not halt in case of syntax error
 	--ignore-inference-fuse		do not halt in case of inference fuse
@@ -868,6 +869,27 @@ opts(['--pvm', File|Argus], _) :-
 					term_index(T1, Tnd)
 				)
 			)
+		),
+		(	flag('multi-argument-indexing')
+		->	assertz(':-'(term_expansion('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O), T2),
+					(	!,
+						term_index([S, O], I),
+						(	\+ catch(type_index([_, _], _), _, fail)
+						->	T2 = [	':-'(dynamic(type_index/2)),
+								':-'(multifile(type_index/2)),
+								':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
+									(	term_index([U, V], W),
+										type_index([U, V], W)
+									)
+								),
+								type_index([S, O], I)
+							]
+						;	T2 = type_index([S, O], I)
+						)
+					)
+				)
+			)
+		;	true
 		),
 		qcompile(File)
 	->	throw(halt)
@@ -2934,6 +2956,21 @@ strelas(A) :-
 	),
 	B =.. [P, S, O1, O2],
 	assertz(B).
+strelas('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B)) :-
+	flag('multi-argument-indexing'),
+	!,
+	(	current_predicate(type_index/2)
+	->	true
+	;	dynamic(type_index/2),
+		assertz(':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
+				(	term_index([U, V], W),
+					type_index([U, V], W)
+				)
+			)
+		)
+	),
+	term_index([A, B], C),
+	assertz(type_index([A, B], C)).
 strelas(A) :-
 	assertz(A).
 
