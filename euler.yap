@@ -84,6 +84,7 @@
 :- dynamic(got_dq/0).
 :- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
+:- dynamic(got_random/2).
 :- dynamic(got_sq/0).
 :- dynamic(got_unique/2).
 :- dynamic(got_wi/5).
@@ -143,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12051647Z josd').
+version_info('EYE-Autumn15 12081218Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3687,11 +3688,16 @@ ances(Env) :-
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#propertyChainExtension>'(B, [F, D]).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#random>'([A|_], B) :-
-	catch(nb_getval(random, C), _, C = 1298074214633706835075030044377087),
-	D is mod(19134702400093278081449423917*C+359334085968622831041960188598043661065388726959079837, 43143988327398957279342419750374600193),
-	nb_setval(random, D),
-	B is mod(D, A).
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#random>'([A|B], C) :-
+	(	B \= [],
+		got_random([A|B], C)
+	->	true
+	;	catch(nb_getval(random, D), _, D = 1298074214633706835075030044377087),
+		E is mod(19134702400093278081449423917*D+359334085968622831041960188598043661065388726959079837, 43143988327398957279342419750374600193),
+		nb_setval(random, E),
+		C is mod(E, A),
+		assertz(got_random([A|B], C))
+	).
 
 
 % DEPRECATED
