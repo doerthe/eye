@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12081218Z josd').
+version_info('EYE-Autumn15 12091405Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -7351,7 +7351,7 @@ within_scope([A, B]) :-
 exopred(P, S, O) :-
 	(	var(P)
 	->	pred(P)
-	;	catch(current_predicate(P/2), _, fail)
+	;	current_predicate(P/2)
 	),
 	call(P, S, O).
 
