@@ -84,7 +84,7 @@
 :- dynamic(got_dq/0).
 :- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
-:- dynamic(got_random/2).
+:- dynamic(got_random/3).
 :- dynamic(got_sq/0).
 :- dynamic(got_unique/2).
 :- dynamic(got_wi/5).
@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12091405Z josd').
+version_info('EYE-Autumn15 12101547Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -164,7 +164,6 @@ eye
 	--no-qnames			no qnames in the output
 	--no-qvars			no qvars in the output
 	--no-numerals			no numerals in the output
-	--no-distinct			no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
@@ -1614,9 +1613,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
-		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
-		)
+		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 	->	write(query(X, Y)),
 		writeln('.')
 	;	strela(answer(Y), A),
@@ -1643,9 +1640,7 @@ tr_n3p([X|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
-		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
-		)
+		X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 	->	write(query(true, X)),
 		writeln('.')
 	;	strela(answer(X), A),
@@ -1783,7 +1778,9 @@ w3 :-
 	!,
 	(	query(Q, A),
 		catch(call(Q), _, fail),
-		ground(A),
+		nb_getval(wn, W),
+		labelvars(A, W, N),
+		nb_setval(wn, N),
 		relabel(A, B),
 		indent,
 		wt(B),
@@ -3689,14 +3686,18 @@ ances(Env) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#random>'([A|B], C) :-
+	term_index([A|B], I),
 	(	B \= [],
-		got_random([A|B], C)
+		got_random([A|B], I, C)
 	->	true
 	;	catch(nb_getval(random, D), _, D = 1298074214633706835075030044377087),
 		E is mod(19134702400093278081449423917*D+359334085968622831041960188598043661065388726959079837, 43143988327398957279342419750374600193),
 		nb_setval(random, E),
 		C is mod(E, A),
-		assertz(got_random([A|B], C))
+		(	B \= []
+		->	assertz(got_random([A|B], I, C))
+		;	true
+		)
 	).
 
 
