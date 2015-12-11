@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12101547Z josd').
+version_info('EYE-Autumn15 12111015Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -164,6 +164,7 @@ eye
 	--no-qnames			no qnames in the output
 	--no-qvars			no qvars in the output
 	--no-numerals			no numerals in the output
+	--no-distinct			no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
@@ -1613,7 +1614,9 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		(	flag('no-distinct')
+		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		)
 	->	write(query(X, Y)),
 		writeln('.')
 	;	strela(answer(Y), A),
@@ -1640,7 +1643,9 @@ tr_n3p([X|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		(	flag('no-distinct')
+		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		)
 	->	write(query(true, X)),
 		writeln('.')
 	;	strela(answer(X), A),
