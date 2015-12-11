@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12111200Z josd').
+version_info('EYE-Autumn15 12111500Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1795,7 +1795,7 @@ w3 :-
 		(	A = cn(L)
 		->	length(L, I),
 			nb_getval(output_statements, J),
-			K = I+J,
+			K is I+J,
 			nb_setval(output_statements, K)
 		;	cnt(output_statements)
 		),
