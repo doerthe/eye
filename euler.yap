@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12111015Z josd').
+version_info('EYE-Autumn15 12111200Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -164,7 +164,6 @@ eye
 	--no-qnames			no qnames in the output
 	--no-qvars			no qvars in the output
 	--no-numerals			no numerals in the output
-	--no-distinct			no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
@@ -540,7 +539,8 @@ gre(Argus) :-
 	nb_setval(lemma_cursor, 0),
 	nb_setval(output_statements, 0),
 	(	flag('multi-query')
-	->	tmp_file(Tmp),
+	->	nb_setval(mq, 0),
+		tmp_file(Tmp),
 		assertz(flag('tmp-file', Tmp)),
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fs, Fc)), _, Fs = end_of_file),
@@ -1614,7 +1614,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
+		(	flag('no-distinct')	% DEPRECATED
 		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, Y)),
@@ -1643,7 +1643,7 @@ tr_n3p([X|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
+		(	flag('no-distinct')	% DEPRECATED
 		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(true, X)),
@@ -1792,7 +1792,13 @@ w3 :-
 		ws(B),
 		write('.'),
 		nl,
-		cnt(output_statements),
+		(	A = cn(L)
+		->	length(L, I),
+			nb_getval(output_statements, J),
+			K = I+J,
+			nb_setval(output_statements, K)
+		;	cnt(output_statements)
+		),
 		fail
 	;	true
 	),
@@ -3048,7 +3054,7 @@ eam(Span) :-
 		(	flag('rule-histogram'),
 			copy_term(Rule, RuleL)
 		->	lookup(RTP, tp, RuleL),
-			cnt(RTP)
+			catch(cnt(RTP), _, nb_setval(RTP, 0))
 		;	true
 		),
 		cnt(tp),
@@ -3095,7 +3101,7 @@ eam(Span) :-
 		),
 		(	flag('rule-histogram')
 		->	lookup(RTC, tc, RuleL),
-			cnt(RTC)
+			catch(cnt(RTC), _, nb_setval(RTC, 0))
 		;	true
 		),
 		cnt(tc),
@@ -3269,9 +3275,9 @@ istep(Src, Prem, Conc, Rule) :-
 pstep(Rule) :-
 	copy_term(Rule, RuleL),
 	lookup(RTC, tc, RuleL),
-	cnt(RTC),
+	catch(cnt(RTC), _, nb_setval(RTC, 0)),
 	lookup(RTP, tp, RuleL),
-	cnt(RTP).
+	catch(cnt(RTP), _, nb_setval(RTP, 0)).
 
 
 % DEPRECATED
@@ -4053,7 +4059,7 @@ ances(Env) :-
 	when(
 		(	nonvar(A)
 		),
-		(	cnt(graph),
+		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
 			conjoin(N, A),
 			findall(C,
@@ -4115,7 +4121,7 @@ ances(Env) :-
 		(	nonvar(X),
 			nonvar(Y)
 		),
-		(	cnt(graph),
+		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
 			copy_term(X, Z),
 			labelvars(Z, 0, _),
@@ -7325,7 +7331,7 @@ fresh_pf(_, Pfx) :-
 
 
 cnt(A) :-
-	catch(nb_getval(A, B), _, B = 0),
+	nb_getval(A, B),
 	C is B+1,
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
