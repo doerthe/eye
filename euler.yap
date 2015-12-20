@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12192100Z josd').
+version_info('EYE-Autumn15 12202306Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -164,6 +164,7 @@ eye
 	--no-qnames			no qnames in the output
 	--no-qvars			no qvars in the output
 	--no-numerals			no numerals in the output
+	--no-distinct			no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
@@ -183,6 +184,7 @@ eye
 	--debug-cnt			output debug info about counters on stderr
 	--debug-pvm			output debug info about PVM code on stderr
 	--debug-jiti			output debug info about JITI on stderr
+	--pass-only-new			output only new derived triples
 	--rule-histogram		output rule histogram info on stderr
 	--profile			output profile info on stderr
 	--statistics			output statistics info on stderr
@@ -382,11 +384,11 @@ gre(Argus) :-
 	),
 	opts(Argus, Args),
 	(	\+memberchk('--query', Args),
-		\+memberchk('--tquery', Args),
+		\+memberchk('--tquery', Args),	% DEPRECATED
 		\+memberchk('--pass', Args),
 		\+memberchk('--pass-all', Args),
 		\+memberchk('--pass-all-ground', Args),
-		\+memberchk('--pass-only-new', Args),	% DEPRECATED
+		\+memberchk('--pass-only-new', Args),
 		\+flag('multi-query'),
 		\+flag(n3p),
 		\+flag(image, _)
@@ -484,7 +486,7 @@ gre(Argus) :-
 	(	\+implies(_, answer(_, _, _, _, _, _, _, _), _),
 		\+implies(_, cn([answer(_, _, _, _, _, _, _, _)|_]), _),
 		\+query(_, _),
-		\+flag('pass-only-new'),	% DEPRECATED
+		\+flag('pass-only-new'),
 		\+flag('multi-query'),
 		\+flag(strings)
 	->	throw(halt)
@@ -494,12 +496,9 @@ gre(Argus) :-
 	->	true
 	;	version_info(Version),
 		format('#Processed by ~w~n', [Version]),
-		(	flag(kgb)	% DEPRECATED
-		->	true
-		;	format('#eye', []),
-			wa(Argus),
-			nl
-		),
+		format('#eye', []),
+		wa(Argus),
+		nl,
 		nl
 	),
 	(	flag(nope)
@@ -521,7 +520,7 @@ gre(Argus) :-
 			)
 		)
 	),
-	(	flag('pass-only-new')	% DEPRECATED
+	(	flag('pass-only-new')
 	->	wh
 	;	true
 	),
@@ -1614,7 +1613,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')	% DEPRECATED
+		(	flag('no-distinct')
 		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, Y)),
@@ -1643,7 +1642,7 @@ tr_n3p([X|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')	% DEPRECATED
+		(	flag('no-distinct')
 		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(true, X)),
@@ -3187,7 +3186,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 		(	catch(call(Dn), _, fail)
 		->	true
 		;	strelas(Dn),
-			(	flag('pass-only-new'),	% DEPRECATED
+			(	flag('pass-only-new'),
 				Dn \= answer(_, _, _, _, _, _, _, _)
 			->	indent,
 				relabel(Dn, Dr),
@@ -3237,7 +3236,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 			(	catch(call(Cn), _, fail)
 			->	true
 			;	strelas(Cn),
-				(	flag('pass-only-new'),	% DEPRECATED
+				(	flag('pass-only-new'),
 					Cn \= answer(_, _, _, _, _, _, _, _)
 				->	indent,
 					relabel(Cn, Cr),
