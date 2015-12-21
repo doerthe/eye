@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12211856Z josd').
+version_info('EYE-Autumn15 12212144Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -704,7 +704,7 @@ gre(Argus) :-
 	format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
-	->	findall([RTC, RTP, RBC, RBP, Rule],
+	->	findall([RTC, RTP, RBC, RBP, R],
 			(	table(ETP, tp, Rule),
 				nb_getval(ETP, RTP),
 				(	table(ETC, tc, Rule)
@@ -718,7 +718,8 @@ gre(Argus) :-
 				(	table(EBP, bp, Rule)
 				->	nb_getval(EBP, RBP)
 				;	RBP = 0
-				)
+				),
+				with_output_to(atom(R), wt(Rule))
 			;	table(EBP, bp, Rule),
 				\+table(_, tp, Rule),
 				nb_getval(EBP, RBP),
@@ -727,7 +728,8 @@ gre(Argus) :-
 				(	table(EBC, bc, Rule)
 				->	nb_getval(EBC, RBC)
 				;	RBC = 0
-				)
+				),
+				with_output_to(atom(R), wt(Rule))
 			),
 			CntRl
 		),
@@ -741,7 +743,7 @@ gre(Argus) :-
 					cn_conj(X, XC),
 					c_append(XC, pstep(_), Z),
 					catch(clause(Y, Z), _, fail)
-				->	format(user_error, 'TC=~w TP=~w BC=~w BP=~w for backward rule ~w~n', RCnt)
+				->	format(user_error, 'TC=~w TP=~w BC=~w BP=~w for component ~w~n', RCnt)
 				;	format(user_error, 'TC=~w TP=~w BC=~w BP=~w for rule ~w~n', RCnt)
 				)
 			)
