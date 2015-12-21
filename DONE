@@ -19,7 +19,6 @@
 - adding indexing to e:random (obs from Hong Sun)
 - going back to original exopred/3 to regain performance
 - improving <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#random">e:random</a> such that it is reproducible in function of the subject list (obs from Hong Sun)
-- adding --multi-argumenting-indexing option to enable multi-argument indexing starting with rdf:type 
 - making string:contains and string:containsIgnoringCase more strict for datatype and language tag
 - fixing e:tuple for Skolem-IRIs (obs from Hong Sun)
 - improving proof output for rules with empty premise (obs from Giovanni Mels)
