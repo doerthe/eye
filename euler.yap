@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12202306Z josd').
+version_info('EYE-Autumn15 12211246Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2526,12 +2526,9 @@ wt2(is(O, T)) :-
 	wg(O).
 wt2(prolog:X) :-
 	!,
-	(	X = '\'C\''
-	->	Y = 'C'
-	;	(	X = '\';\''
-		->	Y = disjunction
-		;	prolog_sym(Y, X, _)
-		)
+	(	X = '\';\''
+	->	Y = disjunction
+	;	prolog_sym(Y, X, _)
 	),
 	atomic_list_concat(['<http://eulersharp.sourceforge.net/2003/03swap/prolog#', Y, '>'], Z),
 	wt0(Z).
@@ -7021,7 +7018,6 @@ prolog_sym(b_setval, b_setval, rel).
 prolog_sym(bagof, bagof, rel).
 prolog_sym(between, between, rel).
 prolog_sym(break, break, rel).
-prolog_sym('C', 'C', rel).
 prolog_sym(call, call, rel).
 prolog_sym(call_residue_vars, call_residue_vars, rel).
 prolog_sym(callable, callable, rel).
@@ -7178,7 +7174,6 @@ prolog_sym(peek_byte, peek_byte, rel).
 prolog_sym(peek_char, peek_char, rel).
 prolog_sym(peek_code, peek_code, rel).
 prolog_sym(permutation, permutation, rel).
-prolog_sym(phrase, phrase, rel).
 prolog_sym(pi, pi, func).
 prolog_sym(plus, +, rel).
 prolog_sym(plus_function, +, func).
@@ -9574,17 +9569,14 @@ pathitem(Name, [], L1, L2) :-
 		;	(	atom(S),
 				atom_concat('\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#', A, S),
 				atom_concat(B, '>\'', A)
-			->	(	B = 'C'
-				->	Pred = '\'C\''
-				;	(	B = conjunction
-					->	Pred = '\',\''
-					;	(	B = disjunction
-						->	Pred = '\';\''
-						;	(	prolog_sym(B, Pred, _)
-							->	true
-							;	nb_getval(line_number, Ln),
-								throw(invalid_prolog_builtin(B, after_line(Ln)))
-							)
+			->	(	B = conjunction
+				->	Pred = '\',\''
+				;	(	B = disjunction
+					->	Pred = '\';\''
+					;	(	prolog_sym(B, Pred, _)
+						->	true
+						;	nb_getval(line_number, Ln),
+							throw(invalid_prolog_builtin(B, after_line(Ln)))
 						)
 					)
 				),
