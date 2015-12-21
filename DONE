@@ -12,6 +12,8 @@
 <h1>DONE</h1>
 <pre>
 <span id="EYE-Autumn15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Autumn15/">EYE-Autumn15</a>]</span>
+- component false &lt;= P can be used to express query P =&gt; P
+- dropping prolog:C and prolog:phrase builtins
 - expanding DCG productions into EYE components
 - correcting output_statements counter for conjunctive conclusions (obs from Hong Sun)
 - adding indexing to e:random (obs from Hong Sun)

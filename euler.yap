@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12211246Z josd').
+version_info('EYE-Autumn15 12211528Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -383,18 +383,6 @@ gre(Argus) :-
 	;	nb_setval(input_statements, 0)
 	),
 	opts(Argus, Args),
-	(	\+memberchk('--query', Args),
-		\+memberchk('--tquery', Args),	% DEPRECATED
-		\+memberchk('--pass', Args),
-		\+memberchk('--pass-all', Args),
-		\+memberchk('--pass-all-ground', Args),
-		\+memberchk('--pass-only-new', Args),
-		\+flag('multi-query'),
-		\+flag(n3p),
-		\+flag(image, _)
-	->	assertz(flag(nope))
-	;	true
-	),
 	(	\+flag('multi-query'),
 		Args = []
 	->	opts(['--help'], _)
@@ -1619,6 +1607,17 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	->	write(query(X, Y)),
 		writeln('.')
 	;	strela(answer(Y), A),
+		write(implies(X, A, Src)),
+		writeln('.')
+	),
+	tr_n3p(Z, Src, query).
+tr_n3p([':-'(false, X)|Z], Src, _) :-
+	!,
+	(	flag(nope),
+		\+flag(tactic, 'single-answer')
+	->	write(query(X, X)),
+		writeln('.')
+	;	strela(answer(X), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
