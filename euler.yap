@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Autumn15 12212144Z josd').
+version_info('EYE-Winter16 12231235Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
