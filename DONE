@@ -12,6 +12,7 @@
 <h1>DONE</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing log:dtlit for prolog:atom datatypes (obs from Jean-Marc Vanel)
 - tested and working with stable SWIPL 7.2.3 kernel plus clib package
 
 <span id="EYE-Autumn15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Autumn15/">EYE-Autumn15</a>]</span>

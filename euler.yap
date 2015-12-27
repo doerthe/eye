@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16 12231235Z josd').
+version_info('EYE-Winter16 12272058Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4058,7 +4058,10 @@ ances(Env) :-
 					)
 				)
 			;	A = literal(E, _),
-				C = literal(E, type(B)),
+				(	B = prolog:atom
+				->	C = E
+				;	C = literal(E, type(B))
+				),
 				!
 			)
 		;	nonvar(C),
