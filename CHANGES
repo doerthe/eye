@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing critical bug in rule generation to use a Skolem IRI instead of a universal
 - fixing log:dtlit for prolog:atom datatypes (obs from Jean-Marc Vanel)
 - tested and working with stable SWIPL 7.2.3 kernel plus clib package
 

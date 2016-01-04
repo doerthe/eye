@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16 12291834Z josd').
+version_info('EYE-Winter16 01042145Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2247,7 +2247,7 @@ wt0(X) :-
 	atom_concat(avar, Y, X),
 	!,
 	nb_getval(var_ns, Vns),
-	atomic_list_concat(['<', Vns, 'x', Y, '>'], Z),
+	atomic_list_concat(['<', Vns, 'x_', Y, '>'], Z),
 	wt0(Z).
 wt0(X) :-
 	(	\+flag(traditional)
@@ -2269,7 +2269,9 @@ wt0(X) :-
 			)
 		;	memberchk(Y, L)
 		)
-	->	write('?')
+	->	sub_atom(Y, 0, 2, _, Z),
+		memberchk(Z, ['x_', 't_']),
+		write('?')
 	;	(	\+flag('no-qvars'),
 			\+flag('no-blank')	% DEPRECATED
 		->	true
@@ -2674,7 +2676,7 @@ wv(X) :-
 	write(' "'),
 	nb_getval(var_ns, Vns),
 	write(Vns),
-	write('x'),
+	write('x_'),
 	write(Y),
 	write('"]').
 wv(X) :-
@@ -3795,7 +3797,7 @@ ances(Env) :-
 				nb_setval(tuple, N),
 				atom_number(A, N),
 				nb_getval(var_ns, Vns),
-				atomic_list_concat(['<', Vns, 't', A, '>'], X),
+				atomic_list_concat(['<', Vns, 't_', A, '>'], X),
 				assertz(Z)
 			)
 		)
