@@ -12,7 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
-- fixing critical bug in rule generation to use a Skolem IRI instead of a universal
+- fixing critical bug in rule generation so that a Skolem IRI is used instead of a universal
 - fixing log:dtlit for prolog:atom datatypes (obs from Jean-Marc Vanel)
 - tested and working with stable SWIPL 7.2.3 kernel plus clib package
 
@@ -26,7 +26,7 @@
 - going back to original exopred/3 to regain performance
 - improving <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#random">e:random</a> such that it is reproducible in function of the subject list (obs from Hong Sun)
 - making string:contains and string:containsIgnoringCase more strict for datatype and language tag
-- fixing e:tuple for Skolem-IRIs (obs from Hong Sun)
+- fixing e:tuple for Skolem IRIs (obs from Hong Sun)
 - improving proof output for rules with empty premise (obs from Giovanni Mels)
 - introducing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#weight">e:weight</a> to express the weight in MLN (Markov Logic Network) inspired descriptions
 - fixing exception in string:concatenation (obs from Jean-Marc Vanel)

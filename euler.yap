@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16 01042145Z josd').
+version_info('EYE-Winter16 01042226Z josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2212,12 +2212,12 @@ wt0(X) :-
 				)
 			;	memberchk(Y, L)
 			)
-		->	write('?U')
-		;	write('_:sk')
+		->	write('?U_')
+		;	write('_:sk_')
 		),
 		write(Y)
 	;	nb_getval(var_ns, Vns),
-		atomic_list_concat(['<', Vns, 'sk', Y, '>'], Z),
+		atomic_list_concat(['<', Vns, 'sk_', Y, '>'], Z),
 		wt0(Z)
 	).
 wt0(X) :-
@@ -2234,12 +2234,12 @@ wt0(X) :-
 				)
 			;	memberchk(Y, L)
 			)
-		->	write('?U')
-		;	write('_:sk')
+		->	write('?U_')
+		;	write('_:sk_')
 		),
 		write(Y)
 	;	nb_getval(var_ns, Vns),
-		atomic_list_concat(['<', Vns, 'U', Y, '>'], Z),
+		atomic_list_concat(['<', Vns, 'U_', Y, '>'], Z),
 		wt0(Z)
 	).
 wt0(X) :-
@@ -2689,7 +2689,7 @@ wv(X) :-
 	wp('<http://www.w3.org/2000/10/swap/reason#Existential>'),
 	write('; '),
 	wp('<http://www.w3.org/2004/06/rei#nodeId>'),
-	write(' "_:sk'),
+	write(' "_:sk_'),
 	write(Y),
 	write('"]').
 wv(X) :-
@@ -3570,7 +3570,7 @@ ances(Env) :-
 				;	B = ''
 				)
 			;	atom_concat(some, C, A),
-				atomic_list_concat(['sk', C], B)
+				atomic_list_concat(['sk_', C], B)
 			)
 		)
 	).
@@ -4133,7 +4133,7 @@ ances(Env) :-
 		(	atomic(X),
 			(	atom_concat(some, V, X)
 			->	nb_getval(var_ns, Vns),
-				atomic_list_concat(['<', Vns, 'sk', V, '>'], U)
+				atomic_list_concat(['<', Vns, 'sk_', V, '>'], U)
 			;	U = X
 			),
 			sub_atom(U, 1, _, 1, Z),
