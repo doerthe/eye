@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16 01042226Z josd').
+version_info('EYE-Winter16.0105.0910 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -9941,8 +9941,8 @@ symbol(Name, L1, L2) :-
 	),
 	(	nb_getval(fdepth, 0)
 	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], Name)
-	;	atom_concat('_', S, Name),
+		atomic_list_concat(['\'<', Vns, 'e_', S, '>\''], Name)
+	;	atom_concat('_e_', S, Name),
 		nb_setval(smod, false)
 	).
 
