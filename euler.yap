@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0105.0910 josd').
+version_info('EYE-Winter16.0105.1551 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2259,8 +2259,8 @@ wt0(X) :-
 	sub_atom(X, 1, I, _, Vns),
 	J is I+1,
 	sub_atom(X, J, _, 1, Y),
-	(	\+sub_atom(Y, 0, 2, _, 'qe'),
-		rule_uvar(L),
+	\+sub_atom(Y, 0, 3, _, 'qe_'),
+	(	rule_uvar(L),
 		(	ncllit
 		->	(	memberchk(Y, L)
 			->	true
@@ -9417,7 +9417,7 @@ existential(L1, L3) :-
 		(	member(S, Symbols)
 		),
 		(	(	\+qevar(S, _, D)
-			->	gensym(qe, Q),
+			->	gensym('qe_', Q),
 				asserta(qevar(S, Q, D))
 			;	true
 			)
@@ -9982,7 +9982,7 @@ universal(L1, L3) :-
 		(	member(S, Symbols)
 		),
 		(	(	\+quvar(S, _, D)
-			->	gensym(qu, Q),
+			->	gensym('qu_', Q),
 				asserta(quvar(S, Q, D))
 			;	true
 			)
