@@ -1,6 +1,13 @@
------------------------------------------------------------------------------
-Euler Yet another proof Engine - EYE looking through N3 glasses -- Jos De Roo
------------------------------------------------------------------------------
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>EYE readme</TITLE>
+	<STYLE TYPE="text/css">a:hover {background:#ffa;}</STYLE>
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H1>EYE readme</H1>
+<PRE>
 
 EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
 It is a semibackward reasoner enhanced with Euler path [3] detection.
@@ -23,3 +30,7 @@ and in a Docker container for HTTP client use [11].
  [9] http://eulersharp.sourceforge.net/INSTALL
 [10] https://registry.hub.docker.com/u/bdevloed/eye/
 [11] https://registry.hub.docker.com/u/bdevloed/eyeserver/
+
+</PRE>
+</BODY>
+</HTML>

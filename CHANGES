@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>CHANGES</title>
+    <title>EYE changes</title>
     <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
     <style type="text/css">a:hover {background:#ffa;}</style>
     <style type="text/css">img {vertical-align:text-top;}</style>
@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing critical bug in <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#graphCopy">e:graphCopy</a> to avoid blank node clashes (obs from Hong Sun)
 - fixing issue with @forSome in rule generation (obs from Hong Sun)
 - fixing critical bug in rule generation so that a Skolem IRI is used instead of a universal
 - fixing log:dtlit for prolog:atom datatypes (obs from Jean-Marc Vanel)
@@ -158,7 +159,7 @@
 - adding --pvm option to convert N3 P-code to PVM code and --plugin-pvm switch to boost loading time 2 orders of magnitude
 - fixing issue with redundant answers coming from --pass-all
 - fixing backward rules with predicate-variables (obs from Dörthe Arndt)
-- adjusting --tactic=linear-select by rewriting a fact as true =&gt; fact</a>
+- adjusting --tactic=linear-select by rewriting a fact as true =&gt; fact
 - improving --tactic=linear-select using <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#transaction">e:transaction</a>
 - fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#throw">prolog:throw</a> (obs from Gijs Muys)
 - adding --tactic=linear-select to select each rule only once (obs from <a href="http://eulersharp.sourceforge.net/2007/07test/rdip_test">RESTdesc image processing test case</a>)

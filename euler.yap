@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0105.1551 josd').
+version_info('EYE-Winter16.0107.2245 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3519,8 +3519,7 @@ ances(Env) :-
 	when(
 		(	nonvar(A)
 		),
-		(	copy_term_nat(A, C),
-			labelvars(C, 0, _, some),
+		(	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#labelvars>'(A, C),
 			clist(L, C),
 			sort(L, M),
 			clist(M, K),
