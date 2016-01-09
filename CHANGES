@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing log:implies builtin for queries (obs from Dörthe Arndt)
 - fixing critical bug in <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#graphCopy">e:graphCopy</a> to avoid blank node clashes (obs from Hong Sun)
 - fixing issue with @forSome in rule generation (obs from Hong Sun)
 - fixing critical bug in rule generation so that a Skolem IRI is used instead of a universal

@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0107.2245 josd').
+version_info('EYE-Winter16.0109.2041 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4076,7 +4076,8 @@ ances(Env) :-
 
 '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y) :-
 	implies(X, Y, _),
-	Y \= answer(_, _, _, _, _, _, _, _).
+	Y \= answer(_, _, _, _, _, _, _, _),
+	Y \= cn([answer(_, _, _, _, _, _, _, _)|_]).
 
 
 '<http://www.w3.org/2000/10/swap/log#includes>'(X, Y) :-
