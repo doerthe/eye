@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing log:includes builtin for subject graphs with universals (obs from Dörthe Arndt)
 - fixing log:implies builtin for queries (obs from Dörthe Arndt)
 - fixing critical bug in <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#graphCopy">e:graphCopy</a> to avoid blank node clashes (obs from Hong Sun)
 - fixing issue with @forSome in rule generation (obs from Hong Sun)

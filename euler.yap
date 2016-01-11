@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0109.2041 josd').
+version_info('EYE-Winter16.0111.2033 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4088,7 +4088,6 @@ ances(Env) :-
 		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
 			copy_term(X, Z),
-			labelvars(Z, 0, _),
 			agraph(N, Z),
 			qgraph(N, Y)
 		)
