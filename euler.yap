@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0115.1656 josd').
+version_info('EYE-Winter16.0115.2205 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1212,6 +1212,7 @@ args(['--turtle', Argument|Args]) :-
 			)
 		)
 	),
+	nb_setval(sc, 0),
 	atomic_list_concat(['-b=', Arg], Base),
 	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
 		(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
@@ -1228,16 +1229,34 @@ args(['--turtle', Argument|Args]) :-
 				Rt \= flag(_, _),
 				Rt \= scope(_),
 				Rt \= pfx(_, _),
-				Rt \= pred(_),
-				Rt \= scount(_)	
+				Rt \= pred(_)
 			->	Rt =.. [P, S, O],
-				(	implies(exopred(P, S, O), exopred(Q, X, Y), _)
-				;	implies(cn([exopred(P, S, O)|U]), exopred(Q, X, Y), _),
+				implies(Prem, Conc, _),
+				(	Prem = exopred(P, S, O)
+				->	true
+				;	Prem = cn([exopred(P, S, O)|U]),
 					clist(U, V),
 					call(V)
 				),
-				Qt =.. [Q, X, Y],
-				format('~q.~n', [Qt])
+				(	Conc = cn(W)
+				->	forall(
+						(	member(Q, W)
+						),
+						(	(	Q = exopred(X, Y, Z)
+							->	Qt =.. [X, Y, Z]
+							;	Qt = Q
+							),
+							format('~q.~n', [Qt]),
+							cnt(sc)
+						)
+					)
+				;	(	Conc = exopred(X, Y, Z)
+					->	Qt =.. [X, Y, Z]
+					;	Qt = Conc
+					),
+					format('~q.~n', [Qt]),
+					cnt(sc)
+				)
 			;	format('~q.~n', [Rt])
 			)
 		;	(	Rt = ':-'(Rg)
@@ -1298,15 +1317,19 @@ args(['--turtle', Argument|Args]) :-
 	->	delete_file(File)
 	;	true
 	),
-	findall(SCnt,
-		(	retract(scount(SCnt))
+	(	flag('streaming-reasoning')
+	->	nb_getval(sc, SC),
+		format('~q.~n', [scount(SC)])
+	;	findall(SCnt,
+			(	retract(scount(SCnt))
+			),
+			SCnts
 		),
-		SCnts
+		sum(SCnts, SC),
+		nb_getval(input_statements, IN),
+		Inp is SC+IN,
+		nb_setval(input_statements, Inp)
 	),
-	sum(SCnts, SC),
-	nb_getval(input_statements, IN),
-	Inp is SC+IN,
-	nb_setval(input_statements, Inp),
 	(	wcache(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
 	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
