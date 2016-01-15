@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0111.2033 josd').
+version_info('EYE-Winter16.0115.1656 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -202,7 +202,8 @@ eye
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--pass-all-ground		ground the rules and run --pass-all
-	--multi-query			query answer loop').
+	--multi-query			query answer loop
+	--streaming-reasoning		streaming reasoning on --turtle data').
 
 
 
@@ -1070,6 +1071,10 @@ args(['--plugin', Argument|Args]) :-
 				),
 				throw(builtin_redefinition(Rt))
 			),
+			(	Rt = pfx(Pfx, _)
+			->	retractall(pfx(Pfx, _))
+			;	true
+			),
 			(	Rt = scope(Scope)
 			->	nb_setval(current_scope, Scope)
 			;	true
@@ -1175,19 +1180,141 @@ args(['--plugin-pvm', Argument|Args]) :-
 	),
 	flush_output(user_error),
 	args(Args).
-args(['--turtle', Arg|Args]) :-
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
+args(['--turtle', Argument|Args]) :-
+	!,
+	absolute_uri(Argument, Arg),
+	(	wcache(Arg, File)
+	->	true
+	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
+			->	true
+			;	sub_atom(Arg, 0, 6, _, 'https:')
+			)
+		->	(	flag('tmp-file', File)	% DEPRECATED
+			->	true
+			;	tmp_file(File),
+				assertz(tmpfile(File))
+			),
+			atomic_list_concat(['curl -s -L "', Arg, '" -o ', File], Cmd),
+			catch(exec(Cmd, _), Exc,
+				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+					flush_output(user_error),
+					(	retract(tmpfile(File))
+					->	delete_file(File)
+					;	true
+					),
+					halt(1)
+				)
+			)
+		;	(	sub_atom(Arg, 0, 5, _, 'file:')
+			->	parse_url(Arg, Parts),
+				memberchk(path(File), Parts)
+			;	File = Arg
+			)
+		)
+	),
+	atomic_list_concat(['-b=', Arg], Base),
+	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+		(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+			flush_output(user_error),
+			halt(1)
+		)
+	),
+	repeat,
+	read_term(In, Rt, []),
+	(	Rt = end_of_file
+	->	catch(read_line_to_codes(In, _), _, true)
+	;	(	flag('streaming-reasoning')
+		->	(	Rt \= ':-'(_),
+				Rt \= flag(_, _),
+				Rt \= scope(_),
+				Rt \= pfx(_, _),
+				Rt \= pred(_),
+				Rt \= scount(_)	
+			->	Rt =.. [P, S, O],
+				(	implies(exopred(P, S, O), exopred(Q, X, Y), _)
+				;	implies(cn([exopred(P, S, O)|U]), exopred(Q, X, Y), _),
+					clist(U, V),
+					call(V)
+				),
+				Qt =.. [Q, X, Y],
+				format('~q.~n', [Qt])
+			;	format('~q.~n', [Rt])
+			)
+		;	(	Rt = ':-'(Rg)
+			->	call(Rg)
+			;	(	predicate_property(Rt, dynamic)
+				->	true
+				;	(	File = '-'
+					->	true
+					;	close(In)
+					),
+					(	retract(tmpfile(File))
+					->	delete_file(File)
+					;	true
+					),
+					throw(builtin_redefinition(Rt))
+				),
+				(	Rt = pfx(Pfx, _)
+				->	retractall(pfx(Pfx, _))
+				;	true
+				),
+				(	Rt = scope(Scope)
+				->	nb_setval(current_scope, Scope)
+				;	true
+				),
+				(	Rt \= implies(_, _, _),
+					Rt \= scount(_),
+					call(Rt)
+				->	true
+				;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+					->	strelas(Rt)
+					;	true
+					),
+					(	Rt \= flag(_, _),
+						Rt \= scope(_),
+						Rt \= pfx(_, _),
+						Rt \= pred(_),
+						Rt \= scount(_)
+					->	(	flag(nope),
+							\+flag(ances)	% DEPRECATED
+						->	true
+						;	nb_getval(current_scope, Src),
+							term_index(Rt, Rnd),
+							assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+						)
+					;	true
+					)
+				)
+			)
+		),
+		fail
+	),
+	!,
+	(	File = '-'
+	->	true
+	;	close(In)
+	),
+	(	retract(tmpfile(File))
+	->	delete_file(File)
 	;	true
 	),
-	assertz(flag(turtle)),
-	n3_n3p(Arg, data),
-	retract(flag(turtle)),
+	findall(SCnt,
+		(	retract(scount(SCnt))
+		),
+		SCnts
+	),
+	sum(SCnts, SC),
+	nb_getval(input_statements, IN),
+	Inp is SC+IN,
+	nb_setval(input_statements, Inp),
+	(	wcache(Arg, File)
+	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
+	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
+	),
+	flush_output(user_error),
 	args(Args).
 args(['--proof', Arg|Args]) :-
+	!,
 	absolute_uri(Arg, A),
 	atomic_list_concat(['<', A, '>'], R),
 	assertz(scope(R)),
