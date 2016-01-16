@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0115.2205 josd').
+version_info('EYE-Winter16.0116.2142 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -442,9 +442,12 @@ gre(Argus) :-
 	nb_setval(scope, Scope),
 	statistics(runtime, [_, T2]),
 	statistics(walltime, [_, T3]),
-	format(user_error, 'networking ~w [msec cputime] ~w [msec walltime]~n', [T2, T3]),
+	(	flag('streaming-reasoning')
+	->	true
+	;	format(user_error, 'networking ~w [msec cputime] ~w [msec walltime]~n', [T2, T3]),
+		flush_output(user_error)
+	),
 	nb_getval(input_statements, SC),
-	flush_output(user_error),
 	(	flag(image, File)
 	->	retractall(flag(_)),
 		(	flag(Flag, _),
@@ -1212,6 +1215,7 @@ args(['--turtle', Argument|Args]) :-
 			)
 		)
 	),
+	nb_setval(wn, 0),
 	nb_setval(sc, 0),
 	atomic_list_concat(['-b=', Arg], Base),
 	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
@@ -1230,7 +1234,11 @@ args(['--turtle', Argument|Args]) :-
 				Rt \= scope(_),
 				Rt \= pfx(_, _),
 				Rt \= pred(_)
-			->	Rt =.. [P, S, O],
+			->	(	Rt = scount(SCount)
+				->	assertz(scount(SCount))
+				;	true
+				),
+				Rt =.. [P, S, O],
 				implies(Prem, Conc, _),
 				(	Prem = exopred(P, S, O)
 				->	true
@@ -1238,18 +1246,27 @@ args(['--turtle', Argument|Args]) :-
 					clist(U, V),
 					call(V)
 				),
-				(	Conc = cn(W)
+				(	ground(Conc)
+				->	true
+				;	nb_getval(wn, W),
+					labelvars(Conc, W, N, skolem),
+					nb_setval(wn, N)
+				),
+				(	Conc = cn(C)
 				->	forall(
-						(	member(Q, W)
+						(	member(Q, C)
 						),
 						(	(	Q = exopred(X, Y, Z)
 							->	Qt =.. [X, Y, Z]
 							;	Qt = Q
 							),
-							format('~q.~n', [Qt]),
-							cnt(sc)
+							format('~q.~n', [Qt])
 						)
-					)
+					),
+					nb_getval(sc, I),
+					length(C, J),
+					K is I+J,
+					nb_setval(sc, K)
 				;	(	Conc = exopred(X, Y, Z)
 					->	Qt =.. [X, Y, Z]
 					;	Qt = Conc
@@ -1317,24 +1334,33 @@ args(['--turtle', Argument|Args]) :-
 	->	delete_file(File)
 	;	true
 	),
-	(	flag('streaming-reasoning')
-	->	nb_getval(sc, SC),
-		format('~q.~n', [scount(SC)])
-	;	findall(SCnt,
-			(	retract(scount(SCnt))
-			),
-			SCnts
+	findall(SCnt,
+		(	retract(scount(SCnt))
 		),
-		sum(SCnts, SC),
-		nb_getval(input_statements, IN),
-		Inp is SC+IN,
-		nb_setval(input_statements, Inp)
+		SCnts
 	),
+	sum(SCnts, SC),
+	nb_getval(input_statements, IN),
+	Inp is SC+IN,
+	nb_setval(input_statements, Inp),
 	(	wcache(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
 	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
 	),
 	flush_output(user_error),
+	(	flag('streaming-reasoning')
+	->	timestamp(Stamp),
+		statistics(runtime, [Cpu, Wall]),
+		nb_getval(sc, Outp),
+		statistics(inferences, Inf),
+		catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
+		catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
+		format('~q.~n', [scount(Outp)]),
+		format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
+		format(user_error, '[~w] in=~d out=~d inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Inf, Cpu, Speed]),
+		flush_output(user_error)
+	;	true
+	),
 	args(Args).
 args(['--proof', Arg|Args]) :-
 	!,
@@ -1920,8 +1946,8 @@ w3 :-
 		write('.'),
 		nl,
 		(	A = cn(L)
-		->	length(L, I),
-			nb_getval(output_statements, J),
+		->	nb_getval(output_statements, I),
+			length(L, J),
 			K is I+J,
 			nb_setval(output_statements, K)
 		;	cnt(output_statements)
@@ -8225,7 +8251,11 @@ labelvars(A, B, C, D) :-
 	var(A),
 	!,
 	atom_number(E, B),
-	atomic_list_concat([D, E], A),
+	(	D == skolem
+	->	nb_getval(var_ns, Vns),
+		atomic_list_concat(['<', Vns, 'sk_', E, '>'], A)
+	;	atomic_list_concat([D, E], A)
+	),
 	C is B+1.
 labelvars(A, B, B, _) :-
 	atomic(A),
