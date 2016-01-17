@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0116.2142 josd').
+version_info('EYE-Winter16.0117.1659 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1514,10 +1514,7 @@ n3_n3p(Argument, Mode) :-
 	->	D = '#'
 	;	atomic_list_concat([Arg, '#'], D)
 	),
-	(	flag(turtle)
-	->	true
-	;	assertz(ns('', D))
-	),
+	assertz(ns('', D)),
 	retractall(keywords(_)),
 	retractall(quvar(_, _, _)),
 	retractall(qevar(_, _, _)),
@@ -8708,16 +8705,11 @@ memotime(datime(A, B, C, D, E, F), G) :-
 
 
 datetime(A, L1, L13) :-
-	int(B, L1, L2),
-	L2 = [0'-|L3],
-	int(C, L3, L4),
-	L4 = [0'-|L5],
-	int(D, L5, L6),
-	L6 = [0'T|L7],
-	int(E, L7, L8),
-	L8 = [0':|L9],
-	int(F, L9, L10),
-	L10 = [0':|L11],
+	int(B, L1, [0'-|L3]),
+	int(C, L3, [0'-|L5]),
+	int(D, L5, [0'T|L7]),
+	int(E, L7, [0':|L9]),
+	int(F, L9, [0':|L11]),
 	decimal(G, L11, L12),
 	timezone(H, L12, L13),
 	I is -H,
@@ -8726,25 +8718,18 @@ datetime(A, L1, L13) :-
 
 
 datetime(A, B, C, D, E, F, G, L1, L13) :-
-	int(A, L1, L2),
-	L2 = [0'-|L3],
-	int(B, L3, L4),
-	L4 = [0'-|L5],
-	int(C, L5, L6),
-	L6 = [0'T|L7],
-	int(D, L7, L8),
-	L8 = [0':|L9],
-	int(E, L9, L10),
-	L10 = [0':|L11],
+	int(A, L1, [0'-|L3]),
+	int(B, L3, [0'-|L5]),
+	int(C, L5, [0'T|L7]),
+	int(D, L7, [0':|L9]),
+	int(E, L9, [0':|L11]),
 	decimal(F, L11, L12),
 	timezone(G, L12, L13).
 
 
 date(A, L1, L7) :-
-	int(B, L1, L2),
-	L2 = [0'-|L3],
-	int(C, L3, L4),
-	L4 = [0'-|L5],
+	int(B, L1, [0'-|L3]),
+	int(C, L3, [0'-|L5]),
 	int(D, L5, L6),
 	timezone(H, L6, L7),
 	I is -H,
@@ -8753,19 +8738,15 @@ date(A, L1, L7) :-
 
 
 date(A, B, C, D, L1, L7) :-
-	int(A, L1, L2),
-	L2 = [0'-|L3],
-	int(B, L3, L4),
-	L4 = [0'-|L5],
+	int(A, L1, [0'-|L3]),
+	int(B, L3, [0'-|L5]),
 	int(C, L5, L6),
 	timezone(D, L6, L7).
 
 
 time(A, L1, L7) :-
-	int(B, L1, L2),
-	L2 = [0':|L3],
-	int(C, L3, L4),
-	L4 = [0':|L5],
+	int(B, L1, [0':|L3]),
+	int(C, L3, [0':|L5]),
 	decimal(D, L5, L6),
 	timezone(E, L6, L7),
 	(	B = 24
@@ -8775,17 +8756,14 @@ time(A, L1, L7) :-
 
 
 time(A, B, C, D, L1, L7) :-
-	int(A, L1, L2),
-	L2 = [0':|L3],
-	int(B, L3, L4),
-	L4 = [0':|L5],
+	int(A, L1, [0':|L3]),
+	int(B, L3, [0':|L5]),
 	decimal(C, L5, L6),
 	timezone(D, L6, L7).
 
 
 duration(A, L1, L7) :-
-	dsign(B, L1, L2),
-	L2 = [0'P|L3],
+	dsign(B, L1, [0'P|L3]),
 	years(C, L3, L4),
 	months(D, L4, L5),
 	days(E, L5, L6),
@@ -8794,42 +8772,35 @@ duration(A, L1, L7) :-
 
 
 yearmonthduration(A, L1, L5) :-
-	dsign(B, L1, L2),
-	L2 = [0'P|L3],
+	dsign(B, L1, [0'P|L3]),
 	years(C, L3, L4),
 	months(D, L4, L5),
 	A is B*(C*12+D).
 
 
 daytimeduration(A, L1, L5) :-
-	dsign(B, L1, L2),
-	L2 = [0'P|L3],
+	dsign(B, L1, [0'P|L3]),
 	days(C, L3, L4),
 	dtime(D, L4, L5),
 	A is B*(C*86400.0+D).
 
 
 timezone(A, L1, L4) :-
-	int(B, L1, L2),
+	int(B, L1, [0':|L3]),
 	!,
-	L2 = [0':|L3],
 	int(C, L3, L4),
 	A is B*3600+C*60.
-timezone(0, L1, L2) :-
-	L1 = [0'Z|L2],
+timezone(0, [0'Z|L2], L2) :-
 	!.
 timezone(0, L1, L1).
 
 
-dsign(1, L1, L2) :-
-	L1 = [0'+|L2].
-dsign(-1, L1, L2) :-
-	L1 = [0'-|L2].
+dsign(1, [0'+|L2], L2).
+dsign(-1, [0'-|L2], L2).
 dsign(1, L1, L1).
 
 
-dtime(A, L1, L5) :-
-	L1 = [0'T|L2],
+dtime(A, [0'T|L2], L5) :-
 	!,
 	hours(B, L2, L3),
 	minutes(C, L3, L4),
@@ -8839,38 +8810,32 @@ dtime(0, L1, L1).
 
 
 years(A, L1, L3) :-
-	int(A, L1, L2),
-	L2 = [0'Y|L3].
+	int(A, L1, [0'Y|L3]).
 years(0, L1, L1).
 
 
 months(A, L1, L3) :-
-	int(A, L1, L2),
-	L2 = [0'M|L3].
+	int(A, L1, [0'M|L3]).
 months(0, L1, L1) .
 
 
 days(A, L1, L3) :-
-	int(A, L1, L2),
-	L2 = [0'D|L3].
+	int(A, L1, [0'D|L3]).
 days(0, L1, L1).
 
 
 hours(A, L1, L3) :-
-	int(A, L1, L2),
-	L2 = [0'H|L3].
+	int(A, L1, [0'H|L3]).
 hours(0, L1, L1).
 
 
 minutes(A, L1, L3) :-
-	int(A, L1, L2),
-	L2 = [0'M|L3].
+	int(A, L1, [0'M|L3]).
 minutes(0, L1, L1).
 
 
 seconds(A, L1, L3) :-
-	decimal(A, L1, L2),
-	L2 = [0'S|L3].
+	decimal(A, L1, [0'S|L3]).
 seconds(0, L1, L1).
 
 
@@ -8890,15 +8855,12 @@ decimal(A, L1, L5) :-
 	number_codes(A, F).
 
 
-sgn(0'+, L1, L2) :-
-	L1 = [0'+|L2].
-sgn(0'-, L1, L2) :-
-	L1 = [0'-|L2].
+sgn(0'+, [0'+|L2], L2).
+sgn(0'-, [0'-|L2], L2).
 sgn(0'+, L1, L1).
 
 
-fraction([0'., A|B], L1, L4) :-
-	L1 = [0'.|L2],
+fraction([0'., A|B], [0'.|L2], L4) :-
 	!,
 	digit(A, L2, L3),
 	digits(B, L3, L4).
@@ -8911,8 +8873,7 @@ digits([A|B], L1, L3) :-
 digits([], L1, L1).
 
 
-digit(A, L1, L2) :-
-	L1 = [A|L2],
+digit(A, [A|L2], L2) :-
 	code_type(A, digit).
 
 fmsec(A, B, C) :-
@@ -9327,8 +9288,7 @@ re(Z, L1, L3) :-
 	reTail(W, Z, L2, L3).
 
 
-reTail(W, Z, L1, L4) :-
-	L1 = [0'||L2],
+reTail(W, Z, [0'||L2], L4) :-
 	basicRE(X, L2, L3),
 	reTail(union(W, X), Z, L3, L4).
 reTail(W, W, L1, L1).
@@ -9350,52 +9310,32 @@ simpleRE(Z, L1, L3) :-
 	simpleREtail(W, Z, L2, L3).
 
 
-simpleREtail(W, star(W), L1, L2) :-
-	L1 = [0'*|L2].
-simpleREtail(W, qm(W), L1, L2) :-
-	L1 = [0'?|L2].
-simpleREtail(W, plus(W), L1, L2) :-
-	L1 = [0'+|L2].
+simpleREtail(W, star(W), [0'*|L2], L2).
+simpleREtail(W, qm(W), [0'?|L2], L2).
+simpleREtail(W, plus(W), [0'+|L2], L2).
 simpleREtail(W, W, L1, L1).
 
 
-elementalRE(any, L1, L2) :-
-	L1 = [0'.|L2].
-elementalRE(group(X), L1, L4) :-
-	L1 = [0'(|L2],
-	re(X, L2, L3),
-	L3 = [0')|L4].
-elementalRE(bos, L1, L2) :-
-	L1 = [0'^|L2].
-elementalRE(eos, L1, L2) :-
-	L1 = [0'$|L2].
-elementalRE(posSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), L1, L2) :-
-	L1 = [0'\\, 0'w|L2].
-elementalRE(negSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), L1, L2) :-
-	L1 = [0'\\, 0'W|L2].
-elementalRE(posSet([range(0'0, 0'9)]), L1, L2) :-
-	L1 = [0'\\, 0'd|L2].
-elementalRE(negSet([range(0'0, 0'9)]), L1, L2) :-
-	L1 = [0'\\, 0'D|L2].
-elementalRE(posSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), L1, L2) :-
-	L1 = [0'\\, 0's|L2].
-elementalRE(negSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), L1, L2) :-
-	L1 = [0'\\, 0'S|L2].
-elementalRE(char(C), L1, L2) :-
-	L1 = [0'\\, C|L2],
+elementalRE(any, [0'.|L2], L2).
+elementalRE(group(X), [0'(|L2], L4) :-
+	re(X, L2, [0')|L4]).
+elementalRE(bos, [0'^|L2], L2).
+elementalRE(eos, [0'$|L2], L2).
+elementalRE(posSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), [0'\\, 0'w|L2], L2).
+elementalRE(negSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), [0'\\, 0'W|L2], L2).
+elementalRE(posSet([range(0'0, 0'9)]), [0'\\, 0'd|L2], L2).
+elementalRE(negSet([range(0'0, 0'9)]), [0'\\, 0'D|L2], L2).
+elementalRE(posSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), [0'\\, 0's|L2], L2).
+elementalRE(negSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), [0'\\, 0'S|L2], L2).
+elementalRE(char(C), [0'\\, C|L2], L2) :-
 	re_metachar([C]).
-elementalRE(char(C), L1, L2) :-
-	L1 = [C|L2],
+elementalRE(char(C), [C|L2], L2) :-
 	\+re_metachar([C]).
-elementalRE(negSet(X), L1, L4) :-
-	L1 = [0'[, 0'^|L2],
+elementalRE(negSet(X), [0'[, 0'^|L2], L4) :-
 	!,
-	setItems(X, L2, L3),
-	L3 = [0']|L4].
-elementalRE(posSet(X), L1, L4) :-
-	L1 = [0'[|L2],
-	setItems(X, L2, L3),
-	L3 = [0']|L4].
+	setItems(X, L2, [0']|L4]).
+elementalRE(posSet(X), [0'[|L2], L4) :-
+	setItems(X, L2, [0']|L4]).
 
 
 re_metachar([0'\\]).
@@ -9417,27 +9357,18 @@ setItems([Item1], L1, L2) :-
 	setItem(Item1, L1, L2).
 
 
-setItem(posSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), L1, L2) :-
-	L1 = [0'\\, 0'w|L2].
-setItem(negSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), L1, L2) :-
-	L1 = [0'\\, 0'W|L2].
-setItem(posSet([range(0'0, 0'9)]), L1, L2) :-
-	L1 = [0'\\, 0'd|L2].
-setItem(negSet([range(0'0, 0'9)]), L1, L2) :-
-	L1 = [0'\\, 0'D|L2].
-setItem(posSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), L1, L2) :-
-	L1 = [0'\\, 0's|L2].
-setItem(negSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), L1, L2) :-
-	L1 = [0'\\, 0'S|L2].
-setItem(char(C), L1, L2) :-
-	L1 = [0'\\, C|L2],
+setItem(posSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), [0'\\, 0'w|L2], L2).
+setItem(negSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), [0'\\, 0'W|L2], L2).
+setItem(posSet([range(0'0, 0'9)]), [0'\\, 0'd|L2], L2).
+setItem(negSet([range(0'0, 0'9)]), [0'\\, 0'D|L2], L2).
+setItem(posSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), [0'\\, 0's|L2], L2).
+setItem(negSet([char(0x20), char(0'\t), char(0'\r), char(0'\n), char(0'\v), char(0'\f)]), [0'\\, 0'S|L2], L2).
+setItem(char(C), [0'\\, C|L2], L2) :-
 	set_metachar([C]).
-setItem(char(C), L1, L2) :-
-	L1 = [C|L2],
+setItem(char(C), [C|L2], L2) :-
 	\+set_metachar([C]).
 setItem(range(A, B), L1, L4) :-
-	setItem(char(A), L1, L2),
-	L2 = [0'-|L3],
+	setItem(char(A), L1, [0'-|L3]),
 	setItem(char(B), L3, L4).
 
 
@@ -9463,8 +9394,7 @@ regexp_wildcard([A|B], [A|C]) :-
 % according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
 % inspired by http://code.google.com/p/km-rdf/wiki/Henry
 
-barename(BareName, L1, L2) :-
-	L1 = [name(BareName)|L2].
+barename(BareName, [name(BareName)|L2], L2).
 
 
 barename_csl([BareName|Tail], L1, L3) :-
@@ -9474,8 +9404,7 @@ barename_csl([BareName|Tail], L1, L3) :-
 barename_csl([], L1, L1).
 
 
-barename_csl_tail([BareName|Tail], L1, L4) :-
-	L1 = [','|L2],
+barename_csl_tail([BareName|Tail], [','|L2], L4) :-
 	!,
 	barename(BareName, L2, L3),
 	barename_csl_tail(Tail, L3, L4).
@@ -9483,18 +9412,14 @@ barename_csl_tail([], L1, L1).
 
 
 % DEPRECATED
-boolean(true, L1, L2) :-
-	L1 = [atname('true')|L2],
+boolean(true, [atname('true')|L2], L2) :-
 	!.
-boolean(true, L1, L2) :-
-	L1 = [name('true')|L2],
+boolean(true, [name('true')|L2], L2) :-
 	!.
 % DEPRECATED
-boolean(false, L1, L2) :-
-	L1 = [atname('false')|L2],
+boolean(false, [atname('false')|L2], L2) :-
 	!.
-boolean(false, L1, L2) :-
-	L1 = [name('false')|L2],
+boolean(false, [name('false')|L2], L2) :-
 	!.
 boolean(Boolean, L1, L2) :-
 	literal(Atom, type(T), L1, L2),
@@ -9503,8 +9428,7 @@ boolean(Boolean, L1, L2) :-
 
 
 % DEPRECATED
-declaration(L1, L3) :-
-	L1 = [atname(base)|L2],
+declaration([atname(base)|L2], L3) :-
 	!,
 	explicituri(U, L2, L3),
 	base_uri(V),
@@ -9515,8 +9439,7 @@ declaration(L1, L3) :-
 	;	true
 	),
 	assertz(base_uri(URI)).
-declaration(L1, L4) :-
-	L1 = [name(Name)|L2],
+declaration([name(Name)|L2], L4) :-
 	downcase_atom(Name, 'base'),
 	!,
 	explicituri(U, L2, L3),
@@ -9530,20 +9453,13 @@ declaration(L1, L4) :-
 	assertz(base_uri(URI)),
 	withoutdot(L3, L4).
 % DEPRECATED
-declaration(L1, L3) :-
-	L1 = [atname(keywords)|L2],
+declaration([atname(keywords)|L2], L3) :-
 	!,
 	barename_csl(List, L2, L3),
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('@keywords', after_line(Ln)))
-	;	true
-	),
 	retractall(keywords(_)),
 	assertz(keywords(List)).
 % DEPRECATED
-declaration(L1, L4) :-
-	L1 = [atname(prefix)|L2],
+declaration([atname(prefix)|L2], L4) :-
 	!,
 	prefix(Prefix, L2, L3),
 	explicituri(U, L3, L4),
@@ -9552,8 +9468,7 @@ declaration(L1, L4) :-
 	retractall(ns(Prefix, _)),
 	assertz(ns(Prefix, URI)),
 	put_pfx(Prefix, URI).
-declaration(L1, L5) :-
-	L1 = [name(Name)|L2],
+declaration([name(Name)|L2], L5) :-
 	downcase_atom(Name, 'prefix'),
 	prefix(Prefix, L2, L3),
 	explicituri(U, L3, L4),
@@ -9569,28 +9484,19 @@ document(Triples, L1, L2) :-
 	statements_optional(Triples, L1, L2).
 
 
-dtlang(lang(Langcode), L1, L2) :-
-	L1 = [atname(Name)|L2],
+dtlang(lang(Langcode), [atname(Name)|L2], L2) :-
 	!,
 	atomic_list_concat(['\'', Name, '\''], Langcode).
-dtlang(type(Datatype), L1, L3) :-
-	L1 = [caretcaret|L2],
+dtlang(type(Datatype), [caretcaret|L2], L3) :-
 	!,
 	uri(Datatype, L2, L3).
-dtlang(type(T), L1, L1) :-
-	T = '\'<http://www.w3.org/2001/XMLSchema#string>\''.
+dtlang(type('\'<http://www.w3.org/2001/XMLSchema#string>\''), L1, L1).
 
 
 % DEPRECATED
-existential(L1, L3) :-
-	L1 = [atname(forSome)|L2],
+existential([atname(forSome)|L2], L3) :-
 	!,
 	symbol_csl(Symbols, L2, L3),
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('@forSome', after_line(Ln)))
-	;	true
-	),
 	nb_getval(fdepth, D),
 	forall(
 		(	member(S, Symbols)
@@ -9604,8 +9510,7 @@ existential(L1, L3) :-
 	).
 
 
-explicituri(ExplicitURI, L1, L2) :-
-	L1 = [relative_uri(ExplicitURI)|L2].
+explicituri(ExplicitURI, [relative_uri(ExplicitURI)|L2], L2).
 
 
 expression(Node, T, L1, L3) :-
@@ -9651,24 +9556,16 @@ literal(Atom, DtLang, L1, L3) :-
 	atomic_list_concat(['\'', E, '\''], Atom).
 
 
-numericliteral(Number, L1, L2) :-
-	L1 = [numeric(Type, NumB)|L2],
-	(	flag(turtle)
-	->	atomic_list_concat(['\'<http://www.w3.org/2001/XMLSchema#', Type, '>\''], T),
-		atom_codes(A, NumB),
-		atomic_list_concat(['\'', A, '\''], B),
-		Number = literal(B, type(T))
-	;	numeral(NumB, NumC),
-		number_codes(Number, NumC)
-	).
+numericliteral(Number, [numeric(_, NumB)|L2], L2) :-
+	numeral(NumB, NumC),
+	number_codes(Number, NumC).
 
 
 object(Node, Triples, L1, L2) :-
 	expression(Node, Triples, L1, L2).
 
 
-objecttail(Subject, Verb, [Triple|T], L1, L4) :-
-	L1 = [','|L2],
+objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
 	!,
 	object(Object, Triples, L2, L3),
 	objecttail(Subject, Verb, Tail, L3, L4),
@@ -9736,8 +9633,7 @@ pathitem(Name, [], L1, L2) :-
 	->	nb_setval(smod, false)
 	;	true
 	).
-pathitem(VarID, [], L1, L2) :-
-	L1 = [uvar(Var)|L2],
+pathitem(VarID, [], [uvar(Var)|L2], L2) :-
 	!,
 	atom_codes(Var, VarCodes),
 	subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], VarCodes, VarTidy),
@@ -9763,7 +9659,6 @@ pathitem(Atom, [], L1, L2) :-
 	atom_codes(Atom, C).
 pathitem(Number, [], L1, L2) :-
 	literal(Atom, type(Type), L1, L2),
-	\+flag(turtle),
 	memberchk(Type, ['\'<http://www.w3.org/2001/XMLSchema#integer>\'', '\'<http://www.w3.org/2001/XMLSchema#decimal>\'', '\'<http://www.w3.org/2001/XMLSchema#double>\'']),
 	sub_atom(Atom, 1, _, 1, A),
 	atom_codes(A, NumB),
@@ -9773,8 +9668,7 @@ pathitem(Number, [], L1, L2) :-
 pathitem(literal(Atom, DtLang), [], L1, L2) :-
 	literal(Atom, DtLang, L1, L2),
 	!.
-pathitem(BNode, Triples, L1, L4) :-
-	L1 = ['['|L2],
+pathitem(BNode, Triples, ['['|L2], L4) :-
 	!,
 	gensym('bn_', S),
 	(	nb_getval(fdepth, 0)
@@ -9783,7 +9677,7 @@ pathitem(BNode, Triples, L1, L4) :-
 	;	atom_concat('_', S, BN),
 		nb_setval(smod, false)
 	),
-	propertylist(BN, T, L2, L3),
+	propertylist(BN, T, L2, [']'|L4]),
 	(	memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), T),
 		memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), T),
 		del(T, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\''(X, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>\''), U),
@@ -9793,40 +9687,28 @@ pathitem(BNode, Triples, L1, L4) :-
 		Triples = W
 	;	BNode = BN,
 		Triples = T
-	),
-	L3 = [']'|L4].
-pathitem(set(Distinct), Triples, L1, L4) :-
-	L1 = ['(', '$'|L2],
+	).
+pathitem(set(Distinct), Triples, ['(', '$'|L2], L4) :-
 	!,
-	pathlist(List, Triples, L2, L3),
+	pathlist(List, Triples, L2, ['$', ')'|L4]),
 	(	nb_getval(smod, true)
 	->	sort(List, Distinct)
 	;	distinct(List, Distinct)
-	),
-	L3 = ['$', ')'|L4].
-pathitem(List, Triples, L1, L4) :-
-	L1 = ['('|L2],
+	).
+pathitem(List, Triples, ['('|L2], L4) :-
 	!,
-	pathlist(List, Triples, L2, L3),
-	L3 = [')'|L4].
-pathitem(Node, [] , L1, L4):-
-	L1 = ['{'|L2],
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('{}', after_line(Ln)))
-	;	true
-	),
+	pathlist(List, Triples, L2, [')'|L4]).
+pathitem(Node, [] , ['{'|L2], L4):-
 	nb_getval(fdepth, I),
 	J is I+1,
 	nb_setval(fdepth, J),
 	nb_setval(smod, true),
-	formulacontent(Node, L2, L3),
+	formulacontent(Node, L2, ['}'|L4]),
 	retractall(quvar(_, _, J)),
 	retractall(qevar(_, _, J)),
 	retractall(evar(_, _, J)),
 	nb_setval(fdepth, I),
-	nb_setval(smod, false),
-	L3 = ['}'|L4].
+	nb_setval(smod, false).
 
 
 pathlist([Node|Rest], Triples, L1, L3) :-
@@ -9837,15 +9719,9 @@ pathlist([Node|Rest], Triples, L1, L3) :-
 pathlist([], [], L1, L1).
 
 
-pathtail(Node, Verb, PNode, [Triple|Triples], L1, L4) :-
-	L1 = ['!'|L2],
+pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	!,
 	pathitem(Verb, Triples2, L2, L3),
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('forward_path', after_line(Ln)))
-	;	true
-	),
 	dynamic_verb(Verb),
 	gensym('bn_', S),
 	(	nb_getval(fdepth, 0)
@@ -9882,15 +9758,9 @@ pathtail(Node, Verb, PNode, [Triple|Triples], L1, L4) :-
 	),
 	pathtail(BNode, _, PNode, Tail, L3, L4),
 	append(Triples2, Tail, Triples).
-pathtail(Node, Verb, PNode, [Triple|Triples], L1, L4) :-
-	L1 = ['^'|L2],
+pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
 	!,
 	pathitem(Verb, Triples2, L2, L3),
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('backward_path', after_line(Ln)))
-	;	true
-	),
 	dynamic_verb(Verb),
 	gensym('bn_', S),
 	(	nb_getval(fdepth, 0)
@@ -9930,8 +9800,7 @@ pathtail(Node, Verb, PNode, [Triple|Triples], L1, L4) :-
 pathtail(Node, void, Node, [], L1, L1).
 
 
-prefix(Prefix, L1, L2) :-
-	L1 = [Prefix:''|L2].
+prefix(Prefix, [Prefix:''|L2], L2).
 
 
 propertylist(Subject, [Triple|Triples], L1, L5) :-
@@ -9973,23 +9842,20 @@ propertylist(Subject, [Triple|Triples], L1, L5) :-
 propertylist(_, [], L1, L1).
 
 
-propertylisttail(Subject, Triples, L1, L4) :-
-	L1 = [';'|L2],
+propertylisttail(Subject, Triples, [';'|L2], L4) :-
 	!,
 	propertylisttailsemis(L2, L3),
 	propertylist(Subject, Triples, L3, L4).
 propertylisttail(_, [], L1, L1).
 
 
-propertylisttailsemis(L1, L3) :-
-	L1 = [';'|L2],
+propertylisttailsemis([';'|L2], L3) :-
 	!,
 	propertylisttailsemis(L2, L3).
 propertylisttailsemis(L1, L1).
 
 
-qname(URI, L1, L2) :-
-	L1 = [NS:Name|L2],
+qname(URI, [NS:Name|L2], L2) :-
 	(	ns(NS, Base)
 	->	atom_codes(Name, Codes),
 		escape_squote(Codes, Codes2),
@@ -10006,13 +9872,7 @@ simpleStatement(Triples, L1, L3) :-
 	(	Subject = (D1;D2)
 	->	Triples = [(D1;D2)]
 	;	propertylist(Subject, Triples2, L2, L3),
-		append(Triples1, Triples2, Triples),
-		(	flag(turtle),
-			Triples = []
-		->	nb_getval(line_number, Ln),
-			throw(not_in_turtle('empty_pred_obj', after_line(Ln)))
-		;	true
-		)
+		append(Triples1, Triples2, Triples)
 	).
 
 
@@ -10038,8 +9898,7 @@ statementlist([], L1, L1).
 
 
 statements_optional(Triples, L1, L4) :-
-	statement(Tr, L1, L2),
-	L2 = [dot(Ln)|L3],
+	statement(Tr, L1, [dot(Ln)|L3]),
 	!,
 	nb_setval(line_number, Ln),
 	statements_optional(T, L3, L4),
@@ -10047,41 +9906,24 @@ statements_optional(Triples, L1, L4) :-
 statements_optional([], L1, L1).
 
 
-statementtail(T, L1, L3) :-
-	L1 = [dot(Ln)|L2],
+statementtail(T, [dot(Ln)|L2], L3) :-
 	!,
 	nb_setval(line_number, Ln),
 	statementlist(T, L2, L3).
 statementtail([], L1, L1).
 
 
-string(Codes, L1, L2) :-
-	L1 = [literal(Codes)|L2].
+string(Codes, [literal(Codes)|L2], L2).
 
 
 subject(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2),
-	(	flag(turtle),
-		(	Node = literal(_, _)
-		->	true
-		;	(	Node = true
-			->	true
-			;	(	Node = false
-				->	true
-				)
-			)
-		)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('no_lit_subj', after_line(Ln)))
-	;	true
-	).
+	expression(Node, Triples, L1, L2).
 
 
 symbol(Name, L1, L2) :-
 	uri(Name, L1, L2),
 	!.
-symbol(Name, L1, L2) :-
-	L1 = [name(N)|L2],
+symbol(Name, [name(N)|L2], L2) :-
 	!,
 	(	keywords(List)
 	->	(	memberchk(N, List)
@@ -10095,8 +9937,7 @@ symbol(Name, L1, L2) :-
 			throw(invalid_keyword(N, after_line(Ln)))
 		)
 	).
-symbol(Name, L1, L2) :-
-	L1 = [bnode(Label)|L2],
+symbol(Name, [bnode(Label)|L2], L2) :-
 	nb_getval(fdepth, D),
 	(	D =:= 0
 	->	N = Label
@@ -10133,8 +9974,7 @@ symbol_csl([Symbol|Tail], L1, L3) :-
 symbol_csl([], L1, L1).
 
 
-symbol_csl_tail([Symbol|T], L1, L4) :-
-	L1 = [','|L2],
+symbol_csl_tail([Symbol|T], [','|L2], L4) :-
 	!,
 	symbol(Symbol, L2, L3),
 	symbol_csl_tail(T, L3, L4).
@@ -10142,15 +9982,9 @@ symbol_csl_tail([], L1, L1).
 
 
 % DEPRECATED
-universal(L1, L3) :-
-	L1 = [atname(forAll)|L2],
+universal([atname(forAll)|L2], L3) :-
 	!,
 	symbol_csl(Symbols, L2, L3),
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('@forAll', after_line(Ln)))
-	;	true
-	),
 	nb_getval(fdepth, D),
 	(	\+flag(traditional),
 		D > 0
@@ -10179,103 +10013,44 @@ uri(Name, L1, L2) :-
 	qname(Name, L1, L2).
 
 
-verb(V, [], L1, L2) :-
-	L1 = ['=', '>'|L2],
+verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
 	!,
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('=>', after_line(Ln)))
-	;	true
-	),
-	V = '\'<http://www.w3.org/2000/10/swap/log#implies>\'',
 	(	nb_getval(fdepth, 0)
 	->	assertz(forward)
 	;	true
 	).
-verb(V, [], L1, L2) :-
-	L1 = ['='|L2],
+verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
+	!.
+verb(':-', [], ['<', '='|L2], L2) :-
 	!,
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('=', after_line(Ln)))
-	;	true
-	),
-	V = '\'<http://www.w3.org/2002/07/owl#sameAs>\''.
-verb(':-', [], L1, L2) :-
-	L1 = ['<', '='|L2],
-	!,
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('<=', after_line(Ln)))
-	;	true
-	),
 	(	nb_getval(fdepth, 0)
 	->	assertz(backward)
 	;	true
 	).
 % DEPRECATED
-verb(V, [], L1, L2) :-
-	L1 = [atname(a)|L2],
-	!,
-	V = '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\''.
-verb(V, [], L1, L2) :-
-	L1 = [name(a)|L2],
-	!,
-	V = '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\''.
+verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
+	!.
+verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [name(a)|L2], L2) :-
+	!.
 % DEPRECATED
-verb(Node, Triples, L1, L3) :-
-	L1 = [atname(has)|L2],
+verb(Node, Triples, [atname(has)|L2], L3) :-
 	!,
 	expression(Node, Triples, L2, L3).
-verb(Node, Triples, L1, L3) :-
-	L1 = [name(has)|L2],
+verb(Node, Triples, [name(has)|L2], L3) :-
 	!,
 	expression(Node, Triples, L2, L3).
 % DEPRECATED
-verb(isof(Node), Triples, L1, L4) :-
-	L1 = [atname(is)|L2],
+verb(isof(Node), Triples, [atname(is)|L2], L4) :-
 	!,
-	expression(Node, Triples, L2, L3),
-	L3 = [atname(of)|L4],
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('no_is_of', after_line(Ln)))
-	;	true
-	).
-verb(isof(Node), Triples, L1, L4) :-
-	L1 = [name(is)|L2],
+	expression(Node, Triples, L2, [atname(of)|L4]).
+verb(isof(Node), Triples, [name(is)|L2], L4) :-
 	!,
-	expression(Node, Triples, L2, L3),
-	L3 = [name(of)|L4],
-	(	flag(turtle)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('no_is_of', after_line(Ln)))
-	;	true
-	).
+	expression(Node, Triples, L2, [name(of)|L4]).
 verb(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2),
-	(	flag(turtle),
-		(	Node = literal(_, _)
-		->	true
-		;	(	Node = true
-			->	true
-			;	(	Node = false
-				->	true
-				;	(	nb_getval(var_ns, Vns),
-						sub_atom(Node, 2, _, _, Vns)
-					->	true
-					)
-				)
-			)
-		)
-	->	nb_getval(line_number, Ln),
-		throw(not_in_turtle('non_iri_pred', after_line(Ln)))
-	;	true
-	).
+	expression(Node, Triples, L1, L2).
 
 
-withoutdot(L1, [dot(Ln)|L2]) :-
-	L1 = [dot(Ln)|L2],
+withoutdot([dot(Ln)|L2], [dot(Ln)|L2]) :-
 	!,
 	throw(unexpected_dot(after_line(Ln))).
 withoutdot(L1, [dot(Ln)|L1]) :-
@@ -10295,12 +10070,8 @@ tokens(In, List) :-
 	),
 	(	Tok1 == end_of_file
 	->	List = []
-	;	(	flag(turtle),
-			Tok1 = dot(Ln)
-		->	List = [Tok1]
-		;	List = [Tok1|Tokens],
-			tokens(C1, In, Tokens)
-		)
+	;	List = [Tok1|Tokens],
+		tokens(C1, In, Tokens)
 	).
 
 
@@ -10313,12 +10084,8 @@ tokens(C0, In, List) :-
 	),
 	(	H == end_of_file
 	->	List = []
-	;	(	flag(turtle),
-			H = dot(Ln)
-		->	List = [H]
-		;	List = [H|T],
-			tokens(C1, In, T)
-		)
+	;	List = [H|T],
+		tokens(C1, In, T)
 	).
 
 
