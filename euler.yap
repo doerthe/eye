@@ -143,7 +143,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0117.1659 josd').
+version_info('EYE-Winter16.0117.2044 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1217,6 +1217,10 @@ args(['--turtle', Argument|Args]) :-
 	),
 	nb_setval(wn, 0),
 	nb_setval(sc, 0),
+	nb_setval(tp, 0),
+	nb_setval(bp, 0),
+	nb_setval(tr, 0),
+	nb_setval(br, 0),
 	atomic_list_concat(['-b=', Arg], Base),
 	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
 		(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
@@ -1260,6 +1264,14 @@ args(['--turtle', Argument|Args]) :-
 							->	Qt =.. [X, Y, Z]
 							;	Qt = Q
 							),
+							functor(Qt, F, _),
+							(	pred(F)
+							->	true
+							;	assertz(pred(F)),
+								format(':- dynamic(~q).~n', [F/2]),
+								format(':- multifile(~q).~n', [F/2]),
+								format('pred(~q).~n', [F])
+							),
 							format('~q.~n', [Qt])
 						)
 					),
@@ -1271,10 +1283,25 @@ args(['--turtle', Argument|Args]) :-
 					->	Qt =.. [X, Y, Z]
 					;	Qt = Conc
 					),
+					functor(Qt, F, _),
+					(	pred(F)
+					->	true
+					;	assertz(pred(F)),
+						format(':- dynamic(~q).~n', [F/2]),
+						format(':- multifile(~q).~n', [F/2]),
+						format('pred(~q).~n', [F])
+					),
 					format('~q.~n', [Qt]),
 					cnt(sc)
 				)
-			;	format('~q.~n', [Rt])
+			;	(	Rt = pred(F)
+				->	(	pred(F)
+					->	true
+					;	assertz(pred(F))
+					)
+				;	true
+				),
+				format('~q.~n', [Rt])
 			)
 		;	(	Rt = ':-'(Rg)
 			->	call(Rg)
@@ -1352,12 +1379,18 @@ args(['--turtle', Argument|Args]) :-
 	->	timestamp(Stamp),
 		statistics(runtime, [Cpu, Wall]),
 		nb_getval(sc, Outp),
+		nb_getval(tp, TP),
+		nb_getval(bp, BP),
+		Step is TP+BP,
+		nb_getval(tr, TR),
+		nb_getval(br, BR),
+		Brake is TR+BR,
 		statistics(inferences, Inf),
 		catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
 		catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 		format('~q.~n', [scount(Outp)]),
 		format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-		format(user_error, '[~w] in=~d out=~d inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Inf, Cpu, Speed]),
+		format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed]),
 		flush_output(user_error)
 	;	true
 	),
