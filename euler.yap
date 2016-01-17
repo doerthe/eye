@@ -49,6 +49,7 @@
 :- if(current_prolog_flag(dialect, swi)).
 :- use_module(library(when), [when/2]).
 :- use_module(library(qsave)).
+:- catch(use_module(library(process)), _, true).
 :- catch(use_module(library(sha1)), _, true).
 :- catch(use_module(library(uri)), _, true).
 :- endif.
@@ -143,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0117.2044 josd').
+version_info('EYE-Winter16.0117.2227 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
