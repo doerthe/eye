@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0117.2227 josd').
+version_info('EYE-Winter16.0118.2122 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -468,8 +468,11 @@ gre(Argus) :-
 	;	true
 	),
 	(	flag(n3p)
-	->	write(scount(SC)),
-		writeln('.'),
+	->	(	SC =\= 0
+		->	write(scount(SC)),
+			writeln('.')
+		;	true
+		),
 		writeln('end_of_file.'),
 		throw(halt)
 	;	true
@@ -1238,16 +1241,17 @@ args(['--turtle', Argument|Args]) :-
 				Rt \= flag(_, _),
 				Rt \= scope(_),
 				Rt \= pfx(_, _),
-				Rt \= pred(_)
-			->	(	Rt = scount(SCount)
-				->	assertz(scount(SCount))
-				;	true
-				),
-				Rt =.. [P, S, O],
+				Rt \= pred(_),
+				Rt \= scount(_)
+			->	Rt =.. [P, S, O],
 				implies(Prem, Conc, _),
-				(	Prem = exopred(P, S, O)
+				(	(	Prem = exopred(P, S, O)
+					;	Prem = Rt
+					)
 				->	true
-				;	Prem = cn([exopred(P, S, O)|U]),
+				;	(	Prem = cn([exopred(P, S, O)|U])
+					;	Prem = cn([Rt|U])
+					),
 					clist(U, V),
 					call(V)
 				),
@@ -1302,51 +1306,58 @@ args(['--turtle', Argument|Args]) :-
 					)
 				;	true
 				),
+				(	Rt = scount(SCount)
+				->	assertz(scount(SCount))
+				;	true
+				),
 				format('~q.~n', [Rt])
 			)
-		;	(	Rt = ':-'(Rg)
-			->	call(Rg)
-			;	(	predicate_property(Rt, dynamic)
-				->	true
-				;	(	File = '-'
+		;	(	flag(n3p)
+			->	format('~q.~n', [Rt])
+			;	(	Rt = ':-'(Rg)
+				->	call(Rg)
+				;	(	predicate_property(Rt, dynamic)
 					->	true
-					;	close(In)
-					),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					throw(builtin_redefinition(Rt))
-				),
-				(	Rt = pfx(Pfx, _)
-				->	retractall(pfx(Pfx, _))
-				;	true
-				),
-				(	Rt = scope(Scope)
-				->	nb_setval(current_scope, Scope)
-				;	true
-				),
-				(	Rt \= implies(_, _, _),
-					Rt \= scount(_),
-					call(Rt)
-				->	true
-				;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-					->	strelas(Rt)
-					;	true
-					),
-					(	Rt \= flag(_, _),
-						Rt \= scope(_),
-						Rt \= pfx(_, _),
-						Rt \= pred(_),
-						Rt \= scount(_)
-					->	(	flag(nope),
-							\+flag(ances)	% DEPRECATED
+					;	(	File = '-'
 						->	true
-						;	nb_getval(current_scope, Src),
-							term_index(Rt, Rnd),
-							assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-						)
+						;	close(In)
+						),
+						(	retract(tmpfile(File))
+						->	delete_file(File)
+						;	true
+						),
+						throw(builtin_redefinition(Rt))
+					),
+					(	Rt = pfx(Pfx, _)
+					->	retractall(pfx(Pfx, _))
 					;	true
+					),
+					(	Rt = scope(Scope)
+					->	nb_setval(current_scope, Scope)
+					;	true
+					),
+					(	Rt \= implies(_, _, _),
+						Rt \= scount(_),
+						call(Rt)
+					->	true
+					;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+						->	strelas(Rt)
+						;	true
+						),
+						(	Rt \= flag(_, _),
+							Rt \= scope(_),
+							Rt \= pfx(_, _),
+							Rt \= pred(_),
+							Rt \= scount(_)
+						->	(	flag(nope),
+								\+flag(ances)	% DEPRECATED
+							->	true
+							;	nb_getval(current_scope, Src),
+								term_index(Rt, Rnd),
+								assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+							)
+						;	true
+						)
 					)
 				)
 			)
