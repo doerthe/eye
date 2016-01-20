@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0118.2122 josd').
+version_info('EYE-Winter16.0120.2011 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -213,20 +213,6 @@ eye
 % ---------
 
 main :-
-	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30),
-	atom_number(Run, Id),
-	atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run, '#'], Vns),
-	nb_setval(var_ns, Vns),
-	version_info(Version),
-	format(user_error, '~w~n', [Version]),
-	flush_output(user_error),
-	prolog_flag(version, PVersion),
-	format(user_error, '~w~n', [PVersion]),
-	flush_output(user_error),
-	(	retract(prolog_file_type(qlf, qlf))
-	->	assertz(prolog_file_type(pvm, qlf))
-	;	true
-	),
 	current_prolog_flag(argv, Argv),
 	(	append(_, ['--'|Argvp], Argv)
 	->	true
@@ -241,6 +227,21 @@ main :-
 	;	Argvs = Argvp
 	),
 	argv(Argvs, Argus),
+	format(user_error, 'eye~@~n', [wa(Argus)]),
+	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30),
+	atom_number(Run, Id),
+	atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run, '#'], Vns),
+	nb_setval(var_ns, Vns),
+	version_info(Version),
+	format(user_error, '~w~n', [Version]),
+	flush_output(user_error),
+	prolog_flag(version, PVersion),
+	format(user_error, '~w~n', [PVersion]),
+	flush_output(user_error),
+	(	retract(prolog_file_type(qlf, qlf))
+	->	assertz(prolog_file_type(pvm, qlf))
+	;	true
+	),
 	(	memberchk('--profile', Argus)
 	->	(	current_predicate(profon/0)
 		->	yap_flag(profiling, on),
@@ -490,10 +491,7 @@ gre(Argus) :-
 	->	true
 	;	version_info(Version),
 		format('#Processed by ~w~n', [Version]),
-		format('#eye', []),
-		wa(Argus),
-		nl,
-		nl
+		format('#eye~@~n~n', [wa(Argus)])
 	),
 	(	flag(nope)
 	->	true
@@ -708,7 +706,8 @@ gre(Argus) :-
 	;	Inf = ''
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-	format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed]),
+	catch(Infin is round(Inf/Inp), _, Infin = ''),
+	format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, RBC, RBP, R],
@@ -1400,9 +1399,10 @@ args(['--turtle', Argument|Args]) :-
 		statistics(inferences, Inf),
 		catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
 		catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
+		catch(Infin is round(Inf/Inp), _, Infin = ''),
 		format('~q.~n', [scount(Outp)]),
 		format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-		format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed]),
+		format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed, Infin]),
 		flush_output(user_error)
 	;	true
 	),
