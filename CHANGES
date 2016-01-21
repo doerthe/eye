@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- adding --pass-turtle switch and <a href="https://raw.githubusercontent.com/josd/eyeearl/master/earl-report.ttl">passed 291 out of 291 tests</a>
 - adding extra logging info inf/in=inferences_per_input_statement
 - adding --streaming-reasoning query mode to do streaming reasoning on --turtle data
 - changing --turtle to use <a href="https://github.com/melgi/turtle">https://github.com/melgi/turtle</a> thanks to Giovanni Mels

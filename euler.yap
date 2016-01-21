@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0120.2011 josd').
+version_info('EYE-Winter16.0121.2107 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -203,6 +203,7 @@ eye
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--pass-all-ground		ground the rules and run --pass-all
+	--pass-turtle			output the --turtle data
 	--multi-query			query answer loop
 	--streaming-reasoning		streaming reasoning on --turtle data').
 
@@ -1218,193 +1219,201 @@ args(['--turtle', Argument|Args]) :-
 			)
 		)
 	),
-	nb_setval(wn, 0),
-	nb_setval(sc, 0),
-	nb_setval(tp, 0),
-	nb_setval(bp, 0),
-	nb_setval(tr, 0),
-	nb_setval(br, 0),
 	atomic_list_concat(['-b=', Arg], Base),
-	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
-		(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-			flush_output(user_error),
-			halt(1)
+	(	flag('pass-turtle')
+	->	catch(process_create(path(turtle), ['-f=nt', Base, file(File)], [stdout(std), stderr(std)]), Exc,
+			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+				flush_output(user_error),
+				halt(1)
+			)
 		)
-	),
-	repeat,
-	read_term(In, Rt, []),
-	(	Rt = end_of_file
-	->	catch(read_line_to_codes(In, _), _, true)
-	;	(	flag('streaming-reasoning')
-		->	(	Rt \= ':-'(_),
-				Rt \= flag(_, _),
-				Rt \= scope(_),
-				Rt \= pfx(_, _),
-				Rt \= pred(_),
-				Rt \= scount(_)
-			->	Rt =.. [P, S, O],
-				implies(Prem, Conc, _),
-				(	(	Prem = exopred(P, S, O)
-					;	Prem = Rt
-					)
-				->	true
-				;	(	Prem = cn([exopred(P, S, O)|U])
-					;	Prem = cn([Rt|U])
-					),
-					clist(U, V),
-					call(V)
-				),
-				(	ground(Conc)
-				->	true
-				;	nb_getval(wn, W),
-					labelvars(Conc, W, N, skolem),
-					nb_setval(wn, N)
-				),
-				(	Conc = cn(C)
-				->	forall(
-						(	member(Q, C)
-						),
-						(	(	Q = exopred(X, Y, Z)
-							->	Qt =.. [X, Y, Z]
-							;	Qt = Q
-							),
-							functor(Qt, F, _),
-							(	pred(F)
-							->	true
-							;	assertz(pred(F)),
-								format(':- dynamic(~q).~n', [F/2]),
-								format(':- multifile(~q).~n', [F/2]),
-								format('pred(~q).~n', [F])
-							),
-							format('~q.~n', [Qt])
-						)
-					),
-					nb_getval(sc, I),
-					length(C, J),
-					K is I+J,
-					nb_setval(sc, K)
-				;	(	Conc = exopred(X, Y, Z)
-					->	Qt =.. [X, Y, Z]
-					;	Qt = Conc
-					),
-					functor(Qt, F, _),
-					(	pred(F)
-					->	true
-					;	assertz(pred(F)),
-						format(':- dynamic(~q).~n', [F/2]),
-						format(':- multifile(~q).~n', [F/2]),
-						format('pred(~q).~n', [F])
-					),
-					format('~q.~n', [Qt]),
-					cnt(sc)
-				)
-			;	(	Rt = pred(F)
-				->	(	pred(F)
-					->	true
-					;	assertz(pred(F))
-					)
-				;	true
-				),
-				(	Rt = scount(SCount)
-				->	assertz(scount(SCount))
-				;	true
-				),
-				format('~q.~n', [Rt])
+	;	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+				flush_output(user_error),
+				halt(1)
 			)
-		;	(	flag(n3p)
-			->	format('~q.~n', [Rt])
-			;	(	Rt = ':-'(Rg)
-				->	call(Rg)
-				;	(	predicate_property(Rt, dynamic)
+		),
+		nb_setval(wn, 0),
+		nb_setval(sc, 0),
+		nb_setval(tp, 0),
+		nb_setval(bp, 0),
+		nb_setval(tr, 0),
+		nb_setval(br, 0),
+		repeat,
+		read_term(In, Rt, []),
+		(	Rt = end_of_file
+		->	catch(read_line_to_codes(In, _), _, true)
+		;	(	flag('streaming-reasoning')
+			->	(	Rt \= ':-'(_),
+					Rt \= flag(_, _),
+					Rt \= scope(_),
+					Rt \= pfx(_, _),
+					Rt \= pred(_),
+					Rt \= scount(_)
+				->	Rt =.. [P, S, O],
+					implies(Prem, Conc, _),
+					(	(	Prem = exopred(P, S, O)
+						;	Prem = Rt
+						)
 					->	true
-					;	(	File = '-'
-						->	true
-						;	close(In)
+					;	(	Prem = cn([exopred(P, S, O)|U])
+						;	Prem = cn([Rt|U])
 						),
-						(	retract(tmpfile(File))
-						->	delete_file(File)
-						;	true
-						),
-						throw(builtin_redefinition(Rt))
+						clist(U, V),
+						call(V)
 					),
-					(	Rt = pfx(Pfx, _)
-					->	retractall(pfx(Pfx, _))
-					;	true
-					),
-					(	Rt = scope(Scope)
-					->	nb_setval(current_scope, Scope)
-					;	true
-					),
-					(	Rt \= implies(_, _, _),
-						Rt \= scount(_),
-						call(Rt)
+					(	ground(Conc)
 					->	true
-					;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-						->	strelas(Rt)
-						;	true
-						),
-						(	Rt \= flag(_, _),
-							Rt \= scope(_),
-							Rt \= pfx(_, _),
-							Rt \= pred(_),
-							Rt \= scount(_)
-						->	(	flag(nope),
-								\+flag(ances)	% DEPRECATED
-							->	true
-							;	nb_getval(current_scope, Src),
-								term_index(Rt, Rnd),
-								assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+					;	nb_getval(wn, W),
+						labelvars(Conc, W, N, skolem),
+						nb_setval(wn, N)
+					),
+					(	Conc = cn(C)
+					->	forall(
+							(	member(Q, C)
+							),
+							(	(	Q = exopred(X, Y, Z)
+								->	Qt =.. [X, Y, Z]
+								;	Qt = Q
+								),
+								functor(Qt, F, _),
+								(	pred(F)
+								->	true
+								;	assertz(pred(F)),
+									format(':- dynamic(~q).~n', [F/2]),
+									format(':- multifile(~q).~n', [F/2]),
+									format('pred(~q).~n', [F])
+								),
+								format('~q.~n', [Qt])
 							)
+						),
+						nb_getval(sc, I),
+						length(C, J),
+						K is I+J,
+						nb_setval(sc, K)
+					;	(	Conc = exopred(X, Y, Z)
+						->	Qt =.. [X, Y, Z]
+						;	Qt = Conc
+						),
+						functor(Qt, F, _),
+						(	pred(F)
+						->	true
+						;	assertz(pred(F)),
+							format(':- dynamic(~q).~n', [F/2]),
+							format(':- multifile(~q).~n', [F/2]),
+							format('pred(~q).~n', [F])
+						),
+						format('~q.~n', [Qt]),
+						cnt(sc)
+					)
+				;	(	Rt = pred(F)
+					->	(	pred(F)
+						->	true
+						;	assertz(pred(F))
+						)
+					;	true
+					),
+					(	Rt = scount(SCount)
+					->	assertz(scount(SCount))
+					;	true
+					),
+					format('~q.~n', [Rt])
+				)
+			;	(	flag(n3p)
+				->	format('~q.~n', [Rt])
+				;	(	Rt = ':-'(Rg)
+					->	call(Rg)
+					;	(	predicate_property(Rt, dynamic)
+						->	true
+						;	(	File = '-'
+							->	true
+							;	close(In)
+							),
+							(	retract(tmpfile(File))
+							->	delete_file(File)
+							;	true
+							),
+							throw(builtin_redefinition(Rt))
+						),
+						(	Rt = pfx(Pfx, _)
+						->	retractall(pfx(Pfx, _))
 						;	true
+						),
+						(	Rt = scope(Scope)
+						->	nb_setval(current_scope, Scope)
+						;	true
+						),
+						(	Rt \= implies(_, _, _),
+							Rt \= scount(_),
+							call(Rt)
+						->	true
+						;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+							->	strelas(Rt)
+							;	true
+							),
+							(	Rt \= flag(_, _),
+								Rt \= scope(_),
+								Rt \= pfx(_, _),
+								Rt \= pred(_),
+								Rt \= scount(_)
+							->	(	flag(nope),
+									\+flag(ances)	% DEPRECATED
+								->	true
+								;	nb_getval(current_scope, Src),
+									term_index(Rt, Rnd),
+									assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+								)
+							;	true
+							)
 						)
 					)
 				)
-			)
+			),
+			fail
 		),
-		fail
-	),
-	!,
-	(	File = '-'
-	->	true
-	;	close(In)
-	),
-	(	retract(tmpfile(File))
-	->	delete_file(File)
-	;	true
-	),
-	findall(SCnt,
-		(	retract(scount(SCnt))
+		!,
+		(	File = '-'
+		->	true
+		;	close(In)
 		),
-		SCnts
-	),
-	sum(SCnts, SC),
-	nb_getval(input_statements, IN),
-	Inp is SC+IN,
-	nb_setval(input_statements, Inp),
-	(	wcache(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-	),
-	flush_output(user_error),
-	(	flag('streaming-reasoning')
-	->	timestamp(Stamp),
-		statistics(runtime, [Cpu, Wall]),
-		nb_getval(sc, Outp),
-		nb_getval(tp, TP),
-		nb_getval(bp, BP),
-		Step is TP+BP,
-		nb_getval(tr, TR),
-		nb_getval(br, BR),
-		Brake is TR+BR,
-		statistics(inferences, Inf),
-		catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
-		catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-		catch(Infin is round(Inf/Inp), _, Infin = ''),
-		format('~q.~n', [scount(Outp)]),
-		format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-		format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed, Infin]),
-		flush_output(user_error)
-	;	true
+		(	retract(tmpfile(File))
+		->	delete_file(File)
+		;	true
+		),
+		findall(SCnt,
+			(	retract(scount(SCnt))
+			),
+			SCnts
+		),
+		sum(SCnts, SC),
+		nb_getval(input_statements, IN),
+		Inp is SC+IN,
+		nb_setval(input_statements, Inp),
+		(	wcache(Arg, File)
+		->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
+		;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
+		),
+		flush_output(user_error),
+		(	flag('streaming-reasoning')
+		->	timestamp(Stamp),
+			statistics(runtime, [Cpu, Wall]),
+			nb_getval(sc, Outp),
+			nb_getval(tp, TP),
+			nb_getval(bp, BP),
+			Step is TP+BP,
+			nb_getval(tr, TR),
+			nb_getval(br, BR),
+			Brake is TR+BR,
+			statistics(inferences, Inf),
+			catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
+			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
+			catch(Infin is round(Inf/Inp), _, Infin = ''),
+			format('~q.~n', [scount(Outp)]),
+			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
+			format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed, Infin]),
+			flush_output(user_error)
+		;	true
+		)
 	),
 	args(Args).
 args(['--proof', Arg|Args]) :-
