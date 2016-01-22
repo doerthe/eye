@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0122.1641 josd').
+version_info('EYE-Winter16.0122.2240 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1888,6 +1888,11 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) 
 	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, Mode) :-
 	!,
+	evars(Y, V),
+	(	V = []
+	->	true
+	;	throw('EYE_component_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
+	),
 	write(':-'(Y, X)),
 	writeln('.'),
 	tr_n3p(Z, Src, Mode).
@@ -8432,9 +8437,11 @@ evars(A, B) :-
 	atomic(A),
 	!,
 	(	atom(A),
-		(	atom_concat(some, _, A)
+		(	atom_concat('_bn_', _, A)
+		;	atom_concat('_e_', _, A)
+		;	atom_concat(some, _, A)
 		;	nb_getval(var_ns, Vns),
-			sub_atom(A, 1, _, _, Vns)
+			sub_atom(A, 1, _, _, Vns)			
 		)
 	->	B = [A]
 	;	B = []
