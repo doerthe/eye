@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0122.1604 josd').
+version_info('EYE-Winter16.0122.1641 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -164,7 +164,8 @@ eye
 	--no-qnames			no qnames in the output
 	--no-qvars			no qvars in the output
 	--no-numerals			no numerals in the output
-	--no-distinct			no distinct answers in the output
+	--no-distinct-input		no distinct triples in the input
+	--no-distinct-output		no distinct answers in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
@@ -792,6 +793,11 @@ opts(['--wget-path', Path|Argus], Args) :-
 	assertz(flag('wget-path', Path)),
 	opts(Argus, Args).
 % DEPRECATED
+opts(['--no-distinct'|Argus], Args) :-
+	!,
+	assertz(flag('no-distinct-output')),
+	opts(Argus, Args).
+% DEPRECATED
 opts(['--pcl'|Argus], Args) :-
 	!,
 	assertz(flag(n3p)),
@@ -1088,6 +1094,7 @@ args(['--plugin', Argument|Args]) :-
 			),
 			(	Rt \= implies(_, _, _),
 				Rt \= scount(_),
+				\+flag('no-distinct-input'),
 				call(Rt)
 			->	true
 			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
@@ -1345,6 +1352,7 @@ args(['--turtle', Argument|Args]) :-
 						),
 						(	Rt \= implies(_, _, _),
 							Rt \= scount(_),
+							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
 						;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
@@ -1688,6 +1696,7 @@ n3_n3p(Argument, Mode) :-
 							throw(builtin_redefinition(Rt))
 						),
 						(	Rt \= implies(_, _, _),
+							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
 						;	strelas(Rt),
@@ -1807,7 +1816,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
+		(	flag('no-distinct-output')
 		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, Y)),
@@ -1847,7 +1856,7 @@ tr_n3p([X|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct')
+		(	flag('no-distinct-output')
 		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(true, X)),
