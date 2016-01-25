@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0122.2240 josd').
+version_info('EYE-Winter16.0125.1320 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1468,7 +1468,8 @@ args(['--query', Arg|Args]) :-
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
-		\+flag(tactic, 'single-answer')
+		\+flag(tactic, 'single-answer'),
+		\+flag('no-distinct-input')
 	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
 	;	assertz(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	),
@@ -8441,7 +8442,7 @@ evars(A, B) :-
 		;	atom_concat('_e_', _, A)
 		;	atom_concat(some, _, A)
 		;	nb_getval(var_ns, Vns),
-			sub_atom(A, 1, _, _, Vns)			
+			sub_atom(A, 1, _, _, Vns)
 		)
 	->	B = [A]
 	;	B = []
