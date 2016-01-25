@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0125.1320 josd').
+version_info('EYE-Winter16.0125.1410 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1469,7 +1469,10 @@ args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
-		\+flag('no-distinct-input')
+		(	flag('no-distinct-input')
+		->	flag('no-distinct-output')
+		;	true
+		)
 	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
 	;	assertz(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	),
