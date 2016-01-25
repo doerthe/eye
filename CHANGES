@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing decimal roundtripping in <a href="http://eulersharp.sourceforge.net/2007/07test/numeral_test">http://eulersharp.sourceforge.net/2007/07test/numeral_test</a>
 - fixing --no-distinct-input option in conjunction with --pass query
 - adding EYE_component_may_not_contain_existential_in_conclusion exception
 - adding --no-distinct-input command line switch to have no distinct triples in the input (obs from Hong Sun)
