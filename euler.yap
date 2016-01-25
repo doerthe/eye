@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0125.1549 josd').
+version_info('EYE-Winter16.0125.2237 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -9740,7 +9740,7 @@ pathitem(Atom, [], L1, L2) :-
 	atom_codes(Atom, C).
 pathitem(Number, [], L1, L2) :-
 	literal(Atom, type(Type), L1, L2),
-	memberchk(Type, ['\'<http://www.w3.org/2001/XMLSchema#integer>\'', '\'<http://www.w3.org/2001/XMLSchema#double>\'']),
+	memberchk(Type, ['\'<http://www.w3.org/2001/XMLSchema#integer>\'', '\'<http://www.w3.org/2001/XMLSchema#decimal>\'', '\'<http://www.w3.org/2001/XMLSchema#double>\'']),
 	sub_atom(Atom, 1, _, 1, A),
 	atom_codes(A, NumB),
 	numeral(NumB, NumC),
