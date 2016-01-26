@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0126.1304 josd').
+version_info('EYE-Winter16.0126.1554 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1235,7 +1235,11 @@ args(['--turtle', Argument|Args]) :-
 				halt(1)
 			)
 		)
-	;	catch(process_create(path(turtle), ['-f=n3p', Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+	;	(	flag(strict)
+		->	Format = '-f=n3p-rdiv'
+		;	Format = '-f=n3p'
+		),
+		catch(process_create(path(turtle), [Format, Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
 			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 				flush_output(user_error),
 				halt(1)
@@ -2367,7 +2371,11 @@ wt(X) :-
 	->	dtlit([U, V], X),
 		dtlit([U, V], W),
 		wt(W)
-	;	write(X)
+	;	(	flag(strict),
+			float(X)
+		->	format('~16e', [X])
+		;	write(X)
+		)
 	).
 wt(cn([X])) :-
 	!,
