@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0125.2237 josd').
+version_info('EYE-Winter16.0126.1304 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -190,6 +190,7 @@ eye
 	--statistics			output statistics info on stderr
 	--probe				output speedtest info on stderr
 	--traditional			traditional mode
+	--strict			strict mode
 	--version			show version info
 	--license			show license info
 	--help				show help info
@@ -9630,9 +9631,13 @@ literal(Atom, DtLang, L1, L3) :-
 	atomic_list_concat(['\'', E, '\''], Atom).
 
 
-numericliteral(Number, [numeric(_, NumB)|L2], L2) :-
+numericliteral(Number, [numeric(Type, NumB)|L2], L2) :-
 	numeral(NumB, NumC),
-	number_codes(Number, NumC).
+	(	flag(strict),
+		Type = decimal
+	->	rdiv_codes(Number, NumC)
+	;	number_codes(Number, NumC)
+	).
 
 
 object(Node, Triples, L1, L2) :-
@@ -9744,7 +9749,11 @@ pathitem(Number, [], L1, L2) :-
 	sub_atom(Atom, 1, _, 1, A),
 	atom_codes(A, NumB),
 	numeral(NumB, NumC),
-	number_codes(Number, NumC),
+	(	flag(strict),
+		Type = '\'<http://www.w3.org/2001/XMLSchema#decimal>\''
+	->	rdiv_codes(Number, NumC)
+	;	number_codes(Number, NumC)
+	),
 	!.
 pathitem(literal(Atom, DtLang), [], L1, L2) :-
 	literal(Atom, DtLang, L1, L2),
