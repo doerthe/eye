@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0126.1554 josd').
+version_info('EYE-Winter16.0127.1939 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3027,8 +3027,7 @@ wcf(rdiv(X, Y)) :-
 wcf(literal(A, B)) :-
 	!,
 	atom_codes(A, C),
-	escape_string(D, C),
-	subst([[[0'"], [0'", 0'"]]], D, E),
+	subst([[[0'\\, 0'"], [0'", 0'"]]], C, E),
 	atom_codes(F, E),
 	(	B \= type('<http://www.w3.org/2001/XMLSchema#dateTime>'),
 		B \= type('<http://www.w3.org/2001/XMLSchema#date>'),
@@ -3050,6 +3049,13 @@ wcf(A) :-
 	sub_atom(A, J, _, 1, B),
 	write('_:'),
 	write(B).
+wcf(A) :-
+	atom(A),
+	flag('no-skolem', Prefix),
+	sub_atom(A, 1, _, _, Prefix),
+	!,
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(B, ['no-skolem', Prefix, A]),	
+	wt0(B).
 wcf(A) :-
 	atom(A),
 	sub_atom(A, 0, 1, _, '<'),
