@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0127.1939 josd').
+version_info('EYE-Winter16.0129.1324 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1229,7 +1229,7 @@ args(['--turtle', Argument|Args]) :-
 	),
 	atomic_list_concat(['-b=', Arg], Base),
 	(	flag('pass-turtle')
-	->	catch(process_create(path(turtle), ['-f=nt', Base, file(File)], [stdout(std), stderr(std)]), Exc,
+	->	catch(process_create(path(cturtle), ['-f=nt', Base, file(File)], [stdout(std), stderr(std)]), Exc,
 			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 				flush_output(user_error),
 				halt(1)
@@ -1239,7 +1239,7 @@ args(['--turtle', Argument|Args]) :-
 		->	Format = '-f=n3p-rdiv'
 		;	Format = '-f=n3p'
 		),
-		catch(process_create(path(turtle), [Format, Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+		catch(process_create(path(cturtle), [Format, Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
 			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 				flush_output(user_error),
 				halt(1)

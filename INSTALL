@@ -16,7 +16,7 @@ Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
 Install cURL from http://curl.haxx.se/download.html
-Install turtle from https://github.com/melgi/turtle
+Install turtle from https://github.com/melgi/cturtle/releases/latest
 
 Run the installation script install.sh which will
 - copy the EYE source file euler.yap to /opt/eye/src/euler.yap
@@ -34,7 +34,7 @@ Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
 Install cURL from http://curl.haxx.se/download.html
-Install turtle from https://github.com/melgi/turtle
+Install turtle from https://github.com/melgi/cturtle/releases/latest
 
 Run the installation script install.cmd which will
 - copy the EYE source file euler.yap to C:\Program Files\eye\src\euler.yap
@@ -51,7 +51,7 @@ For Mac
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install turtle from https://github.com/melgi/turtle
+Install turtle from https://github.com/melgi/cturtle/releases/latest
 
 Run the installation script install.sh which will
 - copy the EYE source file euler.yap to /opt/eye/src/euler.yap
