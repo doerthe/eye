@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0130.1918 josd').
+version_info('EYE-Winter16.0130.2204 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -461,6 +461,7 @@ gre(Argus) :-
 			fail
 		;	true
 		),
+		assertz(flag('no-skolem', Vns)),
 		retractall(input_statements(_)),
 		assertz(input_statements(SC)),
 		reset_gensym,
