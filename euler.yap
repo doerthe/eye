@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0130.2204 josd').
+version_info('EYE-Winter16.0130.2233 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2530,7 +2530,8 @@ wt0(X) :-
 	;	(	\+flag('no-qvars'),
 			\+flag('no-blank')	% DEPRECATED
 		->	true
-		;	flag('no-skolem', _)
+		;	flag('no-skolem', Prefix),
+			sub_atom(X, 1, _, _, Prefix)
 		),
 		write('_:')
 	),
