@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0129.1324 josd').
+version_info('EYE-Winter16.0130.1918 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2063,7 +2063,7 @@ w3 :-
 		indent,
 		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7, B8), _, B, Pnd, Cn, R, _, A),
 			(	B4 = exopred,
-				prfstep(answer(B1, B2, B3, gamma, gamma, gamma, gamma, gamma),_, _, _, _, _, _, _)
+				answer(B1, B2, B3, gamma, gamma, gamma, gamma, gamma)
 			->	fail
 			;	true
 			),
@@ -2127,7 +2127,7 @@ w3 :-
 	->	repeat,
 		cnt(lemma_cursor),
 		nb_getval(lemma_cursor, Cursor),
-		lemma(Cursor, Ai, Bi, _, Ci, Di),
+		lemma(Cursor, Ai, Bi, Ci, _, Di),
 		indent,
 		wj(Cursor, Ai, Bi, Ci, Di),
 		nl,
@@ -2151,12 +2151,12 @@ wi('<>', _, rule(_, _, A), _) :-
 	wg(A),
 	write(']').
 wi(A, B, C, Rule) :-
-	term_index(B, Pnd),
-	(	lemma(Cnt, A, B, Pnd, C, Rule)
+	term_index(B-C, Ind),
+	(	lemma(Cnt, A, B, C, Ind, Rule)
 	->	true
 	;	cnt(lemma_count),
 		nb_getval(lemma_count, Cnt),
-		assertz(lemma(Cnt, A, B, Pnd, C, Rule))
+		assertz(lemma(Cnt, A, B, C, Ind, Rule))
 	),
 	write('<#lemma'),
 	write(Cnt),
