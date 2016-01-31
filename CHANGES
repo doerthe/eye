@@ -9,9 +9,9 @@
 </head>
 
 <body>
-<h1>EYE changes</h1>
-<pre>
+<pre><h1>EYE changes</h1>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- adding logging info for --multi-query
 - fixing --image for blank nodes
 - improving prfstef/8 and lemma/6 indexing to get linear proof output speed (obs from Hong Sun)
 - changing --turtle to use <a href="https://github.com/melgi/cturtle">https://github.com/melgi/cturtle</a> thanks to Giovanni Mels

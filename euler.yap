@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0130.2233 josd').
+version_info('EYE-Winter16.0131.2252 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -317,10 +317,6 @@ main :-
 				;	true
 				)
 			)
-		),
-		(	predicate_property(type_index(_, _), indexed(Indt2))
-		->	format(user_error, 'JITI type_index/2 indexed ~w~n', [Indt2])
-		;	true
 		),
 		(	predicate_property(implies(_, _, _), indexed(Indi3))
 		->	format(user_error, 'JITI implies/3 indexed ~w~n', [Indi3])
@@ -591,6 +587,8 @@ gre(Argus) :-
 			Outd is Oute-Outb,
 			catch(Outs is round(Outd/Ti5*1000), _, Outs = ''),
 			format('#DONE ~3d [sec] mq=~w out=~d triples/sec=~w~n~n', [Ti5, Cnt, Outd, Outs]),
+			timestamp(Stmp),
+			format(user_error, '[~w] mq=~w out=~d triples/sec=~w~n~n', [Stmp, Cnt, Outd, Outs]),
 			fail
 		)
 	;	catch(eam(0), Exc3,
