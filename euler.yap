@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0131.2252 josd').
+version_info('EYE-Winter16.0201.2013 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -618,10 +618,11 @@ gre(Argus) :-
 		),
 		(	catch(nb_getval(csv_header, Header), _, fail),
 			wct(Header),
+			length(Header, Headerl),
 			query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
 			catch(call(Where), _, fail),
 			wct(Select),
-			cnt(output_statements),
+			cnt(output_statements, Headerl),
 			fail
 		;	true
 		)
@@ -1017,8 +1018,16 @@ opts([Arg|Argus], Args) :-
 	\+memberchk(Arg, ['--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules', '--query', '--pass', '--pass-all', '--tquery']),
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
-	sub_atom(Arg, 2, _, 0, Opt),
-	assertz(flag(Opt)),
+	(	memberchk(Arg, ['--nope', '--no-qnames', '--no-qvars', '--no-numerals', '--no-distinct-input', '--no-distinct-output',
+				'--ignore-syntax-error', '--ignore-inference-fuse', '--n3p', '--strings',
+				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
+				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
+				'--pass-turtle', '--multi-query', '--streaming-reasoning',
+				'--ances', '--no-blank', '--no-span', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
+	->	sub_atom(Arg, 2, _, 0, Opt),
+		assertz(flag(Opt))
+	;	throw(not_supported_argument(Arg))
+	),
 	opts(Argus, Args).
 opts([Arg|Argus], [Arg|Args]) :-
 	opts(Argus, Args).
@@ -1487,10 +1496,21 @@ args(['--pass'|Args]) :-
 	args(Args).
 args(['--pass-all'|Args]) :-
 	!,
-	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-			answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-	assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+	(	flag(nope),
+		\+flag(tactic, 'single-answer'),
+		(	flag('no-distinct-input')
+		->	flag('no-distinct-output')
+		;	true
+		)
+	->	assertz(query(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+				exopred(P, S, O))),
+		assertz(query(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C)))
+	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+				answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+	),
 	(	flag(n3p)
 	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
 			answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
@@ -2019,10 +2039,8 @@ w3 :-
 		write('.'),
 		nl,
 		(	A = cn(L)
-		->	nb_getval(output_statements, I),
-			length(L, J),
-			K is I+J,
-			nb_setval(output_statements, K)
+		->	length(L, I),
+			cnt(output_statements, I)
 		;	cnt(output_statements)
 		),
 		fail
@@ -7554,6 +7572,17 @@ fresh_pf(_, Pfx) :-
 cnt(A) :-
 	nb_getval(A, B),
 	C is B+1,
+	nb_setval(A, C),
+	(	flag('debug-cnt'),
+		C mod 1000 =:= 0
+	->	format(user_error, '~w = ~w~n', [A, C])
+	;	true
+	).
+
+
+cnt(A, I) :-
+	nb_getval(A, B),
+	C is B+I,
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
 		C mod 1000 =:= 0

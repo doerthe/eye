@@ -11,6 +11,9 @@
 <body>
 <pre><h1>EYE changes</h1>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- throwing exception for unknown command line options
+- changing out=count for csv output to the number of cells
+- fixing performance issue with --pass-all
 - adding logging info for --multi-query
 - fixing --image for blank nodes
 - improving prfstef/8 and lemma/6 indexing to get linear proof output speed (obs from Hong Sun)
