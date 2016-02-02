@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0201.2013 josd').
+version_info('EYE-Winter16.0202.0834 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1023,7 +1023,7 @@ opts([Arg|Argus], Args) :-
 				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
 				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
 				'--pass-turtle', '--multi-query', '--streaming-reasoning',
-				'--ances', '--no-blank', '--no-span', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
+				'--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
 	->	sub_atom(Arg, 2, _, 0, Opt),
 		assertz(flag(Opt))
 	;	throw(not_supported_argument(Arg))
