@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0202.0937 josd').
+version_info('EYE-Winter16.0202.1044 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -577,6 +577,7 @@ gre(Argus) :-
 			retractall(wpfx(_)),
 			retractall('<http://www.w3.org/2000/10/swap/log#outputString>'(_, _)),
 			retractall('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _)),
+			nb_setval(csv_header, []),
 			cnt(mq),
 			nb_getval(mq, Cnt),
 			(	Cnt mod 10000 =:= 0
@@ -3007,7 +3008,7 @@ wst :-
 			wt(ST)
 		)
 	),
-	(	catch(nb_getval(csv_header, Header), _, fail),
+	(	catch(nb_getval(csv_header, Header), _, Header = []),
 		wct(Header),
 		length(Header, Headerl),
 		query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
@@ -3016,8 +3017,7 @@ wst :-
 		cnt(output_statements, Headerl),
 		fail
 	;	true
-	),
-	flush_output.
+	).
 wst.
 
 
@@ -3081,7 +3081,7 @@ wcf(A) :-
 	flag('no-skolem', Prefix),
 	sub_atom(A, 1, _, _, Prefix),
 	!,
-	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(B, ['no-skolem', Prefix, A]),	
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(B, ['no-skolem', Prefix, A]),
 	wt0(B).
 wcf(A) :-
 	atom(A),
