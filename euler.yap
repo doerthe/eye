@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0202.1227 josd').
+version_info('EYE-Winter16.0202.1638 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -999,7 +999,7 @@ opts([Arg|Argus], Args) :-
 				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
 				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
 				'--pass-turtle', '--multi-query', '--streaming-reasoning',
-				'--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
+				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
 	->	sub_atom(Arg, 2, _, 0, Opt),
 		assertz(flag(Opt))
 	;	throw(not_supported_argument(Arg))
@@ -1814,7 +1814,8 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery
 	tr_n3p(Z, Src, tquery).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query) :-
 	!,
-	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
+	(	flag(nope),
+		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	nb_setval(csv_header, T)
 	;	true
 	),
@@ -1843,7 +1844,8 @@ tr_n3p([':-'(false, X)|Z], Src, _) :-
 	tr_n3p(Z, Src, query).
 tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	!,
-	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
+	(	flag(nope),
+		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	nb_setval(csv_header, T)
 	;	true
 	),
