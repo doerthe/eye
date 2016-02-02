@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0202.0834 josd').
+version_info('EYE-Winter16.0202.0937 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -491,7 +491,8 @@ gre(Argus) :-
 	->	true
 	;	version_info(Version),
 		format('#Processed by ~w~n', [Version]),
-		format('#eye~@~n~n', [wa(Argus)])
+		format('#eye~@~n~n', [wa(Argus)]),
+		flush_output
 	),
 	(	flag(nope)
 	->	true
@@ -551,6 +552,7 @@ gre(Argus) :-
 					nb_setval(exit_code, 1)
 				)
 			),
+			wst,
 			forall(
 				(	retract(preda(Pa))
 				),
@@ -573,6 +575,8 @@ gre(Argus) :-
 			retractall(lemma(_, _, _, _, _, _)),
 			retractall(got_wi(_, _, _, _, _)),
 			retractall(wpfx(_)),
+			retractall('<http://www.w3.org/2000/10/swap/log#outputString>'(_, _)),
+			retractall('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _)),
 			cnt(mq),
 			nb_getval(mq, Cnt),
 			(	Cnt mod 10000 =:= 0
@@ -598,36 +602,7 @@ gre(Argus) :-
 			)
 		)
 	),
-	(	flag(strings)
-	->	findall([Key, Str],
-			(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
-			;	answer(A1, A2, A3, A4, A5, A6, A7, A8),
-				strela(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7, A8))
-			),
-			KS
-		),
-		sort(KS, KT),
-		forall(
-			(	member([_, MT], KT),
-				getcodes(MT, LT)
-			),
-			(	escape_string(NT, LT),
-				atom_codes(ST, NT),
-				wt(ST)
-			)
-		),
-		(	catch(nb_getval(csv_header, Header), _, fail),
-			wct(Header),
-			length(Header, Headerl),
-			query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
-			catch(call(Where), _, fail),
-			wct(Select),
-			cnt(output_statements, Headerl),
-			fail
-		;	true
-		)
-	;	true
-	),
+	wst,
 	nb_getval(tc, TC),
 	nb_getval(tp, TP),
 	nb_getval(bc, BC),
@@ -3010,6 +2985,40 @@ ws(X) :-
 		;	write(' ')
 		)
 	).
+
+
+wst :-
+	flag(strings),
+	!,
+	findall([Key, Str],
+		(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
+		;	answer(A1, A2, A3, A4, A5, A6, A7, A8),
+			strela(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7, A8))
+		),
+		KS
+	),
+	sort(KS, KT),
+	forall(
+		(	member([_, MT], KT),
+			getcodes(MT, LT)
+		),
+		(	escape_string(NT, LT),
+			atom_codes(ST, NT),
+			wt(ST)
+		)
+	),
+	(	catch(nb_getval(csv_header, Header), _, fail),
+		wct(Header),
+		length(Header, Headerl),
+		query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
+		catch(call(Where), _, fail),
+		wct(Select),
+		cnt(output_statements, Headerl),
+		fail
+	;	true
+	),
+	flush_output.
+wst.
 
 
 wct([]) :-
