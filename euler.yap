@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0202.1044 josd').
+version_info('EYE-Winter16.0202.1227 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3085,10 +3085,11 @@ wcf(A) :-
 	wt0(B).
 wcf(A) :-
 	atom(A),
-	sub_atom(A, 0, 1, _, '<'),
+	relabel(A, B),
+	sub_atom(B, 0, 1, _, '<'),
 	!,
-	sub_atom(A, 1, _, 1, B),
-	write(B).
+	sub_atom(B, 1, _, 1, C),
+	write(C).
 wcf(A) :-
 	atom(A),
 	sub_atom(A, 0, 1, _, '_'),
