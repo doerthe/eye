@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0202.1638 josd').
+version_info('EYE-Winter16.0203.1557 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -7625,7 +7625,8 @@ within_scope([A, B]) :-
 exopred(P, S, O) :-
 	(	var(P)
 	->	pred(P)
-	;	current_predicate(P/2)
+	;	atom(P),
+		current_predicate(P/2)
 	),
 	call(P, S, O).
 
@@ -7638,7 +7639,11 @@ unify(A, B) :-
 	(	(	nonvar(B)
 		;	nonvar(P)
 		)
-	->	B =.. [P, T, R],
+	->	(	nonvar(P)
+		->	atom(P)
+		;	true
+		),
+		B =.. [P, T, R],
 		atom(P)
 	),
 	!.
@@ -7650,7 +7655,11 @@ unify(A, B) :-
 	(	(	nonvar(A)
 		;	nonvar(P)
 		)
-	->	A =.. [P, T, R],
+	->	(	nonvar(P)
+		->	atom(P)
+		;	true
+		),
+		A =.. [P, T, R],
 		atom(P)
 	),
 	!.
