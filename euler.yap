@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0203.1557 josd').
+version_info('EYE-Winter16.0203.2235 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -540,6 +540,7 @@ gre(Argus) :-
 		->	true
 		;	statistics(walltime, [_, _]),
 			nb_getval(output_statements, Outb),
+			statistics(inferences, Infb),
 			catch(args(['--query', Fs]), Exc1,
 				(	format(user_error, '** ERROR ** args ** ~w~n', [Exc1]),
 					flush_output(user_error),
@@ -552,7 +553,10 @@ gre(Argus) :-
 					nb_setval(exit_code, 1)
 				)
 			),
-			wst,
+			(	flag(strings)
+			->	wst
+			;	true
+			),
 			forall(
 				(	retract(preda(Pa))
 				),
@@ -591,9 +595,15 @@ gre(Argus) :-
 			nb_getval(output_statements, Oute),
 			Outd is Oute-Outb,
 			catch(Outs is round(Outd/Ti5*1000), _, Outs = ''),
-			format('#DONE ~3d [sec] mq=~w out=~d triples/sec=~w~n~n', [Ti5, Cnt, Outd, Outs]),
+			(	flag(strings)
+			->	nl
+			;	format('#DONE ~3d [sec] mq=~w out=~d out/sec=~w~n~n', [Ti5, Cnt, Outd, Outs])
+			),
 			timestamp(Stmp),
-			format(user_error, '[~w] mq=~w out=~d triples/sec=~w~n~n', [Stmp, Cnt, Outd, Outs]),
+			statistics(inferences, Infe),
+			Infd is Infe-Infb,
+			catch(Infs is round(Infd/Ti5*1000), _, Infs = ''),
+			format(user_error, '[~w] mq=~w out=~d inf=~w sec=~3d out/sec=~w inf/sec=~w~n~n', [Stmp, Cnt, Outd, Infd, Ti5, Outs, Infs]),
 			fail
 		)
 	;	catch(eam(0), Exc3,
@@ -603,7 +613,10 @@ gre(Argus) :-
 			)
 		)
 	),
-	wst,
+	(	flag(strings)
+	->	wst
+	;	true
+	),
 	nb_getval(tc, TC),
 	nb_getval(tp, TP),
 	nb_getval(bc, BC),
@@ -2269,6 +2282,7 @@ wj(Cnt, A, B, C, Rule) :-
 
 
 wr(exopred(P, S, O)) :-
+	atom(P),
 	!,
 	U =.. [P, S, O],
 	wr(U).
@@ -2991,8 +3005,6 @@ ws(X) :-
 
 
 wst :-
-	flag(strings),
-	!,
 	findall([Key, Str],
 		(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
 		;	answer(A1, A2, A3, A4, A5, A6, A7, A8),
@@ -3020,7 +3032,6 @@ wst :-
 		fail
 	;	true
 	).
-wst.
 
 
 wct([]) :-
