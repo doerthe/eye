@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0203.2235 josd').
+version_info('EYE-Winter16.0204.1607 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3036,11 +3036,11 @@ wst :-
 
 wct([]) :-
 	!,
-	nl.
+	write('\r\n').
 wct([A]) :-
 	!,
 	wcf(A),
-	nl.
+	write('\r\n').
 wct([A|B]) :-
 	wcf(A),
 	write(','),
