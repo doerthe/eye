@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0204.1607 josd').
+version_info('EYE-Winter16.0205.1337 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -535,18 +535,24 @@ gre(Argus) :-
 		tmp_file(Tmp),
 		assertz(flag('tmp-file', Tmp)),
 		repeat,
-		catch((read_line_to_codes(user_input, Fc), atom_codes(Fs, Fc)), _, Fs = end_of_file),
-		(	Fs = end_of_file
+		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
+		(	atomic_list_concat([Fi, Fo], ',', Fa)
+		->	open(Fo, write, Fos)
+		;	Fi = Fa,
+			Fos = user_output
+		),
+		(	Fi = end_of_file
 		->	true
 		;	statistics(walltime, [_, _]),
 			nb_getval(output_statements, Outb),
 			statistics(inferences, Infb),
-			catch(args(['--query', Fs]), Exc1,
+			catch(args(['--query', Fi]), Exc1,
 				(	format(user_error, '** ERROR ** args ** ~w~n', [Exc1]),
 					flush_output(user_error),
 					nb_setval(exit_code, 1)
 				)
 			),
+			tell(Fos),
 			catch(eam(0), Exc2,
 				(	format(user_error, '** ERROR ** eam ** ~w~n', [Exc2]),
 					flush_output(user_error),
@@ -604,6 +610,7 @@ gre(Argus) :-
 			Infd is Infe-Infb,
 			catch(Infs is round(Infd/Ti5*1000), _, Infs = ''),
 			format(user_error, '[~w] mq=~w out=~d inf=~w sec=~3d out/sec=~w inf/sec=~w~n~n', [Stmp, Cnt, Outd, Infd, Ti5, Outs, Infs]),
+			told,
 			fail
 		)
 	;	catch(eam(0), Exc3,
