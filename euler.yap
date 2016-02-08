@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0205.1409 josd').
+version_info('EYE-Winter16.0208.2054 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1954,8 +1954,7 @@ tr_tr([A|B], [C|D]) :-
 tr_tr(A, B) :-
 	atom(A),
 	!,
-	(	atom_concat('_', C, A),
-		sub_atom(C, _, 1, _, '_')
+	(	atom_concat('_', C, A)
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['\'<', Vns, C, '>\''], B)
 	;	B = A
@@ -9800,13 +9799,6 @@ pathitem(Name, [], L1, L2) :-
 	).
 pathitem(VarID, [], [uvar(Var)|L2], L2) :-
 	!,
-	(	nb_getval(fdepth, 0),
-		\+forward,
-		\+backward
-	->	nb_getval(line_number, Ln),
-		throw(triple_may_not_contain_universal(Var, after_line(Ln)))
-	;	true
-	),
 	atom_codes(Var, VarCodes),
 	subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], VarCodes, VarTidy),
 	atom_codes(VarAtom, [0'_|VarTidy]),
