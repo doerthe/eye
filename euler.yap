@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0211.1323 josd').
+version_info('EYE-Winter16.0211.2104 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1866,7 +1866,12 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	!,
 	(	flag(nope),
 		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
-	->	nb_setval(csv_header, T)
+	->	(	is_list(T)
+		->	H = T
+		;	uvars(X, U),
+			distinct(U, H)
+		),
+		nb_setval(csv_header, H)
 	;	true
 	),
 	(	flag(nope),
@@ -8600,7 +8605,9 @@ uvars(A, B) :-
 	atomic(A),
 	!,
 	(	atom(A),
-		sub_atom(A, 0, 1, _, '_')
+		sub_atom(A, 0, 1, _, '_'),
+		\+atom_concat('_bn_', _, A),
+		\+atom_concat('_e_', _, A)
 	->	B = [A]
 	;	B = []
 	).
