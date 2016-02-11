@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0208.2054 josd').
+version_info('EYE-Winter16.0211.1323 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -9804,7 +9804,8 @@ pathitem(VarID, [], [uvar(Var)|L2], L2) :-
 	atom_codes(VarAtom, [0'_|VarTidy]),
 	(	flag('pass-all-ground')
 	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, VarAtom, '>\''], VarID)
+		atom_codes(VarFrag, VarTidy),
+		atomic_list_concat(['\'<', Vns, VarFrag, '>\''], VarID)
 	;	VarID = VarAtom
 	),
 	nb_setval(smod, false).

@@ -11,6 +11,7 @@
 <body>
 <pre><h1>EYE changes</h1>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing Skolem IRI fragments for --pass-all-ground
 - fixing n3p conversion for universals in proof output
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#match">e:match</a> built-in to succeed when the object formula succeeds and to forget the bindings (thanks to Dörthe Arndt)
 - supporting query-file,output-file in both the multi-queries list file and multi-query prompt (thanks to Bruno Dias)
