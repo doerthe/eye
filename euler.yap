@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0212.1540 josd').
+version_info('EYE-Winter16.0212.1639 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -541,7 +541,7 @@ gre(Argus) :-
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
 		(	atomic_list_concat([Fi, Fo], ',', Fa)
-		->	open(Fo, write, Fos)
+		->	open(Fo, write, Fos, [encoding(utf8)])
 		;	Fi = Fa,
 			Fos = user_output
 		),
@@ -951,7 +951,7 @@ opts(['--probe'|_], _) :-
 		catch(exec(Cmd, _), _, fail)
 	->	statistics(walltime, [_, T1]),
 		S1 is 100000000/T1
-	;	open(File, write, Out),
+	;	open(File, write, Out, [encoding(utf8)]),
 		tell(Out),
 		format(':- style_check(-discontiguous).~n', []),
 		format(':- style_check(-singleton).~n', []),
@@ -1259,6 +1259,7 @@ args(['--turtle', Argument|Args]) :-
 		nb_setval(bp, 0),
 		nb_setval(tr, 0),
 		nb_setval(br, 0),
+		set_stream(In, encoding(utf8)),
 		repeat,
 		read_term(In, Rt, []),
 		(	Rt = end_of_file
