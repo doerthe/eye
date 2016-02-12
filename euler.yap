@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0211.2104 josd').
+version_info('EYE-Winter16.0212.1540 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -166,6 +166,7 @@ eye
 	--no-numerals			no numerals in the output
 	--no-distinct-input		no distinct triples in the input
 	--no-distinct-output		no distinct answers in the output
+	--no-genid			no generated id in Skolem IRI
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
@@ -231,7 +232,10 @@ main :-
 	),
 	argv(Argvs, Argus),
 	format(user_error, 'eye~@~n', [wa(Argus)]),
-	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30),
+	(	memberchk('--no-genid', Argus)
+	->	Id = 0
+	;	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30)
+	),
 	atom_number(Run, Id),
 	atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run, '#'], Vns),
 	nb_setval(var_ns, Vns),
@@ -1014,7 +1018,7 @@ opts([Arg|Argus], Args) :-
 	\+memberchk(Arg, ['--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules', '--query', '--pass', '--pass-all', '--tquery']),
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
-	(	memberchk(Arg, ['--nope', '--no-qnames', '--no-qvars', '--no-numerals', '--no-distinct-input', '--no-distinct-output',
+	(	memberchk(Arg, ['--nope', '--no-qnames', '--no-qvars', '--no-numerals', '--no-distinct-input', '--no-distinct-output', '--no-genid',
 				'--ignore-syntax-error', '--ignore-inference-fuse', '--n3p', '--strings',
 				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
 				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
@@ -3350,11 +3354,7 @@ eam(Span) :-
 			clist(Lw, Concd)
 		),
 		(	flag(tactic, 'existing-path')
-		->	evars(Concd, Conct),
-			distinct(Conct, Concu),
-			length(Concu, Concw),
-			length(Concv, Concw),
-			evars(Concd, Concdr, Concu, Concv)
+		->	makevars(Concd, Concdr)
 		;	Concdr = Concd
 		),
 		term_index(Prem, Pnd),
@@ -4403,9 +4403,11 @@ ances(Env) :-
 		),
 		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
-			copy_term(X, Z),
-			agraph(N, Z),
-			qgraph(N, Y)
+			copy_term(X, U),
+			labelvars(U, 0, _),
+			makevars(Y, V),
+			agraph(N, U),
+			qgraph(N, V)
 		)
 	).
 
@@ -4421,7 +4423,19 @@ ances(Env) :-
 
 
 '<http://www.w3.org/2000/10/swap/log#notIncludes>'(X, Y) :-
-	\+'<http://www.w3.org/2000/10/swap/log#includes>'(X, Y).
+	when(
+		(	nonvar(X),
+			nonvar(Y)
+		),
+		(	catch(cnt(graph), _, nb_setval(graph, 0)),
+			nb_getval(graph, N),
+			copy_term(X, U),
+			labelvars(U, 0, _),
+			makevars(Y, V),
+			agraph(N, U),
+			\+qgraph(N, V)
+		)
+	).
 
 
 '<http://www.w3.org/2000/10/swap/log#semantics>'(X, Y) :-
@@ -8526,6 +8540,14 @@ findvars([A|B], C) :-
 findvars(A, B) :-
 	A =.. C,
 	findvars(C, B).
+
+
+makevars(A, B) :-
+	evars(A, C),
+	distinct(C, D),
+	length(D, E),
+	length(F, E),
+	evars(A, B, D, F).
 
 
 evars(A, B) :-

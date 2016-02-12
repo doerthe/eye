@@ -11,6 +11,8 @@
 <body>
 <pre><h1>EYE changes</h1>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- adding --no-genid option to not generate an id in Skolem IRIs (obs from Hong Sun)
+- fixing log:includes and log:notIncludes built-ins in conjunction with log:semantics
 - supporting variable object for <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> to to select all variables (obs from Hong Sun)
 - fixing Skolem IRI fragments for --pass-all-ground
 - fixing n3p conversion for universals in proof output
