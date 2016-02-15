@@ -6,7 +6,8 @@
 	<STYLE TYPE="text/css">a:hover {background:#ffa;}</STYLE>
 </HEAD>
 <BODY LANG="en-US" DIR="LTR">
-<PRE><H1>EYE readme</H1>
+<H1>EYE readme</H1>
+<PRE>
 EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
 It is a semibackward reasoner enhanced with Euler path [3] detection.
 Via N3 [4] it is interoperable with Cwm [5].
@@ -17,7 +18,7 @@ EYE is also available in a Docker container for command line use [10]
 and in a Docker container for HTTP client use [11].
 
 
- [1] http://eulersharp.sourceforge.net/2006/02swap/eye-note.txt
+ [1] http://eulersharp.sourceforge.net/NOTE
  [2] http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a
  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
  [4] http://www.w3.org/TeamSubmission/n3/

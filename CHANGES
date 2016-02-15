@@ -9,8 +9,10 @@
 </head>
 
 <body>
-<pre><h1>EYE changes</h1>
+<h1>EYE changes</h1>
+<pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- doing flush_output/0 right before halt/1
 - setting utf8 encoding for --turtle (obs from Hong Sun)
 - adding --no-genid option to not generate an id in Skolem IRIs (obs from Hong Sun)
 - fixing log:includes and log:notIncludes built-ins in conjunction with log:semantics
@@ -41,8 +43,8 @@
 - adding extra logging info inf/in=inferences_per_input_statement
 - adding --streaming-reasoning query mode to do streaming reasoning on --turtle data
 - changing --turtle to use <a href="https://github.com/melgi/turtle">https://github.com/melgi/turtle</a> thanks to Giovanni Mels
-- fixing log:includes builtin for subject graphs with universals (obs from Dörthe Arndt)
-- fixing log:implies builtin for queries (obs from Dörthe Arndt)
+- fixing log:includes built-in for subject graphs with universals (obs from Dörthe Arndt)
+- fixing log:implies built-in for queries (obs from Dörthe Arndt)
 - fixing critical bug in <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#graphCopy">e:graphCopy</a> to avoid blank node clashes (obs from Hong Sun)
 - fixing issue with @forSome in rule generation (obs from Hong Sun)
 - fixing critical bug in rule generation so that a Skolem IRI is used instead of a universal
@@ -52,7 +54,7 @@
 <span id="EYE-Autumn15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Autumn15/">EYE-Autumn15</a>]</span>
 - using N3 for components and rules in the output --rule-histogram
 - component false &lt;= P can be used to express query P =&gt; P
-- dropping prolog:C and prolog:phrase builtins
+- dropping prolog:C and prolog:phrase built-ins
 - expanding DCG productions into EYE components
 - correcting output_statements counter for conjunctive conclusions (obs from Hong Sun)
 - adding indexing to e:random (obs from Hong Sun)
@@ -74,10 +76,10 @@
 - fixing log:semantics for blank node subjects (obs from Giovanni Mels)
 - dropping eam/3 and using a single EAM (Euler Abstract Machine)
 - introducing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#prefix">e:prefix</a> built-in to produce an object literal containing all prefixes (obs from Hong Sun)
-- fixing string:concatenation and e:wwwFormEncode builtins (obs from Hong Sun)
+- fixing string:concatenation and e:wwwFormEncode built-ins (obs from Hong Sun)
 - tuning GRE (Generic Reasoning Engine) to improve the performance of queries
 - tuning strela (stretch relax) to improve the performance of queries
-- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#getcwd">prolog:getcwd</a> builtin
+- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#getcwd">prolog:getcwd</a> built-in
 - fixing issue with exopred in log:conjunction (obs from Hong Sun)
 - fixing exception in pvm code generation without --nope
 - using N3 in the explanation of inference_fuse (obs from Kristof Depraetere)
@@ -132,10 +134,10 @@
 - adding --proof &lt;uri&gt; command line switch to reuse lemmas <a href="http://eulersharp.sourceforge.net/2006/02swap/etc/">out there</a>
 - fixing log:conjunction for unknown graphs in the subject (obs from Dörthe Arndt)
 - fixing n3p header with additional multifile/1 declarations
-- extending exopred to quantify over builtin predicates (obs from Kristof Depraetere)
+- extending exopred to quantify over built-in predicates (obs from Kristof Depraetere)
 - fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#whenGround">e:whenGround</a> for universals in the subject
 - fixing the flowpattern of <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#graphList">e:graphList</a> (obs from Dörthe Arndt)
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#random">e:random</a> builtin
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#random">e:random</a> built-in
 - have to use prolog:set_random/1 instead of prolog:setrand/1 (obs from Kim Cao-Van)
 - fixing make_eye_zip to have a relative path name for the files in the zipfile 
 - improving <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#whenGround">e:whenGround</a> for all kinds of subjects (obs from Dörthe Arndt)
@@ -143,16 +145,16 @@
 - tested and working with stable SWIPL 7.2.1 kernel
 
 <span id="EYE-Spring15">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring15/">EYE-Spring15</a>]</span>
-- fixing rdf:first and rdf:rest builtins (obs from Ruben Verborgh)
+- fixing rdf:first and rdf:rest built-ins (obs from Ruben Verborgh)
 - fixing proof output for --no-qvars (obs from Giovanni Mels)
 - fixing issue with --pass-all proof
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#whenGround">e:whenGround</a> builtin to succeed when a ground subject is equal to the object; it also succeeds when the subject is not ground
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#whenGround">e:whenGround</a> built-in to succeed when a ground subject is equal to the object; it also succeeds when the subject is not ground
 - fixing issue with implicit universals at the top level
 - deprecating <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#distinct">e:distinct</a> and <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#reverse">e:reverse</a>
 - deprecating @ keywords
 - supporting rules with log:implies in the premis
 - fixing log:dtlit for integer xsd:dateTime (obs from Marc Twagirumukiza)
-- fixing proof of rule derivation as r:Fact because log:implies is a builtin
+- fixing proof of rule derivation as r:Fact because log:implies is a built-in
 - supporting rules with log:implies in the conclusion
 - extending <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#label">e:label</a> to support Skolem IRIs (obs from Giovanni Mels)
 - fixing issue with Skolem IRIs used in generated rules (obs from Dörthe Arndt)
@@ -201,9 +203,9 @@
 - output the total number of input statements as in=count
 - fixing --n3p for rules (obs from Dörthe Arndt)
 - fixing issue with bnodes in query conclusions
-- fixing various builtins dealing with numerals (obs from Hong Sun)
+- fixing various built-ins dealing with numerals (obs from Hong Sun)
 - automatic creation of CSV output header e.g. <a href="http://eulersharp.sourceforge.net/2007/07test/select_test">select_test</a> (obs from Boris De Vloed)
-- fixing issue with log:rawType builtin (obs from Dörthe Arndt)
+- fixing issue with log:rawType built-in (obs from Dörthe Arndt)
 - fixing various issues with file: uris (obs from Giovanni Mels)
 - using curl instead of wget to read from the web (thanks to Mac OS X Yosemite)
 - fixing log:dtlit for prolog:atom (obs from Jean-Marc Vanel)
@@ -218,23 +220,23 @@
 - adjusting local and global stack limits
 - fixing proof explanation in the case of --plugin &lt;n3p_resource&gt;
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> to generate CSV output with --strings (test case <a href="http://eulersharp.sourceforge.net/2007/07test/select_test">select_test</a>)
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#getrand">prolog:getrand</a> and <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#setrand">prolog:setrand</a> builtins
-- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#closure">e:closure</a> builtin (obs from Gijs Muys)
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#getrand">prolog:getrand</a> and <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#setrand">prolog:setrand</a> built-ins
+- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#closure">e:closure</a> built-in (obs from Gijs Muys)
 - fixing bnode labels with minus sign (obs from Ruben Verborgh)
 - adding --no-numerals command line switch to have no numerals in output (obs from Hong Sun)
-- adding builtin_redefinition exception
+- adding built-in_redefinition exception
 - fixing log:outputString for queries (obs from Ruben Verborgh at <a href="https://github.com/RubenVerborgh/RestoProof/blob/master/step-count.n3">https://github.com/RubenVerborgh/RestoProof/blob/master/step-count.n3</a>)
 - getting rid of wrong e:trace side effect (obs from Hong Sun)
-- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#labelvars">e:labelvars</a> builtin to have distinct blank node labels (obs from Hong Sun)
+- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#labelvars">e:labelvars</a> built-in to have distinct blank node labels (obs from Hong Sun)
 - fixing rule and query generation (obs from Hong Sun)
 - fixing partial query answers (obs from Marc Twagirumukiza)
-- adding coroutining for e:tuple builtin (obs from Hong Sun)
-- fixing func:string-join RIF DTB builtin (obs from Giovanni Mels)
+- adding coroutining for e:tuple built-in (obs from Hong Sun)
+- fixing func:string-join RIF DTB built-in (obs from Giovanni Mels)
 - improving query performance via generic answer/8 predicate
 - fixing partial conclusions for RESTdesc (obs from Giovanni Mels)
 - reducing memory footprint for --turtle data
 - fixing redundancy issue in r:gives of proof output
-- dropping prolog:new_variables_in_term and prolog:variables_within_term builtins
+- dropping prolog:new_variables_in_term and prolog:variables_within_term built-ins
 - supporting partial conclusions for premis with e:optional (obs from Dirk Colaert)
 
 <span id="EYE-2014-09">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-2014-09/">EYE-2014-09</a>]</span>
@@ -245,7 +247,7 @@
 - reimplementing --pass and --pass-all using query/2 (obs from Hong Sun)
 - fixing --pass for an EYE image that contains facts
 - fixing error with --image
-- correcting log:rawType builtin for the case of log:Other
+- correcting log:rawType built-in for the case of log:Other
 - using uniform measurement unit [triples/sec] in --probe (obs from Kristof Depraetere)
 - adding statement counter SC for --plugin data (obs from Kristof Depraetere)
 - allowing --pass-only-new together with any other query
@@ -269,10 +271,10 @@
 - adding strela (stretch relax) support for N3 triples to trigger JITI (obs from <a href="https://github.com/josd/eyestrela">eyestrela</a>)
 - improved JITI thanks to <a href="https://groups.google.com/forum/#!topic/swi-prolog/7lE5er8-AuE">SWI-Prolog 6.6.6</a>
 - having additional --rule-histogram command line option which was part of --profile before
-- removing e:alias builtin
+- removing e:alias built-in
 - not reordering rules with conjunction in their conclusion
-- fixing log:implies as builtin
-- repairing the deprecated fn: builtins (obs from Jean-Marc Vanel)
+- fixing log:implies as built-in
+- repairing the deprecated fn: built-ins (obs from Jean-Marc Vanel)
 - introducing --traditional command line switch
 - correcting xsd:boolean datatype
 - simplify inconsistency detection and throw inference_fuse exception
@@ -285,14 +287,14 @@
 - justifying --pass and --pass-all in proof output
 - improving n3socket/1 exception handling
 - improving EYE installation scripts (obs from Boris De Vloed)
-- adding e:alias builtin
+- adding e:alias built-in
 - creating a minimal EYE file release eye.zip (obs from Kristof Depraetere)
 - correcting -- - to read command line arguments from stdin (obs from Kristof Depraetere)
 - repairing --strings (obs from Jean-Marc Vanel)
 - correcting exit status code (obs from Kristof Depraetere)
 - using -- - to read command line arguments from stdin (obs from Kristof Depraetere)
 - improving performance of --plugin thanks to Jan Wielemaker
-- fixing issues with <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#relabel">e:relabel</a> builtin
+- fixing issues with <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#relabel">e:relabel</a> built-in
 - fixing <i>--wcache uri - --plugin uri</i> to take the data from stdin
 - using static initializer in euler.ProofEngine
 - showing total elapsed walltime for #ENDS
@@ -309,7 +311,7 @@
 - correct throw of base_may_not_contain_hash exception (obs from Kristof Depraetere)
 - fixing issue with <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#conjunction">prolog:conjunction</a>
 - adding uri DCG production for N3 parser
-- <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">Prolog builtins</a> according to <a href="http://www.deransart.fr/prolog/bips.html#builtins">ISO standard</a>
+- <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">Prolog built-ins</a> according to <a href="http://www.deransart.fr/prolog/bips.html#built-ins">ISO standard</a>
 - disable branch engine for definite clause KB
 - support proof (blue) without @ keywords and without bindings like in <a href="http://eulersharp.sourceforge.net/2007/07test/witchE.html">witch example</a>
 - EYE supporting <a href="http://eulersharp.sourceforge.net/2006/02swap/rgb-note.txt">RGB</a>
@@ -350,10 +352,10 @@
 - implementing --think to generate all proof paths for branch engine eam/3
 - fixing issue with --think together with --nope
 - using --think to generate all proof paths (obs from Simon Mayer)
-- adding <a href="http://www.w3.org/2000/10/swap/doc/CwmBuiltins">log:rawType</a> builtin
+- adding <a href="http://www.w3.org/2000/10/swap/doc/CwmBuiltins">log:rawType</a> built-in
 
 <span id="Euler-2013-09">[Euler-2013-09]</span>
-- adding e:graphCopy builtin to make a grounded copy of the subject graph
+- adding e:graphCopy built-in to make a grounded copy of the subject graph
 - updated pointer in eye --license (obs from Boris De Vloed)
 - perfect run of swap wet experiment and paws approach with <a href="http://eulersharp.sourceforge.net/2007/07test/swet_cwm_test">swet_cwm_test</a> thanks to W3C Cwm
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/skos-mapping-validation-rules">skos-mapping-validation-rules</a> thanks to Hong Sun
@@ -410,13 +412,13 @@
 - correcting the bindings in the lemmas for the case of variable predicates
 - make cwm proofchecker happy with <a href="http://eulersharp.sourceforge.net/2007/07test/resto-proof.n3">resto-proof.n3</a> (obs from Ruben Verborgh)
 - improving lemma generation for query answers (obs from Ruben Verborgh)
-- adding string:replace builtin (contrib by Jean-Marc Vanel)
+- adding string:replace built-in (contrib by Jean-Marc Vanel)
 - support lemmas with conjunction in r:gives
 - correcting problem with mixing [] blocks and rdf:List (obs from Jean-Marc Vanel)
 - extractions are now lemmas (obs from Ruben Verborgh)
 - can now point to a lemma
 - support --plugin - to take the data from stdin
-- correcting string:concatenation builtin (obs from Jean-Marc Vanel)
+- correcting string:concatenation built-in (obs from Jean-Marc Vanel)
 - fix round trip issues with N3 P-code
 - move from PCL code to N3 P-code
 - adjust calculation of networking time
@@ -450,15 +452,15 @@
 <span id="Euler-2013-02">[Euler-2013-02]</span>
 - adding experimental --pvm &lt;spec&gt; option to output human readable PVM code
 - fixing list:first and list:rest for lists described via rdf:first and rdf:rest
-- correcting e:label builtin (obs from Jean-Marc Vanel)
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#tripleList">e:tripleList</a> builtin used for triple/list transformation
-- extending log:dtlit builtin for numeral object (obs from Jean-Marc Vanel)
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#labelvars">e:labelvars</a> builtin to ground the subject (obs from Jean-Marc Vanel)
+- correcting e:label built-in (obs from Jean-Marc Vanel)
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#tripleList">e:tripleList</a> built-in used for triple/list transformation
+- extending log:dtlit built-in for numeral object (obs from Jean-Marc Vanel)
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#labelvars">e:labelvars</a> built-in to ground the subject (obs from Jean-Marc Vanel)
 - improving performance for redundant lemmas (obs from SALUS EU FP7)
 - adding SPARQL style BASE and PREFIX directives (obs from <a href="http://www.w3.org/TR/turtle/">Turtle W3C CR</a>)
 - quoted literals with no datatype IRI and no language tag have datatype xsd:string (obs from <a href="http://www.w3.org/TR/turtle/">Turtle W3C CR</a>)
 - extending quoted literals (obs from <a href="http://www.w3.org/TR/turtle/">Turtle W3C CR</a>)
-- relaxing type and lang check of http://www.w3.org/2000/10/swap/string builtins (obs from Andrae Muys)
+- relaxing type and lang check of http://www.w3.org/2000/10/swap/string built-ins (obs from Andrae Muys)
 - fixing --image &lt;image&gt; while testing sorted conclusion
 - switching from yasam/1 and yasam/3 to eam/1 and eam/3
 - deprecate --yabc &lt;image&gt; and use --image &lt;image&gt; to output <a href="http://eulersharp.sourceforge.net/2006/02swap/eye-note.txt">PVM code</a>
@@ -470,7 +472,7 @@
 - adding --license command line switch to show license info
 - improving log:dtlit to accept numerals as lexical value (obs from Hong Sun)
 - extending --debug command line switch
-- correcting log:includes and log:semantics builtins
+- correcting log:includes and log:semantics built-ins
 - improving graph literal unification
 - EYE now supports N3 set syntax ($ $)
 - improving exception handling for n3socket/1
@@ -489,13 +491,13 @@
 - extending e:length for graph subjects
 - fixing user_output utf8 encoding
 - finetuning the use of triple/3
-- fixing e:max and e:min builtins (obs from Boris De Vloed)
+- fixing e:max and e:min built-ins (obs from Boris De Vloed)
 - supporting --query=&lt;n3_resource&gt; command line option
 - extending math:memberCount for graph subjects (obs from Cwm)
-- improving regular expression builtins
+- improving regular expression built-ins
 - improving error message for wcached resources (obs from Kristof Depraetere)
 - correcting e:optional to work fine within e:findall (obs from Giovanni Mels)
-- extending regular expression builtins (obs from Boris De Vloed)
+- extending regular expression built-ins (obs from Boris De Vloed)
 - fixing parser for numerals (obs from Boris De Vloed)
 - critical correction of unify/2 for graph literals
 - initial <a href="http://eulersharp.sourceforge.net/2007/07test/proofcomputation_test">proof computation test case</a>
@@ -506,7 +508,7 @@
 - fixing exec/2 bug (obs from Giovanni Mels)
 - updating <a href="http://eulersharp.sourceforge.net/2003/03swap/skos-rules.html">skos-rules</a> (obs from Giovanni Mels)
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#findall">e:findall</a> with difference list
-- critical bug correction in e:label builtin (obs from Suat Gönül)
+- critical bug correction in e:label built-in (obs from Suat Gönül)
 - fixing infinite loop in the output of RDF lists with variable rest
 - correcting yasam so that the necessary and sufficient triples are asserted
 - fixing graph literals in proof output
@@ -540,7 +542,7 @@
 - improving PCL code generation for SWIPL
 - fix e:reason for SWIPL on Windows
 - fix bug for local file names with spaces (obs from Boris De Vloed)
-- adding e:reason heavy builtin to invoke EYE
+- adding e:reason heavy built-in to invoke EYE
 - all tests succeed with SWI-Prolog 6.1.9 for Windows 64-bit edition
 - correcting e:notLabel, log:notEqualTo, log:notIncludes, string:notEqualIgnoringCase and string:notMatches (obs from Boris De Vloed)
 - fixing bug with variable graphs
@@ -564,24 +566,24 @@
 <span id="Euler-2012-05">[Euler-2012-05]</span>
 - adding --yabc &lt;file&gt; switch to output YABC code
 - fixing exception handling to close file before delete file
-- adding testcases for e: builtins in <a href="http://eulersharp.sourceforge.net/2007/07test/biP.n3">biP.n3</a>
+- adding testcases for e: built-ins in <a href="http://eulersharp.sourceforge.net/2007/07test/biP.n3">biP.n3</a>
 - introducing hyperstep predicate hstep/2
 - adding make_dynamic/1 to further improve memory footprint
 - improving varpred/3 to work around RESOURCE ERROR- not enough code space (obs from Gokce Banu Laleci Erturkmen)
 - repairing --no-blank switch (obs from Sajjad Hussain)
 - taking statistics out of --profile and show statistics using new switch --statistics
-- making prolog:if builtin as soft_cut/3
+- making prolog:if built-in as soft_cut/3
 - fixing exception with log:dtlit (obs from Hong Sun)
 
 <span id="Euler-2012-04">[Euler-2012-04]</span>
 - supporting variables_within_term/3 for SWI-Prolog
 - stricter creation of existentials in conclusion (obs from Boris De Vloed)
 - correcting issue with existentials in constructive dilemma test case eye <a href="http://eulersharp.sourceforge.net/2007/07test/cd.n3">http://eulersharp.sourceforge.net/2007/07test/cd.n3</a>
-- correcting identity of prolog: builtins
-- all RIF builtins are now in euler.yap
-- correcting RIF builtins func:intersect and func:except (obs from Hong Sun)
+- correcting identity of prolog: built-ins
+- all RIF built-ins are now in euler.yap
+- correcting RIF built-ins func:intersect and func:except (obs from Hong Sun)
 - rules with a conclusion of the form {answer}^e:construct are treated as N3 queries
-- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#disjunction">prolog:disjunction</a> builtin
+- fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#disjunction">prolog:disjunction</a> built-in
 - rules with equal premise and conclusion are no longer automatically treated as N3 queries
 - adding P histogram to --profile which tells how many times each rule premis is proven
 - improving exception handling of exec/2 (obs from Kristof Depraetere)
@@ -589,7 +591,7 @@
 - using single within_scope/1
 
 <span id="Euler-2012-03">[Euler-2012-03]</span>
-- adding e:call to support scoped prolog: builtins
+- adding e:call to support scoped prolog: built-ins
 - dropping prolog:not and using prolog:not_provable instead
 - repairing e:findall for span 0 (obs from Sajjad Hussain)
 - dropping trunk theory box for e:findall and e:optional
@@ -602,13 +604,13 @@
 - improving n3_pcl compiler and now much better networking time
 - correcting bug with eye --nope --query <a href="http://notes.restdesc.org/2012/tmp/empty_query1.n3">http://notes.restdesc.org/2012/tmp/empty_query1.n3</a> (obs from Ruben Verborgh)
 - improving EYE exception handling
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#integer_power">prolog:integer_power</a> builtin
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#integer_power">prolog:integer_power</a> built-in
 - improving MONADIC reasoning performance
 
 <span id="Euler-2012-02">[Euler-2012-02]</span>
 - create temporary files in temporary directory (obs from Giovanni Mels)
 - workaround for issue with unpacking of engine (obs from Giovanni Mels)
-- throwing invalid_prolog_builtin exception
+- throwing invalid_prolog_built-in exception
 - initial <a href="http://eulersharp.sourceforge.net/2006/02swap/fcm-plugin.n3">FCM plugin</a> fully in N3
 - initial <a href="http://eulersharp.sourceforge.net/2006/02swap/nbbn-plugin.n3">Naive Bayes Belief Network plugin</a> fully in N3
 - using stable YAP 6.2.3 and stable SWI-Prolog 6.0.0
@@ -616,7 +618,7 @@
 - improving proof instrumentation for backward rules
 - improving varpred and backward rule performance (obs from Kristof Depraetere)
 - fixing <a href="http://www.w3.org/2000/10/swap/doc/CwmBuiltins">log:semantics</a> statement counter SC
-- fixing prolog_sym/3 for <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">prolog: builtins</a>
+- fixing prolog_sym/3 for <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">prolog: built-ins</a>
 
 <span id="Euler-2012-01">[Euler-2012-01]</span>
 - correcting coroutining for log:dtlit (obs from Giovanni Mels)
@@ -636,7 +638,7 @@
 - throwing empty_quickvar_name exception
 - fixing parser for rdf lists
 - correcting the output for prolog:univ
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#Numeral">e:Numeral</a> class and <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#numeral">e:numeral</a> builtin property
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#Numeral">e:Numeral</a> class and <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#numeral">e:numeral</a> built-in property
 - correcting the output of prolog:atom datatypes
 - improving PCL code for --quick-answer
 - fixing type_error for xsd:date (obs from Hans Cools)
@@ -650,15 +652,15 @@
 - fixing monotonicity issue
 - fixing proof instrumentation for backward rules
 - fixing read from library(url) on Windows (obs from Helen Chen)
-- fixing prolog:C builtin
-- fixing the usage of prolog: builtin functions
+- fixing prolog:C built-in
+- fixing the usage of prolog: built-in functions
 - prolog:atom is now also a rdfs:Datatype
 - supporting prolog:if, prolog:if_then and prolog:if_then_else
 - fixing N3 to PCL compiler for N3plugins using prolog:when coroutining
 - extending euler.Codd to use additional HTTP request and reply headers (obs from Giovanni Mels)
-- support for some 400 <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">prolog: builtins</a>
+- support for some 400 <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">prolog: built-ins</a>
 - improving log:outputString when the object is not a literal (obs from Dirk Colaert)
-- unit tests for prolog: builtins at <a href="http://eulersharp.sourceforge.net/2007/07test/biP.n3">biP.n3</a>
+- unit tests for prolog: built-ins at <a href="http://eulersharp.sourceforge.net/2007/07test/biP.n3">biP.n3</a>
 - correcting e:evidentiality and introducing e:applicability (obs from Dirk Colaert)
 - initial support for N3plugins expressed as backward rules
 
@@ -692,10 +694,10 @@
 - simplifying YASAM and e:findall
 - correcting euler.Codd to return 404 Not Found for non existing action url (obs from Giovanni Mels)
 - correcting e:evidentiality as the ratio possibleModels/(possibleModels+counterModels+falseModels) (obs from Hong Sun)
-- correcting e:stringEscape builtin for language tagged and typed literals (obs from Boris De Vloed)
+- correcting e:stringEscape built-in for language tagged and typed literals (obs from Boris De Vloed)
 
 [Euler-2011-08-26]
-- adding e:stringEscape builtin (obs from Boris De Vloed)
+- adding e:stringEscape built-in (obs from Boris De Vloed)
 - dropping the --step &lt;count&gt; command line option
 - improving speed and memory footprint of log:semantics and log:includes for large graphs
 - using stable YAP-6.2.2
@@ -724,12 +726,12 @@
 - adding --no-distinct switch to have no distinct triples asserted in KB
 - removing redundant triples (obs from Giovanni Mels)
 - refining YASAM to improve determinism
-- fixing string builtins bugs (obs from Boris De Vloed)
+- fixing string built-ins bugs (obs from Boris De Vloed)
 
 [Euler-2011-05-27]
 - using a more fine granular copy_term to cope with large disjunctions
-- correcting e:graphList builtin
-- correcting list:first and rdf:first builtins
+- correcting e:graphList built-in
+- correcting list:first and rdf:first built-ins
 - use the encoding option of open/4 (obs from Jan Wielemaker)
 - detect illegal_escape_sequence in RDF literals (obs from Kristof Depraetere)
 - various euler.yap source code improvements (obs from Paulo Moura)
@@ -739,7 +741,7 @@
 
 [Euler-2011-04-29]
 - correcting e:findall to use trunk theory box only
-- extending e:graphList builtin (obs from Ruben Verborgh)
+- extending e:graphList built-in (obs from Ruben Verborgh)
 - adding --pcl switch to output PCL code (obs from Wannes Meert)
 - correcting the sorting of disjunctive pcl clauses to improve determinism of EYE branch engine sem/3
 - correcting list:append in the presence of rdf:first and rdf:rest (obs from Kristof Depraetere)
@@ -755,7 +757,7 @@
 - YAP OOOPS issue on Windows 7 now fixed thanks to Vitor
 - working around a YAP OOOPS via exception handling in euler.ProofEngine
 - correcting and improving exception handling in euler.Process (obs from Giovanni Mels)
-- simplifying log:implies builtin
+- simplifying log:implies built-in
 - correcting astep/5 to predict theories in --quick-possible mode
 - improving performance of log:includes for varpred unification (obs from Giovanni Mels)
 - produce correct qnames
@@ -779,7 +781,7 @@
 - implementing crypto:md5 and crypto:sha in <a href="http://eulersharp.sourceforge.net/2006/02swap/crypto-plugin.yap">crypto-plugin</a>
 - the performance of remove duplicates should now be linear (obs from Pieter Pauwels)
 - remove duplicates in disjunctions
-- redesigned e:tuple builtin with improved speed and scalability (obs from Giovanni Mels)
+- redesigned e:tuple built-in with improved speed and scalability (obs from Giovanni Mels)
 - more refined sorting of disjunctive pcl clauses to improve determinism of EYE branch engine sem/3
 
 [Euler-2010-12-31]
@@ -838,7 +840,7 @@
 - improving http://eulersharp.sourceforge.net/2006/02swap/fcm-plugin.yap (obs from Nassim Douali)
 - correction for induction of rules so that it is the same as abduction of log:implies triples
 - correcting the assertion and retraction of facts on the skolem split tapes
-- adding e:format builtin
+- adding e:format built-in
 
 [Euler-2010-09-03]
 - update OWL 2 RL theories at http://eulersharp.sourceforge.net/#theories
@@ -903,7 +905,7 @@
 - improving support for https uris
 - correcting output of free variables
 - correction in e:trace for attributed variables
-- simplified rdf:first and rdf:rest builtins
+- simplified rdf:first and rdf:rest built-ins
 - improving ancestor/2 predicate
 - extending e:falseModel explanation with e:assertedAncestors and e:inferredDescendents
 
@@ -912,15 +914,15 @@
 - Euler.jar no longer has json classes and depends on a separate json.jar
 - simplified varpred unification
 - correcting eye N3 tokenizer for nested quotes
-- correcting e:distinct builtin (obs from Sajjad Hussain)
+- correcting e:distinct built-in (obs from Sajjad Hussain)
 
 [Euler-2010-02-27]
 - correcting dcg for decimal
 - correcting "is" "of" "," eye N3 parser issue
-- adding e:allAssertedAncestors and e:assertedTriple builtins
+- adding e:allAssertedAncestors and e:assertedTriple built-ins
 - correcting nbbn plugin
 - resolving issue with mktime/2 (obs from Vitor Santos Costa)
-- adding e:cartesianProduct builtin
+- adding e:cartesianProduct built-in
 - correcting rule derivation
 - extending e:falseModel explanation with e:maxResolveMinRemoveOrdering
 
@@ -932,7 +934,7 @@
 - sem/1 engine speed boost with --no-branch switch
 - removing duplicate triples in e:falseModel explanation
 - correcting RIF plugin issue with mktime/2
-- make sure that builtins can't be derived
+- make sure that built-ins can't be derived
 
 [Euler-2010-01-24]
 - updated ontologies and theories at http://eulersharp.sourceforge.net/
@@ -945,7 +947,7 @@
 - correcting escape sequences in the output of literals
 
 [Euler-2009-12-18]
-- adding str:scrape and str:search builtins for Eye
+- adding str:scrape and str:search built-ins for Eye
 - correcting bnodes in proof output
 - correcting --query option
 - ignoring Byte Order Mark in Parser.java
@@ -954,7 +956,7 @@
 [Euler-2009-12-06]
 - correcting --pass option
 - fixing Eye4J parsing of nested formulae containing blank nodes
-- adding --step switch to Eye4J and that required a new builtin throw/1
+- adding --step switch to Eye4J and that required a new built-in throw/1
 - simplifying N3 to PCL compiler
 
 [Euler-2009-11-21]
@@ -985,32 +987,32 @@
 
 [Euler-2009-07-31]
 - Eye now using wget -q -O- options
-- correcting math:integerQuotient, math:remainder and math:rounded Eye builtins
+- correcting math:integerQuotient, math:remainder and math:rounded Eye built-ins
 - correcting e:biconditional calculation for small numbers
 - adding euler.Eye --path &lt;yap path&gt; option
 - using maximum belief based conflict resolution in case of incomplete bayesian networks
 
 [Euler-2009-07-21]
 - throwing invalid_keyword_use error in Eye N3 parser
-- adding e:graphList builtin
+- adding e:graphList built-in
 - reimplementation of Eye N3 to PCL compiler IO
 - correcting rdf:type in output
 - correcting parsing of var: qnames
 
 [Euler-2009-07-14]
 - adding --no-blank command line switch to have no blank nodes in output
-- adding eye --plugin &lt;yap_resource&gt; as Eye plugin mechanism for builtins
+- adding eye --plugin &lt;yap_resource&gt; as Eye plugin mechanism for built-ins
 - fixing various issues with the proof output of EyeJ at http://eulersharp.sourceforge.net/2006/02swap/etc02.ref
 - using rms based conflict resolution in case of incomplete bayesian networks
 - refining euler path so do not step in your own step
-- correcting fl:pi builtin
+- correcting fl:pi built-in
 
 [Euler-2009-07-07]
 - updated ontologies and theories at http://eulersharp.sourceforge.net/#theories
 - dropping "has" as an implicit keyword (only fixed for Eye and EyeS)
 - adding "Eye and OWL 2" page http://eulersharp.sourceforge.net/2003/03swap/eye-owl2.html
 - correcting e:allDescendents and e:falseDescendents and improving their performance
-- adjusting scope/span of fl:pi, e:allAncestors, e:allDescendents and e:biconditional builtins
+- adjusting scope/span of fl:pi, e:allAncestors, e:allDescendents and e:biconditional built-ins
 - using e:valuation instead of e:strength to express (lower upper) valuation of a formula
 
 [Euler-2009-06-29]
@@ -1022,11 +1024,11 @@
 
 [Euler-2009-06-26]
 - adding --no-branch command line switch
-- value range of fl:sigma is now [0,1] and adjusted implementation of fl:pi builtin
+- value range of fl:sigma is now [0,1] and adjusted implementation of fl:pi built-in
 - improved eye proof output speed with factor 4 (average over 55 test cases)
 - correcting str:matches in eyes.pl
 - decrease memory impact during proof output
-- correcting list:append builtin so that the subject can be any list of lists
+- correcting list:append built-in so that the subject can be any list of lists
 
 [Euler-2009-06-18]
 - include the http://eulersharp.sourceforge.net/#theories resources in new file release
@@ -1034,12 +1036,12 @@
 - correcting divide by zero
 - correcting varpred issue in ancestor/2
 - updated ontologies and theories at http://eulersharp.sourceforge.net/#theories
-- correcting e:allAncestors and e:allDescendents builtins
+- correcting e:allAncestors and e:allDescendents built-ins
 
 [Euler-2009-06-12]
 - README for Euler yap engine for SWI-Prolog (Eyes)
 - updated ontologies and theories at http://eulersharp.sourceforge.net/#theories
-- adding e:allAncestors and e:allDescendents builtins
+- adding e:allAncestors and e:allDescendents built-ins
 - correcting fl:pi implementation w.r.t. truth value intervals
 - adding test case performance chart http://eulersharp.sourceforge.net/2003/03swap/etc.html
 
@@ -1059,7 +1061,7 @@
 
 [Euler-2009-04-26]
 - running Eye with YAP version Yap-6.0.0
-- supporting log:dtlit builtin
+- supporting log:dtlit built-in
 - improving euler.ProofEngine overall speed
 - correcting euler.Parser
 - improving euler.ProofEngine proof output
@@ -1067,7 +1069,7 @@
 [Euler-2009-03-28]
 - euler.ProofEngine replacing euler.Egg
 - relaxed parsing of qnames
-- fixing sem/1 Horn engine and drop e:reflexive builtin
+- fixing sem/1 Horn engine and drop e:reflexive built-in
 - fixing e:findall bug
 - adding euler.ProofEngine
 - initial Euler yap engine for SWI-Prolog (Eyes)
@@ -1077,18 +1079,18 @@
 - Egg producing proofs that can be checked with cwm/check.py
 - fixing e:tuple blank node labeling
 - adding Egg i.e. Euler for GridGain
-- adding eye math:atan2, math:cosh, math:sinh and math:tanh builtins
+- adding eye math:atan2, math:cosh, math:sinh and math:tanh built-ins
 - adding eye --pass to pass-thru the N3
 - fixing issues with prolog =:= and running yap without -s thanks to Vitor for fixing
-- adding fl:pi builtin and testing http://eulersharp.sourceforge.net/2003/03swap/fl-rules.n3
+- adding fl:pi built-in and testing http://eulersharp.sourceforge.net/2003/03swap/fl-rules.n3
 
 [Euler-2009-02-22]
 - adding --profile switch to euler.yap
 - tuning Yap parameters and yap -s 100000 euler.yap seems to be happy with all test cases
 - show qnames with empty local name in proof output
 - bug in N3 output corrected
-- adding e:propertyChainExtension builtin and running owl-rl test cases
-- builtin e:roc to simulate ROC curve
+- adding e:propertyChainExtension built-in and running owl-rl test cases
+- built-in e:roc to simulate ROC curve
 - adding more --debug info
 
 [Euler-2009-02-10]
@@ -1100,7 +1102,7 @@
 - added comprehension limit exception to euler.yap engine
 
 [Euler-2009-01-31]
-- adding e:nonLabel builtin plus testing http://eulersharp.sourceforge.net/2003/03swap/fl-rules.n3
+- adding e:nonLabel built-in plus testing http://eulersharp.sourceforge.net/2003/03swap/fl-rules.n3
 - adding eye --debug --version --help and using wget network utility
 - correcting euler --sql conversion
 - correcting @forSome in proof output
@@ -1108,18 +1110,18 @@
 - where possible blank nodes are now relabeled using the original label
 - the empty graph {} is always interpreted as true
 - correcting e:consistentGives graph
-- proof all e:conditional triples so that e:biconditional builtin has explicit assumptions
+- proof all e:conditional triples so that e:biconditional built-in has explicit assumptions
 
 [Euler-2009-01-22]
 - correcting empty graph representation issues
-- correcting log:uri builtin
+- correcting log:uri built-in
 - correcting utf8 issues
 - improved N3 to PCL compiler
 - improved N3 parser error handling
 
 [Euler-2009-01-12]
 - initial release of EYE which is the euler.yap engine including an N3 to PCL compiler
-- adding fn:substring builtin
+- adding fn:substring built-in
 - improving e:biconditional bayesian inferencing
 - correcting bnode handling in lists used in ontologies
 - simplified fn:resolve-uri implementation
@@ -1143,19 +1145,19 @@
 [Euler-2008-10-21]
 - simplify pcl intermediate code
 - using tactic/3 for proof tactics
-- correcting e:graphDifference builtin
+- correcting e:graphDifference built-in
 - added euler --quiet switch to give shorter explanation at improved speed
 - implementing euler --pass --trules to convert t-rules in e:conditional descriptions
 
 [Euler-2008-10-06]
 - SEMJ tested for 79 cases and the average speed is 2.8 times slower than with SWI-Prolog
-- added e:sigmoid builtin
+- added e:sigmoid built-in
 - SEMJ based on JLog
 
 [Euler-2008-09-20]
 - improving N3 to pcl compilation
 - fixed e:biconditional for a given that is inconsistent
-- adding e:label builtin to get the blank node label of the subject (this is a level breaker)
+- adding e:label built-in to get the blank node label of the subject (this is a level breaker)
 - adding "Euler under the hood" and "Prolog Coherent Logic (PCL)" to GUIDE
 - fix resolving file: uris
 - reviewed bnode labeling
@@ -1170,16 +1172,16 @@
 - using JDK regular expression utilities
 
 [Euler-2008-08-15]
-- correcting e:graphDifference builtin
+- correcting e:graphDifference built-in
 - adding r:gives in e:falseModel description
 - extending e:falseModel description with e:consistentGives using --think
-- adding e:graphIntersection builtin
-- adding e:graphDifference builtin
+- adding e:graphIntersection built-in
+- adding e:graphDifference built-in
 - correcting empty graph output
 
 [Euler-2008-08-04]
 - simplify skolem machine tape chaining
-- fixing log: builtins to deal with empty graphs
+- fixing log: built-ins to deal with empty graphs
 - adding del_step/4 in Skolem machine and correcting bug with varpred in proof output
 - elaborated e:falseModel explanation
 - new variable verb strategy plus correcting proof for facts provenance
@@ -1195,17 +1197,17 @@
 - resolving http://localhost/.context+abc uris as if they were data:,abc uris
 - false and "false"^^xsd:boolean are now fine in the conclusion of a rule
 - shorten proof output
-- correcting e:biconditional builtin and reviewed bnode labeling
+- correcting e:biconditional built-in and reviewed bnode labeling
 - implementing HTTP HEAD method in Codd.java and using text/n3 Content-Type for n3 content
 - improved SEM command line java euler.EulerRunner --sem --test [--nope] [--rules|--trules] uris --query|--tquery uri
 
 [Euler-2008-06-22]
 - SEM Skolem Euler Machine jTrolog v2.1 based
-- adding web/2 SEMLibrary builtin
+- adding web/2 SEMLibrary built-in
 - correcting issues with blank nodes in rule/query conclusions
 - updated jtrolog.jar according to latest changes from Ivar in https://jtrolog.dev.java.net/svn/jtrolog/trunk
 - use e:disjunction and see also http://lists.w3.org/Archives/Public/public-cwm-talk/2008AprJun/att-0011/00-part
-- drop e:prune builtin
+- drop e:prune built-in
 
 [Euler-2008-06-11]
 - SEMJ which is jTrolog based is running http://eulersharp.sourceforge.net/2007/07test/semj_test.ref
@@ -1219,13 +1221,13 @@
 [Euler-2008-05-31]
 - updating http://eulersharp.sourceforge.net/GUIDE
 - adding Codd application/sparql-query MIME Type
-- correcting e:biconditional builtin
+- correcting e:biconditional built-in
 - correcting jDateTime for timezone
 
 [Euler-2008-05-25]
 - using modified JLog to have double precision arithmetic
 - fixing bnode issues for SEMJ and dropping --data switch
-- adding e:wwwFormEncode SEMJ builtin
+- adding e:wwwFormEncode SEMJ built-in
 - remove duplicate answers for SEMJ --nope
 
 [Euler-2008-05-21]
@@ -1247,28 +1249,28 @@
 - adjust some default mime-types in Codd.java
 
 [Euler-2008-04-21]
-- correcting coroutining for builtins
+- correcting coroutining for built-ins
 - simplifying e:biconditional
 - adding e:counterModel and e:falseModel triples in proof output
 
 [Euler-2008-04-11]
 - testing t-rules with SEM using --trules and --tquery
 - testing existentials in the head
-- adding e:biconditional builtin
+- adding e:biconditional built-in
 - improving N3 proof output with sem_tape.pl
-- correcting proof output using @keywords and correcting log:implies builtin
+- correcting proof output using @keywords and correcting log:implies built-in
 
 [Euler-2008-03-25]
 - extend sem_tape.pl proof tester to return N3 proofs by default
-- builtin .SEM and .SEMI codd services
+- built-in .SEM and .SEMI codd services
 - adding --horn command line switch used in sem.pl to have engine with horn logic only
 
 [Euler-2008-03-19]
 - adding optional --data and --rules command line arguments
-- adding e:sublist and e:pair builtins and tested with http://www.agfa.com/w3c/euler/einstein.n3
+- adding e:sublist and e:pair built-ins and tested with http://www.agfa.com/w3c/euler/einstein.n3
 - euler --sem to convert N3 input to sem.pl input and sem_tape.pl to check proof and return N3 answer
 - adding sem_tape proof output
-- adding builtin e:distinct to remove duplicate list items
+- adding built-in e:distinct to remove duplicate list items
 - prototype Skolem Euler Machine sem.pl tested with ./sem &lt; test011.in
 - correcting e:optional for --prolog-bchain
 - always output the e:delta triples for --prolog-bchain
@@ -1284,7 +1286,7 @@
 - implementing e:findall for --prolog-bchain reasoning
 - simplifying skeleton/2 predicate
 - correcting log:semantics for failure
-- adding e:optional builtin to call object formula and to succeed anyway
+- adding e:optional built-in to call object formula and to succeed anyway
 - assert rdf:Property members using --prolog --think
 - correcting query with variable verb in conclusion
 - keep e:delta only when flag('e:pe')
@@ -1295,7 +1297,7 @@
 - using N3 shorthands in proof/result output
 - correcting renaming of variables for nested log:implies
 - correcting proof instrumentation for nested log:implies
-- make list:append a deterministic builtin
+- make list:append a deterministic built-in
 - remove redundancy in proof output
 
 [Euler-2008-01-06]
@@ -1306,8 +1308,8 @@
 [Euler-2007-12-22]
 - adding 404 Not Found reply in Codd.java
 - adding http://eulersharp.sourceforge.net/2007/07test/biP.n3 test cases
-- correcting math: builtins for plain literals
-- improved euler5s math: builtins to calculate with xsd:dateTime and xsd:duration
+- correcting math: built-ins for plain literals
+- improved euler5s math: built-ins to calculate with xsd:dateTime and xsd:duration
 - test to select between redundant models
 - added GUIDE appendix
 - added inconsistency checks plus preliminary explanation
@@ -1340,13 +1342,13 @@
 - correcting Codd string clipping bug and improved HTTP request header read
 - updated http://eulersharp.sourceforge.net/GUIDE
 - added .euler51 Codd service and added --test-as euler command line option and updated README
-- improving time: builtins and adding e:T0 and e:timeWindow
-- adding fn:substring-after and fn:substring-before builtins
+- improving time: built-ins and adding e:T0 and e:timeWindow
+- adding fn:substring-after and fn:substring-before built-ins
 
 [Euler-2007-10-25]
 - improving string processing with starts_with/2, ends_with/2, unquote/2 and concat/2
 - proof output speed 5 times faster with qname/3
-- correcting some list builtins
+- correcting some list built-ins
 - correcting .context service and correcting N3 serialization
 - why/4 with m3eb to resolve same model with same entropy
 
@@ -1356,7 +1358,7 @@
 - why/4 with m3e
 - adding N3 support for true and false keywords
 - EulerLib memo predicates
-- simplifying builtins (remove the assert fact)
+- simplifying built-ins (remove the assert fact)
 - simplifying step/10
 
 [Euler-2007-09-25]
@@ -1372,7 +1374,7 @@
 - corrected missing dot in proof output
 
 [Euler-2007-09-09]
-- builtin .wget in Codd.java
+- built-in .wget in Codd.java
 - slightly improved log:includes speed (up to 30%)
 - correcting write_proof/0 and step/3 for incompleteness
 - correcting log:semantics for euler52 and euler.yap
@@ -1430,7 +1432,7 @@
 [Euler-Adetomyrma-venatrix 2007-05-26]
 - introduced why/7 to have desired mathematical properties for e:true
 - critical correction of euler path lemma case
-- simplified things for facts and builtins
+- simplified things for facts and built-ins
 
 [Euler-Acanthomyops-murphii 2007-05-13]
 - svn repository at https://eulersharp.svn.sourceforge.net/svnroot/eulersharp/
@@ -1453,7 +1455,7 @@
 - adding e:boolean and e:true predicates
 - correction of variable verb representation in proof output
 - speedup Parser.java
-- adding e:binaryEntropy builtin
+- adding e:binaryEntropy built-in
 
 [Euler-1.5.43 2007-03-08]
 - Codd HTTP reply header always having Content-Type
@@ -1461,26 +1463,26 @@
 - exceeding process.ttl now returns a HTTP error code 500 Internal Server Error
 - scoped e:bayesian to have data sources in proof
 - improved e:bayesian performance using independency test
-- adding e:ruleOfThree builtin
+- adding e:ruleOfThree built-in
 
 [Euler-1.5.41 2007-02-10]
 - fix e:tuple for Yap-5.1.2
 - improved e:bayesian performance using sorting and reordering
-- adding e:max and e:min builtins
+- adding e:max and e:min built-ins
 - improved e:bayesian performance using blackboard
 
 [Euler-1.5.40 2007-01-20]
 - make sure that every uri has a qname too
 - changed toPrologString for numerals
 - euler.Codd with --properties file plus fixing the service.* properties
-- adding e:sort, e:reverse and e:prune builtins
+- adding e:sort, e:reverse and e:prune built-ins
 - process.* properties in codd.properties ending with -- are with piped input
-- adding e:length builtin
+- adding e:length built-in
 
 [Euler-1.5.38 2007-01-02]
 - initial euler5 json support
 - use mapping.* codd properties in euler1
-- added time:year, time:month and time:day builtins
+- added time:year, time:month and time:day built-ins
 - fixing parsing of { ?X [ rdfs:range ?C ] ?Y } =&gt; { ?Y a ?C }.
 - e:findall least model
 - implement logarithm via math:exponentiation
@@ -1490,10 +1492,10 @@
 
 [Euler-1.5.36 2006-11-20]
 - correct e:bayesian for conditional inferencing
-- adding fn:resolve-uri and log:conjunction builtin and correcting log:uri
+- adding fn:resolve-uri and log:conjunction built-in and correcting log:uri
 
 [Euler-1.5.35 2006-11-09]
-- adding list:first, list:rest, list:last, list:in, list:member, list:append and log:uri builtins
+- adding list:first, list:rest, list:last, list:in, list:member, list:append and log:uri built-ins
 - correction in proof output; thanks to Dan Connolly
 - add http port number support
 - fix problem with tab
@@ -1502,14 +1504,14 @@
 
 [Euler-1.5.34 2006-10-20]
 - updated README with "Just running Euler via RESTfull webservice"
-- added e:bayesian builtin and using e:depends to describe first order bayesian networks
+- added e:bayesian built-in and using e:depends to describe first order bayesian networks
 - added primitive mapping feature in Codd
 
 [Euler-1.5.33 2006-10-17]
 - simplified euler5 core engine
 - subject of math:sum and math:product can have more than 2 items
 - test with e:ScopedProperty
-- added math:memberCount builtin
+- added math:memberCount built-in
 
 [Euler-1.5.32 2006-09-15]
 - support N3 @keywords and default names
@@ -1547,7 +1549,7 @@
 
 [Euler-1.5.26 2006-06-18]
 - correcting bnodes for check.py
-- added equality theory to rpo-rules.n3 and 'ignored' it in euler1 as it is builtin there
+- added equality theory to rpo-rules.n3 and 'ignored' it in euler1 as it is built-in there
 - corrected e:trace
 
 [Euler-1.5.25 2006-06-11]
@@ -1573,14 +1575,14 @@
 [Euler-1.5.20 2006-05-20]
 - N3 RPN proof style using e:enter, e:imply and e:prove
 - backchaining in proof engine
-- correcting some builtins and using coroutining
+- correcting some built-ins and using coroutining
 
 [Euler-1.5.18 2006-05-14]
 - added euler1 switch --pterm to produce a prolog term needed for euler5 log:semantics
-- added "Exon query" and "Test builtins" test cases to etc5
+- added "Exon query" and "Test built-ins" test cases to etc5
 - corrected euler5 log:semantics
 - added euler5 log:includes and log:notIncludes
-- added euler5 string builtins
+- added euler5 string built-ins
 - made bnode label generation thread safe in Codd.java
 - added extra destroy() in Process.java to avoid the "Too many open files" bug
 

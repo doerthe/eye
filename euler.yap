@@ -12,7 +12,7 @@
 % and in a Docker container for HTTP client use [11].
 %
 %
-%  [1] http://eulersharp.sourceforge.net/2006/02swap/eye-note.txt
+%  [1] http://eulersharp.sourceforge.net/NOTE
 %  [2] http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a
 %  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
 %  [4] http://www.w3.org/TeamSubmission/n3/
@@ -144,7 +144,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0212.1639 josd').
+version_info('EYE-Winter16.0215.1512 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -343,6 +343,7 @@ main :-
 	;	true
 	),
 	nb_getval(exit_code, EC),
+	flush_output,
 	halt(EC).
 
 
@@ -905,6 +906,7 @@ opts(['--step', Lim|Argus], Args) :-
 	;	catch(atom_number(Lim, Limit), Exc,
 			(	format(user_error, '** ERROR ** step ** ~w~n', [Exc]),
 				flush_output(user_error),
+				flush_output,
 				halt(1)
 			)
 		)
@@ -918,6 +920,7 @@ opts(['--brake', Lim|Argus], Args) :-
 	;	catch(atom_number(Lim, Limit), Exc,
 			(	format(user_error, '** ERROR ** brake ** ~w~n', [Exc]),
 				flush_output(user_error),
+				flush_output,
 				halt(1)
 			)
 		)
@@ -1061,6 +1064,7 @@ args(['--plugin', Argument|Args]) :-
 					->	delete_file(File)
 					;	true
 					),
+					flush_output,
 					halt(1)
 				)
 			)
@@ -1175,6 +1179,7 @@ args(['--plugin-pvm', Argument|Args]) :-
 					->	delete_file(File)
 					;	true
 					),
+					flush_output,
 					halt(1)
 				)
 			)
@@ -1225,6 +1230,7 @@ args(['--turtle', Argument|Args]) :-
 					->	delete_file(File)
 					;	true
 					),
+					flush_output,
 					halt(1)
 				)
 			)
@@ -1240,6 +1246,7 @@ args(['--turtle', Argument|Args]) :-
 	->	catch(process_create(path(cturtle), ['-f=nt', Base, file(File)], [stdout(std), stderr(std)]), Exc,
 			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 				flush_output(user_error),
+				flush_output,
 				halt(1)
 			)
 		)
@@ -1250,6 +1257,7 @@ args(['--turtle', Argument|Args]) :-
 		catch(process_create(path(cturtle), [Format, Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
 			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 				flush_output(user_error),
+				flush_output,
 				halt(1)
 			)
 		),
@@ -1569,6 +1577,7 @@ n3_n3p(Argument, Mode) :-
 					->	delete_file(File)
 					;	true
 					),
+					flush_output,
 					halt(1)
 				)
 			)
@@ -1805,6 +1814,7 @@ n3_n3p(Argument, Mode) :-
 		(	\+flag('ignore-syntax-error'),
 			\+flag('multi-query')
 		->	nl,
+			flush_output,
 			halt(1)
 		;	true
 		)
