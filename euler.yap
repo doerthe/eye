@@ -97,6 +97,7 @@
 :- dynamic(lemma/6).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
+:- dynamic(npred/1).
 :- dynamic(ns/2).
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
@@ -146,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0216.1347 josd').
+version_info('EYE-Winter16.0216.2039 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1516,17 +1517,23 @@ args(['--pass-all'|Args]) :-
 	->	assertz(query(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
 				exopred(P, S, O))),
 		assertz(query(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C)))
+				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C))),
+		assertz(query(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				':-'(C, A)))
 	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
 				answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				answer(':-', C, A, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
 	),
 	(	flag(n3p)
 	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
 			answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+			answer(':-', C, A, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
 	;	true
 	),
 	args(Args).
@@ -1778,9 +1785,12 @@ n3_n3p(Argument, Mode) :-
 								;	Pj = Ph
 								),
 								cnt(sc),
+								functor(Ci, CPi, _),
 								(	flag(n3p)
-								->	portray_clause(':-'(Ci, Pj))
-								;	assertz(':-'(Ci, Pj))
+								->	portray_clause(npred(CPi)),
+									portray_clause(':-'(Ci, Pj))
+								;	assertz(npred(CPi)),
+									assertz(':-'(Ci, Pj))
 								)
 							)
 						;	strelas(Rt),
@@ -8329,6 +8339,15 @@ inv(true, false).
 	plus(A, B, C).
 
 
+':-'(A, B) :-
+	(	var(A)
+	->	npred(C),
+		A =.. [C, _, _]
+	;	true
+	),
+	clause(A, B).
+
+
 lookup(A, B, C) :-
 	table(A, B, C),
 	!.
@@ -8502,7 +8521,9 @@ partconc(_, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transacti
 	!.
 partconc(A, [B|C], [B|D]) :-
 	B = answer(E, _, _, _, _, _, _, _),
-	E == '<http://www.w3.org/2000/10/swap/log#implies>',
+	(	E == '<http://www.w3.org/2000/10/swap/log#implies>'
+	;	E == ':-'
+	),
 	!,
 	partconc(A, C, D).
 partconc(A, [B|C], [B|D]) :-
