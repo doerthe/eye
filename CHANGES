@@ -12,6 +12,7 @@
 <h1>EYE changes</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- making list:in and list:member dynamic predicates
 - doing flush_output/0 right before halt/1
 - setting utf8 encoding for --turtle (obs from Hong Sun)
 - adding --no-genid option to not generate an id in Skolem IRIs (obs from Hong Sun)

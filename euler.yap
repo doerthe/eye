@@ -3,7 +3,7 @@
 % -----------------------------------------------------------------------------
 
 % EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
-% It is a semibackward reasoner enhanced with Euler path [3] detection.
+% It does semibackward reasoning with existential Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
 % The EYE test cases [6] and their results [7] support the development of EYE [8].
 %
@@ -134,6 +134,8 @@
 :- dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>'/2).
 :- dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'/2).
 :- dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'/2).
+:- dynamic('<http://www.w3.org/2000/10/swap/list#in>'/2).
+:- dynamic('<http://www.w3.org/2000/10/swap/list#member>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#implies>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#outputString>'/2).
 :- dynamic('<http://www.w3.org/2002/07/owl#sameAs>'/2).
@@ -144,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0215.1512 josd').
+version_info('EYE-Winter16.0216.1347 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
