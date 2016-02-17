@@ -3,7 +3,7 @@
 % -----------------------------------------------------------------------------
 
 % EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
-% It does semibackward reasoning with existential Euler paths [3].
+% It does semibackward reasoning with existential rules and Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
 % The EYE test cases [6] and their results [7] support the development of EYE [8].
 %
@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0216.2039 josd').
+version_info('EYE-Winter16.0217.0929 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2424,6 +2424,14 @@ wt(X) :-
 		;	write(X)
 		)
 	).
+wt(','(X, Y)) :-
+	!,
+	wt(X),
+	ws(X),
+	write('.'),
+	nl,
+	indent,
+	wt(Y).
 wt(cn([X])) :-
 	!,
 	wt(X).
@@ -2774,6 +2782,15 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 	),
 	!.
 wt2(':-'(X, Y)) :-
+	(	flag(nope)
+	->	U = Y
+	;	(	Y = when(A, B)
+		->	c_append(C, istep(_, _, _, _), B),
+			U = when(A, C)
+		;	cn_conj(Y, V),
+			c_append(U, istep(_, _, _, _), V)
+		)
+	),
 	(	rule_uvar(R)
 	->	true
 	;	R = []
@@ -2785,7 +2802,7 @@ wt2(':-'(X, Y)) :-
 	assertz(rule_uvar(R)),
 	wg(X),
 	write(' <= '),
-	wg(Y),
+	wg(U),
 	retract(rule_uvar(_)),
 	(	nb_getval(fdepth, 0)
 	->	retract(ncllit)
