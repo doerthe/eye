@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0217.0929 josd').
+version_info('EYE-Winter16.0217.2140 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2782,15 +2782,6 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 	),
 	!.
 wt2(':-'(X, Y)) :-
-	(	flag(nope)
-	->	U = Y
-	;	(	Y = when(A, B)
-		->	c_append(C, istep(_, _, _, _), B),
-			U = when(A, C)
-		;	cn_conj(Y, V),
-			c_append(U, istep(_, _, _, _), V)
-		)
-	),
 	(	rule_uvar(R)
 	->	true
 	;	R = []
@@ -2802,7 +2793,7 @@ wt2(':-'(X, Y)) :-
 	assertz(rule_uvar(R)),
 	wg(X),
 	write(' <= '),
-	wg(U),
+	wg(Y),
 	retract(rule_uvar(_)),
 	(	nb_getval(fdepth, 0)
 	->	retract(ncllit)
@@ -7807,7 +7798,11 @@ clistflat([], true) :-
 	!.
 clistflat([A], A) :-
 	A \= cn(_),
+	A \= (_, _),
 	!.
+clistflat([A|B], (A, C)) :-
+	!,
+	clistflat(B, C).
 clistflat(A, cn(B)) :-
 	(	nonvar(A)
 	->	cflat(A, C),
@@ -7864,6 +7859,7 @@ c_list([], true) :-
 c_list([], pass) :-
 	!.
 c_list([A], A) :-
+	A \= (_, _),
 	!.
 c_list([A|B], (A, C)) :-
 	c_list(B, C).
