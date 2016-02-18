@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0218.0913 josd').
+version_info('EYE-Winter16.0218.1119 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -7798,11 +7798,7 @@ clistflat([], true) :-
 	!.
 clistflat([A], A) :-
 	A \= cn(_),
-	A \= (_, _),
 	!.
-clistflat([A|B], (A, C)) :-
-	!,
-	clistflat(B, C).
 clistflat(A, cn(B)) :-
 	(	nonvar(A)
 	->	cflat(A, C),
@@ -8358,7 +8354,9 @@ inv(true, false).
 		A =.. [C, _, _]
 	;	true
 	),
-	clause(A, B).
+	clause(A, D),
+	c_list(E, D),
+	clist(E, B).
 
 
 lookup(A, B, C) :-
