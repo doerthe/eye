@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>EYE changes</title>
+    <title>EYE update</title>
     <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
     <style type="text/css">a:hover {background:#ffa;}</style>
     <style type="text/css">img {vertical-align:text-top;}</style>
 </head>
 
 <body>
-<h1>EYE changes</h1>
+<h1>EYE update</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
 - fixing --pass-all to include EYE components (obs from Hong Sun)
