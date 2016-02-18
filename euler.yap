@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0218.1514 josd').
+version_info('EYE-Winter16.0218.1600 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2533,7 +2533,8 @@ wt0(X) :-
 	atom(X),
 	atom_concat(allv, Y, X),
 	!,
-	(	\+flag('no-qvars')
+	(	\+flag('no-qvars'),
+		\+flag('pass-all-ground')
 	->	(	rule_uvar(L),
 			(	ncllit
 			->	(	memberchk(Y, L)
