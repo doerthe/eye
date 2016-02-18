@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0218.1119 josd').
+version_info('EYE-Winter16.0218.1514 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -355,7 +355,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm','--turtle', '--proof', '--trules',
+	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules',
 			'--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic']),
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -2424,7 +2424,7 @@ wt(X) :-
 		;	write(X)
 		)
 	).
-wt(','(X, Y)) :-
+wt((X, Y)) :-
 	!,
 	wt(X),
 	ws(X),
@@ -4103,10 +4103,13 @@ ances(Env) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#trace>'(X, Y) :-
-	ignore(get_time(X)),
 	tell(user_error),
 	write('TRACE '),
-	wg(Y),
+	(	var(X)
+	->	ignore(get_time(X)),
+		wg(Y)
+	;	write(Y)
+	),
 	nl,
 	told.
 
@@ -8356,7 +8359,8 @@ inv(true, false).
 	),
 	clause(A, D),
 	c_list(E, D),
-	clist(E, B).
+	c_d(E, F),
+	clist(F, B).
 
 
 lookup(A, B, C) :-
