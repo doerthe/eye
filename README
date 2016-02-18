@@ -9,7 +9,7 @@
 <H1>EYE readme</H1>
 <PRE>
 EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
-It performs semibackward reasoner and it supports Euler paths [3].
+It performs semibackward reasoning and it supports Euler paths [3].
 Via N3 [4] it is interoperable with Cwm [5].
 The EYE test cases [6][7] support the further development of EYE [8].
 
