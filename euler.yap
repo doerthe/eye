@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0220.2248 josd').
+version_info('EYE-Winter16.0220.2301 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
