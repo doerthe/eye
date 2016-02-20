@@ -25,7 +25,7 @@ and in a Docker container for HTTP client use [11].
  [5] http://www.w3.org/2000/10/swap/doc/cwm
  [6] http://eulersharp.sourceforge.net/2006/02swap/etc.sh
  [7] http://eulersharp.sourceforge.net/2006/02swap/etc/
- [8] http://eulersharp.sourceforge.net/UPDATE
+ [8] http://eulersharp.sourceforge.net/ACTIVITY
  [9] http://eulersharp.sourceforge.net/INSTALL
 [10] https://registry.hub.docker.com/u/bdevloed/eye/
 [11] https://registry.hub.docker.com/u/bdevloed/eyeserver/
