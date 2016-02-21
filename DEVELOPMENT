@@ -2,14 +2,14 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>EYE activity</title>
+    <title>EYE development</title>
     <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
     <style type="text/css">a:hover {background:#ffa;}</style>
     <style type="text/css">img {vertical-align:text-top;}</style>
 </head>
 
 <body>
-<h1>EYE activity</h1>
+<h1>EYE development</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
 - fixing --pass-all-ground for rules with exitentials in the premis (obs from Hong Sun)
