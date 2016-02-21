@@ -19,7 +19,7 @@
 %  [5] http://www.w3.org/2000/10/swap/doc/cwm
 %  [6] http://eulersharp.sourceforge.net/2006/02swap/etc.sh
 %  [7] http://eulersharp.sourceforge.net/2006/02swap/etc/
-%  [8] http://eulersharp.sourceforge.net/ACTIVITY
+%  [8] http://eulersharp.sourceforge.net/DEVELOPMENT
 %  [9] http://eulersharp.sourceforge.net/INSTALL
 % [10] https://registry.hub.docker.com/u/bdevloed/eye/
 % [11] https://registry.hub.docker.com/u/bdevloed/eyeserver/
@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0220.2301 josd').
+version_info('EYE-Winter16.0221.1353 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
