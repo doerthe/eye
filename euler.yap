@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0221.1353 josd').
+version_info('EYE-Winter16.0222.1544 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3348,7 +3348,7 @@ eam(Span) :-
 			flush_output(user_error)
 		;	true
 		),
-		call(Prem),
+		call_residue_vars(Prem, []),
 		(	(	Conc = false
 			;	Conc = answer(false, zeta, zeta, zeta, zeta, zeta, zeta, zeta)
 			)
@@ -4162,14 +4162,10 @@ ances(Env) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#whenGround>'(A, B) :-
-	when(
-		(	ground(A)
-		),
-		(	qvars(A, C),
-			C \= []
-		->	true
-		;	A = B
-		)
+	(	qvars(A, C),
+		C \= []
+	->	true
+	;	A = B
 	).
 
 

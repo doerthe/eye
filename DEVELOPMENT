@@ -12,6 +12,7 @@
 <h1>EYE development</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing all built-ins which are making use of coroutining
 - fixing --pass-all-ground for rules with exitentials in the premis (obs from Hong Sun)
 - fixing --pass-all to include EYE components (obs from Hong Sun)
 - making list:in and list:member dynamic predicates
