@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0224.0905 josd').
+version_info('EYE-Winter16.0225.1644 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4173,7 +4173,7 @@ ances(Env) :-
 	(	qvars(A, C),
 		C \= []
 	->	true
-	;	A = B
+	;	catch(call(B), _, A = B)
 	).
 
 
