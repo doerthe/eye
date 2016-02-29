@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0225.2242 josd').
+version_info('EYE-Winter16.0229.1441 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1863,17 +1863,23 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	!,
 	(	flag(nope),
 		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
-	->	nb_setval(csv_header, T)
-	;	true
+	->	(	is_list(T)
+		->	H = T
+		;	uvars(X, U),
+			distinct(U, H)
+		),
+		nb_setval(csv_header, H),
+		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
+	;	V = Y
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer'),
 		(	flag('no-distinct-output')
-		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
-	->	write(query(X, Y)),
+	->	write(query(X, V)),
 		writeln('.')
-	;	strela(answer(Y), A),
+	;	strela(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1898,14 +1904,15 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		;	uvars(X, U),
 			distinct(U, H)
 		),
-		nb_setval(csv_header, H)
-	;	true
+		nb_setval(csv_header, H),
+		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
+	;	V = Y
 	),
 	(	flag(nope),
 		\+flag(tactic, 'single-answer')
-	->	write(query(X, Y)),
+	->	write(query(X, V)),
 		writeln('.')
-	;	strela(answer(Y), A),
+	;	strela(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
