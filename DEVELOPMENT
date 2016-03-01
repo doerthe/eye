@@ -12,6 +12,7 @@
 <h1>EYE development</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- fixing empty proof for <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> queries
 - fixing variable object for <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> to to select all variables (obs from Hong Sun)
 - fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#whenGround">e:whenGround</a> so that when the subject is RDF ground the object is called
 - fixing all built-ins which are making use of coroutining
@@ -145,7 +146,7 @@
 - fixing the flowpattern of <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#graphList">e:graphList</a> (obs from Dörthe Arndt)
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#random">e:random</a> built-in
 - have to use prolog:set_random/1 instead of prolog:setrand/1 (obs from Kim Cao-Van)
-- fixing make_eye_zip to have a relative path name for the files in the zipfile 
+- fixing make_eye_zip to have a relative path name for the files in the zipfile
 - improving <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#whenGround">e:whenGround</a> for all kinds of subjects (obs from Dörthe Arndt)
 - fixing redundant output with --pass-all
 - tested and working with stable SWIPL 7.2.1 kernel

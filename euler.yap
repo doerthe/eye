@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0229.1441 josd').
+version_info('EYE-Winter16.0301.1102 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3394,11 +3394,12 @@ eam(Span) :-
 		),
 		strelan(Conc, Concdt),
 		strelar(Concdt, Concdv),
-		(	ground(Prem)
-		->	Concd = Concdv
-		;	clist(Lv, Concdv),
+		(	\+ground(Prem),
+			Conc \= answer(_, _, _, _, _, _, _, _)
+		->	clist(Lv, Concdv),
 			partconc(Prem, Lv, Lw),
 			clist(Lw, Concd)
+		;	Concd = Concdv
 		),
 		(	flag(tactic, 'existing-path')
 		->	makevars(Concd, Concdr)
