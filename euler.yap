@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0302.1238 josd').
+version_info('EYE-Winter16.0304.1504 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -704,6 +704,7 @@ gre(Argus) :-
 		nl
 	),
 	timestamp(Stamp),
+	Etc is TC+BC,
 	Step is TP+BP,
 	nb_getval(tr, TR),
 	nb_getval(br, BR),
@@ -714,7 +715,7 @@ gre(Argus) :-
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 	catch(Infin is round(Inf/Inp), _, Infin = ''),
-	format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed, Infin]),
+	format(user_error, '[~w] in=~d out=~d etc=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Etc, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, RBC, RBP, R],
@@ -1431,6 +1432,9 @@ args(['--turtle', Argument|Args]) :-
 		->	timestamp(Stamp),
 			statistics(runtime, [Cpu, Wall]),
 			nb_getval(sc, Outp),
+			nb_getval(tc, TC),
+			nb_getval(bc, BC),
+			Etc is TC+BC,
 			nb_getval(tp, TP),
 			nb_getval(bp, BP),
 			Step is TP+BP,
@@ -1443,7 +1447,7 @@ args(['--turtle', Argument|Args]) :-
 			catch(Infin is round(Inf/Inp), _, Infin = ''),
 			format('~q.~n', [scount(Outp)]),
 			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-			format(user_error, '[~w] in=~d out=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Step, Brake, Inf, Cpu, Speed, Infin]),
+			format(user_error, '[~w] in=~d out=~d etc=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Etc, Step, Brake, Inf, Cpu, Speed, Infin]),
 			flush_output(user_error)
 		;	true
 		)
@@ -3394,8 +3398,7 @@ eam(Span) :-
 		),
 		strelan(Conc, Concdt),
 		strelar(Concdt, Concdv),
-		(	\+ground(Prem),
-			Conc \= answer(_, _, _, _, _, _, _, _)
+		(	\+ground(Prem)
 		->	clist(Lv, Concdv),
 			partconc(Prem, Lv, Lw),
 			clist(Lw, Concd)
@@ -8559,6 +8562,7 @@ partconc(A, [B|C], [B|D]) :-
 	B = answer(E, _, _, _, _, _, _, _),
 	(	E == '<http://www.w3.org/2000/10/swap/log#implies>'
 	;	E == ':-'
+	;	E == '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'
 	),
 	!,
 	partconc(A, C, D).
