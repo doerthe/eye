@@ -147,7 +147,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0304.1504 josd').
+version_info('EYE-Winter16.0304.1556 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -8560,9 +8560,9 @@ partconc(_, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transacti
 	!.
 partconc(A, [B|C], [B|D]) :-
 	B = answer(E, _, _, _, _, _, _, _),
-	(	E == '<http://www.w3.org/2000/10/swap/log#implies>'
+	(	E == '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'
+	;	E == '<http://www.w3.org/2000/10/swap/log#implies>'
 	;	E == ':-'
-	;	E == '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'
 	),
 	!,
 	partconc(A, C, D).
