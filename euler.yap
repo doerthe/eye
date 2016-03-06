@@ -146,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0306.1925 josd').
+version_info('EYE-Winter16.0306.2129 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1261,7 +1261,9 @@ args(['--turtle', Argument|Args]) :-
 		),
 		nb_setval(wn, 0),
 		nb_setval(sc, 0),
+		nb_setval(tc, 0),
 		nb_setval(tp, 0),
+		nb_setval(bc, 0),
 		nb_setval(bp, 0),
 		nb_setval(tr, 0),
 		nb_setval(br, 0),
