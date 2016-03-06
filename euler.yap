@@ -80,7 +80,6 @@
 :- dynamic(flag/1).
 :- dynamic(flag/2).
 :- dynamic(forward/0).
-:- dynamic(got_answer/8).
 :- dynamic(got_dq/0).
 :- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
@@ -147,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0304.1556 josd').
+version_info('EYE-Winter16.0306.1925 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -335,10 +334,6 @@ main :-
 		),
 		(	predicate_property(prfstep(_, _, _, _, _, _, _, _), indexed(Indp8))
 		->	format(user_error, 'JITI prfstep/8 indexed ~w~n', [Indp8])
-		;	true
-		),
-		(	predicate_property(got_answer(_, _, _, _, _, _, _, _), indexed(Indg8))
-		->	format(user_error, 'JITI got_answer/8 indexed ~w~n', [Indg8])
 		;	true
 		),
 		format(user_error, '~n', []),
@@ -585,7 +580,6 @@ gre(Argus) :-
 				(	retract(answer(A1, A2, A3, A4, A5, A6, A7, A8))
 				)
 			),
-			retractall(got_answer(_, _, _, _, _, _, _, _)),
 			retractall(implies(_, answer(_, _, _, _, _, _, _, _), _)),
 			retractall(implies(_, cn([answer(_, _, _, _, _, _, _, _)|_]), _)),
 			retractall(query(_, _)),
@@ -2104,8 +2098,7 @@ w3 :-
 	;	nl
 	).
 w3 :-
-	(	prfstep(answer(Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8), _, _, _, _, _, _, _),
-		\+got_answer(Z1, Z2, Z3, Z4, Z5, Z6, Z7, Z8),
+	(	prfstep(answer(_, _, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
 		write('[ '),
@@ -2127,11 +2120,6 @@ w3 :-
 			R =.. [P, S, O1],
 			strela(answer(O), O1),
 			Rule =.. [P, S, O],
-			(	flag(think)	% DEPRECATED
-			->	true
-			;	\+got_answer(B1, B2, B3, B4, B5, B6, B7, B8)
-			),
-			assertz(got_answer(B1, B2, B3, B4, B5, B6, B7, B8)),
 			relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
 			strela(answer(C), Cn),
 			\+got_wi(A, B, Pnd, C, Rule),
@@ -2148,7 +2136,7 @@ w3 :-
 		wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 		write(' {'),
 		indentation(2),
-		(	got_answer(B1, B2, B3, B4, B5, B6, B7, B8),
+		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7, B8), _, _, _, _, _, _, _),
 			relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
 			strela(answer(C), answer(C1, C2, C3, C4, C5, C6, C7, C8)),
 			nl,

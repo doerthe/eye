@@ -12,6 +12,7 @@
 <h1>EYE development</h1>
 <pre>
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
+- improving performance and memory impact of proof generation
 - tweaking partconc/3 to work with SWIPL 6.6.6 (obs by Boris De Vloed)
 - correcting TC counter for conjunctive conclusions and adding it as etc=count logging info
 - fixing empty proof for <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> queries
