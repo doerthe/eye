@@ -146,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0306.2129 josd').
+version_info('EYE-Winter16.0307.1305 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2846,7 +2846,7 @@ wtn(exopred(P, S, O)) :-
 		wt2(X)
 	;	wg(S),
 		write(' '),
-		wt(P),
+		wg(P),
 		write(' '),
 		wg(O)
 	).
