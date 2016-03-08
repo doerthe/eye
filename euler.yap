@@ -146,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0307.1305 josd').
+version_info('EYE-Winter16.0308.0010 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -812,14 +812,35 @@ opts(['--pvm', File|Argus], _) :-
 	(	assertz(':-'(term_expansion(T1, T2),
 				(	T1 =.. [P, [S1, S2|S3], O],
 					!,
-					T3 =.. [P, S1, S2, S3, O],
-					T4 =.. [P, _, _, _, _],
+					T3 =.. [P, S1, S2, S3, O, void],
+					T4 =.. [P, _, _, _, _, _],
 					(	\+ catch(call(T4), _, fail)
 					->	X =.. [P, [U1, U2|U3], V],
+						T2 = [	':-'(dynamic(P/5)),
+							':-'(multifile(P/5)),
+							':-'(X,
+								(	Y =.. [P, U1, U2, U3, V, void],
+									call(Y)
+								)
+							),
+							T3
+						]
+					;	T2 = T3
+					)
+				)
+			)
+		),
+		assertz(':-'(term_expansion(T1, T2),
+				(	T1 =.. [P, S, [O1, O2|O3]],
+					!,
+					T3 =.. [P, S, O1, O2, O3],
+					T4 =.. [P, _, _, _, _],
+					(	\+ catch(call(T4), _, fail)
+					->	X =.. [P, U, [V1, V2|V3]],
 						T2 = [	':-'(dynamic(P/4)),
 							':-'(multifile(P/4)),
 							':-'(X,
-								(	Y =.. [P, U1, U2, U3, V],
+								(	Y =.. [P, U, V1, V2, V3],
 									call(Y)
 								)
 							),
@@ -3184,6 +3205,11 @@ strela(answer(A), answer(P1, S2, S3, P2, O2, P3, O3, alpha)) :-
 	\+is_list(O1),
 	O1 =.. [P3, S3, O3],
 	!.
+strela(answer(A), answer(P1, S2, P2, O2, O1, eta, eta, eta)) :-
+	A =.. [P1, S1, O1],
+	\+is_list(S1),
+	S1 =.. [P2, S2, O2],
+	!.
 strela(answer(A), answer(P1, S1, S2, P2, O2, beta, beta, beta)) :-
 	A =.. [P1, S1, O1],
 	\+is_list(O1),
@@ -3192,13 +3218,18 @@ strela(answer(A), answer(P1, S1, S2, P2, O2, beta, beta, beta)) :-
 strela(answer(A), answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma)) :-
 	A =.. [P1, S1, O1],
 	!.
-strela(answer(A), answer(P1, S1, S2, P2, O2, P, delta, delta)) :-
-	A =.. [P, P1, S1, O1],
+strela(answer(A), answer(P1, S2, P2, O2, O1, exopred, theta, theta)) :-
+	A = exopred(P1, S1, O1),
+	\+is_list(S1),
+	S1 =.. [P2, S2, O2],
+	!.
+strela(answer(A), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
+	A = exopred(P1, S1, O1),
 	\+is_list(O1),
 	O1 =.. [P2, S2, O2],
 	!.
-strela(answer(A), answer(P1, S1, O1, P, epsilon, epsilon, epsilon, epsilon)) :-
-	A =.. [P, P1, S1, O1],
+strela(answer(A), answer(P1, S1, O1, exopred, epsilon, epsilon, epsilon, epsilon)) :-
+	A = exopred(P1, S1, O1),
 	!.
 strela(answer(A), answer(A, zeta, zeta, zeta, zeta, zeta, zeta, zeta)) :-
 	!.
@@ -3222,13 +3253,25 @@ strelar(cn([A|B]), cn([C|D])) :-
 	!,
 	strelar(A, C),
 	strelar(B, D).
-strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
+strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S2, P2, O2, O1, eta, eta, eta)) :-
+	compound(S1),
+	S1 =.. [P2, S2, O2],
+	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
+	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
+	!.
+strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S1, S2, P2, O2, beta, beta, beta)) :-
 	compound(O1),
 	O1 =.. [P2, S2, O2],
 	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
 	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
 	!.
-strelar(answer(P1, S1, O1, P, epsilon, epsilon, epsilon, epsilon), answer(P1, S1, S2, P2, O2, P, delta, delta)) :-
+strelar(answer(P1, S1, O1, exopred, epsilon, epsilon, epsilon, epsilon), answer(P1, S2, P2, O2, O1, exopred, theta, theta)) :-
+	compound(S1),
+	S1 =.. [P2, S2, O2],
+	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
+	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
+	!.
+strelar(answer(P1, S1, O1, exopred, epsilon, epsilon, epsilon, epsilon), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
 	compound(O1),
 	O1 =.. [P2, S2, O2],
 	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
@@ -3264,18 +3307,35 @@ strelas(A) :-
 	ground(A),
 	A =.. [P, [S1, S2|S3], O],
 	!,
-	(	current_predicate(P/4)
+	(	current_predicate(P/5)
 	->	true
-	;	dynamic(P/4),
+	;	dynamic(P/5),
 		X =.. [P, [U1, U2|U3], V],
 		assertz(':-'(X,
-				(	Y =.. [P, U1, U2, U3, V],
+				(	Y =.. [P, U1, U2, U3, V, void],
 					call(Y)
 				)
 			)
 		)
 	),
-	B =.. [P, S1, S2, S3, O],
+	B =.. [P, S1, S2, S3, O, void],
+	assertz(B).
+strelas(A) :-
+	ground(A),
+	A =.. [P, S, [O1, O2|O3]],
+	!,
+	(	current_predicate(P/4)
+	->	true
+	;	dynamic(P/4),
+		X =.. [P, U, [V1, V2|V3]],
+		assertz(':-'(X,
+				(	Y =.. [P, U, V1, V2, V3],
+					call(Y)
+				)
+			)
+		)
+	),
+	B =.. [P, S, O1, O2, O3],
 	assertz(B).
 strelas(A) :-
 	ground(A),
