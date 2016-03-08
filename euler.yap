@@ -146,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0308.0010 josd').
+version_info('EYE-Winter16.0308.2205 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3198,13 +3198,6 @@ indentation(C) :-
 strela(answer(cn(A)), cn(B)) :-
 	!,
 	strela(A, B).
-strela(answer(A), answer(P1, S2, S3, P2, O2, P3, O3, alpha)) :-
-	A =.. [P1, S1, O1],
-	\+is_list(S1),
-	S1 =.. [P2, S2, O2],
-	\+is_list(O1),
-	O1 =.. [P3, S3, O3],
-	!.
 strela(answer(A), answer(P1, S2, P2, O2, O1, eta, eta, eta)) :-
 	A =.. [P1, S1, O1],
 	\+is_list(S1),
