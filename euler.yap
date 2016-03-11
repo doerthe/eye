@@ -65,7 +65,7 @@
 :- endif.
 
 
-:- dynamic(answer/8).
+:- dynamic(answer/5).
 :- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
@@ -146,7 +146,7 @@
 % infos
 % -----
 
-version_info('EYE-Winter16.0308.2205 josd').
+version_info('EYE-Winter16.0311.2349 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -302,11 +302,6 @@ main :-
 				->	format(user_error, 'JITI ~w/2 indexed ~w~n', [Pred, Ind2])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _],
-					predicate_property(P, indexed(Ind3))
-				->	format(user_error, 'JITI ~w/3 indexed ~w~n', [Pred, Ind3])
-				;	true
-				),
 				(	P =.. [Pred, _, _, _, _],
 					predicate_property(P, indexed(Ind4))
 				->	format(user_error, 'JITI ~w/4 indexed ~w~n', [Pred, Ind4])
@@ -315,11 +310,6 @@ main :-
 				(	P =.. [Pred, _, _, _, _, _],
 					predicate_property(P, indexed(Ind5))
 				->	format(user_error, 'JITI ~w/5 indexed ~w~n', [Pred, Ind5])
-				;	true
-				),
-				(	P =.. [Pred, _, _, _, _, _, _, _],
-					predicate_property(P, indexed(Ind7))
-				->	format(user_error, 'JITI ~w/7 indexed ~w~n', [Pred, Ind7])
 				;	true
 				)
 			)
@@ -429,8 +419,8 @@ gre(Argus) :-
 	args(Args),
 	(	implies(_, Conc, _),
 		(	var(Conc)
-		;	Conc \= answer(_, _, _, _, _, _, _, _),
-			Conc \= cn([answer(_, _, _, _, _, _, _, _)|_])
+		;	Conc \= answer(_, _, _, _, _),
+			Conc \= cn([answer(_, _, _, _, _)|_])
 		)
 	->	true
 	;	(	\+flag(tactic, 'linear-select')
@@ -481,8 +471,8 @@ gre(Argus) :-
 		throw(halt)
 	;	true
 	),
-	(	\+implies(_, answer(_, _, _, _, _, _, _, _), _),
-		\+implies(_, cn([answer(_, _, _, _, _, _, _, _)|_]), _),
+	(	\+implies(_, answer(_, _, _, _, _), _),
+		\+implies(_, cn([answer(_, _, _, _, _)|_]), _),
 		\+query(_, _),
 		\+flag('pass-only-new'),
 		\+flag('multi-query'),
@@ -569,21 +559,21 @@ gre(Argus) :-
 			forall(
 				(	retract(preda(Pa))
 				),
-				(	Ans =.. [Pa, _, _, _, _, _, _, _],
+				(	Ans =.. [Pa, _, _, _, _],
 					retractall(Ans)
 				)
 			),
 			forall(
-				(	answer(A1, A2, A3, A4, A5, A6, A7, A8),
+				(	answer(A1, A2, A3, A4, A5),
 					nonvar(A1)
 				),
-				(	retract(answer(A1, A2, A3, A4, A5, A6, A7, A8))
+				(	retract(answer(A1, A2, A3, A4, A5))
 				)
 			),
-			retractall(implies(_, answer(_, _, _, _, _, _, _, _), _)),
-			retractall(implies(_, cn([answer(_, _, _, _, _, _, _, _)|_]), _)),
+			retractall(implies(_, answer(_, _, _, _, _), _)),
+			retractall(implies(_, cn([answer(_, _, _, _, _)|_]), _)),
 			retractall(query(_, _)),
-			retractall(prfstep(answer(_, _, _, _, _, _, _, _), _, _, _, _, _, _, _)),
+			retractall(prfstep(answer(_, _, _, _, _), _, _, _, _, _, _, _)),
 			retractall(lemma(_, _, _, _, _, _)),
 			retractall(got_wi(_, _, _, _, _)),
 			retractall(wpfx(_)),
@@ -810,58 +800,26 @@ opts(['--pvm', File|Argus], _) :-
 	;	true
 	),
 	(	assertz(':-'(term_expansion(T1, T2),
-				(	T1 =.. [P, [S1, S2|S3], O],
+				(	T1 = [P, S, O],
+					compound(S),
 					!,
-					T3 =.. [P, S1, S2, S3, O, void],
-					T4 =.. [P, _, _, _, _, _],
-					(	\+ catch(call(T4), _, fail)
-					->	X =.. [P, [U1, U2|U3], V],
-						T2 = [	':-'(dynamic(P/5)),
-							':-'(multifile(P/5)),
-							':-'(X,
-								(	Y =.. [P, U1, U2, U3, V, void],
-									call(Y)
-								)
-							),
-							T3
-						]
-					;	T2 = T3
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(T1, T2),
-				(	T1 =.. [P, S, [O1, O2|O3]],
-					!,
-					T3 =.. [P, S, O1, O2, O3],
+					term_index(S, I),
+					T3 =.. [P, S, O, I, _],
 					T4 =.. [P, _, _, _, _],
 					(	\+ catch(call(T4), _, fail)
-					->	X =.. [P, U, [V1, V2|V3]],
+					->	X =.. [P, U, V],
 						T2 = [	':-'(dynamic(P/4)),
 							':-'(multifile(P/4)),
 							':-'(X,
-								(	Y =.. [P, U, V1, V2, V3],
-									call(Y)
-								)
-							),
-							T3
-						]
-					;	T2 = T3
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(T1, T2),
-				(	T1 =.. [P, S, literal(O1, O2)],
-					!,
-					T3 =.. [P, S, O1, O2],
-					T4 =.. [P, _, _, _],
-					(	\+ catch(call(T4), _, fail)
-					->	X =.. [P, U, literal(V1, V2)],
-						T2 = [	':-'(dynamic(P/3)),
-							':-'(multifile(P/3)),
-							':-'(X,
-								(	Y =.. [P, U, V1, V2],
+								(	(	compound(U)
+									->	term_index(U, M)
+									;	true
+									),
+									(	compound(V)
+									->	term_index(V, N)
+									;	true
+									),
+									Y =.. [P, U, V, M, N],
 									call(Y)
 								)
 							),
@@ -1005,7 +963,7 @@ opts(['--probe'|_], _) :-
 		->	call(Rg)
 		;	(	call(Rt)
 			->	true
-			;	strelas(Rt)
+			;	jitis(Rt)
 			)
 		),
 		fail
@@ -1130,7 +1088,7 @@ args(['--plugin', Argument|Args]) :-
 				call(Rt)
 			->	true
 			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-				->	strelas(Rt)
+				->	jitis(Rt)
 				;	true
 				),
 				(	Rt \= flag(_, _),
@@ -1399,7 +1357,7 @@ args(['--turtle', Argument|Args]) :-
 							call(Rt)
 						->	true
 						;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-							->	strelas(Rt)
+							->	jitis(Rt)
 							;	true
 							),
 							(	Rt \= flag(_, _),
@@ -1520,10 +1478,10 @@ args(['--pass'|Args]) :-
 		;	true
 		)
 	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
-	;	assertz(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
+	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	),
 	(	flag(n3p)
-	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
+	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	;	true
 	),
 	args(Args).
@@ -1542,19 +1500,19 @@ args(['--pass-all'|Args]) :-
 		assertz(query(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
 				':-'(C, A)))
 	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-				answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+				answer(P, S, O, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 		assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer(':-', C, A, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+				answer(':-', C, A, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
 	),
 	(	flag(n3p)
 	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-			answer(P, S, O, exopred, epsilon, epsilon, epsilon, epsilon), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+			answer(P, S, O, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer(':-', C, A, gamma, gamma, gamma, gamma, gamma), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+			answer(':-', C, A, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
 	;	true
 	),
 	args(Args).
@@ -1719,7 +1677,7 @@ n3_n3p(Argument, Mode) :-
 			read(Rs, Rt),
 			(	Rt = end_of_file
 			->	true
-			;	strelas(Rt),
+			;	jitis(Rt),
 				(	Rt = semantics(_, cn(L))
 				->	length(L, N),
 					nb_setval(sc, N)
@@ -1767,7 +1725,7 @@ n3_n3p(Argument, Mode) :-
 							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
-						;	strelas(Rt),
+						;	jitis(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1814,7 +1772,7 @@ n3_n3p(Argument, Mode) :-
 									assertz(':-'(Ci, Pj))
 								)
 							)
-						;	strelas(Rt),
+						;	jitis(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1877,7 +1835,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery
 	tr_split(U, K, M),
 	append(K, ['\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\''([Y|M], T)], J),
 	clist(J, N),
-	write(implies(N, answer('\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\'', [Y|M], T, gamma, gamma, gamma, gamma, gamma), Src)),
+	write(implies(N, answer('\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\'', [Y|M], T, _, _), Src)),
 	writeln('.'),
 	tr_n3p(Z, Src, tquery).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query) :-
@@ -1900,7 +1858,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		)
 	->	write(query(X, V)),
 		writeln('.')
-	;	strela(answer(V), A),
+	;	jiti(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1911,7 +1869,7 @@ tr_n3p([':-'(false, X)|Z], Src, _) :-
 		\+flag(tactic, 'single-answer')
 	->	write(query(X, X)),
 		writeln('.')
-	;	strela(answer(X), A),
+	;	jiti(answer(X), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1933,7 +1891,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		\+flag(tactic, 'single-answer')
 	->	write(query(X, V)),
 		writeln('.')
-	;	strela(answer(V), A),
+	;	jiti(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1947,7 +1905,7 @@ tr_n3p([X|Z], Src, query) :-
 		)
 	->	write(query(true, X)),
 		writeln('.')
-	;	strela(answer(X), A),
+	;	jiti(answer(X), A),
 		write(implies(true, A, Src)),
 		writeln('.')
 	),
@@ -2103,14 +2061,9 @@ w3 :-
 		fail
 	;	true
 	),
-	(	answer(B1, B2, B3, B4, B5, B6, B7, B8),
-		(	B4 = exopred,
-			answer(B1, B2, B3, gamma, gamma, gamma, gamma, gamma)
-		->	fail
-		;	true
-		),
-		relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
-		strela(answer(C), answer(C1, C2, C3, C4, C5, C6, C7, C8)),
+	(	answer(B1, B2, B3, B4, B5),
+		relabel([B1, B2, B3, B4, B5], [C1, C2, C3, C4, C5]),
+		jiti(answer(C), answer(C1, C2, C3, C4, C5)),
 		indent,
 		wt(C),
 		ws(C),
@@ -2121,7 +2074,7 @@ w3 :-
 	;	nl
 	).
 w3 :-
-	(	prfstep(answer(_, _, _, _, _, _, _, _), _, _, _, _, _, _, _),
+	(	prfstep(answer(_, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
 		write('[ '),
@@ -2134,17 +2087,12 @@ w3 :-
 		indentation(2),
 		nl,
 		indent,
-		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7, B8), _, B, Pnd, Cn, R, _, A),
-			(	B4 = exopred,
-				answer(B1, B2, B3, gamma, gamma, gamma, gamma, gamma)
-			->	fail
-			;	true
-			),
+		(	prfstep(answer(B1, B2, B3, B4, B5), _, B, Pnd, Cn, R, _, A),
 			R =.. [P, S, O1],
-			strela(answer(O), O1),
+			jiti(answer(O), O1),
 			Rule =.. [P, S, O],
-			relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
-			strela(answer(C), Cn),
+			relabel([B1, B2, B3, B4, B5], [C1, C2, C3, C4, C5]),
+			jiti(answer(C), Cn),
 			\+got_wi(A, B, Pnd, C, Rule),
 			assertz(got_wi(A, B, Pnd, C, Rule)),
 			wp('<http://www.w3.org/2000/10/swap/reason#component>'),
@@ -2159,9 +2107,9 @@ w3 :-
 		wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 		write(' {'),
 		indentation(2),
-		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7, B8), _, _, _, _, _, _, _),
-			relabel([B1, B2, B3, B4, B5, B6, B7, B8], [C1, C2, C3, C4, C5, C6, C7, C8]),
-			strela(answer(C), answer(C1, C2, C3, C4, C5, C6, C7, C8)),
+		(	prfstep(answer(B1, B2, B3, B4, B5), _, _, _, _, _, _, _),
+			relabel([B1, B2, B3, B4, B5], [C1, C2, C3, C4, C5]),
+			jiti(answer(C), answer(C1, C2, C3, C4, C5)),
 			nl,
 			indent,
 			getvars(C, D),
@@ -3076,8 +3024,8 @@ ws(X) :-
 wst :-
 	findall([Key, Str],
 		(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
-		;	answer(A1, A2, A3, A4, A5, A6, A7, A8),
-			strela(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7, A8))
+		;	answer(A1, A2, A3, A4, A5),
+			jiti(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5))
 		),
 		KS
 	),
@@ -3193,161 +3141,123 @@ indentation(C) :-
 	nb_setval(indentation, B).
 
 
-% stretch relax
-
-strela(answer(cn(A)), cn(B)) :-
+jiti(answer(cn(A)), cn(B)) :-
 	!,
-	strela(A, B).
-strela(answer(A), answer(P1, S2, P2, O2, O1, eta, eta, eta)) :-
-	A =.. [P1, S1, O1],
-	\+is_list(S1),
-	S1 =.. [P2, S2, O2],
-	!.
-strela(answer(A), answer(P1, S1, S2, P2, O2, beta, beta, beta)) :-
-	A =.. [P1, S1, O1],
-	\+is_list(O1),
-	O1 =.. [P2, S2, O2],
-	!.
-strela(answer(A), answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma)) :-
-	A =.. [P1, S1, O1],
-	!.
-strela(answer(A), answer(P1, S2, P2, O2, O1, exopred, theta, theta)) :-
-	A = exopred(P1, S1, O1),
-	\+is_list(S1),
-	S1 =.. [P2, S2, O2],
-	!.
-strela(answer(A), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
-	A = exopred(P1, S1, O1),
-	\+is_list(O1),
-	O1 =.. [P2, S2, O2],
-	!.
-strela(answer(A), answer(P1, S1, O1, exopred, epsilon, epsilon, epsilon, epsilon)) :-
-	A = exopred(P1, S1, O1),
-	!.
-strela(answer(A), answer(A, zeta, zeta, zeta, zeta, zeta, zeta, zeta)) :-
-	!.
-strela([A|B], [C|D]) :-
+	jiti(A, B).
+jiti(answer(A), answer(P, S, O, I, J)) :-
+	(	nonvar(A)
+	;	atom(P)
+	),
+	A =.. [P, S, O],
 	!,
-	strela(answer(A), C),
-	strela(B, D).
-strela(A, A).
-
-
-strelan(answer(cn(A), zeta, zeta, zeta, zeta, zeta, zeta, zeta), cn(B)) :-
+	(	var(I),
+		compound(S)
+	->	term_index(S, I)
+	;	true
+	),
+	(	var(J),
+		compound(O)
+	->	term_index(O, J)
+	;	true
+	).
+jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J)) :-
+	(	var(S)
+	;	S \= void
+	),
 	!,
-	strelan(A, B).
-strelan([A|B], [answer(A, zeta, zeta, zeta, zeta, zeta, zeta, zeta)|C]) :-
+	(	var(I),
+		compound(S)
+	->	term_index(S, I)
+	;	true
+	),
+	(	var(J),
+		compound(O)
+	->	term_index(O, J)
+	;	true
+	).
+jiti(answer(A), answer(A, void, void, _, _)) :-
+	!.
+jiti([A|B], [C|D]) :-
 	!,
-	strelan(B, C).
-strelan(A, A).
+	jiti(answer(A), C),
+	jiti(B, D).
+jiti(A, A).
 
 
-strelar(cn([A|B]), cn([C|D])) :-
+jitin(answer(cn(A), void, void, _, _), cn(B)) :-
 	!,
-	strelar(A, C),
-	strelar(B, D).
-strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S2, P2, O2, O1, eta, eta, eta)) :-
-	compound(S1),
-	S1 =.. [P2, S2, O2],
-	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
-	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
-	!.
-strelar(answer(P1, S1, O1, gamma, gamma, gamma, gamma, gamma), answer(P1, S1, S2, P2, O2, beta, beta, beta)) :-
-	compound(O1),
-	O1 =.. [P2, S2, O2],
-	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
-	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
-	!.
-strelar(answer(P1, S1, O1, exopred, epsilon, epsilon, epsilon, epsilon), answer(P1, S2, P2, O2, O1, exopred, theta, theta)) :-
-	compound(S1),
-	S1 =.. [P2, S2, O2],
-	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
-	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
-	!.
-strelar(answer(P1, S1, O1, exopred, epsilon, epsilon, epsilon, epsilon), answer(P1, S1, S2, P2, O2, exopred, delta, delta)) :-
-	compound(O1),
-	O1 =.. [P2, S2, O2],
-	P1 \= '<http://www.w3.org/2000/10/swap/log#implies>',
-	P1 \= '<http://www.w3.org/2000/10/swap/log#outputString>',
-	!.
-strelar(A, A).
-
-
-strelas(answer(A1, A2, A3, A4, A5, A6, A7, A8)) :-
-	atomic(A1),
+	jitin(A, B).
+jitin([A|B], [answer(A, void, void, _, _)|C]) :-
 	!,
-	(	current_predicate(A1/7)
+	jitin(B, C).
+jitin(A, A).
+
+
+jitir(cn([A|B]), cn([C|D])) :-
+	!,
+	jitir(A, C),
+	jitir(cn(B), cn(D)).
+jitir(answer(P, S, O, _, _), answer(P, S, O, I, J)) :-
+	!,
+	term_index(S, I),
+	term_index(O, J).
+jitir(A, A).
+
+
+jitis(answer(P, S, O, I, J)) :-
+	atomic(P),
+	!,
+	(	current_predicate(P/5)
 	->	true
-	;	dynamic(A1/7),
-		assertz(':-'(answer(A1, B2, B3, B4, B5, B6, B7, B8),
-				(	C =.. [A1, B2, B3, B4, B5, B6, B7, B8],
+	;	dynamic(P/5),
+		assertz(':-'(answer(P, B2, B3, B4, B5),
+				(	C =.. [P, B2, B3, B4, B5, answer],
 					call(C)
 				)
 			)
 		)
 	),
-	(	\+pred(A1)
-	->	assertz(pred(A1))
+	(	\+pred(P)
+	->	assertz(pred(P))
 	;	true
 	),
-	(	\+preda(A1)
-	->	assertz(preda(A1))
+	(	\+preda(P)
+	->	assertz(preda(P))
 	;	true
 	),
-	B =.. [A1, A2, A3, A4, A5, A6, A7, A8],
+	B =.. [P, S, O, I, J, answer],
 	assertz(B).
-strelas(A) :-
+jitis(A) :-
 	ground(A),
-	A =.. [P, [S1, S2|S3], O],
-	!,
-	(	current_predicate(P/5)
-	->	true
-	;	dynamic(P/5),
-		X =.. [P, [U1, U2|U3], V],
-		assertz(':-'(X,
-				(	Y =.. [P, U1, U2, U3, V, void],
-					call(Y)
-				)
-			)
-		)
+	A =.. [P, S, O],
+	(	compound(S)
+	;	compound(O)
 	),
-	B =.. [P, S1, S2, S3, O, void],
-	assertz(B).
-strelas(A) :-
-	ground(A),
-	A =.. [P, S, [O1, O2|O3]],
 	!,
+	term_index(S, I),
+	term_index(O, J),
 	(	current_predicate(P/4)
 	->	true
 	;	dynamic(P/4),
-		X =.. [P, U, [V1, V2|V3]],
+		X =.. [P, U, V],
 		assertz(':-'(X,
-				(	Y =.. [P, U, V1, V2, V3],
+				(	(	compound(U)
+					->	term_index(U, M)
+					;	true
+					),
+					(	compound(V)
+					->	term_index(V, N)
+					;	true
+					),
+					Y =.. [P, U, V, M, N],
 					call(Y)
 				)
 			)
 		)
 	),
-	B =.. [P, S, O1, O2, O3],
+	B =.. [P, S, O, I, J],
 	assertz(B).
-strelas(A) :-
-	ground(A),
-	A =.. [P, S, literal(O1, O2)],
-	!,
-	(	current_predicate(P/3)
-	->	true
-	;	dynamic(P/3),
-		X =.. [P, U, literal(V1, V2)],
-		assertz(':-'(X,
-				(	Y =.. [P, U, V1, V2],
-					call(Y)
-				)
-			)
-		)
-	),
-	B =.. [P, S, O1, O2],
-	assertz(B).
-strelas(A) :-
+jitis(A) :-
 	assertz(A).
 
 
@@ -3412,7 +3322,7 @@ eam(Span) :-
 			)
 		),
 		(	(	Conc = false
-			;	Conc = answer(false, zeta, zeta, zeta, zeta, zeta, zeta, zeta)
+			;	Conc = answer(false, void, void, _, _)
 			)
 		->	with_output_to(atom(PN3), wt('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, false))),
 			(	flag('ignore-inference-fuse')
@@ -3439,8 +3349,8 @@ eam(Span) :-
 			throw(maximimum_step_count(Step))
 		;	true
 		),
-		strelan(Conc, Concdt),
-		strelar(Concdt, Concdv),
+		jitin(Conc, Concdt),
+		jitir(Concdt, Concdv),
 		(	\+ground(Prem)
 		->	clist(Lv, Concdv),
 			partconc(Prem, Lv, Lw),
@@ -3508,7 +3418,7 @@ eam(Span) :-
 		clist(Lf, Clc),
 		astep(Src, Prem, Concs, Conce, Clc, Rule),
 		(	flag(tactic, 'single-answer'),
-			answer(_, _, _, _, _, _, _, _)
+			answer(_, _, _, _, _)
 		->	(	flag(strings)
 			->	true
 			;	w3
@@ -3557,9 +3467,9 @@ astep(A, B, C, Cn, Cc, Rule) :-
 		),
 		(	catch(call(Dn), _, fail)
 		->	true
-		;	strelas(Dn),
+		;	jitis(Dn),
 			(	flag('pass-only-new'),
-				Dn \= answer(_, _, _, _, _, _, _, _)
+				Dn \= answer(_, _, _, _, _)
 			->	indent,
 				relabel(Dn, Dr),
 				wt(Dr),
@@ -3607,9 +3517,9 @@ astep(A, B, C, Cn, Cc, Rule) :-
 			),
 			(	catch(call(Cn), _, fail)
 			->	true
-			;	strelas(Cn),
+			;	jitis(Cn),
 				(	flag('pass-only-new'),
-					Cn \= answer(_, _, _, _, _, _, _, _)
+					Cn \= answer(_, _, _, _, _)
 				->	indent,
 					relabel(Cn, Cr),
 					wt(Cr),
@@ -3687,7 +3597,7 @@ qstep(A, true) :-
 ancestor(A, B) :-
 	hstep(D, C),
 	C \= true,
-	D \= answer(_, _, _, _, _, _, _, _),
+	D \= answer(_, _, _, _, _),
 	unify(B, D),
 	cmember(E, C),
 	(	unify(A, E)
@@ -3720,7 +3630,7 @@ ances(Env) :-
 		clist(Env, G),
 		wg(G),
 		nl,
-		(	hstep(answer(_, _, _, _, _, _, _, _), D),
+		(	hstep(answer(_, _, _, _, _), D),
 			findall(X,
 				(	ancestor(X, D)
 				),
@@ -4493,8 +4403,8 @@ ances(Env) :-
 
 '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y) :-
 	implies(X, Y, _),
-	Y \= answer(_, _, _, _, _, _, _, _),
-	Y \= cn([answer(_, _, _, _, _, _, _, _)|_]).
+	Y \= answer(_, _, _, _, _),
+	Y \= cn([answer(_, _, _, _, _)|_]).
 
 
 '<http://www.w3.org/2000/10/swap/log#includes>'(X, Y) :-
@@ -8514,18 +8424,11 @@ quant('<http://www.w3.org/2000/10/swap/log#implies>'(_, _), allv) :-
 	!.
 quant(':-'(_, _), allv) :-
 	!.
-quant(answer('<http://www.w3.org/2000/10/swap/log#implies>', _, _, _, _, _, _, _), allv) :-
+quant(answer('<http://www.w3.org/2000/10/swap/log#implies>', _, _, _, _), allv) :-
 	!.
-quant(answer(':-', _, _, _, _, _, _, _), allv) :-
+quant(answer(':-', _, _, _, _), allv) :-
 	!.
-quant(answer('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>', _, _, _, _, _, _, _), allv) :-
-	!.
-quant(answer(_, _, _, _, _, _, A, _), allv) :-
-	atom(A),
-	memberchk(A, ['<http://www.w3.org/2000/10/swap/log#implies>', ':-', '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>']),
-	!.
-quant(answer(exopred, P, _, _, _, _, _, _), allv) :-
-	P == '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>',
+quant(answer('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>', _, _, _, _), allv) :-
 	!.
 quant(_, some).
 
@@ -8602,7 +8505,7 @@ partconc(_, [], []).
 partconc(_, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, B)], ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, B)]) :-
 	!.
 partconc(A, [B|C], [B|D]) :-
-	B = answer(E, _, _, _, _, _, _, _),
+	B = answer(E, _, _, _, _),
 	(	E == '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'
 	;	E == '<http://www.w3.org/2000/10/swap/log#implies>'
 	;	E == ':-'

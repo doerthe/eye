@@ -1,13 +1,16 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
-<HTML>
-<HEAD>
-	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
-	<TITLE>EYE install</TITLE>
-	<STYLE TYPE="text/css">a:hover {background:#ffa;}</STYLE>
-</HEAD>
-<BODY LANG="en-US" DIR="LTR">
-<H1>EYE install</H1>
-<PRE>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>EYE install</title>
+    <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
+    <style type="text/css">a:hover {background:#ffffb7;}</style>
+    <style type="text/css">img {vertical-align:text-top;}</style>
+</head>
+
+<body>
+<h1>EYE install</h1>
+<pre>
 For Linux
 ---------
 
@@ -59,7 +62,6 @@ Run the installation script install.sh which will
 
 Test the EYE installation via /opt/eye/bin/eye.sh --version
 and it should return the version which is in the file VERSION.
-
-</PRE>
-</BODY>
-</HTML>
+</pre>
+</body>
+</html>
