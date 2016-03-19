@@ -25,10 +25,7 @@
 % [11] https://registry.hub.docker.com/u/bdevloed/eyeserver/
 
 
-
-% ----------
-% directives
-% ----------
+% Directives
 
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
@@ -141,12 +138,9 @@
 :- dynamic('<http://www.w3.org/2002/07/owl#sameAs>'/2).
 
 
+% Infos
 
-% -----
-% infos
-% -----
-
-version_info('EYE-Winter16.0311.2349 josd').
+version_info('EYE-Winter16.0319.2306 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -213,10 +207,7 @@ eye
 	--streaming-reasoning		streaming reasoning on --turtle data').
 
 
-
-% ---------
-% main goal
-% ---------
+% Main goal
 
 main :-
 	current_prolog_flag(argv, Argv),
@@ -1096,8 +1087,7 @@ args(['--plugin', Argument|Args]) :-
 					Rt \= pfx(_, _),
 					Rt \= pred(_),
 					Rt \= scount(_)
-				->	(	flag(nope),
-						\+flag(ances)	% DEPRECATED
+				->	(	flag(nope)
 					->	true
 					;	nb_getval(current_scope, Src),
 						term_index(Rt, Rnd),
@@ -1365,8 +1355,7 @@ args(['--turtle', Argument|Args]) :-
 								Rt \= pfx(_, _),
 								Rt \= pred(_),
 								Rt \= scount(_)
-							->	(	flag(nope),
-									\+flag(ances)	% DEPRECATED
+							->	(	flag(nope)
 								->	true
 								;	nb_getval(current_scope, Src),
 									term_index(Rt, Rnd),
@@ -1912,12 +1901,7 @@ tr_n3p([X|Z], Src, query) :-
 	tr_n3p(Z, Src, query).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) :-
 	!,
-	(	Y \= dn(_),
-		(	\+flag(ances),	% DEPRECATED
-			\+flag(quiet)	% DEPRECATED
-		->	true
-		;	Y \= false
-		)
+	(	Y \= dn(_)
 	->	true
 	;	nb_setval(defcl, false)
 	),
@@ -1951,8 +1935,7 @@ tr_n3p([X|Z], Src, Mode) :-
 		U = []
 	->	write(Y),
 		writeln('.'),
-		(	flag(nope),
-			\+flag(ances)	% DEPRECATED
+		(	flag(nope)
 		->	true
 		;	write(prfstep(Y, _, true, _, Y, _, forward, Src)),
 			writeln('.')
@@ -2000,7 +1983,7 @@ tr_split([A|B], [A|C], D) :-
 	tr_split(B, C, D).
 
 
-% reasoning output
+% Reasoning output
 
 wa([]) :-
 	!.
@@ -3141,126 +3124,6 @@ indentation(C) :-
 	nb_setval(indentation, B).
 
 
-jiti(answer(cn(A)), cn(B)) :-
-	!,
-	jiti(A, B).
-jiti(answer(A), answer(P, S, O, I, J)) :-
-	(	nonvar(A)
-	;	atom(P)
-	),
-	A =.. [P, S, O],
-	!,
-	(	var(I),
-		compound(S)
-	->	term_index(S, I)
-	;	true
-	),
-	(	var(J),
-		compound(O)
-	->	term_index(O, J)
-	;	true
-	).
-jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J)) :-
-	(	var(S)
-	;	S \= void
-	),
-	!,
-	(	var(I),
-		compound(S)
-	->	term_index(S, I)
-	;	true
-	),
-	(	var(J),
-		compound(O)
-	->	term_index(O, J)
-	;	true
-	).
-jiti(answer(A), answer(A, void, void, _, _)) :-
-	!.
-jiti([A|B], [C|D]) :-
-	!,
-	jiti(answer(A), C),
-	jiti(B, D).
-jiti(A, A).
-
-
-jitin(answer(cn(A), void, void, _, _), cn(B)) :-
-	!,
-	jitin(A, B).
-jitin([A|B], [answer(A, void, void, _, _)|C]) :-
-	!,
-	jitin(B, C).
-jitin(A, A).
-
-
-jitir(cn([A|B]), cn([C|D])) :-
-	!,
-	jitir(A, C),
-	jitir(cn(B), cn(D)).
-jitir(answer(P, S, O, _, _), answer(P, S, O, I, J)) :-
-	!,
-	term_index(S, I),
-	term_index(O, J).
-jitir(A, A).
-
-
-jitis(answer(P, S, O, I, J)) :-
-	atomic(P),
-	!,
-	(	current_predicate(P/5)
-	->	true
-	;	dynamic(P/5),
-		assertz(':-'(answer(P, B2, B3, B4, B5),
-				(	C =.. [P, B2, B3, B4, B5, answer],
-					call(C)
-				)
-			)
-		)
-	),
-	(	\+pred(P)
-	->	assertz(pred(P))
-	;	true
-	),
-	(	\+preda(P)
-	->	assertz(preda(P))
-	;	true
-	),
-	B =.. [P, S, O, I, J, answer],
-	assertz(B).
-jitis(A) :-
-	ground(A),
-	A =.. [P, S, O],
-	(	compound(S)
-	;	compound(O)
-	),
-	!,
-	term_index(S, I),
-	term_index(O, J),
-	(	current_predicate(P/4)
-	->	true
-	;	dynamic(P/4),
-		X =.. [P, U, V],
-		assertz(':-'(X,
-				(	(	compound(U)
-					->	term_index(U, M)
-					;	true
-					),
-					(	compound(V)
-					->	term_index(V, N)
-					;	true
-					),
-					Y =.. [P, U, V, M, N],
-					call(Y)
-				)
-			)
-		)
-	),
-	B =.. [P, S, O, I, J],
-	assertz(B).
-jitis(A) :-
-	assertz(A).
-
-
 
 % ----------------------------
 % EAM (Euler Abstract Machine)
@@ -3295,12 +3158,7 @@ eam(Span) :-
 		ignore(Prem = exopred(_, _, _)),
 		(	var(Conc)
 		->	true
-		;	Conc \= dn(_),
-			(	\+flag(ances),	% DEPRECATED
-				\+flag(quiet)	% DEPRECATED
-			->	true
-			;	Conc \= false
-			)
+		;	Conc \= dn(_)
 		),
 		(	flag(nope),
 			\+flag('rule-histogram')
@@ -3480,8 +3338,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 			;	true
 			)
 		),
-		(	flag(nope),
-			\+flag(ances)	% DEPRECATED
+		(	flag(nope)
 		->	true
 		;	term_index(Dn, Cnd),
 			term_index(B, Pnd),
@@ -3530,8 +3387,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 				;	true
 				)
 			),
-			(	flag(nope),
-				\+flag(ances)	% DEPRECATED
+			(	flag(nope)
 			->	true
 			;	term_index(Cn, Cnd),
 				term_index(B, Pnd),
@@ -3593,153 +3449,129 @@ qstep(A, true) :-
 	\+prfstep(A, _, _, _, _, _, _, _).
 
 
-% DEPRECATED
-ancestor(A, B) :-
-	hstep(D, C),
-	C \= true,
-	D \= answer(_, _, _, _, _),
-	unify(B, D),
-	cmember(E, C),
-	(	unify(A, E)
-	;	ancestor(A, E)
+% Just-In-Time Indexing
+
+jiti(answer(cn(A)), cn(B)) :-
+	!,
+	jiti(A, B).
+jiti(answer(A), answer(P, S, O, I, J)) :-
+	(	nonvar(A)
+	;	atom(P)
+	),
+	A =.. [P, S, O],
+	!,
+	(	var(I),
+		compound(S)
+	->	term_index(S, I)
+	;	true
+	),
+	(	var(J),
+		compound(O)
+	->	term_index(O, J)
+	;	true
 	).
+jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J)) :-
+	(	var(S)
+	;	S \= void
+	),
+	!,
+	(	var(I),
+		compound(S)
+	->	term_index(S, I)
+	;	true
+	),
+	(	var(J),
+		compound(O)
+	->	term_index(O, J)
+	;	true
+	).
+jiti(answer(A), answer(A, void, void, _, _)) :-
+	!.
+jiti([A|B], [C|D]) :-
+	!,
+	jiti(answer(A), C),
+	jiti(B, D).
+jiti(A, A).
 
 
-% DEPRECATED
-cgives(A, B) :-
-	(	\+hstep(B, _),
-		!
-	;	hstep(B, C),
-		\+(	(	cmember(D, C),
-				cmember(E, A),
-				(	unify(E, D)
-				;	\+cgives(E, D)
+jitin(answer(cn(A), void, void, _, _), cn(B)) :-
+	!,
+	jitin(A, B).
+jitin([A|B], [answer(A, void, void, _, _)|C]) :-
+	!,
+	jitin(B, C).
+jitin(A, A).
+
+
+jitir(cn([A|B]), cn([C|D])) :-
+	!,
+	jitir(A, C),
+	jitir(cn(B), cn(D)).
+jitir(answer(P, S, O, _, _), answer(P, S, O, I, J)) :-
+	!,
+	term_index(S, I),
+	term_index(O, J).
+jitir(A, A).
+
+
+jitis(answer(P, S, O, I, J)) :-
+	atomic(P),
+	!,
+	(	current_predicate(P/5)
+	->	true
+	;	dynamic(P/5),
+		assertz(':-'(answer(P, B2, B3, B4, B5),
+				(	C =.. [P, B2, B3, B4, B5, answer],
+					call(C)
 				)
 			)
 		)
-	).
-
-
-% DEPRECATED
-ances(Env) :-
-	(	flag(ances),	% DEPRECATED
-		\+flag(quiet)	% DEPRECATED
-	->	write('[ '),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ancestorModel>'),
-		write(' '),
-		clist(Env, G),
-		wg(G),
-		nl,
-		(	hstep(answer(_, _, _, _, _), D),
-			findall(X,
-				(	ancestor(X, D)
-				),
-				T
-			),
-			distinct(T, U),
-			clist(U, V),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#selected>'),
-			write(' [ '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#triple>'),
-			write(' '),
-			wg(D),
-			nl,
-			write('  ; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ancestors>'),
-			write(' '),
-			wg(V),
-			nl,
-			write('  ]'),
-			nl,
-			fail
-		;	write('].'),
-			nl
+	),
+	(	\+pred(P)
+	->	assertz(pred(P))
+	;	true
+	),
+	(	\+preda(P)
+	->	assertz(preda(P))
+	;	true
+	),
+	B =.. [P, S, O, I, J, answer],
+	assertz(B).
+jitis(A) :-
+	ground(A),
+	A =.. [P, S, O],
+	(	compound(S)
+	;	compound(O)
+	),
+	!,
+	term_index(S, I),
+	term_index(O, J),
+	(	current_predicate(P/4)
+	->	true
+	;	dynamic(P/4),
+		X =.. [P, U, V],
+		assertz(':-'(X,
+				(	(	compound(U)
+					->	term_index(U, M)
+					;	true
+					),
+					(	compound(V)
+					->	term_index(V, N)
+					;	true
+					),
+					Y =.. [P, U, V, M, N],
+					call(Y)
+				)
+			)
 		)
-	;	true
-	).
-
-
-
-% ---------
-% built-ins
-% ---------
-
-% DEPRECATED
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#allAncestors>'(A, B) :-
-	(	flag(nope),
-		\+flag(ances)	% DEPRECATED
-	->	throw(no_ances_flag)
-	;	true
 	),
-	within_scope(_),
-	hstep(C, D),
-	unify(A, C),
-	(	D = true
-	->	B = true
-	;	findall(X,
-			(	ancestor(X, A)
-			),
-			L
-		),
-		clist(L, M),
-		unify(M, B)
-	).
+	B =.. [P, S, O, I, J],
+	assertz(B).
+jitis(A) :-
+	assertz(A).
 
 
-% DEPRECATED
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#allAssertedAncestors>'(A, B) :-
-	(	flag(nope),
-		\+flag(ances)	% DEPRECATED
-	->	throw(no_ances_flag)
-	;	true
-	),
-	within_scope(_),
-	hstep(C, D),
-	unify(A, C),
-	(	D = true
-	->	B = true
-	;	findall(X,
-			(	ancestor(X, A),
-				hstep(Y, true),
-				unify(X, Y)
-			),
-			L
-		),
-		clist(L, M),
-		unify(M, B)
-	).
-
-
-% DEPRECATED
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#allDescendents>'(A, B) :-
-	(	flag(nope),
-		\+flag(ances)	% DEPRECATED
-	->	throw(no_ances_flag)
-	;	true
-	),
-	within_scope(_),
-	hstep(C, _),
-	unify(A, C),
-	findall(X,
-		(	ancestor(A, X)
-		),
-		L
-	),
-	clist(L, M),
-	unify(M, B).
-
-
-% DEPRECATED
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#assertedTriple>'(A, B) :-
-	(	flag(nope),
-		\+flag(ances)	% DEPRECATED
-	->	throw(no_ances_flag)
-	;	true
-	),
-	hstep(B, true),
-	unify(A, B).
-
+% Built-ins
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, B)|C], D) :-
 	within_scope(_),
@@ -5004,11 +4836,8 @@ ances(Env) :-
 	).
 
 
-
-% -------------
 % RIF built-ins
-% -------------
-
+%
 % according to RIF Datatypes and Built-Ins 1.0 -- http://www.w3.org/TR/rif-dtb/
 
 % 4.1.1.1 pred:literal-not-identical
@@ -7282,10 +7111,7 @@ ances(Env) :-
 	).
 
 
-
-% ----------------
 % Prolog built-ins
-% ----------------
 
 prolog_sym(abolish, abolish, rel).
 prolog_sym(abort, abort, rel).
@@ -7588,10 +7414,7 @@ prolog_sym(writeln, writeln, rel).
 prolog_sym(writeq, writeq, rel).
 
 
-
-% -------
 % support
-% -------
 
 def_pfx('math:', '<http://www.w3.org/2000/10/swap/math#>').
 def_pfx('e:', '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>').
@@ -9595,11 +9418,8 @@ regexp_wildcard([A|B], [A|C]) :-
 	regexp_wildcard(B, C).
 
 
-
-% ---------
-% N3 Parser
-% ---------
-
+% N3 parser
+%
 % according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
 % inspired by http://code.google.com/p/km-rdf/wiki/Henry
 
@@ -10275,8 +10095,7 @@ withoutdot(L1, [dot(Ln)|L1]) :-
 	nb_getval(line_number, Ln).
 
 
-
-% tokenizer
+% N3 tokenizer
 
 tokens(In, List) :-
 	get_code(In, C0),
