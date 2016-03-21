@@ -11,6 +11,9 @@
 <body>
 <h1>EYE development</h1>
 <pre>
+<span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- minor cleanup of EYE dataprocessor and EYE components
+
 <span id="EYE-Winter16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Winter16/">EYE-Winter16</a>]</span>
 - strela becomes jiti and is now indexing any compound subject or object
 - fixing issue with exopred where the predicate is a graph literal
