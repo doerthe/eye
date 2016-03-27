@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0327.0015 josd').
+version_info('EYE-Spring16.0327.2159 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -4235,7 +4235,10 @@ jitis(A) :-
 
 '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y) :-
 	implies(X, Z, _),
-	labelvars(Z, 0, _),
+	(	ground(X)
+	->	labelvars(Z, 0, _)
+	;	true
+	),
 	Y = Z,
 	Y \= answer(_, _, _, _, _),
 	Y \= cn([answer(_, _, _, _, _)|_]).
