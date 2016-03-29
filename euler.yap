@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0329.0845 josd').
+version_info('EYE-Spring16.0329.1601 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -792,10 +792,13 @@ opts(['--pvm', File|Argus], _) :-
 	),
 	(	assertz(':-'(term_expansion(T1, T2),
 				(	T1 = [P, S, O],
-					compound(S),
+					(	compound(S)
+					;	compound(O)
+					),
 					!,
 					term_index(S, I),
-					T3 =.. [P, S, O, I, _],
+					term_index(O, J),
+					T3 =.. [P, S, O, I, J],
 					T4 =.. [P, _, _, _, _],
 					(	\+ catch(call(T4), _, fail)
 					->	X =.. [P, U, V],
