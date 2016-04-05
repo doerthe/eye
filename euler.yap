@@ -5,7 +5,7 @@
 % EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
 % It performs semibackward reasoning and it supports Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
-% EYE test cases [6][7] support EYE R&D [8].
+% EYE test cases [6][7] verify EYE releases [8].
 %
 % EYE can be installed manually on Linux, Windows and MacOSX [9].
 % EYE is also available in a Docker container for command line use [10]
@@ -19,7 +19,7 @@
 %  [5] http://www.w3.org/2000/10/swap/doc/cwm
 %  [6] http://eulersharp.sourceforge.net/2006/02swap/etc.sh
 %  [7] http://eulersharp.sourceforge.net/2006/02swap/etc/
-%  [8] http://eulersharp.sourceforge.net/R&D
+%  [8] http://eulersharp.sourceforge.net/RELEASE
 %  [9] http://eulersharp.sourceforge.net/INSTALL
 % [10] https://registry.hub.docker.com/u/bdevloed/eye/
 % [11] https://registry.hub.docker.com/u/bdevloed/eyeserver/
@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0331.0914 josd').
+version_info('EYE-Spring16.0405.2050 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -7794,32 +7794,10 @@ cartesian([A|B], [C|D]) :-
 	cartesian(B, D).
 
 
-distinct(A, B) :-
-	(	ground(A)
-	->	distinct_hash(A, B)
-	;	distinct_value(A, B)
-	).
-
-
-distinct_hash([], []) :-
-	retractall(hash_value(_, _)).
-distinct_hash([A|B], C) :-
-	term_index(A, D),
-	(	hash_value(D, E)
-	->	(	unify(A, E)
-		->	C = F
-		;	C = [A|F]
-		)
-	;	assertz(hash_value(D, A)),
-		C = [A|F]
-	),
-	distinct_hash(B, F).
-
-
-distinct_value([], []).
-distinct_value([A|B], [A|D]) :-
+distinct([], []).
+distinct([A|B], [A|D]) :-
 	del(B, A, E),
-	distinct_value(E, D).
+	distinct(E, D).
 
 
 del([], _, []).
