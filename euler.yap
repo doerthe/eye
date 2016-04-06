@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0405.2050 josd').
+version_info('EYE-Spring16.0406.0938 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -7794,10 +7794,32 @@ cartesian([A|B], [C|D]) :-
 	cartesian(B, D).
 
 
-distinct([], []).
-distinct([A|B], [A|D]) :-
+distinct(A, B) :-
+	(	ground(A)
+	->	distinct_hash(A, B)
+	;	distinct_value(A, B)
+	).
+
+
+distinct_hash([], []) :-
+	retractall(hash_value(_, _)).
+distinct_hash([A|B], C) :-
+	term_index(A, D),
+	(	hash_value(D, E)
+	->	(	unify(A, E)
+		->	C = F
+		;	C = [A|F]
+		)
+	;	assertz(hash_value(D, A)),
+		C = [A|F]
+	),
+	distinct_hash(B, F).
+
+
+distinct_value([], []).
+distinct_value([A|B], [A|D]) :-
 	del(B, A, E),
-	distinct(E, D).
+	distinct_value(E, D).
 
 
 del([], _, []).
