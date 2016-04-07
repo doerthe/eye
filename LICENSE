@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Generic Software Code Copyright Notice</title>
+    <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
+    <style type="text/css">a:hover {background:#ffa;}</style>
+    <style type="text/css">img {vertical-align:text-top;}</style>
+</head>
+
+<body>
+<h1>EulerSharp: http://eulersharp.sourceforge.net/</h1>
+<dl>
+    <dt></dt>
+    <dd><a href="http://www.w3.org/Consortium/Legal/ipr-notice">Copyright</a>
+      © 2003 <a href="http://www.w3.org/">World Wide Web
+      Consortium</a>, (<a href="http://www.lcs.mit.edu/">Massachusetts
+      Institute of Technology</a>, <a href="http://www.ercim.org/">European
+      Research Consortium for Informatics and Mathematics</a>, <a
+      href="http://www.keio.ac.jp/">Keio University</a>). All Rights
+      Reserved. This work is distributed under the <a
+      href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231">W3C<sup>®</sup>
+      Software License</a> [1] in the hope that it will be useful, but
+      WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+      <p>[1] <a
+      href="http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231.html">http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231</a></p>
+    </dd>
+</dl>
+</body>
+</html>
