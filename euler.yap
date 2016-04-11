@@ -6,7 +6,7 @@
 % It performs semibackward reasoning and it supports Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
 %
-% EYE test cases [6] verify EYE releases [7].
+% EYE entailment test cases [6] verify EYE releases [7].
 % EYE can be installed manually on Linux, Windows and MacOSX [8].
 % EYE is also available in a Docker container for command line use [9]
 % and in a Docker container for HTTP client use [10].
@@ -17,7 +17,7 @@
 %  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
 %  [4] http://www.w3.org/TeamSubmission/n3/
 %  [5] http://www.w3.org/2000/10/swap/doc/cwm
-%  [6] http://josd.github.io/eyeetc
+%  [6] https://github.com/josd/eyeetc
 %  [7] http://eulersharp.sourceforge.net/RELEASE
 %  [8] http://eulersharp.sourceforge.net/INSTALL
 %  [9] https://registry.hub.docker.com/u/bdevloed/eye/
@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0411.1536 josd').
+version_info('EYE-Spring16.0411.2223 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
