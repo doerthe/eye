@@ -11,8 +11,8 @@
 EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
 It performs semibackward reasoning and it supports Euler paths [3].
 Via N3 [4] it is interoperable with Cwm [5].
-EYE test cases [6] verify EYE releases [7].
 
+EYE test cases [6] verify EYE releases [7].
 EYE can be installed manually on Linux, Windows and MacOSX [8].
 EYE is also available in a Docker container for command line use [9]
 and in a Docker container for HTTP client use [10].
