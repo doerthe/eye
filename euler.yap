@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0411.1522 josd').
+version_info('EYE-Spring16.0411.1529 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
