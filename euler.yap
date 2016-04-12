@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0411.2223 josd').
+version_info('EYE-Spring16.0412.0903 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3814,7 +3814,12 @@ jitis(A) :-
 	nonvar(A),
 	(	\+call(A)
 	->	true
-	;	call(A)
+	;	call(A),
+		(	flag(nope)
+		->	true
+		;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A)), R),
+			istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A), R)
+		)
 	).
 
 
