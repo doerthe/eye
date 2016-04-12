@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0412.0903 josd').
+version_info('EYE-Spring16.0412.1404 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -549,7 +549,7 @@ gre(Argus) :-
 			forall(
 				(	retract(preda(Pa))
 				),
-				(	Ans =.. [Pa, _, _, _, _],
+				(	Ans =.. [Pa, _, _, _, _, _, _, answer],
 					retractall(Ans)
 				)
 			),
