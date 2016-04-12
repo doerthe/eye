@@ -46,7 +46,7 @@
 :- use_module(library(when), [when/2]).
 :- use_module(library(qsave)).
 :- catch(use_module(library(process)), _, true).
-:- catch(use_module(library(sha1)), _, true).
+:- catch(use_module(library(sha)), _, true).
 :- catch(use_module(library(uri)), _, true).
 :- endif.
 :- if(\+current_predicate(date_time_stamp/2)).
@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0411.2223 josd').
+version_info('EYE-Spring16.0412.2224 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -292,14 +292,14 @@ main :-
 				->	format(user_error, 'JITI ~w/2 indexed ~w~n', [Pred, Ind2])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _, _],
-					predicate_property(P, indexed(Ind4))
-				->	format(user_error, 'JITI ~w/4 indexed ~w~n', [Pred, Ind4])
+				(	P =.. [Pred, _, _, _, _, _, _],
+					predicate_property(P, indexed(Ind6))
+				->	format(user_error, 'JITI ~w/6 indexed ~w~n', [Pred, Ind6])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _, _, _],
-					predicate_property(P, indexed(Ind5))
-				->	format(user_error, 'JITI ~w/5 indexed ~w~n', [Pred, Ind5])
+				(	P =.. [Pred, _, _, _, _, _, _, _],
+					predicate_property(P, indexed(Ind7))
+				->	format(user_error, 'JITI ~w/7 indexed ~w~n', [Pred, Ind7])
 				;	true
 				)
 			)
@@ -549,7 +549,7 @@ gre(Argus) :-
 			forall(
 				(	retract(preda(Pa))
 				),
-				(	Ans =.. [Pa, _, _, _, _],
+				(	Ans =.. [Pa, _, _, _, _, _, _, answer],
 					retractall(Ans)
 				)
 			),
@@ -1012,10 +1012,6 @@ opts([Arg|Argus], [Arg|Args]) :-
 
 args([]) :-
 	!.
-args(['--plugin', Arg|Args]) :-
-	sub_atom(Arg, _, 14, 0, 'rif-plugin.yap'),
-	!,
-	args(Args).
 args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
@@ -3814,7 +3810,12 @@ jitis(A) :-
 	nonvar(A),
 	(	\+call(A)
 	->	true
-	;	call(A)
+	;	call(A),
+		(	flag(nope)
+		->	true
+		;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A)), R),
+			istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A), R)
+		)
 	).
 
 
@@ -4066,6 +4067,12 @@ jitis(A) :-
 			sub_atom(A, 0, W, _, C)
 		)
 	).
+
+
+'<http://www.w3.org/2000/10/swap/crypto#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	sha_hash(A, C, [algorithm(sha1)]),
+	hash_to_ascii(C, D, []),
+	atom_codes(B, D).
 
 
 '<http://www.w3.org/2000/10/swap/list#append>'(A, B) :-
@@ -8745,6 +8752,15 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), prolog:ato
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#string>'], literal(A, lang(_))) :-
 	!.
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B], literal(A, type(B))).
+
+
+hash_to_ascii([], L1, L1).
+hash_to_ascii([A|B], [C, D|L3], L4) :-
+	E is A>>4 /\ 15,
+	F is A /\ 15,
+	code_type(C, xdigit(E)),
+	code_type(D, xdigit(F)),
+	hash_to_ascii(B, L3, L4).
 
 
 :- if(\+current_predicate(get_time/1)).

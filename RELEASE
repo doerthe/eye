@@ -12,9 +12,13 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- adding <a href="http://www.w3.org/2000/10/swap/doc/CwmBuiltins">crypto:sha</a> built-in
+- fixing --debug-jiti for predicates with compound subjects or objects
+- fixing critical jiti (just in time indexing) bug for --multi-query
+- more detailed proof output for e:optional built-in (obs from Hong Sun)
 - adding <a href="http://eulersharp.sourceforge.net/2006/02swap/mmln-component.html">MMLN</a> (Monadic Markov Logic Network) EYE component
 - fixing critical jiti (just in time indexing) bug for --pvm
-- improving just in time indexing of compound subjects or objects
+- improving just in time indexing for predicates with compound subjects or objects
 - fixing log:implies built-in for the scope of implicit quantified variables (obs from Dörthe Arndt)
 - minor cleanup of EYE dataprocessor and EYE components
 
@@ -190,8 +194,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from <a href="https://github.com/josd/eyergb/blob/master/blueproof003.n3">https://github.com/josd/eyergb/blob/master/blueproof003.n3</a>)
-- fixing critical bug in proof output (obs from <a href="https://github.com/josd/eyergb/blob/master/blueproof002.n3">https://github.com/josd/eyergb/blob/master/blueproof002.n3</a>)
+- fixing proof output for queries with true as premis (obs from <a href="http://josd.github.io/eyeetc/rgb/blueproof003.n3">http://josd.github.io/eyeetc/rgb/blueproof003.n3</a>)
+- fixing critical bug in proof output (obs from <a href="http://josd.github.io/eyeetc/rgb/blueproof002.n3">http://josd.github.io/eyeetc/rgb/blueproof002.n3</a>)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)
@@ -278,7 +282,7 @@
 - improving strela (stretch relax) for graphs with literals
 - throwing syntax error for <a href="http://svn.code.sf.net/p/eulergui/code/trunk/eulergui/test/string_error.ttl">string_error.ttl</a> (obs from Jean-Marc Vanel)
 - adding --probe command line switch to output speedtest info
-- fixing and improving graph literal unifier (obs from <a href="https://github.com/josd/eyeglass">eyeglass</a>)
+- fixing and improving graph literal unifier
 
 <span id="EYE-2014-06">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-2014-06/">EYE-2014-06</a>]</span>
 - fixing bnode issue for queries with a variable as conclusion (obs from Hong Sun)
@@ -287,7 +291,7 @@
 - deprecate --quick-answer and use --single-answer instead
 - deprecate --think because all proof paths can not be shown in the proof
 - simplified implementation of --quick-answer
-- adding strela (stretch relax) support for N3 triples to trigger JITI (obs from <a href="https://github.com/josd/eyestrela">eyestrela</a>)
+- adding strela (stretch relax) support for N3 triples to trigger JITI
 - improved JITI thanks to <a href="https://groups.google.com/forum/#!topic/swi-prolog/7lE5er8-AuE">SWI-Prolog 6.6.6</a>
 - having additional --rule-histogram command line option which was part of --profile before
 - removing e:alias built-in
