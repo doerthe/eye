@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0412.1404 josd').
+version_info('EYE-Spring16.0412.1437 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -292,14 +292,14 @@ main :-
 				->	format(user_error, 'JITI ~w/2 indexed ~w~n', [Pred, Ind2])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _, _],
-					predicate_property(P, indexed(Ind4))
-				->	format(user_error, 'JITI ~w/4 indexed ~w~n', [Pred, Ind4])
+				(	P =.. [Pred, _, _, _, _, _, _],
+					predicate_property(P, indexed(Ind6))
+				->	format(user_error, 'JITI ~w/6 indexed ~w~n', [Pred, Ind6])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _, _, _],
-					predicate_property(P, indexed(Ind5))
-				->	format(user_error, 'JITI ~w/5 indexed ~w~n', [Pred, Ind5])
+				(	P =.. [Pred, _, _, _, _, _, _, _],
+					predicate_property(P, indexed(Ind7))
+				->	format(user_error, 'JITI ~w/7 indexed ~w~n', [Pred, Ind7])
 				;	true
 				)
 			)
