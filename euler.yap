@@ -46,7 +46,7 @@
 :- use_module(library(when), [when/2]).
 :- use_module(library(qsave)).
 :- catch(use_module(library(process)), _, true).
-:- catch(use_module(library(sha1)), _, true).
+:- catch(use_module(library(sha)), _, true).
 :- catch(use_module(library(uri)), _, true).
 :- endif.
 :- if(\+current_predicate(date_time_stamp/2)).
@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0412.1437 josd').
+version_info('EYE-Spring16.0412.2224 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1012,10 +1012,6 @@ opts([Arg|Argus], [Arg|Args]) :-
 
 args([]) :-
 	!.
-args(['--plugin', Arg|Args]) :-
-	sub_atom(Arg, _, 14, 0, 'rif-plugin.yap'),
-	!,
-	args(Args).
 args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
@@ -4071,6 +4067,12 @@ jitis(A) :-
 			sub_atom(A, 0, W, _, C)
 		)
 	).
+
+
+'<http://www.w3.org/2000/10/swap/crypto#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	sha_hash(A, C, [algorithm(sha1)]),
+	hash_to_ascii(C, D, []),
+	atom_codes(B, D).
 
 
 '<http://www.w3.org/2000/10/swap/list#append>'(A, B) :-
@@ -8750,6 +8752,15 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), prolog:ato
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#string>'], literal(A, lang(_))) :-
 	!.
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B], literal(A, type(B))).
+
+
+hash_to_ascii([], L1, L1).
+hash_to_ascii([A|B], [C, D|L3], L4) :-
+	E is A>>4 /\ 15,
+	F is A /\ 15,
+	code_type(C, xdigit(E)),
+	code_type(D, xdigit(F)),
+	hash_to_ascii(B, L3, L4).
 
 
 :- if(\+current_predicate(get_time/1)).
