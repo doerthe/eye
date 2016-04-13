@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0412.2224 josd').
+version_info('EYE-Spring16.0413.1216 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -225,11 +225,14 @@ main :-
 	argv(Argvs, Argus),
 	format(user_error, 'eye~@~n', [wa(Argus)]),
 	(	memberchk('--no-genid', Argus)
-	->	Id = 0
-	;	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30)
+	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/0#'
+	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
+		atom_number(Run2, Run1),
+		sha_hash(Run2, Run3, [algorithm(sha1)]),
+		atom_codes(Run4, Run3),
+		base64url(Run4, Run5),
+		atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run5, '#'], Vns)
 	),
-	atom_number(Run, Id),
-	atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run, '#'], Vns),
 	nb_setval(var_ns, Vns),
 	version_info(Version),
 	format(user_error, '~w~n', [Version]),
@@ -3886,6 +3889,12 @@ jitis(A) :-
 	;	getnumber(Asp, A),
 		Sen is (1-exp(-K*A))*(1+exp(-K))/(1+exp(-K*A))/(1-exp(-K))
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	sha_hash(A, C, [algorithm(sha1)]),
+	atom_codes(D, C),
+	base64url(D, B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sigmoid>'(A, B) :-

@@ -12,6 +12,8 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- adjusting the generated id for Skolem IRIs
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#sha">e:sha</a> built-in
 - adding <a href="http://www.w3.org/2000/10/swap/doc/CwmBuiltins">crypto:sha</a> built-in
 - fixing --debug-jiti for predicates with compound subjects or objects
 - fixing critical jiti (just in time indexing) bug for --multi-query
