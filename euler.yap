@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0413.1216 josd').
+version_info('EYE-Spring16.0414.0938 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -225,7 +225,7 @@ main :-
 	argv(Argvs, Argus),
 	format(user_error, 'eye~@~n', [wa(Argus)]),
 	(	memberchk('--no-genid', Argus)
-	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/0#'
+	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
 	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
 		atom_number(Run2, Run1),
 		sha_hash(Run2, Run3, [algorithm(sha1)]),
@@ -1322,52 +1322,58 @@ args(['--turtle', Argument|Args]) :-
 					),
 					format('~q.~n', [Rt])
 				)
-			;	(	flag(n3p)
-				->	format('~q.~n', [Rt])
-				;	(	Rt = ':-'(Rg)
-					->	call(Rg)
-					;	(	predicate_property(Rt, dynamic)
+			;	(	Rt = ':-'(Rg)
+				->	call(Rg),
+					(	flag(n3p)
+					->	format('~q.~n', [Rt])
+					;	true
+					)
+				;	(	predicate_property(Rt, dynamic)
+					->	true
+					;	(	File = '-'
 						->	true
-						;	(	File = '-'
-							->	true
-							;	close(In)
-							),
-							(	retract(tmpfile(File))
-							->	delete_file(File)
-							;	true
-							),
-							throw(builtin_redefinition(Rt))
+						;	close(In)
 						),
-						(	Rt = pfx(Pfx, _)
-						->	retractall(pfx(Pfx, _))
+						(	retract(tmpfile(File))
+						->	delete_file(File)
 						;	true
 						),
-						(	Rt = scope(Scope)
-						->	nb_setval(current_scope, Scope)
-						;	true
-						),
-						(	Rt \= implies(_, _, _),
-							Rt \= scount(_),
-							\+flag('no-distinct-input'),
-							call(Rt)
-						->	true
-						;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-							->	jitis(Rt)
-							;	true
-							),
-							(	Rt \= flag(_, _),
-								Rt \= scope(_),
-								Rt \= pfx(_, _),
-								Rt \= pred(_),
+						throw(builtin_redefinition(Rt))
+					),
+					(	Rt = pfx(Pfx, _)
+					->	retractall(pfx(Pfx, _))
+					;	true
+					),
+					(	Rt = scope(Scope)
+					->	nb_setval(current_scope, Scope)
+					;	true
+					),
+					(	Rt \= implies(_, _, _),
+						Rt \= scount(_),
+						\+flag('no-distinct-input'),
+						call(Rt)
+					->	true
+					;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+						->	jitis(Rt),
+							(	flag(n3p),
 								Rt \= scount(_)
-							->	(	flag(nope)
-								->	true
-								;	nb_getval(current_scope, Src),
-									term_index(Rt, Rnd),
-									assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-								)
+							->	format('~q.~n', [Rt])
 							;	true
 							)
+						;	true
+						),
+						(	Rt \= flag(_, _),
+							Rt \= scope(_),
+							Rt \= pfx(_, _),
+							Rt \= pred(_),
+							Rt \= scount(_)
+						->	(	flag(nope)
+							->	true
+							;	nb_getval(current_scope, Src),
+								term_index(Rt, Rnd),
+								assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+							)
+						;	true
 						)
 					)
 				)
@@ -3105,9 +3111,16 @@ wcf(A) :-
 	atom(A),
 	relabel(A, B),
 	sub_atom(B, 0, 1, _, '<'),
+	sub_atom(B, _, 1, 0, '>'),
 	!,
 	sub_atom(B, 1, _, 1, C),
-	write(C).
+	(	sub_atom(C, _, 3, 0, '_id')
+	->	sha_hash(C, D, [algorithm(sha1)]),
+		atom_codes(E, D),
+		base64url(E, F),
+		write(F)
+	;	write(C)
+	).
 wcf(A) :-
 	atom(A),
 	sub_atom(A, 0, 1, _, '_'),
