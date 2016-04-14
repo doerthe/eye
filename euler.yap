@@ -46,7 +46,7 @@
 :- use_module(library(when), [when/2]).
 :- use_module(library(qsave)).
 :- catch(use_module(library(process)), _, true).
-:- catch(use_module(library(sha1)), _, true).
+:- catch(use_module(library(sha)), _, true).
 :- catch(use_module(library(uri)), _, true).
 :- endif.
 :- if(\+current_predicate(date_time_stamp/2)).
@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0412.1404 josd').
+version_info('EYE-Spring16.0414.0938 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -225,11 +225,14 @@ main :-
 	argv(Argvs, Argus),
 	format(user_error, 'eye~@~n', [wa(Argus)]),
 	(	memberchk('--no-genid', Argus)
-	->	Id = 0
-	;	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30)
+	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
+	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
+		atom_number(Run2, Run1),
+		sha_hash(Run2, Run3, [algorithm(sha1)]),
+		atom_codes(Run4, Run3),
+		base64url(Run4, Run5),
+		atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run5, '#'], Vns)
 	),
-	atom_number(Run, Id),
-	atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run, '#'], Vns),
 	nb_setval(var_ns, Vns),
 	version_info(Version),
 	format(user_error, '~w~n', [Version]),
@@ -292,14 +295,14 @@ main :-
 				->	format(user_error, 'JITI ~w/2 indexed ~w~n', [Pred, Ind2])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _, _],
-					predicate_property(P, indexed(Ind4))
-				->	format(user_error, 'JITI ~w/4 indexed ~w~n', [Pred, Ind4])
+				(	P =.. [Pred, _, _, _, _, _, _],
+					predicate_property(P, indexed(Ind6))
+				->	format(user_error, 'JITI ~w/6 indexed ~w~n', [Pred, Ind6])
 				;	true
 				),
-				(	P =.. [Pred, _, _, _, _, _],
-					predicate_property(P, indexed(Ind5))
-				->	format(user_error, 'JITI ~w/5 indexed ~w~n', [Pred, Ind5])
+				(	P =.. [Pred, _, _, _, _, _, _, _],
+					predicate_property(P, indexed(Ind7))
+				->	format(user_error, 'JITI ~w/7 indexed ~w~n', [Pred, Ind7])
 				;	true
 				)
 			)
@@ -1012,10 +1015,6 @@ opts([Arg|Argus], [Arg|Args]) :-
 
 args([]) :-
 	!.
-args(['--plugin', Arg|Args]) :-
-	sub_atom(Arg, _, 14, 0, 'rif-plugin.yap'),
-	!,
-	args(Args).
 args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
@@ -1323,52 +1322,58 @@ args(['--turtle', Argument|Args]) :-
 					),
 					format('~q.~n', [Rt])
 				)
-			;	(	flag(n3p)
-				->	format('~q.~n', [Rt])
-				;	(	Rt = ':-'(Rg)
-					->	call(Rg)
-					;	(	predicate_property(Rt, dynamic)
+			;	(	Rt = ':-'(Rg)
+				->	call(Rg),
+					(	flag(n3p)
+					->	format('~q.~n', [Rt])
+					;	true
+					)
+				;	(	predicate_property(Rt, dynamic)
+					->	true
+					;	(	File = '-'
 						->	true
-						;	(	File = '-'
-							->	true
-							;	close(In)
-							),
-							(	retract(tmpfile(File))
-							->	delete_file(File)
-							;	true
-							),
-							throw(builtin_redefinition(Rt))
+						;	close(In)
 						),
-						(	Rt = pfx(Pfx, _)
-						->	retractall(pfx(Pfx, _))
+						(	retract(tmpfile(File))
+						->	delete_file(File)
 						;	true
 						),
-						(	Rt = scope(Scope)
-						->	nb_setval(current_scope, Scope)
-						;	true
-						),
-						(	Rt \= implies(_, _, _),
-							Rt \= scount(_),
-							\+flag('no-distinct-input'),
-							call(Rt)
-						->	true
-						;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-							->	jitis(Rt)
-							;	true
-							),
-							(	Rt \= flag(_, _),
-								Rt \= scope(_),
-								Rt \= pfx(_, _),
-								Rt \= pred(_),
+						throw(builtin_redefinition(Rt))
+					),
+					(	Rt = pfx(Pfx, _)
+					->	retractall(pfx(Pfx, _))
+					;	true
+					),
+					(	Rt = scope(Scope)
+					->	nb_setval(current_scope, Scope)
+					;	true
+					),
+					(	Rt \= implies(_, _, _),
+						Rt \= scount(_),
+						\+flag('no-distinct-input'),
+						call(Rt)
+					->	true
+					;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+						->	jitis(Rt),
+							(	flag(n3p),
 								Rt \= scount(_)
-							->	(	flag(nope)
-								->	true
-								;	nb_getval(current_scope, Src),
-									term_index(Rt, Rnd),
-									assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-								)
+							->	format('~q.~n', [Rt])
 							;	true
 							)
+						;	true
+						),
+						(	Rt \= flag(_, _),
+							Rt \= scope(_),
+							Rt \= pfx(_, _),
+							Rt \= pred(_),
+							Rt \= scount(_)
+						->	(	flag(nope)
+							->	true
+							;	nb_getval(current_scope, Src),
+								term_index(Rt, Rnd),
+								assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+							)
+						;	true
 						)
 					)
 				)
@@ -3106,9 +3111,16 @@ wcf(A) :-
 	atom(A),
 	relabel(A, B),
 	sub_atom(B, 0, 1, _, '<'),
+	sub_atom(B, _, 1, 0, '>'),
 	!,
 	sub_atom(B, 1, _, 1, C),
-	write(C).
+	(	sub_atom(C, _, 3, 0, '_id')
+	->	sha_hash(C, D, [algorithm(sha1)]),
+		atom_codes(E, D),
+		base64url(E, F),
+		write(F)
+	;	write(C)
+	).
 wcf(A) :-
 	atom(A),
 	sub_atom(A, 0, 1, _, '_'),
@@ -3892,6 +3904,12 @@ jitis(A) :-
 	).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	sha_hash(A, C, [algorithm(sha1)]),
+	atom_codes(D, C),
+	base64url(D, B).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sigmoid>'(A, B) :-
 	getnumber(A, C),
 	B is 1/(1+exp(-C)).
@@ -4071,6 +4089,12 @@ jitis(A) :-
 			sub_atom(A, 0, W, _, C)
 		)
 	).
+
+
+'<http://www.w3.org/2000/10/swap/crypto#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	sha_hash(A, C, [algorithm(sha1)]),
+	hash_to_ascii(C, D, []),
+	atom_codes(B, D).
 
 
 '<http://www.w3.org/2000/10/swap/list#append>'(A, B) :-
@@ -8750,6 +8774,15 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), prolog:ato
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#string>'], literal(A, lang(_))) :-
 	!.
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B], literal(A, type(B))).
+
+
+hash_to_ascii([], L1, L1).
+hash_to_ascii([A|B], [C, D|L3], L4) :-
+	E is A>>4 /\ 15,
+	F is A /\ 15,
+	code_type(C, xdigit(E)),
+	code_type(D, xdigit(F)),
+	hash_to_ascii(B, L3, L4).
 
 
 :- if(\+current_predicate(get_time/1)).
