@@ -139,7 +139,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0414.0938 josd').
+version_info('EYE-Spring16.0414.1204 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3034,34 +3034,34 @@ wst :-
 		)
 	),
 	(	catch(nb_getval(csv_header, Header), _, Header = []),
-		wct(Header),
+		wct(Header, Header),
 		length(Header, Headerl),
 		query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
 		catch(call(Where), _, fail),
-		wct(Select),
+		wct(Select, Header),
 		cnt(output_statements, Headerl),
 		fail
 	;	true
 	).
 
 
-wct([]) :-
+wct([], []) :-
 	!,
 	write('\r\n').
-wct([A]) :-
+wct([A], [C]) :-
 	!,
-	wcf(A),
+	wcf(A, C),
 	write('\r\n').
-wct([A|B]) :-
-	wcf(A),
+wct([A|B], [C|D]) :-
+	wcf(A, C),
 	write(','),
-	wct(B).
+	wct(B, D).
 
 
-wcf(A) :-
+wcf(A, _) :-
 	var(A),
 	!.
-wcf(rdiv(X, Y)) :-
+wcf(rdiv(X, Y), _) :-
 	number_codes(Y, [0'1|Z]),
 	lzero(Z, Z),
 	!,
@@ -3075,7 +3075,7 @@ wcf(rdiv(X, Y)) :-
 		)
 	),
 	format(F, [X]).
-wcf(literal(A, B)) :-
+wcf(literal(A, B), _) :-
 	!,
 	atom_codes(A, C),
 	subst([[[0'\\, 0'"], [0'", 0'"]]], C, E),
@@ -3091,7 +3091,7 @@ wcf(literal(A, B)) :-
 		write('"')
 	;	write(F)
 	).
-wcf(A) :-
+wcf(A, _) :-
 	atom(A),
 	nb_getval(var_ns, Vns),
 	sub_atom(A, 1, I, _, Vns),
@@ -3100,34 +3100,34 @@ wcf(A) :-
 	sub_atom(A, J, _, 1, B),
 	write('_:'),
 	write(B).
-wcf(A) :-
+wcf(A, _) :-
 	atom(A),
 	flag('no-skolem', Prefix),
 	sub_atom(A, 1, _, _, Prefix),
 	!,
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(B, ['no-skolem', Prefix, A]),
 	wt0(B).
-wcf(A) :-
+wcf(A, B) :-
 	atom(A),
-	relabel(A, B),
-	sub_atom(B, 0, 1, _, '<'),
-	sub_atom(B, _, 1, 0, '>'),
+	relabel(A, C),
+	sub_atom(C, 0, 1, _, '<'),
+	sub_atom(C, _, 1, 0, '>'),
 	!,
-	sub_atom(B, 1, _, 1, C),
-	(	sub_atom(C, _, 3, 0, '_id')
-	->	sha_hash(C, D, [algorithm(sha1)]),
-		atom_codes(E, D),
-		base64url(E, F),
-		write(F)
-	;	write(C)
+	sub_atom(C, 1, _, 1, D),
+	(	sub_atom(B, _, 2, 0, 'ID')
+	->	sha_hash(D, E, [algorithm(sha1)]),
+		atom_codes(F, E),
+		base64url(F, G),
+		write(G)
+	;	write(D)
 	).
-wcf(A) :-
+wcf(A, _) :-
 	atom(A),
 	sub_atom(A, 0, 1, _, '_'),
 	!,
 	sub_atom(A, 1, _, 0, B),
 	write(B).
-wcf(A) :-
+wcf(A, _) :-
 	write(A).
 
 
