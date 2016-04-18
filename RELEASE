@@ -12,6 +12,8 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- using P =&gt; true instead of false &lt;= P to express query P =&gt; P 
+- running <a href="http://w3c.github.io/rdf-tests/turtle/">Turtle tests</a> and <a href="http://josd.github.io/eyeearl/earl-report.ttl">passed 298 out of 298 tests</a>
 - adjusting <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> output for uris (obs from Kristof Depraetere)
 - fixing --n3p in conjunction with --turtle
 - adjusting the generated id for Skolem IRIs
@@ -140,7 +142,7 @@
 - improving relative IRI resolution thanks to SWIPL library(uri)
 - introducing extenders i.e. rules using &lt;= in N3 (obs from Dirk Colaert)
 - adding --tactic=existing-path to have Euler path using homomorphism
-- making implicit quantification according to <a href="http://eulersharp.sourceforge.net/2006/02swap/eye-note#designissues">http://eulersharp.sourceforge.net/2006/02swap/eye-note#designissues</a>
+- making implicit quantification according to <a href="http://eulersharp.sourceforge.net/2006/02swap/eye-note">http://eulersharp.sourceforge.net/2006/02swap/eye-note</a>
 - correcting bug in graph literal unifier (obs from Hong Sun)
 - correcting reasoning time measurement for csv output (obs from Hong Sun)
 - showing the number of csv output records (obs from Hong Sun)
@@ -247,7 +249,7 @@
 - adjusting local and global stack limits
 - fixing proof explanation in the case of --plugin &lt;n3p_resource&gt;
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> to generate CSV output with --strings (test case <a href="http://eulersharp.sourceforge.net/2007/07test/select_test">select_test</a>)
-- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#getrand">prolog:getrand</a> and <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#setrand">prolog:setrand</a> built-ins
+- adding <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">prolog:getrand</a> and <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">prolog:setrand</a> built-ins
 - fixing <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#closure">e:closure</a> built-in (obs from Gijs Muys)
 - fixing bnode labels with minus sign (obs from Ruben Verborgh)
 - adding --no-numerals command line switch to have no numerals in output (obs from Hong Sun)
@@ -338,7 +340,7 @@
 - correct throw of base_may_not_contain_hash exception (obs from Kristof Depraetere)
 - fixing issue with <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html#conjunction">prolog:conjunction</a>
 - adding uri DCG production for N3 parser
-- <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">Prolog built-ins</a> according to <a href="http://www.deransart.fr/prolog/bips.html#built-ins">ISO standard</a>
+- <a href="http://eulersharp.sourceforge.net/2003/03swap/prolog.html">Prolog built-ins</a> according to <a href="http://www.deransart.fr/prolog/bips.html">ISO standard</a>
 - disable branch engine for definite clause KB
 - support proof (blue) without @ keywords and without bindings like in <a href="http://eulersharp.sourceforge.net/2007/07test/witchE.html">witch example</a>
 - EYE supporting <a href="http://eulersharp.sourceforge.net/2006/02swap/rgb-note.txt">RGB</a>

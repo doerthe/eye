@@ -48,7 +48,7 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 <b>Design issue:</b> <a href="http://eulersharp.sourceforge.net/2007/07test/witchE.html">Proof output without bindings</a>
   The variable substitutions naturally follow from the proof.
 
-This is the <span style="background: #ff7f7f">EYE dataprocessor</span> in a nutshell:
+This is the <span style="background: #ffff7f">EYE dataprocessor</span> and the <span style="background: #7fffff">EYE proofprocessor</span>:
  <img src="http://eulersharp.sourceforge.net/2006/02swap/eye-dataprocessor.png" alt="EYE dataprocessor" height="228" width="285"/>
 </pre>
 </body>
