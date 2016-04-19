@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0419.1019 josd').
+version_info('EYE-Spring16.0419.1153 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1864,7 +1864,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		writeln('.')
 	),
 	tr_n3p(Z, Src, query).
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, true)|Z], Src, _) :-
+tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, _) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer')
@@ -3151,9 +3151,9 @@ indentation(C) :-
 % In a nutshell:
 %
 %  1/ Select rule P => C
-%  2/ Prove P & NOT(C) (backward chaining)
+%  2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
 %  3/ If P & NOT(C) assert C (forward chaining) and remove brake
-%  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/ or 1/
+%  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/
 %  5/ If brake or tactic linear-select stop, else start again at 1/
 
 eam(Span) :-
