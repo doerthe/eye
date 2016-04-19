@@ -35,8 +35,11 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
  1/ Select rule P =&gt; C
  2/ Prove P &amp; NOT(C) (backward chaining)
  3/ If P &amp; NOT(C) assert C (forward chaining) and remove brake
- 4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/ or 1/
+ 4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/1/
  5/ If brake or tactic linear-select stop, else start again at 1/
+
+The <span style="background: #ffff3f">EYE data processor</span> and <span style="background: #bfffff">EYE proof processor</span> design is as follows:
+    <img src="http://eulersharp.sourceforge.net/2006/02swap/eye-d3p.png" alt="EYE dataprocessor" height="228" width="285"/>
 
 <b>Design issue:</b> <a href="https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000.html">Implicit Quantification in N3</a>
   A N3 resource contains implications of the form Li =&gt; Lj or
@@ -45,11 +48,9 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
   Li, Lj and L0 are called clause literals.
   The scope of implicit universals is the clause.
   The scope of implicit existentials is the clause literal.
+
 <b>Design issue:</b> <a href="http://eulersharp.sourceforge.net/2007/07test/witchE.html">Proof output without bindings</a>
   The variable substitutions naturally follow from the proof.
-
-This is the <span style="background: #ffff7f">EYE dataprocessor</span> and the <span style="background: #7fffff">EYE proofprocessor</span>:
- <img src="http://eulersharp.sourceforge.net/2006/02swap/eye-dataprocessor.png" alt="EYE dataprocessor" height="228" width="285"/>
 </pre>
 </body>
 </html>

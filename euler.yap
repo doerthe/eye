@@ -45,6 +45,7 @@
 :- if(current_prolog_flag(dialect, swi)).
 :- use_module(library(when), [when/2]).
 :- use_module(library(qsave)).
+:- catch(use_module(library(base64)), _, true).
 :- catch(use_module(library(process)), _, true).
 :- catch(use_module(library(sha)), _, true).
 :- catch(use_module(library(uri)), _, true).
@@ -139,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0418.1409 josd').
+version_info('EYE-Spring16.0419.1019 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -7830,7 +7831,11 @@ distinct(A, B) :-
 
 
 distinct_hash([], []) :-
-	retractall(hash_value(_, _)).
+	(	retract(hash_value(_, _)),
+		fail
+	;	true
+	),
+	!.
 distinct_hash([A|B], C) :-
 	term_index(A, D),
 	(	hash_value(D, E)
@@ -8164,6 +8169,15 @@ exec(A, B) :-
 :- if(\+current_predicate(getcwd/1)).
 getcwd(A) :-
 	working_directory(A, A).
+:- endif.
+
+
+:- if(\+current_predicate(base64url/2)).
+base64url(A, B) :-
+	base64(A, C),
+	atom_codes(C, D),
+	subst([[[0'+], [0'-]], [[0'/], [0'_]], [[0'=], []]], D, E),
+	atom_codes(B, E).
 :- endif.
 
 

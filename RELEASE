@@ -12,7 +12,8 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
-- using P =&gt; true instead of false &lt;= P to express query P =&gt; P 
+- improving the performance of distinct_hash/2 when using SWIPL 7.3 and adding base64url/2 when using SWIPL 6.6
+- using P =&gt; true instead of false &lt;= P to express query P =&gt; P
 - running <a href="http://w3c.github.io/rdf-tests/turtle/">Turtle tests</a> and <a href="http://josd.github.io/eyeearl/earl-report.ttl">passed 298 out of 298 tests</a>
 - adjusting <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> output for uris (obs from Kristof Depraetere)
 - fixing --n3p in conjunction with --turtle
