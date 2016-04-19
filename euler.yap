@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0419.1153 josd').
+version_info('EYE-Spring16.0419.1337 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -229,7 +229,12 @@ main :-
 	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
 	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
 		atom_number(Run2, Run1),
-		sha_hash(Run2, Run3, [algorithm(sha1)]),
+		catch(sha_hash(Run2, Run3, [algorithm(sha1)]), _,
+			(	format(user_error, '** ERROR ** please install swipl package clib~n', []),
+				flush_output(user_error),
+				halt(1)
+			)
+		),
 		atom_codes(Run4, Run3),
 		base64url(Run4, Run5),
 		atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run5, '#'], Vns)
