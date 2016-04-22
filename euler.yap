@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0419.1337 josd').
+version_info('EYE-Spring16.0422.1025 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -236,7 +236,7 @@ main :-
 			)
 		),
 		atom_codes(Run4, Run3),
-		base64url(Run4, Run5),
+		base64xml(Run4, Run5),
 		atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run5, '#'], Vns)
 	),
 	nb_setval(var_ns, Vns),
@@ -3123,7 +3123,7 @@ wcf(A, B) :-
 	(	sub_atom(B, _, 2, 0, 'ID')
 	->	sha_hash(D, E, [algorithm(sha1)]),
 		atom_codes(F, E),
-		base64url(F, G),
+		base64xml(F, G),
 		write(G)
 	;	write(D)
 	).
@@ -3913,7 +3913,7 @@ jitis(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	sha_hash(A, C, [algorithm(sha1)]),
 	atom_codes(D, C),
-	base64url(D, B).
+	base64xml(D, B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sigmoid>'(A, B) :-
@@ -8177,13 +8177,13 @@ getcwd(A) :-
 :- endif.
 
 
-:- if(\+current_predicate(base64url/2)).
-base64url(A, B) :-
+% Modified Base64 for XML identifiers
+
+base64xml(A, B) :-
 	base64(A, C),
 	atom_codes(C, D),
-	subst([[[0'+], [0'-]], [[0'/], [0'_]], [[0'=], []]], D, E),
+	subst([[[0'+], [0'_]], [[0'/], [0':]], [[0'=], []]], D, E),
 	atom_codes(B, E).
-:- endif.
 
 
 :- if(current_prolog_flag(dialect, swi)).
