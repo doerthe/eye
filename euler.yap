@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0422.1025 josd').
+version_info('EYE-Spring16.0422.1419 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2077,7 +2077,7 @@ w3 :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
-		write('[ '),
+		write('[] '),
 		wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
 		write(' '),
 		wp('<http://www.w3.org/2000/10/swap/reason#Proof>'),
@@ -2131,7 +2131,7 @@ w3 :-
 		indentation(-2),
 		nl,
 		indent,
-		write('}].'),
+		write('}.'),
 		indentation(-2),
 		nl,
 		nl
