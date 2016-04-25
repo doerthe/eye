@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0422.1419 josd').
+version_info('EYE-Spring16.0425.0912 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -169,6 +169,7 @@ eye
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
 	--tactic existing-path		Euler path using homomorphism
+	--think				generate all answer proof paths
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 	--ignore-syntax-error		do not halt in case of syntax error
 	--ignore-inference-fuse		do not halt in case of inference fuse
@@ -1008,8 +1009,8 @@ opts([Arg|Argus], Args) :-
 				'--ignore-syntax-error', '--ignore-inference-fuse', '--n3p', '--strings',
 				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
 				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
-				'--pass-turtle', '--multi-query', '--streaming-reasoning',
-				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
+				'--pass-turtle', '--multi-query', '--streaming-reasoning', '--think',
+				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet'])	% DEPRECATED
 	->	sub_atom(Arg, 2, _, 0, Opt),
 		assertz(flag(Opt))
 	;	throw(not_supported_argument(Arg))
@@ -3244,7 +3245,7 @@ eam(Span) :-
 		;	Concdr = Concd
 		),
 		term_index(Prem, Pnd),
-		(	flag(think),	% DEPRECATED
+		(	flag(think),
 			\+flag(nope),
 			\+prfstep(_, _, Prem, Pnd, _, _, _, _)
 		->	true
@@ -3286,7 +3287,7 @@ eam(Span) :-
 		findall([D, F, E],
 			(	member([D, D, E], Lc),
 				unify(D, F),
-				(	flag(think),	% DEPRECATED
+				(	flag(think),
 					\+flag(nope)
 				->	true
 				;	catch(\+call(F), _, true)
