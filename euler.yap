@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0425.0912 josd').
+version_info('EYE-Spring16.0425.1550 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -189,6 +189,7 @@ eye
 	--probe				output speedtest info on stderr
 	--traditional			traditional mode
 	--strict			strict mode
+	--hmac-key <key>		HMAC key
 	--version			show version info
 	--license			show license info
 	--help				show help info
@@ -341,7 +342,7 @@ argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
 	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules',
-			'--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic']),
+			'--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic', '--hmac-key']),
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -914,6 +915,10 @@ opts(['--brake', Lim|Argus], Args) :-
 opts(['--tactic', Tactic|Argus], Args) :-
 	!,
 	assertz(flag(tactic, Tactic)),
+	opts(Argus, Args).
+opts(['--hmac-key', Key|Argus], Args) :-
+	!,
+	assertz(flag('hmac-key', Key)),
 	opts(Argus, Args).
 opts(['--version'|_], _) :-
 	!,
@@ -3122,7 +3127,10 @@ wcf(A, B) :-
 	!,
 	sub_atom(C, 1, _, 1, D),
 	(	sub_atom(B, _, 2, 0, 'ID')
-	->	sha_hash(D, E, [algorithm(sha1)]),
+	->	(	flag('hmac-key', Key)
+		->	hmac_sha(Key, D, E, [algorithm(sha1)])
+		;	sha_hash(D, E, [algorithm(sha1)])
+		),
 		atom_codes(F, E),
 		base64xml(F, G),
 		write(G)
@@ -3913,6 +3921,13 @@ jitis(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	sha_hash(A, C, [algorithm(sha1)]),
+	atom_codes(D, C),
+	base64xml(D, B).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#hmac-sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	flag('hmac-key', Key),
+	hmac_sha(Key, A, C, [algorithm(sha1)]),
 	atom_codes(D, C),
 	base64xml(D, B).
 
