@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0425.1550 josd').
+version_info('EYE-Spring16.0427.0912 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3050,6 +3050,7 @@ wst :-
 		length(Header, Headerl),
 		query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
 		catch(call(Where), _, fail),
+		write('\r\n'),
 		wct(Select, Header),
 		cnt(output_statements, Headerl),
 		fail
@@ -3058,12 +3059,10 @@ wst :-
 
 
 wct([], []) :-
-	!,
-	write('\r\n').
+	!.
 wct([A], [C]) :-
 	!,
-	wcf(A, C),
-	write('\r\n').
+	wcf(A, C).
 wct([A|B], [C|D]) :-
 	wcf(A, C),
 	write(','),

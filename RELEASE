@@ -12,6 +12,7 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- removing last CRLF in CSV output (obs from Samir Boudoudah)
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#hmac-sha">e:hmac-sha</a> built-in together with --hmac-key=key command line option (obs from Kristof Depraetere)
 - reintroducing --think command line option to generate all answer proof paths
 - changing the proof to start with a [] (obs from Dörthe Arndt)
