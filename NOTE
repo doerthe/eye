@@ -38,8 +38,8 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/
  5/ If brake or tactic linear-select stop, else start again at 1/
 
-This is the EYE reasoner supporting the <a href="https://www.w3.org/DesignIssues/diagrams/sweb-bus.png">Semantic Web proof and data bus</a>:
-  <img src="http://eulersharp.sourceforge.net/2006/02swap/eye-reasoner.png" alt="EYE" height="228" width="285"/>
+This is the EYE reasoning engine:
+  <img src="http://eulersharp.sourceforge.net/2006/02swap/eye-reasoning-engine.png" alt="EYE" height="228" width="285"/>
 
 <b>Design issue:</b> <a href="https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000.html">Implicit Quantification in N3</a>
   A N3 resource contains implications of the form Li =&gt; Lj or

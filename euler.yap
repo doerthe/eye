@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0427.0912 josd').
+version_info('EYE-Spring16.0502.1319 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1623,6 +1623,7 @@ n3_n3p(Argument, Mode) :-
 	nb_setval(line_number, 1),
 	nb_setval(sc, 0),
 	nb_setval(semantics, []),
+	nb_setval(smod, true),
 	atomic_list_concat(['\'<', Arg, '>\''], Src),
 	atomic_list_concat([Tmp, '_p'], Tmp_p),
 	assertz(tmpfile(Tmp_p)),
@@ -2405,7 +2406,10 @@ wt((X, Y)) :-
 	wt(X),
 	ws(X),
 	write('.'),
-	nl,
+	(	flag(strings)
+	->	true
+	;	nl
+	),
 	indent,
 	wt(Y).
 wt(cn([X])) :-
@@ -2416,7 +2420,10 @@ wt(cn([X|Y])) :-
 	wt(X),
 	ws(X),
 	write('.'),
-	nl,
+	(	flag(strings)
+	->	true
+	;	nl
+	),
 	indent,
 	(	Y = [Z]
 	->	true
@@ -3142,7 +3149,8 @@ wcf(A, _) :-
 	sub_atom(A, 1, _, 0, B),
 	write(B).
 wcf(A, _) :-
-	write(A).
+	with_output_to(atom(B), wg(A)),
+	write(B).
 
 
 indent:-
