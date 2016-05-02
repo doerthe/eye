@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0502.1319 josd').
+version_info('EYE-Spring16.0502.1357 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2407,10 +2407,10 @@ wt((X, Y)) :-
 	ws(X),
 	write('.'),
 	(	flag(strings)
-	->	true
-	;	nl
+	->	write(' ')
+	;	nl,
+		indent
 	),
-	indent,
 	wt(Y).
 wt(cn([X])) :-
 	!,
@@ -2421,10 +2421,10 @@ wt(cn([X|Y])) :-
 	ws(X),
 	write('.'),
 	(	flag(strings)
-	->	true
-	;	nl
+	->	write(' ')
+	;	nl,
+		indent
 	),
-	indent,
 	(	Y = [Z]
 	->	true
 	;	Z = cn(Y)
