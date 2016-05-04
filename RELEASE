@@ -15,7 +15,6 @@
 - improving the output of lists, sets and graphs in <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> (obs from Hong Sun)
 - removing last CRLF in CSV output (obs from Samir Boudoudah)
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#hmac-sha">e:hmac-sha</a> built-in together with --hmac-key=key command line option (obs from Kristof Depraetere)
-- reintroducing --think command line option to generate all answer proof paths
 - changing the proof to start with a [] (obs from Dörthe Arndt)
 - <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#sha">e:sha</a>, <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> and the generated id for Skolem IRIs are now using modified base64 for XML identifiers (obs from Hong Sun)
 - giving an ERROR when swipl package clib is not installed
