@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0504.0738 josd').
+version_info('EYE-Spring16.0509.0914 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -168,6 +168,7 @@ eye
 	--brake <count>			set maximimum brake <count>
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
+	--tactic limited-answer <count>	give only a limited numer of answers
 	--tactic existing-path		Euler path using homomorphism
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 	--ignore-syntax-error		do not halt in case of syntax error
@@ -523,6 +524,7 @@ gre(Argus) :-
 	nb_setval(lemma_count, 0),
 	nb_setval(lemma_cursor, 0),
 	nb_setval(output_statements, 0),
+	nb_setval(answer_count, 0),
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
 		tmp_file(Tmp),
@@ -910,6 +912,20 @@ opts(['--brake', Lim|Argus], Args) :-
 		)
 	),
 	assertz(flag(brake, Limit)),
+	opts(Argus, Args).
+opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** limited-answer ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	assertz(flag('limited-answer', Limit)),
 	opts(Argus, Args).
 opts(['--tactic', Tactic|Argus], Args) :-
 	!,
@@ -3314,14 +3330,28 @@ eam(Span) :-
 		clist(Le, Conce),
 		clist(Lf, Clc),
 		astep(Src, Prem, Concs, Conce, Clc, Rule),
+		(	(	Concs = answer(_, _, _, _, _, _, _)
+			;	Concs = cn([answer(_, _, _, _, _, _, _)|_])
+			)
+		->	cnt(answer_count)
+		;	true
+		),
+		nb_getval(answer_count, AnswerCount),
 		(	flag(tactic, 'single-answer'),
-			answer(_, _, _, _, _, _, _)
+			AnswerCount >= 1
 		->	(	flag(strings)
 			->	true
 			;	w3
 			)
-		;	retract(brake),
-			fail
+		;	(	flag('limited-answer', AnswerLimit),
+				AnswerCount >= AnswerLimit
+			->	(	flag(strings)
+				->	true
+				;	w3
+			)
+			;	retract(brake),
+				fail
+			)
 		)
 	;	(	brake
 		;	flag(tactic, 'linear-select')
