@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0511.1418 josd').
+version_info('EYE-Spring16.0511.2143 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2647,27 +2647,18 @@ wt1(X) :-
 wt2(literal(X, lang(Y))) :-
 	!,
 	write('"'),
-	atom_codes(X, U),
-	escape_unicode(U, V),
-	atom_codes(Z, V),
-	write(Z),
+	write(X),
 	write('"@'),
 	write(Y).
 wt2(literal(X, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!,
 	write('"'),
-	atom_codes(X, U),
-	escape_unicode(U, V),
-	atom_codes(Z, V),
-	write(Z),
+	write(X),
 	write('"').
 wt2(literal(X, type(Y))) :-
 	!,
 	write('"'),
-	atom_codes(X, U),
-	escape_unicode(U, V),
-	atom_codes(Z, V),
-	write(Z),
+	write(X),
 	write('"^^'),
 	wt(Y).
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X|Y], Z)) :-
@@ -8340,34 +8331,6 @@ escape_squote([A|B], [A|C]) :-
 	escape_squote(B, C).
 
 
-escape_unicode([], []) :-
-	!.
-escape_unicode([A, B|C], D) :-
-	0xD800 =< A,
-	A =< 0xDBFF,
-	0xDC00 =< B,
-	B =< 0xDFFF,
-	E is 0x10000+(A-0xD800)*0x400+(B-0xDC00),
-	(	0x100000 =< E
-	->	with_output_to(codes(F), format('\\U00~16R', [E]))
-	;	with_output_to(codes(F), format('\\U000~16R', [E]))
-	),
-	append(F, G, D),
-	!,
-	escape_unicode(C, G).
-escape_unicode([A|B], C) :-
-	0x10000 =< A,
-	(	0x100000 =< A
-	->	with_output_to(codes(D), format('\\U00~16R', [A]))
-	;	with_output_to(codes(D), format('\\U000~16R', [A]))
-	),
-	append(D, E, C),
-	!,
-	escape_unicode(B, E).
-escape_unicode([A|B], [A|C]) :-
-	escape_unicode(B, C).
-
-
 quant(A, some) :-
 	var(A),
 	!.
@@ -10583,24 +10546,12 @@ string_dq(0'\n, _, _, []) :-
 string_dq(0'", In, C, []) :-
 	!,
 	get_code(In, C).
-string_dq(0'\\, In, C, D) :-
+string_dq(0'\\, In, C, [H|T]) :-
 	get_code(In, C1),
 	!,
 	string_escape(C1, In, C2, H),
-	(	H =< 0xFFFF
-	->	D = [H|T]
-	;	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	),
 	string_dq(C2, In, C, T).
-string_dq(C0, In, C, D) :-
-	(	C0 =< 0xFFFF
-	->	D = [C0|T]
-	;	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	),
+string_dq(C0, In, C, [C0|T]) :-
 	get_code(In, C1),
 	string_dq(C1, In, C, T).
 
@@ -10612,24 +10563,12 @@ string_sq(-1, _, _, []) :-
 string_sq(0'', In, C, []) :-
 	!,
 	get_code(In, C).
-string_sq(0'\\, In, C, D) :-
+string_sq(0'\\, In, C, [H|T]) :-
 	get_code(In, C1),
 	!,
 	string_escape(C1, In, C2, H),
-	(	H =< 0xFFFF
-	->	D = [H|T]
-	;	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	),
 	string_sq(C2, In, C, T).
-string_sq(C0, In, C, D) :-
-	(	C0 =< 0xFFFF
-	->	D = [C0|T]
-	;	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	),
+string_sq(C0, In, C, [C0|T]) :-
 	get_code(In, C1),
 	string_sq(C1, In, C, T).
 
