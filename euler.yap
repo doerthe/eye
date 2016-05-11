@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0509.0914 josd').
+version_info('EYE-Spring16.0511.1418 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -10660,7 +10660,15 @@ string_escape(0'\\, In, C, 0'\\) :-
 	get_code(In, C).
 string_escape(0'u, In, C, Code) :-
 	!,
-	get_hhhh(In, Code),
+	get_hhhh(In, A),
+	(	0xD800 =< A,
+		A =< 0xDBFF
+	->	get_code(In, 0'\\),
+		get_code(In, 0'u),
+		get_hhhh(In, B),
+		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
+	;	Code is A
+	),
 	get_code(In, C).
 string_escape(0'U, In, C, Code) :-
 	!,
@@ -10758,7 +10766,15 @@ iri_chars(C0, In, C, [C0|T]) :-
 
 iri_escape(0'u, In, C, Code) :-
 	!,
-	get_hhhh(In, Code),
+	get_hhhh(In, A),
+	(	0xD800 =< A,
+		A =< 0xDBFF
+	->	get_code(In, 0'\\),
+		get_code(In, 0'u),
+		get_hhhh(In, B),
+		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
+	;	Code is A
+	),
 	get_code(In, C).
 iri_escape(0'U, In, C, Code) :-
 	!,
