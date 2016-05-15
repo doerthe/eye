@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0511.2143 josd').
+version_info('EYE-Spring16.0515.2313 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2632,7 +2632,13 @@ wt0(X) :-
 	),
 	(	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
 	->	wt2(W)
-	;	write(W)
+	;	(	current_prolog_flag(windows, true)
+		->	atom_codes(W, U),
+			escape_unicode(U, V),
+			atom_codes(Z, V)
+		;	Z = W
+		),
+		write(Z)
 	).
 
 
@@ -2647,18 +2653,36 @@ wt1(X) :-
 wt2(literal(X, lang(Y))) :-
 	!,
 	write('"'),
-	write(X),
+	(	current_prolog_flag(windows, true)
+	->	atom_codes(X, U),
+		escape_unicode(U, V),
+		atom_codes(Z, V)
+	;	Z = X
+	),
+	write(Z),
 	write('"@'),
 	write(Y).
 wt2(literal(X, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!,
 	write('"'),
-	write(X),
+	(	current_prolog_flag(windows, true)
+	->	atom_codes(X, U),
+		escape_unicode(U, V),
+		atom_codes(Z, V)
+	;	Z = X
+	),
+	write(Z),
 	write('"').
 wt2(literal(X, type(Y))) :-
 	!,
 	write('"'),
-	write(X),
+	(	current_prolog_flag(windows, true)
+	->	atom_codes(X, U),
+		escape_unicode(U, V),
+		atom_codes(Z, V)
+	;	Z = X
+	),
+	write(Z),
 	write('"^^'),
 	wt(Y).
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X|Y], Z)) :-
@@ -8331,6 +8355,21 @@ escape_squote([A|B], [A|C]) :-
 	escape_squote(B, C).
 
 
+escape_unicode([], []) :-
+	!.
+escape_unicode([A, B|C], D) :-
+	0xD800 =< A,
+	A =< 0xDBFF,
+	0xDC00 =< B,
+	B =< 0xDFFF,
+	with_output_to(codes(F), format('\\u~16R\\u~16R', [A, B])),
+	append(F, G, D),
+	!,
+	escape_unicode(C, G).
+escape_unicode([A|B], [A|C]) :-
+	escape_unicode(B, C).
+
+
 quant(A, some) :-
 	var(A),
 	!.
@@ -10546,12 +10585,26 @@ string_dq(0'\n, _, _, []) :-
 string_dq(0'", In, C, []) :-
 	!,
 	get_code(In, C).
-string_dq(0'\\, In, C, [H|T]) :-
+string_dq(0'\\, In, C, D) :-
 	get_code(In, C1),
 	!,
 	string_escape(C1, In, C2, H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
 	string_dq(C2, In, C, T).
-string_dq(C0, In, C, [C0|T]) :-
+string_dq(C0, In, C, D) :-
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
 	get_code(In, C1),
 	string_dq(C1, In, C, T).
 
@@ -10563,12 +10616,26 @@ string_sq(-1, _, _, []) :-
 string_sq(0'', In, C, []) :-
 	!,
 	get_code(In, C).
-string_sq(0'\\, In, C, [H|T]) :-
+string_sq(0'\\, In, C, D) :-
 	get_code(In, C1),
 	!,
 	string_escape(C1, In, C2, H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
 	string_sq(C2, In, C, T).
-string_sq(C0, In, C, [C0|T]) :-
+string_sq(C0, In, C, D) :-
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
 	get_code(In, C1),
 	string_sq(C1, In, C, T).
 
@@ -10676,11 +10743,18 @@ lwrdigs(C, _, C, T, T).
 iri_chars(0'>, In, C, []) :-
 	!,
 	get_code(In, C).
-iri_chars(0'\\, In, C, [H|T]) :-
+iri_chars(0'\\, In, C, D) :-
 	!,
 	get_code(In, C1),
 	iri_escape(C1, In, C2, H),
 	\+non_iri_char(H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
 	iri_chars(C2, In, C, T).
 iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
 	!,
@@ -10697,8 +10771,15 @@ iri_chars(0'', In, C, [0'', 0''|T]) :-
 iri_chars(-1, _, _, _) :-
 	!,
 	fail.
-iri_chars(C0, In, C, [C0|T]) :-
+iri_chars(C0, In, C, D) :-
 	\+non_iri_char(C0),
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
 	get_code(In, C1),
 	iri_chars(C1, In, C, T).
 
