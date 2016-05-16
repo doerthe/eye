@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0515.2313 josd').
+version_info('EYE-Spring16.0516.1157 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2632,13 +2632,7 @@ wt0(X) :-
 	),
 	(	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
 	->	wt2(W)
-	;	(	current_prolog_flag(windows, true)
-		->	atom_codes(W, U),
-			escape_unicode(U, V),
-			atom_codes(Z, V)
-		;	Z = W
-		),
-		write(Z)
+	;	write(X)
 	).
 
 
@@ -2653,36 +2647,18 @@ wt1(X) :-
 wt2(literal(X, lang(Y))) :-
 	!,
 	write('"'),
-	(	current_prolog_flag(windows, true)
-	->	atom_codes(X, U),
-		escape_unicode(U, V),
-		atom_codes(Z, V)
-	;	Z = X
-	),
-	write(Z),
+	write(X),
 	write('"@'),
 	write(Y).
 wt2(literal(X, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!,
 	write('"'),
-	(	current_prolog_flag(windows, true)
-	->	atom_codes(X, U),
-		escape_unicode(U, V),
-		atom_codes(Z, V)
-	;	Z = X
-	),
-	write(Z),
+	write(X),
 	write('"').
 wt2(literal(X, type(Y))) :-
 	!,
 	write('"'),
-	(	current_prolog_flag(windows, true)
-	->	atom_codes(X, U),
-		escape_unicode(U, V),
-		atom_codes(Z, V)
-	;	Z = X
-	),
-	write(Z),
+	write(X),
 	write('"^^'),
 	wt(Y).
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X|Y], Z)) :-
@@ -8353,21 +8329,6 @@ escape_squote([0''|A], [0'\\, 0''|B]) :-
 	escape_squote(A, B).
 escape_squote([A|B], [A|C]) :-
 	escape_squote(B, C).
-
-
-escape_unicode([], []) :-
-	!.
-escape_unicode([A, B|C], D) :-
-	0xD800 =< A,
-	A =< 0xDBFF,
-	0xDC00 =< B,
-	B =< 0xDFFF,
-	with_output_to(codes(F), format('\\u~16R\\u~16R', [A, B])),
-	append(F, G, D),
-	!,
-	escape_unicode(C, G).
-escape_unicode([A|B], [A|C]) :-
-	escape_unicode(B, C).
 
 
 quant(A, some) :-
