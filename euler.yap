@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0516.1157 josd').
+version_info('EYE-Spring16.0516.1205 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2632,7 +2632,7 @@ wt0(X) :-
 	),
 	(	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
 	->	wt2(W)
-	;	write(X)
+	;	write(W)
 	).
 
 
