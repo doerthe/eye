@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0516.1429 josd').
+version_info('EYE-Spring16.0518.1218 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -9350,7 +9350,10 @@ dynamic_verb(Verb) :-
 		->	true
 		;	assertz(intern(V)),
 			(	sub_atom(V, 0, 1, _, '\'')
-			->	sub_atom(V, 1, _, 1, B)
+			->	sub_atom(V, 1, _, 1, A),
+				atom_codes(A, C),
+				escape_squote(D, C),
+				atom_codes(B, D)
 			;	B = V
 			),
 			(	current_predicate(B/2)
@@ -10038,10 +10041,11 @@ propertylisttailsemis(L1, L1).
 
 qname(URI, [NS:Name|L2], L2) :-
 	(	ns(NS, Base)
-	->	atom_codes(Name, Codes),
-		escape_squote(Codes, Codes2),
+	->	atomic_list_concat([Base, Name], Name1),
+		atom_codes(Name1, Codes1),
+		escape_squote(Codes1, Codes2),
 		atom_codes(Name2, Codes2),
-		atomic_list_concat(['\'<', Base, Name2, '>\''], URI)
+		atomic_list_concat(['\'<', Name2, '>\''], URI)
 	;	nb_getval(line_number, Ln),
 		throw(no_prefix_directive(NS, after_line(Ln)))
 	),
@@ -10189,7 +10193,10 @@ uri(Name, L1, L2) :-
 	!,
 	base_uri(V),
 	resolve_uri(U, V, W),
-	atomic_list_concat(['\'<', W, '>\''], Name).
+	atom_codes(W, X),
+	escape_squote(X, Y),
+	atom_codes(Z, Y),
+	atomic_list_concat(['\'<', Z, '>\''], Name).
 uri(Name, L1, L2) :-
 	qname(Name, L1, L2).
 
@@ -10768,10 +10775,6 @@ iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
 	code_type(C2, xdigit(_)),
 	get_code(In, C3),
 	iri_chars(C3, In, C, T).
-iri_chars(0'', In, C, [0'', 0''|T]) :-
-	!,
-	get_code(In, C1),
-	iri_chars(C1, In, C, T).
 iri_chars(-1, _, _, _) :-
 	!,
 	fail.
