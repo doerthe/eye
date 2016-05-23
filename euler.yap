@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0518.1218 josd').
+version_info('EYE-Spring16.0523.0953 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1891,7 +1891,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		writeln('.')
 	),
 	tr_n3p(Z, Src, query).
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, _) :-
+tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) :-
 	!,
 	(	flag(nope),
 		\+flag(tactic, 'single-answer')
@@ -1901,7 +1901,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, _) :-
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
-	tr_n3p(Z, Src, query).
+	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	!,
 	(	flag(nope),
