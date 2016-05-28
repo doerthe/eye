@@ -12,6 +12,7 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- changing the proof to give the full conclusion of an inference (obs from Dörthe Arndt)
 - fixing bug in --pass-all-ground in conjunction with P =&gt; P (obs from Marc Twagirumukiza)
 - fixing issue with single quote in URIs (obs from Jean-Marc Vanel)
 - fixing the handling of Unicode surrogate pairs (obs from Kristof Depraetere)
