@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0523.0953 josd').
+version_info('EYE-Spring16.0528.0823 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3344,7 +3344,7 @@ eam(Span) :-
 		clist(Ls, Concs),
 		clist(Le, Conce),
 		clist(Lf, Clc),
-		astep(Src, Prem, Concs, Conce, Clc, Rule),
+		astep(Src, Prem, Concd, Concs, Conce, Clc, Rule),
 		(	(	Concs = answer(_, _, _, _, _, _, _)
 			;	Concs = cn([answer(_, _, _, _, _, _, _)|_])
 			)
@@ -3391,7 +3391,7 @@ eam(Span) :-
 	).
 
 
-astep(A, B, C, Cn, Cc, Rule) :-
+astep(A, B, Cd, C, Cn, Cc, Rule) :-
 	(	Cn = cn([Dn|En]),
 		Cc = cn([Dc|Ec])
 	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
@@ -3430,8 +3430,8 @@ astep(A, B, C, Cn, Cc, Rule) :-
 				Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 				prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
 					'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-			->	assertz(prfstep(Dn, Cnd, Q3, Q4, C, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-			;	assertz(prfstep(Dn, Cnd, B, Pnd, C, Rule, forward, A))
+			->	assertz(prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+			;	assertz(prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A))
 			)
 		),
 		(	En = [Fn],
@@ -3440,7 +3440,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 		;	Fn = cn(En),
 			Fc = cn(Ec)
 		),
-		astep(A, B, C, Fn, Fc, Rule)
+		astep(A, B, Cd, C, Fn, Fc, Rule)
 	;	(	Cn = true
 		->	true
 		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
@@ -3479,8 +3479,8 @@ astep(A, B, C, Cn, Cc, Rule) :-
 					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
 						'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-				->	assertz(prfstep(Cn, Cnd, Q3, Q4, C, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-				;	assertz(prfstep(Cn, Cnd, B, Pnd, C, Rule, forward, A))
+				->	assertz(prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+				;	assertz(prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A))
 				)
 			)
 		)
