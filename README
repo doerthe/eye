@@ -23,7 +23,7 @@ and in a Docker container for HTTP client use [10].
  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
  [4] http://www.w3.org/TeamSubmission/n3/
  [5] http://www.w3.org/2000/10/swap/doc/cwm
- [6] https://github.com/josd/eyeetc
+ [6] https://github.com/josd/eyeify
  [7] http://eulersharp.sourceforge.net/RELEASE
  [8] http://eulersharp.sourceforge.net/INSTALL
  [9] https://registry.hub.docker.com/u/bdevloed/eye/
