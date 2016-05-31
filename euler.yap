@@ -140,7 +140,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0530.1326 josd').
+version_info('EYE-Spring16.0531.1247 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -802,39 +802,98 @@ opts(['--pvm', File|Argus], _) :-
 	;	true
 	),
 	(	assertz(':-'(term_expansion(T1, T2),
+				(	T1 = exopred(P, S, O),
+					(	compound(P)
+					;	compound(S)
+					;	compound(O)
+					),
+					!,
+					term_index(P, Pi),
+					term_index(S, Si),
+					term_index(O, Oi),
+					term_arg_1(P, Pp),
+					term_arg_1(S, Sp),
+					term_arg_1(O, Op),
+					T3 = exopred(P, S, O, Pi, Si, Oi, Pp, Sp, Op),
+					(	\+ catch(exopred(_, _, _, _, _, _, _, _, _), _, fail)
+					->	T4 = [	':-'(dynamic(exopred/9)),
+							':-'(multifile(exopred/9)),
+							':-'(exopred(P, U, V),
+								(	(	compound(U)
+									->	term_index(U, Ui),
+										arg(1, U, Up)
+									;	true
+									),
+									(	compound(V)
+									->	term_index(V, Vi),
+										arg(1, V, Vp)
+									;	true
+									),
+									exopred(P, U, V, Pi, Ui, Vi, Pp, Up, Vp)
+								)
+							),
+							T3
+						],
+						(	flag(nope)
+						->	T2 = T4
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							append(T4, [prfstep(T1, Tnd, true, _, T1, _, forward, Src)], T2)
+						)
+					;	(	flag(nope)
+						->	T2 = T3
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
+						)
+					)
+				)
+			)
+		),
+		assertz(':-'(term_expansion(T1, T2),
 				(	T1 =.. [P, S, O],
 					(	compound(S)
 					;	compound(O)
 					),
 					!,
-					term_index(S, I),
-					term_index(O, J),
-					term_arg_1(S, K),
-					term_arg_1(O, L),
-					T3 =.. [P, S, O, I, J, K, L],
-					T4 =.. [P, _, _, _, _, _, _],
-					(	\+ catch(call(T4), _, fail)
+					term_index(S, Si),
+					term_index(O, Oi),
+					term_arg_1(S, Sp),
+					term_arg_1(O, Op),
+					T3 =.. [P, S, O, Si, Oi, Sp, Op],
+					(	\+ catch(call(P, _, _, _, _, _, _), _, fail)
 					->	X =.. [P, U, V],
-						T2 = [	':-'(dynamic(P/6)),
+						T4 = [	':-'(dynamic(P/6)),
 							':-'(multifile(P/6)),
 							':-'(X,
 								(	(	compound(U)
-									->	term_index(U, M),
-										arg(1, U, Q)
+									->	term_index(U, Ui),
+										arg(1, U, Up)
 									;	true
 									),
 									(	compound(V)
-									->	term_index(V, N),
-										arg(1, V, R)
+									->	term_index(V, Vi),
+										arg(1, V, Vp)
 									;	true
 									),
-									Y =.. [P, U, V, M, N, Q, R],
+									Y =.. [P, U, V, Ui, Vi, Up, Vp],
 									call(Y)
 								)
 							),
 							T3
-						]
-					;	T2 = T3
+						],
+						(	flag(nope)
+						->	T2 = T4
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							append(T4, [prfstep(T1, Tnd, true, _, T1, _, forward, Src)], T2)
+						)
+					;	(	flag(nope)
+						->	T2 = T3
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
+						)
 					)
 				)
 			)
@@ -3627,6 +3686,39 @@ jitis(answer(P, S, O, I, J, K, L)) :-
 	),
 	B =.. [P, S, O, I, J, K, L, answer],
 	assertz(B).
+jitis(exopred(P, S, O)) :-
+	ground(exopred(P, S, O)),
+	(	compound(P)
+	;	compound(S)
+	;	compound(O)
+	),
+	!,
+	term_index(P, Pi),
+	term_index(S, Si),
+	term_index(O, Oi),
+	term_arg_1(P, Pp),
+	term_arg_1(S, Sp),
+	term_arg_1(O, Op),
+	(	current_predicate(exopred/9)
+	->	true
+	;	dynamic(exopred/9),
+		assertz(':-'(exopred(P, U, V),
+				(	(	compound(U)
+					->	term_index(U, Ui),
+						arg(1, U, Up)
+					;	true
+					),
+					(	compound(V)
+					->	term_index(V, Vi),
+						arg(1, V, Vp)
+					;	true
+					),
+					exopred(P, U, V, Pi, Ui, Vi, Pp, Up, Vp)
+				)
+			)
+		)
+	),
+	assertz(exopred(P, S, O, Pi, Si, Oi, Pp, Sp, Op)).
 jitis(A) :-
 	ground(A),
 	A =.. [P, S, O],
@@ -3634,32 +3726,32 @@ jitis(A) :-
 	;	compound(O)
 	),
 	!,
-	term_index(S, I),
-	term_index(O, J),
-	term_arg_1(S, K),
-	term_arg_1(O, L),
+	term_index(S, Si),
+	term_index(O, Oi),
+	term_arg_1(S, Sp),
+	term_arg_1(O, Op),
 	(	current_predicate(P/6)
 	->	true
 	;	dynamic(P/6),
 		X =.. [P, U, V],
 		assertz(':-'(X,
 				(	(	compound(U)
-					->	term_index(U, M),
-						arg(1, U, Q)
+					->	term_index(U, Ui),
+						arg(1, U, Up)
 					;	true
 					),
 					(	compound(V)
-					->	term_index(V, N),
-						arg(1, V, R)
+					->	term_index(V, Vi),
+						arg(1, V, Vp)
 					;	true
 					),
-					Y =.. [P, U, V, M, N, Q, R],
+					Y =.. [P, U, V, Ui, Vi, Up, Vp],
 					call(Y)
 				)
 			)
 		)
 	),
-	B =.. [P, S, O, I, J, K, L],
+	B =.. [P, S, O, Si, Oi, Sp, Op],
 	assertz(B).
 jitis(A) :-
 	assertz(A).
