@@ -141,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0531.1953 josd').
+version_info('EYE-Spring16.0531.2118 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -805,21 +805,18 @@ opts(['--pvm', File|Argus], _) :-
 	),
 	(	assertz(':-'(term_expansion(T1, T2),
 				(	T1 = exopred(P, S, O),
-					(	compound(P)
-					;	compound(S)
+					(	compound(S)
 					;	compound(O)
 					),
 					!,
-					term_index(P, Pi),
 					term_index(S, Si),
 					term_index(O, Oi),
-					term_arg_1(P, Pp),
 					term_arg_1(S, Sp),
 					term_arg_1(O, Op),
-					T3 = exopred(P, S, O, Pi, Si, Oi, Pp, Sp, Op),
-					(	\+ catch(exopred(_, _, _, _, _, _, _, _, _), _, fail)
-					->	T4 = [	':-'(dynamic(exopred/9)),
-							':-'(multifile(exopred/9)),
+					T3 = exopred(P, S, O, Si, Oi, Sp, Op),
+					(	\+ catch(exopred(_, _, _, _, _, _, _), _, fail)
+					->	T4 = [	':-'(dynamic(exopred/7)),
+							':-'(multifile(exopred/7)),
 							':-'(exopred(P, U, V),
 								(	(	compound(U)
 									->	term_index(U, Ui),
@@ -831,7 +828,7 @@ opts(['--pvm', File|Argus], _) :-
 										arg(1, V, Vp)
 									;	true
 									),
-									exopred(P, U, V, Pi, Ui, Vi, Pp, Up, Vp)
+									exopred(P, U, V, Ui, Vi, Up, Vp)
 								)
 							),
 							T3
@@ -2392,12 +2389,13 @@ wr(Z) :-
 	term_index(Z, Cnd),
 	(	flag(think),
 		\+flag(nope)
-	->	!,
-		findall(get_wi(X, Y, Pnd, Q, Rule),
+	->	findall(get_wi(X, Y, Pnd, Q, Rule),
 			(	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X)
 			),
 			L
 		),
+		L \= [],
+		!,
 		(	L = [get_wi(X, Y, Pnd, Q, Rule)]
 		->	(	\+got_wi(X, Y, Pnd, Q, Rule)
 			->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
@@ -3726,20 +3724,17 @@ jitis(answer(P, S, O, I, J, K, L)) :-
 	assertz(B).
 jitis(exopred(P, S, O)) :-
 	ground(exopred(P, S, O)),
-	(	compound(P)
-	;	compound(S)
+	(	compound(S)
 	;	compound(O)
 	),
 	!,
-	term_index(P, Pi),
 	term_index(S, Si),
 	term_index(O, Oi),
-	term_arg_1(P, Pp),
 	term_arg_1(S, Sp),
 	term_arg_1(O, Op),
-	(	current_predicate(exopred/9)
+	(	current_predicate(exopred/7)
 	->	true
-	;	dynamic(exopred/9),
+	;	dynamic(exopred/7),
 		assertz(':-'(exopred(P, U, V),
 				(	(	compound(U)
 					->	term_index(U, Ui),
@@ -3751,12 +3746,12 @@ jitis(exopred(P, S, O)) :-
 						arg(1, V, Vp)
 					;	true
 					),
-					exopred(P, U, V, Pi, Ui, Vi, Pp, Up, Vp)
+					exopred(P, U, V, Ui, Vi, Up, Vp)
 				)
 			)
 		)
 	),
-	assertz(exopred(P, S, O, Pi, Si, Oi, Pp, Sp, Op)).
+	assertz(exopred(P, S, O, Si, Oi, Sp, Op)).
 jitis(A) :-
 	ground(A),
 	A =.. [P, S, O],
