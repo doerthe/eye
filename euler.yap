@@ -78,6 +78,7 @@
 :- dynamic(flag/2).
 :- dynamic(forward/0).
 :- dynamic(got_dq/0).
+:- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
 :- dynamic(got_random/3).
@@ -140,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0531.1247 josd').
+version_info('EYE-Spring16.0531.1953 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -166,6 +167,7 @@ eye
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--step <count>			set maximimum step <count>
 	--brake <count>			set maximimum brake <count>
+	--think				find all possible proofs
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
 	--tactic limited-answer <count>	give only a limited numer of answers
@@ -1088,8 +1090,8 @@ opts([Arg|Argus], Args) :-
 				'--ignore-syntax-error', '--ignore-inference-fuse', '--n3p', '--strings',
 				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
 				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
-				'--pass-turtle', '--multi-query', '--streaming-reasoning',
-				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
+				'--pass-turtle', '--multi-query', '--streaming-reasoning', '--think',
+				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet'])	% DEPRECATED
 	->	sub_atom(Arg, 2, _, 0, Opt),
 		assertz(flag(Opt))
 	;	throw(not_supported_argument(Arg))
@@ -2388,14 +2390,50 @@ wr(cn([X|Y])) :-
 	wr(Z).
 wr(Z) :-
 	term_index(Z, Cnd),
-	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X),
-	!,
-	(	\+got_wi(X, Y, Pnd, Q, Rule)
-	->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
-		nl,
-		indent,
-		wi(X, Y, Q, Rule)
-	;	true
+	(	flag(think),
+		\+flag(nope)
+	->	!,
+		findall(get_wi(X, Y, Pnd, Q, Rule),
+			(	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X)
+			),
+			L
+		),
+		(	L = [get_wi(X, Y, Pnd, Q, Rule)]
+		->	(	\+got_wi(X, Y, Pnd, Q, Rule)
+			->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
+				nl,
+				indent,
+				wi(X, Y, Q, Rule)
+			;	true
+			)
+		;	nl,
+			indent,
+			write('('),
+			forall(
+				(	member(get_wi(X, Y, Pnd, Q, Rule), L)
+				),
+				(	\+got_wi(X, Y, Pnd, Q, Rule)
+				->	(	\+got_head
+					->	assertz(got_head)
+					;	write(' ')
+					),
+					assertz(got_wi(X, Y, Pnd, Q, Rule)),
+					wi(X, Y, Q, Rule)
+				;	true
+				)
+			),
+			write(')'),
+			retractall(got_head)
+		)
+	;	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X),
+		!,
+		(	\+got_wi(X, Y, Pnd, Q, Rule)
+		->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
+			nl,
+			indent,
+			wi(X, Y, Q, Rule)
+		;	true
+		)	
 	).
 wr(Y) :-
 	nl,
@@ -3349,9 +3387,9 @@ eam(Span) :-
 		;	Concdr = Concd
 		),
 		term_index(Prem, Pnd),
-		(	flag(think),	% DEPRECATED
+		(	flag(think),
 			\+flag(nope),
-			\+prfstep(_, _, Prem, Pnd, _, _, _, _)
+			\+prfstep(Concdr, _, Prem, Pnd, _, _, _, _)
 		->	true
 		;	(	\+call(Concdr)
 			->	true
@@ -3391,7 +3429,7 @@ eam(Span) :-
 		findall([D, F, E],
 			(	member([D, D, E], Lc),
 				unify(D, F),
-				(	flag(think),	% DEPRECATED
+				(	flag(think),
 					\+flag(nope)
 				->	true
 				;	catch(\+call(F), _, true)
