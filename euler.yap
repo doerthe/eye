@@ -141,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0531.2118 josd').
+version_info('EYE-Spring16.0601.1305 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3387,7 +3387,7 @@ eam(Span) :-
 		term_index(Prem, Pnd),
 		(	flag(think),
 			\+flag(nope),
-			\+prfstep(Concdr, _, Prem, Pnd, _, _, _, _)
+			\+prfstep(_, _, Prem, Pnd, _, Rule, _, _)
 		->	true
 		;	(	\+call(Concdr)
 			->	true

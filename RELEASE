@@ -12,7 +12,8 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
-- reintroduce --think option to find all possible proofs
+- fixing infinite loop in RESTdesc preproof when using --think option (obs from Giovanni Mels)
+- reintroduce --think option to find all possible proofs (obs from Hong Sun)
 - adding jiti (just in time indexing) support for exo-predicates such as (:i60 :i53 :i27) (:p 10) :o.
 - changing the proof to give the full conclusion of an inference (obs from Dörthe Arndt)
 - fixing bug in --pass-all-ground in conjunction with P =&gt; P (obs from Marc Twagirumukiza)
