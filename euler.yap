@@ -141,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0601.1305 josd').
+version_info('EYE-Spring16.0602.2200 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1143,7 +1143,10 @@ args(['--plugin', Argument|Args]) :-
 	->	catch(read_line_to_codes(In, _), _, true)
 	;	(	Rt = ':-'(Rg)
 		->	call(Rg)
-		;	(	predicate_property(Rt, dynamic)
+		;	(	(	Rt = ':-'(Rh, _)
+				->	predicate_property(Rh, dynamic)
+				;	predicate_property(Rt, dynamic)
+				)
 			->	true
 			;	(	File = '-'
 				->	true
@@ -1181,7 +1184,10 @@ args(['--plugin', Argument|Args]) :-
 					->	true
 					;	nb_getval(current_scope, Src),
 						term_index(Rt, Rnd),
-						assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+						(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
+						->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+						;	true
+						)
 					)
 				;	true
 				)
@@ -1456,7 +1462,10 @@ args(['--turtle', Argument|Args]) :-
 							->	true
 							;	nb_getval(current_scope, Src),
 								term_index(Rt, Rnd),
-								assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+								(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
+								->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+								;	true
+								)
 							)
 						;	true
 						)
@@ -2270,8 +2279,14 @@ wj(Cnt, A, true, C, Rule) :-
 	write(' '),
 	wp('<http://www.w3.org/2000/10/swap/reason#Extraction>'),
 	write('; '),
+	nl,
+	indentation(2),
+	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 	write(' {'),
+	nl,
+	indentation(2),
+	indent,
 	(	C = rule(PVars, EVars, Rule)
 	->	(	\+flag(traditional)
 		->	true
@@ -2287,9 +2302,13 @@ wj(Cnt, A, true, C, Rule) :-
 		),
 		wt(C)
 	),
+	ws(C),
+	write('.'),
+	nl,
+	indentation(-2),
+	indent,
 	write('};'),
 	nl,
-	indentation(2),
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#because>'),
 	write(' [ '),
@@ -2310,8 +2329,12 @@ wj(Cnt, A, B, C, Rule) :-
 	write(' '),
 	wp('<http://www.w3.org/2000/10/swap/reason#Inference>'),
 	write('; '),
+	nl,
+	indentation(2),
+	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 	write(' {'),
+	nl,
 	Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc),
 	unifiable(Prem, B, Bs),
 	(	unifiable(Conc, C, Cs)
@@ -2343,17 +2366,27 @@ wj(Cnt, A, B, C, Rule) :-
 	;	Q = some
 	),
 	indentation(2),
+	indent,
 	(	\+flag(traditional)
 	->	true
 	;	wq(D, Q)
 	),
 	wt(C),
+	ws(C),
+	write('.'),
+	nl,
 	indentation(-2),
+	indent,
 	write('}; '),
+	nl,
+	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#evidence>'),
 	write(' ('),
 	indentation(2),
 	wr(B),
+	indentation(-2),
+	nl,
+	indent,
 	write(');'),
 	retractall(got_wi(_, _, _, _, _)),
 	nl,
@@ -2389,49 +2422,38 @@ wr(Z) :-
 	term_index(Z, Cnd),
 	(	flag(think),
 		\+flag(nope)
-	->	findall(get_wi(X, Y, Pnd, Q, Rule),
-			(	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X)
+	->	findall(get_wi(X, Y, Q, Rule),
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X)
 			),
 			L
 		),
 		L \= [],
 		!,
-		(	L = [get_wi(X, Y, Pnd, Q, Rule)]
-		->	(	\+got_wi(X, Y, Pnd, Q, Rule)
-			->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
-				nl,
-				indent,
-				wi(X, Y, Q, Rule)
-			;	true
-			)
+		(	L = [get_wi(X, Y, Q, Rule)]
+		->	nl,
+			indent,
+			wi(X, Y, Q, Rule)
 		;	nl,
 			indent,
 			write('('),
 			forall(
-				(	member(get_wi(X, Y, Pnd, Q, Rule), L)
+				(	member(get_wi(X, Y, Q, Rule), L)
 				),
-				(	\+got_wi(X, Y, Pnd, Q, Rule)
-				->	(	\+got_head
+				(	(	\+got_head
 					->	assertz(got_head)
 					;	write(' ')
 					),
-					assertz(got_wi(X, Y, Pnd, Q, Rule)),
 					wi(X, Y, Q, Rule)
-				;	true
 				)
 			),
 			write(')'),
 			retractall(got_head)
 		)
-	;	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X),
+	;	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
 		!,
-		(	\+got_wi(X, Y, Pnd, Q, Rule)
-		->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
-			nl,
-			indent,
-			wi(X, Y, Q, Rule)
-		;	true
-		)	
+		nl,
+		indent,
+		wi(X, Y, Q, Rule)
 	).
 wr(Y) :-
 	nl,
@@ -3585,7 +3607,10 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 istep(Src, Prem, Conc, Rule) :-
 	term_index(Conc, Cnd),
 	term_index(Prem, Pnd),
-	assertz(prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src)).
+	(	\+prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src)
+	->	assertz(prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src))
+	;	true
+	).
 
 
 pstep(Rule) :-
