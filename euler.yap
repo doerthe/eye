@@ -141,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0603.1443 josd').
+version_info('EYE-Spring16.0603.2059 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3544,8 +3544,14 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 				Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 				prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
 					'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-			->	assertz(prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-			;	assertz(prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A))
+			->	(	\+prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A)
+				->	assertz(prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+				;	true
+				)
+			;	(	\+prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A)
+				->	assertz(prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A))
+				;	true
+				)
 			)
 		),
 		(	En = [Fn],
@@ -3593,8 +3599,14 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
 						'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-				->	assertz(prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-				;	assertz(prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A))
+				->	(	\+prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A)
+					->	assertz(prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+					;	true
+					)
+				;	(	\+prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A)
+					->	assertz(prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A))
+					;	true
+					)
 				)
 			)
 		)
