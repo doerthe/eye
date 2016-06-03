@@ -141,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0602.2200 josd').
+version_info('EYE-Spring16.0603.1443 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -1835,7 +1835,10 @@ n3_n3p(Argument, Mode) :-
 						->	copy_term(It, Ic)
 						;	Ic = It
 						),
-						assertz(prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St))
+						(	\+prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St)
+						->	assertz(prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St))
+						;	true
+						)
 					;	(	Rt = ':-'(Ci, Pi)
 						->	(	Ci = true
 							->	call(Pi)
@@ -3406,20 +3409,14 @@ eam(Span) :-
 		->	makevars(Concd, Concdr)
 		;	Concdr = Concd
 		),
-		term_index(Prem, Pnd),
 		(	flag(think),
 			\+flag(nope),
-			\+prfstep(_, _, Prem, Pnd, _, Rule, _, _)
+			term_index(Prem, Pnd),
+			term_index(Concdr, Cnd),
+			\+prfstep(_, _, Prem, Pnd, _, Rule, _, _),
+			prfstep(Concdr, Cnd, _, _, _, _, _, _)
 		->	true
-		;	(	\+call(Concdr)
-			->	true
-			;	(	flag(debug),
-					flag(warn)
-				->	format(user_error, '.. eam/1 euler path so do not step in your own step ~w~n', [Concd]),
-					flush_output(user_error),
-					fail
-				)
-			)
+		;	\+call(Concdr)
 		),
 		(	flag('rule-histogram')
 		->	lookup(RTC, tc, RuleL),
