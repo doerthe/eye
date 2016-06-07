@@ -141,7 +141,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0603.2059 josd').
+version_info('EYE-Spring16.0607.1244 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3431,7 +3431,7 @@ eam(Span) :-
 		copy_term(Concd, Cc),
 		(	Concd \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(_, _)
 		->	nb_getval(wn, W),
-			labelvars(Concd, W, N),
+			labelvars(Prem-Concd, W, N),
 			nb_setval(wn, N)
 		;	true
 		),
