@@ -12,7 +12,8 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
-- fixing jiti (just in time indexing) issue for the proof generation
+- fixing --think performance degradation for <a href="https://github.com/josd/eyeify/tree/master/jiti">https://github.com/josd/eyeify/tree/master/jiti</a>
+- fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
 - avoiding redundant lemmas in r:evidence when using --think option
 - fixing infinite loop when using --think option in conjuction with e:optional
 - fixing infinite loop in RESTdesc preproof when using --think option (obs from Giovanni Mels)
