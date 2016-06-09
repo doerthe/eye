@@ -142,7 +142,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0609.1131 josd').
+version_info('EYE-Spring16.0609.1245 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2446,7 +2446,8 @@ wr(Z) :-
 			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
 				term_index(Y-Q, Ind),
 				(	lemma(Cntc, X, Y, Q, Ind, Rule)
-				->	\+lemma_dep(Cntp, Cntc)
+				->	Cntp =\= Cntc,
+					\+lemma_dep(Cntp, Cntc)
 				;	true
 				)
 			),
