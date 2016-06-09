@@ -92,6 +92,7 @@
 :- dynamic(intern/1).
 :- dynamic(keywords/1).
 :- dynamic(lemma/6).
+:- dynamic(lemma_dep/2).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(npred/1).
@@ -141,7 +142,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0608.1300 josd').
+version_info('EYE-Spring16.0609.1131 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -525,6 +526,7 @@ gre(Argus) :-
 	nb_setval(fm, 0),
 	nb_setval(lemma_count, 0),
 	nb_setval(lemma_cursor, 0),
+	nb_setval(lemma_parent, 0),
 	nb_setval(output_statements, 0),
 	nb_setval(answer_count, 0),
 	(	flag('multi-query')
@@ -2266,6 +2268,20 @@ wi(A, B, C, Rule) :-
 		nb_getval(lemma_count, Cnt),
 		assertz(lemma(Cnt, A, B, C, Ind, Rule))
 	),
+	nb_getval(lemma_parent, Cntp),
+	(	\+lemma_dep(Cnt, Cntp)
+	->	assertz(lemma_dep(Cnt, Cntp)),
+		forall(
+			(	lemma_dep(Cntp, Cnta)
+			),
+			(	(	\+lemma_dep(Cnt, Cnta)
+				->	assertz(lemma_dep(Cnt, Cnta))
+				;	true
+				)
+			)
+		)
+	;	true
+	),
 	write('<#lemma'),
 	write(Cnt),
 	write('>').
@@ -2325,6 +2341,7 @@ wj(Cnt, A, true, C, Rule) :-
 	write('].'),
 	indentation(-2).
 wj(Cnt, A, B, C, Rule) :-
+	nb_setval(lemma_parent, Cnt),
 	write('<#lemma'),
 	write(Cnt),
 	write('> '),
@@ -2404,7 +2421,6 @@ wj(Cnt, A, B, C, Rule) :-
 	write('.'),
 	indentation(-2).
 
-
 wr(exopred(P, S, O)) :-
 	atom(P),
 	!,
@@ -2422,11 +2438,17 @@ wr(cn([X|Y])) :-
 	),
 	wr(Z).
 wr(Z) :-
+	nb_getval(lemma_parent, Cntp),
 	term_index(Z, Cnd),
 	(	flag(think),
 		\+flag(nope)
 	->	findall(get_wi(X, Y, Q, Rule),
-			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X)
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
+				term_index(Y-Q, Ind),
+				(	lemma(Cntc, X, Y, Q, Ind, Rule)
+				->	\+lemma_dep(Cntp, Cntc)
+				;	true
+				)
 			),
 			L
 		),
