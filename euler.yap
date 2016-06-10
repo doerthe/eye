@@ -142,7 +142,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0609.1245 josd').
+version_info('EYE-Spring16.0610.1012 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3637,10 +3637,12 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 
 
 istep(Src, Prem, Conc, Rule) :-
+	copy_term(Prem, Prec),
+	labelvars(Prec, 0, _),
 	term_index(Conc, Cnd),
-	term_index(Prem, Pnd),
-	(	\+prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src)
-	->	assertz(prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src))
+	term_index(Prec, Pnd),
+	(	\+prfstep(Conc, Cnd, Prec, Pnd, Conc, Rule, backward, Src)
+	->	assertz(prfstep(Conc, Cnd, Prec, Pnd, Conc, Rule, backward, Src))
 	;	true
 	).
 
