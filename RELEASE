@@ -12,6 +12,7 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Spring16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Spring16/">EYE-Spring16</a>]</span>
+- fixing --think performance degradation for EYE components (rules using &lt;= in <a href="http://www.w3.org/TeamSubmission/n3/">N3</a>)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
 - fixing --think performance degradation for <a href="https://github.com/josd/eyeify/tree/master/jiti">https://github.com/josd/eyeify/tree/master/jiti</a>
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
