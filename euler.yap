@@ -93,6 +93,7 @@
 :- dynamic(keywords/1).
 :- dynamic(lemma/6).
 :- dynamic(lemma_dep/2).
+:- dynamic(lemma_ign/1).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(npred/1).
@@ -142,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0610.1012 josd').
+version_info('EYE-Spring16.0610.2235 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2130,6 +2131,23 @@ wh :-
 
 
 w3 :-
+	(	flag(think),
+		\+flag(nope)
+	->	tmp_file(Tmp),
+		open(Tmp, write, Ws, [encoding(utf8)]),
+		tell(Ws),
+		ww,
+		told,
+		delete_file(Tmp),
+		retractall(wpfx(_)),
+		nb_setval(lemma_cursor, 0),
+		nb_setval(lemma_parent, 0)
+	;	true
+	),
+	ww.
+
+
+ww :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2167,7 +2185,7 @@ w3 :-
 		fail
 	;	nl
 	).
-w3 :-
+ww :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
@@ -2239,9 +2257,12 @@ w3 :-
 		nb_getval(lemma_cursor, Cursor),
 		lemma(Cursor, Ai, Bi, Ci, _, Di),
 		indent,
-		wj(Cursor, Ai, Bi, Ci, Di),
-		nl,
-		nl,
+		(	\+lemma_ign(Cursor)
+		->	wj(Cursor, Ai, Bi, Ci, Di),
+			nl,
+			nl
+		;	true
+		),
 		nb_getval(lemma_count, Cnt),
 		Cursor = Cnt,
 		!
@@ -2269,12 +2290,15 @@ wi(A, B, C, Rule) :-
 		assertz(lemma(Cnt, A, B, C, Ind, Rule))
 	),
 	nb_getval(lemma_parent, Cntp),
-	(	\+lemma_dep(Cnt, Cntp)
+	(	Cntp > 0,
+		Cnt =\= Cntp,
+		\+lemma_dep(Cnt, Cntp)
 	->	assertz(lemma_dep(Cnt, Cntp)),
 		forall(
 			(	lemma_dep(Cntp, Cnta)
 			),
-			(	(	\+lemma_dep(Cnt, Cnta)
+			(	(	Cnt =\= Cnta,
+					\+lemma_dep(Cnt, Cnta)
 				->	assertz(lemma_dep(Cnt, Cnta))
 				;	true
 				)
@@ -2447,13 +2471,21 @@ wr(Z) :-
 				term_index(Y-Q, Ind),
 				(	lemma(Cntc, X, Y, Q, Ind, Rule)
 				->	Cntp =\= Cntc,
-					\+lemma_dep(Cntp, Cntc)
+					\+lemma_dep(Cntp, Cntc),
+					\+lemma_ign(Cntc)
 				;	true
 				)
 			),
 			L
 		),
-		L \= [],
+		(	L \= [],
+			\+lemma_ign(Cntp)
+		->	true
+		;	\+lemma_ign(Cntp),
+			prfstep(Z, Cnd, _, _, _, _, _, _),
+			assertz(lemma_ign(Cntp)),
+			fail
+		),
 		!,
 		(	L = [get_wi(X, Y, Q, Rule)]
 		->	nl,
