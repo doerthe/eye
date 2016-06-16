@@ -16,9 +16,10 @@ For Linux
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install cURL from http://curl.haxx.se/download.html
-Install CTurtle from https://github.com/melgi/cturtle/releases/latest
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install curl from http://curl.haxx.se/download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/latest
+Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
 - copy the EYE source file euler.yap to /opt/eye/src/euler.yap
@@ -34,9 +35,10 @@ For Windows
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install cURL from http://curl.haxx.se/download.html
-Install CTurtle from https://github.com/melgi/cturtle/releases/latest
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install curl from http://curl.haxx.se/download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/latest
+Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.cmd which will
 - copy the EYE source file euler.yap to C:\Program Files\eye\src\euler.yap
@@ -52,8 +54,9 @@ For Mac
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install CTurtle from https://github.com/melgi/cturtle/releases/latest
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/latest
+Put the swipl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
 - copy the EYE source file euler.yap to /opt/eye/src/euler.yap

@@ -80,6 +80,7 @@
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
+:- dynamic(got_lemma_ign/0).
 :- dynamic(got_pi/0).
 :- dynamic(got_random/3).
 :- dynamic(got_sq/0).
@@ -143,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0610.2235 josd').
+version_info('EYE-Spring16.0616.1857 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2136,18 +2137,24 @@ w3 :-
 	->	tmp_file(Tmp),
 		open(Tmp, write, Ws, [encoding(utf8)]),
 		tell(Ws),
-		ww,
+		(	repeat,
+			retractall(got_lemma_ign),
+			wd,
+			retractall(wpfx(_)),
+			nb_setval(lemma_cursor, 0),
+			nb_setval(lemma_parent, 0),
+			\+got_lemma_ign,
+			!
+		;	true
+		),
 		told,
-		delete_file(Tmp),
-		retractall(wpfx(_)),
-		nb_setval(lemma_cursor, 0),
-		nb_setval(lemma_parent, 0)
+		delete_file(Tmp)
 	;	true
 	),
-	ww.
+	wd.
 
 
-ww :-
+wd :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2185,7 +2192,7 @@ ww :-
 		fail
 	;	nl
 	).
-ww :-
+wd :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
@@ -2484,6 +2491,10 @@ wr(Z) :-
 		;	\+lemma_ign(Cntp),
 			prfstep(Z, Cnd, _, _, _, _, _, _),
 			assertz(lemma_ign(Cntp)),
+			(	\+got_lemma_ign
+			->	assertz(got_lemma_ign)
+			;	true
+			),
 			fail
 		),
 		!,
