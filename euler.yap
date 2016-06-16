@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0616.1857 josd').
+version_info('EYE-Spring16.0616.2220 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2139,7 +2139,7 @@ w3 :-
 		tell(Ws),
 		(	repeat,
 			retractall(got_lemma_ign),
-			wd,
+			wm,
 			retractall(wpfx(_)),
 			nb_setval(lemma_cursor, 0),
 			nb_setval(lemma_parent, 0),
@@ -2151,10 +2151,10 @@ w3 :-
 		delete_file(Tmp)
 	;	true
 	),
-	wd.
+	wm.
 
 
-wd :-
+wm :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2192,7 +2192,7 @@ wd :-
 		fail
 	;	nl
 	).
-wd :-
+wm :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
@@ -2451,6 +2451,7 @@ wj(Cnt, A, B, C, Rule) :-
 	wi(A, true, rule(PVars, EVars, Rule), _),
 	write('.'),
 	indentation(-2).
+
 
 wr(exopred(P, S, O)) :-
 	atom(P),
