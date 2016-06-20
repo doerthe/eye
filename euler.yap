@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0616.2220 josd').
+version_info('EYE-Spring16.0620.1854 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -160,57 +160,58 @@ help_info('Usage: eye <options>* <data>* <query>*
 eye
 	swipl -x eye.pvm --
 <options>
-	--nope				no proof explanation
-	--no-qnames			no qnames in the output
-	--no-qvars			no qvars in the output
-	--no-numerals			no numerals in the output
+	--brake <count>			set maximimum brake <count>
+	--debug				output debug info on stderr
+	--debug-cnt			output debug info about counters on stderr
+	--debug-jiti			output debug info about JITI on stderr
+	--debug-pvm			output debug info about PVM code on stderr
+	--help				show help info
+	--hmac-key <key>		HMAC key
+	--ignore-inference-fuse		do not halt in case of inference fuse
+	--ignore-syntax-error		do not halt in case of syntax error
+	--image <pvm-file>		output all <data> and all code to <pvm-file>
+	--license			show license info
+	--n3p				output all <data> as N3 P-code on stdout
 	--no-distinct-input		no distinct triples in the input
 	--no-distinct-output		no distinct answers in the output
 	--no-genid			no generated id in Skolem IRI
+	--no-numerals			no numerals in the output
+	--no-qnames			no qnames in the output
+	--no-qvars			no qvars in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
+	--nope				no proof explanation
+	--pass-only-new			output only new derived triples
+	--probe				output speedtest info on stderr
+	--profile			output profile info on stderr
+	--pvm <n3p-file>		output <n3p-file> as PVM code to <pvm-file>
+	--rule-histogram		output rule histogram info on stderr
+	--standardize-apart-bnodes	to relabel blank nodes in graph literals
+	--statistics			output statistics info on stderr
 	--step <count>			set maximimum step <count>
-	--brake <count>			set maximimum brake <count>
-	--think				find all possible proofs
+	--strict			strict mode
+	--strings			output log:outputString objects on stdout
+	--tactic existing-path		Euler path using homomorphism
+	--tactic limited-answer <count>	give only a limited numer of answers
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
-	--tactic limited-answer <count>	give only a limited numer of answers
-	--tactic existing-path		Euler path using homomorphism
-	--wcache <uri> <file>		to tell that <uri> is cached as <file>
-	--ignore-syntax-error		do not halt in case of syntax error
-	--ignore-inference-fuse		do not halt in case of inference fuse
-	--n3p				output all <data> as N3 P-code on stdout
-	--pvm <n3p-file>		output <n3p-file> as PVM code to <pvm-file>
-	--image <pvm-file>		output all <data> and all code to <pvm-file>
-	--strings			output log:outputString objects on stdout
-	--warn				output warning info on stderr
-	--debug				output debug info on stderr
-	--debug-cnt			output debug info about counters on stderr
-	--debug-pvm			output debug info about PVM code on stderr
-	--debug-jiti			output debug info about JITI on stderr
-	--pass-only-new			output only new derived triples
-	--rule-histogram		output rule histogram info on stderr
-	--profile			output profile info on stderr
-	--statistics			output statistics info on stderr
-	--probe				output speedtest info on stderr
+	--think				find all possible proofs
 	--traditional			traditional mode
-	--strict			strict mode
-	--hmac-key <key>		HMAC key
 	--version			show version info
-	--license			show license info
-	--help				show help info
+	--warn				output warning info on stderr
+	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
 	<n3-data>			N3 triples and rules
-	--turtle <ttl-data>		Turtle data
-	--proof <n3-proof>		N3 proof
 	--plugin <n3p-data>		plugin N3 P-code
 	--plugin-pvm <pvm-data>		plugin PVM code
+	--proof <n3-proof>		N3 proof
+	--turtle <ttl-data>		Turtle data
 <query>
-	--query <n3-query>		output filtered with filter rules
+	--multi-query			query answer loop
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--pass-all-ground		ground the rules and run --pass-all
 	--pass-turtle			output the --turtle data
-	--multi-query			query answer loop
+	--query <n3-query>		output filtered with filter rules
 	--streaming-reasoning		streaming reasoning on --turtle data').
 
 
@@ -1087,12 +1088,11 @@ opts([Arg|Argus], Args) :-
 	\+memberchk(Arg, ['--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules', '--query', '--pass', '--pass-all', '--tquery']),
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
-	(	memberchk(Arg, ['--nope', '--no-qnames', '--no-qvars', '--no-numerals', '--no-distinct-input', '--no-distinct-output', '--no-genid',
-				'--ignore-syntax-error', '--ignore-inference-fuse', '--n3p', '--strings',
-				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
-				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
-				'--pass-turtle', '--multi-query', '--streaming-reasoning', '--think',
-				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet'])	% DEPRECATED
+	(	memberchk(Arg, ['--debug', '--debug-cnt', '--debug-jiti', '--debug-pvm', '--help', '--ignore-inference-fuse', '--ignore-syntax-error', '--multi-query',
+				'--n3p', '--no-distinct-input', '--no-distinct-output', '--no-genid', '--no-numerals', '--no-qnames', '--no-qvars', '--nope',
+				'--pass-only-new', '--pass-turtle', '--profile', '--rule-histogram', '--standardize-apart-bnodes', '--statistics', '--streaming-reasoning',
+				'--strict', '--strings', '--think', '--traditional', '--warn',
+				'--ances', '--kgb', '--no-blank', '--no-branch', '--no-span', '--quiet', '--quick-false', '--quick-possible'])	% DEPRECATED
 	->	sub_atom(Arg, 2, _, 0, Opt),
 		assertz(flag(Opt))
 	;	throw(not_supported_argument(Arg))
@@ -10358,18 +10358,32 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
 		atom_codes(N, LabelTidy)
 	),
-	(	(	\+forward,
-			\+backward
-		->	evar(N, S)
-		;	evar(N, S, 1)
+	(	flag('standardize-apart-bnodes')
+	->	(	(	D =:= 0
+			->	evar(N, S)
+			;	evar(N, S, D)
+			)
+		->	true
+		;	atom_concat(N, '_', M),
+			gensym(M, S),
+			(	D =:= 0
+			->	assertz(evar(N, S))
+			;	assertz(evar(N, S, 1))
+			)
 		)
-	->	true
-	;	atom_concat(N, '_', M),
-		gensym(M, S),
-		(	\+forward,
-			\+backward
-		->	assertz(evar(N, S))
-		;	assertz(evar(N, S, 1))
+	;	(	(	\+forward,
+				\+backward
+			->	evar(N, S)
+			;	evar(N, S, D)
+			)
+		->	true
+		;	atom_concat(N, '_', M),
+			gensym(M, S),
+			(	\+forward,
+				\+backward
+			->	assertz(evar(N, S))
+			;	assertz(evar(N, S, 1))
+			)
 		)
 	),
 	(	nb_getval(fdepth, 0)
