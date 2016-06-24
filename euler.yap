@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0620.1854 josd').
+version_info('EYE-Spring16.0624.0959 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -185,7 +185,6 @@ eye
 	--profile			output profile info on stderr
 	--pvm <n3p-file>		output <n3p-file> as PVM code to <pvm-file>
 	--rule-histogram		output rule histogram info on stderr
-	--standardize-apart-bnodes	to relabel blank nodes in graph literals
 	--statistics			output statistics info on stderr
 	--step <count>			set maximimum step <count>
 	--strict			strict mode
@@ -347,8 +346,8 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules',
-			'--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic', '--hmac-key']),
+	memberchk(U, ['--brake', '--hmac-key', '--image', '--no-skolem', '--plugin', '--plugin-pvm', '--proof', '--pvm', '--query', '--step', '--tactic', '--turtle',
+		      '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -535,7 +534,7 @@ gre(Argus) :-
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
 		tmp_file(Tmp),
-		assertz(flag('tmp-file', Tmp)),
+		assertz(flag('tmp-file', Tmp)),		% DEPRECATED
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
 		(	atomic_list_concat([Fi, Fo], ',', Fa)
@@ -1085,13 +1084,14 @@ opts(['--probe'|_], _) :-
 	delete_file(File),
 	throw(halt).
 opts([Arg|Argus], Args) :-
-	\+memberchk(Arg, ['--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules', '--query', '--pass', '--pass-all', '--tquery']),
+	\+memberchk(Arg, ['--pass', '--pass-all', '--plugin', '--plugin-pvm', '--proof', '--query', '--turtle',
+			  '--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
-	(	memberchk(Arg, ['--debug', '--debug-cnt', '--debug-jiti', '--debug-pvm', '--help', '--ignore-inference-fuse', '--ignore-syntax-error', '--multi-query',
-				'--n3p', '--no-distinct-input', '--no-distinct-output', '--no-genid', '--no-numerals', '--no-qnames', '--no-qvars', '--nope',
-				'--pass-only-new', '--pass-turtle', '--profile', '--rule-histogram', '--standardize-apart-bnodes', '--statistics', '--streaming-reasoning',
-				'--strict', '--strings', '--think', '--traditional', '--warn',
+	(	memberchk(Arg, ['--debug', '--debug-cnt', '--debug-jiti', '--debug-pvm', '--help', '--ignore-inference-fuse', '--ignore-syntax-error',
+				'--multi-query', '--n3p', '--no-distinct-input', '--no-distinct-output', '--no-genid', '--no-numerals', '--no-qnames',
+				'--no-qvars', '--nope', '--pass-only-new', '--pass-turtle', '--profile', '--rule-histogram', '--statistics',
+				'--streaming-reasoning', '--strict', '--strings', '--think', '--traditional', '--warn',
 				'--ances', '--kgb', '--no-blank', '--no-branch', '--no-span', '--quiet', '--quick-false', '--quick-possible'])	% DEPRECATED
 	->	sub_atom(Arg, 2, _, 0, Opt),
 		assertz(flag(Opt))
@@ -5487,7 +5487,7 @@ jitis(A) :-
 			flatten(C, D),
 			atom_codes(B, D)
 		)
-	 ).
+	).
 
 
 % 4.7.1.3 func:string-join
@@ -7037,7 +7037,7 @@ jitis(A) :-
 			;	C = false
 			)
 		)
-	 ).
+	).
 
 
 % 4.8.2.23 pred:time-greater-than-or-equal
@@ -10358,32 +10358,18 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
 		atom_codes(N, LabelTidy)
 	),
-	(	flag('standardize-apart-bnodes')
-	->	(	(	D =:= 0
-			->	evar(N, S)
-			;	evar(N, S, D)
-			)
-		->	true
-		;	atom_concat(N, '_', M),
-			gensym(M, S),
-			(	D =:= 0
-			->	assertz(evar(N, S))
-			;	assertz(evar(N, S, 1))
-			)
+	(	(	\+forward,
+			\+backward
+		->	evar(N, S)
+		;	evar(N, S, D)
 		)
-	;	(	(	\+forward,
-				\+backward
-			->	evar(N, S)
-			;	evar(N, S, D)
-			)
-		->	true
-		;	atom_concat(N, '_', M),
-			gensym(M, S),
-			(	\+forward,
-				\+backward
-			->	assertz(evar(N, S))
-			;	assertz(evar(N, S, 1))
-			)
+	->	true
+	;	atom_concat(N, '_', M),
+		gensym(M, S),
+		(	\+forward,
+			\+backward
+		->	assertz(evar(N, S))
+		;	assertz(evar(N, S, 1))
 		)
 	),
 	(	nb_getval(fdepth, 0)
