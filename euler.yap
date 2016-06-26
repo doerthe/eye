@@ -17,7 +17,7 @@
 %  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
 %  [4] http://www.w3.org/TeamSubmission/n3/
 %  [5] http://www.w3.org/2000/10/swap/doc/cwm
-%  [6] https://github.com/josd/eyeify
+%  [6] https://github.com/josd/impleye
 %  [7] http://eulersharp.sourceforge.net/RELEASE
 %  [8] http://eulersharp.sourceforge.net/INSTALL
 %  [9] https://registry.hub.docker.com/u/bdevloed/eye/
@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0624.0959 josd').
+version_info('EYE-Spring16.0626.1253 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
