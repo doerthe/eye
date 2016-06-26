@@ -16,7 +16,7 @@
 - updating <a href="http://eulersharp.sourceforge.net/INSTALL">EYE INSTALL</a> to put swipl, curl and cturtle in the path environment variable (obs from Kristof Depraetere)
 - fixing --think performance degradation for EYE components (rules using &lt;= in <a href="http://www.w3.org/TeamSubmission/n3/">N3</a>)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
-- fixing --think performance degradation for <a href="https://github.com/josd/impleye/tree/master/jiti">https://github.com/josd/impleye/tree/master/jiti</a>
+- fixing --think performance degradation for <a href="https://github.com/josd/imply/tree/master/jiti">https://github.com/josd/imply/tree/master/jiti</a>
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
 - avoiding redundant lemmas in r:evidence when using --think option
 - fixing infinite loop when using --think option in conjuction with e:optional
@@ -223,8 +223,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from <a href="http://josd.github.io/impleye/rgb/blueproof003.n3">http://josd.github.io/impleye/rgb/blueproof003.n3</a>)
-- fixing critical bug in proof output (obs from <a href="http://josd.github.io/impleye/rgb/blueproof002.n3">http://josd.github.io/impleye/rgb/blueproof002.n3</a>)
+- fixing proof output for queries with true as premis (obs from <a href="http://josd.github.io/imply/rgb/blueproof003.n3">http://josd.github.io/imply/rgb/blueproof003.n3</a>)
+- fixing critical bug in proof output (obs from <a href="http://josd.github.io/imply/rgb/blueproof002.n3">http://josd.github.io/imply/rgb/blueproof002.n3</a>)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)
