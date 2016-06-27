@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0627.0921 josd').
+version_info('EYE-Spring16.0627.1357 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -10361,7 +10361,7 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 	(	(	\+forward,
 			\+backward
 		->	evar(N, S)
-		;	evar(N, S, D)
+		;	evar(N, S, 1)
 		)
 	->	true
 	;	atom_concat(N, '_', M),
