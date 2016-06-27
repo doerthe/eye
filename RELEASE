@@ -16,7 +16,7 @@
 - updating <a href="http://eulersharp.sourceforge.net/INSTALL">EYE INSTALL</a> to put swipl, curl and cturtle in the path environment variable (obs from Kristof Depraetere)
 - fixing --think performance degradation for EYE components (rules using &lt;= in <a href="http://www.w3.org/TeamSubmission/n3/">N3</a>)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
-- fixing --think performance degradation for <a href="https://github.com/josd/imply/tree/master/jiti">https://github.com/josd/imply/tree/master/jiti</a>
+- fixing --think performance degradation for <a href="https://github.com/josd/etc/tree/master/jiti">https://github.com/josd/etc/tree/master/jiti</a>
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
 - avoiding redundant lemmas in r:evidence when using --think option
 - fixing infinite loop when using --think option in conjuction with e:optional
@@ -36,7 +36,7 @@
 - giving an ERROR when swipl package clib is not installed
 - using P =&gt; P instead of false &lt;= P to express a query
 - improving the performance of distinct_hash/2 when using SWIPL 7.3
-- running <a href="http://w3c.github.io/rdf-tests/turtle/">Turtle tests</a> and <a href="http://josd.github.io/eyeearl/earl-report.ttl">passed 298 out of 298 tests</a>
+- running <a href="http://w3c.github.io/rdf-tests/turtle/">Turtle tests</a> and <a href="http://josd.github.io/ttl/earl-report.ttl">passed 298 out of 298 tests</a>
 - adjusting <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#csvTuple">e:csvTuple</a> output for uris (obs from Kristof Depraetere)
 - fixing --n3p in conjunction with --turtle
 - adjusting the generated id for Skolem IRIs
@@ -91,7 +91,7 @@
 - adding EYE_component_may_not_contain_existential_in_conclusion exception
 - adding --no-distinct-input command line switch to have no distinct triples in the input (obs from Hong Sun)
 - deprecating --no-distinct and use --no-distinct-output instead
-- adding --pass-turtle switch and <a href="https://raw.githubusercontent.com/josd/eyeearl/master/earl-report.ttl">passed 291 out of 291 tests</a>
+- adding --pass-turtle switch and <a href="https://raw.githubusercontent.com/josd/ttl/master/earl-report.ttl">passed 291 out of 291 tests</a>
 - adding extra logging info inf/in=inferences_per_input_statement
 - adding --streaming-reasoning query mode to do streaming reasoning on --turtle data
 - changing --turtle to use <a href="https://github.com/melgi/turtle">https://github.com/melgi/turtle</a> thanks to Giovanni Mels
@@ -223,8 +223,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from <a href="http://josd.github.io/imply/rgb/blueproof003.n3">http://josd.github.io/imply/rgb/blueproof003.n3</a>)
-- fixing critical bug in proof output (obs from <a href="http://josd.github.io/imply/rgb/blueproof002.n3">http://josd.github.io/imply/rgb/blueproof002.n3</a>)
+- fixing proof output for queries with true as premis (obs from <a href="http://josd.github.io/etc/rgb/blueproof003.n3">http://josd.github.io/etc/rgb/blueproof003.n3</a>)
+- fixing critical bug in proof output (obs from <a href="http://josd.github.io/etc/rgb/blueproof002.n3">http://josd.github.io/etc/rgb/blueproof002.n3</a>)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)
@@ -267,7 +267,7 @@
 - do not output rules with --pass but use --pass-all instead (obs from Dörthe Arndt)
 - fixing univar and exivar issues in the output of rules
 - fixing univar issue in the derivation of rules
-- supporting backward queries like <a href="https://raw.githubusercontent.com/josd/eyebmb/master/query.n3">https://raw.githubusercontent.com/josd/eyebmb/master/query.n3</a>
+- supporting backward queries like <a href="https://raw.githubusercontent.com/josd/bmb/master/query.n3">https://raw.githubusercontent.com/josd/bmb/master/query.n3</a>
 - output timestamp, output triple count, inference count, elapsed time and inferences/sec speed
 - adjusting local and global stack limits
 - fixing proof explanation in the case of --plugin &lt;n3p_resource&gt;
@@ -375,7 +375,7 @@
 - fixing log:semantics for issue with blank nodes
 
 <span id="Euler-2013-11">[Euler-2013-11]</span>
-- fixing escape_unicode/2 bug and <a href="https://github.com/RubenVerborgh/EyeEarl/blob/master/eye-earl-report.js">eye-earl-report.js</a> passed 291 out of 291 tests
+- fixing escape_unicode/2 bug and <a href="https://github.com/RubenVerborgh/ttl/blob/master/eye-earl-report.js">eye-earl-report.js</a> passed 291 out of 291 tests
 - fixing critical quantified variable issue in generated rules (obs from Hong Sun)
 - improve stretch/relax mechanism strela/2 for complex answer patterns
 - fixing regular expression implementation regex/3
@@ -418,7 +418,7 @@
 <span id="Euler-2013-08">[Euler-2013-08]</span>
 - tested with development SWIPL 6.5.2 kernel
 - improving exception handling for java -jar Euler.jar --no-install (obs from Giovanni Mels)
-- adding --turtle switch and now eye --swipl <a href="https://raw.github.com/RubenVerborgh/EyeEarl/earl/earl-report.ttl">passed 291 out of 291 tests</a>
+- adding --turtle switch and now eye --swipl <a href="https://raw.github.com/RubenVerborgh/ttl/earl/earl-report.ttl">passed 291 out of 291 tests</a>
 - adding big decimal support (obs from <a href="http://www.w3.org/2013/TurtleTests/">Tests for Turtle</a>)
 - correcting log:semantics and log:includes
 - moving from varpred/3 to exopred/3 to support <a href="http://www.w3.org/TR/turtle/#literals">RDF literals</a> and <a href="http://www.w3.org/TeamSubmission/n3/#Quoting">N3 formulae</a> in predicate position
