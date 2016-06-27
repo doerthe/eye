@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0627.1357 josd').
+version_info('EYE-Spring16.0627.2145 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2264,7 +2264,11 @@ wm :-
 		nb_getval(lemma_cursor, Cursor),
 		lemma(Cursor, Ai, Bi, Ci, _, Di),
 		indent,
-		(	\+lemma_ign(Cursor)
+		(	\+lemma_ign(Cursor),
+			(	lemma_dep(Cursor, Dep)
+			->	\+lemma_ign(Dep)
+			;	true
+			)
 		->	wj(Cursor, Ai, Bi, Ci, Di),
 			nl,
 			nl
