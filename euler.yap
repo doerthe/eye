@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0627.2145 josd').
+version_info('EYE-Spring16.0628.0910 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2495,7 +2495,10 @@ wr(Z) :-
 		->	true
 		;	\+lemma_ign(Cntp),
 			prfstep(Z, Cnd, _, _, _, _, _, _),
-			assertz(lemma_ign(Cntp)),
+			(	\+lemma_ign(Cntp)
+			->	assertz(lemma_ign(Cntp))
+			;	true
+			),
 			(	\+got_lemma_ign
 			->	assertz(got_lemma_ign)
 			;	true
