@@ -80,7 +80,6 @@
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
-:- dynamic(got_lemma_ign/0).
 :- dynamic(got_pi/0).
 :- dynamic(got_random/3).
 :- dynamic(got_sq/0).
@@ -94,7 +93,6 @@
 :- dynamic(keywords/1).
 :- dynamic(lemma/6).
 :- dynamic(lemma_dep/2).
-:- dynamic(lemma_ign/1).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(npred/1).
@@ -144,7 +142,7 @@
 
 % Infos
 
-version_info('EYE-Spring16.0628.0910 josd').
+version_info('EYE-Summer16.0628.1312 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2132,29 +2130,6 @@ wh :-
 
 
 w3 :-
-	(	flag(think),
-		\+flag(nope)
-	->	tmp_file(Tmp),
-		open(Tmp, write, Ws, [encoding(utf8)]),
-		tell(Ws),
-		(	repeat,
-			retractall(got_lemma_ign),
-			wm,
-			retractall(wpfx(_)),
-			nb_setval(lemma_cursor, 0),
-			nb_setval(lemma_parent, 0),
-			\+got_lemma_ign,
-			!
-		;	true
-		),
-		told,
-		delete_file(Tmp)
-	;	true
-	),
-	wm.
-
-
-wm :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2192,7 +2167,7 @@ wm :-
 		fail
 	;	nl
 	).
-wm :-
+w3 :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
@@ -2264,16 +2239,9 @@ wm :-
 		nb_getval(lemma_cursor, Cursor),
 		lemma(Cursor, Ai, Bi, Ci, _, Di),
 		indent,
-		(	\+lemma_ign(Cursor),
-			(	lemma_dep(Cursor, Dep)
-			->	\+lemma_ign(Dep)
-			;	true
-			)
-		->	wj(Cursor, Ai, Bi, Ci, Di),
-			nl,
-			nl
-		;	true
-		),
+		wj(Cursor, Ai, Bi, Ci, Di),
+		nl,
+		nl,
 		nb_getval(lemma_count, Cnt),
 		Cursor = Cnt,
 		!
@@ -2483,28 +2451,13 @@ wr(Z) :-
 				term_index(Y-Q, Ind),
 				(	lemma(Cntc, X, Y, Q, Ind, Rule)
 				->	Cntp =\= Cntc,
-					\+lemma_dep(Cntp, Cntc),
-					\+lemma_ign(Cntc)
+					\+lemma_dep(Cntp, Cntc)
 				;	true
 				)
 			),
 			L
 		),
-		(	L \= [],
-			\+lemma_ign(Cntp)
-		->	true
-		;	\+lemma_ign(Cntp),
-			prfstep(Z, Cnd, _, _, _, _, _, _),
-			(	\+lemma_ign(Cntp)
-			->	assertz(lemma_ign(Cntp))
-			;	true
-			),
-			(	\+got_lemma_ign
-			->	assertz(got_lemma_ign)
-			;	true
-			),
-			fail
-		),
+		L \= [],
 		!,
 		(	L = [get_wi(X, Y, Q, Rule)]
 		->	nl,
