@@ -142,7 +142,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0628.1312 josd').
+version_info('EYE-Summer16.0629.1632 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2130,6 +2130,23 @@ wh :-
 
 
 w3 :-
+	(	flag(think),
+		\+flag(nope)
+	->	tmp_file(Tmp),
+		open(Tmp, write, Ws, [encoding(utf8)]),
+		tell(Ws),
+		wm,
+		retractall(wpfx(_)),
+		nb_setval(lemma_cursor, 0),
+		nb_setval(lemma_parent, 0),
+		told,
+		delete_file(Tmp)
+	;	true
+	),
+	wm.
+
+
+wm :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2167,7 +2184,7 @@ w3 :-
 		fail
 	;	nl
 	).
-w3 :-
+wm :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
@@ -2271,14 +2288,24 @@ wi(A, B, C, Rule) :-
 	nb_getval(lemma_parent, Cntp),
 	(	Cntp > 0,
 		Cnt =\= Cntp,
-		\+lemma_dep(Cnt, Cntp)
-	->	assertz(lemma_dep(Cnt, Cntp)),
+		\+lemma_dep(Cntp, Cnt)
+	->	assertz(lemma_dep(Cntp, Cnt)),
 		forall(
-			(	lemma_dep(Cntp, Cnta)
+			(	lemma_dep(Cnta, Cntp)
 			),
-			(	(	Cnt =\= Cnta,
-					\+lemma_dep(Cnt, Cnta)
-				->	assertz(lemma_dep(Cnt, Cnta))
+			(	(	Cnta =\= Cnt,
+					\+lemma_dep(Cnta, Cnt)
+				->	assertz(lemma_dep(Cnta, Cnt))
+				;	true
+				)
+			)
+		),
+		forall(
+			(	lemma_dep(Cnt, Cntd)
+			),
+			(	(	Cntp =\= Cntd,
+					\+lemma_dep(Cntp, Cntd)
+				->	assertz(lemma_dep(Cntp, Cntd))
 				;	true
 				)
 			)
@@ -2447,15 +2474,25 @@ wr(Z) :-
 	(	flag(think),
 		\+flag(nope)
 	->	findall(get_wi(X, Y, Q, Rule),
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X)
+			),
+			L0
+		),
+		findall(get_wi(X, Y, Q, Rule),
 			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
 				term_index(Y-Q, Ind),
 				(	lemma(Cntc, X, Y, Q, Ind, Rule)
 				->	Cntp =\= Cntc,
-					\+lemma_dep(Cntp, Cntc)
+					\+lemma_dep(Cntc, Cntp)
 				;	true
 				)
 			),
-			L
+			L1
+		),
+		(	L0 = L1
+		->	L = L0 
+		;	L0 = [H|_],
+			L =  [H]
 		),
 		L \= [],
 		!,
