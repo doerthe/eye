@@ -143,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0630.1404 josd').
+version_info('EYE-Summer16.0630.1455 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -3862,6 +3862,7 @@ jitis(exopred(P, S, O)) :-
 jitis(A) :-
 	ground(A),
 	A =.. [P, S, O],
+	P \= ':-',
 	(	compound(S)
 	;	compound(O)
 	),
