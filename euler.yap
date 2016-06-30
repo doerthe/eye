@@ -90,6 +90,7 @@
 :- dynamic(implies/3).
 :- dynamic(input_statements/1).
 :- dynamic(intern/1).
+:- dynamic(keep_skolem/1).
 :- dynamic(keywords/1).
 :- dynamic(lemma/6).
 :- dynamic(lemma_dep/2).
@@ -142,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0629.1632 josd').
+version_info('EYE-Summer16.0630.1404 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2107,6 +2108,11 @@ wa([A|B]) :-
 
 
 wh :-
+	(	keep_skolem(_)
+	->	nb_getval(var_ns, Vns),
+		put_pfx('var', Vns)
+	;	true
+	),
 	(	flag('no-qnames')
 	->	true
 	;	nb_setval(wpfx, false),
@@ -2747,6 +2753,7 @@ wt0(X) :-
 	;	flag(nope)
 	),
 	\+flag('pass-all-ground'),
+	\+keep_skolem(X),
 	nb_getval(var_ns, Vns),
 	sub_atom(X, 1, I, _, Vns),
 	J is I+1,
@@ -4270,6 +4277,14 @@ jitis(A) :-
 		),
 		(	A =:= 1.0
 		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#skolem>'(X, Y) :-
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, X),
+	(	\+keep_skolem(Y)
+	->	assertz(keep_skolem(Y))
+	;	true
 	).
 
 
