@@ -48,6 +48,7 @@ This is the EYE reasoning engine:
   Li, Lj and L0 are called clause literals.
   The scope of implicit universals is the clause.
   The scope of implicit existentials is the clause literal.
+  This notation is called <span style="background: #ffff00">ETC</span> standing for "EYE Target Code". 
 
 <b>Design issue:</b> <a href="http://eulersharp.sourceforge.net/2007/07test/witchE.html">Proof output without bindings</a>
   The variable substitutions naturally follow from the proof.

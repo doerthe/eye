@@ -143,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0630.1455 josd').
+version_info('EYE-Summer16.0701.1212 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -10012,10 +10012,10 @@ pathitem([], [], L1, L2) :-
 pathitem(Name, [], L1, L2) :-
 	symbol(S, L1, L2),
 	!,
-	(	qevar(S, N, D)
-	->	(	D = 1,
+	(	qevar(S, N, D), fm(qevar(S, N, D))
+	->	(	D >= 1,
 			nb_getval(fdepth, FD),
-			FD >= 1
+			FD >= D
 		->	atom_concat('_', N, Name),
 			nb_setval(smod, false)
 		;	nb_getval(var_ns, Vns),
