@@ -6,7 +6,7 @@
 % It performs semibackward reasoning and it supports Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
 %
-% EYE entailment test cases [6] verify EYE releases [7].
+% SEE [6] is used to verify EYE releases [7].
 % EYE can be installed manually on Linux, Windows and MacOSX [8].
 % EYE is also available in a Docker container for command line use [9]
 % and in a Docker container for HTTP client use [10].
@@ -17,7 +17,7 @@
 %  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
 %  [4] http://www.w3.org/TeamSubmission/n3/
 %  [5] http://www.w3.org/2000/10/swap/doc/cwm
-%  [6] https://github.com/josd/etc
+%  [6] https://github.com/josd/see
 %  [7] http://eulersharp.sourceforge.net/RELEASE
 %  [8] http://eulersharp.sourceforge.net/INSTALL
 %  [9] https://registry.hub.docker.com/u/bdevloed/eye/
@@ -143,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0701.1212 josd').
+version_info('EYE-Summer16.0704.1255 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -630,51 +630,7 @@ gre(Argus) :-
 	nb_getval(pm, PM),
 	nb_getval(cm, CM),
 	nb_getval(fm, FM),
-	TM is PM+CM,
 	AM is PM+CM+FM,
-	(	AM > 0,
-		Ev is TM/AM,
-		Ap is PM/AM
-	->	(	flag(strings)
-		->	true
-		;	write('[ '),
-			(	TM > 0,
-				Ind is PM/TM
-			->	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#inductivity>'),
-				write(' '),
-				write(Ind),
-				write('; ')
-			;	true
-			),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#evidentiality>'),
-			write(' '),
-			write(Ev),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#applicability>'),
-			write(' '),
-			write(Ap),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#possibleModels>'),
-			write(' '),
-			write(PM),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#counterModels>'),
-			write(' '),
-			write(CM),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#falseModels>'),
-			write(' '),
-			write(FM),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#allModels>'),
-			write(' '),
-			write(AM),
-			write('].'),
-			nl,
-			nl
-		)
-	;	true
-	),
 	format(user_error, 'TC=~w TP=~w BC=~w BP=~w PM=~w CM=~w FM=~w AM=~w~n', [TC, TP, BC, BP, PM, CM, FM, AM]),
 	flush_output(user_error),
 	statistics(runtime, [Cpu, T4]),
@@ -9291,6 +9247,7 @@ digits([], L1, L1).
 
 digit(A, [A|L2], L2) :-
 	code_type(A, digit).
+
 
 fmsec(A, B, C) :-
 	integer(A),
