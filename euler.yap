@@ -1,6 +1,6 @@
-% -----------------------------------------------------------------------------
-% Euler Yet another proof Engine - EYE looking through N3 glasses -- Jos De Roo
-% -----------------------------------------------------------------------------
+% --------------------------------------------------
+% Euler Yet another proof Engine - EYE -- Jos De Roo
+% --------------------------------------------------
 
 % EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
 % It performs semibackward reasoning and it supports Euler paths [3].
@@ -62,7 +62,7 @@
 :- endif.
 
 
-:- dynamic(answer/7).
+:- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
 :- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
@@ -72,7 +72,7 @@
 :- dynamic(bvar/1).
 :- dynamic(evar/2).
 :- dynamic(evar/3).
-:- dynamic(exopred/3).
+:- dynamic(exopred/3).		% exopred(Predicate, Subject, Object)
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
@@ -87,12 +87,12 @@
 :- dynamic(got_wi/5).
 :- dynamic(graph/2).
 :- dynamic(hash_value/2).
-:- dynamic(implies/3).
+:- dynamic(implies/3).		% implies(Premise, Conclusion, Source)
 :- dynamic(input_statements/1).
 :- dynamic(intern/1).
 :- dynamic(keep_skolem/1).
 :- dynamic(keywords/1).
-:- dynamic(lemma/6).
+:- dynamic(lemma/6).		% lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
 :- dynamic(lemma_dep/2).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
@@ -101,7 +101,7 @@
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
 :- dynamic(preda/1).
-:- dynamic(prfstep/8).
+:- dynamic(prfstep/8).		% prfstep(Conclusion_triple, Conclusion_triple_index, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
 :- dynamic(qevar/3).
 :- dynamic(query/2).
 :- dynamic(quvar/3).
@@ -143,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0704.1348 josd').
+version_info('EYE-Summer16.0705.1152 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -162,7 +162,7 @@ eye
 	--brake <count>			set maximimum brake <count>
 	--debug				output debug info on stderr
 	--debug-cnt			output debug info about counters on stderr
-	--debug-jiti			output debug info about JITI on stderr
+	--debug-djiti			output debug info about DJITI on stderr
 	--debug-pvm			output debug info about PVM code on stderr
 	--help				show help info
 	--hmac-key <key>		HMAC key
@@ -298,37 +298,37 @@ main :-
 		ignore(vm_list(_))
 	;	true
 	),
-	(	flag('debug-jiti')
+	(	flag('debug-djiti')
 	->	forall(
 			(	pred(Pred)
 			),
 			(	(	P =.. [Pred, _, _],
 					predicate_property(P, indexed(Ind2))
-				->	format(user_error, 'JITI ~w/2 indexed ~w~n', [Pred, Ind2])
+				->	format(user_error, 'DJITI ~w/2 indexed ~w~n', [Pred, Ind2])
 				;	true
 				),
 				(	P =.. [Pred, _, _, _, _, _, _],
 					predicate_property(P, indexed(Ind6))
-				->	format(user_error, 'JITI ~w/6 indexed ~w~n', [Pred, Ind6])
+				->	format(user_error, 'DJITI ~w/6 indexed ~w~n', [Pred, Ind6])
 				;	true
 				),
 				(	P =.. [Pred, _, _, _, _, _, _, _],
 					predicate_property(P, indexed(Ind7))
-				->	format(user_error, 'JITI ~w/7 indexed ~w~n', [Pred, Ind7])
+				->	format(user_error, 'DJITI ~w/7 indexed ~w~n', [Pred, Ind7])
 				;	true
 				)
 			)
 		),
 		(	predicate_property(implies(_, _, _), indexed(Indi3))
-		->	format(user_error, 'JITI implies/3 indexed ~w~n', [Indi3])
+		->	format(user_error, 'DJITI implies/3 indexed ~w~n', [Indi3])
 		;	true
 		),
 		(	predicate_property(lemma(_, _, _, _, _, _), indexed(Indl6))
-		->	format(user_error, 'JITI lemma/6 indexed ~w~n', [Indl6])
+		->	format(user_error, 'DJITI lemma/6 indexed ~w~n', [Indl6])
 		;	true
 		),
 		(	predicate_property(prfstep(_, _, _, _, _, _, _, _), indexed(Indp8))
-		->	format(user_error, 'JITI prfstep/8 indexed ~w~n', [Indp8])
+		->	format(user_error, 'DJITI prfstep/8 indexed ~w~n', [Indp8])
 		;	true
 		),
 		format(user_error, '~n', []),
@@ -1007,7 +1007,7 @@ opts(['--probe'|_], _) :-
 		->	call(Rg)
 		;	(	call(Rt)
 			->	true
-			;	jitis(Rt)
+			;	djitis(Rt)
 			)
 		),
 		fail
@@ -1043,7 +1043,7 @@ opts([Arg|Argus], Args) :-
 			  '--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
-	(	memberchk(Arg, ['--debug', '--debug-cnt', '--debug-jiti', '--debug-pvm', '--help', '--ignore-inference-fuse', '--ignore-syntax-error',
+	(	memberchk(Arg, ['--debug', '--debug-cnt', '--debug-djiti', '--debug-pvm', '--help', '--ignore-inference-fuse', '--ignore-syntax-error',
 				'--multi-query', '--n3p', '--no-distinct-input', '--no-distinct-output', '--no-genid', '--no-numerals', '--no-qnames',
 				'--no-qvars', '--nope', '--pass-only-new', '--pass-turtle', '--profile', '--rule-histogram', '--statistics',
 				'--streaming-reasoning', '--strict', '--strings', '--think', '--traditional', '--warn',
@@ -1131,7 +1131,7 @@ args(['--plugin', Argument|Args]) :-
 				call(Rt)
 			->	true
 			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-				->	jitis(Rt)
+				->	djitis(Rt)
 				;	true
 				),
 				(	Rt \= flag(_, _),
@@ -1404,7 +1404,7 @@ args(['--turtle', Argument|Args]) :-
 						call(Rt)
 					->	true
 					;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-						->	jitis(Rt),
+						->	djitis(Rt),
 							(	flag(n3p),
 								Rt \= scount(_)
 							->	format('~q.~n', [Rt])
@@ -1731,7 +1731,7 @@ n3_n3p(Argument, Mode) :-
 			read(Rs, Rt),
 			(	Rt = end_of_file
 			->	true
-			;	jitis(Rt),
+			;	djitis(Rt),
 				(	Rt = semantics(_, cn(L))
 				->	length(L, N),
 					nb_setval(sc, N)
@@ -1779,7 +1779,7 @@ n3_n3p(Argument, Mode) :-
 							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
-						;	jitis(Rt),
+						;	djitis(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1829,7 +1829,7 @@ n3_n3p(Argument, Mode) :-
 									assertz(':-'(Ci, Pj))
 								)
 							)
-						;	jitis(Rt),
+						;	djitis(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1915,7 +1915,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		)
 	->	write(query(X, V)),
 		writeln('.')
-	;	jiti(answer(V), A),
+	;	djiti(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1926,7 +1926,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) 
 		\+flag(tactic, 'single-answer')
 	->	write(query(X, X)),
 		writeln('.')
-	;	jiti(answer(X), A),
+	;	djiti(answer(X), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1948,7 +1948,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		\+flag(tactic, 'single-answer')
 	->	write(query(X, V)),
 		writeln('.')
-	;	jiti(answer(V), A),
+	;	djiti(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1962,7 +1962,7 @@ tr_n3p([X|Z], Src, query) :-
 		)
 	->	write(query(true, X)),
 		writeln('.')
-	;	jiti(answer(X), A),
+	;	djiti(answer(X), A),
 		write(implies(true, A, Src)),
 		writeln('.')
 	),
@@ -2136,7 +2136,7 @@ wm :-
 	),
 	(	answer(B1, B2, B3, B4, B5, B6, B7),
 		relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-		jiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+		djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
 		indent,
 		wt(C),
 		ws(C),
@@ -2162,10 +2162,10 @@ wm :-
 		indent,
 		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, B, Pnd, Cn, R, _, A),
 			R =.. [P, S, O1],
-			jiti(answer(O), O1),
+			djiti(answer(O), O1),
 			Rule =.. [P, S, O],
 			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-			jiti(answer(C), Cn),
+			djiti(answer(C), Cn),
 			\+got_wi(A, B, Pnd, C, Rule),
 			assertz(got_wi(A, B, Pnd, C, Rule)),
 			wp('<http://www.w3.org/2000/10/swap/reason#component>'),
@@ -2182,7 +2182,7 @@ wm :-
 		indentation(2),
 		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, _, _, _, _, _, _),
 			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-			jiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+			djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
 			nl,
 			indent,
 			getvars(C, D),
@@ -2228,7 +2228,7 @@ wm :-
 	).
 
 
-wi('<>', _, rule(_, _, A), _) :-
+wi('<>', _, rule(_, _, A), _) :-	% wi(Source, Premise, Conclusion, Rule)
 	!,
 	write('[ '),
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
@@ -2279,7 +2279,7 @@ wi(A, B, C, Rule) :-
 	write('>').
 
 
-wj(Cnt, A, true, C, Rule) :-
+wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	var(Rule),
 	C \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
 	!,
@@ -3215,7 +3215,7 @@ wst :-
 	findall([Key, Str],
 		(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
 		;	answer(A1, A2, A3, A4, A5, A6, A7),
-			jiti(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7))
+			djiti(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7))
 		),
 		KS
 	),
@@ -3424,8 +3424,8 @@ eam(Span) :-
 			throw(maximimum_step_count(Step))
 		;	true
 		),
-		jitin(Conc, Concdt),
-		jitir(Concdt, Concdv),
+		djitin(Conc, Concdt),
+		djitir(Concdt, Concdv),
 		(	\+ground(Prem)
 		->	clist(Lv, Concdv),
 			partconc(Prem, Lv, Lw),
@@ -3485,7 +3485,7 @@ eam(Span) :-
 		clist(Ls, Concs),
 		clist(Le, Conce),
 		clist(Lf, Clc),
-		astep(Src, Prem, Concd, Concs, Conce, Clc, Rule),
+		astep(Src, Prem, Concd, Conce, Clc, Rule),
 		(	(	Concs = answer(_, _, _, _, _, _, _)
 			;	Concs = cn([answer(_, _, _, _, _, _, _)|_])
 			)
@@ -3532,7 +3532,7 @@ eam(Span) :-
 	).
 
 
-astep(A, B, Cd, C, Cn, Cc, Rule) :-
+astep(A, B, Cd, Cn, Cc, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Conclusion_unique_copy, Rule)
 	(	Cn = cn([Dn|En]),
 		Cc = cn([Dc|Ec])
 	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
@@ -3550,7 +3550,7 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 		),
 		(	catch(call(Dn), _, fail)
 		->	true
-		;	jitis(Dn),
+		;	djitis(Dn),
 			(	flag('pass-only-new'),
 				Dn \= answer(_, _, _, _, _, _, _)
 			->	indent,
@@ -3587,7 +3587,7 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 		;	Fn = cn(En),
 			Fc = cn(Ec)
 		),
-		astep(A, B, Cd, C, Fn, Fc, Rule)
+		astep(A, B, Cd, Fn, Fc, Rule)
 	;	(	Cn = true
 		->	true
 		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
@@ -3605,7 +3605,7 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 			),
 			(	catch(call(Cn), _, fail)
 			->	true
-			;	jitis(Cn),
+			;	djitis(Cn),
 				(	flag('pass-only-new'),
 					Cn \= answer(_, _, _, _, _, _, _)
 				->	indent,
@@ -3640,7 +3640,7 @@ astep(A, B, Cd, C, Cn, Cc, Rule) :-
 	).
 
 
-istep(Src, Prem, Conc, Rule) :-
+istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
 	copy_term(Prem, Prec),
 	labelvars(Prec, 0, _),
 	term_index(Conc, Cnd),
@@ -3691,12 +3691,12 @@ qstep(A, true) :-
 	\+prfstep(A, _, _, _, _, _, _, _).
 
 
-% Just-In-Time Indexing
+% Deep Just-In-Time Indexing
 
-jiti(answer(cn(A)), cn(B)) :-
+djiti(answer(cn(A)), cn(B)) :-
 	!,
-	jiti(A, B).
-jiti(answer(A), answer(P, S, O, I, J, K, L)) :-
+	djiti(A, B).
+djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	nonvar(A)
 	;	atom(P)
 	),
@@ -3714,7 +3714,7 @@ jiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 		arg(1, O, L)
 	;	true
 	).
-jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
+djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	(	var(S)
 	;	S \= void
 	),
@@ -3731,38 +3731,38 @@ jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 		arg(1, O, L)
 	;	true
 	).
-jiti(answer(A), answer(A, void, void, _, _, _, _)) :-
+djiti(answer(A), answer(A, void, void, _, _, _, _)) :-
 	!.
-jiti([A|B], [C|D]) :-
+djiti([A|B], [C|D]) :-
 	!,
-	jiti(answer(A), C),
-	jiti(B, D).
-jiti(A, A).
+	djiti(answer(A), C),
+	djiti(B, D).
+djiti(A, A).
 
 
-jitin(answer(cn(A), void, void, _, _, _, _), cn(B)) :-
+djitin(answer(cn(A), void, void, _, _, _, _), cn(B)) :-
 	!,
-	jitin(A, B).
-jitin([A|B], [answer(A, void, void, _, _, _, _)|C]) :-
+	djitin(A, B).
+djitin([A|B], [answer(A, void, void, _, _, _, _)|C]) :-
 	!,
-	jitin(B, C).
-jitin(A, A).
+	djitin(B, C).
+djitin(A, A).
 
 
-jitir(cn([A|B]), cn([C|D])) :-
+djitir(cn([A|B]), cn([C|D])) :-
 	!,
-	jitir(A, C),
-	jitir(cn(B), cn(D)).
-jitir(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
+	djitir(A, C),
+	djitir(cn(B), cn(D)).
+djitir(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
 	!,
 	term_index(S, I),
 	term_index(O, J),
 	term_arg_1(S, K),
 	term_arg_1(O, L).
-jitir(A, A).
+djitir(A, A).
 
 
-jitis(answer(P, S, O, I, J, K, L)) :-
+djitis(answer(P, S, O, I, J, K, L)) :-
 	atomic(P),
 	!,
 	(	current_predicate(P/7)
@@ -3785,7 +3785,7 @@ jitis(answer(P, S, O, I, J, K, L)) :-
 	),
 	B =.. [P, S, O, I, J, K, L, answer],
 	assertz(B).
-jitis(exopred(P, S, O)) :-
+djitis(exopred(P, S, O)) :-
 	ground(exopred(P, S, O)),
 	(	compound(S)
 	;	compound(O)
@@ -3815,7 +3815,7 @@ jitis(exopred(P, S, O)) :-
 		)
 	),
 	assertz(exopred(P, S, O, Si, Oi, Sp, Op)).
-jitis(A) :-
+djitis(A) :-
 	ground(A),
 	A =.. [P, S, O],
 	P \= ':-',
@@ -3850,7 +3850,7 @@ jitis(A) :-
 	),
 	B =.. [P, S, O, Si, Oi, Sp, Op],
 	assertz(B).
-jitis(A) :-
+djitis(A) :-
 	assertz(A).
 
 
