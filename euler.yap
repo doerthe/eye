@@ -143,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0705.1152 josd').
+version_info('EYE-Summer16.0708.0850 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -170,6 +170,7 @@ eye
 	--ignore-syntax-error		do not halt in case of syntax error
 	--image <pvm-file>		output all <data> and all code to <pvm-file>
 	--license			show license info
+	--multi-query			query answer loop
 	--n3p				output all <data> as N3 P-code on stdout
 	--no-distinct-input		no distinct triples in the input
 	--no-distinct-output		no distinct answers in the output
@@ -180,12 +181,13 @@ eye
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--nope				no proof explanation
 	--pass-only-new			output only new derived triples
+	--pass-turtle			output the --turtle data
 	--probe				output speedtest info on stderr
 	--profile			output profile info on stderr
-	--pvm <n3p-file>		output <n3p-file> as PVM code to <pvm-file>
 	--rule-histogram		output rule histogram info on stderr
 	--statistics			output statistics info on stderr
 	--step <count>			set maximimum step <count>
+	--streaming-reasoning		streaming reasoning on --turtle data
 	--strict			strict mode
 	--strings			output log:outputString objects on stdout
 	--tactic existing-path		Euler path using homomorphism
@@ -199,18 +201,14 @@ eye
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
 	<n3-data>			N3 triples and rules
-	--plugin <n3p-data>		plugin N3 P-code
-	--plugin-pvm <pvm-data>		plugin PVM code
+	--plugin <n3p-data>		N3 P-code
 	--proof <n3-proof>		N3 proof
 	--turtle <ttl-data>		Turtle data
 <query>
-	--multi-query			query answer loop
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--pass-all-ground		ground the rules and run --pass-all
-	--pass-turtle			output the --turtle data
-	--query <n3-query>		output filtered with filter rules
-	--streaming-reasoning		streaming reasoning on --turtle data').
+	--query <n3-query>		output filtered with filter rules').
 
 
 % Main goal
@@ -231,6 +229,7 @@ main :-
 	),
 	argv(Argvs, Argus),
 	format(user_error, 'eye~@~n', [wa(Argus)]),
+	flush_output(user_error),
 	(	memberchk('--no-genid', Argus)
 	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
 	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
@@ -609,6 +608,7 @@ gre(Argus) :-
 			Infd is Infe-Infb,
 			catch(Infs is round(Infd/Ti5*1000), _, Infs = ''),
 			format(user_error, '[~w] mq=~w out=~d inf=~w sec=~3d out/sec=~w inf/sec=~w~n~n', [Stmp, Cnt, Outd, Infd, Ti5, Outs, Infs]),
+			flush_output(user_error),
 			told,
 			fail
 		)
@@ -718,14 +718,285 @@ gre(Argus) :-
 opts([], []) :-
 	!.
 % DEPRECATED
+opts(['--ances'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--ances']),
+	flush_output(user_error),
+	opts(Argus, Args).
+opts(['--brake', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** brake ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	assertz(flag(brake, Limit)),
+	opts(Argus, Args).
+opts(['--debug'|Argus], Args) :-
+	!,
+	assertz(flag(debug)),
+	opts(Argus, Args).
+opts(['--debug-cnt'|Argus], Args) :-
+	!,
+	assertz(flag('debug-cnt')),
+	opts(Argus, Args).
+opts(['--debug-djiti'|Argus], Args) :-
+	!,
+	assertz(flag('debug-djiti')),
+	opts(Argus, Args).
+opts(['--debug-pvm'|Argus], Args) :-
+	!,
+	assertz(flag('debug-pvm')),
+	opts(Argus, Args).
+opts(['--help'|_], _) :-
+	\+flag(image, _),
+	\+flag('debug-pvm'),
+	!,
+	help_info(Help),
+	format(user_error, '~w~n', [Help]),
+	flush_output(user_error),
+	throw(halt).
+opts(['--hmac-key', Key|Argus], Args) :-
+	!,
+	assertz(flag('hmac-key', Key)),
+	opts(Argus, Args).
+opts(['--ignore-inference-fuse'|Argus], Args) :-
+	!,
+	assertz(flag('ignore-inference-fuse')),
+	opts(Argus, Args).
+opts(['--ignore-syntax-error'|Argus], Args) :-
+	!,
+	assertz(flag('ignore-syntax-error')),
+	opts(Argus, Args).
+opts(['--image', File|Argus], Args) :-
+	!,
+	assertz(flag(image, File)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--kgb'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--kgb']),
+	flush_output(user_error),
+	opts(Argus, Args).
+opts(['--license'|_], _) :-
+	!,
+	license_info(License),
+	format(user_error, '~w~n~n', [License]),
+	flush_output(user_error),
+	throw(halt).
+opts(['--multi-query'|Argus], Args) :-
+	!,
+	assertz(flag('multi-query')),
+	opts(Argus, Args).
+opts(['--n3p'|Argus], Args) :-
+	!,
+	assertz(flag(n3p)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-blank'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-blank']),
+	flush_output(user_error),
+	assertz(flag('no-blank')),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-branch'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-branch']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-distinct'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--no-distinct', 'no-distinct-output']),
+	flush_output(user_error),
+	assertz(flag('no-distinct-output')),
+	opts(Argus, Args).
+opts(['--no-distinct-input'|Argus], Args) :-
+	!,
+	assertz(flag('no-distinct-input')),
+	opts(Argus, Args).
+opts(['--no-distinct-output'|Argus], Args) :-
+	!,
+	assertz(flag('no-distinct-output')),
+	opts(Argus, Args).
+opts(['--no-genid'|Argus], Args) :-
+	!,
+	assertz(flag('no-genid')),
+	opts(Argus, Args).
+opts(['--no-numerals'|Argus], Args) :-
+	!,
+	assertz(flag('no-numerals')),
+	opts(Argus, Args).
+opts(['--no-qnames'|Argus], Args) :-
+	!,
+	assertz(flag('no-qnames')),
+	opts(Argus, Args).
+opts(['--no-qvars'|Argus], Args) :-
+	!,
+	assertz(flag('no-qvars')),
+	opts(Argus, Args).
+opts(['--no-skolem', Prefix|Argus], Args) :-
+	!,
+	assertz(flag('no-skolem', Prefix)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-span'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-span']),
+	flush_output(user_error),
+	assertz(flag('no-span')),
+	opts(Argus, Args).
+opts(['--nope'|Argus], Args) :-
+	!,
+	assertz(flag(nope)),
+	opts(Argus, Args).
+opts(['--pass-all-ground'|Argus], Args) :-
+	!,
+	assertz(flag('pass-all-ground')),
+	opts(['--pass-all'|Argus], Args).
+opts(['--pass-only-new'|Argus], Args) :-
+	!,
+	assertz(flag('pass-only-new')),
+	opts(Argus, Args).
+opts(['--pass-turtle'|Argus], Args) :-
+	!,
+	assertz(flag('pass-turtle')),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--pcl'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--pcl', '--n3p']),
+	flush_output(user_error),
+	assertz(flag(n3p)),
+	opts(Argus, Args).
+opts(['--probe'|_], _) :-
+	!,
+	probe,
+	throw(halt).
+opts(['--profile'|Argus], Args) :-
+	!,
+	assertz(flag(profile)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--pvm', File|Argus], _) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--pvm']),
+	flush_output(user_error),
+	pvm(File, Argus),
+	throw(halt).
+% DEPRECATED
+opts(['--quiet'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quiet']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--quick-false'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-false']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--quick-possible'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-possible']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
 opts(['--quick-answer'|Argus], Args) :-
 	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic single-answer']),
 	assertz(flag(tactic, 'single-answer')),
+	opts(Argus, Args).
+opts(['--rule-histogram'|Argus], Args) :-
+	!,
+	assertz(flag('rule-histogram')),
 	opts(Argus, Args).
 % DEPRECATED
 opts(['--single-answer'|Argus], Args) :-
 	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic single-answer']),
+	flush_output(user_error),
 	assertz(flag(tactic, 'single-answer')),
+	opts(Argus, Args).
+opts(['--statistics'|Argus], Args) :-
+	!,
+	assertz(flag(statistics)),
+	opts(Argus, Args).
+opts(['--step', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** step ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	assertz(flag(step, Limit)),
+	opts(Argus, Args).
+opts(['--streaming-reasoning'|Argus], Args) :-
+	!,
+	assertz(flag('streaming-reasoning')),
+	opts(Argus, Args).
+opts(['--strict'|Argus], Args) :-
+	!,
+	assertz(flag(strict)),
+	opts(Argus, Args).
+opts(['--strings'|Argus], Args) :-
+	!,
+	assertz(flag(strings)),
+	opts(Argus, Args).
+opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** limited-answer ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	assertz(flag('limited-answer', Limit)),
+	opts(Argus, Args).
+opts(['--tactic', Tactic|Argus], Args) :-
+	!,
+	(	memberchk(Tactic, ['existing-path', 'linear-select', 'single-answer'])
+	->	assertz(flag(tactic, Tactic))
+	;	throw(not_supported_tactic(Tactic))
+	),
+	opts(Argus, Args).
+opts(['--think'|Argus], Args) :-
+	!,
+	assertz(flag(think)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--tmp-file', File|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--tmp-file']),
+	flush_output(user_error),
+	assertz(flag('tmp-file', File)),
+	opts(Argus, Args).
+opts(['--traditional'|Argus], Args) :-
+	!,
+	assertz(flag(traditional)),
+	opts(Argus, Args).
+opts(['--version'|_], _) :-
+	!,
+	throw(halt).
+opts(['--warn'|Argus], Args) :-
+	!,
+	assertz(flag(warn)),
 	opts(Argus, Args).
 opts(['--wcache', Argument, File|Argus], Args) :-
 	!,
@@ -736,28 +1007,98 @@ opts(['--wcache', Argument, File|Argus], Args) :-
 	),
 	opts(Argus, Args).
 % DEPRECATED
-opts(['--tmp-file', File|Argus], Args) :-
+opts(['--wget-path', _|Argus], Args) :-
 	!,
-	assertz(flag('tmp-file', File)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--wget-path', Path|Argus], Args) :-
-	!,
-	assertz(flag('wget-path', Path)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--no-distinct'|Argus], Args) :-
-	!,
-	assertz(flag('no-distinct-output')),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--pcl'|Argus], Args) :-
-	!,
-	assertz(flag(n3p)),
-	opts(Argus, Args).
-opts(['--pvm', File|Argus], _) :-
-	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--wget-path']),
 	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--yabc', File|Argus], Args) :-
+	!,
+	assertz(flag(image, File)),
+	opts(Argus, Args).
+opts([Arg|_], _) :-
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--plugin-pvm', '--tquery', '--trules']),	% DEPRECATED
+	sub_atom(Arg, 0, 2, _, '--'),
+	!,
+	throw(not_supported_option(Arg)).
+opts([Arg|Argus], [Arg|Args]) :-
+	opts(Argus, Args).
+
+
+probe :-
+	tmp_file(File),
+	(	atomic_list_concat(['curl -s -L http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
+		catch(exec(Cmd, _), _, fail)
+	->	statistics(walltime, [_, T1]),
+		S1 is 100000000/T1
+	;	open(File, write, Out, [encoding(utf8)]),
+		tell(Out),
+		format(':- style_check(-discontiguous).~n', []),
+		format(':- style_check(-singleton).~n', []),
+		(	between(0, 99, I),
+			format(':- dynamic(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\'/2).~n', [I]),
+			format('pred(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\').~n', [I]),
+			fail
+		;	true
+		),
+		(	between(1, 100000, _),
+			S is random(10000),
+			P is random(100),
+			O is random(10000),
+			format('\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\'(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\',
+				\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\').~n', [P, S, O]),
+			fail
+		;	true
+		),
+		told,
+		statistics(walltime, [_, _]),
+		S1 is 0
+	),
+	open(File, read, In, [encoding(utf8)]),
+	repeat,
+	read_term(In, Rt, []),
+	(	Rt = end_of_file
+	->	true
+	;	(	Rt = ':-'(Rg)
+		->	call(Rg)
+		;	(	call(Rt)
+			->	true
+			;	djitis(Rt)
+			)
+		),
+		fail
+	),
+	statistics(walltime, [_, T2]),
+	S2 is 100000000/T2,
+	statistics(runtime, [_, _]),
+	(	between(1, 100, _),
+		forall(
+			(	pred(P)
+			),
+			(	forall(
+					(	call(P, _, _)
+					),
+					(	true
+					)
+				)
+			)
+		),
+		fail
+	;	true
+	),
+	statistics(runtime, [_, T3]),
+	S3 is 10000000000/T3,
+	timestamp(Stamp),
+	format(user_error, '[~w] web-triples/sec=~0f file-triples/sec=~0f memory-triples/sec=~0f~n~n', [Stamp, S1, S2, S3]),
+	flush_output(user_error),
+	close(In),
+	delete_file(File).
+
+
+% DEPRECATED
+pvm(File, Argus) :-
 	(	memberchk('--nope', Argus)
 	->	assertz(flag(nope))
 	;	true
@@ -882,183 +1223,60 @@ opts(['--pvm', File|Argus], _) :-
 			)
 		),
 		qcompile(File)
-	->	throw(halt)
-	;	throw(failed_qcompile(File))
-	).
-opts(['--image', File|Argus], Args) :-
-	!,
-	assertz(flag(image, File)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--yabc', File|Argus], Args) :-
-	!,
-	assertz(flag(image, File)),
-	opts(Argus, Args).
-opts(['--no-skolem', Prefix|Argus], Args) :-
-	!,
-	assertz(flag('no-skolem', Prefix)),
-	opts(Argus, Args).
-opts(['--pass-all-ground'|Argus], Args) :-
-	!,
-	assertz(flag('pass-all-ground')),
-	opts(['--pass-all'|Argus], Args).
-opts(['--step', Lim|Argus], Args) :-
-	!,
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** step ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	assertz(flag(step, Limit)),
-	opts(Argus, Args).
-opts(['--brake', Lim|Argus], Args) :-
-	!,
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** brake ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	assertz(flag(brake, Limit)),
-	opts(Argus, Args).
-opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
-	!,
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** limited-answer ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	assertz(flag('limited-answer', Limit)),
-	opts(Argus, Args).
-opts(['--tactic', Tactic|Argus], Args) :-
-	!,
-	assertz(flag(tactic, Tactic)),
-	opts(Argus, Args).
-opts(['--hmac-key', Key|Argus], Args) :-
-	!,
-	assertz(flag('hmac-key', Key)),
-	opts(Argus, Args).
-opts(['--version'|_], _) :-
-	!,
-	throw(halt).
-opts(['--license'|_], _) :-
-	!,
-	license_info(License),
-	format(user_error, '~w~n~n', [License]),
-	flush_output(user_error),
-	throw(halt).
-opts(['--help'|_], _) :-
-	\+flag(image, _),
-	\+flag('debug-pvm'),
-	!,
-	help_info(Help),
-	format(user_error, '~w~n~n', [Help]),
-	flush_output(user_error),
-	throw(halt).
-opts(['--probe'|_], _) :-
-	tmp_file(File),
-	(	atomic_list_concat(['curl -s -L http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
-		catch(exec(Cmd, _), _, fail)
-	->	statistics(walltime, [_, T1]),
-		S1 is 100000000/T1
-	;	open(File, write, Out, [encoding(utf8)]),
-		tell(Out),
-		format(':- style_check(-discontiguous).~n', []),
-		format(':- style_check(-singleton).~n', []),
-		(	between(0, 99, I),
-			format(':- dynamic(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\'/2).~n', [I]),
-			format('pred(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\').~n', [I]),
-			fail
-		;	true
-		),
-		(	between(1, 100000, _),
-			S is random(10000),
-			P is random(100),
-			O is random(10000),
-			format('\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\'(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\',
-				\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\').~n', [P, S, O]),
-			fail
-		;	true
-		),
-		told,
-		statistics(walltime, [_, _]),
-		S1 is 0
-	),
-	open(File, read, In, [encoding(utf8)]),
-	repeat,
-	read_term(In, Rt, []),
-	(	Rt = end_of_file
 	->	true
-	;	(	Rt = ':-'(Rg)
-		->	call(Rg)
-		;	(	call(Rt)
-			->	true
-			;	djitis(Rt)
-			)
-		),
-		fail
-	),
-	statistics(walltime, [_, T2]),
-	S2 is 100000000/T2,
-	statistics(runtime, [_, _]),
-	(	between(1, 100, _),
-		forall(
-			(	pred(P)
-			),
-			(	forall(
-					(	call(P, _, _)
-					),
-					(	true
-					)
-				)
-			)
-		),
-		fail
-	;	true
-	),
-	statistics(runtime, [_, T3]),
-	S3 is 10000000000/T3,
-	timestamp(Stamp),
-	format(user_error, '[~w] web-triples/sec=~0f file-triples/sec=~0f memory-triples/sec=~0f~n~n', [Stamp, S1, S2, S3]),
-	flush_output(user_error),
-	close(In),
-	delete_file(File),
-	throw(halt).
-opts([Arg|Argus], Args) :-
-	\+memberchk(Arg, ['--pass', '--pass-all', '--plugin', '--plugin-pvm', '--proof', '--query', '--turtle',
-			  '--tquery', '--trules']),	% DEPRECATED
-	sub_atom(Arg, 0, 2, _, '--'),
-	!,
-	(	memberchk(Arg, ['--debug', '--debug-cnt', '--debug-djiti', '--debug-pvm', '--help', '--ignore-inference-fuse', '--ignore-syntax-error',
-				'--multi-query', '--n3p', '--no-distinct-input', '--no-distinct-output', '--no-genid', '--no-numerals', '--no-qnames',
-				'--no-qvars', '--nope', '--pass-only-new', '--pass-turtle', '--profile', '--rule-histogram', '--statistics',
-				'--streaming-reasoning', '--strict', '--strings', '--think', '--traditional', '--warn',
-				'--ances', '--kgb', '--no-blank', '--no-branch', '--no-span', '--quiet', '--quick-false', '--quick-possible'])	% DEPRECATED
-	->	sub_atom(Arg, 2, _, 0, Opt),
-		assertz(flag(Opt))
-	;	throw(not_supported_argument(Arg))
-	),
-	opts(Argus, Args).
-opts([Arg|Argus], [Arg|Args]) :-
-	opts(Argus, Args).
+	;	throw(failed_pvmcompile(File))
+	).
 
 
 args([]) :-
 	!.
+args(['--pass'|Args]) :-
+	!,
+	(	flag(nope),
+		\+flag(tactic, 'single-answer'),
+		(	flag('no-distinct-input')
+		->	flag('no-distinct-output')
+		;	true
+		)
+	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
+	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
+	),
+	(	flag(n3p)
+	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
+	;	true
+	),
+	args(Args).
+args(['--pass-all'|Args]) :-
+	!,
+	(	flag(nope),
+		\+flag(tactic, 'single-answer'),
+		(	flag('no-distinct-input')
+		->	flag('no-distinct-output')
+		;	true
+		)
+	->	assertz(query(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+				exopred(P, S, O))),
+		assertz(query(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C))),
+		assertz(query(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				':-'(C, A)))
+	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+				answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+	),
+	(	flag(n3p)
+	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+	;	true
+	),
+	args(Args).
 args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
@@ -1100,58 +1318,7 @@ args(['--plugin', Argument|Args]) :-
 	read_term(In, Rt, []),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	(	Rt = ':-'(Rg)
-		->	call(Rg)
-		;	(	(	Rt = ':-'(Rh, _)
-				->	predicate_property(Rh, dynamic)
-				;	predicate_property(Rt, dynamic)
-				)
-			->	true
-			;	(	File = '-'
-				->	true
-				;	close(In)
-				),
-				(	retract(tmpfile(File))
-				->	delete_file(File)
-				;	true
-				),
-				throw(builtin_redefinition(Rt))
-			),
-			(	Rt = pfx(Pfx, _)
-			->	retractall(pfx(Pfx, _))
-			;	true
-			),
-			(	Rt = scope(Scope)
-			->	nb_setval(current_scope, Scope)
-			;	true
-			),
-			(	Rt \= implies(_, _, _),
-				Rt \= scount(_),
-				\+flag('no-distinct-input'),
-				call(Rt)
-			->	true
-			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-				->	djitis(Rt)
-				;	true
-				),
-				(	Rt \= flag(_, _),
-					Rt \= scope(_),
-					Rt \= pfx(_, _),
-					Rt \= pred(_),
-					Rt \= scount(_)
-				->	(	flag(nope)
-					->	true
-					;	nb_getval(current_scope, Src),
-						term_index(Rt, Rnd),
-						(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
-						->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-						;	true
-						)
-					)
-				;	true
-				)
-			)
-		),
+	;	n3pin(Rt, In, File),
 		fail
 	),
 	!,
@@ -1178,6 +1345,7 @@ args(['--plugin', Argument|Args]) :-
 	),
 	flush_output(user_error),
 	args(Args).
+% DEPRECATED
 args(['--plugin-pvm', Argument|Args]) :-
 	!,
 	flush_output(user_error),
@@ -1229,6 +1397,53 @@ args(['--plugin-pvm', Argument|Args]) :-
 	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
 	),
 	flush_output(user_error),
+	args(Args).
+args(['--proof', Arg|Args]) :-
+	!,
+	absolute_uri(Arg, A),
+	atomic_list_concat(['<', A, '>'], R),
+	assertz(scope(R)),
+	(	flag(n3p)
+	->	portray_clause(scope(R))
+	;	true
+	),
+	n3_n3p(Arg, data),
+	(	got_pi
+	->	true
+	;	assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
+				'<http://www.w3.org/2000/10/swap/reason#rule>'(S, L),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(L, B),
+				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(B, ':-'(_, _))]),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
+				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(G, ':-'(_, _))]),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(got_pi)
+	),
+	args(Args).
+args(['--query', Arg|Args]) :-
+	!,
+	n3_n3p(Arg, query),
+	args(Args).
+% DEPRECATED
+args(['--tquery', Arg|Args]) :-
+	!,
+	assertz(flag(tquery)),
+	n3_n3p(Arg, tquery),
+	args(Args).
+% DEPRECATED
+args(['--trules', Arg|Args]) :-
+	!,
+	absolute_uri(Arg, A),
+	atomic_list_concat(['<', A, '>'], R),
+	assertz(scope(R)),
+	(	flag(n3p)
+	->	portray_clause(scope(R))
+	;	true
+	),
+	n3_n3p(Arg, trules),
 	args(Args).
 args(['--turtle', Argument|Args]) :-
 	!,
@@ -1372,64 +1587,7 @@ args(['--turtle', Argument|Args]) :-
 					),
 					format('~q.~n', [Rt])
 				)
-			;	(	Rt = ':-'(Rg)
-				->	call(Rg),
-					(	flag(n3p)
-					->	format('~q.~n', [Rt])
-					;	true
-					)
-				;	(	predicate_property(Rt, dynamic)
-					->	true
-					;	(	File = '-'
-						->	true
-						;	close(In)
-						),
-						(	retract(tmpfile(File))
-						->	delete_file(File)
-						;	true
-						),
-						throw(builtin_redefinition(Rt))
-					),
-					(	Rt = pfx(Pfx, _)
-					->	retractall(pfx(Pfx, _))
-					;	true
-					),
-					(	Rt = scope(Scope)
-					->	nb_setval(current_scope, Scope)
-					;	true
-					),
-					(	Rt \= implies(_, _, _),
-						Rt \= scount(_),
-						\+flag('no-distinct-input'),
-						call(Rt)
-					->	true
-					;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-						->	djitis(Rt),
-							(	flag(n3p),
-								Rt \= scount(_)
-							->	format('~q.~n', [Rt])
-							;	true
-							)
-						;	true
-						),
-						(	Rt \= flag(_, _),
-							Rt \= scope(_),
-							Rt \= pfx(_, _),
-							Rt \= pred(_),
-							Rt \= scount(_)
-						->	(	flag(nope)
-							->	true
-							;	nb_getval(current_scope, Src),
-								term_index(Rt, Rnd),
-								(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
-								->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-								;	true
-								)
-							)
-						;	true
-						)
-					)
-				)
+			;	n3pin(Rt, In, File)
 			),
 			fail
 		),
@@ -1481,100 +1639,6 @@ args(['--turtle', Argument|Args]) :-
 		)
 	),
 	args(Args).
-args(['--proof', Arg|Args]) :-
-	!,
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	n3_n3p(Arg, data),
-	(	got_pi
-	->	true
-	;	assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
-				'<http://www.w3.org/2000/10/swap/reason#rule>'(S, L),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(L, B),
-				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(B, ':-'(_, _))]),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
-				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(G, ':-'(_, _))]),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(got_pi)
-	),
-	args(Args).
-% DEPRECATED
-args(['--trules', Arg|Args]) :-
-	!,
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	n3_n3p(Arg, trules),
-	args(Args).
-args(['--query', Arg|Args]) :-
-	!,
-	n3_n3p(Arg, query),
-	args(Args).
-args(['--pass'|Args]) :-
-	!,
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct-input')
-		->	flag('no-distinct-output')
-		;	true
-		)
-	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
-	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
-	),
-	(	flag(n3p)
-	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
-	;	true
-	),
-	args(Args).
-args(['--pass-all'|Args]) :-
-	!,
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct-input')
-		->	flag('no-distinct-output')
-		;	true
-		)
-	->	assertz(query(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-				exopred(P, S, O))),
-		assertz(query(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C))),
-		assertz(query(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				':-'(C, A)))
-	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-				answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
-	),
-	(	flag(n3p)
-	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
-	;	true
-	),
-	args(Args).
-% DEPRECATED
-args(['--tquery', Arg|Args]) :-
-	!,
-	assertz(flag(tquery)),
-	n3_n3p(Arg, tquery),
-	args(Args).
 args([Arg|Args]) :-
 	absolute_uri(Arg, A),
 	atomic_list_concat(['<', A, '>'], R),
@@ -1585,6 +1649,70 @@ args([Arg|Args]) :-
 	),
 	n3_n3p(Arg, data),
 	args(Args).
+
+
+n3pin(Rt, In, File) :-
+	(	Rt = ':-'(Rg)
+	->	call(Rg),
+		(	flag(n3p)
+		->	format('~q.~n', [Rt])
+		;	true
+		)
+	;	(	(	Rt = ':-'(Rh, _)
+			->	predicate_property(Rh, dynamic)
+			;	predicate_property(Rt, dynamic)
+			)
+		->	true
+		;	(	File = '-'
+			->	true
+			;	close(In)
+			),
+			(	retract(tmpfile(File))
+			->	delete_file(File)
+			;	true
+			),
+			throw(builtin_redefinition(Rt))
+		),
+		(	Rt = pfx(Pfx, _)
+		->	retractall(pfx(Pfx, _))
+		;	true
+		),
+		(	Rt = scope(Scope)
+		->	nb_setval(current_scope, Scope)
+		;	true
+		),
+		(	Rt \= implies(_, _, _),
+			Rt \= scount(_),
+			\+flag('no-distinct-input'),
+			call(Rt)
+		->	true
+		;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+			->	djitis(Rt),
+				(	flag(n3p),
+					Rt \= scount(_)
+				->	format('~q.~n', [Rt])
+				;	true
+				)
+			;	true
+			),
+			(	Rt \= flag(_, _),
+				Rt \= scope(_),
+				Rt \= pfx(_, _),
+				Rt \= pred(_),
+				Rt \= scount(_)
+			->	(	flag(nope)
+				->	true
+				;	nb_getval(current_scope, Src),
+					term_index(Rt, Rnd),
+					(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
+					->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+					;	true
+					)
+				)
+			;	true
+			)
+		)
+	).
 
 
 % N3 to N3P compiler
@@ -3928,7 +4056,8 @@ djitis(A) :-
 		labelvars([Ac, Bc, Ec|Dc], 0, _),
 		(	fact('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [Ac, Bc, G|H]))
 		->	(	E \= G
-			->	format(user_error, '** WARNING ** conflicting_findall_answers ~w VERSUS ~w~n', [[A, B, G|H], [A, B, E|D]])
+			->	format(user_error, '** WARNING ** conflicting_findall_answers ~w VERSUS ~w~n', [[A, B, G|H], [A, B, E|D]]),
+				flush_output(user_error)
 			;	true
 			)
 		;	assertz(fact('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [Ac, Bc, Ec|Dc])))
@@ -7781,7 +7910,8 @@ cnt(A) :-
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
 		C mod 1000 =:= 0
-	->	format(user_error, '~w = ~w~n', [A, C])
+	->	format(user_error, '~w = ~w~n', [A, C]),
+		flush_output(user_error)
 	;	true
 	).
 
@@ -7792,7 +7922,8 @@ cnt(A, I) :-
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
 		C mod 1000 =:= 0
-	->	format(user_error, '~w = ~w~n', [A, C])
+	->	format(user_error, '~w = ~w~n', [A, C]),
+		flush_output(user_error)
 	;	true
 	).
 
@@ -9580,7 +9711,8 @@ timestamp(Stamp) :-
 
 
 fm(A) :-
-	format(user_error, '*** ~w~n', [A]).
+	format(user_error, '*** ~w~n', [A]),
+	flush_output(user_error).
 
 
 % Regular Expressions inspired by http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html
