@@ -12,6 +12,7 @@
 <h1>EYE release</h1>
 <pre>
 <span id="EYE-Summer16">[<a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/EYE-Summer16/">EYE-Summer16</a>]</span>
+- fixing --image to store the EYE options (obs from Hong Sun)
 - refactoring the handling of EYE options
 - supporting DJITI which is standing for 'Deep Just-In-Time Indexing'
 - <a href="https://github.com/josd/see">SEE</a> is used to verify EYE releases
