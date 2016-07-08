@@ -143,7 +143,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0708.0850 josd').
+version_info('EYE-Summer16.0708.1219 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -427,7 +427,8 @@ gre(Argus) :-
 			Conc \= cn([answer(_, _, _, _, _, _, _)|_])
 		)
 	->	true
-	;	(	\+flag(tactic, 'linear-select')
+	;	(	\+flag(image, _),
+			\+flag(tactic, 'linear-select')
 		->	assertz(flag(tactic, 'linear-select'))
 		;	true
 		)
@@ -447,13 +448,7 @@ gre(Argus) :-
 	),
 	nb_getval(input_statements, SC),
 	(	flag(image, File)
-	->	retractall(flag(_)),
-		(	flag(Flag, _),
-			Flag \= 'no-skolem',
-			retractall(flag(Flag, _)),
-			fail
-		;	true
-		),
+	->	retractall(flag(image, _)),
 		assertz(flag('no-skolem', Vns)),
 		retractall(input_statements(_)),
 		assertz(input_statements(SC)),
@@ -2051,7 +2046,8 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) :-
 	!,
 	(	flag(nope),
-		\+flag(tactic, 'single-answer')
+		\+flag(tactic, 'single-answer'),
+		flag('no-distinct-output')
 	->	write(query(X, X)),
 		writeln('.')
 	;	djiti(answer(X), A),
