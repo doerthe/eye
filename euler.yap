@@ -63,6 +63,7 @@
 
 
 :- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
+:- dynamic(argi/1).
 :- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
@@ -143,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0708.1219 josd').
+version_info('EYE-Summer16.0708.1532 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -228,7 +229,13 @@ main :-
 	;	Argvs = Argvp
 	),
 	argv(Argvs, Argus),
-	format(user_error, 'eye~@~n', [wa(Argus)]),
+	findall(Argij,
+		(	argi(Argij)
+		),
+		Argil
+	),
+	append(Argil, Argi),
+	format(user_error, 'eye~@~@~n', [w0(Argi), wa(Argus)]),
 	flush_output(user_error),
 	(	memberchk('--no-genid', Argus)
 	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
@@ -448,7 +455,8 @@ gre(Argus) :-
 	),
 	nb_getval(input_statements, SC),
 	(	flag(image, File)
-	->	retractall(flag(image, _)),
+	->	assertz(argi(Argus)),
+		retractall(flag(image, _)),
 		assertz(flag('no-skolem', Vns)),
 		retractall(input_statements(_)),
 		assertz(input_statements(SC)),
@@ -483,7 +491,13 @@ gre(Argus) :-
 	->	true
 	;	version_info(Version),
 		format('#Processed by ~w~n', [Version]),
-		format('#eye~@~n~n', [wa(Argus)]),
+		findall(Argij,
+			(	argi(Argij)
+			),
+			Argil
+		),
+		append(Argil, Argi),
+		format('#eye~@~@~n~n', [w0(Argi), wa(Argus)]),
 		flush_output
 	),
 	(	flag(nope)
@@ -1232,7 +1246,9 @@ args(['--pass'|Args]) :-
 		(	flag('no-distinct-input')
 		->	flag('no-distinct-output')
 		;	true
-		)
+		),
+		\+implies(_, answer(_, _, _, _, _, _, _), _),
+		\+implies(_, cn([answer(_, _, _, _, _, _, _)|_]), _)
 	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
 	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	),
@@ -2176,6 +2192,19 @@ tr_split([A|B], [A|C], D) :-
 
 
 % Reasoning output
+
+w0([]) :-
+	!.
+w0(['--image', _|A]) :-
+	!,
+	w0(A).
+w0(['--wget-path', _|A]) :-
+	!,
+	w0(A).
+w0([A|B]) :-
+	format(' ~w', [A]),
+	w0(B).
+
 
 wa([]) :-
 	!.
