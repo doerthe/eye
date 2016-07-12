@@ -6,7 +6,7 @@
 % It performs semibackward reasoning and it supports Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
 %
-% SEE [6] is used to verify EYE releases [7].
+% See [6] is used to verify EYE releases [7].
 % EYE can be installed manually on Linux, Windows and MacOSX [8].
 % EYE is also available in a Docker container for command line use [9]
 % and in a Docker container for HTTP client use [10].
@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0708.1532 josd').
+version_info('EYE-Summer16.0712.1019 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -2036,8 +2036,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery
 	tr_n3p(Z, Src, tquery).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query) :-
 	!,
-	(	flag(nope),
-		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
+	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	(	is_list(T)
 		->	H = T
 		;	uvars(X, U),
@@ -2047,9 +2046,9 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct-output')
+	(	\+flag(tactic, 'single-answer'),
+		(	flag(nope),
+			flag('no-distinct-output')
 		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, V)),
@@ -2073,8 +2072,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) 
 	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	!,
-	(	flag(nope),
-		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
+	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	(	is_list(T)
 		->	H = T
 		;	uvars(X, U),
@@ -2084,8 +2082,10 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	flag(nope),
-		\+flag(tactic, 'single-answer')
+	(	\+flag(tactic, 'single-answer'),
+		(	flag(nope)
+		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		)
 	->	write(query(X, V)),
 		writeln('.')
 	;	djiti(answer(V), A),
