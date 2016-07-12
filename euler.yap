@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0712.1019 josd').
+version_info('EYE-Summer16.0712.1244 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -235,7 +235,7 @@ main :-
 		Argil
 	),
 	append(Argil, Argi),
-	format(user_error, 'eye~@~@~n', [w0(Argi), wa(Argus)]),
+	format(user_error, 'eye~@~@~n', [w0(Argi), w1(Argus)]),
 	flush_output(user_error),
 	(	memberchk('--no-genid', Argus)
 	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
@@ -497,7 +497,7 @@ gre(Argus) :-
 			Argil
 		),
 		append(Argil, Argi),
-		format('#eye~@~@~n~n', [w0(Argi), wa(Argus)]),
+		format('#eye~@~@~n~n', [w0(Argi), w1(Argus)]),
 		flush_output
 	),
 	(	flag(nope)
@@ -660,7 +660,7 @@ gre(Argus) :-
 		nl
 	),
 	timestamp(Stamp),
-	Etc is TC+BC,
+	Ent is TC+BC,
 	Step is TP+BP,
 	nb_getval(tr, TR),
 	nb_getval(br, BR),
@@ -671,7 +671,7 @@ gre(Argus) :-
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 	catch(Infin is round(Inf/Inp), _, Infin = ''),
-	format(user_error, '[~w] in=~d out=~d etc=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Etc, Step, Brake, Inf, Cpu, Speed, Infin]),
+	format(user_error, '[~w] in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, RBC, RBP, R],
@@ -1631,7 +1631,7 @@ args(['--turtle', Argument|Args]) :-
 			nb_getval(sc, Outp),
 			nb_getval(tc, TC),
 			nb_getval(bc, BC),
-			Etc is TC+BC,
+			Ent is TC+BC,
 			nb_getval(tp, TP),
 			nb_getval(bp, BP),
 			Step is TP+BP,
@@ -1644,7 +1644,7 @@ args(['--turtle', Argument|Args]) :-
 			catch(Infin is round(Inf/Inp), _, Infin = ''),
 			format('~q.~n', [scount(Outp)]),
 			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-			format(user_error, '[~w] in=~d out=~d etc=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Etc, Step, Brake, Inf, Cpu, Speed, Infin]),
+			format(user_error, '[~w] in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 			flush_output(user_error)
 		;	true
 		)
@@ -2198,22 +2198,16 @@ w0([]) :-
 w0(['--image', _|A]) :-
 	!,
 	w0(A).
-w0(['--wget-path', _|A]) :-
-	!,
-	w0(A).
 w0([A|B]) :-
 	format(' ~w', [A]),
 	w0(B).
 
 
-wa([]) :-
+w1([]) :-
 	!.
-wa(['--wget-path', _|A]) :-
-	!,
-	wa(A).
-wa([A|B]) :-
+w1([A|B]) :-
 	format(' ~w', [A]),
-	wa(B).
+	w1(B).
 
 
 wh :-
@@ -2279,10 +2273,13 @@ wm :-
 		ws(B),
 		write('.'),
 		nl,
-		(	A = cn(L)
-		->	length(L, I),
-			cnt(output_statements, I)
-		;	cnt(output_statements)
+		(	current_output(user_output)
+		->	(	A = cn(L)
+			->	length(L, I),
+				cnt(output_statements, I)
+			;	cnt(output_statements)
+			)
+		;	true
 		),
 		fail
 	;	true
@@ -2295,7 +2292,10 @@ wm :-
 		ws(C),
 		write('.'),
 		nl,
-		cnt(output_statements),
+		(	current_output(user_output)
+		->	cnt(output_statements)
+		;	true
+		),
 		fail
 	;	nl
 	).
@@ -2350,7 +2350,10 @@ wm :-
 			wt(C),
 			ws(C),
 			write('.'),
-			cnt(output_statements),
+			(	current_output(user_output)
+			->	cnt(output_statements)
+			;	true
+			),
 			fail
 		;	true
 		),
@@ -2605,7 +2608,7 @@ wr(Z) :-
 			L1
 		),
 		(	L0 = L1
-		->	L = L0 
+		->	L = L0
 		;	L0 = [H|_],
 			L =  [H]
 		),
@@ -10126,7 +10129,7 @@ pathitem([], [], L1, L2) :-
 pathitem(Name, [], L1, L2) :-
 	symbol(S, L1, L2),
 	!,
-	(	qevar(S, N, D), fm(qevar(S, N, D))
+	(	qevar(S, N, D)
 	->	(	D >= 1,
 			nb_getval(fdepth, FD),
 			FD >= D
