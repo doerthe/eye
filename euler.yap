@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0712.1244 josd').
+version_info('EYE-Summer16.0713.1143 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -194,6 +194,7 @@ eye
 	--tactic existing-path		Euler path using homomorphism
 	--tactic limited-answer <count>	give only a limited numer of answers
 	--tactic linear-select		select each rule only once
+	--tactic reverse-think		select from reversed choice list
 	--tactic single-answer		give only one answer
 	--think				find all possible proofs
 	--traditional			traditional mode
@@ -795,7 +796,7 @@ opts(['--kgb'|Argus], Args) :-
 opts(['--license'|_], _) :-
 	!,
 	license_info(License),
-	format(user_error, '~w~n~n', [License]),
+	format(user_error, '~w~n', [License]),
 	flush_output(user_error),
 	throw(halt).
 opts(['--multi-query'|Argus], Args) :-
@@ -964,6 +965,10 @@ opts(['--strings'|Argus], Args) :-
 	!,
 	assertz(flag(strings)),
 	opts(Argus, Args).
+opts(['--tactic', 'existing-path'|Argus], Args) :-
+	!,
+	assertz(flag(tactic, 'existing-path')),
+	opts(Argus, Args).
 opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
 	!,
 	(	number(Lim)
@@ -978,13 +983,21 @@ opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
 	),
 	assertz(flag('limited-answer', Limit)),
 	opts(Argus, Args).
-opts(['--tactic', Tactic|Argus], Args) :-
+opts(['--tactic', 'linear-select'|Argus], Args) :-
 	!,
-	(	memberchk(Tactic, ['existing-path', 'linear-select', 'single-answer'])
-	->	assertz(flag(tactic, Tactic))
-	;	throw(not_supported_tactic(Tactic))
-	),
+	assertz(flag(tactic, 'linear-select')),
 	opts(Argus, Args).
+opts(['--tactic', 'reverse-think'|Argus], Args) :-
+	!,
+	assertz(flag(tactic, 'reverse-think')),
+	opts(Argus, Args).
+opts(['--tactic', 'single-answer'|Argus], Args) :-
+	!,
+	assertz(flag(tactic, 'single-answer')),
+	opts(Argus, Args).
+opts(['--tactic', Tactic|_], _) :-
+	!,
+	throw(not_supported_tactic(Tactic)).
 opts(['--think'|Argus], Args) :-
 	!,
 	assertz(flag(think)),
@@ -2609,7 +2622,12 @@ wr(Z) :-
 		),
 		(	L0 = L1
 		->	L = L0
-		;	L0 = [H|_],
+		;	sort(L0, L2),
+			(	flag(tactic, 'reverse-think')
+			->	reverse(L2, L3)
+			;	L3 = L2
+			),
+			L3 = [H|_],
 			L =  [H]
 		),
 		L \= [],
