@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0713.1143 josd').
+version_info('EYE-Summer16.0713.1246 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -194,7 +194,6 @@ eye
 	--tactic existing-path		Euler path using homomorphism
 	--tactic limited-answer <count>	give only a limited numer of answers
 	--tactic linear-select		select each rule only once
-	--tactic reverse-think		select from reversed choice list
 	--tactic single-answer		give only one answer
 	--think				find all possible proofs
 	--traditional			traditional mode
@@ -986,10 +985,6 @@ opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
 opts(['--tactic', 'linear-select'|Argus], Args) :-
 	!,
 	assertz(flag(tactic, 'linear-select')),
-	opts(Argus, Args).
-opts(['--tactic', 'reverse-think'|Argus], Args) :-
-	!,
-	assertz(flag(tactic, 'reverse-think')),
 	opts(Argus, Args).
 opts(['--tactic', 'single-answer'|Argus], Args) :-
 	!,
@@ -2622,12 +2617,7 @@ wr(Z) :-
 		),
 		(	L0 = L1
 		->	L = L0
-		;	sort(L0, L2),
-			(	flag(tactic, 'reverse-think')
-			->	reverse(L2, L3)
-			;	L3 = L2
-			),
-			L3 = [H|_],
+		;	L0 = [H|_],
 			L =  [H]
 		),
 		L \= [],
