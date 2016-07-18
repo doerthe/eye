@@ -6,7 +6,7 @@
 % It performs semibackward reasoning and it supports Euler paths [3].
 % Via N3 [4] it is interoperable with Cwm [5].
 %
-% See [6] is used to verify EYE releases [7].
+% EYEcode [6] is used to verify EYE releases [7].
 % EYE can be installed manually on Linux, Windows and MacOSX [8].
 % EYE is also available in a Docker container for command line use [9]
 % and in a Docker container for HTTP client use [10].
@@ -17,7 +17,7 @@
 %  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
 %  [4] http://www.w3.org/TeamSubmission/n3/
 %  [5] http://www.w3.org/2000/10/swap/doc/cwm
-%  [6] https://github.com/josd/see
+%  [6] https://github.com/josd/EYEcode
 %  [7] http://eulersharp.sourceforge.net/RELEASE
 %  [8] http://eulersharp.sourceforge.net/INSTALL
 %  [9] https://registry.hub.docker.com/u/bdevloed/eye/
@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0713.1246 josd').
+version_info('EYE-Summer16.0718.1234 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
