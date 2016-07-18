@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0718.1234 josd').
+version_info('EYE-Summer16.0718.1453 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -242,7 +242,7 @@ main :-
 	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
 		atom_number(Run2, Run1),
 		catch(sha_hash(Run2, Run3, [algorithm(sha1)]), _,
-			(	format(user_error, '** ERROR ** please install swipl package clib~n', []),
+			(	format(user_error, '** ERROR ** EYE requires swipl package clib which can be installed from http://www.swi-prolog.org/Download.html~n', []),
 				flush_output(user_error),
 				halt(1)
 			)
@@ -258,6 +258,16 @@ main :-
 	prolog_flag(version, PVersion),
 	format(user_error, '~w~n', [PVersion]),
 	flush_output(user_error),
+	catch(process_create(path(curl), ['--version'], [stdin(null), stdout(null), stderr(null)]), _,
+		(	format(user_error, '** WARNING ** EYE depends on curl which can be installed from https://curl.haxx.se/download.html **~n', []),
+			flush_output(user_error)
+		)
+	),
+	catch(process_create(path(cturtle), [], [stdin(null), stdout(null), stderr(null)]), _,
+		(	format(user_error, '** WARNING ** EYE depends on cturtle which can be installed from https://github.com/melgi/cturtle/releases/ **~n', []),
+			flush_output(user_error)
+		)
+	),
 	(	retract(prolog_file_type(qlf, qlf))
 	->	assertz(prolog_file_type(pvm, qlf))
 	;	true
