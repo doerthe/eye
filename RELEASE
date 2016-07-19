@@ -19,7 +19,7 @@
 - fixing --image to store the EYE options (obs from Hong Sun)
 - refactoring the handling of EYE options
 - supporting DJITI which is standing for 'Deep Just-In-Time Indexing'
-- <a href="https://github.com/josd/EYEcode">EYEcode</a> is used to verify EYE releases
+- <a href="https://github.com/josd/etc">ETC</a> is used to verify EYE releases
 - fixing scoping issue with the deprecated @forSome (obs from Dörthe Arndt)
 - fixing --plugin for ground backward rules (obs from Dörthe Arndt)
 - adding <a href="http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#skolem">e:skolem</a> built-in to generate a Skolem IRI object which is a function of the arguments in the subject list
