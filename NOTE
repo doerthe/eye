@@ -46,11 +46,11 @@ This is the EYE reasoning engine:
   Lj &lt;= Li and a conjunction of the remaining statements L0.
   Li =&gt; Lj, Lj &lt;= Li and L0 are called clauses.
   Li, Lj and L0 are called clause literals.
-  In <a href="https://github.com/josd/EYEcode">EYEcode</a> the scope of implicit universals is the clause and
+  In <a href="https://github.com/josd/etc">ETC</a> the scope of implicit universals is the clause and
   the scope of implicit existentials is the clause literal.
 
-<b>Design issue:</b> <a href="http://josd.github.io/EYEcode/witch/witch-proof.n3">Proof output without bindings</a>
-  In <a href="https://github.com/josd/EYEcode">EYEcode</a> the variable substitutions naturally follow from the proof.
+<b>Design issue:</b> <a href="http://josd.github.io/etc/witch/witch-proof.n3">Proof output without bindings</a>
+  In <a href="https://github.com/josd/etc">ETC</a> the variable substitutions naturally follow from the proof.
 </pre>
 </body>
 </html>
