@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0719.0809 josd').
+version_info('EYE-Summer16.0719.1414 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
@@ -9726,9 +9726,12 @@ dynamic_verb(Verb) :-
 		;	assertz(intern(V)),
 			(	sub_atom(V, 0, 1, _, '\'')
 			->	sub_atom(V, 1, _, 1, A),
-				atom_codes(A, C),
-				escape_squote(D, C),
-				atom_codes(B, D)
+				(	sub_atom(A, _, 1, _, '\'')
+				->	atom_codes(A, C),
+					escape_squote(D, C),
+					atom_codes(B, D)
+				;	B = A
+				)
 			;	B = V
 			),
 			(	current_predicate(B/2)
@@ -10102,8 +10105,12 @@ literal(Atom, DtLang, L1, L3) :-
 	dtlang(DtLang, L2, L3),
 	escape_string(Codes, B),
 	escape_string(B, C),
-	escape_squote(C, D),
-	atom_codes(E, D),
+	atom_codes(A, C),
+	(	sub_atom(A, _, 1, _, '\'')
+	->	escape_squote(C, D),
+		atom_codes(E, D)
+	;	E = A
+	),
 	atomic_list_concat(['\'', E, '\''], Atom).
 
 
@@ -10418,9 +10425,12 @@ propertylisttailsemis(L1, L1).
 qname(URI, [NS:Name|L2], L2) :-
 	(	ns(NS, Base)
 	->	atomic_list_concat([Base, Name], Name1),
-		atom_codes(Name1, Codes1),
-		escape_squote(Codes1, Codes2),
-		atom_codes(Name2, Codes2),
+		(	sub_atom(Name1, _, 1, _, '\'')
+		->	atom_codes(Name1, Codes1),
+			escape_squote(Codes1, Codes2),
+			atom_codes(Name2, Codes2)
+		;	Name2 = Name1
+		),
 		atomic_list_concat(['\'<', Name2, '>\''], URI)
 	;	nb_getval(line_number, Ln),
 		throw(no_prefix_directive(NS, after_line(Ln)))
@@ -10569,9 +10579,12 @@ uri(Name, L1, L2) :-
 	!,
 	base_uri(V),
 	resolve_uri(U, V, W),
-	atom_codes(W, X),
-	escape_squote(X, Y),
-	atom_codes(Z, Y),
+	(	sub_atom(W, _, 1, _, '\'')
+	->	atom_codes(W, X),
+		escape_squote(X, Y),
+		atom_codes(Z, Y)
+	;	Z = W
+	),
 	atomic_list_concat(['\'<', Z, '>\''], Name).
 uri(Name, L1, L2) :-
 	qname(Name, L1, L2).
