@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0719.1414 josd').
+version_info('EYE-Summer16.0720.1325 josd').
 
 
 license_info('EulerSharp: http://eulersharp.sourceforge.net/
