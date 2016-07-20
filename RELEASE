@@ -10,7 +10,7 @@
 - fixing --image to store the EYE options (obs from Hong Sun)
 - refactoring the handling of EYE options
 - supporting DJITI which is standing for 'Deep Just-In-Time Indexing'
-- ETC is used to verify EYE releases
+- ETC https://github.com/josd/etc is used to verify EYE releases
 - fixing scoping issue with the deprecated @forSome (obs from Dörthe Arndt)
 - fixing --plugin for ground backward rules (obs from Dörthe Arndt)
 - adding e:skolem built-in to generate a Skolem IRI object which is a function of the arguments in the subject list
