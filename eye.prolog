@@ -144,7 +144,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0720.1859 josd').
+version_info('EYE-Summer16.0720.1941 josd').
 
 
 license_info('MIT License
