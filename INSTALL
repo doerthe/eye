@@ -54,4 +54,3 @@ Run the installation script install.sh which will
 
 Test the EYE installation via /opt/eye/bin/eye.sh --version
 and it should return the version which is in the file VERSION.
-
