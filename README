@@ -52,8 +52,8 @@ Design issue: Proof output without bindings [14]
  [3] http://www.w3.org/TeamSubmission/n3/
  [4] http://www.w3.org/2000/10/swap/doc/cwm
  [5] https://github.com/josd/etc
- [6] http://josd.github.io/eye/RELEASE
- [7] http://josd.github.io/eye/INSTALL
+ [6] https://github.com/josd/eye/blob/master/RELEASE
+ [7] https://github.com/josd/eye/blob/master/INSTALL
  [8] https://registry.hub.docker.com/u/bdevloed/eye/
  [9] https://registry.hub.docker.com/u/bdevloed/eyeserver/
 [10] http://josd.github.io/images/eye-reasoning-engine.png
