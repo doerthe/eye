@@ -1,56 +1,50 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>EYE note</title>
-    <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
-    <style type="text/css">a:hover {background:#ffa;}</style>
-    <style type="text/css">img {vertical-align:text-top;}</style>
-</head>
+                                    EYE note
 
-<body>
-<h1>EYE note</h1>
-<pre>
-<img src="http://eulersharp.sourceforge.net/2003/03swap/eye.png" alt="EYE" style="float:left"/> EYE stands for "Euler Yet another proof Engine" and it is
+ EYE stands for "Euler Yet another proof Engine" and it is
  a further development of Euler which is an inference engine
- supporting logic based proofs. EYE is a reasoning engine 
- supporting the RGB <a href="http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a">Semantic Web layers</a>.
+ supporting logic based proofs. EYE is a reasoning engine
+ supporting the RGB [1]Semantic Web layers.
 
 EYE performs semibackward reasoning and it supports Euler paths.
 Semibackward reasoning is backward reasoning for EYE components i.e.
-rules using &lt;= in <a href="http://www.w3.org/TeamSubmission/n3/">N3</a> and forward reasoning for rules using =&gt; in <a href="http://www.w3.org/TeamSubmission/n3/">N3</a>.
+rules using <= in [2]N3 and forward reasoning for rules using => in N3.
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
-in 1736 for the <a href="http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html">Königsberg Bridge Problem</a>. EYE sees the rule
-P =&gt; C as P &amp; NOT(C) =&gt; C so it follows so called PNC steps.
+in 1736 for the [3]Königsberg Bridge Problem. EYE sees the rule
+P => C as P & NOT(C) => C so it follows so called PNC steps.
 
 The detailed design of EYE comprises:
- 1/ <a href="http://www.w3.org/TeamSubmission/n3/">N3</a> parser specified as Prolog rules
- 2/ <a href="http://www.w3.org/DesignIssues/N3Logic">N3Logic</a> to N3P (N3 P-code) compiler
+ 1/ N3 parser specified as Prolog rules
+ 2/ [4]N3Logic to N3P (N3 P-code) compiler
  3/ EAM (Euler Abstract Machine) supporting Euler paths
- 4/ proof construction using the <a href="http://www.w3.org/2000/10/swap/reason.n3">vocabulary for proofs</a>
+ 4/ proof construction using the [5]vocabulary for proofs
  5/ built-ins and support predicates for the above functionalities
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
- 1/ Select rule P =&gt; C
- 2/ Prove P &amp; NOT(C) (backward chaining) and if it fails backtrack to 1/
- 3/ If P &amp; NOT(C) assert C (forward chaining) and remove brake
+ 1/ Select rule P => C
+ 2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
+ 3/ If P & NOT(C) assert C (forward chaining) and remove brake
  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/
  5/ If brake or tactic linear-select stop, else start again at 1/
 
-This is the EYE reasoning engine:
-  <img src="http://eulersharp.sourceforge.net/2006/02swap/eye-reasoning-engine.png" alt="EYE" height="228" width="285"/>
-
-<b>Design issue:</b> <a href="https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000.html">Implicit Quantification in N3</a>
-  A N3 resource contains implications of the form Li =&gt; Lj or
-  Lj &lt;= Li and a conjunction of the remaining statements L0.
-  Li =&gt; Lj, Lj &lt;= Li and L0 are called clauses.
+Design issue: [6]Implicit Quantification in N3
+  A N3 resource contains implications of the form Li => Lj or
+  Lj <= Li and a conjunction of the remaining statements L0.
+  Li => Lj, Lj <= Li and L0 are called clauses.
   Li, Lj and L0 are called clause literals.
-  In <a href="https://github.com/josd/etc">ETC</a> the scope of implicit universals is the clause and
+  In [7]ETC the scope of implicit universals is the clause and
   the scope of implicit existentials is the clause literal.
 
-<b>Design issue:</b> <a href="http://josd.github.io/etc/witch/witch-proof.n3">Proof output without bindings</a>
-  In <a href="https://github.com/josd/etc">ETC</a> the variable substitutions naturally follow from the proof.
-</pre>
-</body>
-</html>
+Design issue: [8]Proof output without bindings
+  In ETC the variable substitutions naturally follow from the proof.
+
+References
+
+   1. http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a
+   2. http://www.w3.org/TeamSubmission/n3/
+   3. http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
+   4. http://www.w3.org/DesignIssues/N3Logic
+   5. http://www.w3.org/2000/10/swap/reason.n3
+   6. https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000.html
+   7. https://github.com/josd/etc
+   8. http://josd.github.io/etc/witch/witch-proof.n3

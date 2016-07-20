@@ -144,16 +144,30 @@
 
 % Infos
 
-version_info('EYE-Summer16.0720.1325 josd').
+version_info('EYE-Summer16.0720.1837 josd').
 
 
-license_info('EulerSharp: http://eulersharp.sourceforge.net/
-	Copyright 2003 World Wide Web Consortium, (Massachusetts Institute of Technology,
-	European Research Consortium for Informatics and Mathematics, Keio University).
-	All Rights Reserved. This work is distributed under the W3C Software License [1]
-	in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
-	the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-	[1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231').
+license_info('MIT License
+
+Copyright (c) 2016 Jos De Roo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.').
 
 
 help_info('Usage: eye <options>* <data>* <query>*

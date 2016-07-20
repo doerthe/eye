@@ -1,24 +1,13 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>EYE install</title>
-    <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
-    <style type="text/css">a:hover {background:#ffffb7;}</style>
-    <style type="text/css">img {vertical-align:text-top;}</style>
-</head>
+                                  EYE install
 
-<body>
-<h1>EYE install</h1>
-<pre>
 For Linux
 ---------
 
-Unzip eye.zip from <a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/">https://sourceforge.net/projects/eulersharp/files/eulersharp/</a>
+Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install swipl kernel + package clib from <a href="http://www.swi-prolog.org/Download.html">http://www.swi-prolog.org/Download.html</a>
-Install curl from <a href="http://curl.haxx.se/download.html">http://curl.haxx.se/download.html</a>
-Install cturtle from <a href="https://github.com/melgi/cturtle/releases/">https://github.com/melgi/cturtle/releases/</a>
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install curl from http://curl.haxx.se/download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/
 Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
@@ -33,11 +22,11 @@ and it should return the version which is in the file VERSION.
 For Windows
 -----------
 
-Unzip eye.zip from <a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/">https://sourceforge.net/projects/eulersharp/files/eulersharp/</a>
+Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install swipl kernel + package clib from <a href="http://www.swi-prolog.org/Download.html">http://www.swi-prolog.org/Download.html</a>
-Install curl from <a href="http://curl.haxx.se/download.html">http://curl.haxx.se/download.html</a>
-Install cturtle from <a href="https://github.com/melgi/cturtle/releases/">https://github.com/melgi/cturtle/releases/</a>
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install curl from http://curl.haxx.se/download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/
 Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.cmd which will
@@ -52,10 +41,10 @@ and it should return the version which is in the file VERSION.
 For Mac
 -------
 
-Unzip eye.zip from <a href="https://sourceforge.net/projects/eulersharp/files/eulersharp/">https://sourceforge.net/projects/eulersharp/files/eulersharp/</a>
+Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install swipl kernel + package clib from <a href="http://www.swi-prolog.org/Download.html">http://www.swi-prolog.org/Download.html</a>
-Install cturtle from <a href="https://github.com/melgi/cturtle/releases/">https://github.com/melgi/cturtle/releases/</a>
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/
 Put the swipl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
@@ -65,6 +54,4 @@ Run the installation script install.sh which will
 
 Test the EYE installation via /opt/eye/bin/eye.sh --version
 and it should return the version which is in the file VERSION.
-</pre>
-</body>
-</html>
+
