@@ -2,7 +2,7 @@
 % Euler Yet another proof Engine - EYE -- Jos De Roo
 % --------------------------------------------------
 
-% See https://github.com/josd/eye/blob/master/README
+% See https://github.com/josd/eye
 
 
 % Directives
@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0725.0839 josd').
+version_info('EYE-Summer16.0725.0853 josd').
 
 
 license_info('MIT License
