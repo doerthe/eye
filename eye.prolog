@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0725.0853 josd').
+version_info('EYE-Summer16.0727.1442 josd').
 
 
 license_info('MIT License
@@ -2257,7 +2257,7 @@ w3 :-
 	->	tmp_file(Tmp),
 		open(Tmp, write, Ws, [encoding(utf8)]),
 		tell(Ws),
-		wm,
+		wm(Ws),
 		retractall(wpfx(_)),
 		nb_setval(lemma_cursor, 0),
 		nb_setval(lemma_parent, 0),
@@ -2265,10 +2265,10 @@ w3 :-
 		delete_file(Tmp)
 	;	true
 	),
-	wm.
+	wm(user_output).
 
 
-wm :-
+wm(Out) :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2286,7 +2286,7 @@ wm :-
 		ws(B),
 		write('.'),
 		nl,
-		(	current_output(user_output)
+		(	Out = user_output
 		->	(	A = cn(L)
 			->	length(L, I),
 				cnt(output_statements, I)
@@ -2305,14 +2305,14 @@ wm :-
 		ws(C),
 		write('.'),
 		nl,
-		(	current_output(user_output)
+		(	Out = user_output
 		->	cnt(output_statements)
 		;	true
 		),
 		fail
 	;	nl
 	).
-wm :-
+wm(Out) :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		indent,
@@ -2363,7 +2363,7 @@ wm :-
 			wt(C),
 			ws(C),
 			write('.'),
-			(	current_output(user_output)
+			(	Out = user_output
 			->	cnt(output_statements)
 			;	true
 			),
@@ -3987,7 +3987,7 @@ djitis(exopred(P, S, O)) :-
 djitis(A) :-
 	ground(A),
 	A =.. [P, S, O],
-	P \= ':-',
+	A \= ':-'(_, _),
 	(	compound(S)
 	;	compound(O)
 	),
