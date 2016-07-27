@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- fixing proof output for SWIPL 6 kernel 
 - the EYE source code euler.yap is now renamed to eye.prolog
 - improving the parsing speed by optimizing escape_squote/2
 - giving a warning when curl and cturtle are not installed

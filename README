@@ -35,7 +35,11 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/
  5/ If brake or tactic linear-select stop, else start again at 1/
 
-Design issue: Implicit Quantification in N3 [13]
+
+Design issues
+-------------
+
+Implicit Quantification in N3 [13]
   A N3 resource contains implications of the form Li => Lj or
   Lj <= Li and a conjunction of the remaining statements L0.
   Li => Lj, Lj <= Li and L0 are called clauses.
@@ -43,9 +47,12 @@ Design issue: Implicit Quantification in N3 [13]
   In ETC [5] the scope of implicit universals is the clause and
   the scope of implicit existentials is the clause literal.
 
-Design issue: Proof output without bindings [14]
+Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
 
+
+References
+----------
 
  [1] http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a
  [2] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
