@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0727.1442 josd').
+version_info('EYE-Summer16.0728.0941 josd').
 
 
 license_info('MIT License
@@ -8999,6 +8999,7 @@ raw_type(A, '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	!.
 raw_type(A, '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	atom(A),
+	\+ atom_concat(some, _, A),
 	\+ (sub_atom(A, 0, 1, _, '<'), sub_atom(A, _, 1, 0, '>')),
 	!.
 raw_type(literal(_, _), '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
