@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0728.0941 josd').
+version_info('EYE-Summer16.0729.0910 josd').
 
 
 license_info('MIT License
@@ -1305,7 +1305,8 @@ args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1332,7 +1333,9 @@ args(['--plugin', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	(	File = '-'
 	->	In = user_input
@@ -1363,10 +1366,7 @@ args(['--plugin', Argument|Args]) :-
 	nb_getval(input_statements, IN),
 	Inp is SC+IN,
 	nb_setval(input_statements, Inp),
-	(	wcache(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-	),
+	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error),
 	args(Args).
 % DEPRECATED
@@ -1375,7 +1375,8 @@ args(['--plugin-pvm', Argument|Args]) :-
 	flush_output(user_error),
 	absolute_uri(Argument, Arg),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1402,7 +1403,9 @@ args(['--plugin-pvm', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	consult(File),
 	(	retract(tmpfile(File))
@@ -1416,10 +1419,7 @@ args(['--plugin-pvm', Argument|Args]) :-
 	nb_getval(input_statements, IN),
 	Inp is SC+IN,
 	nb_setval(input_statements, Inp),
-	(	wcache(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-	),
+	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error),
 	args(Args).
 args(['--proof', Arg|Args]) :-
@@ -1473,7 +1473,8 @@ args(['--turtle', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1500,7 +1501,9 @@ args(['--turtle', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	atomic_list_concat(['-b=', Arg], Base),
 	(	flag('pass-turtle')
@@ -1633,10 +1636,7 @@ args(['--turtle', Argument|Args]) :-
 		nb_getval(input_statements, IN),
 		Inp is SC+IN,
 		nb_setval(input_statements, Inp),
-		(	wcache(Arg, File)
-		->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-		;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-		),
+		format(user_error, 'SC=~w~n', [SC]),
 		flush_output(user_error),
 		(	flag('streaming-reasoning')
 		->	timestamp(Stamp),
@@ -1752,7 +1752,8 @@ n3_n3p(Argument, Mode) :-
 	;	Ise = 'ERROR'
 	),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1781,7 +1782,9 @@ n3_n3p(Argument, Mode) :-
 				)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	(	File = '-'
 	->	In = user_input
@@ -2002,10 +2005,7 @@ n3_n3p(Argument, Mode) :-
 		nb_getval(input_statements, IN),
 		Inp is SC+IN,
 		nb_setval(input_statements, Inp),
-		(	wcache(Arg, File)
-		->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-		;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-		),
+		format(user_error, 'SC=~w~n', [SC]),
 		flush_output(user_error)
 	;	(	retract(tmpfile(Tmp_p))
 		->	catch(delete_file(Tmp_p), _, true)
