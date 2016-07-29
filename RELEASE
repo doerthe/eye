@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- improving networking info on stderr
 - fixing log:rawType for blank nodes (obs from Hong Sun)
 - fixing proof output for SWIPL 6 kernel 
 - the EYE source code euler.yap is now renamed to eye.prolog
