@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0729.0910 josd').
+version_info('EYE-Summer16.0801.1327 josd').
 
 
 license_info('MIT License
@@ -2315,6 +2315,7 @@ wm(Out) :-
 wm(Out) :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
+		nb_setval(empty_gives, false),
 		indent,
 		write('[] '),
 		wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
@@ -2332,6 +2333,7 @@ wm(Out) :-
 			Rule =.. [P, S, O],
 			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
 			djiti(answer(C), Cn),
+			nb_setval(empty_gives, C),
 			\+got_wi(A, B, Pnd, C, Rule),
 			assertz(got_wi(A, B, Pnd, C, Rule)),
 			wp('<http://www.w3.org/2000/10/swap/reason#component>'),
@@ -2344,37 +2346,40 @@ wm(Out) :-
 		;	retractall(got_wi(_, _, _, _, _))
 		),
 		wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
-		write(' {'),
-		indentation(2),
-		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, _, _, _, _, _, _),
-			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-			djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
-			nl,
-			indent,
-			getvars(C, D),
-			(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
-			->	Q = allv
-			;	Q = some
-			),
-			(	\+flag(traditional)
-			->	true
-			;	wq(D, Q)
-			),
-			wt(C),
-			ws(C),
-			write('.'),
-			(	Out = user_output
-			->	cnt(output_statements)
+		(	nb_getval(empty_gives, true)
+		->	write(' true.')
+		;	write(' {'),
+			indentation(2),
+			(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, _, _, _, _, _, _),
+				relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
+				djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+				nl,
+				indent,
+				getvars(C, D),
+				(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
+				->	Q = allv
+				;	Q = some
+				),
+				(	\+flag(traditional)
+				->	true
+				;	wq(D, Q)
+				),
+				wt(C),
+				ws(C),
+				write('.'),
+				(	Out = user_output
+				->	cnt(output_statements)
+				;	true
+				),
+				fail
 			;	true
 			),
-			fail
-		;	true
+			indentation(-2),
+			nl,
+			indent,
+			write('}.'),
+			indentation(-2)
 		),
-		indentation(-2),
-		nl,
-		indent,
-		write('}.'),
-		indentation(-2),
 		nl,
 		nl
 	;	true
@@ -2463,31 +2468,34 @@ wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	indentation(2),
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
-	write(' {'),
-	nl,
-	indentation(2),
-	indent,
-	(	C = rule(PVars, EVars, Rule)
-	->	(	\+flag(traditional)
-		->	true
-		;	wq(PVars, allv),
-			wq(EVars, some)
+	(	C = true
+	->	write(' true;')
+	;	write(' {'),
+		nl,
+		indentation(2),
+		indent,
+		(	C = rule(PVars, EVars, Rule)
+		->	(	\+flag(traditional)
+			->	true
+			;	wq(PVars, allv),
+				wq(EVars, some)
+			),
+			wt(Rule)
+		;	labelvars([A, C], 0, _, avar),
+			getvars(C, D),
+			(	\+flag(traditional)
+			->	true
+			;	wq(D, some)
+			),
+			wt(C)
 		),
-		wt(Rule)
-	;	labelvars([A, C], 0, _, avar),
-		getvars(C, D),
-		(	\+flag(traditional)
-		->	true
-		;	wq(D, some)
-		),
-		wt(C)
+		ws(C),
+		write('.'),
+		nl,
+		indentation(-2),
+		indent,
+		write('};')
 	),
-	ws(C),
-	write('.'),
-	nl,
-	indentation(-2),
-	indent,
-	write('};'),
 	nl,
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#because>'),
@@ -2514,51 +2522,54 @@ wj(Cnt, A, B, C, Rule) :-
 	indentation(2),
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
-	write(' {'),
-	nl,
-	Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc),
-	unifiable(Prem, B, Bs),
-	(	unifiable(Conc, C, Cs)
-	->	true
-	;	(	Conc = dn(G),
-			member(H, G),
-			unifiable(H, C, Cs)
+	(	C = true
+	->	write(' true;')
+	;	write(' {'),
+		nl,
+		Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc),
+		unifiable(Prem, B, Bs),
+		(	unifiable(Conc, C, Cs)
 		->	true
-		;	Cs = []
-		)
-	),
-	append(Bs, Cs, Ds),
-	sort(Ds, Bindings),
-	term_variables(Prem, PVars),
-	term_variables(Conc, CVars),
-	nb_getval(wn, W),
-	labelvars([A, B, C], W, N, some),
-	nb_setval(wn, N),
-	labelvars([Rule, PVars, CVars], 0, _, avar),
-	findall(V,
-		(	member(V, CVars),
-			\+member(V, PVars)
+		;	(	Conc = dn(G),
+				member(H, G),
+				unifiable(H, C, Cs)
+			->	true
+			;	Cs = []
+			)
 		),
-		EVars
+		append(Bs, Cs, Ds),
+		sort(Ds, Bindings),
+		term_variables(Prem, PVars),
+		term_variables(Conc, CVars),
+		nb_getval(wn, W),
+		labelvars([A, B, C], W, N, some),
+		nb_setval(wn, N),
+		labelvars([Rule, PVars, CVars], 0, _, avar),
+		findall(V,
+			(	member(V, CVars),
+				\+member(V, PVars)
+			),
+			EVars
+		),
+		getvars(C, D),
+		(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
+		->	Q = allv
+		;	Q = some
+		),
+		indentation(2),
+		indent,
+		(	\+flag(traditional)
+		->	true
+		;	wq(D, Q)
+		),
+		wt(C),
+		ws(C),
+		write('.'),
+		nl,
+		indentation(-2),
+		indent,
+		write('}; ')
 	),
-	getvars(C, D),
-	(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
-	->	Q = allv
-	;	Q = some
-	),
-	indentation(2),
-	indent,
-	(	\+flag(traditional)
-	->	true
-	;	wq(D, Q)
-	),
-	wt(C),
-	ws(C),
-	write('.'),
-	nl,
-	indentation(-2),
-	indent,
-	write('}; '),
 	nl,
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#evidence>'),
@@ -3867,7 +3878,8 @@ djiti(answer(cn(A)), cn(B)) :-
 	djiti(A, B).
 djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	nonvar(A)
-	;	atom(P)
+	;	atom(P),
+		S \= void
 	),
 	A =.. [P, S, O],
 	!,
