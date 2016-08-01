@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- fixing proof output for empty r:gives (obs from Hong Sun)
 - improving networking info on stderr
 - fixing log:rawType for blank nodes (obs from Hong Sun)
 - fixing proof output for SWIPL 6 kernel 
