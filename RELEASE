@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- improving DJITI (Deep Just In Time Indexing) for primary arguments of compound terms
 - fixing proof output for empty r:gives (obs from Hong Sun)
 - improving networking info on stderr
 - fixing log:rawType for blank nodes (obs from Hong Sun)
@@ -13,7 +14,7 @@
 - fixing issue with duplicate triples in the answers coming from queries together with --pass (obs from Hong Sun)
 - fixing --image to store the EYE options (obs from Hong Sun)
 - refactoring the handling of EYE options
-- supporting DJITI which is standing for 'Deep Just-In-Time Indexing'
+- supporting DJITI which is standing for 'Deep Just In Time Indexing'
 - ETC https://github.com/josd/etc is used to verify EYE releases
 - fixing scoping issue with the deprecated @forSome (obs from Dörthe Arndt)
 - fixing --plugin for ground backward rules (obs from Dörthe Arndt)
