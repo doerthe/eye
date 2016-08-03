@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0801.1327 josd').
+version_info('EYE-Summer16.0803.0821 josd').
 
 
 license_info('MIT License
@@ -1142,12 +1142,12 @@ pvm(File, Argus) :-
 							':-'(exopred(P, U, V),
 								(	(	compound(U)
 									->	term_index(U, Ui),
-										arg(1, U, Up)
+										term_arg_1(U, Up)
 									;	true
 									),
 									(	compound(V)
 									->	term_index(V, Vi),
-										arg(1, V, Vp)
+										term_arg_1(V, Vp)
 									;	true
 									),
 									exopred(P, U, V, Ui, Vi, Up, Vp)
@@ -1189,12 +1189,12 @@ pvm(File, Argus) :-
 							':-'(X,
 								(	(	compound(U)
 									->	term_index(U, Ui),
-										arg(1, U, Up)
+										term_arg_1(U, Up)
 									;	true
 									),
 									(	compound(V)
 									->	term_index(V, Vi),
-										arg(1, V, Vp)
+										term_arg_1(V, Vp)
 									;	true
 									),
 									Y =.. [P, U, V, Ui, Vi, Up, Vp],
@@ -3871,7 +3871,7 @@ qstep(A, true) :-
 	\+prfstep(A, _, _, _, _, _, _, _).
 
 
-% Deep Just-In-Time Indexing
+% DJITI (Deep Just In Time Indexing)
 
 djiti(answer(cn(A)), cn(B)) :-
 	!,
@@ -3886,13 +3886,13 @@ djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	var(I),
 		compound(S)
 	->	term_index(S, I),
-		arg(1, S, K)
+		term_arg_1(S, K)
 	;	true
 	),
 	(	var(J),
 		compound(O)
 	->	term_index(O, J),
-		arg(1, O, L)
+		term_arg_1(O, L)
 	;	true
 	).
 djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
@@ -3903,13 +3903,13 @@ djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	(	var(I),
 		compound(S)
 	->	term_index(S, I),
-		arg(1, S, K)
+		term_arg_1(S, K)
 	;	true
 	),
 	(	var(J),
 		compound(O)
 	->	term_index(O, J),
-		arg(1, O, L)
+		term_arg_1(O, L)
 	;	true
 	).
 djiti(answer(A), answer(A, void, void, _, _, _, _)) :-
@@ -3982,12 +3982,12 @@ djitis(exopred(P, S, O)) :-
 		assertz(':-'(exopred(P, U, V),
 				(	(	compound(U)
 					->	term_index(U, Ui),
-						arg(1, U, Up)
+						term_arg_1(U, Up)
 					;	true
 					),
 					(	compound(V)
 					->	term_index(V, Vi),
-						arg(1, V, Vp)
+						term_arg_1(V, Vp)
 					;	true
 					),
 					exopred(P, U, V, Ui, Vi, Up, Vp)
@@ -4015,12 +4015,12 @@ djitis(A) :-
 		assertz(':-'(X,
 				(	(	compound(U)
 					->	term_index(U, Ui),
-						arg(1, U, Up)
+						term_arg_1(U, Up)
 					;	true
 					),
 					(	compound(V)
 					->	term_index(V, Vi),
-						arg(1, V, Vp)
+						term_arg_1(V, Vp)
 					;	true
 					),
 					Y =.. [P, U, V, Ui, Vi, Up, Vp],
@@ -8649,7 +8649,8 @@ term_index(A, B) :-
 term_arg_1(A, B) :-
 	compound(A),
 	!,
-	arg(1, A, B).
+	arg(1, A, C),
+	term_index(C, B).
 term_arg_1(_, void).
 
 
