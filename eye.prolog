@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0803.0821 josd').
+version_info('EYE-Summer16.0804.0943 josd').
 
 
 license_info('MIT License
@@ -729,6 +729,8 @@ gre(Argus) :-
 	).
 
 
+% command line options
+
 opts([], []) :-
 	!.
 % DEPRECATED
@@ -749,22 +751,27 @@ opts(['--brake', Lim|Argus], Args) :-
 			)
 		)
 	),
+	retractall(flag(brake, _)),
 	assertz(flag(brake, Limit)),
 	opts(Argus, Args).
 opts(['--debug'|Argus], Args) :-
 	!,
+	retractall(flag(debug)),
 	assertz(flag(debug)),
 	opts(Argus, Args).
 opts(['--debug-cnt'|Argus], Args) :-
 	!,
+	retractall(flag('debug-cnt')),
 	assertz(flag('debug-cnt')),
 	opts(Argus, Args).
 opts(['--debug-djiti'|Argus], Args) :-
 	!,
+	retractall(flag('debug-djiti')),
 	assertz(flag('debug-djiti')),
 	opts(Argus, Args).
 opts(['--debug-pvm'|Argus], Args) :-
 	!,
+	retractall(flag('debug-pvm')),
 	assertz(flag('debug-pvm')),
 	opts(Argus, Args).
 opts(['--help'|_], _) :-
@@ -777,18 +784,22 @@ opts(['--help'|_], _) :-
 	throw(halt).
 opts(['--hmac-key', Key|Argus], Args) :-
 	!,
+	retractall(flag('hmac-key', _)),
 	assertz(flag('hmac-key', Key)),
 	opts(Argus, Args).
 opts(['--ignore-inference-fuse'|Argus], Args) :-
 	!,
+	retractall(flag('ignore-inference-fuse')),
 	assertz(flag('ignore-inference-fuse')),
 	opts(Argus, Args).
 opts(['--ignore-syntax-error'|Argus], Args) :-
 	!,
+	retractall(flag('ignore-syntax-error')),
 	assertz(flag('ignore-syntax-error')),
 	opts(Argus, Args).
 opts(['--image', File|Argus], Args) :-
 	!,
+	retractall(flag(image, _)),
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 % DEPRECATED
@@ -805,10 +816,12 @@ opts(['--license'|_], _) :-
 	throw(halt).
 opts(['--multi-query'|Argus], Args) :-
 	!,
+	retractall(flag('multi-query')),
 	assertz(flag('multi-query')),
 	opts(Argus, Args).
 opts(['--n3p'|Argus], Args) :-
 	!,
+	retractall(flag(n3p)),
 	assertz(flag(n3p)),
 	opts(Argus, Args).
 % DEPRECATED
@@ -816,6 +829,7 @@ opts(['--no-blank'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-blank']),
 	flush_output(user_error),
+	retractall(flag('no-blank')),
 	assertz(flag('no-blank')),
 	opts(Argus, Args).
 % DEPRECATED
@@ -829,30 +843,37 @@ opts(['--no-distinct'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--no-distinct', 'no-distinct-output']),
 	flush_output(user_error),
+	retractall(flag('no-distinct-output')),
 	assertz(flag('no-distinct-output')),
 	opts(Argus, Args).
 opts(['--no-distinct-input'|Argus], Args) :-
 	!,
+	retractall(flag('no-distinct-input')),
 	assertz(flag('no-distinct-input')),
 	opts(Argus, Args).
 opts(['--no-distinct-output'|Argus], Args) :-
 	!,
+	retractall(flag('no-distinct-output')),
 	assertz(flag('no-distinct-output')),
 	opts(Argus, Args).
 opts(['--no-genid'|Argus], Args) :-
 	!,
+	retractall(flag('no-genid')),
 	assertz(flag('no-genid')),
 	opts(Argus, Args).
 opts(['--no-numerals'|Argus], Args) :-
 	!,
+	retractall(flag('no-numerals')),
 	assertz(flag('no-numerals')),
 	opts(Argus, Args).
 opts(['--no-qnames'|Argus], Args) :-
 	!,
+	retractall(flag('no-qnames')),
 	assertz(flag('no-qnames')),
 	opts(Argus, Args).
 opts(['--no-qvars'|Argus], Args) :-
 	!,
+	retractall(flag('no-qvars')),
 	assertz(flag('no-qvars')),
 	opts(Argus, Args).
 opts(['--no-skolem', Prefix|Argus], Args) :-
@@ -864,22 +885,27 @@ opts(['--no-span'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-span']),
 	flush_output(user_error),
+	retractall(flag('no-span')),
 	assertz(flag('no-span')),
 	opts(Argus, Args).
 opts(['--nope'|Argus], Args) :-
 	!,
+	retractall(flag(nope)),
 	assertz(flag(nope)),
 	opts(Argus, Args).
 opts(['--pass-all-ground'|Argus], Args) :-
 	!,
+	retractall(flag('pass-all-ground')),
 	assertz(flag('pass-all-ground')),
 	opts(['--pass-all'|Argus], Args).
 opts(['--pass-only-new'|Argus], Args) :-
 	!,
+	retractall(flag('pass-only-new')),
 	assertz(flag('pass-only-new')),
 	opts(Argus, Args).
 opts(['--pass-turtle'|Argus], Args) :-
 	!,
+	retractall(flag('pass-turtle')),
 	assertz(flag('pass-turtle')),
 	opts(Argus, Args).
 % DEPRECATED
@@ -887,6 +913,7 @@ opts(['--pcl'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--pcl', '--n3p']),
 	flush_output(user_error),
+	retractall(flag(n3p)),
 	assertz(flag(n3p)),
 	opts(Argus, Args).
 opts(['--probe'|_], _) :-
@@ -895,6 +922,7 @@ opts(['--probe'|_], _) :-
 	throw(halt).
 opts(['--profile'|Argus], Args) :-
 	!,
+	retractall(flag(profile)),
 	assertz(flag(profile)),
 	opts(Argus, Args).
 % DEPRECATED
@@ -926,10 +954,12 @@ opts(['--quick-possible'|Argus], Args) :-
 opts(['--quick-answer'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic single-answer']),
+	retractall(flag(tactic, 'single-answer')),
 	assertz(flag(tactic, 'single-answer')),
 	opts(Argus, Args).
 opts(['--rule-histogram'|Argus], Args) :-
 	!,
+	retractall(flag('rule-histogram')),
 	assertz(flag('rule-histogram')),
 	opts(Argus, Args).
 % DEPRECATED
@@ -937,10 +967,12 @@ opts(['--single-answer'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic single-answer']),
 	flush_output(user_error),
+	retractall(flag(tactic, 'single-answer')),
 	assertz(flag(tactic, 'single-answer')),
 	opts(Argus, Args).
 opts(['--statistics'|Argus], Args) :-
 	!,
+	retractall(flag(statistics)),
 	assertz(flag(statistics)),
 	opts(Argus, Args).
 opts(['--step', Lim|Argus], Args) :-
@@ -955,22 +987,27 @@ opts(['--step', Lim|Argus], Args) :-
 			)
 		)
 	),
+	retractall(flag(step, _)),
 	assertz(flag(step, Limit)),
 	opts(Argus, Args).
 opts(['--streaming-reasoning'|Argus], Args) :-
 	!,
+	retractall(flag('streaming-reasoning')),
 	assertz(flag('streaming-reasoning')),
 	opts(Argus, Args).
 opts(['--strict'|Argus], Args) :-
 	!,
+	retractall(flag(strict)),
 	assertz(flag(strict)),
 	opts(Argus, Args).
 opts(['--strings'|Argus], Args) :-
 	!,
+	retractall(flag(strings)),
 	assertz(flag(strings)),
 	opts(Argus, Args).
 opts(['--tactic', 'existing-path'|Argus], Args) :-
 	!,
+	retractall(flag(tactic, 'existing-path')),
 	assertz(flag(tactic, 'existing-path')),
 	opts(Argus, Args).
 opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
@@ -985,14 +1022,17 @@ opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
 			)
 		)
 	),
+	retractall(flag('limited-answer', _)),
 	assertz(flag('limited-answer', Limit)),
 	opts(Argus, Args).
 opts(['--tactic', 'linear-select'|Argus], Args) :-
 	!,
+	retractall(flag(tactic, 'linear-select')),
 	assertz(flag(tactic, 'linear-select')),
 	opts(Argus, Args).
 opts(['--tactic', 'single-answer'|Argus], Args) :-
 	!,
+	retractall(flag(tactic, 'single-answer')),
 	assertz(flag(tactic, 'single-answer')),
 	opts(Argus, Args).
 opts(['--tactic', Tactic|_], _) :-
@@ -1000,6 +1040,7 @@ opts(['--tactic', Tactic|_], _) :-
 	throw(not_supported_tactic(Tactic)).
 opts(['--think'|Argus], Args) :-
 	!,
+	retractall(flag(think)),
 	assertz(flag(think)),
 	opts(Argus, Args).
 % DEPRECATED
@@ -1007,10 +1048,12 @@ opts(['--tmp-file', File|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--tmp-file']),
 	flush_output(user_error),
+	retractall(flag('tmp-file', _)),
 	assertz(flag('tmp-file', File)),
 	opts(Argus, Args).
 opts(['--traditional'|Argus], Args) :-
 	!,
+	retractall(flag(traditional)),
 	assertz(flag(traditional)),
 	opts(Argus, Args).
 opts(['--version'|_], _) :-
@@ -1018,15 +1061,14 @@ opts(['--version'|_], _) :-
 	throw(halt).
 opts(['--warn'|Argus], Args) :-
 	!,
+	retractall(flag(warn)),
 	assertz(flag(warn)),
 	opts(Argus, Args).
 opts(['--wcache', Argument, File|Argus], Args) :-
 	!,
 	absolute_uri(Argument, Arg),
-	(	wcache(Arg, _)
-	->	true
-	;	assertz(wcache(Arg, File))
-	),
+	retractall(wcache(Arg, _)),
+	assertz(wcache(Arg, File)),
 	opts(Argus, Args).
 % DEPRECATED
 opts(['--wget-path', _|Argus], Args) :-
@@ -1037,6 +1079,7 @@ opts(['--wget-path', _|Argus], Args) :-
 % DEPRECATED
 opts(['--yabc', File|Argus], Args) :-
 	!,
+	retractall(flag(image, _)),
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
