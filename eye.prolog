@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0804.0943 josd').
+version_info('EYE-Summer16.0805.1301 josd').
 
 
 license_info('MIT License
@@ -535,6 +535,7 @@ gre(Argus) :-
 	nb_setval(bc, 0),
 	nb_setval(bp, 0),
 	nb_setval(wn, 0),
+	nb_setval(rn, 0),
 	nb_setval(pm, 0),
 	nb_setval(cm, 0),
 	nb_setval(fm, 0),
@@ -1569,6 +1570,7 @@ args(['--turtle', Argument|Args]) :-
 			)
 		),
 		nb_setval(wn, 0),
+		nb_setval(rn, 0),
 		nb_setval(sc, 0),
 		nb_setval(tc, 0),
 		nb_setval(tp, 0),
@@ -2304,6 +2306,7 @@ w3 :-
 		retractall(wpfx(_)),
 		nb_setval(lemma_cursor, 0),
 		nb_setval(lemma_parent, 0),
+		nb_setval(rn, 0),
 		told,
 		delete_file(Tmp)
 	;	true
@@ -2959,7 +2962,13 @@ wt0(X) :-
 		write('_:')
 	),
 	!,
-	write(Y).
+	write(Y),
+	(	sub_atom(Y, 0, 2, _, 'x_')
+	->	write('_'),
+		nb_getval(rn, N),
+		write(N)
+	;	true
+	).
 wt0(X) :-
 	flag('no-skolem', Prefix),
 	(	\+flag(traditional)
@@ -3108,7 +3117,8 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 	),
 	(	rule_uvar(R)
 	->	true
-	;	R = []
+	;	R = [],
+		cnt(rn)
 	),
 	(	nb_getval(pdepth, 0),
 		nb_getval(cdepth, 0)
@@ -3168,7 +3178,8 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 wt2(':-'(X, Y)) :-
 	(	rule_uvar(R)
 	->	true
-	;	R = []
+	;	R = [],
+		cnt(rn)
 	),
 	(	nb_getval(fdepth, 0)
 	->	assertz(ncllit)

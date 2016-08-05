@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- standardizing variables apart in proof output
 - improving command line option handling
 - improving DJITI (Deep Just In Time Indexing) for primary arguments of compound terms
 - fixing proof output for empty r:gives (obs from Hong Sun)
