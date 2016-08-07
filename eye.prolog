@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0805.1301 josd').
+version_info('EYE-Summer16.0807.2020 josd').
 
 
 license_info('MIT License
@@ -2887,7 +2887,7 @@ wt0(X) :-
 			->	(	memberchk(Y, L)
 				->	true
 				;	retract(rule_uvar(L)),
-					assertz(rule_uvar([Y|L]))
+					assertz(rule_uvar([X|L]))
 				)
 			;	memberchk(Y, L)
 			)
@@ -2910,7 +2910,7 @@ wt0(X) :-
 			->	(	memberchk(Y, L)
 				->	true
 				;	retract(rule_uvar(L)),
-					assertz(rule_uvar([Y|L]))
+					assertz(rule_uvar([X|L]))
 				)
 			;	memberchk(Y, L)
 			)
