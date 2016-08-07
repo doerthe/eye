@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0807.2020 josd').
+version_info('EYE-Summer16.0807.2106 josd').
 
 
 license_info('MIT License
@@ -2884,12 +2884,12 @@ wt0(X) :-
 		\+flag('no-blank')	% DEPRECATED
 	->	(	rule_uvar(L),
 			(	ncllit
-			->	(	memberchk(Y, L)
+			->	(	memberchk(X, L)
 				->	true
 				;	retract(rule_uvar(L)),
 					assertz(rule_uvar([X|L]))
 				)
-			;	memberchk(Y, L)
+			;	memberchk(X, L)
 			)
 		->	write('?U_')
 		;	write('_:sk_')
@@ -2907,12 +2907,12 @@ wt0(X) :-
 		\+flag('pass-all-ground')
 	->	(	rule_uvar(L),
 			(	ncllit
-			->	(	memberchk(Y, L)
+			->	(	memberchk(X, L)
 				->	true
 				;	retract(rule_uvar(L)),
 					assertz(rule_uvar([X|L]))
 				)
-			;	memberchk(Y, L)
+			;	memberchk(X, L)
 			)
 		->	write('?U_')
 		;	write('_:sk_')
