@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- making the connection between blank nodes in the proof output (obs from Dörthe Arndt)
 - fixing scoping issue with existential rules (obs from Dörthe Arndt)
 - standardizing variables apart in proof output
 - improving command line option handling
