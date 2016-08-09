@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0807.2106 josd').
+version_info('EYE-Summer16.0809.0949 josd').
 
 
 license_info('MIT License
@@ -2950,9 +2950,13 @@ wt0(X) :-
 			)
 		;	memberchk(Y, L)
 		)
-	->	sub_atom(Y, 0, 2, _, Z),
-		memberchk(Z, ['x_', 't_']),
-		write('?')
+	->	(	\+flag(nope),
+			sub_atom(Y, 0, 2, _, 'e_')
+		->	write('_:')
+		;	sub_atom(Y, 0, 2, _, Z),
+			memberchk(Z, ['x_', 't_']),
+			write('?')
+		)
 	;	(	\+flag('no-qvars'),
 			\+flag('no-blank')	% DEPRECATED
 		->	true
