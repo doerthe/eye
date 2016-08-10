@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0809.0949 josd').
+version_info('EYE-Summer16.0810.1204 josd').
 
 
 license_info('MIT License
@@ -3773,8 +3773,9 @@ eam(Span) :-
 astep(A, B, Cd, Cn, Cc, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Conclusion_unique_copy, Rule)
 	(	Cn = cn([Dn|En]),
 		Cc = cn([Dc|Ec])
-	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
-		->	asserta(implies(Prem, Conc, '<>'))
+	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
+			\+cmember('<http://www.w3.org/2000/10/swap/reason#gives>'(_, _), B)
+		->	throw(not_supported('log:implies in conclusion'))
 		;	true
 		),
 		functor(Dn, P, N),
@@ -3828,8 +3829,9 @@ astep(A, B, Cd, Cn, Cc, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion
 		astep(A, B, Cd, Fn, Fc, Rule)
 	;	(	Cn = true
 		->	true
-		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
-			->	asserta(implies(Prem, Conc, '<>'))
+		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
+				\+cmember('<http://www.w3.org/2000/10/swap/reason#gives>'(_, _), B)
+			->	throw(not_supported('log:implies in conclusion'))
 			;	true
 			),
 			functor(Cn, P, N),
