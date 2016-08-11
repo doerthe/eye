@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0811.2047 josd').
+version_info('EYE-Summer16.0811.2131 josd').
 
 
 license_info('MIT License
@@ -2658,17 +2658,16 @@ wr(cn([X|Y])) :-
 	wr(Z).
 wr(Z) :-
 	nb_getval(lemma_parent, Cntp),
+	term_index(Z, Cnd),
 	(	flag(think),
 		\+flag(nope)
-	->	makevars(Z, C),
-		term_index(C, Cnd),
-		findall(get_wi(X, Y, Q, Rule),
-			(	prfstep(C, Cnd, Y, _, Q, Rule, _, X)
+	->	findall(get_wi(X, Y, Q, Rule),
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X)
 			),
 			L0
 		),
 		findall(get_wi(X, Y, Q, Rule),
-			(	prfstep(C, Cnd, Y, _, Q, Rule, _, X),
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
 				term_index(Y-Q, Ind),
 				(	lemma(Cntc, X, Y, Q, Ind, Rule)
 				->	Cntp =\= Cntc,
@@ -2705,8 +2704,7 @@ wr(Z) :-
 			write(')'),
 			retractall(got_head)
 		)
-	;	term_index(Z, Cnd),
-		prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
+	;	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
 		!,
 		nl,
 		indent,
