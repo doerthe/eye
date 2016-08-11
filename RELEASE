@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- fixing --think proofs for missing alternative evidences (obs from Dörthe Arndt)
 - throwing a not supported log:implies in conclusion exception
 - making the connection between blank nodes in the proof output (obs from Dörthe Arndt)
 - fixing scoping issue with existential rules (obs from Dörthe Arndt)
