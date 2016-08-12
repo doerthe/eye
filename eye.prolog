@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0811.2131 josd').
+version_info('EYE-Summer16.0812.1509 josd').
 
 
 license_info('MIT License
@@ -2423,9 +2423,9 @@ wm(Out) :-
 			indentation(-2),
 			nl,
 			indent,
-			write('}.'),
-			indentation(-2)
+			write('}.')
 		),
+		indentation(-2),
 		nl,
 		nl
 	;	true
