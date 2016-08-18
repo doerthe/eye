@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0812.1509 josd').
+version_info('EYE-Summer16.0818.2045 josd').
 
 
 license_info('MIT License
@@ -2105,8 +2105,8 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	;	V = Y
 	),
 	(	\+flag(tactic, 'single-answer'),
-		(	flag(nope),
-			flag('no-distinct-output')
+		flag(nope),
+		(	flag('no-distinct-output')
 		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, V)),
@@ -2141,9 +2141,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	;	V = Y
 	),
 	(	\+flag(tactic, 'single-answer'),
-		(	flag(nope)
-		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
-		)
+		flag(nope)
 	->	write(query(X, V)),
 		writeln('.')
 	;	djiti(answer(V), A),
@@ -2153,8 +2151,8 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	tr_n3p(Z, Src, query).
 tr_n3p([X|Z], Src, query) :-
 	!,
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
+	(	\+flag(tactic, 'single-answer'),
+		flag(nope),
 		(	flag('no-distinct-output')
 		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
