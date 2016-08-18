@@ -1,27 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <title>EYE install</title>
-    <link rel="stylesheet" type="text/css" href="http://www.w3.org/StyleSheets/base.css">
-    <style type="text/css">a:hover {background:#ffffb7;}</style>
-    <style type="text/css">img {vertical-align:text-top;}</style>
-</head>
+                                  EYE install
 
-<body>
-<h1>EYE install</h1>
-<pre>
 For Linux
 ---------
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install cURL from http://curl.haxx.se/download.html
-Install CTurtle from https://github.com/melgi/cturtle/releases/latest
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install curl from http://curl.haxx.se/download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/
+Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
-- copy the EYE source file euler.yap to /opt/eye/src/euler.yap
+- copy the EYE source file eye.prolog to /opt/eye/src/eye.prolog
 - create the EYE image file at /opt/eye/lib/eye.pvm
 - copy the EYE launch script eye.sh to /opt/eye/bin/eye.sh
 
@@ -34,12 +24,13 @@ For Windows
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install cURL from http://curl.haxx.se/download.html
-Install CTurtle from https://github.com/melgi/cturtle/releases/latest
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install curl from http://curl.haxx.se/download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/
+Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.cmd which will
-- copy the EYE source file euler.yap to C:\Program Files\eye\src\euler.yap
+- copy the EYE source file eye.prolog to C:\Program Files\eye\src\eye.prolog
 - create the EYE image file at C:\Program Files\eye\lib\eye.pvm
 - copy the EYE launch script eye.cmd to C:\Program Files\eye\bin\eye.cmd
 
@@ -52,16 +43,14 @@ For Mac
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
-Install SWIPL kernel plus package clib from http://www.swi-prolog.org/download/stable
-Install CTurtle from https://github.com/melgi/cturtle/releases/latest
+Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
+Install cturtle from https://github.com/melgi/cturtle/releases/
+Put the swipl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
-- copy the EYE source file euler.yap to /opt/eye/src/euler.yap
+- copy the EYE source file eye.prolog to /opt/eye/src/eye.prolog
 - create the EYE image file at /opt/eye/lib/eye.pvm
 - copy the EYE launch script eye.sh to /opt/eye/bin/eye.sh
 
 Test the EYE installation via /opt/eye/bin/eye.sh --version
 and it should return the version which is in the file VERSION.
-</pre>
-</body>
-</html>

@@ -1,27 +1,8 @@
-% -----------------------------------------------------------------------------
-% Euler Yet another proof Engine - EYE looking through N3 glasses -- Jos De Roo
-% -----------------------------------------------------------------------------
+% --------------------------------------------------
+% Euler Yet another proof Engine - EYE -- Jos De Roo
+% --------------------------------------------------
 
-% EYE [1] is a reasoning engine supporting the RGB Semantic Web layers [2].
-% It performs semibackward reasoning and it supports Euler paths [3].
-% Via N3 [4] it is interoperable with Cwm [5].
-%
-% EYE entailment test cases [6] verify EYE releases [7].
-% EYE can be installed manually on Linux, Windows and MacOSX [8].
-% EYE is also available in a Docker container for command line use [9]
-% and in a Docker container for HTTP client use [10].
-%
-%
-%  [1] http://eulersharp.sourceforge.net/NOTE
-%  [2] http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a
-%  [3] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
-%  [4] http://www.w3.org/TeamSubmission/n3/
-%  [5] http://www.w3.org/2000/10/swap/doc/cwm
-%  [6] https://github.com/josd/eyeetc
-%  [7] http://eulersharp.sourceforge.net/RELEASE
-%  [8] http://eulersharp.sourceforge.net/INSTALL
-%  [9] https://registry.hub.docker.com/u/bdevloed/eye/
-% [10] https://registry.hub.docker.com/u/bdevloed/eyeserver/
+% See https://github.com/josd/eye
 
 
 % Directives
@@ -45,6 +26,7 @@
 :- if(current_prolog_flag(dialect, swi)).
 :- use_module(library(when), [when/2]).
 :- use_module(library(qsave)).
+:- catch(use_module(library(base64)), _, true).
 :- catch(use_module(library(process)), _, true).
 :- catch(use_module(library(sha)), _, true).
 :- catch(use_module(library(uri)), _, true).
@@ -61,7 +43,8 @@
 :- endif.
 
 
-:- dynamic(answer/7).
+:- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
+:- dynamic(argi/1).
 :- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
@@ -71,12 +54,13 @@
 :- dynamic(bvar/1).
 :- dynamic(evar/2).
 :- dynamic(evar/3).
-:- dynamic(exopred/3).
+:- dynamic(exopred/3).		% exopred(Predicate, Subject, Object)
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
 :- dynamic(forward/0).
 :- dynamic(got_dq/0).
+:- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
 :- dynamic(got_pi/0).
 :- dynamic(got_random/3).
@@ -85,11 +69,13 @@
 :- dynamic(got_wi/5).
 :- dynamic(graph/2).
 :- dynamic(hash_value/2).
-:- dynamic(implies/3).
+:- dynamic(implies/3).		% implies(Premise, Conclusion, Source)
 :- dynamic(input_statements/1).
 :- dynamic(intern/1).
+:- dynamic(keep_skolem/1).
 :- dynamic(keywords/1).
-:- dynamic(lemma/6).
+:- dynamic(lemma/6).		% lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
+:- dynamic(lemma_dep/2).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(npred/1).
@@ -97,7 +83,7 @@
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
 :- dynamic(preda/1).
-:- dynamic(prfstep/8).
+:- dynamic(prfstep/8).		% prfstep(Conclusion_triple, Conclusion_triple_index, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
 :- dynamic(qevar/3).
 :- dynamic(query/2).
 :- dynamic(quvar/3).
@@ -139,71 +125,86 @@
 
 % Infos
 
-version_info('EYE-Spring16.0412.2224 josd').
+version_info('EYE-Summer16.0812.1509 josd').
 
 
-license_info('EulerSharp: http://eulersharp.sourceforge.net/
-	Copyright 2003 World Wide Web Consortium, (Massachusetts Institute of Technology,
-	European Research Consortium for Informatics and Mathematics, Keio University).
-	All Rights Reserved. This work is distributed under the W3C Software License [1]
-	in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even
-	the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-	[1] http://www.w3.org/Consortium/Legal/2002/copyright-software-20021231').
+license_info('MIT License
+
+Copyright (c) 2016 Jos De Roo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.').
 
 
 help_info('Usage: eye <options>* <data>* <query>*
 eye
 	swipl -x eye.pvm --
 <options>
-	--nope				no proof explanation
-	--no-qnames			no qnames in the output
-	--no-qvars			no qvars in the output
-	--no-numerals			no numerals in the output
+	--brake <count>			set maximimum brake <count>
+	--debug				output debug info on stderr
+	--debug-cnt			output debug info about counters on stderr
+	--debug-djiti			output debug info about DJITI on stderr
+	--debug-pvm			output debug info about PVM code on stderr
+	--help				show help info
+	--hmac-key <key>		HMAC key
+	--ignore-inference-fuse		do not halt in case of inference fuse
+	--ignore-syntax-error		do not halt in case of syntax error
+	--image <pvm-file>		output all <data> and all code to <pvm-file>
+	--license			show license info
+	--multi-query			query answer loop
+	--n3p				output all <data> as N3 P-code on stdout
 	--no-distinct-input		no distinct triples in the input
 	--no-distinct-output		no distinct answers in the output
 	--no-genid			no generated id in Skolem IRI
+	--no-numerals			no numerals in the output
+	--no-qnames			no qnames in the output
+	--no-qvars			no qvars in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
+	--nope				no proof explanation
+	--pass-only-new			output only new derived triples
+	--pass-turtle			output the --turtle data
+	--probe				output speedtest info on stderr
+	--profile			output profile info on stderr
+	--rule-histogram		output rule histogram info on stderr
+	--statistics			output statistics info on stderr
 	--step <count>			set maximimum step <count>
-	--brake <count>			set maximimum brake <count>
+	--streaming-reasoning		streaming reasoning on --turtle data
+	--strict			strict mode
+	--strings			output log:outputString objects on stdout
+	--tactic existing-path		Euler path using homomorphism
+	--tactic limited-answer <count>	give only a limited numer of answers
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
-	--tactic existing-path		Euler path using homomorphism
-	--wcache <uri> <file>		to tell that <uri> is cached as <file>
-	--ignore-syntax-error		do not halt in case of syntax error
-	--ignore-inference-fuse		do not halt in case of inference fuse
-	--n3p				output all <data> as N3 P-code on stdout
-	--pvm <n3p-file>		output <n3p-file> as PVM code to <pvm-file>
-	--image <pvm-file>		output all <data> and all code to <pvm-file>
-	--strings			output log:outputString objects on stdout
-	--warn				output warning info on stderr
-	--debug				output debug info on stderr
-	--debug-cnt			output debug info about counters on stderr
-	--debug-pvm			output debug info about PVM code on stderr
-	--debug-jiti			output debug info about JITI on stderr
-	--pass-only-new			output only new derived triples
-	--rule-histogram		output rule histogram info on stderr
-	--profile			output profile info on stderr
-	--statistics			output statistics info on stderr
-	--probe				output speedtest info on stderr
+	--think				find all possible proofs
 	--traditional			traditional mode
-	--strict			strict mode
 	--version			show version info
-	--license			show license info
-	--help				show help info
+	--warn				output warning info on stderr
+	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
 	<n3-data>			N3 triples and rules
-	--turtle <ttl-data>		Turtle data
+	--plugin <n3p-data>		N3 P-code
 	--proof <n3-proof>		N3 proof
-	--plugin <n3p-data>		plugin N3 P-code
-	--plugin-pvm <pvm-data>		plugin PVM code
+	--turtle <ttl-data>		Turtle data
 <query>
-	--query <n3-query>		output filtered with filter rules
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--pass-all-ground		ground the rules and run --pass-all
-	--pass-turtle			output the --turtle data
-	--multi-query			query answer loop
-	--streaming-reasoning		streaming reasoning on --turtle data').
+	--query <n3-query>		output filtered with filter rules').
 
 
 % Main goal
@@ -223,13 +224,28 @@ main :-
 	;	Argvs = Argvp
 	),
 	argv(Argvs, Argus),
-	format(user_error, 'eye~@~n', [wa(Argus)]),
-	(	memberchk('--no-genid', Argus)
-	->	Id = 0
-	;	Id is random(2^30)*random(2^30)*random(2^30)*random(2^30)
+	findall(Argij,
+		(	argi(Argij)
+		),
+		Argil
 	),
-	atom_number(Run, Id),
-	atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run, '#'], Vns),
+	append(Argil, Argi),
+	format(user_error, 'eye~@~@~n', [w0(Argi), w1(Argus)]),
+	flush_output(user_error),
+	(	memberchk('--no-genid', Argus)
+	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
+	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
+		atom_number(Run2, Run1),
+		catch(sha_hash(Run2, Run3, [algorithm(sha1)]), _,
+			(	format(user_error, '** ERROR ** EYE requires swipl package clib which can be installed from http://www.swi-prolog.org/Download.html~n', []),
+				flush_output(user_error),
+				halt(1)
+			)
+		),
+		atom_codes(Run4, Run3),
+		base64xml(Run4, Run5),
+		atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run5, '#'], Vns)
+	),
 	nb_setval(var_ns, Vns),
 	version_info(Version),
 	format(user_error, '~w~n', [Version]),
@@ -237,6 +253,16 @@ main :-
 	prolog_flag(version, PVersion),
 	format(user_error, '~w~n', [PVersion]),
 	flush_output(user_error),
+	catch(process_create(path(curl), ['--version'], [stdin(null), stdout(null), stderr(null)]), _,
+		(	format(user_error, '** WARNING ** EYE depends on curl which can be installed from https://curl.haxx.se/download.html **~n', []),
+			flush_output(user_error)
+		)
+	),
+	catch(process_create(path(cturtle), [], [stdin(null), stdout(null), stderr(null)]), _,
+		(	format(user_error, '** WARNING ** EYE depends on cturtle which can be installed from https://github.com/melgi/cturtle/releases/ **~n', []),
+			flush_output(user_error)
+		)
+	),
 	(	retract(prolog_file_type(qlf, qlf))
 	->	assertz(prolog_file_type(pvm, qlf))
 	;	true
@@ -283,37 +309,37 @@ main :-
 		ignore(vm_list(_))
 	;	true
 	),
-	(	flag('debug-jiti')
+	(	flag('debug-djiti')
 	->	forall(
 			(	pred(Pred)
 			),
 			(	(	P =.. [Pred, _, _],
 					predicate_property(P, indexed(Ind2))
-				->	format(user_error, 'JITI ~w/2 indexed ~w~n', [Pred, Ind2])
+				->	format(user_error, 'DJITI ~w/2 indexed ~w~n', [Pred, Ind2])
 				;	true
 				),
 				(	P =.. [Pred, _, _, _, _, _, _],
 					predicate_property(P, indexed(Ind6))
-				->	format(user_error, 'JITI ~w/6 indexed ~w~n', [Pred, Ind6])
+				->	format(user_error, 'DJITI ~w/6 indexed ~w~n', [Pred, Ind6])
 				;	true
 				),
 				(	P =.. [Pred, _, _, _, _, _, _, _],
 					predicate_property(P, indexed(Ind7))
-				->	format(user_error, 'JITI ~w/7 indexed ~w~n', [Pred, Ind7])
+				->	format(user_error, 'DJITI ~w/7 indexed ~w~n', [Pred, Ind7])
 				;	true
 				)
 			)
 		),
 		(	predicate_property(implies(_, _, _), indexed(Indi3))
-		->	format(user_error, 'JITI implies/3 indexed ~w~n', [Indi3])
+		->	format(user_error, 'DJITI implies/3 indexed ~w~n', [Indi3])
 		;	true
 		),
 		(	predicate_property(lemma(_, _, _, _, _, _), indexed(Indl6))
-		->	format(user_error, 'JITI lemma/6 indexed ~w~n', [Indl6])
+		->	format(user_error, 'DJITI lemma/6 indexed ~w~n', [Indl6])
 		;	true
 		),
 		(	predicate_property(prfstep(_, _, _, _, _, _, _, _), indexed(Indp8))
-		->	format(user_error, 'JITI prfstep/8 indexed ~w~n', [Indp8])
+		->	format(user_error, 'DJITI prfstep/8 indexed ~w~n', [Indp8])
 		;	true
 		),
 		format(user_error, '~n', []),
@@ -330,8 +356,8 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--tmp-file', '--wget-path', '--pvm', '--image', '--yabc', '--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules',
-			'--query', '--tquery', '--no-skolem', '--step', '--brake', '--tactic']),
+	memberchk(U, ['--brake', '--hmac-key', '--image', '--no-skolem', '--plugin', '--plugin-pvm', '--proof', '--pvm', '--query', '--step', '--tactic', '--turtle',
+		      '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -413,7 +439,8 @@ gre(Argus) :-
 			Conc \= cn([answer(_, _, _, _, _, _, _)|_])
 		)
 	->	true
-	;	(	\+flag(tactic, 'linear-select')
+	;	(	\+flag(image, _),
+			\+flag(tactic, 'linear-select')
 		->	assertz(flag(tactic, 'linear-select'))
 		;	true
 		)
@@ -433,13 +460,8 @@ gre(Argus) :-
 	),
 	nb_getval(input_statements, SC),
 	(	flag(image, File)
-	->	retractall(flag(_)),
-		(	flag(Flag, _),
-			Flag \= 'no-skolem',
-			retractall(flag(Flag, _)),
-			fail
-		;	true
-		),
+	->	assertz(argi(Argus)),
+		retractall(flag(image, _)),
 		assertz(flag('no-skolem', Vns)),
 		retractall(input_statements(_)),
 		assertz(input_statements(SC)),
@@ -474,7 +496,13 @@ gre(Argus) :-
 	->	true
 	;	version_info(Version),
 		format('#Processed by ~w~n', [Version]),
-		format('#eye~@~n~n', [wa(Argus)]),
+		findall(Argij,
+			(	argi(Argij)
+			),
+			Argil
+		),
+		append(Argil, Argi),
+		format('#eye~@~@~n~n', [w0(Argi), w1(Argus)]),
 		flush_output
 	),
 	(	flag(nope)
@@ -507,16 +535,19 @@ gre(Argus) :-
 	nb_setval(bc, 0),
 	nb_setval(bp, 0),
 	nb_setval(wn, 0),
+	nb_setval(rn, 0),
 	nb_setval(pm, 0),
 	nb_setval(cm, 0),
 	nb_setval(fm, 0),
 	nb_setval(lemma_count, 0),
 	nb_setval(lemma_cursor, 0),
+	nb_setval(lemma_parent, 0),
 	nb_setval(output_statements, 0),
+	nb_setval(answer_count, 0),
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
 		tmp_file(Tmp),
-		assertz(flag('tmp-file', Tmp)),
+		assertz(flag('tmp-file', Tmp)),		% DEPRECATED
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
 		(	atomic_list_concat([Fi, Fo], ',', Fa)
@@ -592,6 +623,7 @@ gre(Argus) :-
 			Infd is Infe-Infb,
 			catch(Infs is round(Infd/Ti5*1000), _, Infs = ''),
 			format(user_error, '[~w] mq=~w out=~d inf=~w sec=~3d out/sec=~w inf/sec=~w~n~n', [Stmp, Cnt, Outd, Infd, Ti5, Outs, Infs]),
+			flush_output(user_error),
 			told,
 			fail
 		)
@@ -613,51 +645,7 @@ gre(Argus) :-
 	nb_getval(pm, PM),
 	nb_getval(cm, CM),
 	nb_getval(fm, FM),
-	TM is PM+CM,
 	AM is PM+CM+FM,
-	(	AM > 0,
-		Ev is TM/AM,
-		Ap is PM/AM
-	->	(	flag(strings)
-		->	true
-		;	write('[ '),
-			(	TM > 0,
-				Ind is PM/TM
-			->	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#inductivity>'),
-				write(' '),
-				write(Ind),
-				write('; ')
-			;	true
-			),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#evidentiality>'),
-			write(' '),
-			write(Ev),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#applicability>'),
-			write(' '),
-			write(Ap),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#possibleModels>'),
-			write(' '),
-			write(PM),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#counterModels>'),
-			write(' '),
-			write(CM),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#falseModels>'),
-			write(' '),
-			write(FM),
-			write('; '),
-			wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#allModels>'),
-			write(' '),
-			write(AM),
-			write('].'),
-			nl,
-			nl
-		)
-	;	true
-	),
 	format(user_error, 'TC=~w TP=~w BC=~w BP=~w PM=~w CM=~w FM=~w AM=~w~n', [TC, TP, BC, BP, PM, CM, FM, AM]),
 	flush_output(user_error),
 	statistics(runtime, [Cpu, T4]),
@@ -678,7 +666,7 @@ gre(Argus) :-
 		nl
 	),
 	timestamp(Stamp),
-	Etc is TC+BC,
+	Ent is TC+BC,
 	Step is TP+BP,
 	nb_getval(tr, TR),
 	nb_getval(br, BR),
@@ -689,7 +677,7 @@ gre(Argus) :-
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 	catch(Infin is round(Inf/Inp), _, Infin = ''),
-	format(user_error, '[~w] in=~d out=~d etc=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Etc, Step, Brake, Inf, Cpu, Speed, Infin]),
+	format(user_error, '[~w] in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, RBC, RBP, R],
@@ -742,150 +730,15 @@ gre(Argus) :-
 	).
 
 
+% command line options
+
 opts([], []) :-
 	!.
 % DEPRECATED
-opts(['--quick-answer'|Argus], Args) :-
+opts(['--ances'|Argus], Args) :-
 	!,
-	assertz(flag(tactic, 'single-answer')),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--single-answer'|Argus], Args) :-
-	!,
-	assertz(flag(tactic, 'single-answer')),
-	opts(Argus, Args).
-opts(['--wcache', Argument, File|Argus], Args) :-
-	!,
-	absolute_uri(Argument, Arg),
-	(	wcache(Arg, _)
-	->	true
-	;	assertz(wcache(Arg, File))
-	),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--tmp-file', File|Argus], Args) :-
-	!,
-	assertz(flag('tmp-file', File)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--wget-path', Path|Argus], Args) :-
-	!,
-	assertz(flag('wget-path', Path)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--no-distinct'|Argus], Args) :-
-	!,
-	assertz(flag('no-distinct-output')),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--pcl'|Argus], Args) :-
-	!,
-	assertz(flag(n3p)),
-	opts(Argus, Args).
-opts(['--pvm', File|Argus], _) :-
-	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--ances']),
 	flush_output(user_error),
-	(	memberchk('--nope', Argus)
-	->	assertz(flag(nope))
-	;	true
-	),
-	(	assertz(':-'(term_expansion(T1, T2),
-				(	T1 =.. [P, S, O],
-					(	compound(S)
-					;	compound(O)
-					),
-					!,
-					term_index(S, I),
-					term_index(O, J),
-					term_arg_1(S, K),
-					term_arg_1(O, L),
-					T3 =.. [P, S, O, I, J, K, L],
-					T4 =.. [P, _, _, _, _, _, _],
-					(	\+ catch(call(T4), _, fail)
-					->	X =.. [P, U, V],
-						T2 = [	':-'(dynamic(P/6)),
-							':-'(multifile(P/6)),
-							':-'(X,
-								(	(	compound(U)
-									->	term_index(U, M),
-										arg(1, U, Q)
-									;	true
-									),
-									(	compound(V)
-									->	term_index(V, N),
-										arg(1, V, R)
-									;	true
-									),
-									Y =.. [P, U, V, M, N, Q, R],
-									call(Y)
-								)
-							),
-							T3
-						]
-					;	T2 = T3
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(flag(F1, F2), [':-'(dynamic(flag/2)), flag(F1, F2)]),
-				(	!
-				)
-			)
-		),
-		assertz(':-'(term_expansion(scope(Scope), scope(Scope)),
-				(	!,
-					nb_setval(current_scope, Scope)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(T1, [T1, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]),
-				(	\+flag(nope),
-					T1 \= ':-'(_),
-					T1 \= flag(_, _),
-					T1 \= scope(_),
-					T1 \= pfx(_, _),
-					T1 \= pred(_),
-					T1 \= scount(_),
-					!,
-					nb_getval(current_scope, Src),
-					term_index(T1, Tnd)
-				)
-			)
-		),
-		qcompile(File)
-	->	throw(halt)
-	;	throw(failed_qcompile(File))
-	).
-opts(['--image', File|Argus], Args) :-
-	!,
-	assertz(flag(image, File)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--yabc', File|Argus], Args) :-
-	!,
-	assertz(flag(image, File)),
-	opts(Argus, Args).
-opts(['--no-skolem', Prefix|Argus], Args) :-
-	!,
-	assertz(flag('no-skolem', Prefix)),
-	opts(Argus, Args).
-opts(['--pass-all-ground'|Argus], Args) :-
-	!,
-	assertz(flag('pass-all-ground')),
-	opts(['--pass-all'|Argus], Args).
-opts(['--step', Lim|Argus], Args) :-
-	!,
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** step ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	assertz(flag(step, Limit)),
 	opts(Argus, Args).
 opts(['--brake', Lim|Argus], Args) :-
 	!,
@@ -899,30 +752,348 @@ opts(['--brake', Lim|Argus], Args) :-
 			)
 		)
 	),
+	retractall(flag(brake, _)),
 	assertz(flag(brake, Limit)),
 	opts(Argus, Args).
-opts(['--tactic', Tactic|Argus], Args) :-
+opts(['--debug'|Argus], Args) :-
 	!,
-	assertz(flag(tactic, Tactic)),
+	retractall(flag(debug)),
+	assertz(flag(debug)),
 	opts(Argus, Args).
-opts(['--version'|_], _) :-
+opts(['--debug-cnt'|Argus], Args) :-
 	!,
-	throw(halt).
-opts(['--license'|_], _) :-
+	retractall(flag('debug-cnt')),
+	assertz(flag('debug-cnt')),
+	opts(Argus, Args).
+opts(['--debug-djiti'|Argus], Args) :-
 	!,
-	license_info(License),
-	format(user_error, '~w~n~n', [License]),
-	flush_output(user_error),
-	throw(halt).
+	retractall(flag('debug-djiti')),
+	assertz(flag('debug-djiti')),
+	opts(Argus, Args).
+opts(['--debug-pvm'|Argus], Args) :-
+	!,
+	retractall(flag('debug-pvm')),
+	assertz(flag('debug-pvm')),
+	opts(Argus, Args).
 opts(['--help'|_], _) :-
 	\+flag(image, _),
 	\+flag('debug-pvm'),
 	!,
 	help_info(Help),
-	format(user_error, '~w~n~n', [Help]),
+	format(user_error, '~w~n', [Help]),
 	flush_output(user_error),
 	throw(halt).
+opts(['--hmac-key', Key|Argus], Args) :-
+	!,
+	retractall(flag('hmac-key', _)),
+	assertz(flag('hmac-key', Key)),
+	opts(Argus, Args).
+opts(['--ignore-inference-fuse'|Argus], Args) :-
+	!,
+	retractall(flag('ignore-inference-fuse')),
+	assertz(flag('ignore-inference-fuse')),
+	opts(Argus, Args).
+opts(['--ignore-syntax-error'|Argus], Args) :-
+	!,
+	retractall(flag('ignore-syntax-error')),
+	assertz(flag('ignore-syntax-error')),
+	opts(Argus, Args).
+opts(['--image', File|Argus], Args) :-
+	!,
+	retractall(flag(image, _)),
+	assertz(flag(image, File)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--kgb'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--kgb']),
+	flush_output(user_error),
+	opts(Argus, Args).
+opts(['--license'|_], _) :-
+	!,
+	license_info(License),
+	format(user_error, '~w~n', [License]),
+	flush_output(user_error),
+	throw(halt).
+opts(['--multi-query'|Argus], Args) :-
+	!,
+	retractall(flag('multi-query')),
+	assertz(flag('multi-query')),
+	opts(Argus, Args).
+opts(['--n3p'|Argus], Args) :-
+	!,
+	retractall(flag(n3p)),
+	assertz(flag(n3p)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-blank'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-blank']),
+	flush_output(user_error),
+	retractall(flag('no-blank')),
+	assertz(flag('no-blank')),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-branch'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-branch']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-distinct'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--no-distinct', 'no-distinct-output']),
+	flush_output(user_error),
+	retractall(flag('no-distinct-output')),
+	assertz(flag('no-distinct-output')),
+	opts(Argus, Args).
+opts(['--no-distinct-input'|Argus], Args) :-
+	!,
+	retractall(flag('no-distinct-input')),
+	assertz(flag('no-distinct-input')),
+	opts(Argus, Args).
+opts(['--no-distinct-output'|Argus], Args) :-
+	!,
+	retractall(flag('no-distinct-output')),
+	assertz(flag('no-distinct-output')),
+	opts(Argus, Args).
+opts(['--no-genid'|Argus], Args) :-
+	!,
+	retractall(flag('no-genid')),
+	assertz(flag('no-genid')),
+	opts(Argus, Args).
+opts(['--no-numerals'|Argus], Args) :-
+	!,
+	retractall(flag('no-numerals')),
+	assertz(flag('no-numerals')),
+	opts(Argus, Args).
+opts(['--no-qnames'|Argus], Args) :-
+	!,
+	retractall(flag('no-qnames')),
+	assertz(flag('no-qnames')),
+	opts(Argus, Args).
+opts(['--no-qvars'|Argus], Args) :-
+	!,
+	retractall(flag('no-qvars')),
+	assertz(flag('no-qvars')),
+	opts(Argus, Args).
+opts(['--no-skolem', Prefix|Argus], Args) :-
+	!,
+	assertz(flag('no-skolem', Prefix)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--no-span'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-span']),
+	flush_output(user_error),
+	retractall(flag('no-span')),
+	assertz(flag('no-span')),
+	opts(Argus, Args).
+opts(['--nope'|Argus], Args) :-
+	!,
+	retractall(flag(nope)),
+	assertz(flag(nope)),
+	opts(Argus, Args).
+opts(['--pass-all-ground'|Argus], Args) :-
+	!,
+	retractall(flag('pass-all-ground')),
+	assertz(flag('pass-all-ground')),
+	opts(['--pass-all'|Argus], Args).
+opts(['--pass-only-new'|Argus], Args) :-
+	!,
+	retractall(flag('pass-only-new')),
+	assertz(flag('pass-only-new')),
+	opts(Argus, Args).
+opts(['--pass-turtle'|Argus], Args) :-
+	!,
+	retractall(flag('pass-turtle')),
+	assertz(flag('pass-turtle')),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--pcl'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--pcl', '--n3p']),
+	flush_output(user_error),
+	retractall(flag(n3p)),
+	assertz(flag(n3p)),
+	opts(Argus, Args).
 opts(['--probe'|_], _) :-
+	!,
+	probe,
+	throw(halt).
+opts(['--profile'|Argus], Args) :-
+	!,
+	retractall(flag(profile)),
+	assertz(flag(profile)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--pvm', File|Argus], _) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--pvm']),
+	flush_output(user_error),
+	pvm(File, Argus),
+	throw(halt).
+% DEPRECATED
+opts(['--quiet'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quiet']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--quick-false'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-false']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--quick-possible'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-possible']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--quick-answer'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic single-answer']),
+	retractall(flag(tactic, 'single-answer')),
+	assertz(flag(tactic, 'single-answer')),
+	opts(Argus, Args).
+opts(['--rule-histogram'|Argus], Args) :-
+	!,
+	retractall(flag('rule-histogram')),
+	assertz(flag('rule-histogram')),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--single-answer'|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic single-answer']),
+	flush_output(user_error),
+	retractall(flag(tactic, 'single-answer')),
+	assertz(flag(tactic, 'single-answer')),
+	opts(Argus, Args).
+opts(['--statistics'|Argus], Args) :-
+	!,
+	retractall(flag(statistics)),
+	assertz(flag(statistics)),
+	opts(Argus, Args).
+opts(['--step', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** step ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	retractall(flag(step, _)),
+	assertz(flag(step, Limit)),
+	opts(Argus, Args).
+opts(['--streaming-reasoning'|Argus], Args) :-
+	!,
+	retractall(flag('streaming-reasoning')),
+	assertz(flag('streaming-reasoning')),
+	opts(Argus, Args).
+opts(['--strict'|Argus], Args) :-
+	!,
+	retractall(flag(strict)),
+	assertz(flag(strict)),
+	opts(Argus, Args).
+opts(['--strings'|Argus], Args) :-
+	!,
+	retractall(flag(strings)),
+	assertz(flag(strings)),
+	opts(Argus, Args).
+opts(['--tactic', 'existing-path'|Argus], Args) :-
+	!,
+	retractall(flag(tactic, 'existing-path')),
+	assertz(flag(tactic, 'existing-path')),
+	opts(Argus, Args).
+opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** limited-answer ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	retractall(flag('limited-answer', _)),
+	assertz(flag('limited-answer', Limit)),
+	opts(Argus, Args).
+opts(['--tactic', 'linear-select'|Argus], Args) :-
+	!,
+	retractall(flag(tactic, 'linear-select')),
+	assertz(flag(tactic, 'linear-select')),
+	opts(Argus, Args).
+opts(['--tactic', 'single-answer'|Argus], Args) :-
+	!,
+	retractall(flag(tactic, 'single-answer')),
+	assertz(flag(tactic, 'single-answer')),
+	opts(Argus, Args).
+opts(['--tactic', Tactic|_], _) :-
+	!,
+	throw(not_supported_tactic(Tactic)).
+opts(['--think'|Argus], Args) :-
+	!,
+	retractall(flag(think)),
+	assertz(flag(think)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--tmp-file', File|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--tmp-file']),
+	flush_output(user_error),
+	retractall(flag('tmp-file', _)),
+	assertz(flag('tmp-file', File)),
+	opts(Argus, Args).
+opts(['--traditional'|Argus], Args) :-
+	!,
+	retractall(flag(traditional)),
+	assertz(flag(traditional)),
+	opts(Argus, Args).
+opts(['--version'|_], _) :-
+	!,
+	throw(halt).
+opts(['--warn'|Argus], Args) :-
+	!,
+	retractall(flag(warn)),
+	assertz(flag(warn)),
+	opts(Argus, Args).
+opts(['--wcache', Argument, File|Argus], Args) :-
+	!,
+	absolute_uri(Argument, Arg),
+	retractall(wcache(Arg, _)),
+	assertz(wcache(Arg, File)),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--wget-path', _|Argus], Args) :-
+	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--wget-path']),
+	flush_output(user_error),
+	opts(Argus, Args).
+% DEPRECATED
+opts(['--yabc', File|Argus], Args) :-
+	!,
+	retractall(flag(image, _)),
+	assertz(flag(image, File)),
+	opts(Argus, Args).
+opts([Arg|_], _) :-
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--plugin-pvm', '--tquery', '--trules']),	% DEPRECATED
+	sub_atom(Arg, 0, 2, _, '--'),
+	!,
+	throw(not_supported_option(Arg)).
+opts([Arg|Argus], [Arg|Args]) :-
+	opts(Argus, Args).
+
+
+probe :-
 	tmp_file(File),
 	(	atomic_list_concat(['curl -s -L http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
 		catch(exec(Cmd, _), _, fail)
@@ -960,7 +1131,7 @@ opts(['--probe'|_], _) :-
 		->	call(Rg)
 		;	(	call(Rt)
 			->	true
-			;	jitis(Rt)
+			;	djitis(Rt)
 			)
 		),
 		fail
@@ -989,34 +1160,197 @@ opts(['--probe'|_], _) :-
 	format(user_error, '[~w] web-triples/sec=~0f file-triples/sec=~0f memory-triples/sec=~0f~n~n', [Stamp, S1, S2, S3]),
 	flush_output(user_error),
 	close(In),
-	delete_file(File),
-	throw(halt).
-opts([Arg|Argus], Args) :-
-	\+memberchk(Arg, ['--plugin', '--plugin-pvm', '--turtle', '--proof', '--trules', '--query', '--pass', '--pass-all', '--tquery']),
-	sub_atom(Arg, 0, 2, _, '--'),
-	!,
-	(	memberchk(Arg, ['--nope', '--no-qnames', '--no-qvars', '--no-numerals', '--no-distinct-input', '--no-distinct-output', '--no-genid',
-				'--ignore-syntax-error', '--ignore-inference-fuse', '--n3p', '--strings',
-				'--warn', '--debug', '--debug-cnt', '--debug-pvm', '--debug-jiti', '--pass-only-new',
-				'--rule-histogram', '--profile', '--statistics', '--traditional', '--strict', '--help',
-				'--pass-turtle', '--multi-query', '--streaming-reasoning',
-				'--kgb', '--ances', '--no-blank', '--no-span', '--no-branch', '--quick-false', '--quick-possible', '--quiet', '--think'])	% DEPRECATED
-	->	sub_atom(Arg, 2, _, 0, Opt),
-		assertz(flag(Opt))
-	;	throw(not_supported_argument(Arg))
+	delete_file(File).
+
+
+% DEPRECATED
+pvm(File, Argus) :-
+	(	memberchk('--nope', Argus)
+	->	assertz(flag(nope))
+	;	true
 	),
-	opts(Argus, Args).
-opts([Arg|Argus], [Arg|Args]) :-
-	opts(Argus, Args).
+	(	assertz(':-'(term_expansion(T1, T2),
+				(	T1 = exopred(P, S, O),
+					(	compound(S)
+					;	compound(O)
+					),
+					!,
+					term_index(S, Si),
+					term_index(O, Oi),
+					term_arg_1(S, Sp),
+					term_arg_1(O, Op),
+					T3 = exopred(P, S, O, Si, Oi, Sp, Op),
+					(	\+ catch(exopred(_, _, _, _, _, _, _), _, fail)
+					->	T4 = [	':-'(dynamic(exopred/7)),
+							':-'(multifile(exopred/7)),
+							':-'(exopred(P, U, V),
+								(	(	compound(U)
+									->	term_index(U, Ui),
+										term_arg_1(U, Up)
+									;	true
+									),
+									(	compound(V)
+									->	term_index(V, Vi),
+										term_arg_1(V, Vp)
+									;	true
+									),
+									exopred(P, U, V, Ui, Vi, Up, Vp)
+								)
+							),
+							T3
+						],
+						(	flag(nope)
+						->	T2 = T4
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							append(T4, [prfstep(T1, Tnd, true, _, T1, _, forward, Src)], T2)
+						)
+					;	(	flag(nope)
+						->	T2 = T3
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
+						)
+					)
+				)
+			)
+		),
+		assertz(':-'(term_expansion(T1, T2),
+				(	T1 =.. [P, S, O],
+					(	compound(S)
+					;	compound(O)
+					),
+					!,
+					term_index(S, Si),
+					term_index(O, Oi),
+					term_arg_1(S, Sp),
+					term_arg_1(O, Op),
+					T3 =.. [P, S, O, Si, Oi, Sp, Op],
+					(	\+ catch(call(P, _, _, _, _, _, _), _, fail)
+					->	X =.. [P, U, V],
+						T4 = [	':-'(dynamic(P/6)),
+							':-'(multifile(P/6)),
+							':-'(X,
+								(	(	compound(U)
+									->	term_index(U, Ui),
+										term_arg_1(U, Up)
+									;	true
+									),
+									(	compound(V)
+									->	term_index(V, Vi),
+										term_arg_1(V, Vp)
+									;	true
+									),
+									Y =.. [P, U, V, Ui, Vi, Up, Vp],
+									call(Y)
+								)
+							),
+							T3
+						],
+						(	flag(nope)
+						->	T2 = T4
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							append(T4, [prfstep(T1, Tnd, true, _, T1, _, forward, Src)], T2)
+						)
+					;	(	flag(nope)
+						->	T2 = T3
+						;	nb_getval(current_scope, Src),
+							term_index(T1, Tnd),
+							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
+						)
+					)
+				)
+			)
+		),
+		assertz(':-'(term_expansion(flag(F1, F2), [':-'(dynamic(flag/2)), flag(F1, F2)]),
+				(	!
+				)
+			)
+		),
+		assertz(':-'(term_expansion(scope(Scope), scope(Scope)),
+				(	!,
+					nb_setval(current_scope, Scope)
+				)
+			)
+		),
+		assertz(':-'(term_expansion(T1, [T1, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]),
+				(	\+flag(nope),
+					T1 \= ':-'(_),
+					T1 \= flag(_, _),
+					T1 \= scope(_),
+					T1 \= pfx(_, _),
+					T1 \= pred(_),
+					T1 \= scount(_),
+					!,
+					nb_getval(current_scope, Src),
+					term_index(T1, Tnd)
+				)
+			)
+		),
+		qcompile(File)
+	->	true
+	;	throw(failed_pvmcompile(File))
+	).
 
 
 args([]) :-
 	!.
+args(['--pass'|Args]) :-
+	!,
+	(	flag(nope),
+		\+flag(tactic, 'single-answer'),
+		(	flag('no-distinct-input')
+		->	flag('no-distinct-output')
+		;	true
+		),
+		\+implies(_, answer(_, _, _, _, _, _, _), _),
+		\+implies(_, cn([answer(_, _, _, _, _, _, _)|_]), _)
+	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
+	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
+	),
+	(	flag(n3p)
+	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
+	;	true
+	),
+	args(Args).
+args(['--pass-all'|Args]) :-
+	!,
+	(	flag(nope),
+		\+flag(tactic, 'single-answer'),
+		(	flag('no-distinct-input')
+		->	flag('no-distinct-output')
+		;	true
+		)
+	->	assertz(query(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+				exopred(P, S, O))),
+		assertz(query(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C))),
+		assertz(query(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				':-'(C, A)))
+	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+				answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+				answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+	),
+	(	flag(n3p)
+	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
+		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
+	;	true
+	),
+	args(Args).
 args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1043,7 +1377,9 @@ args(['--plugin', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	(	File = '-'
 	->	In = user_input
@@ -1053,52 +1389,7 @@ args(['--plugin', Argument|Args]) :-
 	read_term(In, Rt, []),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	(	Rt = ':-'(Rg)
-		->	call(Rg)
-		;	(	predicate_property(Rt, dynamic)
-			->	true
-			;	(	File = '-'
-				->	true
-				;	close(In)
-				),
-				(	retract(tmpfile(File))
-				->	delete_file(File)
-				;	true
-				),
-				throw(builtin_redefinition(Rt))
-			),
-			(	Rt = pfx(Pfx, _)
-			->	retractall(pfx(Pfx, _))
-			;	true
-			),
-			(	Rt = scope(Scope)
-			->	nb_setval(current_scope, Scope)
-			;	true
-			),
-			(	Rt \= implies(_, _, _),
-				Rt \= scount(_),
-				\+flag('no-distinct-input'),
-				call(Rt)
-			->	true
-			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-				->	jitis(Rt)
-				;	true
-				),
-				(	Rt \= flag(_, _),
-					Rt \= scope(_),
-					Rt \= pfx(_, _),
-					Rt \= pred(_),
-					Rt \= scount(_)
-				->	(	flag(nope)
-					->	true
-					;	nb_getval(current_scope, Src),
-						term_index(Rt, Rnd),
-						assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-					)
-				;	true
-				)
-			)
-		),
+	;	n3pin(Rt, In, File),
 		fail
 	),
 	!,
@@ -1119,18 +1410,17 @@ args(['--plugin', Argument|Args]) :-
 	nb_getval(input_statements, IN),
 	Inp is SC+IN,
 	nb_setval(input_statements, Inp),
-	(	wcache(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-	),
+	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error),
 	args(Args).
+% DEPRECATED
 args(['--plugin-pvm', Argument|Args]) :-
 	!,
 	flush_output(user_error),
 	absolute_uri(Argument, Arg),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1157,7 +1447,9 @@ args(['--plugin-pvm', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	consult(File),
 	(	retract(tmpfile(File))
@@ -1171,17 +1463,62 @@ args(['--plugin-pvm', Argument|Args]) :-
 	nb_getval(input_statements, IN),
 	Inp is SC+IN,
 	nb_setval(input_statements, Inp),
-	(	wcache(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-	;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-	),
+	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error),
+	args(Args).
+args(['--proof', Arg|Args]) :-
+	!,
+	absolute_uri(Arg, A),
+	atomic_list_concat(['<', A, '>'], R),
+	assertz(scope(R)),
+	(	flag(n3p)
+	->	portray_clause(scope(R))
+	;	true
+	),
+	n3_n3p(Arg, data),
+	(	got_pi
+	->	true
+	;	assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
+				'<http://www.w3.org/2000/10/swap/reason#rule>'(S, L),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(L, B),
+				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(B, ':-'(_, _))]),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
+				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(G, ':-'(_, _))]),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(got_pi)
+	),
+	args(Args).
+args(['--query', Arg|Args]) :-
+	!,
+	n3_n3p(Arg, query),
+	args(Args).
+% DEPRECATED
+args(['--tquery', Arg|Args]) :-
+	!,
+	assertz(flag(tquery)),
+	n3_n3p(Arg, tquery),
+	args(Args).
+% DEPRECATED
+args(['--trules', Arg|Args]) :-
+	!,
+	absolute_uri(Arg, A),
+	atomic_list_concat(['<', A, '>'], R),
+	assertz(scope(R)),
+	(	flag(n3p)
+	->	portray_clause(scope(R))
+	;	true
+	),
+	n3_n3p(Arg, trules),
 	args(Args).
 args(['--turtle', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1208,7 +1545,9 @@ args(['--turtle', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	atomic_list_concat(['-b=', Arg], Base),
 	(	flag('pass-turtle')
@@ -1231,6 +1570,7 @@ args(['--turtle', Argument|Args]) :-
 			)
 		),
 		nb_setval(wn, 0),
+		nb_setval(rn, 0),
 		nb_setval(sc, 0),
 		nb_setval(tc, 0),
 		nb_setval(tp, 0),
@@ -1319,55 +1659,7 @@ args(['--turtle', Argument|Args]) :-
 					),
 					format('~q.~n', [Rt])
 				)
-			;	(	flag(n3p)
-				->	format('~q.~n', [Rt])
-				;	(	Rt = ':-'(Rg)
-					->	call(Rg)
-					;	(	predicate_property(Rt, dynamic)
-						->	true
-						;	(	File = '-'
-							->	true
-							;	close(In)
-							),
-							(	retract(tmpfile(File))
-							->	delete_file(File)
-							;	true
-							),
-							throw(builtin_redefinition(Rt))
-						),
-						(	Rt = pfx(Pfx, _)
-						->	retractall(pfx(Pfx, _))
-						;	true
-						),
-						(	Rt = scope(Scope)
-						->	nb_setval(current_scope, Scope)
-						;	true
-						),
-						(	Rt \= implies(_, _, _),
-							Rt \= scount(_),
-							\+flag('no-distinct-input'),
-							call(Rt)
-						->	true
-						;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-							->	jitis(Rt)
-							;	true
-							),
-							(	Rt \= flag(_, _),
-								Rt \= scope(_),
-								Rt \= pfx(_, _),
-								Rt \= pred(_),
-								Rt \= scount(_)
-							->	(	flag(nope)
-								->	true
-								;	nb_getval(current_scope, Src),
-									term_index(Rt, Rnd),
-									assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
-								)
-							;	true
-							)
-						)
-					)
-				)
+			;	n3pin(Rt, In, File)
 			),
 			fail
 		),
@@ -1389,10 +1681,7 @@ args(['--turtle', Argument|Args]) :-
 		nb_getval(input_statements, IN),
 		Inp is SC+IN,
 		nb_setval(input_statements, Inp),
-		(	wcache(Arg, File)
-		->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-		;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-		),
+		format(user_error, 'SC=~w~n', [SC]),
 		flush_output(user_error),
 		(	flag('streaming-reasoning')
 		->	timestamp(Stamp),
@@ -1400,7 +1689,7 @@ args(['--turtle', Argument|Args]) :-
 			nb_getval(sc, Outp),
 			nb_getval(tc, TC),
 			nb_getval(bc, BC),
-			Etc is TC+BC,
+			Ent is TC+BC,
 			nb_getval(tp, TP),
 			nb_getval(bp, BP),
 			Step is TP+BP,
@@ -1413,105 +1702,11 @@ args(['--turtle', Argument|Args]) :-
 			catch(Infin is round(Inf/Inp), _, Infin = ''),
 			format('~q.~n', [scount(Outp)]),
 			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-			format(user_error, '[~w] in=~d out=~d etc=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Etc, Step, Brake, Inf, Cpu, Speed, Infin]),
+			format(user_error, '[~w] in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 			flush_output(user_error)
 		;	true
 		)
 	),
-	args(Args).
-args(['--proof', Arg|Args]) :-
-	!,
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	n3_n3p(Arg, data),
-	(	got_pi
-	->	true
-	;	assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
-				'<http://www.w3.org/2000/10/swap/reason#rule>'(S, L),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(L, B),
-				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(B, ':-'(_, _))]),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
-				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(G, ':-'(_, _))]),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(got_pi)
-	),
-	args(Args).
-% DEPRECATED
-args(['--trules', Arg|Args]) :-
-	!,
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	n3_n3p(Arg, trules),
-	args(Args).
-args(['--query', Arg|Args]) :-
-	!,
-	n3_n3p(Arg, query),
-	args(Args).
-args(['--pass'|Args]) :-
-	!,
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct-input')
-		->	flag('no-distinct-output')
-		;	true
-		)
-	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
-	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
-	),
-	(	flag(n3p)
-	->	portray_clause(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
-	;	true
-	),
-	args(Args).
-args(['--pass-all'|Args]) :-
-	!,
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct-input')
-		->	flag('no-distinct-output')
-		;	true
-		)
-	->	assertz(query(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-				exopred(P, S, O))),
-		assertz(query(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				'<http://www.w3.org/2000/10/swap/log#implies>'(A, C))),
-		assertz(query(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				':-'(C, A)))
-	;	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-				answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-				answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
-	),
-	(	flag(n3p)
-	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
-			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
-			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
-	;	true
-	),
-	args(Args).
-% DEPRECATED
-args(['--tquery', Arg|Args]) :-
-	!,
-	assertz(flag(tquery)),
-	n3_n3p(Arg, tquery),
 	args(Args).
 args([Arg|Args]) :-
 	absolute_uri(Arg, A),
@@ -1523,6 +1718,70 @@ args([Arg|Args]) :-
 	),
 	n3_n3p(Arg, data),
 	args(Args).
+
+
+n3pin(Rt, In, File) :-
+	(	Rt = ':-'(Rg)
+	->	call(Rg),
+		(	flag(n3p)
+		->	format('~q.~n', [Rt])
+		;	true
+		)
+	;	(	(	Rt = ':-'(Rh, _)
+			->	predicate_property(Rh, dynamic)
+			;	predicate_property(Rt, dynamic)
+			)
+		->	true
+		;	(	File = '-'
+			->	true
+			;	close(In)
+			),
+			(	retract(tmpfile(File))
+			->	delete_file(File)
+			;	true
+			),
+			throw(builtin_redefinition(Rt))
+		),
+		(	Rt = pfx(Pfx, _)
+		->	retractall(pfx(Pfx, _))
+		;	true
+		),
+		(	Rt = scope(Scope)
+		->	nb_setval(current_scope, Scope)
+		;	true
+		),
+		(	Rt \= implies(_, _, _),
+			Rt \= scount(_),
+			\+flag('no-distinct-input'),
+			call(Rt)
+		->	true
+		;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+			->	djitis(Rt),
+				(	flag(n3p),
+					Rt \= scount(_)
+				->	format('~q.~n', [Rt])
+				;	true
+				)
+			;	true
+			),
+			(	Rt \= flag(_, _),
+				Rt \= scope(_),
+				Rt \= pfx(_, _),
+				Rt \= pred(_),
+				Rt \= scount(_)
+			->	(	flag(nope)
+				->	true
+				;	nb_getval(current_scope, Src),
+					term_index(Rt, Rnd),
+					(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
+					->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+					;	true
+					)
+				)
+			;	true
+			)
+		)
+	).
 
 
 % N3 to N3P compiler
@@ -1538,7 +1797,8 @@ n3_n3p(Argument, Mode) :-
 	;	Ise = 'ERROR'
 	),
 	(	wcache(Arg, File)
-	->	true
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
@@ -1567,7 +1827,9 @@ n3_n3p(Argument, Mode) :-
 				)
 			;	File = Arg
 			)
-		)
+		),
+		format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error)
 	),
 	(	File = '-'
 	->	In = user_input
@@ -1602,6 +1864,7 @@ n3_n3p(Argument, Mode) :-
 	nb_setval(line_number, 1),
 	nb_setval(sc, 0),
 	nb_setval(semantics, []),
+	nb_setval(smod, true),
 	atomic_list_concat(['\'<', Arg, '>\''], Src),
 	atomic_list_concat([Tmp, '_p'], Tmp_p),
 	assertz(tmpfile(Tmp_p)),
@@ -1668,7 +1931,7 @@ n3_n3p(Argument, Mode) :-
 			read(Rs, Rt),
 			(	Rt = end_of_file
 			->	true
-			;	jitis(Rt),
+			;	djitis(Rt),
 				(	Rt = semantics(_, cn(L))
 				->	length(L, N),
 					nb_setval(sc, N)
@@ -1716,7 +1979,7 @@ n3_n3p(Argument, Mode) :-
 							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
-						;	jitis(Rt),
+						;	djitis(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1731,7 +1994,10 @@ n3_n3p(Argument, Mode) :-
 						->	copy_term(It, Ic)
 						;	Ic = It
 						),
-						assertz(prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St))
+						(	\+prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St)
+						->	assertz(prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St))
+						;	true
+						)
 					;	(	Rt = ':-'(Ci, Pi)
 						->	(	Ci = true
 							->	call(Pi)
@@ -1763,7 +2029,7 @@ n3_n3p(Argument, Mode) :-
 									assertz(':-'(Ci, Pj))
 								)
 							)
-						;	jitis(Rt),
+						;	djitis(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1784,10 +2050,7 @@ n3_n3p(Argument, Mode) :-
 		nb_getval(input_statements, IN),
 		Inp is SC+IN,
 		nb_setval(input_statements, Inp),
-		(	wcache(Arg, File)
-		->	format(user_error, 'GET ~w FROM ~w SC=~w~n', [Arg, File, SC])
-		;	format(user_error, 'GET ~w SC=~w~n', [Arg, SC])
-		),
+		format(user_error, 'SC=~w~n', [SC]),
 		flush_output(user_error)
 	;	(	retract(tmpfile(Tmp_p))
 		->	catch(delete_file(Tmp_p), _, true)
@@ -1831,8 +2094,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery
 	tr_n3p(Z, Src, tquery).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query) :-
 	!,
-	(	flag(nope),
-		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
+	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	(	is_list(T)
 		->	H = T
 		;	uvars(X, U),
@@ -1842,33 +2104,33 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
-		(	flag('no-distinct-output')
+	(	\+flag(tactic, 'single-answer'),
+		(	flag(nope),
+			flag('no-distinct-output')
 		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
 		)
 	->	write(query(X, V)),
 		writeln('.')
-	;	jiti(answer(V), A),
+	;	djiti(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
 	tr_n3p(Z, Src, query).
-tr_n3p([':-'(false, X)|Z], Src, _) :-
+tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) :-
 	!,
 	(	flag(nope),
-		\+flag(tactic, 'single-answer')
+		\+flag(tactic, 'single-answer'),
+		flag('no-distinct-output')
 	->	write(query(X, X)),
 		writeln('.')
-	;	jiti(answer(X), A),
+	;	djiti(answer(X), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
-	tr_n3p(Z, Src, query).
+	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	!,
-	(	flag(nope),
-		Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
+	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	(	is_list(T)
 		->	H = T
 		;	uvars(X, U),
@@ -1878,11 +2140,13 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	flag(nope),
-		\+flag(tactic, 'single-answer')
+	(	\+flag(tactic, 'single-answer'),
+		(	flag(nope)
+		;	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
+		)
 	->	write(query(X, V)),
 		writeln('.')
-	;	jiti(answer(V), A),
+	;	djiti(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1896,7 +2160,7 @@ tr_n3p([X|Z], Src, query) :-
 		)
 	->	write(query(true, X)),
 		writeln('.')
-	;	jiti(answer(X), A),
+	;	djiti(answer(X), A),
 		write(implies(true, A, Src)),
 		writeln('.')
 	),
@@ -1987,17 +2251,29 @@ tr_split([A|B], [A|C], D) :-
 
 % Reasoning output
 
-wa([]) :-
+w0([]) :-
 	!.
-wa(['--wget-path', _|A]) :-
+w0(['--image', _|A]) :-
 	!,
-	wa(A).
-wa([A|B]) :-
+	w0(A).
+w0([A|B]) :-
 	format(' ~w', [A]),
-	wa(B).
+	w0(B).
+
+
+w1([]) :-
+	!.
+w1([A|B]) :-
+	format(' ~w', [A]),
+	w1(B).
 
 
 wh :-
+	(	keep_skolem(_)
+	->	nb_getval(var_ns, Vns),
+		put_pfx('var', Vns)
+	;	true
+	),
 	(	flag('no-qnames')
 	->	true
 	;	nb_setval(wpfx, false),
@@ -2021,6 +2297,24 @@ wh :-
 
 
 w3 :-
+	(	flag(think),
+		\+flag(nope)
+	->	tmp_file(Tmp),
+		open(Tmp, write, Ws, [encoding(utf8)]),
+		tell(Ws),
+		wm(Ws),
+		retractall(wpfx(_)),
+		nb_setval(lemma_cursor, 0),
+		nb_setval(lemma_parent, 0),
+		nb_setval(rn, 0),
+		told,
+		delete_file(Tmp)
+	;	true
+	),
+	wm(user_output).
+
+
+wm(Out) :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2038,31 +2332,38 @@ w3 :-
 		ws(B),
 		write('.'),
 		nl,
-		(	A = cn(L)
-		->	length(L, I),
-			cnt(output_statements, I)
-		;	cnt(output_statements)
+		(	Out = user_output
+		->	(	A = cn(L)
+			->	length(L, I),
+				cnt(output_statements, I)
+			;	cnt(output_statements)
+			)
+		;	true
 		),
 		fail
 	;	true
 	),
 	(	answer(B1, B2, B3, B4, B5, B6, B7),
 		relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-		jiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+		djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
 		indent,
 		wt(C),
 		ws(C),
 		write('.'),
 		nl,
-		cnt(output_statements),
+		(	Out = user_output
+		->	cnt(output_statements)
+		;	true
+		),
 		fail
 	;	nl
 	).
-w3 :-
+wm(Out) :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
+		nb_setval(empty_gives, false),
 		indent,
-		write('[ '),
+		write('[] '),
 		wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
 		write(' '),
 		wp('<http://www.w3.org/2000/10/swap/reason#Proof>'),
@@ -2074,10 +2375,11 @@ w3 :-
 		indent,
 		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, B, Pnd, Cn, R, _, A),
 			R =.. [P, S, O1],
-			jiti(answer(O), O1),
+			djiti(answer(O), O1),
 			Rule =.. [P, S, O],
 			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-			jiti(answer(C), Cn),
+			djiti(answer(C), Cn),
+			nb_setval(empty_gives, C),
 			\+got_wi(A, B, Pnd, C, Rule),
 			assertz(got_wi(A, B, Pnd, C, Rule)),
 			wp('<http://www.w3.org/2000/10/swap/reason#component>'),
@@ -2090,33 +2392,39 @@ w3 :-
 		;	retractall(got_wi(_, _, _, _, _))
 		),
 		wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
-		write(' {'),
-		indentation(2),
-		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, _, _, _, _, _, _),
-			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-			jiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+		(	nb_getval(empty_gives, true)
+		->	write(' true.')
+		;	write(' {'),
+			indentation(2),
+			(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, _, _, _, _, _, _),
+				relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
+				djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+				nl,
+				indent,
+				getvars(C, D),
+				(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
+				->	Q = allv
+				;	Q = some
+				),
+				(	\+flag(traditional)
+				->	true
+				;	wq(D, Q)
+				),
+				wt(C),
+				ws(C),
+				write('.'),
+				(	Out = user_output
+				->	cnt(output_statements)
+				;	true
+				),
+				fail
+			;	true
+			),
+			indentation(-2),
 			nl,
 			indent,
-			getvars(C, D),
-			(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
-			->	Q = allv
-			;	Q = some
-			),
-			(	\+flag(traditional)
-			->	true
-			;	wq(D, Q)
-			),
-			wt(C),
-			ws(C),
-			write('.'),
-			cnt(output_statements),
-			fail
-		;	true
+			write('}.')
 		),
-		indentation(-2),
-		nl,
-		indent,
-		write('}].'),
 		indentation(-2),
 		nl,
 		nl
@@ -2140,7 +2448,7 @@ w3 :-
 	).
 
 
-wi('<>', _, rule(_, _, A), _) :-
+wi('<>', _, rule(_, _, A), _) :-	% wi(Source, Premise, Conclusion, Rule)
 	!,
 	write('[ '),
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
@@ -2159,12 +2467,39 @@ wi(A, B, C, Rule) :-
 		nb_getval(lemma_count, Cnt),
 		assertz(lemma(Cnt, A, B, C, Ind, Rule))
 	),
+	nb_getval(lemma_parent, Cntp),
+	(	Cntp > 0,
+		Cnt =\= Cntp,
+		\+lemma_dep(Cntp, Cnt)
+	->	assertz(lemma_dep(Cntp, Cnt)),
+		forall(
+			(	lemma_dep(Cnta, Cntp)
+			),
+			(	(	Cnta =\= Cnt,
+					\+lemma_dep(Cnta, Cnt)
+				->	assertz(lemma_dep(Cnta, Cnt))
+				;	true
+				)
+			)
+		),
+		forall(
+			(	lemma_dep(Cnt, Cntd)
+			),
+			(	(	Cntp =\= Cntd,
+					\+lemma_dep(Cntp, Cntd)
+				->	assertz(lemma_dep(Cntp, Cntd))
+				;	true
+				)
+			)
+		)
+	;	true
+	),
 	write('<#lemma'),
 	write(Cnt),
 	write('>').
 
 
-wj(Cnt, A, true, C, Rule) :-
+wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	var(Rule),
 	C \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
 	!,
@@ -2175,26 +2510,39 @@ wj(Cnt, A, true, C, Rule) :-
 	write(' '),
 	wp('<http://www.w3.org/2000/10/swap/reason#Extraction>'),
 	write('; '),
-	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
-	write(' {'),
-	(	C = rule(PVars, EVars, Rule)
-	->	(	\+flag(traditional)
-		->	true
-		;	wq(PVars, allv),
-			wq(EVars, some)
-		),
-		wt(Rule)
-	;	labelvars([A, C], 0, _, avar),
-		getvars(C, D),
-		(	\+flag(traditional)
-		->	true
-		;	wq(D, some)
-		),
-		wt(C)
-	),
-	write('};'),
 	nl,
 	indentation(2),
+	indent,
+	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
+	(	C = true
+	->	write(' true;')
+	;	write(' {'),
+		nl,
+		indentation(2),
+		indent,
+		(	C = rule(PVars, EVars, Rule)
+		->	(	\+flag(traditional)
+			->	true
+			;	wq(PVars, allv),
+				wq(EVars, some)
+			),
+			wt(Rule)
+		;	labelvars([A, C], 0, _, avar),
+			getvars(C, D),
+			(	\+flag(traditional)
+			->	true
+			;	wq(D, some)
+			),
+			wt(C)
+		),
+		ws(C),
+		write('.'),
+		nl,
+		indentation(-2),
+		indent,
+		write('};')
+	),
+	nl,
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#because>'),
 	write(' [ '),
@@ -2208,6 +2556,7 @@ wj(Cnt, A, true, C, Rule) :-
 	write('].'),
 	indentation(-2).
 wj(Cnt, A, B, C, Rule) :-
+	nb_setval(lemma_parent, Cnt),
 	write('<#lemma'),
 	write(Cnt),
 	write('> '),
@@ -2215,50 +2564,67 @@ wj(Cnt, A, B, C, Rule) :-
 	write(' '),
 	wp('<http://www.w3.org/2000/10/swap/reason#Inference>'),
 	write('; '),
-	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
-	write(' {'),
-	Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc),
-	unifiable(Prem, B, Bs),
-	(	unifiable(Conc, C, Cs)
-	->	true
-	;	(	Conc = dn(G),
-			member(H, G),
-			unifiable(H, C, Cs)
-		->	true
-		;	Cs = []
-		)
-	),
-	append(Bs, Cs, Ds),
-	sort(Ds, Bindings),
-	term_variables(Prem, PVars),
-	term_variables(Conc, CVars),
-	nb_getval(wn, W),
-	labelvars([A, B, C], W, N, some),
-	nb_setval(wn, N),
-	labelvars([Rule, PVars, CVars], 0, _, avar),
-	findall(V,
-		(	member(V, CVars),
-			\+member(V, PVars)
-		),
-		EVars
-	),
-	getvars(C, D),
-	(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
-	->	Q = allv
-	;	Q = some
-	),
+	nl,
 	indentation(2),
-	(	\+flag(traditional)
-	->	true
-	;	wq(D, Q)
+	indent,
+	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
+	(	C = true
+	->	write(' true;')
+	;	write(' {'),
+		nl,
+		Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc),
+		unifiable(Prem, B, Bs),
+		(	unifiable(Conc, C, Cs)
+		->	true
+		;	(	Conc = dn(G),
+				member(H, G),
+				unifiable(H, C, Cs)
+			->	true
+			;	Cs = []
+			)
+		),
+		append(Bs, Cs, Ds),
+		sort(Ds, Bindings),
+		term_variables(Prem, PVars),
+		term_variables(Conc, CVars),
+		nb_getval(wn, W),
+		labelvars([A, B, C], W, N, some),
+		nb_setval(wn, N),
+		labelvars([Rule, PVars, CVars], 0, _, avar),
+		findall(V,
+			(	member(V, CVars),
+				\+member(V, PVars)
+			),
+			EVars
+		),
+		getvars(C, D),
+		(	C = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _)
+		->	Q = allv
+		;	Q = some
+		),
+		indentation(2),
+		indent,
+		(	\+flag(traditional)
+		->	true
+		;	wq(D, Q)
+		),
+		wt(C),
+		ws(C),
+		write('.'),
+		nl,
+		indentation(-2),
+		indent,
+		write('}; ')
 	),
-	wt(C),
-	indentation(-2),
-	write('}; '),
+	nl,
+	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#evidence>'),
 	write(' ('),
 	indentation(2),
 	wr(B),
+	indentation(-2),
+	nl,
+	indent,
 	write(');'),
 	retractall(got_wi(_, _, _, _, _)),
 	nl,
@@ -2291,15 +2657,58 @@ wr(cn([X|Y])) :-
 	),
 	wr(Z).
 wr(Z) :-
+	nb_getval(lemma_parent, Cntp),
 	term_index(Z, Cnd),
-	prfstep(Z, Cnd, Y, Pnd, Q, Rule, _, X),
-	!,
-	(	\+got_wi(X, Y, Pnd, Q, Rule)
-	->	assertz(got_wi(X, Y, Pnd, Q, Rule)),
+	(	flag(think),
+		\+flag(nope)
+	->	findall(get_wi(X, Y, Q, Rule),
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X)
+			),
+			L0
+		),
+		findall(get_wi(X, Y, Q, Rule),
+			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
+				term_index(Y-Q, Ind),
+				(	lemma(Cntc, X, Y, Q, Ind, Rule)
+				->	Cntp =\= Cntc,
+					\+lemma_dep(Cntc, Cntp)
+				;	true
+				)
+			),
+			L1
+		),
+		(	L0 = L1
+		->	L = L0
+		;	L0 = [H|_],
+			L =  [H]
+		),
+		L \= [],
+		!,
+		(	L = [get_wi(X, Y, Q, Rule)]
+		->	nl,
+			indent,
+			wi(X, Y, Q, Rule)
+		;	nl,
+			indent,
+			write('('),
+			forall(
+				(	member(get_wi(X, Y, Q, Rule), L)
+				),
+				(	(	\+got_head
+					->	assertz(got_head)
+					;	write(' ')
+					),
+					wi(X, Y, Q, Rule)
+				)
+			),
+			write(')'),
+			retractall(got_head)
+		)
+	;	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
+		!,
 		nl,
 		indent,
 		wi(X, Y, Q, Rule)
-	;	true
 	).
 wr(Y) :-
 	nl,
@@ -2384,8 +2793,11 @@ wt((X, Y)) :-
 	wt(X),
 	ws(X),
 	write('.'),
-	nl,
-	indent,
+	(	flag(strings)
+	->	write(' ')
+	;	nl,
+		indent
+	),
 	wt(Y).
 wt(cn([X])) :-
 	!,
@@ -2395,8 +2807,11 @@ wt(cn([X|Y])) :-
 	wt(X),
 	ws(X),
 	write('.'),
-	nl,
-	indent,
+	(	flag(strings)
+	->	write(' ')
+	;	nl,
+		indent
+	),
 	(	Y = [Z]
 	->	true
 	;	Z = cn(Y)
@@ -2469,12 +2884,12 @@ wt0(X) :-
 		\+flag('no-blank')	% DEPRECATED
 	->	(	rule_uvar(L),
 			(	ncllit
-			->	(	memberchk(Y, L)
+			->	(	memberchk(X, L)
 				->	true
 				;	retract(rule_uvar(L)),
-					assertz(rule_uvar([Y|L]))
+					assertz(rule_uvar([X|L]))
 				)
-			;	memberchk(Y, L)
+			;	memberchk(X, L)
 			)
 		->	write('?U_')
 		;	write('_:sk_')
@@ -2492,12 +2907,12 @@ wt0(X) :-
 		\+flag('pass-all-ground')
 	->	(	rule_uvar(L),
 			(	ncllit
-			->	(	memberchk(Y, L)
+			->	(	memberchk(X, L)
 				->	true
 				;	retract(rule_uvar(L)),
-					assertz(rule_uvar([Y|L]))
+					assertz(rule_uvar([X|L]))
 				)
-			;	memberchk(Y, L)
+			;	memberchk(X, L)
 			)
 		->	write('?U_')
 		;	write('_:sk_')
@@ -2520,6 +2935,7 @@ wt0(X) :-
 	;	flag(nope)
 	),
 	\+flag('pass-all-ground'),
+	\+keep_skolem(X),
 	nb_getval(var_ns, Vns),
 	sub_atom(X, 1, I, _, Vns),
 	J is I+1,
@@ -2534,9 +2950,13 @@ wt0(X) :-
 			)
 		;	memberchk(Y, L)
 		)
-	->	sub_atom(Y, 0, 2, _, Z),
-		memberchk(Z, ['x_', 't_']),
-		write('?')
+	->	(	\+flag(nope),
+			sub_atom(Y, 0, 2, _, 'e_')
+		->	write('_:')
+		;	sub_atom(Y, 0, 2, _, Z),
+			memberchk(Z, ['x_', 't_']),
+			write('?')
+		)
 	;	(	\+flag('no-qvars'),
 			\+flag('no-blank')	% DEPRECATED
 		->	true
@@ -2546,7 +2966,13 @@ wt0(X) :-
 		write('_:')
 	),
 	!,
-	write(Y).
+	write(Y),
+	(	sub_atom(Y, 0, 2, _, 'x_')
+	->	write('_'),
+		nb_getval(rn, N),
+		write(N)
+	;	true
+	).
 wt0(X) :-
 	flag('no-skolem', Prefix),
 	(	\+flag(traditional)
@@ -2589,7 +3015,13 @@ wt0(X) :-
 	),
 	(	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
 	->	wt2(W)
-	;	write(W)
+	;	(	current_prolog_flag(windows, true)
+		->	atom_codes(W, U),
+			escape_unicode(U, V),
+			atom_codes(Z, V)
+		;	Z = W
+		),
+		write(Z)
 	).
 
 
@@ -2604,26 +3036,35 @@ wt1(X) :-
 wt2(literal(X, lang(Y))) :-
 	!,
 	write('"'),
-	atom_codes(X, U),
-	escape_unicode(U, V),
-	atom_codes(Z, V),
+	(	current_prolog_flag(windows, true)
+	->	atom_codes(X, U),
+		escape_unicode(U, V),
+		atom_codes(Z, V)
+	;	Z = X
+	),
 	write(Z),
 	write('"@'),
 	write(Y).
 wt2(literal(X, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!,
 	write('"'),
-	atom_codes(X, U),
-	escape_unicode(U, V),
-	atom_codes(Z, V),
+	(	current_prolog_flag(windows, true)
+	->	atom_codes(X, U),
+		escape_unicode(U, V),
+		atom_codes(Z, V)
+	;	Z = X
+	),
 	write(Z),
 	write('"').
 wt2(literal(X, type(Y))) :-
 	!,
 	write('"'),
-	atom_codes(X, U),
-	escape_unicode(U, V),
-	atom_codes(Z, V),
+	(	current_prolog_flag(windows, true)
+	->	atom_codes(X, U),
+		escape_unicode(U, V),
+		atom_codes(Z, V)
+	;	Z = X
+	),
 	write(Z),
 	write('"^^'),
 	wt(Y).
@@ -2680,7 +3121,8 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 	),
 	(	rule_uvar(R)
 	->	true
-	;	R = []
+	;	R = [],
+		cnt(rn)
 	),
 	(	nb_getval(pdepth, 0),
 		nb_getval(cdepth, 0)
@@ -2740,7 +3182,8 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 wt2(':-'(X, Y)) :-
 	(	rule_uvar(R)
 	->	true
-	;	R = []
+	;	R = [],
+		cnt(rn)
 	),
 	(	nb_getval(fdepth, 0)
 	->	assertz(ncllit)
@@ -3010,7 +3453,7 @@ wst :-
 	findall([Key, Str],
 		(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
 		;	answer(A1, A2, A3, A4, A5, A6, A7),
-			jiti(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7))
+			djiti(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7))
 		),
 		KS
 	),
@@ -3025,34 +3468,33 @@ wst :-
 		)
 	),
 	(	catch(nb_getval(csv_header, Header), _, Header = []),
-		wct(Header),
+		wct(Header, Header),
 		length(Header, Headerl),
 		query(Where, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, Select)),
 		catch(call(Where), _, fail),
-		wct(Select),
+		write('\r\n'),
+		wct(Select, Header),
 		cnt(output_statements, Headerl),
 		fail
 	;	true
 	).
 
 
-wct([]) :-
+wct([], []) :-
+	!.
+wct([A], [C]) :-
 	!,
-	write('\r\n').
-wct([A]) :-
-	!,
-	wcf(A),
-	write('\r\n').
-wct([A|B]) :-
-	wcf(A),
+	wcf(A, C).
+wct([A|B], [C|D]) :-
+	wcf(A, C),
 	write(','),
-	wct(B).
+	wct(B, D).
 
 
-wcf(A) :-
+wcf(A, _) :-
 	var(A),
 	!.
-wcf(rdiv(X, Y)) :-
+wcf(rdiv(X, Y), _) :-
 	number_codes(Y, [0'1|Z]),
 	lzero(Z, Z),
 	!,
@@ -3066,7 +3508,7 @@ wcf(rdiv(X, Y)) :-
 		)
 	),
 	format(F, [X]).
-wcf(literal(A, B)) :-
+wcf(literal(A, B), _) :-
 	!,
 	atom_codes(A, C),
 	subst([[[0'\\, 0'"], [0'", 0'"]]], C, E),
@@ -3082,7 +3524,7 @@ wcf(literal(A, B)) :-
 		write('"')
 	;	write(F)
 	).
-wcf(A) :-
+wcf(A, _) :-
 	atom(A),
 	nb_getval(var_ns, Vns),
 	sub_atom(A, 1, I, _, Vns),
@@ -3091,28 +3533,39 @@ wcf(A) :-
 	sub_atom(A, J, _, 1, B),
 	write('_:'),
 	write(B).
-wcf(A) :-
+wcf(A, _) :-
 	atom(A),
 	flag('no-skolem', Prefix),
 	sub_atom(A, 1, _, _, Prefix),
 	!,
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(B, ['no-skolem', Prefix, A]),
 	wt0(B).
-wcf(A) :-
+wcf(A, B) :-
 	atom(A),
-	relabel(A, B),
-	sub_atom(B, 0, 1, _, '<'),
+	relabel(A, C),
+	sub_atom(C, 0, 1, _, '<'),
+	sub_atom(C, _, 1, 0, '>'),
 	!,
-	sub_atom(B, 1, _, 1, C),
-	write(C).
-wcf(A) :-
+	sub_atom(C, 1, _, 1, D),
+	(	sub_atom(B, _, 2, 0, 'ID')
+	->	(	flag('hmac-key', Key)
+		->	hmac_sha(Key, D, E, [algorithm(sha1)])
+		;	sha_hash(D, E, [algorithm(sha1)])
+		),
+		atom_codes(F, E),
+		base64xml(F, G),
+		write(G)
+	;	write(D)
+	).
+wcf(A, _) :-
 	atom(A),
 	sub_atom(A, 0, 1, _, '_'),
 	!,
 	sub_atom(A, 1, _, 0, B),
 	write(B).
-wcf(A) :-
-	write(A).
+wcf(A, _) :-
+	with_output_to(atom(B), wg(A)),
+	write(B).
 
 
 indent:-
@@ -3134,9 +3587,9 @@ indentation(C) :-
 % In a nutshell:
 %
 %  1/ Select rule P => C
-%  2/ Prove P & NOT(C) (backward chaining)
+%  2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
 %  3/ If P & NOT(C) assert C (forward chaining) and remove brake
-%  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/ or 1/
+%  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/
 %  5/ If brake or tactic linear-select stop, else start again at 1/
 
 eam(Span) :-
@@ -3209,8 +3662,8 @@ eam(Span) :-
 			throw(maximimum_step_count(Step))
 		;	true
 		),
-		jitin(Conc, Concdt),
-		jitir(Concdt, Concdv),
+		djitin(Conc, Concdt),
+		djitir(Concdt, Concdv),
 		(	\+ground(Prem)
 		->	clist(Lv, Concdv),
 			partconc(Prem, Lv, Lw),
@@ -3221,20 +3674,14 @@ eam(Span) :-
 		->	makevars(Concd, Concdr)
 		;	Concdr = Concd
 		),
-		term_index(Prem, Pnd),
-		(	flag(think),	% DEPRECATED
+		(	flag(think),
 			\+flag(nope),
-			\+prfstep(_, _, Prem, Pnd, _, _, _, _)
+			term_index(Prem, Pnd),
+			term_index(Concdr, Cnd),
+			prfstep(Concdr, Cnd, _, _, _, _, _, _),
+			\+prfstep(_, _, Prem, Pnd, _, Rule, _, _)
 		->	true
-		;	(	\+call(Concdr)
-			->	true
-			;	(	flag(debug),
-					flag(warn)
-				->	format(user_error, '.. eam/1 euler path so do not step in your own step ~w~n', [Concd]),
-					flush_output(user_error),
-					fail
-				)
-			)
+		;	\+call(Concdr)
 		),
 		(	flag('rule-histogram')
 		->	lookup(RTC, tc, RuleL),
@@ -3249,7 +3696,7 @@ eam(Span) :-
 		copy_term(Concd, Cc),
 		(	Concd \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(_, _)
 		->	nb_getval(wn, W),
-			labelvars(Concd, W, N),
+			labelvars(Prem-Concd, W, N),
 			nb_setval(wn, N)
 		;	true
 		),
@@ -3264,7 +3711,7 @@ eam(Span) :-
 		findall([D, F, E],
 			(	member([D, D, E], Lc),
 				unify(D, F),
-				(	flag(think),	% DEPRECATED
+				(	flag(think),
 					\+flag(nope)
 				->	true
 				;	catch(\+call(F), _, true)
@@ -3276,15 +3723,29 @@ eam(Span) :-
 		clist(Ls, Concs),
 		clist(Le, Conce),
 		clist(Lf, Clc),
-		astep(Src, Prem, Concs, Conce, Clc, Rule),
+		astep(Src, Prem, Concd, Conce, Clc, Rule),
+		(	(	Concs = answer(_, _, _, _, _, _, _)
+			;	Concs = cn([answer(_, _, _, _, _, _, _)|_])
+			)
+		->	cnt(answer_count)
+		;	true
+		),
+		nb_getval(answer_count, AnswerCount),
 		(	flag(tactic, 'single-answer'),
-			answer(_, _, _, _, _, _, _)
+			AnswerCount >= 1
 		->	(	flag(strings)
 			->	true
 			;	w3
 			)
-		;	retract(brake),
-			fail
+		;	(	flag('limited-answer', AnswerLimit),
+				AnswerCount >= AnswerLimit
+			->	(	flag(strings)
+				->	true
+				;	w3
+			)
+			;	retract(brake),
+				fail
+			)
 		)
 	;	(	brake
 		;	flag(tactic, 'linear-select')
@@ -3309,11 +3770,12 @@ eam(Span) :-
 	).
 
 
-astep(A, B, C, Cn, Cc, Rule) :-
+astep(A, B, Cd, Cn, Cc, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Conclusion_unique_copy, Rule)
 	(	Cn = cn([Dn|En]),
 		Cc = cn([Dc|Ec])
-	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
-		->	asserta(implies(Prem, Conc, '<>'))
+	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
+			\+cmember('<http://www.w3.org/2000/10/swap/reason#gives>'(_, _), B)
+		->	throw(not_supported('log:implies in conclusion'))
 		;	true
 		),
 		functor(Dn, P, N),
@@ -3327,7 +3789,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 		),
 		(	catch(call(Dn), _, fail)
 		->	true
-		;	jitis(Dn),
+		;	djitis(Dn),
 			(	flag('pass-only-new'),
 				Dn \= answer(_, _, _, _, _, _, _)
 			->	indent,
@@ -3348,8 +3810,14 @@ astep(A, B, C, Cn, Cc, Rule) :-
 				Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 				prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
 					'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-			->	assertz(prfstep(Dn, Cnd, Q3, Q4, C, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-			;	assertz(prfstep(Dn, Cnd, B, Pnd, C, Rule, forward, A))
+			->	(	\+prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A)
+				->	assertz(prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+				;	true
+				)
+			;	(	\+prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A)
+				->	assertz(prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A))
+				;	true
+				)
 			)
 		),
 		(	En = [Fn],
@@ -3358,11 +3826,12 @@ astep(A, B, C, Cn, Cc, Rule) :-
 		;	Fn = cn(En),
 			Fc = cn(Ec)
 		),
-		astep(A, B, C, Fn, Fc, Rule)
+		astep(A, B, Cd, Fn, Fc, Rule)
 	;	(	Cn = true
 		->	true
-		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc)
-			->	asserta(implies(Prem, Conc, '<>'))
+		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
+				\+cmember('<http://www.w3.org/2000/10/swap/reason#gives>'(_, _), B)
+			->	throw(not_supported('log:implies in conclusion'))
 			;	true
 			),
 			functor(Cn, P, N),
@@ -3376,7 +3845,7 @@ astep(A, B, C, Cn, Cc, Rule) :-
 			),
 			(	catch(call(Cn), _, fail)
 			->	true
-			;	jitis(Cn),
+			;	djitis(Cn),
 				(	flag('pass-only-new'),
 					Cn \= answer(_, _, _, _, _, _, _)
 				->	indent,
@@ -3397,18 +3866,29 @@ astep(A, B, C, Cn, Cc, Rule) :-
 					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
 					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
 						'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-				->	assertz(prfstep(Cn, Cnd, Q3, Q4, C, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-				;	assertz(prfstep(Cn, Cnd, B, Pnd, C, Rule, forward, A))
+				->	(	\+prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A)
+					->	assertz(prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+					;	true
+					)
+				;	(	\+prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A)
+					->	assertz(prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A))
+					;	true
+					)
 				)
 			)
 		)
 	).
 
 
-istep(Src, Prem, Conc, Rule) :-
+istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
+	copy_term(Prem, Prec),
+	labelvars(Prec, 0, _),
 	term_index(Conc, Cnd),
-	term_index(Prem, Pnd),
-	assertz(prfstep(Conc, Cnd, Prem, Pnd, Conc, Rule, backward, Src)).
+	term_index(Prec, Pnd),
+	(	\+prfstep(Conc, Cnd, Prec, Pnd, Conc, Rule, backward, Src)
+	->	assertz(prfstep(Conc, Cnd, Prec, Pnd, Conc, Rule, backward, Src))
+	;	true
+	).
 
 
 pstep(Rule) :-
@@ -3451,30 +3931,31 @@ qstep(A, true) :-
 	\+prfstep(A, _, _, _, _, _, _, _).
 
 
-% Just-In-Time Indexing
+% DJITI (Deep Just In Time Indexing)
 
-jiti(answer(cn(A)), cn(B)) :-
+djiti(answer(cn(A)), cn(B)) :-
 	!,
-	jiti(A, B).
-jiti(answer(A), answer(P, S, O, I, J, K, L)) :-
+	djiti(A, B).
+djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	nonvar(A)
-	;	atom(P)
+	;	atom(P),
+		S \= void
 	),
 	A =.. [P, S, O],
 	!,
 	(	var(I),
 		compound(S)
 	->	term_index(S, I),
-		arg(1, S, K)
+		term_arg_1(S, K)
 	;	true
 	),
 	(	var(J),
 		compound(O)
 	->	term_index(O, J),
-		arg(1, O, L)
+		term_arg_1(O, L)
 	;	true
 	).
-jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
+djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	(	var(S)
 	;	S \= void
 	),
@@ -3482,47 +3963,47 @@ jiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	(	var(I),
 		compound(S)
 	->	term_index(S, I),
-		arg(1, S, K)
+		term_arg_1(S, K)
 	;	true
 	),
 	(	var(J),
 		compound(O)
 	->	term_index(O, J),
-		arg(1, O, L)
+		term_arg_1(O, L)
 	;	true
 	).
-jiti(answer(A), answer(A, void, void, _, _, _, _)) :-
+djiti(answer(A), answer(A, void, void, _, _, _, _)) :-
 	!.
-jiti([A|B], [C|D]) :-
+djiti([A|B], [C|D]) :-
 	!,
-	jiti(answer(A), C),
-	jiti(B, D).
-jiti(A, A).
+	djiti(answer(A), C),
+	djiti(B, D).
+djiti(A, A).
 
 
-jitin(answer(cn(A), void, void, _, _, _, _), cn(B)) :-
+djitin(answer(cn(A), void, void, _, _, _, _), cn(B)) :-
 	!,
-	jitin(A, B).
-jitin([A|B], [answer(A, void, void, _, _, _, _)|C]) :-
+	djitin(A, B).
+djitin([A|B], [answer(A, void, void, _, _, _, _)|C]) :-
 	!,
-	jitin(B, C).
-jitin(A, A).
+	djitin(B, C).
+djitin(A, A).
 
 
-jitir(cn([A|B]), cn([C|D])) :-
+djitir(cn([A|B]), cn([C|D])) :-
 	!,
-	jitir(A, C),
-	jitir(cn(B), cn(D)).
-jitir(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
+	djitir(A, C),
+	djitir(cn(B), cn(D)).
+djitir(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
 	!,
 	term_index(S, I),
 	term_index(O, J),
 	term_arg_1(S, K),
 	term_arg_1(O, L).
-jitir(A, A).
+djitir(A, A).
 
 
-jitis(answer(P, S, O, I, J, K, L)) :-
+djitis(answer(P, S, O, I, J, K, L)) :-
 	atomic(P),
 	!,
 	(	current_predicate(P/7)
@@ -3545,41 +4026,72 @@ jitis(answer(P, S, O, I, J, K, L)) :-
 	),
 	B =.. [P, S, O, I, J, K, L, answer],
 	assertz(B).
-jitis(A) :-
-	ground(A),
-	A =.. [P, S, O],
+djitis(exopred(P, S, O)) :-
+	ground(exopred(P, S, O)),
 	(	compound(S)
 	;	compound(O)
 	),
 	!,
-	term_index(S, I),
-	term_index(O, J),
-	term_arg_1(S, K),
-	term_arg_1(O, L),
+	term_index(S, Si),
+	term_index(O, Oi),
+	term_arg_1(S, Sp),
+	term_arg_1(O, Op),
+	(	current_predicate(exopred/7)
+	->	true
+	;	dynamic(exopred/7),
+		assertz(':-'(exopred(P, U, V),
+				(	(	compound(U)
+					->	term_index(U, Ui),
+						term_arg_1(U, Up)
+					;	true
+					),
+					(	compound(V)
+					->	term_index(V, Vi),
+						term_arg_1(V, Vp)
+					;	true
+					),
+					exopred(P, U, V, Ui, Vi, Up, Vp)
+				)
+			)
+		)
+	),
+	assertz(exopred(P, S, O, Si, Oi, Sp, Op)).
+djitis(A) :-
+	ground(A),
+	A =.. [P, S, O],
+	A \= ':-'(_, _),
+	(	compound(S)
+	;	compound(O)
+	),
+	!,
+	term_index(S, Si),
+	term_index(O, Oi),
+	term_arg_1(S, Sp),
+	term_arg_1(O, Op),
 	(	current_predicate(P/6)
 	->	true
 	;	dynamic(P/6),
 		X =.. [P, U, V],
 		assertz(':-'(X,
 				(	(	compound(U)
-					->	term_index(U, M),
-						arg(1, U, Q)
+					->	term_index(U, Ui),
+						term_arg_1(U, Up)
 					;	true
 					),
 					(	compound(V)
-					->	term_index(V, N),
-						arg(1, V, R)
+					->	term_index(V, Vi),
+						term_arg_1(V, Vp)
 					;	true
 					),
-					Y =.. [P, U, V, M, N, Q, R],
+					Y =.. [P, U, V, Ui, Vi, Up, Vp],
 					call(Y)
 				)
 			)
 		)
 	),
-	B =.. [P, S, O, I, J, K, L],
+	B =.. [P, S, O, Si, Oi, Sp, Op],
 	assertz(B).
-jitis(A) :-
+djitis(A) :-
 	assertz(A).
 
 
@@ -3657,7 +4169,8 @@ jitis(A) :-
 		labelvars([Ac, Bc, Ec|Dc], 0, _),
 		(	fact('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [Ac, Bc, G|H]))
 		->	(	E \= G
-			->	format(user_error, '** WARNING ** conflicting_findall_answers ~w VERSUS ~w~n', [[A, B, G|H], [A, B, E|D]])
+			->	format(user_error, '** WARNING ** conflicting_findall_answers ~w VERSUS ~w~n', [[A, B, G|H], [A, B, E|D]]),
+				flush_output(user_error)
 			;	true
 			)
 		;	assertz(fact('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [Ac, Bc, Ec|Dc])))
@@ -3888,6 +4401,19 @@ jitis(A) :-
 	).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	sha_hash(A, C, [algorithm(sha1)]),
+	atom_codes(D, C),
+	base64xml(D, B).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#hmac-sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	flag('hmac-key', Key),
+	hmac_sha(Key, A, C, [algorithm(sha1)]),
+	atom_codes(D, C),
+	base64xml(D, B).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sigmoid>'(A, B) :-
 	getnumber(A, C),
 	B is 1/(1+exp(-C)).
@@ -3950,6 +4476,14 @@ jitis(A) :-
 		),
 		(	A =:= 1.0
 		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#skolem>'(X, Y) :-
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, X),
+	(	\+keep_skolem(Y)
+	->	assertz(keep_skolem(Y))
+	;	true
 	).
 
 
@@ -5164,7 +5698,7 @@ jitis(A) :-
 			flatten(C, D),
 			atom_codes(B, D)
 		)
-	 ).
+	).
 
 
 % 4.7.1.3 func:string-join
@@ -6714,7 +7248,7 @@ jitis(A) :-
 			;	C = false
 			)
 		)
-	 ).
+	).
 
 
 % 4.8.2.23 pred:time-greater-than-or-equal
@@ -7489,7 +8023,8 @@ cnt(A) :-
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
 		C mod 1000 =:= 0
-	->	format(user_error, '~w = ~w~n', [A, C])
+	->	format(user_error, '~w = ~w~n', [A, C]),
+		flush_output(user_error)
 	;	true
 	).
 
@@ -7500,7 +8035,8 @@ cnt(A, I) :-
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
 		C mod 1000 =:= 0
-	->	format(user_error, '~w = ~w~n', [A, C])
+	->	format(user_error, '~w = ~w~n', [A, C]),
+		flush_output(user_error)
 	;	true
 	).
 
@@ -7808,7 +8344,11 @@ distinct(A, B) :-
 
 
 distinct_hash([], []) :-
-	retractall(hash_value(_, _)).
+	(	retract(hash_value(_, _)),
+		fail
+	;	true
+	),
+	!.
 distinct_hash([A|B], C) :-
 	term_index(A, D),
 	(	hash_value(D, E)
@@ -8145,6 +8685,15 @@ getcwd(A) :-
 :- endif.
 
 
+% Modified Base64 for XML identifiers
+
+base64xml(A, B) :-
+	base64(A, C),
+	atom_codes(C, D),
+	subst([[[0'+], [0'_]], [[0'/], [0':]], [[0'=], []]], D, E),
+	atom_codes(B, E).
+
+
 :- if(current_prolog_flag(dialect, swi)).
 term_index(A, B) :-
 	term_hash(A, B).
@@ -8160,7 +8709,8 @@ term_index(A, B) :-
 term_arg_1(A, B) :-
 	compound(A),
 	!,
-	arg(1, A, B).
+	arg(1, A, C),
+	term_index(C, B).
 term_arg_1(_, void).
 
 
@@ -8262,15 +8812,6 @@ escape_unicode([A, B|C], D) :-
 	append(F, G, D),
 	!,
 	escape_unicode(C, G).
-escape_unicode([A|B], C) :-
-	0x10000 =< A,
-	(	0x100000 =< A
-	->	with_output_to(codes(D), format('\\U00~16R', [A]))
-	;	with_output_to(codes(D), format('\\U000~16R', [A]))
-	),
-	append(D, E, C),
-	!,
-	escape_unicode(B, E).
 escape_unicode([A|B], [A|C]) :-
 	escape_unicode(B, C).
 
@@ -8531,6 +9072,7 @@ raw_type(A, '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	!.
 raw_type(A, '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	atom(A),
+	\+ atom_concat(some, _, A),
 	\+ (sub_atom(A, 0, 1, _, '<'), sub_atom(A, _, 1, 0, '>')),
 	!.
 raw_type(literal(_, _), '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
@@ -8952,6 +9494,7 @@ digits([], L1, L1).
 digit(A, [A|L2], L2) :-
 	code_type(A, digit).
 
+
 fmsec(A, B, C) :-
 	integer(A),
 	!,
@@ -9251,7 +9794,13 @@ dynamic_verb(Verb) :-
 		->	true
 		;	assertz(intern(V)),
 			(	sub_atom(V, 0, 1, _, '\'')
-			->	sub_atom(V, 1, _, 1, B)
+			->	sub_atom(V, 1, _, 1, A),
+				(	sub_atom(A, _, 1, _, '\'')
+				->	atom_codes(A, C),
+					escape_squote(D, C),
+					atom_codes(B, D)
+				;	B = A
+				)
 			;	B = V
 			),
 			(	current_predicate(B/2)
@@ -9280,7 +9829,8 @@ timestamp(Stamp) :-
 
 
 fm(A) :-
-	format(user_error, '*** ~w~n', [A]).
+	format(user_error, '*** ~w~n', [A]),
+	flush_output(user_error).
 
 
 % Regular Expressions inspired by http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html
@@ -9624,8 +10174,12 @@ literal(Atom, DtLang, L1, L3) :-
 	dtlang(DtLang, L2, L3),
 	escape_string(Codes, B),
 	escape_string(B, C),
-	escape_squote(C, D),
-	atom_codes(E, D),
+	atom_codes(A, C),
+	(	sub_atom(A, _, 1, _, '\'')
+	->	escape_squote(C, D),
+		atom_codes(E, D)
+	;	E = A
+	),
 	atomic_list_concat(['\'', E, '\''], Atom).
 
 
@@ -9670,9 +10224,9 @@ pathitem(Name, [], L1, L2) :-
 	symbol(S, L1, L2),
 	!,
 	(	qevar(S, N, D)
-	->	(	D = 1,
+	->	(	D >= 1,
 			nb_getval(fdepth, FD),
-			FD >= 1
+			FD >= D
 		->	atom_concat('_', N, Name),
 			nb_setval(smod, false)
 		;	nb_getval(var_ns, Vns),
@@ -9939,10 +10493,14 @@ propertylisttailsemis(L1, L1).
 
 qname(URI, [NS:Name|L2], L2) :-
 	(	ns(NS, Base)
-	->	atom_codes(Name, Codes),
-		escape_squote(Codes, Codes2),
-		atom_codes(Name2, Codes2),
-		atomic_list_concat(['\'<', Base, Name2, '>\''], URI)
+	->	atomic_list_concat([Base, Name], Name1),
+		(	sub_atom(Name1, _, 1, _, '\'')
+		->	atom_codes(Name1, Codes1),
+			escape_squote(Codes1, Codes2),
+			atom_codes(Name2, Codes2)
+		;	Name2 = Name1
+		),
+		atomic_list_concat(['\'<', Name2, '>\''], URI)
 	;	nb_getval(line_number, Ln),
 		throw(no_prefix_directive(NS, after_line(Ln)))
 	),
@@ -10090,7 +10648,13 @@ uri(Name, L1, L2) :-
 	!,
 	base_uri(V),
 	resolve_uri(U, V, W),
-	atomic_list_concat(['\'<', W, '>\''], Name).
+	(	sub_atom(W, _, 1, _, '\'')
+	->	atom_codes(W, X),
+		escape_squote(X, Y),
+		atom_codes(Z, Y)
+	;	Z = W
+	),
+	atomic_list_concat(['\'<', Z, '>\''], Name).
 uri(Name, L1, L2) :-
 	qname(Name, L1, L2).
 
@@ -10494,19 +11058,21 @@ string_dq(0'\\, In, C, D) :-
 	get_code(In, C1),
 	!,
 	string_escape(C1, In, C2, H),
-	(	H =< 0xFFFF
-	->	D = [H|T]
-	;	E is (H-0x10000)>>10+0xD800,
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
 		F is (H-0x10000) mod 0x400+0xDC00,
 		D = [E, F|T]
+	;	D = [H|T]
 	),
 	string_dq(C2, In, C, T).
 string_dq(C0, In, C, D) :-
-	(	C0 =< 0xFFFF
-	->	D = [C0|T]
-	;	E is (C0-0x10000)>>10+0xD800,
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
 		F is (C0-0x10000) mod 0x400+0xDC00,
 		D = [E, F|T]
+	;	D = [C0|T]
 	),
 	get_code(In, C1),
 	string_dq(C1, In, C, T).
@@ -10523,19 +11089,21 @@ string_sq(0'\\, In, C, D) :-
 	get_code(In, C1),
 	!,
 	string_escape(C1, In, C2, H),
-	(	H =< 0xFFFF
-	->	D = [H|T]
-	;	E is (H-0x10000)>>10+0xD800,
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
 		F is (H-0x10000) mod 0x400+0xDC00,
 		D = [E, F|T]
+	;	D = [H|T]
 	),
 	string_sq(C2, In, C, T).
 string_sq(C0, In, C, D) :-
-	(	C0 =< 0xFFFF
-	->	D = [C0|T]
-	;	E is (C0-0x10000)>>10+0xD800,
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
 		F is (C0-0x10000) mod 0x400+0xDC00,
 		D = [E, F|T]
+	;	D = [C0|T]
 	),
 	get_code(In, C1),
 	string_sq(C1, In, C, T).
@@ -10567,7 +11135,15 @@ string_escape(0'\\, In, C, 0'\\) :-
 	get_code(In, C).
 string_escape(0'u, In, C, Code) :-
 	!,
-	get_hhhh(In, Code),
+	get_hhhh(In, A),
+	(	0xD800 =< A,
+		A =< 0xDBFF
+	->	get_code(In, 0'\\),
+		get_code(In, 0'u),
+		get_hhhh(In, B),
+		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
+	;	Code is A
+	),
 	get_code(In, C).
 string_escape(0'U, In, C, Code) :-
 	!,
@@ -10636,11 +11212,18 @@ lwrdigs(C, _, C, T, T).
 iri_chars(0'>, In, C, []) :-
 	!,
 	get_code(In, C).
-iri_chars(0'\\, In, C, [H|T]) :-
+iri_chars(0'\\, In, C, D) :-
 	!,
 	get_code(In, C1),
 	iri_escape(C1, In, C2, H),
 	\+non_iri_char(H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
 	iri_chars(C2, In, C, T).
 iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
 	!,
@@ -10650,22 +11233,33 @@ iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
 	code_type(C2, xdigit(_)),
 	get_code(In, C3),
 	iri_chars(C3, In, C, T).
-iri_chars(0'', In, C, [0'', 0''|T]) :-
-	!,
-	get_code(In, C1),
-	iri_chars(C1, In, C, T).
 iri_chars(-1, _, _, _) :-
 	!,
 	fail.
-iri_chars(C0, In, C, [C0|T]) :-
+iri_chars(C0, In, C, D) :-
 	\+non_iri_char(C0),
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
 	get_code(In, C1),
 	iri_chars(C1, In, C, T).
 
 
 iri_escape(0'u, In, C, Code) :-
 	!,
-	get_hhhh(In, Code),
+	get_hhhh(In, A),
+	(	0xD800 =< A,
+		A =< 0xDBFF
+	->	get_code(In, 0'\\),
+		get_code(In, 0'u),
+		get_hhhh(In, B),
+		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
+	;	Code is A
+	),
 	get_code(In, C).
 iri_escape(0'U, In, C, Code) :-
 	!,
