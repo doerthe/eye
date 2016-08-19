@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0818.2045 josd').
+version_info('EYE-Summer16.0819.2056 josd').
 
 
 license_info('MIT License
@@ -596,6 +596,7 @@ gre(Argus) :-
 			retractall(query(_, _)),
 			retractall(prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _)),
 			retractall(lemma(_, _, _, _, _, _)),
+			retractall(lemma_dep(_, _)),
 			retractall(got_wi(_, _, _, _, _)),
 			retractall(wpfx(_)),
 			retractall('<http://www.w3.org/2000/10/swap/log#outputString>'(_, _)),
