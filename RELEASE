@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
 - fixing indentation in proof output
 - throwing a not supported log:implies in conclusion exception
