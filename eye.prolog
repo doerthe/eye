@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0819.2056 josd').
+version_info('EYE-Summer16.0822.2304 josd').
 
 
 license_info('MIT License
@@ -2467,7 +2467,8 @@ wi(A, B, C, Rule) :-
 		assertz(lemma(Cnt, A, B, C, Ind, Rule))
 	),
 	nb_getval(lemma_parent, Cntp),
-	(	Cntp > 0,
+	(	flag(think),
+		Cntp > 0,
 		Cnt =\= Cntp,
 		\+lemma_dep(Cntp, Cnt)
 	->	assertz(lemma_dep(Cntp, Cnt)),
