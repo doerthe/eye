@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- improving performance of deep taxonomy case https://github.com/josd/etc/tree/master/dt with proof output
 - improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
 - fixing indentation in proof output
