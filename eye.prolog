@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0822.2304 josd').
+version_info('EYE-Summer16.0829.1227 josd').
 
 
 license_info('MIT License
@@ -1349,7 +1349,7 @@ args(['--pass-all'|Args]) :-
 args(['--plugin', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
-	(	wcache(Arg, File)
+	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
@@ -1419,7 +1419,7 @@ args(['--plugin-pvm', Argument|Args]) :-
 	!,
 	flush_output(user_error),
 	absolute_uri(Argument, Arg),
-	(	wcache(Arg, File)
+	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
@@ -1517,7 +1517,7 @@ args(['--trules', Arg|Args]) :-
 args(['--turtle', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
-	(	wcache(Arg, File)
+	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
@@ -1797,7 +1797,7 @@ n3_n3p(Argument, Mode) :-
 	->	Ise = 'IGNORED'
 	;	Ise = 'ERROR'
 	),
-	(	wcache(Arg, File)
+	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
 	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
@@ -1889,7 +1889,7 @@ n3_n3p(Argument, Mode) :-
 			Tokens = []
 		),
 		Exc2,
-		(	(	wcache(Arg, File)
+		(	(	wcacher(Arg, File)
 			->	format(user_error, '** ~w ** ~w FROM ~w ** ~w~n', [Ise, Arg, File, Exc2])
 			;	format(user_error, '** ~w ** ~w ** ~w~n', [Ise, Arg, Exc2])
 			),
@@ -9782,6 +9782,13 @@ so_uri('http://').
 so_uri('https://').
 so_uri('ftp://').
 so_uri('file://').
+
+
+wcacher(A, B) :-
+	wcache(C, D),
+	sub_atom(A, 0, I, _, C),
+	sub_atom(A, I, _, 0, E),
+	atomic_list_concat([D, E], B).
 
 
 dynamic_verb(Verb) :-

@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- supporting --wcache with prefix of uri and prefix of file
 - improving performance of deep taxonomy case https://github.com/josd/etc/tree/master/dt with proof output
 - improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
