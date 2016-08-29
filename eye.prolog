@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0829.1227 josd').
+version_info('EYE-Summer16.0829.1308 josd').
 
 
 license_info('MIT License
@@ -9784,6 +9784,9 @@ so_uri('ftp://').
 so_uri('file://').
 
 
+wcacher(A, B) :-
+	wcache(A, B),
+	!.
 wcacher(A, B) :-
 	wcache(C, D),
 	sub_atom(A, 0, I, _, C),
