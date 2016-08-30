@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- fixing --pass-all and --pass-all-ground to eliminate duplicate results (obs from Hong Sun)
 - supporting --wcache with prefix of uri and prefix of file
 - improving performance of deep taxonomy case https://github.com/josd/etc/tree/master/dt with proof output
 - improving performance of --multi-query with proof output
