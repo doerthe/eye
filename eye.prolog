@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0830.2050 josd').
+version_info('EYE-Summer16.0901.2051 josd').
 
 
 license_info('MIT License
@@ -4406,6 +4406,14 @@ djitis(A) :-
 	B is 1/(1+exp(-C)).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#skolem>'(X, Y) :-
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, X),
+	(	\+keep_skolem(Y)
+	->	assertz(keep_skolem(Y))
+	;	true
+	).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sort>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -4422,6 +4430,24 @@ djitis(A) :-
 		(	atom_codes(X, U),
 			escape_string(U, V),
 			atom_codes(Z, V)
+		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#stringSplit>'([literal(X, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))],
+	Z) :-
+	when(
+		(	ground([X, Y])
+		),
+		(	atom_codes(X, U),
+			atom_codes(Y, V),
+			split_string(U, V, "", W),
+			findall(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')),
+				(	member(B, W),
+					atom_codes(A, B)
+				),
+				Z
+			)
 		)
 	).
 
@@ -4463,14 +4489,6 @@ djitis(A) :-
 		),
 		(	A =:= 1.0
 		)
-	).
-
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#skolem>'(X, Y) :-
-	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, X),
-	(	\+keep_skolem(Y)
-	->	assertz(keep_skolem(Y))
-	;	true
 	).
 
 
