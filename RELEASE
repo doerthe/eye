@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- adding e:stringSplit built-in to split a string into a list of strings (obs from Hong Sun)
 - fixing --pass-all and --pass-all-ground to eliminate duplicate results (obs from Hong Sun)
 - supporting --wcache with prefix of uri and prefix of file
 - improving performance of deep taxonomy case https://github.com/josd/etc/tree/master/dt with proof output
