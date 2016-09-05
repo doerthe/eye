@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0901.2051 josd').
+version_info('EYE-Summer16.0905.1041 josd').
 
 
 license_info('MIT License
@@ -156,6 +156,7 @@ eye
 	swipl -x eye.pvm --
 <options>
 	--brake <count>			set maximimum brake <count>
+	--curl-http-header <field>	to pass HTTP header <field> to curl
 	--debug				output debug info on stderr
 	--debug-cnt			output debug info about counters on stderr
 	--debug-djiti			output debug info about DJITI on stderr
@@ -356,7 +357,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--brake', '--hmac-key', '--image', '--no-skolem', '--plugin', '--plugin-pvm', '--proof', '--pvm', '--query', '--step', '--tactic', '--turtle',
+	memberchk(U, ['--brake', '--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--plugin-pvm', '--proof', '--pvm', '--query', '--step', '--tactic', '--turtle',
 		      '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -756,6 +757,10 @@ opts(['--brake', Lim|Argus], Args) :-
 	retractall(flag(brake, _)),
 	assertz(flag(brake, Limit)),
 	opts(Argus, Args).
+opts(['--curl-http-header', Field|Argus], Args) :-
+	!,
+	assertz(flag('curl-http-header', Field)),
+	opts(Argus, Args).
 opts(['--debug'|Argus], Args) :-
 	!,
 	retractall(flag(debug)),
@@ -1096,7 +1101,8 @@ opts([Arg|Argus], [Arg|Args]) :-
 
 probe :-
 	tmp_file(File),
-	(	atomic_list_concat(['curl -s -L http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
+	(	curl_http_headers(Headers),
+		atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, 'http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
 		catch(exec(Cmd, _), _, fail)
 	->	statistics(walltime, [_, T1]),
 		S1 is 100000000/T1
@@ -1295,6 +1301,16 @@ pvm(File, Argus) :-
 	).
 
 
+curl_http_headers(Headers) :-
+	findall(Header,
+		(	flag('curl-http-header', Field),
+			atomic_list_concat(['-H "', Field, '" '], Header)
+		),
+		List
+	),
+	atomic_list_concat(List, Headers).
+
+
 args([]) :-
 	!.
 args(['--pass'|Args]) :-
@@ -1348,7 +1364,8 @@ args(['--plugin', Argument|Args]) :-
 			;	tmp_file(File),
 				assertz(tmpfile(File))
 			),
-			atomic_list_concat(['curl -s -L "', Arg, '" -o ', File], Cmd),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/*" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 					flush_output(user_error),
@@ -1418,7 +1435,8 @@ args(['--plugin-pvm', Argument|Args]) :-
 			;	tmp_file(File),
 				assertz(tmpfile(File))
 			),
-			atomic_list_concat(['curl -s -L "', Arg, '" -o ', File], Cmd),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: */*" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 					flush_output(user_error),
@@ -1516,7 +1534,8 @@ args(['--turtle', Argument|Args]) :-
 			;	tmp_file(File),
 				assertz(tmpfile(File))
 			),
-			atomic_list_concat(['curl -s -L "', Arg, '" -o ', File], Cmd),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/turtle" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 					flush_output(user_error),
@@ -1796,7 +1815,8 @@ n3_n3p(Argument, Mode) :-
 			->	true
 			;	assertz(tmpfile(File))
 			),
-			atomic_list_concat(['curl -s -L "', Arg, '" -o ', File], Cmd),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc1,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc1]),
 					flush_output(user_error),
