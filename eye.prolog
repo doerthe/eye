@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0905.1041 josd').
+version_info('EYE-Summer16.0905.1307 josd').
 
 
 license_info('MIT License
@@ -1102,7 +1102,7 @@ opts([Arg|Argus], [Arg|Args]) :-
 probe :-
 	tmp_file(File),
 	(	curl_http_headers(Headers),
-		atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, 'http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
+		atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, 'http://www.agfa.com/w3c/temp/graph-100000.n3p -o ', File], Cmd),
 		catch(exec(Cmd, _), _, fail)
 	->	statistics(walltime, [_, T1]),
 		S1 is 100000000/T1
@@ -1365,7 +1365,7 @@ args(['--plugin', Argument|Args]) :-
 				assertz(tmpfile(File))
 			),
 			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/*" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 					flush_output(user_error),
@@ -1436,7 +1436,7 @@ args(['--plugin-pvm', Argument|Args]) :-
 				assertz(tmpfile(File))
 			),
 			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: */*" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			atomic_list_concat(['curl -s -L ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 					flush_output(user_error),
@@ -1816,7 +1816,7 @@ n3_n3p(Argument, Mode) :-
 			;	assertz(tmpfile(File))
 			),
 			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			atomic_list_concat(['curl -s -L -H "Accept: text/n3, text/turtle" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc1,
 				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc1]),
 					flush_output(user_error),
