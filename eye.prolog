@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0906.1024 josd').
+version_info('EYE-Summer16.0906.1339 josd').
 
 
 license_info('MIT License
@@ -624,7 +624,7 @@ gre(Argus) :-
 			statistics(inferences, Infe),
 			Infd is Infe-Infb,
 			catch(Infs is round(Infd/Ti5*1000), _, Infs = ''),
-			format(user_error, '[~w] mq=~w out=~d inf=~w sec=~3d out/sec=~w inf/sec=~w~n~n', [Stmp, Cnt, Outd, Infd, Ti5, Outs, Infs]),
+			format(user_error, '~w mq=~w out=~d inf=~w sec=~3d out/sec=~w inf/sec=~w~n~n', [Stmp, Cnt, Outd, Infd, Ti5, Outs, Infs]),
 			flush_output(user_error),
 			told,
 			fail
@@ -679,7 +679,7 @@ gre(Argus) :-
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 	catch(Infin is round(Inf/Inp), _, Infin = ''),
-	format(user_error, '[~w] in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
+	format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, RBC, RBP, R],
@@ -1164,7 +1164,7 @@ probe :-
 	statistics(runtime, [_, T3]),
 	S3 is 10000000000/T3,
 	timestamp(Stamp),
-	format(user_error, '[~w] web-triples/sec=~0f file-triples/sec=~0f memory-triples/sec=~0f~n~n', [Stamp, S1, S2, S3]),
+	format(user_error, '~w web-triples/sec=~0f file-triples/sec=~0f memory-triples/sec=~0f~n~n', [Stamp, S1, S2, S3]),
 	flush_output(user_error),
 	close(In),
 	delete_file(File).
@@ -1709,7 +1709,7 @@ args(['--turtle', Argument|Args]) :-
 			catch(Infin is round(Inf/Inp), _, Infin = ''),
 			format('~q.~n', [scount(Outp)]),
 			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-			format(user_error, '[~w] in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
+			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 			flush_output(user_error)
 		;	true
 		)
