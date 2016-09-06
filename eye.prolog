@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0905.1307 josd').
+version_info('EYE-Summer16.0906.1024 josd').
 
 
 license_info('MIT License
@@ -1846,17 +1846,8 @@ n3_n3p(Argument, Mode) :-
 	retractall(base_uri(_)),
 	(	Arg = '-'
 	->	absolute_uri('', Abu),
-		(	sub_atom(Abu, _, 1, _, '#')
-		->	throw(base_may_not_contain_hash(Abu))
-		;	true
-		),
 		assertz(base_uri(Abu))
-	;	(	\+sub_atom(Arg, 0, 4, _, 'urn:'),
-			sub_atom(Arg, _, 1, _, '#')
-		->	throw(base_may_not_contain_hash(Arg))
-		;	true
-		),
-		assertz(base_uri(Arg))
+	;	assertz(base_uri(Arg))
 	),
 	retractall(ns(_, _)),
 	(	Arg = '-'
@@ -10092,10 +10083,6 @@ declaration([atname(base)|L2], L3) :-
 	base_uri(V),
 	resolve_uri(U, V, URI),
 	retractall(base_uri(_)),
-	(	sub_atom(URI, _, 1, _, '#')
-	->	throw(base_may_not_contain_hash(URI))
-	;	true
-	),
 	assertz(base_uri(URI)).
 declaration([name(Name)|L2], L4) :-
 	downcase_atom(Name, 'base'),
@@ -10104,10 +10091,6 @@ declaration([name(Name)|L2], L4) :-
 	base_uri(V),
 	resolve_uri(U, V, URI),
 	retractall(base_uri(_)),
-	(	sub_atom(URI, _, 1, _, '#')
-	->	throw(base_may_not_contain_hash(URI))
-	;	true
-	),
 	assertz(base_uri(URI)),
 	withoutdot(L3, L4).
 % DEPRECATED
