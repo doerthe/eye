@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0906.1339 josd').
+version_info('EYE-Summer16.0907.1034 josd').
 
 
 license_info('MIT License
@@ -3691,7 +3691,6 @@ eam(Span) :-
 			cnt(tc, Ci)
 		;	cnt(tc)
 		),
-		copy_term(Concd, Cc),
 		(	Concd \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(_, _)
 		->	nb_getval(wn, W),
 			labelvars(Prem-Concd, W, N),
@@ -3704,10 +3703,9 @@ eam(Span) :-
 		;	true
 		),
 		clist(La, Concd),
-		clist(Lb, Cc),
-		couple(La, La, Lb, Lc),
-		findall([D, F, E],
-			(	member([D, D, E], Lc),
+		couple(La, La, Lc),
+		findall([D, F],
+			(	member([D, D], Lc),
 				unify(D, F),
 				(	flag(think),
 					\+flag(nope)
@@ -3717,11 +3715,10 @@ eam(Span) :-
 			),
 			Ld
 		),
-		couple(Ls, Le, Lf, Ld),
+		couple(Ls, Le, Ld),
 		clist(Ls, Concs),
 		clist(Le, Conce),
-		clist(Lf, Clc),
-		astep(Src, Prem, Concd, Conce, Clc, Rule),
+		astep(Src, Prem, Concd, Conce, Rule),
 		(	(	Concs = answer(_, _, _, _, _, _, _)
 			;	Concs = cn([answer(_, _, _, _, _, _, _)|_])
 			)
@@ -3768,15 +3765,9 @@ eam(Span) :-
 	).
 
 
-astep(A, B, Cd, Cn, Cc, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Conclusion_unique_copy, Rule)
-	(	Cn = cn([Dn|En]),
-		Cc = cn([Dc|Ec])
-	->	(	Dc = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
-			\+cmember('<http://www.w3.org/2000/10/swap/reason#gives>'(_, _), B)
-		->	throw(not_supported('log:implies in conclusion'))
-		;	true
-		),
-		functor(Dn, P, N),
+astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Rule)
+	(	Cn = cn([Dn|En])
+	->	functor(Dn, P, N),
 		(	\+pred(P),
 			P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
 			P \= '<http://www.w3.org/2000/10/swap/log#implies>',
@@ -3818,21 +3809,14 @@ astep(A, B, Cd, Cn, Cc, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion
 				)
 			)
 		),
-		(	En = [Fn],
-			Ec = [Fc]
+		(	En = [Fn]
 		->	true
-		;	Fn = cn(En),
-			Fc = cn(Ec)
+		;	Fn = cn(En)
 		),
-		astep(A, B, Cd, Fn, Fc, Rule)
+		astep(A, B, Cd, Fn, Rule)
 	;	(	Cn = true
 		->	true
-		;	(	Cc = '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
-				\+cmember('<http://www.w3.org/2000/10/swap/reason#gives>'(_, _), B)
-			->	throw(not_supported('log:implies in conclusion'))
-			;	true
-			),
-			functor(Cn, P, N),
+		;	functor(Cn, P, N),
 			(	\+pred(P),
 				P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
 				P \= '<http://www.w3.org/2000/10/swap/log#implies>',
@@ -8250,9 +8234,9 @@ c_append((A, B), C, (A, D)) :-
 c_append(A, B, (A, B)).
 
 
-couple([], [], [], []).
-couple([A|B], [C|D], [E|F], [[A, C, E]|G]) :-
-	couple(B, D, F, G).
+couple([], [], []).
+couple([A|B], [C|D], [[A, C]|E]) :-
+	couple(B, D, E).
 
 
 conjoin(_, []) :-
