@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- fixing issue with blank nodes occurring in derived log:implies triples (obs from Dörthe Arndt)
 - refactoring EAM (Euler Abstract Machine)
 - removing base_may_not_contain_hash exception (obs from Ruben Verborgh)
 - correcting HTTP Accept: header when calling curl (obs from Boris De Vloed)

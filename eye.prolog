@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0907.1034 josd').
+version_info('EYE-Summer16.0907.1451 josd').
 
 
 license_info('MIT License
@@ -3139,7 +3139,10 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 		->	retract(ncllit)
 		;	true
 		)
-	;	(	nb_getval(fdepth, 0)
+	;	(	\+'<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)
+		;	implies(X, Y, _)
+		),
+		(	nb_getval(fdepth, 0)
 		->	assertz(ncllit)
 		;	true
 		),
