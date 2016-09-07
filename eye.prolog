@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0907.1451 josd').
+version_info('EYE-Summer16.0907.2214 josd').
 
 
 license_info('MIT License
@@ -402,6 +402,7 @@ gre(Argus) :-
 		;	flag('pass-all-ground')
 		)
 	->	atomic_list_concat(['<', Vns, '>'], Vpfx),
+		retractall(pfx('var:', _)),
 		assertz(pfx('var:', Vpfx))
 	;	true
 	),
@@ -3139,39 +3140,44 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 		->	retract(ncllit)
 		;	true
 		)
-	;	(	\+'<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)
-		;	implies(X, Y, _)
-		),
-		(	nb_getval(fdepth, 0)
-		->	assertz(ncllit)
-		;	true
-		),
-		(	\+atom(X)
-		->	nb_getval(pdepth, PD),
-			PD1 is PD+1,
-			nb_setval(pdepth, PD1)
-		;	true
-		),
-		wg(X),
-		(	\+atom(X)
-		->	nb_setval(pdepth, PD)
-		;	true
-		),
-		(	nb_getval(fdepth, 0)
-		->	retract(ncllit)
-		;	true
-		),
-		write(' => '),
-		(	\+atom(Y)
-		->	nb_getval(cdepth, CD),
-			CD1 is CD+1,
-			nb_setval(cdepth, CD1)
-		;	true
-		),
-		wg(Y),
-		(	\+atom(Y)
-		->	nb_setval(cdepth, CD)
-		;	true
+	;	(	'<http://www.w3.org/2000/10/swap/log#implies>'(X, Y),
+			\+implies(X, Y, _)
+		->	assertz(flag('no-qvars')),
+			wg(X),
+			write(' => '),
+			wg(Y),
+			retract(flag('no-qvars'))
+		;	(	nb_getval(fdepth, 0)
+			->	assertz(ncllit)
+			;	true
+			),
+			(	\+atom(X)
+			->	nb_getval(pdepth, PD),
+				PD1 is PD+1,
+				nb_setval(pdepth, PD1)
+			;	true
+			),
+			wg(X),
+			(	\+atom(X)
+			->	nb_setval(pdepth, PD)
+			;	true
+			),
+			(	nb_getval(fdepth, 0)
+			->	retract(ncllit)
+			;	true
+			),
+			write(' => '),
+			(	\+atom(Y)
+			->	nb_getval(cdepth, CD),
+				CD1 is CD+1,
+				nb_setval(cdepth, CD1)
+			;	true
+			),
+			wg(Y),
+			(	\+atom(Y)
+			->	nb_setval(cdepth, CD)
+			;	true
+			)
 		)
 	),
 	(	nb_getval(pdepth, 0),
