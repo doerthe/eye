@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- refactoring EAM (Euler Abstract Machine)
 - removing base_may_not_contain_hash exception (obs from Ruben Verborgh)
 - correcting HTTP Accept: header when calling curl (obs from Boris De Vloed)
 - adding --curl-http-header command line option to pass HTTP headers to curl (obs from Jos De Baerdemaeker)
@@ -12,7 +13,6 @@
 - improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
 - fixing indentation in proof output
-- throwing a not supported log:implies in conclusion exception
 - making the connection between blank nodes in the proof output (obs from Dörthe Arndt)
 - fixing scoping issue with existential rules (obs from Dörthe Arndt)
 - standardizing variables apart in proof output
