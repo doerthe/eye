@@ -125,7 +125,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0908.0854 josd').
+version_info('EYE-Summer16.0908.1535 josd').
 
 
 license_info('MIT License
@@ -3651,6 +3651,7 @@ eam(Span) :-
 			)
 		;	true
 		),
+		\+atom(Conc),
 		(	flag('rule-histogram'),
 			copy_term(Rule, RuleL)
 		->	lookup(RTP, tp, RuleL),
