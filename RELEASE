@@ -43,7 +43,7 @@
 - fixing circular proofs that were wrongly using r:Fact evidence (obs from Hong Sun)
 - removing orphan lemmas in proof output (obs from Hong Sun)
 - updating EYE_INSTALL to put swipl, curl and cturtle in the path environment variable (obs from Kristof Depraetere)
-- fixing --think performance degradation for EYE components (rules using <= in N3)
+- fixing --think performance degradation for backward rules (rules using <= in N3)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
 - fixing --think performance degradation for https://github.com/josd/etc/tree/master/djiti
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
@@ -78,7 +78,7 @@
 - fixing critical jiti (just in time indexing) bug for --pvm
 - improving just in time indexing for predicates with compound subjects or objects
 - fixing log:implies built-in for the scope of implicit quantified variables (obs from Dörthe Arndt)
-- minor cleanup of EYE dataprocessor and EYE components
+- minor cleanup of EYE dataprocessor and backward rules
 
 [EYE-Winter16]
 - strela becomes jiti and is now indexing any compound subject or object
@@ -91,7 +91,7 @@
 - fixing e:whenGround so that when the subject is RDF ground the object is called
 - fixing all built-ins which are making use of coroutining
 - fixing --pass-all-ground for rules with exitentials in the premis (obs from Hong Sun)
-- fixing --pass-all to include EYE components (obs from Hong Sun)
+- fixing --pass-all to include backward rules (obs from Hong Sun)
 - making list:in and list:member dynamic predicates
 - doing flush_output/0 right before halt/1
 - setting utf8 encoding for --turtle (obs from Hong Sun)
@@ -136,7 +136,7 @@
 - using N3 for components and rules in the output --rule-histogram
 - component false <= P can be used to express query P => P
 - dropping prolog:C and prolog:phrase built-ins
-- expanding DCG productions into EYE components
+- expanding DCG productions into backward rules
 - correcting output_statements counter for conjunctive conclusions (obs from Hong Sun)
 - adding indexing to e:random (obs from Hong Sun)
 - going back to original exopred/3 to regain performance
