@@ -13,7 +13,7 @@ P => C as P & NOT(C) => C.
 
 Via N3 [3] EYE is interoperable with Cwm [4].
 
-ETC [5] is used to verify EYE releases [6].
+POWER [5] is used to verify EYE releases [6].
 
 EYE can be installed manually on Linux, Windows and MacOSX [7].
 EYE is also available in a Docker container for command line use [8]
@@ -44,11 +44,11 @@ Implicit Quantification in N3 [13]
   Lj <= Li and a conjunction of the remaining statements L0.
   Li => Lj, Lj <= Li and L0 are called clauses.
   Li, Lj and L0 are called clause literals.
-  In ETC [5] the scope of implicit universals is the clause and
+  In POWER [5] the scope of implicit universals is the clause and
   the scope of implicit existentials is the clause literal.
 
 Proof output without bindings [14]
-  In ETC [5] the variable substitutions naturally follow from the proof.
+  In POWER [5] the variable substitutions naturally follow from the proof.
 
 
 See also
@@ -73,7 +73,7 @@ References
  [2] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
  [3] http://www.w3.org/TeamSubmission/n3/
  [4] http://www.w3.org/2000/10/swap/doc/cwm
- [5] https://github.com/josd/etc
+ [5] https://github.com/josd/power
  [6] https://github.com/josd/eye/blob/master/RELEASE
  [7] https://github.com/josd/eye/blob/master/INSTALL
  [8] https://registry.hub.docker.com/u/bdevloed/eye/
