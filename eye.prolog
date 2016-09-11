@@ -75,7 +75,6 @@
 :- dynamic(keep_skolem/1).
 :- dynamic(keywords/1).
 :- dynamic(lemma/6).		% lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
-:- dynamic(lemma_dep/2).
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(npred/1).
@@ -125,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0908.1535 josd').
+version_info('EYE-Summer16.0911.2147 josd').
 
 
 license_info('MIT License
@@ -191,7 +190,6 @@ eye
 	--tactic limited-answer <count>	give only a limited numer of answers
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
-	--think				find all possible proofs
 	--traditional			traditional mode
 	--version			show version info
 	--warn				output warning info on stderr
@@ -543,7 +541,6 @@ gre(Argus) :-
 	nb_setval(fm, 0),
 	nb_setval(lemma_count, 0),
 	nb_setval(lemma_cursor, 0),
-	nb_setval(lemma_parent, 0),
 	nb_setval(output_statements, 0),
 	nb_setval(answer_count, 0),
 	(	flag('multi-query')
@@ -598,7 +595,6 @@ gre(Argus) :-
 			retractall(query(_, _)),
 			retractall(prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _)),
 			retractall(lemma(_, _, _, _, _, _)),
-			retractall(lemma_dep(_, _)),
 			retractall(got_wi(_, _, _, _, _)),
 			retractall(wpfx(_)),
 			retractall('<http://www.w3.org/2000/10/swap/log#outputString>'(_, _)),
@@ -1046,8 +1042,10 @@ opts(['--tactic', 'single-answer'|Argus], Args) :-
 opts(['--tactic', Tactic|_], _) :-
 	!,
 	throw(not_supported_tactic(Tactic)).
+% DEPRECATED
 opts(['--think'|Argus], Args) :-
 	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--think']),
 	retractall(flag(think)),
 	assertz(flag(think)),
 	opts(Argus, Args).
@@ -2295,24 +2293,6 @@ wh :-
 
 
 w3 :-
-	(	flag(think),
-		\+flag(nope)
-	->	tmp_file(Tmp),
-		open(Tmp, write, Ws, [encoding(utf8)]),
-		tell(Ws),
-		wm(Ws),
-		retractall(wpfx(_)),
-		nb_setval(lemma_cursor, 0),
-		nb_setval(lemma_parent, 0),
-		nb_setval(rn, 0),
-		told,
-		delete_file(Tmp)
-	;	true
-	),
-	wm(user_output).
-
-
-wm(Out) :-
 	wh,
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -2330,13 +2310,10 @@ wm(Out) :-
 		ws(B),
 		write('.'),
 		nl,
-		(	Out = user_output
-		->	(	A = cn(L)
-			->	length(L, I),
-				cnt(output_statements, I)
-			;	cnt(output_statements)
-			)
-		;	true
+		(	A = cn(L)
+		->	length(L, I),
+			cnt(output_statements, I)
+		;	cnt(output_statements)
 		),
 		fail
 	;	true
@@ -2349,14 +2326,11 @@ wm(Out) :-
 		ws(C),
 		write('.'),
 		nl,
-		(	Out = user_output
-		->	cnt(output_statements)
-		;	true
-		),
+		cnt(output_statements),
 		fail
 	;	nl
 	).
-wm(Out) :-
+w3 :-
 	(	prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _),
 		!,
 		nb_setval(empty_gives, false),
@@ -2411,10 +2385,7 @@ wm(Out) :-
 				wt(C),
 				ws(C),
 				write('.'),
-				(	Out = user_output
-				->	cnt(output_statements)
-				;	true
-				),
+				cnt(output_statements),
 				fail
 			;	true
 			),
@@ -2464,34 +2435,6 @@ wi(A, B, C, Rule) :-
 	;	cnt(lemma_count),
 		nb_getval(lemma_count, Cnt),
 		assertz(lemma(Cnt, A, B, C, Ind, Rule))
-	),
-	nb_getval(lemma_parent, Cntp),
-	(	flag(think),
-		Cntp > 0,
-		Cnt =\= Cntp,
-		\+lemma_dep(Cntp, Cnt)
-	->	assertz(lemma_dep(Cntp, Cnt)),
-		forall(
-			(	lemma_dep(Cnta, Cntp)
-			),
-			(	(	Cnta =\= Cnt,
-					\+lemma_dep(Cnta, Cnt)
-				->	assertz(lemma_dep(Cnta, Cnt))
-				;	true
-				)
-			)
-		),
-		forall(
-			(	lemma_dep(Cnt, Cntd)
-			),
-			(	(	Cntp =\= Cntd,
-					\+lemma_dep(Cntp, Cntd)
-				->	assertz(lemma_dep(Cntp, Cntd))
-				;	true
-				)
-			)
-		)
-	;	true
 	),
 	write('<#lemma'),
 	write(Cnt),
@@ -2555,7 +2498,6 @@ wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	write('].'),
 	indentation(-2).
 wj(Cnt, A, B, C, Rule) :-
-	nb_setval(lemma_parent, Cnt),
 	write('<#lemma'),
 	write(Cnt),
 	write('> '),
@@ -2656,59 +2598,12 @@ wr(cn([X|Y])) :-
 	),
 	wr(Z).
 wr(Z) :-
-	nb_getval(lemma_parent, Cntp),
 	term_index(Z, Cnd),
-	(	flag(think),
-		\+flag(nope)
-	->	findall(get_wi(X, Y, Q, Rule),
-			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X)
-			),
-			L0
-		),
-		findall(get_wi(X, Y, Q, Rule),
-			(	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
-				term_index(Y-Q, Ind),
-				(	lemma(Cntc, X, Y, Q, Ind, Rule)
-				->	Cntp =\= Cntc,
-					\+lemma_dep(Cntc, Cntp)
-				;	true
-				)
-			),
-			L1
-		),
-		(	L0 = L1
-		->	L = L0
-		;	L0 = [H|_],
-			L =  [H]
-		),
-		L \= [],
-		!,
-		(	L = [get_wi(X, Y, Q, Rule)]
-		->	nl,
-			indent,
-			wi(X, Y, Q, Rule)
-		;	nl,
-			indent,
-			write('('),
-			forall(
-				(	member(get_wi(X, Y, Q, Rule), L)
-				),
-				(	(	\+got_head
-					->	assertz(got_head)
-					;	write(' ')
-					),
-					wi(X, Y, Q, Rule)
-				)
-			),
-			write(')'),
-			retractall(got_head)
-		)
-	;	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
-		!,
-		nl,
-		indent,
-		wi(X, Y, Q, Rule)
-	).
+	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
+	!,
+	nl,
+	indent,
+	wi(X, Y, Q, Rule).
 wr(Y) :-
 	nl,
 	indent,
@@ -3681,7 +3576,7 @@ eam(Span) :-
 		->	makevars(Concd, Concdr)
 		;	Concdr = Concd
 		),
-		(	flag(think),
+		(	flag(think),	% DEPRECATED
 			\+flag(nope),
 			term_index(Prem, Pnd),
 			term_index(Concdr, Cnd),
@@ -3716,7 +3611,7 @@ eam(Span) :-
 		findall([D, F],
 			(	member([D, D], Lc),
 				unify(D, F),
-				(	flag(think),
+				(	flag(think),	% DEPRECATED
 					\+flag(nope)
 				->	true
 				;	catch(\+call(F), _, true)
