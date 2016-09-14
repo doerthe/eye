@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0911.2147 josd').
+version_info('EYE-Summer16.0914.1206 josd').
 
 
 license_info('MIT License
@@ -10132,16 +10132,19 @@ pathitem(Name, [], L1, L2) :-
 	(	qevar(S, N, D)
 	->	(	D >= 1,
 			nb_getval(fdepth, FD),
-			FD >= D
+			FD >= D,
+			\+flag('pass-all-ground')
 		->	atom_concat('_', N, Name),
 			nb_setval(smod, false)
 		;	nb_getval(var_ns, Vns),
 			atomic_list_concat(['\'<', Vns, N, '>\''], Name)
 		)
 	;	(	quvar(S, N, D)
-		->	(	D = 1,
-				nb_getval(fdepth, FD),
-				FD >= 1
+		->	(	(	D = 1,
+					nb_getval(fdepth, FD),
+					FD >= 1
+				;	flag('pass-all-ground')
+				)
 			->	nb_getval(var_ns, Vns),
 				atomic_list_concat(['\'<', Vns, N, '>\''], Name)
 			;	atom_concat('_', N, Name),
@@ -10213,7 +10216,9 @@ pathitem(literal(Atom, DtLang), [], L1, L2) :-
 pathitem(BNode, Triples, ['['|L2], L4) :-
 	!,
 	gensym('bn_', S),
-	(	nb_getval(fdepth, 0)
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['\'<', Vns, S, '>\''], BN)
 	;	atom_concat('_', S, BN),
@@ -10266,7 +10271,9 @@ pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	pathitem(Verb, Triples2, L2, L3),
 	dynamic_verb(Verb),
 	gensym('bn_', S),
-	(	nb_getval(fdepth, 0)
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
 	;	atom_concat('_', S, BNode),
@@ -10305,7 +10312,9 @@ pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
 	pathitem(Verb, Triples2, L2, L3),
 	dynamic_verb(Verb),
 	gensym('bn_', S),
-	(	nb_getval(fdepth, 0)
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
 	;	atom_concat('_', S, BNode),
@@ -10505,9 +10514,14 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		;	assertz(evar(N, S, 1))
 		)
 	),
-	(	nb_getval(fdepth, 0)
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
 	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, 'e_', S, '>\''], Name)
+		(	flag('pass-all-ground')
+		->	atomic_list_concat(['\'<', Vns, N, '>\''], Name)
+		;	atomic_list_concat(['\'<', Vns, 'e_', S, '>\''], Name)
+		)
 	;	atom_concat('_e_', S, Name),
 		nb_setval(smod, false)
 	).
