@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Summer16]
+- correcting --pass-all-ground for blank nodes in conclusions (obs from Hong Sun)
 - deprecating --think because it is incomplete
 - fixing issue with blank node conclusions (obs from Dörthe Arndt)
 - fixing issue with blank nodes occurring in derived log:implies triples (obs from Dörthe Arndt)
