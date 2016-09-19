@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Summer16.0914.1206 josd').
+version_info('EYE-Summer16.0919.1034 josd').
 
 
 license_info('MIT License
@@ -4756,7 +4756,12 @@ djitis(A) :-
 			;	sub_atom(X, 0, 1, _, '<'),
 				sub_atom(X, _, 1, 0, '>'),
 				sub_atom(X, 1, _, 1, Z),
-				catch(n3_n3p(Z, semantics), _, fail),
+				catch(n3_n3p(Z, semantics), Exc,
+					(	format(user_error, '** ERROR ** ~w **~n', [Exc]),
+						flush_output(user_error),
+						fail
+					)
+				),
 				semantics(X, Y)
 			)
 		)
