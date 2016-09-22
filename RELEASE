@@ -1,5 +1,8 @@
                                   EYE release
 
+[EYE-Autumn16]
+- tested with https://github.com/josd/see
+
 [EYE-Summer16]
 - improving log:semantics error messages (obs from Elric Verbruggen)
 - correcting --pass-all-ground for blank nodes in conclusions (obs from Hong Sun)
