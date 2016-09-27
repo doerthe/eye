@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.0927.1224 josd').
+version_info('EYE-Autumn16.0927.1239 josd').
 
 
 license_info('MIT License
@@ -8566,28 +8566,28 @@ bcon([A|B], C, D) :-
 
 
 gps(From, To, Visited, Path) :-
-	'<http://josd.github.io/gps#from>'(A, From_g),
+	'<http://josd.github.io/etc/gps#from>'(A, From_g),
 	makevars([From, From_g], [From_v, From_g_v]),
 	unify(From_v, From_g_v),
-	'<http://josd.github.io/gps#to>'(A, To_g),
+	'<http://josd.github.io/etc/gps#to>'(A, To_g),
 	makevars([To, To_g], [To_v, To_g_v]),
 	unify(To_v, To_g_v),
-	'<http://josd.github.io/gps#action>'(A, Action),
-	'<http://josd.github.io/gps#duration>'(A, Duration),
-	'<http://josd.github.io/gps#cost>'(A, Cost),
-	'<http://josd.github.io/gps#belief>'(A, Belief),
+	'<http://josd.github.io/etc/gps#action>'(A, Action),
+	'<http://josd.github.io/etc/gps#duration>'(A, Duration),
+	'<http://josd.github.io/etc/gps#cost>'(A, Cost),
+	'<http://josd.github.io/etc/gps#belief>'(A, Belief),
 	append(Visited, [[From, To, Action, Duration, Cost, Belief]], Path).
 gps(From, To, Visited, Path) :-
-	'<http://josd.github.io/gps#from>'(A, From_g),
+	'<http://josd.github.io/etc/gps#from>'(A, From_g),
 	makevars([From, From_g], [From_v, From_g_v]),
 	unify(From_v, From_g_v),
-	'<http://josd.github.io/gps#to>'(A, Next_g),
+	'<http://josd.github.io/etc/gps#to>'(A, Next_g),
 	makevars([Next, Next_g], [Next_v, Next_g_v]),
 	unify(Next_v, Next_g_v),
-	'<http://josd.github.io/gps#action>'(A, Action),
-	'<http://josd.github.io/gps#duration>'(A, Duration),
-	'<http://josd.github.io/gps#cost>'(A, Cost),
-	'<http://josd.github.io/gps#belief>'(A, Belief),
+	'<http://josd.github.io/etc/gps#action>'(A, Action),
+	'<http://josd.github.io/etc/gps#duration>'(A, Duration),
+	'<http://josd.github.io/etc/gps#cost>'(A, Cost),
+	'<http://josd.github.io/etc/gps#belief>'(A, Belief),
 	Next \= To,
 	\+member(Next, Visited),
 	append(Visited, [[From, Next, Action, Duration, Cost, Belief]], Sofar),
