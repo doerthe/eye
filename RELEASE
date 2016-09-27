@@ -1,8 +1,9 @@
                                   EYE release
 
 [EYE-Autumn16]
-- initial e:gps built-in
-- tested with https://github.com/josd/src
+- initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
+- adding e:makevars built-in to make a no-skolem copy of the subject
+- tested with https://github.com/josd/etc
 
 [EYE-Summer16]
 - improving log:semantics error messages (obs from Elric Verbruggen)
@@ -18,7 +19,7 @@
 - adding e:stringSplit built-in to split a string into a list of strings (obs from Hong Sun)
 - fixing --pass-all and --pass-all-ground to eliminate duplicate results (obs from Hong Sun)
 - supporting --wcache with prefix of uri and prefix of file
-- improving performance of deep taxonomy case https://github.com/josd/src/tree/master/dt with proof output
+- improving performance of deep taxonomy case https://github.com/josd/etc/tree/master/dt with proof output
 - improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
 - fixing indentation in proof output
@@ -40,7 +41,7 @@
 - fixing --image to store the EYE options (obs from Hong Sun)
 - refactoring the handling of EYE options
 - supporting DJITI which is standing for 'Deep Just In Time Indexing'
-- SRC https://github.com/josd/src is used to verify EYE releases
+- ETC https://github.com/josd/etc is used to verify EYE releases
 - fixing scoping issue with the deprecated @forSome (obs from Dörthe Arndt)
 - fixing --plugin for ground backward rules (obs from Dörthe Arndt)
 - adding e:skolem built-in to generate a Skolem IRI object which is a function of the arguments in the subject list
@@ -52,7 +53,7 @@
 - updating EYE_INSTALL to put swipl, curl and cturtle in the path environment variable (obs from Kristof Depraetere)
 - fixing --think performance degradation for backward rules (rules using <= in N3)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
-- fixing --think performance degradation for https://github.com/josd/src/tree/master/djiti
+- fixing --think performance degradation for https://github.com/josd/etc/tree/master/djiti
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
 - avoiding redundant lemmas in r:evidence when using --think option
 - fixing infinite loop when using --think option in conjuction with e:optional
@@ -259,8 +260,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from http://josd.github.io/src/rgb/blueproof003.n3)
-- fixing critical bug in proof output (obs from http://josd.github.io/src/rgb/blueproof002.n3)
+- fixing proof output for queries with true as premis (obs from http://josd.github.io/etc/rgb/blueproof003.n3)
+- fixing critical bug in proof output (obs from http://josd.github.io/etc/rgb/blueproof002.n3)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)
