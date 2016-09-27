@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.0922.1343 josd').
+version_info('EYE-Autumn16.0927.1224 josd').
 
 
 license_info('MIT License
@@ -4077,6 +4077,28 @@ djitis(A) :-
 		)
 	).
 
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#gps>'(Scope, [From, To, Path, Duration, Cost, Belief]) :-
+	within_scope(Scope),
+	gps(From, To, [], Path),
+	findall(Duration,
+		(	member([_, _, _, Duration, _, _], Path)
+		),
+		Durations
+	),
+	sum(Durations, Duration),
+	findall(Cost,
+		(	member([_, _, _, _, Cost, _], Path)
+		),
+		Costs
+	),
+	sum(Costs, Cost),
+	findall(Belief,
+		(	member([_, _, _, _, _, Belief], Path)
+		),
+		Beliefs
+	),
+	product(Beliefs, Belief).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphCopy>'(A, B) :-
 	when(
@@ -8541,6 +8563,35 @@ bcon([A|B], C, D) :-
 	bget(A, C, E),
 	bcon(B, [A|C], F),
 	D is E*F.
+
+
+gps(From, To, Visited, Path) :-
+	'<http://josd.github.io/gps#from>'(A, From_g),
+	makevars([From, From_g], [From_v, From_g_v]),
+	unify(From_v, From_g_v),
+	'<http://josd.github.io/gps#to>'(A, To_g),
+	makevars([To, To_g], [To_v, To_g_v]),
+	unify(To_v, To_g_v),
+	'<http://josd.github.io/gps#action>'(A, Action),
+	'<http://josd.github.io/gps#duration>'(A, Duration),
+	'<http://josd.github.io/gps#cost>'(A, Cost),
+	'<http://josd.github.io/gps#belief>'(A, Belief),
+	append(Visited, [[From, To, Action, Duration, Cost, Belief]], Path).
+gps(From, To, Visited, Path) :-
+	'<http://josd.github.io/gps#from>'(A, From_g),
+	makevars([From, From_g], [From_v, From_g_v]),
+	unify(From_v, From_g_v),
+	'<http://josd.github.io/gps#to>'(A, Next_g),
+	makevars([Next, Next_g], [Next_v, Next_g_v]),
+	unify(Next_v, Next_g_v),
+	'<http://josd.github.io/gps#action>'(A, Action),
+	'<http://josd.github.io/gps#duration>'(A, Duration),
+	'<http://josd.github.io/gps#cost>'(A, Cost),
+	'<http://josd.github.io/gps#belief>'(A, Belief),
+	Next \= To,
+	\+member(Next, Visited),
+	append(Visited, [[From, Next, Action, Duration, Cost, Belief]], Sofar),
+	gps(Next, To, Sofar, Path).
 
 
 tmp_file(A) :-
