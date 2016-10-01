@@ -1,6 +1,7 @@
                                   EYE release
 
 [EYE-Autumn16]
+- experimental extension of log:includes with intervals
 - initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
 - adding e:makevars built-in to make a no-skolem copy of the subject
 - tested with https://github.com/josd/etc
