@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.0927.2147 josd').
+version_info('EYE-Autumn16.1001.0935 josd').
 
 
 license_info('MIT License
@@ -4162,10 +4162,6 @@ djitis(A) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
-	makevars(A, B).
-
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
 	\+ \+call(B).
 
@@ -8037,6 +8033,59 @@ unify(A, B) :-
 unify(A, A).
 
 
+entails(A, B) :-
+	nonvar(A),
+	A = exopred(P, S, O),
+	entails(S, T),
+	entails(O, R),
+	(	(	nonvar(B)
+		;	nonvar(P)
+		)
+	->	(	nonvar(P)
+		->	atom(P)
+		;	true
+		),
+		B =.. [P, T, R],
+		atom(P)
+	),
+	!.
+entails(A, B) :-
+	nonvar(B),
+	B = exopred(P, S, O),
+	entails(S, T),
+	entails(O, R),
+	(	(	nonvar(A)
+		;	nonvar(P)
+		)
+	->	(	nonvar(P)
+		->	atom(P)
+		;	true
+		),
+		A =.. [P, T, R],
+		atom(P)
+	),
+	!.
+entails(A, [B, C]) :-
+	nonvar(A),
+	nonvar(B),
+	nonvar(C),
+	getnumber(A, X),
+	getnumber(B, Y),
+	getnumber(C, Z),
+	!,	
+	Y =< X,
+	X =< Z.
+entails(A, B) :-
+	nonvar(A),
+	nonvar(B),
+	A =.. [P, S, O],
+	B =.. [P, T, R],
+	!,
+	entails(S, T),
+	entails(O, R).
+entails(A, A).
+
+
 dn([A|B]) :-
 	(	call(A)
 	;	(	B = [C]
@@ -8185,22 +8234,16 @@ agraph(N, X) :-
 
 qgraph(N, cn([X|Y])) :-
 	!,
-	(	X = exopred(_, _, _)
-	->	graph(N, T),
-		unify(T, X)
-	;	graph(N, X)
-	),
+	graph(N, T),
+	entails(T, X),
 	(	Y = [Z]
 	->	true
 	;	Z = cn(Y)
 	),
 	qgraph(N, Z).
 qgraph(N, X) :-
-	(	X = exopred(_, _, _)
-	->	graph(N, T),
-		unify(T, X)
-	;	graph(N, X)
-	).
+	graph(N, T),
+	entails(T, X).
 
 
 difference([true, _], true) :-
