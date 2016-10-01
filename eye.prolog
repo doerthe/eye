@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.1001.0935 josd').
+version_info('EYE-Autumn16.1001.2236 josd').
 
 
 license_info('MIT License
@@ -8065,16 +8065,33 @@ entails(A, B) :-
 		atom(P)
 	),
 	!.
-entails(A, [B, C]) :-
+entails([A, B], [C, D]) :-
 	nonvar(A),
 	nonvar(B),
 	nonvar(C),
-	getnumber(A, X),
-	getnumber(B, Y),
-	getnumber(C, Z),
+	nonvar(D),
+	getnumber(A, E),
+	getnumber(B, F),
+	getnumber(C, G),
+	getnumber(D, H),
 	!,	
-	Y =< X,
-	X =< Z.
+	G =< E,
+	F =< H.
+entails(A, [C, D]) :-
+	nonvar(A),
+	nonvar(C),
+	nonvar(D),
+	getnumber(A, E),
+	getnumber(C, G),
+	getnumber(D, H),
+	!,	
+	G =< E,
+	E =< H.
+entails(A, B) :-
+	nonvar(A),
+	nonvar(B),	
+	catch('<http://www.w3.org/2000/01/rdf-schema#subClassOf>'(A, B), _, fail),
+	!.
 entails(A, B) :-
 	nonvar(A),
 	nonvar(B),
