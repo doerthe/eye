@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.1001.2236 josd').
+version_info('EYE-Autumn16.1002.1535 josd').
 
 
 license_info('MIT License
@@ -4031,6 +4031,22 @@ djitis(A) :-
 		(	nonvar(A)
 		),
 		(	distinct(A, B)
+		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#entails>'(X, Y) :-
+	when(
+		(	nonvar(X),
+			nonvar(Y)
+		),
+		(	catch(cnt(graph), _, nb_setval(graph, 0)),
+			nb_getval(graph, N),
+			copy_term(X, U),
+			labelvars(U, 0, _),
+			makevars(Y, V),
+			agraph(N, U),
+			egraph(N, V)
 		)
 	).
 
@@ -8035,71 +8051,27 @@ unify(A, A).
 
 entails(A, B) :-
 	nonvar(A),
-	A = exopred(P, S, O),
-	entails(S, T),
-	entails(O, R),
-	(	(	nonvar(B)
-		;	nonvar(P)
-		)
-	->	(	nonvar(P)
-		->	atom(P)
-		;	true
-		),
-		B =.. [P, T, R],
-		atom(P)
+	nonvar(B),
+	B =.. [P, S, [O3, O4]],
+	(	A =.. [P, S, [O1, O2]]
+	->	true
+	;	A =.. [P, S, O1],
+		O2 = O1
 	),
-	!.
-entails(A, B) :-
-	nonvar(B),
-	B = exopred(P, S, O),
-	entails(S, T),
-	entails(O, R),
-	(	(	nonvar(A)
-		;	nonvar(P)
-		)
-	->	(	nonvar(P)
-		->	atom(P)
-		;	true
-		),
-		A =.. [P, T, R],
-		atom(P)
-	),
-	!.
-entails([A, B], [C, D]) :-
-	nonvar(A),
-	nonvar(B),
-	nonvar(C),
-	nonvar(D),
-	getnumber(A, E),
-	getnumber(B, F),
-	getnumber(C, G),
-	getnumber(D, H),
+	getnumber(O1, N1),
+	getnumber(O2, N2),
+	getnumber(O3, N3),
+	getnumber(O4, N4),
 	!,	
-	G =< E,
-	F =< H.
-entails(A, [C, D]) :-
-	nonvar(A),
-	nonvar(C),
-	nonvar(D),
-	getnumber(A, E),
-	getnumber(C, G),
-	getnumber(D, H),
-	!,	
-	G =< E,
-	E =< H.
-entails(A, B) :-
-	nonvar(A),
-	nonvar(B),	
-	catch('<http://www.w3.org/2000/01/rdf-schema#subClassOf>'(A, B), _, fail),
-	!.
+	N3 =< N1,
+	N2 =< N4.
 entails(A, B) :-
 	nonvar(A),
 	nonvar(B),
-	A =.. [P, S, O],
-	B =.. [P, T, R],
-	!,
-	entails(S, T),
-	entails(O, R).
+	A = '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O1),
+	B = '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O2),
+	catch('<http://www.w3.org/2000/01/rdf-schema#subClassOf>'(O1, O2), _, fail),
+	!.
 entails(A, A).
 
 
@@ -8251,16 +8223,40 @@ agraph(N, X) :-
 
 qgraph(N, cn([X|Y])) :-
 	!,
-	graph(N, T),
-	entails(T, X),
+	(	X = exopred(_, _, _)
+	->	graph(N, T),
+		unify(T, X)
+	;	graph(N, X)
+	),
 	(	Y = [Z]
 	->	true
 	;	Z = cn(Y)
 	),
 	qgraph(N, Z).
 qgraph(N, X) :-
+	(	X = exopred(_, _, _)
+	->	graph(N, T),
+		unify(T, X)
+	;	graph(N, X)
+	).
+
+
+egraph(N, cn([X|Y])) :-
+	!,
+	unify(X, U),
 	graph(N, T),
-	entails(T, X).
+	unify(T, V),
+	entails(V, U),
+	(	Y = [Z]
+	->	true
+	;	Z = cn(Y)
+	),
+	egraph(N, Z).
+egraph(N, X) :-
+	unify(X, U),
+	graph(N, T),
+	unify(T, V),
+	entails(V, U).
 
 
 difference([true, _], true) :-
