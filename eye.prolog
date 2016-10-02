@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.1002.1535 josd').
+version_info('EYE-Autumn16.1002.2113 josd').
 
 
 license_info('MIT License
@@ -4035,18 +4035,34 @@ djitis(A) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#entails>'(X, Y) :-
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#entails>'(A, B) :-
 	when(
-		(	nonvar(X),
-			nonvar(Y)
+		(	nonvar(A),
+			nonvar(B)
 		),
-		(	catch(cnt(graph), _, nb_setval(graph, 0)),
-			nb_getval(graph, N),
-			copy_term(X, U),
-			labelvars(U, 0, _),
-			makevars(Y, V),
-			agraph(N, U),
-			egraph(N, V)
+		(	clist(C, A),
+			forall(
+				(	member(D, C)
+				),
+				(	assertz(D)
+				)
+			),
+			makevars(B, E),
+			(	call(E)
+			->	forall(
+					(	member(D, C)
+					),
+					(	retractall(D)
+					)
+				)
+			;	forall(
+					(	member(D, C)
+					),
+					(	retractall(D)
+					)
+				),
+				fail
+			)
 		)
 	).
 
@@ -8049,32 +8065,6 @@ unify(A, B) :-
 unify(A, A).
 
 
-entails(A, B) :-
-	nonvar(A),
-	nonvar(B),
-	B =.. [P, S, [O3, O4]],
-	(	A =.. [P, S, [O1, O2]]
-	->	true
-	;	A =.. [P, S, O1],
-		O2 = O1
-	),
-	getnumber(O1, N1),
-	getnumber(O2, N2),
-	getnumber(O3, N3),
-	getnumber(O4, N4),
-	!,	
-	N3 =< N1,
-	N2 =< N4.
-entails(A, B) :-
-	nonvar(A),
-	nonvar(B),
-	A = '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O1),
-	B = '<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O2),
-	catch('<http://www.w3.org/2000/01/rdf-schema#subClassOf>'(O1, O2), _, fail),
-	!.
-entails(A, A).
-
-
 dn([A|B]) :-
 	(	call(A)
 	;	(	B = [C]
@@ -8239,24 +8229,6 @@ qgraph(N, X) :-
 		unify(T, X)
 	;	graph(N, X)
 	).
-
-
-egraph(N, cn([X|Y])) :-
-	!,
-	unify(X, U),
-	graph(N, T),
-	unify(T, V),
-	entails(V, U),
-	(	Y = [Z]
-	->	true
-	;	Z = cn(Y)
-	),
-	egraph(N, Z).
-egraph(N, X) :-
-	unify(X, U),
-	graph(N, T),
-	unify(T, V),
-	entails(V, U).
 
 
 difference([true, _], true) :-
