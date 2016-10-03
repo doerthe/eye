@@ -1,5 +1,7 @@
                                   EYE release
 
+[16.1003.1937] improving e:entails
+[16.1003.1927] 
 [EYE-Autumn16]
 - introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
 - initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
