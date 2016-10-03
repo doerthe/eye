@@ -1,8 +1,8 @@
                                   EYE release
 
-[16.1003.2001] improving e:entails so that it is scoped
-[16.1002.2113] introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
-[16.0927.2147] initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
+[v16.1003.2049] improving e:entails so that it is scoped
+[v16.1002.2113] introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
+[v16.0927.2147] initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
 
 [EYE-Summer16]
 - improving log:semantics error messages (obs from Elric Verbruggen)
