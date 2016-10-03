@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.1002.2113 josd').
+version_info('EYE-Autumn16.1003.1329 josd').
 
 
 license_info('MIT License
@@ -4036,6 +4036,7 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#entails>'(A, B) :-
+	within_scope(_),
 	when(
 		(	nonvar(A),
 			nonvar(B)
@@ -4058,7 +4059,7 @@ djitis(A) :-
 			;	forall(
 					(	member(D, C)
 					),
-					(	retractall(D)
+					(	retract(D)
 					)
 				),
 				fail
