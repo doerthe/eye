@@ -124,7 +124,8 @@
 
 % Infos
 
-version_info('EYE Vers. 16.1003.2001 josd').
+version_info('EYE v16.1003.2049 beta josd').
+version_info('EYE v16.1003.2049 beta josd').
 
 
 license_info('MIT License
