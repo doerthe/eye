@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.1003.1338 josd').
+version_info('EYE vers. 16.1003.1937 josd').
 
 
 license_info('MIT License
