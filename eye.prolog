@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE-Autumn16.1003.1329 josd').
+version_info('EYE-Autumn16.1003.1338 josd').
 
 
 license_info('MIT License
@@ -4053,7 +4053,7 @@ djitis(A) :-
 			->	forall(
 					(	member(D, C)
 					),
-					(	retractall(D)
+					(	retract(D)
 					)
 				)
 			;	forall(
