@@ -1,12 +1,8 @@
                                   EYE release
 
-[16.1003.1937] improving e:entails
-[16.1003.1927] 
-[EYE-Autumn16]
-- introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
-- initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
-- adding e:makevars built-in to make a no-skolem copy of the subject
-- tested with https://github.com/josd/etc
+[16.1003.1952] improving e:entails
+[16.1002.2113] introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
+[16.0927.2147] initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
 
 [EYE-Summer16]
 - improving log:semantics error messages (obs from Elric Verbruggen)
