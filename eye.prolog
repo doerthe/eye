@@ -124,8 +124,8 @@
 
 % Infos
 
-version_info('EYE v16.1003.2049 beta josd').
-version_info('EYE v16.1003.2049 beta josd').
+version_info('EYE v16.1004.1019 beta josd').
+version_info('EYE v16.1004.1019 beta josd').
 
 
 license_info('MIT License
@@ -2254,14 +2254,20 @@ w0(['--image', _|A]) :-
 	!,
 	w0(A).
 w0([A|B]) :-
-	format(' ~w', [A]),
+	(	sub_atom(A, _, 1, _, ' ')
+	->	format(' "~w"', [A])
+	;	format(' ~w', [A])
+	),
 	w0(B).
 
 
 w1([]) :-
 	!.
 w1([A|B]) :-
-	format(' ~w', [A]),
+	(	sub_atom(A, _, 1, _, ' ')
+	->	format(' "~w"', [A])
+	;	format(' ~w', [A])
+	),
 	w1(B).
 
 
@@ -3523,7 +3529,7 @@ eam(Span) :-
 		;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), Rule)
 		),
 		(	flag(debug)
-		->	format(user_error, '. eam/1 selecting rule ~w~n', [implies(Prem, Conc, Src)]),
+		->	format(user_error, '. eam/1 selecting rule ~q~n', [implies(Prem, Conc, Src)]),
 			flush_output(user_error)
 		;	true
 		),
@@ -3531,7 +3537,7 @@ eam(Span) :-
 		(	Res = []
 		->	true
 		;	(	flag(debug)
-			->	format(user_error, '.. eam/1 residual variables ~w left by premise ~w~n', [Res, Prem]),
+			->	format(user_error, '.. eam/1 residual variables ~q left by premise ~q~n', [Res, Prem]),
 				flush_output(user_error),
 				fail
 			)
@@ -3603,7 +3609,7 @@ eam(Span) :-
 		;	true
 		),
 		(	flag(debug)
-		->	format(user_error, '... eam/1 assert step ~w~n', [Concd]),
+		->	format(user_error, '... eam/1 assert step ~q~n', [Concd]),
 			flush_output(user_error)
 		;	true
 		),
