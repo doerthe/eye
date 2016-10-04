@@ -1,5 +1,6 @@
                                   EYE release
 
+[v16.1004.1019] fixing missing quotes for options --curl-http-header and --debug
 [v16.1003.2049] improving e:entails so that it is scoped
 [v16.1002.2113] introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
 [v16.0927.2147] initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
