@@ -124,8 +124,8 @@
 
 % Infos
 
-version_info('EYE v16.1005.1425 beta josd').
-version_info('EYE v16.1005.1425 beta josd').
+version_info('EYE v16.1006.0838 beta josd').
+version_info('EYE v16.1006.0838 beta josd').
 
 
 license_info('MIT License
@@ -3774,7 +3774,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 
 
 istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
-	copy_term(Prem, Prec),
+	copy_term_nat(Prem, Prec),
 	labelvars(Prec, 0, _),
 	term_index(Conc, Cnd),
 	term_index(Prec, Pnd),
@@ -4225,7 +4225,36 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notEntails>'(A, B) :-
-	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#entails>'(A, B).
+	within_scope(_),
+	when(
+		(	nonvar(A),
+			nonvar(B)
+		),
+		(	clist(C, A),
+			forall(
+				(	member(D, C)
+				),
+				(	assertz(D)
+				)
+			),
+			makevars(B, E),
+			(	\+call(E)
+			->	forall(
+					(	member(D, C)
+					),
+					(	retract(D)
+					)
+				)
+			;	forall(
+					(	member(D, C)
+					),
+					(	retract(D)
+					)
+				),
+				fail
+			)
+		)
+	).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notLabel>'(A, B) :-
