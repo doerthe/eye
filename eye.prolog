@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1006.0846 beta josd').
+version_info('EYE v16.1006.1145 beta josd').
 
 
 license_info('MIT License
@@ -1989,7 +1989,7 @@ n3_n3p(Argument, Mode) :-
 					->	term_index(Ct, Cnd),
 						term_index(Pt, Pnd),
 						(	nonvar(It)
-						->	copy_term(It, Ic)
+						->	copy_term_nat(It, Ic)
 						;	Ic = It
 						),
 						(	\+prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St)
@@ -2000,7 +2000,7 @@ n3_n3p(Argument, Mode) :-
 						->	(	Ci = true
 							->	call(Pi)
 							;	atomic_list_concat(['<', Arg, '>'], Si),
-								copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
+								copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
 								cn_conj(Pi, Pn),
 								(	flag(nope)
 								->	Ph = Pn
@@ -3525,7 +3525,7 @@ eam(Span) :-
 		(	flag(nope),
 			\+flag('rule-histogram')
 		->	true
-		;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), Rule)
+		;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Prem, Conc), Rule)
 		),
 		(	flag(debug)
 		->	format(user_error, '. eam/1 selecting rule ~q~n', [implies(Prem, Conc, Src)]),
@@ -3554,7 +3554,7 @@ eam(Span) :-
 		),
 		\+atom(Conc),
 		(	flag('rule-histogram'),
-			copy_term(Rule, RuleL)
+			copy_term_nat(Rule, RuleL)
 		->	lookup(RTP, tp, RuleL),
 			catch(cnt(RTP), _, nb_setval(RTP, 0))
 		;	true
@@ -3784,7 +3784,7 @@ istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
 
 
 pstep(Rule) :-
-	copy_term(Rule, RuleL),
+	copy_term_nat(Rule, RuleL),
 	lookup(RTC, tc, RuleL),
 	catch(cnt(RTC), _, nb_setval(RTC, 0)),
 	lookup(RTP, tp, RuleL),
@@ -4090,7 +4090,7 @@ djitis(A) :-
 		)
 	),
 	(	flag(warn)
-	->	copy_term([A, B, E|D], [Ac, Bc, Ec|Dc]),
+	->	copy_term_nat([A, B, E|D], [Ac, Bc, Ec|Dc]),
 		labelvars([Ac, Bc, Ec|Dc], 0, _),
 		(	fact('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [Ac, Bc, G|H]))
 		->	(	E \= G
@@ -4284,7 +4284,7 @@ djitis(A) :-
 	;	call(A),
 		(	flag(nope)
 		->	true
-		;	copy_term('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A)), R),
+		;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A)), R),
 			istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A), R)
 		)
 	).
@@ -4784,7 +4784,7 @@ djitis(A) :-
 		),
 		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
-			copy_term(X, U),
+			copy_term_nat(X, U),
 			labelvars(U, 0, _),
 			makevars(Y, V),
 			agraph(N, U),
@@ -4810,7 +4810,7 @@ djitis(A) :-
 		),
 		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
-			copy_term(X, U),
+			copy_term_nat(X, U),
 			labelvars(U, 0, _),
 			makevars(Y, V),
 			agraph(N, U),
@@ -8159,7 +8159,7 @@ cflat([], []) :-
 	!.
 cflat([A|B], C) :-
 	cflat(B, D),
-	copy_term(A, E),
+	copy_term_nat(A, E),
 	(	E = cn(F)
 	->	append(F, D, C)
 	;	(	E = true
@@ -8351,8 +8351,8 @@ distinct_value([A|B], [A|D]) :-
 
 del([], _, []).
 del([A|B], C, D) :-
-	copy_term(A, Ac),
-	copy_term(C, Cc),
+	copy_term_nat(A, Ac),
+	copy_term_nat(C, Cc),
 	unify(Ac, Cc),
 	!,
 	del(B, C, D).
