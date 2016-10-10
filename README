@@ -40,12 +40,10 @@ Design issues
 -------------
 
 Implicit Quantification in N3 [13]
-  A N3 resource contains implications of the form Li => Lj or
-  Lj <= Li and a conjunction of the remaining statements L0.
-  Li => Lj, Lj <= Li and L0 are called clauses.
-  Li, Lj and L0 are called clause literals.
-  In ETC [5] the scope of implicit universals is the clause and
-  the scope of implicit existentials is the clause literal.
+  A N3 resource contains implications of the form Ci => Cj or Cj <= Ci with
+  Ci and Cj conjunctions and a conjunction of the remaining statements C0.
+  In ETC [5] the scope of implicit universals is the implication and
+  the scope of implicit existentials is the conjunction.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
