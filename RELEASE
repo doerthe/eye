@@ -1,13 +1,12 @@
                                   EYE release
 
-[v16.1011.2051] introducing e:cleanup for http://josd.github.io/etc/gps/gps-plugin.n3
-[v16.1010.2024] introducing e:assert and e:retract for http://josd.github.io/etc/gps/gps-plugin.n3
+[v16.1011.2132] adding e:cleanup built-in to call object formula exactly once after subject formula is finished
+[v16.1010.2024] adding e:assert and e:retract built-ins
 [v16.1006.1145] fixing issue with coroutining
-[v16.1005.1425] introducing e:notEntails for http://josd.github.io/etc/gps/gps-plugin.n3
+[v16.1005.1425] adding e:notEntails built-in
 [v16.1004.1019] fixing missing quotes for options --curl-http-header and --debug
 [v16.1003.2049] improving e:entails so that it is scoped
-[v16.1002.2113] introducing e:entails for http://josd.github.io/etc/gps/gps-plugin.n3
-[v16.0927.2147] initial GPS plugin for EYE at http://josd.github.io/etc/gps/gps-plugin.n3
+[v16.1002.2113] adding e:entails built-in
 
 [EYE-Summer16]
 - improving log:semantics error messages (obs from Elric Verbruggen)
