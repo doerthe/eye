@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1010.2024 beta josd').
+version_info('EYE v16.1011.2047 beta josd').
 
 
 license_info('MIT License
@@ -4039,6 +4039,10 @@ djitis(A) :-
 		),
 		B
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cleanup>'(A, B) :-
+	call_cleanup(A, B).
 
 
 % DEPRECATED
