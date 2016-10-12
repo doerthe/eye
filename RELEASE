@@ -1,6 +1,6 @@
                                   EYE release
 
-[v16.1011.2132] adding e:cleanup built-in to call object formula exactly once after subject formula is finished
+[v16.1012.0821] adding e:finalize built-in to call object formula exactly once after subject formula is finished
 [v16.1010.2024] adding e:assert and e:retract built-ins
 [v16.1006.1145] fixing issue with coroutining
 [v16.1005.1425] adding e:notEntails built-in
