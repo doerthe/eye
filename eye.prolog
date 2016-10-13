@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1012.0824 beta josd').
+version_info('EYE v16.1013.1022 beta josd').
 
 
 license_info('MIT License
@@ -4224,6 +4224,10 @@ djitis(A) :-
 			length(C, B)
 		)
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
+	makevars(A, B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
