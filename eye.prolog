@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1013.2101 beta josd').
+version_info('EYE v16.1013.2206 beta josd').
 
 
 license_info('MIT License
@@ -2192,19 +2192,46 @@ tr_n3p(['\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>\''(X
 	writeln('.'),
 	tr_n3p(Z, Src, Mode).
 tr_n3p([X|Z], Src, Mode) :-
-	(	uvars(X, U),
+	tr_tr(X, Y),
+	(	uvars(Y, U),
 		U = []
-	->	write(X),
+	->	write(Y),
 		writeln('.'),
 		(	flag(nope)
 		->	true
-		;	write(prfstep(X, _, true, _, X, _, forward, Src)),
+		;	write(prfstep(Y, _, true, _, Y, _, forward, Src)),
 			writeln('.')
 		)
-	;	write(':-'(X, pass)),
+	;	write(':-'(Y, pass)),
 		writeln('.')
 	),
 	tr_n3p(Z, Src, Mode).
+
+
+tr_tr([], []) :-
+	!.
+tr_tr([A|B], [C|D]) :-
+	!,
+	tr_tr(A, C),
+	tr_tr(B, D).
+tr_tr(A, B) :-
+	atom(A),
+	!,
+	(	(	atom_concat('_bn_', _, A)
+		;	atom_concat('_e_', _, A)
+		),
+		atom_concat('_', C, A)
+	->	nb_getval(var_ns, Vns),
+		atomic_list_concat(['\'<', Vns, C, '>\''], B)
+	;	B = A
+	).
+tr_tr(A, A) :-
+	number(A),
+	!.
+tr_tr(A, B) :-
+	A =.. [C|D],
+	tr_tr(D, E),
+	B =.. [C|E].
 
 
 tr_split([], [], []) :-
