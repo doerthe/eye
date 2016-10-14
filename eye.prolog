@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1013.2206 beta josd').
+version_info('EYE v16.1014.0938 beta josd').
 
 
 license_info('MIT License
@@ -4382,7 +4382,9 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	clist(B, A),
+		(	call(A),
+			!,
+			clist(B, A),
 			forall(
 				(	member(C, B)
 				),
