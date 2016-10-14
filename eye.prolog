@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1014.0938 beta josd').
+version_info('EYE v16.1014.1907 beta josd').
 
 
 license_info('MIT License
@@ -1484,14 +1484,10 @@ args(['--proof', Arg|Args]) :-
 	(	got_pi
 	->	true
 	;	assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
-				'<http://www.w3.org/2000/10/swap/reason#rule>'(S, L),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(L, B),
-				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(B, ':-'(_, _))]),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)]),
 				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
 		assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G),
-				'<http://www.w3.org/2000/10/swap/log#notEqualTo>'(G, ':-'(_, _))]),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)]),
 				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
 		assertz(got_pi)
 	),
@@ -4227,10 +4223,6 @@ djitis(A) :-
 			length(C, B)
 		)
 	).
-
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
-	makevars(A, B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
