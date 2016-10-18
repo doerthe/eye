@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1018.1814 beta josd').
+version_info('EYE v16.1018.2004 beta josd').
 
 
 license_info('MIT License
@@ -4152,6 +4152,13 @@ djitis(A) :-
 	).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#hmac-sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	flag('hmac-key', Key),
+	hmac_sha(Key, A, C, [algorithm(sha1)]),
+	atom_codes(D, C),
+	base64xml(D, B).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#label>'(A, literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	nonvar(A)
@@ -4352,13 +4359,6 @@ djitis(A) :-
 	base64xml(D, B).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#hmac-sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
-	flag('hmac-key', Key),
-	hmac_sha(Key, A, C, [algorithm(sha1)]),
-	atom_codes(D, C),
-	base64xml(D, B).
-
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sigmoid>'(A, B) :-
 	getnumber(A, C),
 	B is 1/(1+exp(-C)).
@@ -4441,6 +4441,7 @@ djitis(A) :-
 	A =.. [C, B, D].
 
 
+% DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>'(_, A) :-
 	when(
 		(	nonvar(A)
