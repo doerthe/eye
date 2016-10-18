@@ -1,8 +1,8 @@
                                   EYE release
 
+[v16.1018.1139] adding e:makevars tr_split([], [], []) :-
 [v16.1014.1907] simplifying --proof lemma handling
 [v16.1014.0938] fixing integrity issue with e:retract
-[v16.1013.2206] simplify the handling of universals in N3 statements
 [v16.1012.0824] adding e:finalize built-in to call object formula exactly once after subject formula is finished
 [v16.1010.2024] adding e:assert and e:retract built-ins
 [v16.1006.1145] fixing issue with coroutining
