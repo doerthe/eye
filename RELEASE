@@ -1,5 +1,7 @@
                                   EYE release
 
+[v16.1018.1811] changing e:entails and e:notEntails to have a scope subject (obs from Dörthe Arndt)
+[v16.1018.1801] changing e:entails and e:notEntails to have a scope subject (obs from Dörthe Arndt)
 [v16.1018.1140] adding e:makevars built-in to make a no-skolem copy of the subject
 [v16.1014.1907] simplifying --proof lemma handling
 [v16.1014.0938] fixing integrity issue with e:retract

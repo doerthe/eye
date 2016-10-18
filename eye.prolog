@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1018.1140 beta josd').
+version_info('EYE v16.1018.1811 beta josd').
 
 
 license_info('MIT License
@@ -4054,36 +4054,8 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#entails>'(A, B) :-
-	within_scope(_),
-	when(
-		(	nonvar(A),
-			nonvar(B)
-		),
-		(	clist(C, A),
-			forall(
-				(	member(D, C)
-				),
-				(	assertz(D)
-				)
-			),
-			makevars(B, E),
-			(	call(E)
-			->	forall(
-					(	member(D, C)
-					),
-					(	retract(D)
-					)
-				)
-			;	forall(
-					(	member(D, C)
-					),
-					(	retract(D)
-					)
-				),
-				fail
-			)
-		)
-	).
+	within_scope(A),
+	call(B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B) :-
@@ -4249,36 +4221,8 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notEntails>'(A, B) :-
-	within_scope(_),
-	when(
-		(	nonvar(A),
-			nonvar(B)
-		),
-		(	clist(C, A),
-			forall(
-				(	member(D, C)
-				),
-				(	assertz(D)
-				)
-			),
-			makevars(B, E),
-			(	\+call(E)
-			->	forall(
-					(	member(D, C)
-					),
-					(	retract(D)
-					)
-				)
-			;	forall(
-					(	member(D, C)
-					),
-					(	retract(D)
-					)
-				),
-				fail
-			)
-		)
-	).
+	within_scope(A),
+	\+call(B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notLabel>'(A, B) :-
