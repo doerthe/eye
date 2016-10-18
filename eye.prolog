@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1014.1907 beta josd').
+version_info('EYE v16.1018.1140 beta josd').
 
 
 license_info('MIT License
@@ -2213,10 +2213,7 @@ tr_tr([A|B], [C|D]) :-
 tr_tr(A, B) :-
 	atom(A),
 	!,
-	(	(	atom_concat('_bn_', _, A)
-		;	atom_concat('_e_', _, A)
-		),
-		atom_concat('_', C, A)
+	(	atom_concat('_', C, A)
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['\'<', Vns, C, '>\''], B)
 	;	B = A
@@ -4225,6 +4222,10 @@ djitis(A) :-
 	).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
+	makevars(A, B).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
 	\+ \+call(B).
 
@@ -4374,7 +4375,7 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	call(A),
+		(	\+ \+call(A),
 			!,
 			clist(B, A),
 			forall(
