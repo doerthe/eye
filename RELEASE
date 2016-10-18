@@ -1,6 +1,6 @@
                                   EYE release
 
-[v16.1018.1139] adding e:makevars tr_split([], [], []) :-
+[v16.1018.1140] adding e:makevars built-in to make a no-skolem copy of the subject
 [v16.1014.1907] simplifying --proof lemma handling
 [v16.1014.0938] fixing integrity issue with e:retract
 [v16.1012.0824] adding e:finalize built-in to call object formula exactly once after subject formula is finished
