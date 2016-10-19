@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1018.2004 beta josd').
+version_info('EYE v16.1019.1357 beta josd').
 
 
 license_info('MIT License
@@ -3126,7 +3126,8 @@ wt2(prolog:X) :-
 	wt0(Z).
 wt2(X) :-
 	X =.. [P, S, O],
-	(	prolog_sym(_, P, _)
+	(	P \= true,
+		prolog_sym(_, P, _)
 	->	wt([S, O]),
 		write(' '),
 		wp(P),
