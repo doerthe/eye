@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1019.2046 beta josd').
+version_info('EYE v16.1024.2207 beta josd').
 
 
 license_info('MIT License
@@ -2174,7 +2174,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) 
 	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, Mode) :-
 	!,
-	evars(Y, V),
+	evars(Y, V, evar),
 	(	V = []
 	->	true
 	;	throw('EYE_component_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
@@ -3576,7 +3576,7 @@ eam(Span) :-
 		;	Concd = Concdv
 		),
 		(	flag(tactic, 'existing-path')
-		->	makevars(Concd, Concdr)
+		->	makevars(Concd, Concdr, evar)
 		;	Concdr = Concd
 		),
 		(	flag(think),	% DEPRECATED
@@ -4203,7 +4203,7 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
-	makevars(A, B).
+	makevars(A, B, uvar).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
@@ -4775,7 +4775,7 @@ djitis(A) :-
 			nb_getval(graph, N),
 			copy_term_nat(X, U),
 			labelvars(U, 0, _),
-			makevars(Y, V),
+			makevars(Y, V, evar),
 			agraph(N, U),
 			qgraph(N, V)
 		)
@@ -4801,7 +4801,7 @@ djitis(A) :-
 			nb_getval(graph, N),
 			copy_term_nat(X, U),
 			labelvars(U, 0, _),
-			makevars(Y, V),
+			makevars(Y, V, evar),
 			agraph(N, U),
 			\+qgraph(N, V)
 		)
@@ -8931,40 +8931,46 @@ findvars(A, B) :-
 	findvars(C, B).
 
 
-makevars(A, B) :-
-	evars(A, C),
+makevars(A, B, Q) :-
+	evars(A, C, Q),
 	distinct(C, D),
 	length(D, E),
 	length(F, E),
 	evars(A, B, D, F).
 
 
-evars(A, B) :-
+evars(A, B, Q) :-
 	atomic(A),
 	!,
 	(	atom(A),
-		(	atom_concat('_bn_', _, A)
-		;	atom_concat('_e_', _, A)
-		;	atom_concat(some, _, A)
+		(	Q = evar
+		->	(	atom_concat('_bn_', _, A)
+			;	atom_concat('_e_', _, A)
+			;	atom_concat(some, _, A)
+			;	nb_getval(var_ns, Vns),
+				sub_atom(A, 1, _, _, Vns)
+			)
 		;	nb_getval(var_ns, Vns),
-			sub_atom(A, 1, _, _, Vns)
+			sub_atom(A, 1, _, _, Vns),
+			\+sub_atom(A, _, 3, _, '#e_'),
+			\+sub_atom(A, _, 4, _, '#bn_')
 		)
 	->	B = [A]
 	;	B = []
 	).
-evars(A, []) :-
+evars(A, [], _) :-
 	var(A),
 	!.
-evars([], []) :-
+evars([], [], _) :-
 	!.
-evars([A|B], C) :-
-	evars(A, D),
-	evars(B, E),
+evars([A|B], C, Q) :-
+	evars(A, D, Q),
+	evars(B, E, Q),
 	append(D, E, C),
 	!.
-evars(A, B) :-
+evars(A, B, Q) :-
 	A =.. C,
-	evars(C, B).
+	evars(C, B, Q).
 
 
 evars(A, B, C, D) :-
