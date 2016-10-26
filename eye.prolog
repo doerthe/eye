@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1024.2207 beta josd').
+version_info('EYE v16.1026.2243 beta josd').
 
 
 license_info('MIT License
@@ -2091,7 +2091,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	(	is_list(T)
 		->	H = T
-		;	uvars(X, U),
+		;	findvars(X, U, epsilon),
 			distinct(U, H)
 		),
 		nb_setval(csv_header, H),
@@ -2127,7 +2127,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
 	->	(	is_list(T)
 		->	H = T
-		;	uvars(X, U),
+		;	findvars(X, U, epsilon),
 			distinct(U, H)
 		),
 		nb_setval(csv_header, H),
@@ -2174,7 +2174,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) 
 	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, Mode) :-
 	!,
-	evars(Y, V, evar),
+	findvars(Y, V, beta),
 	(	V = []
 	->	true
 	;	throw('EYE_component_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
@@ -2189,7 +2189,7 @@ tr_n3p(['\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>\''(X
 	tr_n3p(Z, Src, Mode).
 tr_n3p([X|Z], Src, Mode) :-
 	tr_tr(X, Y),
-	(	uvars(Y, U),
+	(	findvars(Y, U, epsilon),
 		U = []
 	->	write(Y),
 		writeln('.'),
@@ -2249,7 +2249,9 @@ w0(['--image', _|A]) :-
 	!,
 	w0(A).
 w0([A|B]) :-
-	(	sub_atom(A, _, 1, _, ' ')
+	(	\+sub_atom(A, 1, _, _, '"'),
+		sub_atom(A, _, 1, _, ' '),
+		\+sub_atom(A, _, _, 1, '"')
 	->	format(' "~w"', [A])
 	;	format(' ~w', [A])
 	),
@@ -2259,7 +2261,9 @@ w0([A|B]) :-
 w1([]) :-
 	!.
 w1([A|B]) :-
-	(	sub_atom(A, _, 1, _, ' ')
+	(	\+sub_atom(A, 1, _, _, '"'),
+		sub_atom(A, _, 1, _, ' '),
+		\+sub_atom(A, _, _, 1, '"')
 	->	format(' "~w"', [A])
 	;	format(' ~w', [A])
 	),
@@ -3576,7 +3580,7 @@ eam(Span) :-
 		;	Concd = Concdv
 		),
 		(	flag(tactic, 'existing-path')
-		->	makevars(Concd, Concdr, evar)
+		->	makevars(Concd, Concdr, beta)
 		;	Concdr = Concd
 		),
 		(	flag(think),	% DEPRECATED
@@ -4203,7 +4207,7 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
-	makevars(A, B, uvar).
+	makevars(A, B, gamma).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
@@ -4489,7 +4493,7 @@ djitis(A) :-
 	when(
 		(	ground(A)
 		),
-		(	qvars(A, C),
+		(	findvars(A, C, delta),
 			C \= []
 		->	true
 		;	catch(call(B), _, A = B)
@@ -4775,7 +4779,7 @@ djitis(A) :-
 			nb_getval(graph, N),
 			copy_term_nat(X, U),
 			labelvars(U, 0, _),
-			makevars(Y, V, evar),
+			makevars(Y, V, beta),
 			agraph(N, U),
 			qgraph(N, V)
 		)
@@ -4801,7 +4805,7 @@ djitis(A) :-
 			nb_getval(graph, N),
 			copy_term_nat(X, U),
 			labelvars(U, 0, _),
-			makevars(Y, V, evar),
+			makevars(Y, V, beta),
 			agraph(N, U),
 			\+qgraph(N, V)
 		)
@@ -8906,74 +8910,19 @@ commonvars(A, B, C) :-
 
 
 getvars(A, B) :-
-	findvars(A, C),
+	findvars(A, C, alpha),
 	distinct(C, B).
 
 
-findvars(A, B) :-
-	atomic(A),
-	!,
-	(	atom(A),
-		nb_getval(var_ns, Vns),
-		sub_atom(A, 1, _, _, Vns)
-	->	B = [A]
-	;	B = []
-	).
-findvars([], []) :-
-	!.
-findvars([A|B], C) :-
-	findvars(A, D),
-	findvars(B, E),
-	append(D, E, C),
-	!.
-findvars(A, B) :-
-	A =.. C,
-	findvars(C, B).
-
-
-makevars(A, B, Q) :-
-	evars(A, C, Q),
+makevars(A, B, Z) :-
+	findvars(A, C, Z),
 	distinct(C, D),
 	length(D, E),
 	length(F, E),
-	evars(A, B, D, F).
+	makevars(A, B, D, F).
 
 
-evars(A, B, Q) :-
-	atomic(A),
-	!,
-	(	atom(A),
-		(	Q = evar
-		->	(	atom_concat('_bn_', _, A)
-			;	atom_concat('_e_', _, A)
-			;	atom_concat(some, _, A)
-			;	nb_getval(var_ns, Vns),
-				sub_atom(A, 1, _, _, Vns)
-			)
-		;	nb_getval(var_ns, Vns),
-			sub_atom(A, 1, _, _, Vns),
-			\+sub_atom(A, _, 3, _, '#e_'),
-			\+sub_atom(A, _, 4, _, '#bn_')
-		)
-	->	B = [A]
-	;	B = []
-	).
-evars(A, [], _) :-
-	var(A),
-	!.
-evars([], [], _) :-
-	!.
-evars([A|B], C, Q) :-
-	evars(A, D, Q),
-	evars(B, E, Q),
-	append(D, E, C),
-	!.
-evars(A, B, Q) :-
-	A =.. C,
-	evars(C, B, Q).
-
-
-evars(A, B, C, D) :-
+makevars(A, B, C, D) :-
 	atomic(A),
 	!,
 	(	atom(A),
@@ -8981,63 +8930,67 @@ evars(A, B, C, D) :-
 	->	nth0(E, D, B)
 	;	B = A
 	).
-evars(A, A, _, _) :-
+makevars(A, A, _, _) :-
 	var(A),
 	!.
-evars([], [], _, _) :-
+makevars([], [], _, _) :-
 	!.
-evars([A|B], [C|D], E, F) :-
-	evars(A, C, E, F),
-	evars(B, D, E, F),
+makevars([A|B], [C|D], E, F) :-
+	makevars(A, C, E, F),
+	makevars(B, D, E, F),
 	!.
-evars(A, B, E, F) :-
+makevars(A, B, E, F) :-
 	A =.. C,
-	evars(C, D, E, F),
+	makevars(C, D, E, F),
 	B =.. D.
 
 
-qvars(A, B) :-
+findvars(A, B, Z) :-
 	atomic(A),
 	!,
 	(	atom(A),
-		(	sub_atom(A, _, 19, _, '/.well-known/genid/')
-		;	atom_concat(some, _, A)
+		nb_getval(var_ns, Vns),
+		(	Z == alpha
+		->	sub_atom(A, 1, _, _, Vns)
+		;	(	Z == beta
+			->	(	sub_atom(A, 1, _, _, Vns)
+				;	atom_concat('_bn_', _, A)
+				;	atom_concat('_e_', _, A)
+				;	atom_concat(some, _, A)	
+				)
+			;	(	Z == gamma
+				->	sub_atom(A, 1, _, _, Vns),
+					\+sub_atom(A, _, 3, _, '#e_'),
+					\+sub_atom(A, _, 4, _, '#bn_')
+				;	(	Z == delta
+					->	(	sub_atom(A, _, 19, _, '/.well-known/genid/')
+						;	atom_concat(some, _, A)
+						)
+					;	(	Z == epsilon
+						->	sub_atom(A, 0, 1, _, '_'),
+							\+atom_concat('_bn_', _, A),
+							\+atom_concat('_e_', _, A)
+						)
+					)
+				)
+			)
 		)
 	->	B = [A]
 	;	B = []
 	).
-qvars([], []) :-
+findvars(A, [], _) :-
+	var(A),
 	!.
-qvars([A|B], C) :-
-	qvars(A, D),
-	qvars(B, E),
+findvars([], [], _) :-
+	!.
+findvars([A|B], C, Z) :-
+	findvars(A, D, Z),
+	findvars(B, E, Z),
 	append(D, E, C),
 	!.
-qvars(A, B) :-
+findvars(A, B, Z) :-
 	A =.. C,
-	qvars(C, B).
-
-
-uvars(A, B) :-
-	atomic(A),
-	!,
-	(	atom(A),
-		sub_atom(A, 0, 1, _, '_'),
-		\+atom_concat('_bn_', _, A),
-		\+atom_concat('_e_', _, A)
-	->	B = [A]
-	;	B = []
-	).
-uvars([], []) :-
-	!.
-uvars([A|B], C) :-
-	uvars(A, D),
-	uvars(B, E),
-	append(D, E, C),
-	!.
-uvars(A, B) :-
-	A =.. C,
-	uvars(C, B).
+	findvars(C, B, Z).
 
 
 raw_type(A, '<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>') :-
