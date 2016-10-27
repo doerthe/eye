@@ -1,6 +1,6 @@
                                   EYE release
 
-[v16.1026.2243] simplifying e:makevars built-in
+[v16.1027.0849] simplifying e:makevars built-in
 [v16.1024.2207] correcting e:makevars built-in to make an ungrounded copy of the subject
 [v16.1019.2046] fixing e:retract so that it binds the variables (obs from Hong Sun)
 [v16.1019.1357] fixing output for {} predicates (obs from Dörthe Arndt)
@@ -16,6 +16,7 @@
 [v16.1004.1019] fixing missing quotes for options --curl-http-header and --debug
 [v16.1003.2049] improving e:entails so that it is scoped
 [v16.1002.2113] adding e:entails built-in
+
 
 [EYE-Summer16]
 - improving log:semantics error messages (obs from Elric Verbruggen)
@@ -312,6 +313,7 @@
 - fixing log:dtlit for prolog:atom (obs from Jean-Marc Vanel)
 - tested and working with SWIPL 7.1.28 kernel
 
+
 [EYE-2014-12]
 - do not output rules with --pass but use --pass-all instead (obs from Dörthe Arndt)
 - fixing univar and exivar issues in the output of rules
@@ -416,6 +418,7 @@
 - disable branch engine for definite clause KB
 - support proof (blue) without @ keywords and without bindings like in witch_example
 - EYE supporting RGB
+
 
 [Euler-2013-12]
 - adding --no-bindings switch to have no bindings in proof output
@@ -776,6 +779,7 @@
 - using e:tactic to support MONADIC reasoning
 - updated YAP-6.2.2 and big numbers are now indexed correctly
 - adding --no-span switch to disable span control in e:findall and e:optional
+
 
 [Euler-2011-10-28]
 - support logical update semantics for e:findall and e:optional
@@ -1503,6 +1507,7 @@
 - adding euler3, euler4 and euler5 entailment test cases
 - variants have same proof state but *different* belief and now 2007/07test/pt is 100 times faster
 
+
 [Euler-Antichthonidris-bidentatus 2007-07-08]
 - added euler --sql to translate triples into sql
 - added codd support for http://host.domain/dbname?SQL=sql services
@@ -1544,6 +1549,7 @@
 - a bit more N3 for the --prolog-bchain proof output
 - keep proof state using proof/5
 - query as horn rule
+
 
 [Euler-1.5.45 2007-04-22]
 - reordering and correcting step/5 predicate
@@ -1701,3 +1707,4 @@
 
 [Euler-1.5.10 2006-04-21]
 - preliminary euler5 which is written in Prolog
+
