@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1026.2243 beta josd').
+version_info('EYE v16.1027.0849 beta josd').
 
 
 license_info('MIT License
@@ -8949,32 +8949,7 @@ findvars(A, B, Z) :-
 	atomic(A),
 	!,
 	(	atom(A),
-		nb_getval(var_ns, Vns),
-		(	Z == alpha
-		->	sub_atom(A, 1, _, _, Vns)
-		;	(	Z == beta
-			->	(	sub_atom(A, 1, _, _, Vns)
-				;	atom_concat('_bn_', _, A)
-				;	atom_concat('_e_', _, A)
-				;	atom_concat(some, _, A)	
-				)
-			;	(	Z == gamma
-				->	sub_atom(A, 1, _, _, Vns),
-					\+sub_atom(A, _, 3, _, '#e_'),
-					\+sub_atom(A, _, 4, _, '#bn_')
-				;	(	Z == delta
-					->	(	sub_atom(A, _, 19, _, '/.well-known/genid/')
-						;	atom_concat(some, _, A)
-						)
-					;	(	Z == epsilon
-						->	sub_atom(A, 0, 1, _, '_'),
-							\+atom_concat('_bn_', _, A),
-							\+atom_concat('_e_', _, A)
-						)
-					)
-				)
-			)
-		)
+		findvar(A, Z)
 	->	B = [A]
 	;	B = []
 	).
@@ -8991,6 +8966,35 @@ findvars([A|B], C, Z) :-
 findvars(A, B, Z) :-
 	A =.. C,
 	findvars(C, B, Z).
+
+
+findvar(A, alpha) :-
+	!,
+	nb_getval(var_ns, Vns),
+	sub_atom(A, 1, _, _, Vns).
+findvar(A, beta) :-
+	!,
+	(	nb_getval(var_ns, Vns),
+		sub_atom(A, 1, _, _, Vns)
+	;	atom_concat('_bn_', _, A)
+	;	atom_concat('_e_', _, A)
+	;	atom_concat(some, _, A)
+	).
+findvar(A, gamma) :-
+	!,
+	nb_getval(var_ns, Vns),
+	sub_atom(A, 1, _, _, Vns),
+	\+sub_atom(A, _, 4, _, '#bn_'),
+	\+sub_atom(A, _, 3, _, '#e_').
+findvar(A, delta) :-
+	!,
+	(	sub_atom(A, _, 19, _, '/.well-known/genid/')
+	;	atom_concat(some, _, A)
+	).
+findvar(A, epsilon) :-
+	sub_atom(A, 0, 1, _, '_'),
+	\+atom_concat('_bn_', _, A),
+	\+atom_concat('_e_', _, A).
 
 
 raw_type(A, '<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>') :-
