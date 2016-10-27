@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1027.1035 beta josd').
+version_info('EYE v16.1027.1037 beta josd').
 
 
 license_info('MIT License
@@ -4058,6 +4058,11 @@ djitis(A) :-
 	).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
+	within_scope(A),
+	\+call(B).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B) :-
 	call_cleanup(A, B),
 	(	flag(nope)
@@ -4225,11 +4230,6 @@ djitis(A) :-
 		(	bmin(A, B)
 		)
 	).
-
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
-	within_scope(A),
-	\+call(B).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notLabel>'(A, B) :-
