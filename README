@@ -4,8 +4,8 @@ EYE is a reasoning engine supporting the RGB Semantic Web layers [1].
 It performs semibackward reasoning and it supports Euler paths.
 
 Semibackward reasoning is backward reasoning for EYE components and
-forward reasoning for EYE theories. EYE components are backward rules
-using <= in N3 and EYE theories are forward rules using => in N3.
+forward reasoning for theories. EYE components are backward rules
+using <= in N3 and theories are forward rules using => in N3.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
