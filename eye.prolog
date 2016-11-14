@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1027.1037 beta josd').
+version_info('EYE v16.1114.1604 beta josd').
 
 
 license_info('MIT License
@@ -3990,22 +3990,6 @@ djitis(A) :-
 
 % Built-ins
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#assert>'(Sc, A) :-
-	within_scope(Sc),
-	when(
-		(	nonvar(A)
-		),
-		(	clist(B, A),
-			forall(
-				(	member(C, B)
-				),
-				(	assertz(C)
-				)
-			)
-		)
-	).
-
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, B)|C], D) :-
 	within_scope(_),
 	(	nb_getval(bnet, done)
@@ -4031,7 +4015,9 @@ djitis(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
 	within_scope(Sc),
-	call(A).
+	copy_term_nat(A, B),
+	call(B),
+	makevars(B, A, gamma).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cartesianProduct>'(A, B) :-
@@ -4206,10 +4192,6 @@ djitis(A) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#makevars>'(A, B) :-
-	makevars(A, B, gamma).
-
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
 	\+ \+call(B).
 
@@ -4317,24 +4299,6 @@ djitis(A) :-
 			flatten(H, I),
 			atomic_list_concat(I, J),
 			exec(J, B)
-		)
-	).
-
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#retract>'(Sc, A) :-
-	within_scope(Sc),
-	when(
-		(	nonvar(A)
-		),
-		(	call(A),
-			!,
-			clist(B, A),
-			forall(
-				(	member(C, B)
-				),
-				(	retract(C)
-				)
-			)
 		)
 	).
 
