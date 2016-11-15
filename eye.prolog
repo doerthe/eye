@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1115.0003 beta josd').
+version_info('EYE v16.1115.1242 beta josd').
 
 
 license_info('MIT License
@@ -328,6 +328,10 @@ main :-
 				;	true
 				)
 			)
+		),
+		(	predicate_property(type_index(_, _, _), indexed(Indt3))
+		->	format(user_error, 'DJITI type_index/3 indexed ~w~n', [Indt3])
+		;	true
 		),
 		(	predicate_property(implies(_, _, _), indexed(Indi3))
 		->	format(user_error, 'DJITI implies/3 indexed ~w~n', [Indi3])
@@ -1265,6 +1269,24 @@ pvm(File, Argus) :-
 							term_index(T1, Tnd),
 							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
 						)
+					)
+				)
+			)
+		),
+		assertz(':-'(term_expansion('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O), T2),
+				(	!,
+					term_index(S-O, I),
+					(	\+ catch(type_index(_, _, _), _, fail)
+					->	T2 = [	':-'(dynamic(type_index/3)),
+							':-'(multifile(type_index/3)),
+							':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
+								(	term_index(U-V, W),
+									type_index(U, V, W)
+								)
+							),
+							type_index(S, O, I)
+						]
+					;	T2 = type_index(S, O, I)
 					)
 				)
 			)
@@ -3824,7 +3846,7 @@ qstep(A, true) :-
 	\+prfstep(A, _, _, _, _, _, _, _).
 
 
-% DJITI (Deep Just In Time Indexing)
+% DJITI (Dimensional Just In Time Indexing)
 
 djiti(answer(cn(A)), cn(B)) :-
 	!,
@@ -3984,6 +4006,20 @@ djitis(A) :-
 	),
 	B =.. [P, S, O, Si, Oi, Sp, Op],
 	assertz(B).
+djitis('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B)) :-
+	!,
+	(	current_predicate(type_index/3)
+	->	true
+	;	dynamic(type_index/3),
+		assertz(':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
+				(	term_index(U-V, W),
+					type_index(U, V, W)
+				)
+			)
+		)
+	),
+	term_index(A-B, C),
+	assertz(type_index(A, B, C)).
 djitis(A) :-
 	assertz(A).
 
