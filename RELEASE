@@ -1,5 +1,6 @@
                                   EYE release
 
+[v16.1121.1307] dropping --pvm and --plugin-pvm functionality
 [v16.1115.1242] improving DJITI (Dimensional Just In Time Indexing) for rdf:type predicate
 [v16.1115.0003] improving e:call to deal with universals in C0
 [v16.1114.1604] dropping e:assert e:retract and e:makevars
@@ -277,8 +278,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from http://josd.github.io/etc/rgb/blueproof003.n3)
-- fixing critical bug in proof output (obs from http://josd.github.io/etc/rgb/blueproof002.n3)
+- fixing proof output for queries with true as premis (obs from https://josd.github.io/etc/rgb/blueproof003.n3)
+- fixing critical bug in proof output (obs from https://josd.github.io/etc/rgb/blueproof002.n3)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)

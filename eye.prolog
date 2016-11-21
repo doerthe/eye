@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1115.1242 beta josd').
+version_info('EYE v16.1121.1307 beta josd').
 
 
 license_info('MIT License
@@ -359,7 +359,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--brake', '--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--plugin-pvm', '--proof', '--pvm', '--query', '--step', '--tactic', '--turtle',
+	memberchk(U, ['--brake', '--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--step', '--tactic', '--turtle',
 		      '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -934,13 +934,6 @@ opts(['--profile'|Argus], Args) :-
 	assertz(flag(profile)),
 	opts(Argus, Args).
 % DEPRECATED
-opts(['--pvm', File|Argus], _) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--pvm']),
-	flush_output(user_error),
-	pvm(File, Argus),
-	throw(halt).
-% DEPRECATED
 opts(['--quiet'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quiet']),
@@ -1094,7 +1087,7 @@ opts(['--yabc', File|Argus], Args) :-
 	opts(Argus, Args).
 opts([Arg|_], _) :-
 	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
-	\+memberchk(Arg, ['--plugin-pvm', '--tquery', '--trules']),	% DEPRECATED
+	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
 	throw(not_supported_option(Arg)).
@@ -1171,155 +1164,6 @@ probe :-
 	flush_output(user_error),
 	close(In),
 	delete_file(File).
-
-
-% DEPRECATED
-pvm(File, Argus) :-
-	(	memberchk('--nope', Argus)
-	->	assertz(flag(nope))
-	;	true
-	),
-	(	assertz(':-'(term_expansion(T1, T2),
-				(	T1 = exopred(P, S, O),
-					(	compound(S)
-					;	compound(O)
-					),
-					!,
-					term_index(S, Si),
-					term_index(O, Oi),
-					term_arg_1(S, Sp),
-					term_arg_1(O, Op),
-					T3 = exopred(P, S, O, Si, Oi, Sp, Op),
-					(	\+ catch(exopred(_, _, _, _, _, _, _), _, fail)
-					->	T4 = [	':-'(dynamic(exopred/7)),
-							':-'(multifile(exopred/7)),
-							':-'(exopred(P, U, V),
-								(	(	compound(U)
-									->	term_index(U, Ui),
-										term_arg_1(U, Up)
-									;	true
-									),
-									(	compound(V)
-									->	term_index(V, Vi),
-										term_arg_1(V, Vp)
-									;	true
-									),
-									exopred(P, U, V, Ui, Vi, Up, Vp)
-								)
-							),
-							T3
-						],
-						(	flag(nope)
-						->	T2 = T4
-						;	nb_getval(current_scope, Src),
-							term_index(T1, Tnd),
-							append(T4, [prfstep(T1, Tnd, true, _, T1, _, forward, Src)], T2)
-						)
-					;	(	flag(nope)
-						->	T2 = T3
-						;	nb_getval(current_scope, Src),
-							term_index(T1, Tnd),
-							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
-						)
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(T1, T2),
-				(	T1 =.. [P, S, O],
-					(	compound(S)
-					;	compound(O)
-					),
-					!,
-					term_index(S, Si),
-					term_index(O, Oi),
-					term_arg_1(S, Sp),
-					term_arg_1(O, Op),
-					T3 =.. [P, S, O, Si, Oi, Sp, Op],
-					(	\+ catch(call(P, _, _, _, _, _, _), _, fail)
-					->	X =.. [P, U, V],
-						T4 = [	':-'(dynamic(P/6)),
-							':-'(multifile(P/6)),
-							':-'(X,
-								(	(	compound(U)
-									->	term_index(U, Ui),
-										term_arg_1(U, Up)
-									;	true
-									),
-									(	compound(V)
-									->	term_index(V, Vi),
-										term_arg_1(V, Vp)
-									;	true
-									),
-									Y =.. [P, U, V, Ui, Vi, Up, Vp],
-									call(Y)
-								)
-							),
-							T3
-						],
-						(	flag(nope)
-						->	T2 = T4
-						;	nb_getval(current_scope, Src),
-							term_index(T1, Tnd),
-							append(T4, [prfstep(T1, Tnd, true, _, T1, _, forward, Src)], T2)
-						)
-					;	(	flag(nope)
-						->	T2 = T3
-						;	nb_getval(current_scope, Src),
-							term_index(T1, Tnd),
-							T2 = [T3, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]
-						)
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, O), T2),
-				(	!,
-					term_index(S-O, I),
-					(	\+ catch(type_index(_, _, _), _, fail)
-					->	T2 = [	':-'(dynamic(type_index/3)),
-							':-'(multifile(type_index/3)),
-							':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
-								(	term_index(U-V, W),
-									type_index(U, V, W)
-								)
-							),
-							type_index(S, O, I)
-						]
-					;	T2 = type_index(S, O, I)
-					)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(flag(F1, F2), [':-'(dynamic(flag/2)), flag(F1, F2)]),
-				(	!
-				)
-			)
-		),
-		assertz(':-'(term_expansion(scope(Scope), scope(Scope)),
-				(	!,
-					nb_setval(current_scope, Scope)
-				)
-			)
-		),
-		assertz(':-'(term_expansion(T1, [T1, prfstep(T1, Tnd, true, _, T1, _, forward, Src)]),
-				(	\+flag(nope),
-					T1 \= ':-'(_),
-					T1 \= flag(_, _),
-					T1 \= scope(_),
-					T1 \= pfx(_, _),
-					T1 \= pred(_),
-					T1 \= scount(_),
-					!,
-					nb_getval(current_scope, Src),
-					term_index(T1, Tnd)
-				)
-			)
-		),
-		qcompile(File)
-	->	true
-	;	throw(failed_pvmcompile(File))
-	).
 
 
 curl_http_headers(Headers) :-
@@ -1433,60 +1277,6 @@ args(['--plugin', Argument|Args]) :-
 		SCnts
 	),
 	sum(SCnts, SC),
-	nb_getval(input_statements, IN),
-	Inp is SC+IN,
-	nb_setval(input_statements, Inp),
-	format(user_error, 'SC=~w~n', [SC]),
-	flush_output(user_error),
-	args(Args).
-% DEPRECATED
-args(['--plugin-pvm', Argument|Args]) :-
-	!,
-	flush_output(user_error),
-	absolute_uri(Argument, Arg),
-	(	wcacher(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
-		flush_output(user_error)
-	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
-			->	true
-			;	sub_atom(Arg, 0, 6, _, 'https:')
-			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
-			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L ', Headers, '"', Arg, '" -o ', File], Cmd),
-			catch(exec(Cmd, _), Exc,
-				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-					flush_output(user_error),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					flush_output,
-					halt(1)
-				)
-			)
-		;	(	sub_atom(Arg, 0, 5, _, 'file:')
-			->	parse_url(Arg, Parts),
-				memberchk(path(File), Parts)
-			;	File = Arg
-			)
-		),
-		format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error)
-	),
-	consult(File),
-	(	retract(tmpfile(File))
-	->	delete_file(File)
-	;	true
-	),
-	(	retract(scount(SC))
-	->	true
-	;	SC = 0
-	),
 	nb_getval(input_statements, IN),
 	Inp is SC+IN,
 	nb_setval(input_statements, Inp),
