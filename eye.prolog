@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1123.1458 beta josd').
+version_info('EYE v16.1123.1645 beta josd').
 
 
 license_info('MIT License
@@ -657,12 +657,11 @@ gre(Argus) :-
 	;	Inf = ''
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-	catch(Infin is round(Inf/Inp), _, Infin = ''),
 	(	flag(strings)
 	->	true
-	;	format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin])
+	;	format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed])
 	),
-	format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
+	format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, R],
@@ -1471,10 +1470,9 @@ args(['--turtle', Argument|Args]) :-
 			statistics(inferences, Inf),
 			catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
 			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-			catch(Infin is round(Inf/Inp), _, Infin = ''),
 			format('~q.~n', [scount(Outp)]),
 			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
-			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
+			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 			flush_output(user_error)
 		;	true
 		)
