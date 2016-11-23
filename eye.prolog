@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1121.1307 beta josd').
+version_info('EYE v16.1123.1259 beta josd').
 
 
 license_info('MIT License
@@ -533,16 +533,10 @@ gre(Argus) :-
 	;	true
 	),
 	nb_setval(tr, 0),
-	nb_setval(br, 0),
 	nb_setval(tc, 0),
 	nb_setval(tp, 0),
-	nb_setval(bc, 0),
-	nb_setval(bp, 0),
 	nb_setval(wn, 0),
 	nb_setval(rn, 0),
-	nb_setval(pm, 0),
-	nb_setval(cm, 0),
-	nb_setval(fm, 0),
 	nb_setval(lemma_count, 0),
 	nb_setval(lemma_cursor, 0),
 	nb_setval(output_statements, 0),
@@ -643,16 +637,9 @@ gre(Argus) :-
 	),
 	nb_getval(tc, TC),
 	nb_getval(tp, TP),
-	nb_getval(bc, BC),
-	nb_getval(bp, BP),
-	nb_getval(pm, PM),
-	nb_getval(cm, CM),
-	nb_getval(fm, FM),
-	AM is PM+CM+FM,
-	format(user_error, 'TC=~w TP=~w BC=~w BP=~w PM=~w CM=~w FM=~w AM=~w~n', [TC, TP, BC, BP, PM, CM, FM, AM]),
 	flush_output(user_error),
 	statistics(runtime, [Cpu, T4]),
-	statistics(walltime, [Elaps, T5]),
+	statistics(walltime, [_, T5]),
 	(	\+flag('multi-query')
 	->	format(user_error, 'reasoning ~w [msec cputime] ~w [msec walltime]~n', [T4, T5]),
 		flush_output(user_error)
@@ -660,53 +647,30 @@ gre(Argus) :-
 	),
 	nb_getval(input_statements, Inp),
 	nb_getval(output_statements, Outp),
-	(	flag(strings)
-	->	true
-	;	(	Inp =\= 0
-		->	format('#ENDS ~3d [sec] IO=~d/~d TC=~w TP=~w BC=~w BP=~w PM=~w CM=~w FM=~w AM=~w~n', [Elaps, Inp, Outp, TC, TP, BC, BP, PM, CM, FM, AM])
-		;	format('#ENDS ~3d [sec] TC=~w TP=~w BC=~w BP=~w PM=~w CM=~w FM=~w AM=~w~n', [Elaps, TC, TP, BC, BP, PM, CM, FM, AM])
-		),
-		nl
-	),
 	timestamp(Stamp),
-	Ent is TC+BC,
-	Step is TP+BP,
+	Ent is TC,
+	Step is TP,
 	nb_getval(tr, TR),
-	nb_getval(br, BR),
-	Brake is TR+BR,
+	Brake is TR,
 	(	statistics(inferences, Inf)
 	->	true
 	;	Inf = ''
 	),
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 	catch(Infin is round(Inf/Inp), _, Infin = ''),
-	format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
+	(	flag(strings)
+	->	true
+	;	format('#ENDS ~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin])
+	),
+	format(user_error, 'ENDS ~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
-	->	findall([RTC, RTP, RBC, RBP, R],
+	->	findall([RTC, RTP, R],
 			(	table(ETP, tp, Rule),
 				nb_getval(ETP, RTP),
 				(	table(ETC, tc, Rule)
 				->	nb_getval(ETC, RTC)
 				;	RTC = 0
-				),
-				(	table(EBC, bc, Rule)
-				->	nb_getval(EBC, RBC)
-				;	RBC = 0
-				),
-				(	table(EBP, bp, Rule)
-				->	nb_getval(EBP, RBP)
-				;	RBP = 0
-				),
-				with_output_to(atom(R), wt(Rule))
-			;	table(EBP, bp, Rule),
-				\+table(_, tp, Rule),
-				nb_getval(EBP, RBP),
-				RTC = 0,
-				RTP = 0,
-				(	table(EBC, bc, Rule)
-				->	nb_getval(EBC, RBC)
-				;	RBC = 0
 				),
 				with_output_to(atom(R), wt(Rule))
 			),
@@ -714,7 +678,7 @@ gre(Argus) :-
 		),
 		sort(CntRl, CntRs),
 		reverse(CntRs, CntRr),
-		format(user_error, '>>> rule histogram TR=~w BR=~w <<<~n', [TR, BR]),
+		format(user_error, '>>> rule histogram TR=~w <<<~n', [TR]),
 		forall(
 			(	member(RCnt, CntRr)
 			),
@@ -722,8 +686,8 @@ gre(Argus) :-
 					cn_conj(X, XC),
 					c_append(XC, pstep(_), Z),
 					catch(clause(Y, Z), _, fail)
-				->	format(user_error, 'TC=~w TP=~w BC=~w BP=~w for component ~w~n', RCnt)
-				;	format(user_error, 'TC=~w TP=~w BC=~w BP=~w for rule ~w~n', RCnt)
+				->	format(user_error, 'TC=~w TP=~w for component ~w~n', RCnt)
+				;	format(user_error, 'TC=~w TP=~w for rule ~w~n', RCnt)
 				)
 			)
 		),
@@ -1388,10 +1352,7 @@ args(['--turtle', Argument|Args]) :-
 		nb_setval(sc, 0),
 		nb_setval(tc, 0),
 		nb_setval(tp, 0),
-		nb_setval(bc, 0),
-		nb_setval(bp, 0),
 		nb_setval(tr, 0),
-		nb_setval(br, 0),
 		set_stream(In, encoding(utf8)),
 		repeat,
 		read_term(In, Rt, []),
@@ -1502,14 +1463,11 @@ args(['--turtle', Argument|Args]) :-
 			statistics(runtime, [Cpu, Wall]),
 			nb_getval(sc, Outp),
 			nb_getval(tc, TC),
-			nb_getval(bc, BC),
-			Ent is TC+BC,
+			Ent is TC,
 			nb_getval(tp, TP),
-			nb_getval(bp, BP),
-			Step is TP+BP,
+			Step is TP,
 			nb_getval(tr, TR),
-			nb_getval(br, BR),
-			Brake is TR+BR,
+			Brake is TR,
 			statistics(inferences, Inf),
 			catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
 			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
