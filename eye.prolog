@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1123.1259 beta josd').
+version_info('EYE v16.1123.1458 beta josd').
 
 
 license_info('MIT License
@@ -660,9 +660,9 @@ gre(Argus) :-
 	catch(Infin is round(Inf/Inp), _, Infin = ''),
 	(	flag(strings)
 	->	true
-	;	format('#ENDS ~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin])
+	;	format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin])
 	),
-	format(user_error, 'ENDS ~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
+	format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w inf/in=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed, Infin]),
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, R],
