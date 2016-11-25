@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1123.1645 beta josd').
+version_info('EYE v16.1125.1306 beta josd').
 
 
 license_info('MIT License
@@ -659,7 +659,7 @@ gre(Argus) :-
 	catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
 	(	flag(strings)
 	->	true
-	;	format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed])
+	;	format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n#ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed])
 	),
 	format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 	flush_output(user_error),
@@ -8723,8 +8723,7 @@ findvar(A, beta) :-
 	).
 findvar(A, gamma) :-
 	!,
-	nb_getval(var_ns, Vns),
-	sub_atom(A, 1, _, _, Vns),
+	sub_atom(A, _, 19, _, '/.well-known/genid/'),
 	\+sub_atom(A, _, 4, _, '#bn_'),
 	\+sub_atom(A, _, 3, _, '#e_').
 findvar(A, delta) :-
