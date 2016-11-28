@@ -1,9 +1,10 @@
                                   EYE release
 
+[v16.1128.2230] completing proof output for e:finalize
 [v16.1125.1306] fixing issue with universals in pvm image
 [v16.1123.1645] improving the message at the end of a reasoning run
-[v16.1121.1307] dropping --pvm and --plugin-pvm functionality
-[v16.1115.1242] improving DJITI (Dimensional Just In Time Indexing) for rdf:type predicate
+[v16.1121.1307] dropping --pvm and --plugin-pvm options
+[v16.1115.1242] improving DJITI (Deep Just In Time Indexing) for rdf:type predicate
 [v16.1115.0003] improving e:call to deal with universals in C0
 [v16.1114.1604] dropping e:assert e:retract and e:makevars
 [v16.1027.1037] replacing the broken e:entails and e:notEntails with e:call and e:fail
