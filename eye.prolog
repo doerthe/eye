@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1129.1224 beta josd').
+version_info('EYE v16.1129.2043 beta josd').
 
 
 license_info('MIT License
@@ -1981,7 +1981,10 @@ tr_tr([A|B], [C|D]) :-
 tr_tr(A, B) :-
 	atom(A),
 	!,
-	(	atom_concat('_', C, A)
+	(	atom_concat('_', C, A),
+		(	atom_concat('bn_', _, C)
+		;	atom_concat('e_', _, C)
+		)
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['\'<', Vns, C, '>\''], B)
 	;	B = A
