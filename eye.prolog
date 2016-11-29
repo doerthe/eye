@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1128.2230 beta josd').
+version_info('EYE v16.1129.1224 beta josd').
 
 
 license_info('MIT License
@@ -3797,9 +3797,12 @@ djitis(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
 	within_scope(Sc),
-	copy_term_nat(A, C),
-	call(C),
-	makevars(C, A, gamma).
+	call(A),
+	(	flag(nope)
+	->	true
+	;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A)), B),
+		istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A), B)
+	).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cartesianProduct>'(A, B) :-
