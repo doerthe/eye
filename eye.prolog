@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1129.2043 beta josd').
+version_info('EYE v16.1129.2350 beta josd').
 
 
 license_info('MIT License
@@ -2391,7 +2391,9 @@ wr(Y) :-
 	write('; '),
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 	write(' '),
-	(	Y = true
+	(	(	Y = true
+		;	Y = pass
+		)
 	->	wt(Y)
 	;	write('{'),
 		labelvars(Y, 0, _, avar),
