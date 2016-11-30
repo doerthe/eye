@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1129.2350 beta josd').
+version_info('EYE v16.1130.1407 beta josd').
 
 
 license_info('MIT License
@@ -1787,7 +1787,10 @@ n3_n3p(Argument, Mode) :-
 								(	flag(n3p)
 								->	portray_clause(npred(CPi)),
 									portray_clause(':-'(Ci, Pj))
-								;	assertz(npred(CPi)),
+								;	(	\+npred(CPi)
+									->	assertz(npred(CPi))
+									;	true
+									),
 									assertz(':-'(Ci, Pj))
 								)
 							)
@@ -1966,7 +1969,8 @@ tr_n3p([X|Z], Src, Mode) :-
 		;	write(prfstep(Y, _, true, _, Y, _, forward, Src)),
 			writeln('.')
 		)
-	;	write(':-'(Y, pass)),
+	;	term_index(Y, A),
+		write(':-'(Y, pass(A))),
 		writeln('.')
 	),
 	tr_n3p(Z, Src, Mode).
@@ -2392,7 +2396,7 @@ wr(Y) :-
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 	write(' '),
 	(	(	Y = true
-		;	Y = pass
+		;	Y = pass(_)
 		)
 	->	wt(Y)
 	;	write('{'),
@@ -2546,9 +2550,6 @@ wt0(fail) :-
 	write('() '),
 	wp(fail),
 	write(' true').
-wt0(pass) :-
-	!,
-	write('true').
 wt0(X) :-
 	atom(X),
 	atom_concat(some, Y, X),
@@ -2698,6 +2699,9 @@ wt0(X) :-
 	).
 
 
+wt1(pass(_)) :-
+	!,
+	write('true').
 wt1(X) :-
 	X =.. [B|C],
 	wt(C),
@@ -7880,7 +7884,7 @@ cn([A|B]) :-
 
 clist([], true) :-
 	!.
-clist([], pass) :-
+clist([], pass(_)) :-
 	!.
 clist([A], A) :-
 	A \= cn(_),
@@ -7946,7 +7950,7 @@ c_d([A|B], [A|C]) :-
 
 c_list([], true) :-
 	!.
-c_list([], pass) :-
+c_list([], pass(_)) :-
 	!.
 c_list([A], A) :-
 	A \= (_, _),
