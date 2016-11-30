@@ -1,6 +1,7 @@
                                   EYE release
 
 [v16.1129.2350] fixing issue with proof output containing empty graphs
+[v16.1129.2043] fixing N3 to N3P compiler for universals outside implications
 [v16.1129.1224] implementing proof explanation for e:call
 [v16.1128.2230] completing proof output for e:finalize
 [v16.1125.1306] fixing issue with universals in pvm image
