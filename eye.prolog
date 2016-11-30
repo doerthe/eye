@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1130.1407 beta josd').
+version_info('EYE v16.1130.1446 beta josd').
 
 
 license_info('MIT License
@@ -1183,7 +1183,9 @@ args(['--plugin', Argument|Args]) :-
 	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
-	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
@@ -1210,9 +1212,7 @@ args(['--plugin', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		),
-		format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error)
+		)
 	),
 	(	File = '-'
 	->	In = user_input
@@ -1295,7 +1295,9 @@ args(['--turtle', Argument|Args]) :-
 	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
-	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
@@ -1322,9 +1324,7 @@ args(['--turtle', Argument|Args]) :-
 				memberchk(path(File), Parts)
 			;	File = Arg
 			)
-		),
-		format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error)
+		)
 	),
 	atomic_list_concat(['-b=', Arg], Base),
 	(	flag('pass-turtle')
@@ -1569,7 +1569,9 @@ n3_n3p(Argument, Mode) :-
 	(	wcacher(Arg, File)
 	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
 		flush_output(user_error)
-	;	(	(	sub_atom(Arg, 0, 5, _, 'http:')
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
@@ -1598,9 +1600,7 @@ n3_n3p(Argument, Mode) :-
 				)
 			;	File = Arg
 			)
-		),
-		format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error)
+		)
 	),
 	(	File = '-'
 	->	In = user_input
