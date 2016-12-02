@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1130.1446 beta josd').
+version_info('EYE v16.1202.1010 beta josd').
 
 
 license_info('MIT License
@@ -1165,7 +1165,7 @@ args(['--pass-all'|Args]) :-
 			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 	assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
 			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-	assertz(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+	assertz(implies(':-'(C, A),
 			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 	(	flag(n3p)
 	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
@@ -3806,6 +3806,7 @@ djitis(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
 	within_scope(Sc),
+	nonvar(A),
 	call(A),
 	(	flag(nope)
 	->	true
