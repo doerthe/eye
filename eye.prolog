@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1202.1054 beta josd').
+version_info('EYE v16.1202.1315 beta josd').
 
 
 license_info('MIT License
@@ -1766,9 +1766,7 @@ n3_n3p(Argument, Mode) :-
 							;	atomic_list_concat(['<', Arg, '>'], Si),
 								copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
 								cn_conj(Pi, Pn),
-								(	(	flag(nope)
-									;	Pn = true
-									)
+								(	flag(nope)
 								->	Ph = Pn
 								;	(	Pi = when(Ai, Bi)
 									->	c_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
@@ -8479,7 +8477,21 @@ inv(true, false).
 	clause(A, D),
 	c_list(E, D),
 	c_d(E, F),
-	clist(F, B).
+	clist(F, G),
+	(	flag(nope)
+	->	B = G
+	;	(	G = when(H, I)
+		->	c_append(J, istep(Src, _, _, _), I),
+			B = when(H, J)
+		;	cn_conj(G, V),
+			c_append(B, istep(Src, _, _, _), V)
+		),
+		term_index(':-'(A, B), Ind),
+		(	\+prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src)
+		->	assertz(prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src))
+		;	true
+		)
+	).
 
 
 lookup(A, B, C) :-
