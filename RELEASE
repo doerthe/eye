@@ -1,5 +1,6 @@
                                   EYE release
 
+[v16.1202.1010] fixing e:call to deal with variable formulae
 [v16.1130.1446] giving output information about networking as early as possible
 [v16.1130.1407] fixing poor indexing issue in proof generation
 [v16.1129.2350] fixing issue with proof output containing empty graphs
