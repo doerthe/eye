@@ -52,6 +52,7 @@
 :- dynamic(brake/0).
 :- dynamic(bref/2).
 :- dynamic(bvar/1).
+:- dynamic(cpred/1).
 :- dynamic(evar/2).
 :- dynamic(evar/3).
 :- dynamic(exopred/3).		% exopred(Predicate, Subject, Object)
@@ -77,7 +78,6 @@
 :- dynamic(lemma/6).		% lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
-:- dynamic(npred/1).
 :- dynamic(ns/2).
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1202.1315 beta josd').
+version_info('EYE v16.1202.1501 beta josd').
 
 
 license_info('MIT License
@@ -1785,10 +1785,10 @@ n3_n3p(Argument, Mode) :-
 								cnt(sc),
 								functor(Ci, CPi, _),
 								(	flag(n3p)
-								->	portray_clause(npred(CPi)),
+								->	portray_clause(cpred(CPi)),
 									portray_clause(':-'(Ci, Pj))
-								;	(	\+npred(CPi)
-									->	assertz(npred(CPi))
+								;	(	\+cpred(CPi)
+									->	assertz(cpred(CPi))
 									;	true
 									),
 									assertz(':-'(Ci, Pj))
@@ -8470,7 +8470,7 @@ inv(true, false).
 
 ':-'(A, B) :-
 	(	var(A)
-	->	npred(C),
+	->	cpred(C),
 		A =.. [C, _, _]
 	;	true
 	),
@@ -9544,6 +9544,16 @@ timestamp(Stamp) :-
 
 fm(A) :-
 	format(user_error, '*** ~w~n', [A]),
+	flush_output(user_error).
+
+
+mf(A) :-
+	forall(
+		(	call(A)
+		),
+		(	format(user_error, '*** ~w~n', [A])
+		)
+	),
 	flush_output(user_error).
 
 
