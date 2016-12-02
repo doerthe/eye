@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1202.1010 beta josd').
+version_info('EYE v16.1202.1054 beta josd').
 
 
 license_info('MIT License
@@ -1766,7 +1766,9 @@ n3_n3p(Argument, Mode) :-
 							;	atomic_list_concat(['<', Arg, '>'], Si),
 								copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
 								cn_conj(Pi, Pn),
-								(	flag(nope)
+								(	(	flag(nope)
+									;	Pn = true
+									)
 								->	Ph = Pn
 								;	(	Pi = when(Ai, Bi)
 									->	c_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
