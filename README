@@ -44,6 +44,7 @@ Implicit Quantification in N3 [13]
   Ci and Cj conjunctions and a conjunction of the remaining statements C0.
   In ETC [5] the scope of implicit universals is the implication and
   the scope of implicit existentials is the conjunction.
+  C0 can have implicit universals within the scope of embedded implications.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
