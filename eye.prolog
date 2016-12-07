@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1202.1501 beta josd').
+version_info('EYE v16.1207.1057 beta josd').
 
 
 license_info('MIT License
@@ -176,6 +176,7 @@ eye
 	--no-qvars			no qvars in the output
 	--no-skolem <prefix>		no uris with <prefix> in the output
 	--nope				no proof explanation
+	--pass-all-ground		ground the rules and run --pass-all
 	--pass-only-new			output only new derived triples
 	--pass-turtle			output the --turtle data
 	--probe				output speedtest info on stderr
@@ -202,7 +203,6 @@ eye
 <query>
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
-	--pass-all-ground		ground the rules and run --pass-all
 	--query <n3-query>		output filtered with filter rules').
 
 
@@ -2082,10 +2082,14 @@ w3 :-
 	!,
 	(	query(Q, A),
 		catch(call(Q), _, fail),
-		nb_getval(wn, W),
-		labelvars(A, W, N),
-		nb_setval(wn, N),
-		relabel(A, B),
+		(	\+ground(Q)
+		->	clist(La, A),
+			partconc(Q, La, Lp),
+			Lp \= [],
+			clist(Lp, Ap)
+		;	Ap = A
+		),
+		relabel(Ap, B),
 		indent,
 		wt(B),
 		ws(B),
