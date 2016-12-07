@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1207.1057 beta josd').
+version_info('EYE v16.1207.1437 beta josd').
 
 
 license_info('MIT License
@@ -2878,10 +2878,13 @@ wt2(':-'(X, Y)) :-
 	;	true
 	),
 	assertz(rule_uvar(R)),
-	wg(X),
-	write(' <= '),
-	wg(Y),
-	retract(rule_uvar(_)),
+	(	Y = true
+	->	wt(X)
+	;	wg(X),
+		write(' <= '),
+		wg(Y),
+		retract(rule_uvar(_))
+	),
 	(	nb_getval(fdepth, 0)
 	->	retract(ncllit)
 	;	true
