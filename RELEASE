@@ -1,5 +1,6 @@
                                   EYE release
 
+[v16.1208.2204] adding --tactic limited-step <count> to take only a limited number of steps
 [v16.1207.1437] fixing --pass-all to adjust the scope of implicit universals (obs from Dörthe Arndt)
 [v16.1207.1057] fixing --pass to support partial conclusions
 [v16.1202.1501] fixing issue with proof output for backward rules
