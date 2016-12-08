@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1207.1437 beta josd').
+version_info('EYE v16.1208.2204 beta josd').
 
 
 license_info('MIT License
@@ -154,7 +154,6 @@ help_info('Usage: eye <options>* <data>* <query>*
 eye
 	swipl -x eye.pvm --
 <options>
-	--brake <count>			set maximimum brake <count>
 	--curl-http-header <field>	to pass HTTP header <field> to curl
 	--debug				output debug info on stderr
 	--debug-cnt			output debug info about counters on stderr
@@ -183,12 +182,12 @@ eye
 	--profile			output profile info on stderr
 	--rule-histogram		output rule histogram info on stderr
 	--statistics			output statistics info on stderr
-	--step <count>			set maximimum step <count>
 	--streaming-reasoning		streaming reasoning on --turtle data
 	--strict			strict mode
 	--strings			output log:outputString objects on stdout
 	--tactic existing-path		Euler path using homomorphism
-	--tactic limited-answer <count>	give only a limited numer of answers
+	--tactic limited-answer <count>	give only a limited number of answers
+	--tactic limited-step <count>	take only a limited number of steps
 	--tactic linear-select		select each rule only once
 	--tactic single-answer		give only one answer
 	--traditional			traditional mode
@@ -359,8 +358,8 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--brake', '--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--step', '--tactic', '--turtle',
-		      '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
+		      '--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -565,9 +564,12 @@ gre(Argus) :-
 			),
 			tell(Fos),
 			catch(eam(0), Exc2,
-				(	format(user_error, '** ERROR ** eam ** ~w~n', [Exc2]),
-					flush_output(user_error),
-					nb_setval(exit_code, 1)
+				(	(	Exc2 = halt
+					->	true
+					;	format(user_error, '** ERROR ** eam ** ~w~n', [Exc2]),
+						flush_output(user_error),
+						nb_setval(exit_code, 1)
+					)
 				)
 			),
 			(	flag(strings)
@@ -625,9 +627,12 @@ gre(Argus) :-
 			fail
 		)
 	;	catch(eam(0), Exc3,
-			(	format(user_error, '** ERROR ** eam ** ~w~n', [Exc3]),
-				flush_output(user_error),
-				nb_setval(exit_code, 1)
+			(	(	Exc3 = halt
+				->	true
+				;	format(user_error, '** ERROR ** eam ** ~w~n', [Exc3]),
+					flush_output(user_error),
+					nb_setval(exit_code, 1)
+				)
 			)
 		)
 	),
@@ -706,20 +711,11 @@ opts(['--ances'|Argus], Args) :-
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--ances']),
 	flush_output(user_error),
 	opts(Argus, Args).
-opts(['--brake', Lim|Argus], Args) :-
+% DEPRECATED
+opts(['--brake', _|Argus], Args) :-
 	!,
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** brake ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	retractall(flag(brake, _)),
-	assertz(flag(brake, Limit)),
+	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--brake']),
+	flush_output(user_error),
 	opts(Argus, Args).
 opts(['--curl-http-header', Field|Argus], Args) :-
 	!,
@@ -939,8 +935,11 @@ opts(['--statistics'|Argus], Args) :-
 	retractall(flag(statistics)),
 	assertz(flag(statistics)),
 	opts(Argus, Args).
+% DEPRECATED
 opts(['--step', Lim|Argus], Args) :-
 	!,
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--step', '--tactic limited-step']),
+	flush_output(user_error),
 	(	number(Lim)
 	->	Limit = Lim
 	;	catch(atom_number(Lim, Limit), Exc,
@@ -951,8 +950,8 @@ opts(['--step', Lim|Argus], Args) :-
 			)
 		)
 	),
-	retractall(flag(step, _)),
-	assertz(flag(step, Limit)),
+	retractall(flag('limited-step', _)),
+	assertz(flag('limited-step', Limit)),
 	opts(Argus, Args).
 opts(['--streaming-reasoning'|Argus], Args) :-
 	!,
@@ -988,6 +987,21 @@ opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
 	),
 	retractall(flag('limited-answer', _)),
 	assertz(flag('limited-answer', Limit)),
+	opts(Argus, Args).
+opts(['--tactic', 'limited-step', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** limited-step ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	retractall(flag('limited-step', _)),
+	assertz(flag('limited-step', Limit)),
 	opts(Argus, Args).
 opts(['--tactic', 'linear-select'|Argus], Args) :-
 	!,
@@ -3286,16 +3300,6 @@ indentation(C) :-
 
 eam(Span) :-
 	(	cnt(tr),
-		(	flag(brake, BrakeLim),
-			nb_getval(tr, TR),
-			TR >= BrakeLim
-		->	(	flag(strings)
-			->	true
-			;	w3
-			),
-			throw(maximimum_brake_count(TR))
-		;	true
-		),
 		(	flag(debug)
 		->	format(user_error, 'eam/1 entering span ~w~n', [Span]),
 			flush_output(user_error)
@@ -3345,14 +3349,14 @@ eam(Span) :-
 		;	true
 		),
 		cnt(tp),
-		(	flag(step, StepLim),
+		(	flag('limited-step', StepLim),
 			nb_getval(tp, Step),
 			Step >= StepLim
 		->	(	flag(strings)
 			->	true
 			;	w3
 			),
-			throw(maximimum_step_count(Step))
+			throw(halt)
 		;	true
 		),
 		djitin(Conc, Concdt),
