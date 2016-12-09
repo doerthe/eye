@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1209.1002 beta josd').
+version_info('EYE v16.1209.1357 beta josd').
 
 
 license_info('MIT License
@@ -187,6 +187,7 @@ eye
 	--strings			output log:outputString objects on stdout
 	--tactic existing-path		Euler path using homomorphism
 	--tactic limited-answer <count>	give only a limited number of answers
+	--tactic limited-brake <count>	take only a limited number of brakes
 	--tactic limited-step <count>	take only a limited number of steps
 	--tactic linear-select		select each rule only once
 	--traditional			traditional mode
@@ -711,10 +712,22 @@ opts(['--ances'|Argus], Args) :-
 	flush_output(user_error),
 	opts(Argus, Args).
 % DEPRECATED
-opts(['--brake', _|Argus], Args) :-
+opts(['--brake', Lim|Argus], Args) :-
 	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--brake']),
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--brake', '--tactic limited-brake']),
 	flush_output(user_error),
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** brake ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	retractall(flag('limited-brake', _)),
+	assertz(flag('limited-brake', Limit)),
 	opts(Argus, Args).
 opts(['--curl-http-header', Field|Argus], Args) :-
 	!,
@@ -986,6 +999,21 @@ opts(['--tactic', 'limited-answer', Lim|Argus], Args) :-
 	),
 	retractall(flag('limited-answer', _)),
 	assertz(flag('limited-answer', Limit)),
+	opts(Argus, Args).
+opts(['--tactic', 'limited-brake', Lim|Argus], Args) :-
+	!,
+	(	number(Lim)
+	->	Limit = Lim
+	;	catch(atom_number(Lim, Limit), Exc,
+			(	format(user_error, '** ERROR ** limited-brake ** ~w~n', [Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	),
+	retractall(flag('limited-brake', _)),
+	assertz(flag('limited-brake', Limit)),
 	opts(Argus, Args).
 opts(['--tactic', 'limited-step', Lim|Argus], Args) :-
 	!,
@@ -3302,6 +3330,16 @@ indentation(C) :-
 
 eam(Span) :-
 	(	cnt(tr),
+		(	flag('limited-brake', BrakeLim),
+			nb_getval(tr, TR),
+			TR >= BrakeLim
+		->	(	flag(strings)
+			->	true
+			;	w3
+			),
+			throw(halt)
+		;	true
+		),
 		(	flag(debug)
 		->	format(user_error, 'eam/1 entering span ~w~n', [Span]),
 			flush_output(user_error)
