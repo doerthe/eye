@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1209.1357 beta josd').
+version_info('EYE v16.1209.1430 beta josd').
 
 
 license_info('MIT License
@@ -543,7 +543,7 @@ gre(Argus) :-
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
 		tmp_file(Tmp),
-		assertz(flag('tmp-file', Tmp)),		% DEPRECATED
+		assertz(flag('tmp-file', Tmp)),	% DEPRECATED
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
 		(	atomic_list_concat([Fi, Fo], ',', Fa)
@@ -726,8 +726,8 @@ opts(['--brake', Lim|Argus], Args) :-
 			)
 		)
 	),
-	retractall(flag('limited-brake', _)),
-	assertz(flag('limited-brake', Limit)),
+	retractall(flag(brake, _)),
+	assertz(flag(brake, Limit)),
 	opts(Argus, Args).
 opts(['--curl-http-header', Field|Argus], Args) :-
 	!,
@@ -962,8 +962,8 @@ opts(['--step', Lim|Argus], Args) :-
 			)
 		)
 	),
-	retractall(flag('limited-step', _)),
-	assertz(flag('limited-step', Limit)),
+	retractall(flag(step, _)),
+	assertz(flag(step, Limit)),
 	opts(Argus, Args).
 opts(['--streaming-reasoning'|Argus], Args) :-
 	!,
@@ -3330,14 +3330,19 @@ indentation(C) :-
 
 eam(Span) :-
 	(	cnt(tr),
-		(	flag('limited-brake', BrakeLim),
+		(	(	flag(brake, BrakeLim)	% DEPRECATED
+			;	flag('limited-brake', BrakeLim)
+			),
 			nb_getval(tr, TR),
 			TR >= BrakeLim
 		->	(	flag(strings)
 			->	true
 			;	w3
 			),
-			throw(halt)
+			(	flag(brake, _)	% DEPRECATED
+			->	throw(maximimum_brake_count(TR))
+			;	throw(halt)
+			)
 		;	true
 		),
 		(	flag(debug)
@@ -3389,14 +3394,19 @@ eam(Span) :-
 		;	true
 		),
 		cnt(tp),
-		(	flag('limited-step', StepLim),
+		(	(	flag(step, StepLim)	% DEPRECATED
+			;	flag('limited-step', StepLim)
+			),
 			nb_getval(tp, Step),
 			Step > StepLim
 		->	(	flag(strings)
 			->	true
 			;	w3
 			),
-			throw(halt)
+			(	flag(step, _)	% DEPRECATED
+			->	throw(maximimum_step_count(Step))
+			;	throw(halt)
+			)
 		;	true
 		),
 		djitin(Conc, Concdt),
