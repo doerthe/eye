@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE v16.1208.2221 beta josd').
+version_info('EYE v16.1209.1002 beta josd').
 
 
 license_info('MIT License
@@ -189,7 +189,6 @@ eye
 	--tactic limited-answer <count>	give only a limited number of answers
 	--tactic limited-step <count>	take only a limited number of steps
 	--tactic linear-select		select each rule only once
-	--tactic single-answer		give only one answer
 	--traditional			traditional mode
 	--version			show version info
 	--warn				output warning info on stderr
@@ -913,9 +912,9 @@ opts(['--quick-possible'|Argus], Args) :-
 % DEPRECATED
 opts(['--quick-answer'|Argus], Args) :-
 	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic single-answer']),
-	retractall(flag(tactic, 'single-answer')),
-	assertz(flag(tactic, 'single-answer')),
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic limited-answer 1']),
+	retractall(flag('limited-answer', _)),
+	assertz(flag('limited-answer', 1)),
 	opts(Argus, Args).
 opts(['--rule-histogram'|Argus], Args) :-
 	!,
@@ -925,10 +924,10 @@ opts(['--rule-histogram'|Argus], Args) :-
 % DEPRECATED
 opts(['--single-answer'|Argus], Args) :-
 	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic single-answer']),
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic limited-answer 1']),
 	flush_output(user_error),
-	retractall(flag(tactic, 'single-answer')),
-	assertz(flag(tactic, 'single-answer')),
+	retractall(flag('limited-answer', _)),
+	assertz(flag('limited-answer', 1)),
 	opts(Argus, Args).
 opts(['--statistics'|Argus], Args) :-
 	!,
@@ -1008,10 +1007,13 @@ opts(['--tactic', 'linear-select'|Argus], Args) :-
 	retractall(flag(tactic, 'linear-select')),
 	assertz(flag(tactic, 'linear-select')),
 	opts(Argus, Args).
+% DEPRECATED
 opts(['--tactic', 'single-answer'|Argus], Args) :-
 	!,
-	retractall(flag(tactic, 'single-answer')),
-	assertz(flag(tactic, 'single-answer')),
+	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--tactic single-answer', '--tactic limited-answer 1']),
+	flush_output(user_error),
+	retractall(flag('limited-answer', _)),
+	assertz(flag('limited-answer', 1)),
 	opts(Argus, Args).
 opts(['--tactic', Tactic|_], _) :-
 	!,
@@ -1158,7 +1160,7 @@ args([]) :-
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
+		\+flag('limited-answer', _),
 		(	flag('no-distinct-input')
 		->	flag('no-distinct-output')
 		;	true
@@ -1883,7 +1885,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	\+flag(tactic, 'single-answer'),
+	(	\+flag('limited-answer', _),
 		flag(nope),
 		(	flag('no-distinct-output')
 		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
@@ -1898,7 +1900,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) :-
 	!,
 	(	flag(nope),
-		\+flag(tactic, 'single-answer'),
+		\+flag('limited-answer', _),
 		flag('no-distinct-output')
 	->	write(query(X, X)),
 		writeln('.')
@@ -1919,7 +1921,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	\+flag(tactic, 'single-answer'),
+	(	\+flag('limited-answer', _),
 		flag(nope)
 	->	write(query(X, V)),
 		writeln('.')
@@ -1930,7 +1932,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	tr_n3p(Z, Src, query).
 tr_n3p([X|Z], Src, query) :-
 	!,
-	(	\+flag(tactic, 'single-answer'),
+	(	\+flag('limited-answer', _),
 		flag(nope),
 		(	flag('no-distinct-output')
 		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
@@ -3295,7 +3297,7 @@ indentation(C) :-
 %  1/ Select rule P => C
 %  2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
 %  3/ If P & NOT(C) assert C (forward chaining) and remove brake
-%  4/ If C = answer(A) and tactic single-answer stop, else backtrack to 2/
+%  4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/
 %  5/ If brake or tactic linear-select stop, else start again at 1/
 
 eam(Span) :-
@@ -3351,7 +3353,7 @@ eam(Span) :-
 		cnt(tp),
 		(	flag('limited-step', StepLim),
 			nb_getval(tp, Step),
-			Step >= StepLim
+			Step > StepLim
 		->	(	flag(strings)
 			->	true
 			;	w3
@@ -3425,21 +3427,14 @@ eam(Span) :-
 		;	true
 		),
 		nb_getval(answer_count, AnswerCount),
-		(	flag(tactic, 'single-answer'),
-			AnswerCount >= 1
+		(	flag('limited-answer', AnswerLimit),
+			AnswerCount >= AnswerLimit
 		->	(	flag(strings)
 			->	true
 			;	w3
-			)
-		;	(	flag('limited-answer', AnswerLimit),
-				AnswerCount >= AnswerLimit
-			->	(	flag(strings)
-				->	true
-				;	w3
-			)
-			;	retract(brake),
-				fail
-			)
+		)
+		;	retract(brake),
+			fail
 		)
 	;	(	brake
 		;	flag(tactic, 'linear-select')
