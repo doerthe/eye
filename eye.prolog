@@ -124,12 +124,12 @@
 
 % Infos
 
-version_info('EYE v16.1209.1430 beta josd').
+version_info('EYE v16.1215.1331 beta josd').
 
 
 license_info('MIT License
 
-Copyright (c) 2016 Jos De Roo
+Copyright (c) 2009 Jos De Roo
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
