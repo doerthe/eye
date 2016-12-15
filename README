@@ -43,8 +43,8 @@ Implicit Quantification in N3 [13]
   A N3 resource contains implications of the form Ci => Cj or Cj <= Ci with
   Ci and Cj conjunctions and a conjunction of the remaining statements C0.
   In ETC [5] the scope of implicit universals is the implication and
-  the scope of implicit existentials is the conjunction. The scope of
-  implicit universals in C0 is the top level statement in which they occur.
+  the scope of implicit existentials is the conjunction.
+  The scope of implicit universals in C0 is C0.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
