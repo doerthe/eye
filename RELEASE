@@ -1,6 +1,6 @@
                                   EYE release
 
-[v16.1215.1331] the scope of implicit universals in C0 is the top level statement in which they occur
+[v16.1215.2050] the scope of implicit universals in C0 is C0
 [v16.1209.1430] deprecating --brake and --step options and using tactics instead
 [v16.1209.1357] adding --tactic limited-brake <count> to take only a limited number of brakes
 [v16.1209.1002] using --tactic limited-answer 1 instead of --tactic single-answer
