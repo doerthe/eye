@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE rel. v16.1220.1724 josd').
+version_info('EYE rel. v16.1220.2028 josd').
 
 
 license_info('MIT License
@@ -3364,7 +3364,12 @@ eam(Span) :-
 			flush_output(user_error)
 		;	true
 		),
-		call_residue_vars(Prem, Res),
+		catch(call_residue_vars(Prem, Res), Exc,
+			(	Exc =  error(existence_error(procedure, _), _)
+			->	fail
+			;	throw(Exc)
+			)
+		),
 		(	Res = []
 		->	true
 		;	(	flag(debug)
@@ -4572,7 +4577,7 @@ djitis(A) :-
 '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y) :-
 	implies(X, Z, _),
 	(	commonvars(X, Z, [])
-	->	labelvars(Z, 0, _)
+	->	labelvars(Z, 0, _, avar)
 	;	true
 	),
 	Y = Z,
