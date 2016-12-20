@@ -1,5 +1,6 @@
                                   EYE release
 
+[v16.1220.1721] correcting the output of existentials in derived rules
 [v16.1219.2244] dropping beta status
 [v16.1215.2050] the scope of implicit universals in C0 is C0
 [v16.1209.1430] deprecating --brake and --step options and using tactics instead
