@@ -1,11 +1,11 @@
-% --------------------------------------------------
-% Euler Yet another proof Engine - EYE -- Jos De Roo
-% --------------------------------------------------
+%   --------------------------------------------------
+%   Euler Yet another proof Engine - EYE -- Jos De Roo
+%   --------------------------------------------------
 
-% See https://github.com/josd/eye
+%   See https://github.com/josd/eye
 
 
-% Directives
+%   Directives
 
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
@@ -43,7 +43,7 @@
 :- endif.
 
 
-:- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
+:- dynamic(answer/7).		%   answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
 :- dynamic(argi/1).
 :- dynamic(backward/0).
 :- dynamic(base_uri/1).
@@ -55,7 +55,7 @@
 :- dynamic(cpred/1).
 :- dynamic(evar/2).
 :- dynamic(evar/3).
-:- dynamic(exopred/3).		% exopred(Predicate, Subject, Object)
+:- dynamic(exopred/3).		%   exopred(Predicate, Subject, Object)
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
@@ -70,19 +70,19 @@
 :- dynamic(got_wi/5).
 :- dynamic(graph/2).
 :- dynamic(hash_value/2).
-:- dynamic(implies/3).		% implies(Premise, Conclusion, Source)
+:- dynamic(implies/3).		%   implies(Premise, Conclusion, Source)
 :- dynamic(input_statements/1).
 :- dynamic(intern/1).
 :- dynamic(keep_skolem/1).
 :- dynamic(keywords/1).
-:- dynamic(lemma/6).		% lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
+:- dynamic(lemma/6).		%   lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(ns/2).
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
 :- dynamic(preda/1).
-:- dynamic(prfstep/8).		% prfstep(Conclusion_triple, Conclusion_triple_index, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
+:- dynamic(prfstep/8).		%   prfstep(Conclusion_triple, Conclusion_triple_index, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
 :- dynamic(qevar/3).
 :- dynamic(query/2).
 :- dynamic(quvar/3).
@@ -122,9 +122,9 @@
 :- dynamic('<http://www.w3.org/2002/07/owl#sameAs>'/2).
 
 
-% Infos
+%   Infos
 
-version_info('EYE rel. v16.1220.2028 josd').
+version_info('EYE rel. v16.1221.2306 josd').
 
 
 license_info('MIT License
@@ -205,7 +205,7 @@ eye
 	--query <n3-query>		output filtered with filter rules').
 
 
-% Main goal
+%   Main goal
 
 main :-
 	current_prolog_flag(argv, Argv),
@@ -359,7 +359,7 @@ argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
 	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
-		      '--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
+		      '--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	%   DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -368,9 +368,9 @@ argv([Arg|Argvs], [Arg|Argus]) :-
 
 
 
-% ------------------------------
-% GRE (Generic Reasoning Engine)
-% ------------------------------
+%   ---------------------------------------------------------------
+%   GRE (Generic Reasoning Engine) supporting Explainable Reasoning
+%   ---------------------------------------------------------------
 
 gre(Argus) :-
 	statistics(runtime, [T0, _]),
@@ -543,7 +543,7 @@ gre(Argus) :-
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
 		tmp_file(Tmp),
-		assertz(flag('tmp-file', Tmp)),	% DEPRECATED
+		assertz(flag('tmp-file', Tmp)),	%   DEPRECATED
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
 		(	atomic_list_concat([Fi, Fo], ',', Fa)
@@ -701,17 +701,17 @@ gre(Argus) :-
 	).
 
 
-% command line options
+%   command line options
 
 opts([], []) :-
 	!.
-% DEPRECATED
+%   DEPRECATED
 opts(['--ances'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--ances']),
 	flush_output(user_error),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--brake', Lim|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--brake', '--tactic limited-brake']),
@@ -781,7 +781,7 @@ opts(['--image', File|Argus], Args) :-
 	retractall(flag(image, _)),
 	assertz(flag(image, File)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--kgb'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--kgb']),
@@ -803,7 +803,7 @@ opts(['--n3p'|Argus], Args) :-
 	retractall(flag(n3p)),
 	assertz(flag(n3p)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--no-blank'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-blank']),
@@ -811,13 +811,13 @@ opts(['--no-blank'|Argus], Args) :-
 	retractall(flag('no-blank')),
 	assertz(flag('no-blank')),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--no-branch'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-branch']),
 	flush_output(user_error),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--no-distinct'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--no-distinct', 'no-distinct-output']),
@@ -859,7 +859,7 @@ opts(['--no-skolem', Prefix|Argus], Args) :-
 	!,
 	assertz(flag('no-skolem', Prefix)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--no-span'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-span']),
@@ -887,7 +887,7 @@ opts(['--pass-turtle'|Argus], Args) :-
 	retractall(flag('pass-turtle')),
 	assertz(flag('pass-turtle')),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--pcl'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--pcl', '--n3p']),
@@ -904,25 +904,25 @@ opts(['--profile'|Argus], Args) :-
 	retractall(flag(profile)),
 	assertz(flag(profile)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--quiet'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quiet']),
 	flush_output(user_error),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--quick-false'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-false']),
 	flush_output(user_error),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--quick-possible'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-possible']),
 	flush_output(user_error),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--quick-answer'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic limited-answer 1']),
@@ -934,7 +934,7 @@ opts(['--rule-histogram'|Argus], Args) :-
 	retractall(flag('rule-histogram')),
 	assertz(flag('rule-histogram')),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--single-answer'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic limited-answer 1']),
@@ -947,7 +947,7 @@ opts(['--statistics'|Argus], Args) :-
 	retractall(flag(statistics)),
 	assertz(flag(statistics)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--step', Lim|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--step', '--tactic limited-step']),
@@ -1035,7 +1035,7 @@ opts(['--tactic', 'linear-select'|Argus], Args) :-
 	retractall(flag(tactic, 'linear-select')),
 	assertz(flag(tactic, 'linear-select')),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--tactic', 'single-answer'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--tactic single-answer', '--tactic limited-answer 1']),
@@ -1046,14 +1046,14 @@ opts(['--tactic', 'single-answer'|Argus], Args) :-
 opts(['--tactic', Tactic|_], _) :-
 	!,
 	throw(not_supported_tactic(Tactic)).
-% DEPRECATED
+%   DEPRECATED
 opts(['--think'|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--think']),
 	retractall(flag(think)),
 	assertz(flag(think)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--tmp-file', File|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--tmp-file']),
@@ -1080,13 +1080,13 @@ opts(['--wcache', Argument, File|Argus], Args) :-
 	retractall(wcache(Arg, _)),
 	assertz(wcache(Arg, File)),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--wget-path', _|Argus], Args) :-
 	!,
 	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--wget-path']),
 	flush_output(user_error),
 	opts(Argus, Args).
-% DEPRECATED
+%   DEPRECATED
 opts(['--yabc', File|Argus], Args) :-
 	!,
 	retractall(flag(image, _)),
@@ -1094,7 +1094,7 @@ opts(['--yabc', File|Argus], Args) :-
 	opts(Argus, Args).
 opts([Arg|_], _) :-
 	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
-	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
+	\+memberchk(Arg, ['--tquery', '--trules']),	%   DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
 	throw(not_supported_option(Arg)).
@@ -1233,7 +1233,7 @@ args(['--plugin', Argument|Args]) :-
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
+		->	(	flag('tmp-file', File)	%   DEPRECATED
 			->	true
 			;	tmp_file(File),
 				assertz(tmpfile(File))
@@ -1315,13 +1315,13 @@ args(['--query', Arg|Args]) :-
 	!,
 	n3_n3p(Arg, query),
 	args(Args).
-% DEPRECATED
+%   DEPRECATED
 args(['--tquery', Arg|Args]) :-
 	!,
 	assertz(flag(tquery)),
 	n3_n3p(Arg, tquery),
 	args(Args).
-% DEPRECATED
+%   DEPRECATED
 args(['--trules', Arg|Args]) :-
 	!,
 	absolute_uri(Arg, A),
@@ -1345,7 +1345,7 @@ args(['--turtle', Argument|Args]) :-
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
+		->	(	flag('tmp-file', File)	%   DEPRECATED
 			->	true
 			;	tmp_file(File),
 				assertz(tmpfile(File))
@@ -1598,11 +1598,11 @@ n3pin(Rt, In, File) :-
 	).
 
 
-% N3 to N3P compiler
+%   N3 to N3P compiler
 
 n3_n3p(Argument, Mode) :-
 	absolute_uri(Argument, Arg),
-	(	flag('tmp-file', Tmp)	% DEPRECATED
+	(	flag('tmp-file', Tmp)	%   DEPRECATED
 	->	true
 	;	tmp_file(Tmp)
 	),
@@ -1620,7 +1620,7 @@ n3_n3p(Argument, Mode) :-
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
 		->	File = Tmp,
-			(	flag('tmp-file', _)	% DEPRECATED
+			(	flag('tmp-file', _)	%   DEPRECATED
 			->	true
 			;	assertz(tmpfile(File))
 			),
@@ -1878,7 +1878,7 @@ n3_n3p(Argument, Mode) :-
 
 tr_n3p([], _, _) :-
 	!.
-% DEPRECATED
+%   DEPRECATED
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, trules) :-
 	!,
 	(	clast(X, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>\''(_, T))
@@ -1891,7 +1891,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, trules
 	write(implies(N, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>\''([Y|M], T), Src)),
 	writeln('.'),
 	tr_n3p(Z, Src, trules).
-% DEPRECATED
+%   DEPRECATED
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery) :-
 	!,
 	clist(U, X),
@@ -2060,7 +2060,1516 @@ tr_split([A|B], [A|C], D) :-
 	tr_split(B, C, D).
 
 
-% Reasoning output
+%   N3 parser
+
+%   according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
+%   inspired by http://code.google.com/p/km-rdf/wiki/Henry
+
+barename(BareName, [name(BareName)|L2], L2).
+
+
+barename_csl([BareName|Tail], L1, L3) :-
+	barename(BareName, L1, L2),
+	!,
+	barename_csl_tail(Tail, L2, L3).
+barename_csl([], L1, L1).
+
+
+barename_csl_tail([BareName|Tail], [','|L2], L4) :-
+	!,
+	barename(BareName, L2, L3),
+	barename_csl_tail(Tail, L3, L4).
+barename_csl_tail([], L1, L1).
+
+
+%   DEPRECATED
+boolean(true, [atname('true')|L2], L2) :-
+	!.
+boolean(true, [name('true')|L2], L2) :-
+	!.
+%   DEPRECATED
+boolean(false, [atname('false')|L2], L2) :-
+	!.
+boolean(false, [name('false')|L2], L2) :-
+	!.
+boolean(Boolean, L1, L2) :-
+	literal(Atom, type(T), L1, L2),
+	T = '\'<http://www.w3.org/2001/XMLSchema#boolean>\'',
+	memberchk([Boolean, Atom], [[true, '\'true\''], [true, true], [true, '\'1\''], [false, '\'false\''], [false, false], [false, '\'0\'']]).
+
+
+%   DEPRECATED
+declaration([atname(base)|L2], L3) :-
+	!,
+	explicituri(U, L2, L3),
+	base_uri(V),
+	resolve_uri(U, V, URI),
+	retractall(base_uri(_)),
+	assertz(base_uri(URI)).
+declaration([name(Name)|L2], L4) :-
+	downcase_atom(Name, 'base'),
+	!,
+	explicituri(U, L2, L3),
+	base_uri(V),
+	resolve_uri(U, V, URI),
+	retractall(base_uri(_)),
+	assertz(base_uri(URI)),
+	withoutdot(L3, L4).
+%   DEPRECATED
+declaration([atname(keywords)|L2], L3) :-
+	!,
+	barename_csl(List, L2, L3),
+	retractall(keywords(_)),
+	assertz(keywords(List)).
+%   DEPRECATED
+declaration([atname(prefix)|L2], L4) :-
+	!,
+	prefix(Prefix, L2, L3),
+	explicituri(U, L3, L4),
+	base_uri(V),
+	resolve_uri(U, V, URI),
+	retractall(ns(Prefix, _)),
+	assertz(ns(Prefix, URI)),
+	put_pfx(Prefix, URI).
+declaration([name(Name)|L2], L5) :-
+	downcase_atom(Name, 'prefix'),
+	prefix(Prefix, L2, L3),
+	explicituri(U, L3, L4),
+	base_uri(V),
+	resolve_uri(U, V, URI),
+	retractall(ns(Prefix, _)),
+	assertz(ns(Prefix, URI)),
+	put_pfx(Prefix, URI),
+	withoutdot(L4, L5).
+
+
+document(Triples, L1, L2) :-
+	statements_optional(Triples, L1, L2).
+
+
+dtlang(lang(Langcode), [atname(Name)|L2], L2) :-
+	!,
+	atomic_list_concat(['\'', Name, '\''], Langcode).
+dtlang(type(Datatype), [caretcaret|L2], L3) :-
+	!,
+	uri(Datatype, L2, L3).
+dtlang(type('\'<http://www.w3.org/2001/XMLSchema#string>\''), L1, L1).
+
+
+%   DEPRECATED
+existential([atname(forSome)|L2], L3) :-
+	!,
+	symbol_csl(Symbols, L2, L3),
+	nb_getval(fdepth, D),
+	forall(
+		(	member(S, Symbols)
+		),
+		(	(	\+qevar(S, _, D)
+			->	gensym('qe_', Q),
+				asserta(qevar(S, Q, D))
+			;	true
+			)
+		)
+	).
+
+
+explicituri(ExplicitURI, [relative_uri(ExplicitURI)|L2], L2).
+
+
+expression(Node, T, L1, L3) :-
+	pathitem(N1, T1, L1, L2),
+	pathtail(N1, P, N2, T2, L2, L3),
+	append(T1, T2, T3),
+	(	P = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#disjunction>\''
+	->	(	distinct(N1, Distinct)
+		->	true
+		;	Distinct = N1
+		),
+		dlist(Distinct, Node),
+		T = []
+	;	Node = N2,
+		T = T3
+	),
+	(	keywords(List),
+		memberchk(Node, List)
+	->	nb_getval(line_number, Ln),
+		throw(invalid_keyword_use(Node, after_line(Ln)))
+	;	true
+	).
+
+
+formulacontent(Formula, L1, L2) :-
+	statementlist(List, L1, L2),
+	(	nb_getval(fdepth, 1),
+		retract(forward),
+		retract(backward)
+	->	L = List
+	;	distinct(List, L)
+	),
+	clist(L, Formula).
+
+
+literal(Atom, DtLang, L1, L3) :-
+	string(Codes, L1, L2),
+	dtlang(DtLang, L2, L3),
+	escape_string(Codes, B),
+	escape_string(B, C),
+	atom_codes(A, C),
+	(	sub_atom(A, _, 1, _, '\'')
+	->	escape_squote(C, D),
+		atom_codes(E, D)
+	;	E = A
+	),
+	atomic_list_concat(['\'', E, '\''], Atom).
+
+
+numericliteral(Number, [numeric(Type, NumB)|L2], L2) :-
+	numeral(NumB, NumC),
+	(	flag(strict),
+		Type = decimal
+	->	rdiv_codes(Number, NumC)
+	;	number_codes(Number, NumC)
+	).
+
+
+object(Node, Triples, L1, L2) :-
+	expression(Node, Triples, L1, L2).
+
+
+objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
+	!,
+	object(Object, Triples, L2, L3),
+	objecttail(Subject, Verb, Tail, L3, L4),
+	append(Triples, Tail, T),
+	(	Verb = isof(V)
+	->	(	atom(V),
+			\+sub_atom(V, 0, 1, _, '_')
+		->	Triple =.. [V, Object, Subject]
+		;	Triple = exopred(V, Object, Subject)
+		)
+	;	(	atom(Verb),
+			\+sub_atom(Verb, 0, 1, _, '_')
+		->	Triple =.. [Verb, Subject, Object]
+		;	Triple = exopred(Verb, Subject, Object)
+		)
+	).
+objecttail(_, _, [], L1, L1).
+
+
+pathitem([], [], L1, L2) :-
+	symbol(S, L1, L2),
+	S = '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>\'',
+	!.
+pathitem(Name, [], L1, L2) :-
+	symbol(S, L1, L2),
+	!,
+	(	qevar(S, N, D)
+	->	(	D >= 1,
+			nb_getval(fdepth, FD),
+			FD >= D,
+			\+flag('pass-all-ground')
+		->	atom_concat('_', N, Name),
+			nb_setval(smod, false)
+		;	nb_getval(var_ns, Vns),
+			atomic_list_concat(['\'<', Vns, N, '>\''], Name)
+		)
+	;	(	quvar(S, N, D)
+		->	(	(	D = 1,
+					nb_getval(fdepth, FD),
+					FD >= 1
+				;	flag('pass-all-ground')
+				)
+			->	nb_getval(var_ns, Vns),
+				atomic_list_concat(['\'<', Vns, N, '>\''], Name)
+			;	atom_concat('_', N, Name),
+				nb_setval(smod, false)
+			)
+		;	(	atom(S),
+				atom_concat('\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#', A, S),
+				atom_concat(B, '>\'', A)
+			->	(	B = conjunction
+				->	Pred = '\',\''
+				;	(	B = disjunction
+					->	Pred = '\';\''
+					;	(	prolog_sym(B, Pred, _)
+						->	true
+						;	nb_getval(line_number, Ln),
+							throw(invalid_prolog_builtin(B, after_line(Ln)))
+						)
+					)
+				),
+				Name = prolog:Pred
+			;	Name = S
+			)
+		)
+	),
+	(	quvar(S, _, _)
+	->	nb_setval(smod, false)
+	;	true
+	).
+pathitem(VarID, [], [uvar(Var)|L2], L2) :-
+	!,
+	atom_codes(Var, VarCodes),
+	subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], VarCodes, VarTidy),
+	atom_codes(VarAtom, [0'_|VarTidy]),
+	(	flag('pass-all-ground')
+	->	nb_getval(var_ns, Vns),
+		atom_codes(VarFrag, VarTidy),
+		atomic_list_concat(['\'<', Vns, VarFrag, '>\''], VarID)
+	;	VarID = VarAtom
+	),
+	nb_setval(smod, false).
+pathitem(Number, [], L1, L2) :-
+	numericliteral(Number, L1, L2),
+	!.
+pathitem(Boolean, [], L1, L2) :-
+	boolean(Boolean, L1, L2),
+	!.
+pathitem(Atom, [], L1, L2) :-
+	literal(A, type(T), L1, L2),
+	T = '\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>\'',
+	!,
+	atom_codes(A, B),
+	escape_string(C, B),
+	atom_codes(Atom, C).
+pathitem(Number, [], L1, L2) :-
+	literal(Atom, type(Type), L1, L2),
+	memberchk(Type, ['\'<http://www.w3.org/2001/XMLSchema#integer>\'', '\'<http://www.w3.org/2001/XMLSchema#decimal>\'', '\'<http://www.w3.org/2001/XMLSchema#double>\'']),
+	sub_atom(Atom, 1, _, 1, A),
+	atom_codes(A, NumB),
+	numeral(NumB, NumC),
+	(	flag(strict),
+		Type = '\'<http://www.w3.org/2001/XMLSchema#decimal>\''
+	->	rdiv_codes(Number, NumC)
+	;	number_codes(Number, NumC)
+	),
+	!.
+pathitem(literal(Atom, DtLang), [], L1, L2) :-
+	literal(Atom, DtLang, L1, L2),
+	!.
+pathitem(BNode, Triples, ['['|L2], L4) :-
+	!,
+	gensym('bn_', S),
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
+	->	nb_getval(var_ns, Vns),
+		atomic_list_concat(['\'<', Vns, S, '>\''], BN)
+	;	atom_concat('_', S, BN),
+		nb_setval(smod, false)
+	),
+	propertylist(BN, T, L2, [']'|L4]),
+	(	memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), T),
+		memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), T),
+		del(T, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\''(X, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>\''), U),
+		del(U, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), V),
+		del(V, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), W)
+	->	BNode = [Head|Tail],
+		Triples = W
+	;	BNode = BN,
+		Triples = T
+	).
+pathitem(set(Distinct), Triples, ['(', '$'|L2], L4) :-
+	!,
+	pathlist(List, Triples, L2, ['$', ')'|L4]),
+	(	nb_getval(smod, true)
+	->	sort(List, Distinct)
+	;	distinct(List, Distinct)
+	).
+pathitem(List, Triples, ['('|L2], L4) :-
+	!,
+	pathlist(List, Triples, L2, [')'|L4]).
+pathitem(Node, [] , ['{'|L2], L4):-
+	nb_getval(fdepth, I),
+	J is I+1,
+	nb_setval(fdepth, J),
+	nb_setval(smod, true),
+	formulacontent(Node, L2, ['}'|L4]),
+	retractall(quvar(_, _, J)),
+	retractall(qevar(_, _, J)),
+	retractall(evar(_, _, J)),
+	nb_setval(fdepth, I),
+	nb_setval(smod, false).
+
+
+pathlist([Node|Rest], Triples, L1, L3) :-
+	expression(Node, T, L1, L2),
+	!,
+	pathlist(Rest, Tail, L2, L3),
+	append(T, Tail, Triples).
+pathlist([], [], L1, L1).
+
+
+pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
+	!,
+	pathitem(Verb, Triples2, L2, L3),
+	dynamic_verb(Verb),
+	gensym('bn_', S),
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
+	->	nb_getval(var_ns, Vns),
+		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
+	;	atom_concat('_', S, BNode),
+		nb_setval(smod, false)
+	),
+	(	Verb = isof(V)
+	->	(	atom(V),
+			\+sub_atom(V, 0, 1, _, '_')
+		->	Triple =.. [V, BNode, Node]
+		;	Triple = exopred(V, BNode, Node)
+		)
+	;	(	Verb = prolog:Pred
+		->	(	BNode = true
+			->	Triple =.. [Pred|Node]
+			;	(	BNode = false
+				->	T =.. [Pred|Node],
+					Triple = \+(T)
+				;	(	prolog_sym(_, Pred, func)
+					->	T =.. [Pred|Node],
+						Triple = is(BNode, T)
+					;	Triple =.. [Pred, Node, BNode]
+					)
+				)
+			)
+		;	(	atom(Verb),
+				\+sub_atom(Verb, 0, 1, _, '_')
+			->	Triple =.. [Verb, Node, BNode]
+			;	Triple = exopred(Verb, Node, BNode)
+			)
+		)
+	),
+	pathtail(BNode, _, PNode, Tail, L3, L4),
+	append(Triples2, Tail, Triples).
+pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
+	!,
+	pathitem(Verb, Triples2, L2, L3),
+	dynamic_verb(Verb),
+	gensym('bn_', S),
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
+	->	nb_getval(var_ns, Vns),
+		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
+	;	atom_concat('_', S, BNode),
+		nb_setval(smod, false)
+	),
+	(	Verb = isof(V)
+	->	(	atom(V),
+			\+sub_atom(V, 0, 1, _, '_')
+		->	Triple =.. [V, Node, BNode]
+		;	Triple = exopred(V, Node, BNode)
+		)
+	;	(	Verb = prolog:Pred
+		->	(	Node = true
+			->	Triple =.. [Pred|BNode]
+			;	(	Node = false
+				->	T =.. [Pred|BNode],
+					Triple = \+(T)
+				;	(	prolog_sym(_, Pred, func)
+					->	T =.. [Pred|BNode],
+						Triple = is(Node, T)
+					;	Triple =.. [Pred, BNode, Node]
+					)
+				)
+			)
+		;	(	atom(Verb),
+				\+sub_atom(Verb, 0, 1, _, '_')
+			->	Triple =.. [Verb, BNode, Node]
+			;	Triple = exopred(Verb, BNode, Node)
+			)
+		)
+	),
+	pathtail(BNode, _, PNode, Tail, L3, L4),
+	append(Triples2, Tail, Triples).
+pathtail(Node, void, Node, [], L1, L1).
+
+
+prefix(Prefix, [Prefix:''|L2], L2).
+
+
+propertylist(Subject, [Triple|Triples], L1, L5) :-
+	verb(Verb, Triples1, L1, L2),
+	dynamic_verb(Verb),
+	!,
+	object(Object, Triples2, L2, L3),
+	objecttail(Subject, Verb, Triples3, L3, L4),
+	propertylisttail(Subject, Triples4, L4, L5),
+	append(Triples1, Triples2, Triples12),
+	append(Triples12, Triples3, Triples123),
+	append(Triples123, Triples4, Triples),
+	(	Verb = isof(V)
+	->	(	atom(V),
+			\+sub_atom(V, 0, 1, _, '_')
+		->	Triple =.. [V, Object, Subject]
+		;	Triple = exopred(V, Object, Subject)
+		)
+	;	(	Verb = prolog:Pred
+		->	(	Object = true
+			->	Triple =.. [Pred|Subject]
+			;	(	Object = false
+				->	T =.. [Pred|Subject],
+					Triple = \+(T)
+				;	(	prolog_sym(_, Pred, func)
+					->	T =.. [Pred|Subject],
+						Triple = is(Object, T)
+					;	Triple =.. [Pred, Subject, Object]
+					)
+				)
+			)
+		;	(	atom(Verb),
+				\+sub_atom(Verb, 0, 1, _, '_')
+			->	Triple =.. [Verb, Subject, Object]
+			;	Triple = exopred(Verb, Subject, Object)
+			)
+		)
+	).
+propertylist(_, [], L1, L1).
+
+
+propertylisttail(Subject, Triples, [';'|L2], L4) :-
+	!,
+	propertylisttailsemis(L2, L3),
+	propertylist(Subject, Triples, L3, L4).
+propertylisttail(_, [], L1, L1).
+
+
+propertylisttailsemis([';'|L2], L3) :-
+	!,
+	propertylisttailsemis(L2, L3).
+propertylisttailsemis(L1, L1).
+
+
+qname(URI, [NS:Name|L2], L2) :-
+	(	ns(NS, Base)
+	->	atomic_list_concat([Base, Name], Name1),
+		(	sub_atom(Name1, _, 1, _, '\'')
+		->	atom_codes(Name1, Codes1),
+			escape_squote(Codes1, Codes2),
+			atom_codes(Name2, Codes2)
+		;	Name2 = Name1
+		),
+		atomic_list_concat(['\'<', Name2, '>\''], URI)
+	;	nb_getval(line_number, Ln),
+		throw(no_prefix_directive(NS, after_line(Ln)))
+	),
+	!.
+
+
+simpleStatement(Triples, L1, L3) :-
+	subject(Subject, Triples1, L1, L2),
+	(	Subject = (D1;D2)
+	->	Triples = [(D1;D2)]
+	;	propertylist(Subject, Triples2, L2, L3),
+		append(Triples1, Triples2, Triples)
+	).
+
+
+statement([], L1, L2) :-
+	declaration(L1, L2),
+	!.
+statement([], L1, L2) :-
+	universal(L1, L2),
+	!.
+statement([], L1, L2) :-
+	existential(L1, L2),
+	!.
+statement(Statement, L1, L2) :-
+	simpleStatement(Statement, L1, L2).
+
+
+statementlist(Triples, L1, L3) :-
+	statement(Tr, L1, L2),
+	!,
+	statementtail(T, L2, L3),
+	append(Tr, T, Triples).
+statementlist([], L1, L1).
+
+
+statements_optional(Triples, L1, L4) :-
+	statement(Tr, L1, [dot(Ln)|L3]),
+	!,
+	nb_setval(line_number, Ln),
+	statements_optional(T, L3, L4),
+	append(Tr, T, Triples).
+statements_optional([], L1, L1).
+
+
+statementtail(T, [dot(Ln)|L2], L3) :-
+	!,
+	nb_setval(line_number, Ln),
+	statementlist(T, L2, L3).
+statementtail([], L1, L1).
+
+
+string(Codes, [literal(Codes)|L2], L2).
+
+
+subject(Node, Triples, L1, L2) :-
+	expression(Node, Triples, L1, L2).
+
+
+symbol(Name, L1, L2) :-
+	uri(Name, L1, L2),
+	!.
+symbol(Name, [name(N)|L2], L2) :-
+	!,
+	(	keywords(List)
+	->	(	memberchk(N, List)
+		->	Name = N
+		;	ns('', Base),
+			atomic_list_concat(['\'<', Base, N, '>\''], Name)
+		)
+	;	(	memberchk(N, [true, false])
+		->	Name = N
+		;	nb_getval(line_number, Ln),
+			throw(invalid_keyword(N, after_line(Ln)))
+		)
+	).
+symbol(Name, [bnode(Label)|L2], L2) :-
+	nb_getval(fdepth, D),
+	(	D =:= 0
+	->	N = Label
+	;	atom_codes(Label, LabelCodes),
+		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
+		atom_codes(N, LabelTidy)
+	),
+	(	(	\+forward,
+			\+backward
+		->	evar(N, S)
+		;	evar(N, S, 1)
+		)
+	->	true
+	;	atom_concat(N, '_', M),
+		gensym(M, S),
+		(	\+forward,
+			\+backward
+		->	assertz(evar(N, S))
+		;	assertz(evar(N, S, 1))
+		)
+	),
+	(	(	nb_getval(fdepth, 0)
+		;	flag('pass-all-ground')
+		)
+	->	nb_getval(var_ns, Vns),
+		(	flag('pass-all-ground')
+		->	atomic_list_concat(['\'<', Vns, N, '>\''], Name)
+		;	atomic_list_concat(['\'<', Vns, 'e_', S, '>\''], Name)
+		)
+	;	atom_concat('_e_', S, Name),
+		nb_setval(smod, false)
+	).
+
+
+symbol_csl([Symbol|Tail], L1, L3) :-
+	symbol(Symbol, L1, L2),
+	!,
+	symbol_csl_tail(Tail, L2, L3).
+symbol_csl([], L1, L1).
+
+
+symbol_csl_tail([Symbol|T], [','|L2], L4) :-
+	!,
+	symbol(Symbol, L2, L3),
+	symbol_csl_tail(T, L3, L4).
+symbol_csl_tail([], L1, L1).
+
+
+%   DEPRECATED
+universal([atname(forAll)|L2], L3) :-
+	!,
+	symbol_csl(Symbols, L2, L3),
+	nb_getval(fdepth, D),
+	(	\+flag(traditional),
+		D > 0
+	->	throw(not_supported('@forAll', at_formula_depth(D)))
+	;	true
+	),
+	forall(
+		(	member(S, Symbols)
+		),
+		(	(	\+quvar(S, _, D)
+			->	gensym('qu_', Q),
+				asserta(quvar(S, Q, D))
+			;	true
+			)
+		)
+	).
+
+
+uri(Name, L1, L2) :-
+	explicituri(U, L1, L2),
+	!,
+	base_uri(V),
+	resolve_uri(U, V, W),
+	(	sub_atom(W, _, 1, _, '\'')
+	->	atom_codes(W, X),
+		escape_squote(X, Y),
+		atom_codes(Z, Y)
+	;	Z = W
+	),
+	atomic_list_concat(['\'<', Z, '>\''], Name).
+uri(Name, L1, L2) :-
+	qname(Name, L1, L2).
+
+
+verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
+	!,
+	(	nb_getval(fdepth, 0)
+	->	assertz(forward)
+	;	true
+	).
+verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
+	!.
+verb(':-', [], ['<', '='|L2], L2) :-
+	!,
+	(	nb_getval(fdepth, 0)
+	->	assertz(backward)
+	;	true
+	).
+%   DEPRECATED
+verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
+	!.
+verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [name(a)|L2], L2) :-
+	!.
+%   DEPRECATED
+verb(Node, Triples, [atname(has)|L2], L3) :-
+	!,
+	expression(Node, Triples, L2, L3).
+verb(Node, Triples, [name(has)|L2], L3) :-
+	!,
+	expression(Node, Triples, L2, L3).
+%   DEPRECATED
+verb(isof(Node), Triples, [atname(is)|L2], L4) :-
+	!,
+	expression(Node, Triples, L2, [atname(of)|L4]).
+verb(isof(Node), Triples, [name(is)|L2], L4) :-
+	!,
+	expression(Node, Triples, L2, [name(of)|L4]).
+verb(Node, Triples, L1, L2) :-
+	expression(Node, Triples, L1, L2).
+
+
+withoutdot([dot(Ln)|L2], [dot(Ln)|L2]) :-
+	!,
+	throw(unexpected_dot(after_line(Ln))).
+withoutdot(L1, [dot(Ln)|L1]) :-
+	nb_getval(line_number, Ln).
+
+
+%   N3 tokenizer
+
+tokens(In, List) :-
+	get_code(In, C0),
+	(	token(C0, In, C1, Tok1)
+	->	true
+	;	nb_getval(line_number, Ln),
+		char_code(Char, C0),
+		throw(illegal_token(char_code(Char, C0), line(Ln)))
+	),
+	(	Tok1 == end_of_file
+	->	List = []
+	;	List = [Tok1|Tokens],
+		tokens(C1, In, Tokens)
+	).
+
+
+tokens(C0, In, List) :-
+	(	token(C0, In, C1, H)
+	->	true
+	;	nb_getval(line_number, Ln),
+		char_code(Char, C0),
+		throw(illegal_token(char_code(Char, C0), line(Ln)))
+	),
+	(	H == end_of_file
+	->	List = []
+	;	List = [H|T],
+		tokens(C1, In, T)
+	).
+
+
+token(-1, _, -1, end_of_file) :-
+	!.
+token(0'., In, C, Token) :-
+	(	peek_code(In, C0),
+		(	e(C0)
+		->	T1 = [0'0|T2],
+			get_code(In, CN1)
+		;	0'0 =< C0,
+			C0 =< 0'9,
+			get_code(In, C1),
+			integer_codes(C1, In, CN1, T1, T2)
+		)
+	->	(	exponent(CN1, In, C, T2)
+		->	Type = double
+		;	C = CN1,
+			T2 = [],
+			Type = decimal
+		),
+		Token = numeric(Type, [0'0, 0'.|T1])
+	;	nb_getval(line_number, Ln),
+		get_code(In, C),
+		!,
+		Token = dot(Ln)
+	).
+token(0'#, In, C, Token) :-
+	!,
+	get_code(In, C1),
+	skip_line(C1, In, C2),
+	token(C2, In, C, Token).
+token(C0, In, C, Token) :-
+	white_space(C0),
+	!,
+	get_code(In, C1),
+	token(C1, In, C, Token).
+token(C0, In, C, Number) :-
+	0'0 =< C0,
+	C0 =< 0'9,
+	!,
+	number_n(C0, In, C, Number).
+token(0'-, In, C, Number) :-
+	!,
+	number_n(0'-, In, C, Number).
+token(0'+, In, C, Number) :-
+	!,
+	number_n(0'+, In, C, Number).
+token(0'", In, C, literal(Codes)) :-
+	!,
+	(	peek_code(In, 0'")
+	->	get_code(In, 0'"),
+		(	peek_code(In, 0'")
+		->	get_code(In, 0'"),
+			get_code(In, C1),
+			dq_string(C1, In, C, Codes)
+		;	get_code(In, C),
+			Codes = []
+		)
+	;	get_code(In, C1),
+		string_dq(C1, In, C, Codes)
+	).
+token(0'', In, C, literal(Codes)) :-
+	!,
+	(	peek_code(In, 0'')
+	->	get_code(In, 0''),
+		(	peek_code(In, 0'')
+		->	get_code(In, 0''),
+			get_code(In, C1),
+			sq_string(C1, In, C, Codes)
+		;	get_code(In, C),
+			Codes = []
+		)
+	;	get_code(In, C1),
+		string_sq(C1, In, C, Codes)
+	).
+token(0'?, In, C, uvar(Name)) :-
+	!,
+	get_code(In, C0),
+	(	name(C0, In, C, Name)
+	->	true
+	;	C = C0,
+		nb_getval(line_number, Ln),
+		throw(empty_quickvar_name(line(Ln)))
+	).
+token(0'_, In, C, bnode(Name)) :-
+	peek_code(In, 0':),
+	!,
+	get_code(In, _),
+	get_code(In, C0),
+	(	name(C0, In, C, Name)
+	->	true
+	;	C = C0,
+		Name = ''
+	).
+token(0'<, In, C, relative_uri(URI)) :-
+	peek_code(In, C1),
+	C1 \== 0'=,
+	!,
+	get_code(In, C1),
+	iri_chars(C1, In, C, Codes),
+	D = Codes,
+	atom_codes(URI, D).
+token(0':, In, C, Token) :-
+	!,
+	get_code(In, C0),
+	(	local_name(C0, In, C, Name)
+	->	Token = '':Name
+	;	Token = '':'',
+		C = C0
+	).
+token(0'@, In, C, atname(Name)) :-
+	get_code(In, C0),
+	token(C0, In, C, name(Name)),
+	!.
+token(0'^, In, C, caretcaret) :-
+	peek_code(In, 0'^),
+	!,
+	get_code(In, _),
+	get_code(In, C).
+token(C0, In, C, Token) :-
+	name(C0, In, C1, Name),
+	!,
+	(	C1 == 0':
+	->	get_code(In, C2),
+		(	local_name(C2, In, C, Name2)
+		->	Token = (Name:Name2)
+		;	Token = (Name:''),
+			C = C2
+		)
+	;	Token = name(Name),
+		C = C1
+	).
+token(C0, In, C, P) :-
+	punctuation(C0, P),
+	!,
+	get_code(In, C).
+
+
+number_n(0'-, In, CN, numeric(T, [0'-|Codes])) :-
+	!,
+	get_code(In, C0),
+	number_nn(C0, In, CN, numeric(T, Codes)).
+number_n(0'+, In, CN, numeric(T, [0'+|Codes])) :-
+	!,
+	get_code(In, C0),
+	number_nn(C0, In, CN, numeric(T, Codes)).
+number_n(C0, In, CN, Value) :-
+	number_nn(C0, In, CN, Value).
+
+
+number_nn(C, In, CN, numeric(Type, Codes)) :-
+	integer_codes(C, In, CN0, Codes, T0),
+	(	CN0 == 0'.,
+		peek_code(In, C0),
+		(	e(C0)
+		->	T1 = [0'0|T2],
+			get_code(In, CN1)
+		;	0'0 =< C0,
+			C0 =< 0'9,
+			get_code(In, C1),
+			integer_codes(C1, In, CN1, T1, T2)
+		),
+		T0 = [0'.|T1]
+	->	(	exponent(CN1, In, CN, T2)
+		->	Type = double
+		;	CN = CN1,
+			T2 = [],
+			Type = decimal
+		)
+	;	(	exponent(CN0, In, CN, T0)
+		->	Type = double
+		;	T0 = [],
+			CN = CN0,
+			Type = integer
+		)
+	).
+
+
+integer_codes(C0, In, CN, [C0|T0], T) :-
+	0'0 =< C0,
+	C0 =< 0'9,
+	!,
+	get_code(In, C1),
+	integer_codes(C1, In, CN, T0, T).
+integer_codes(CN, _, CN, T, T).
+
+
+exponent(C0, In, CN, [C0|T0]) :-
+	e(C0),
+	!,
+	get_code(In, C1),
+	optional_sign(C1, In, CN0, T0, T1),
+	integer_codes(CN0, In, CN, T1, []),
+	(	T1 = []
+	->	nb_getval(line_number, Ln),
+		throw(invalid_exponent(line(Ln)))
+	;	true
+	).
+
+
+optional_sign(C0, In, CN, [C0|T], T) :-
+	sign(C0),
+	!,
+	get_code(In, CN).
+optional_sign(CN, _, CN, T, T).
+
+
+e(0'e).
+e(0'E).
+
+
+sign(0'-).
+sign(0'+).
+
+
+dq_string(-1, _, _, []) :-
+	!,
+	nb_getval(line_number, Ln),
+	throw(unexpected_end_of_input(line(Ln))).
+dq_string(0'", In, C, []) :-
+	(	retract(got_dq)
+	->	true
+	;	peek_code(In, 0'"),
+		get_code(In, _)
+	),
+	(	retract(got_dq)
+	->	assertz(got_dq)
+	;	assertz(got_dq),
+		peek_code(In, 0'"),
+		get_code(In, _),
+		assertz(got_dq)
+	),
+	!,
+	(	peek_code(In, 0'")
+	->	nb_getval(line_number, Ln),
+		throw(unexpected_double_quote(line(Ln)))
+	;	true
+	),
+	retractall(got_dq),
+	get_code(In, C).
+dq_string(0'", In, C, [0'"|T]) :-
+	!,
+	(	retract(got_dq)
+	->	C1 = 0'"
+	;	get_code(In, C1)
+	),
+	dq_string(C1, In, C, T).
+dq_string(0'\\, In, C, [H|T]) :-
+	(	retract(got_dq)
+	->	C1 = 0'"
+	;	get_code(In, C1)
+	),
+	!,
+	string_escape(C1, In, C2, H),
+	dq_string(C2, In, C, T).
+dq_string(C0, In, C, [C0|T]) :-
+	(	retract(got_dq)
+	->	C1 = 0'"
+	;	get_code(In, C1)
+	),
+	dq_string(C1, In, C, T).
+
+
+sq_string(-1, _, _, []) :-
+	!,
+	nb_getval(line_number, Ln),
+	throw(unexpected_end_of_input(line(Ln))).
+sq_string(0'', In, C, []) :-
+	(	retract(got_sq)
+	->	true
+	;	peek_code(In, 0''),
+		get_code(In, _)
+	),
+	(	retract(got_sq)
+	->	assertz(got_sq)
+	;	assertz(got_sq),
+		peek_code(In, 0''),
+		get_code(In, _),
+		assertz(got_sq)
+	),
+	!,
+	(	peek_code(In, 0'')
+	->	nb_getval(line_number, Ln),
+		throw(unexpected_single_quote(line(Ln)))
+	;	true
+	),
+	retractall(got_sq),
+	get_code(In, C).
+sq_string(0'', In, C, [0''|T]) :-
+	!,
+	(	retract(got_sq)
+	->	C1 = 0''
+	;	get_code(In, C1)
+	),
+	sq_string(C1, In, C, T).
+sq_string(0'\\, In, C, [H|T]) :-
+	(	retract(got_sq)
+	->	C1 = 0''
+	;	get_code(In, C1)
+	),
+	!,
+	string_escape(C1, In, C2, H),
+	sq_string(C2, In, C, T).
+sq_string(C0, In, C, [C0|T]) :-
+	(	retract(got_sq)
+	->	C1 = 0''
+	;	get_code(In, C1)
+	),
+	sq_string(C1, In, C, T).
+
+
+string_dq(-1, _, _, []) :-
+	!,
+	nb_getval(line_number, Ln),
+	throw(unexpected_end_of_input(line(Ln))).
+string_dq(0'\n, _, _, []) :-
+	!,
+	nb_getval(line_number, Ln),
+	throw(unexpected_end_of_line(line(Ln))).
+string_dq(0'", In, C, []) :-
+	!,
+	get_code(In, C).
+string_dq(0'\\, In, C, D) :-
+	get_code(In, C1),
+	!,
+	string_escape(C1, In, C2, H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
+	string_dq(C2, In, C, T).
+string_dq(C0, In, C, D) :-
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
+	get_code(In, C1),
+	string_dq(C1, In, C, T).
+
+
+string_sq(-1, _, _, []) :-
+	!,
+	nb_getval(line_number, Ln),
+	throw(unexpected_end_of_input(line(Ln))).
+string_sq(0'', In, C, []) :-
+	!,
+	get_code(In, C).
+string_sq(0'\\, In, C, D) :-
+	get_code(In, C1),
+	!,
+	string_escape(C1, In, C2, H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
+	string_sq(C2, In, C, T).
+string_sq(C0, In, C, D) :-
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
+	get_code(In, C1),
+	string_sq(C1, In, C, T).
+
+
+string_escape(0't, In, C, 0'\t) :-
+	!,
+	get_code(In, C).
+string_escape(0'b, In, C, 0'\b) :-
+	!,
+	get_code(In, C).
+string_escape(0'n, In, C, 0'\n) :-
+	!,
+	get_code(In, C).
+string_escape(0'r, In, C, 0'\r) :-
+	!,
+	get_code(In, C).
+string_escape(0'f, In, C, 0'\f) :-
+	!,
+	get_code(In, C).
+string_escape(0'", In, C, 0'") :-
+	!,
+	get_code(In, C).
+string_escape(0'', In, C, 0'') :-
+	!,
+	get_code(In, C).
+string_escape(0'\\, In, C, 0'\\) :-
+	!,
+	get_code(In, C).
+string_escape(0'u, In, C, Code) :-
+	!,
+	get_hhhh(In, A),
+	(	0xD800 =< A,
+		A =< 0xDBFF
+	->	get_code(In, 0'\\),
+		get_code(In, 0'u),
+		get_hhhh(In, B),
+		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
+	;	Code is A
+	),
+	get_code(In, C).
+string_escape(0'U, In, C, Code) :-
+	!,
+	get_hhhh(In, Code0),
+	get_hhhh(In, Code1),
+	Code is Code0 << 16 + Code1,
+	get_code(In, C).
+string_escape(C, _, _, _) :-
+	nb_getval(line_number, Ln),
+	atom_codes(A, [0'\\, C]),
+	throw(illegal_string_escape_sequence(A, line(Ln))).
+
+
+get_hhhh(In, Code) :-
+	get_code(In, C1),
+	code_type(C1, xdigit(D1)),
+	get_code(In, C2),
+	code_type(C2, xdigit(D2)),
+	get_code(In, C3),
+	code_type(C3, xdigit(D3)),
+	get_code(In, C4),
+	code_type(C4, xdigit(D4)),
+	Code is D1<<12+D2<<8+D3<<4+D4.
+
+
+language(C0, In, C, [C0|Codes]) :-
+	code_type(C0, lower),
+	get_code(In, C1),
+	lwr_word(C1, In, C2, Codes, Tail),
+	sub_langs(C2, In, C, Tail, []).
+
+
+lwr_word(C0, In, C, [C0|T0], T) :-
+	code_type(C0, lower),
+	!,
+	get_code(In, C1),
+	lwr_word(C1, In, C, T0, T).
+lwr_word(C, _, C, T, T).
+
+
+sub_langs(0'-, In, C, [0'-, C1|Codes], T) :-
+	get_code(In, C1),
+	lwrdig(C1),
+	!,
+	get_code(In, C2),
+	lwrdigs(C2, In, C3, Codes, Tail),
+	sub_langs(C3, In, C, Tail, T).
+sub_langs(C, _, C, T, T).
+
+
+lwrdig(C) :-
+	code_type(C, lower),
+	!.
+lwrdig(C) :-
+	code_type(C, digit).
+
+
+lwrdigs(C0, In, C, [C0|T0], T) :-
+	lwrdig(C0),
+	!,
+	get_code(In, C1),
+	lwr_word(C1, In, C, T0, T).
+lwrdigs(C, _, C, T, T).
+
+
+iri_chars(0'>, In, C, []) :-
+	!,
+	get_code(In, C).
+iri_chars(0'\\, In, C, D) :-
+	!,
+	get_code(In, C1),
+	iri_escape(C1, In, C2, H),
+	\+non_iri_char(H),
+	(	current_prolog_flag(windows, true),
+		H > 0xFFFF
+	->	E is (H-0x10000)>>10+0xD800,
+		F is (H-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [H|T]
+	),
+	iri_chars(C2, In, C, T).
+iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
+	!,
+	get_code(In, C1),
+	code_type(C1, xdigit(_)),
+	get_code(In, C2),
+	code_type(C2, xdigit(_)),
+	get_code(In, C3),
+	iri_chars(C3, In, C, T).
+iri_chars(-1, _, _, _) :-
+	!,
+	fail.
+iri_chars(C0, In, C, D) :-
+	\+non_iri_char(C0),
+	(	current_prolog_flag(windows, true),
+		C0 > 0xFFFF
+	->	E is (C0-0x10000)>>10+0xD800,
+		F is (C0-0x10000) mod 0x400+0xDC00,
+		D = [E, F|T]
+	;	D = [C0|T]
+	),
+	get_code(In, C1),
+	iri_chars(C1, In, C, T).
+
+
+iri_escape(0'u, In, C, Code) :-
+	!,
+	get_hhhh(In, A),
+	(	0xD800 =< A,
+		A =< 0xDBFF
+	->	get_code(In, 0'\\),
+		get_code(In, 0'u),
+		get_hhhh(In, B),
+		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
+	;	Code is A
+	),
+	get_code(In, C).
+iri_escape(0'U, In, C, Code) :-
+	!,
+	get_hhhh(In, Code0),
+	get_hhhh(In, Code1),
+	Code is Code0 << 16 + Code1,
+	get_code(In, C).
+iri_escape(C, _, _, _) :-
+	nb_getval(line_number, Ln),
+	atom_codes(A, [0'\\, C]),
+	throw(illegal_iri_escape_sequence(A, line(Ln))).
+
+
+non_iri_char(0x20).
+non_iri_char(0'<).
+non_iri_char(0'>).
+non_iri_char(0'").
+non_iri_char(0'{).
+non_iri_char(0'}).
+non_iri_char(0'|).
+non_iri_char(0'^).
+non_iri_char(0'`).
+non_iri_char(0'\\).
+
+
+name(C0, In, C, Atom) :-
+	name_start_char(C0),
+	get_code(In, C1),
+	name_chars(C1, In, C, T),
+	atom_codes(Atom, [C0|T]).
+
+
+name_start_char(C) :-
+	pn_chars_base(C),
+	!.
+name_start_char(0'_).
+name_start_char(C) :-
+	code_type(C, digit).
+
+
+name_chars(0'., In, C, [0'.|T]) :-
+	peek_code(In, C1),
+	pn_chars(C1),
+	!,
+	get_code(In, C1),
+	name_chars(C1, In, C, T).
+name_chars(C0, In, C, [C0|T]) :-
+	pn_chars(C0),
+	!,
+	get_code(In, C1),
+	name_chars(C1, In, C, T).
+name_chars(C, _, C, []).
+
+
+pn_chars_base(C) :-
+	code_type(C, alpha),
+	!.
+pn_chars_base(C) :-
+	0xC0 =< C,
+	C =< 0xD6,
+	!.
+pn_chars_base(C) :-
+	0xD8 =< C,
+	C =< 0xF6,
+	!.
+pn_chars_base(C) :-
+	0xF8 =< C,
+	C =< 0x2FF,
+	!.
+pn_chars_base(C) :-
+	0x370 =< C,
+	C =< 0x37D,
+	!.
+pn_chars_base(C) :-
+	0x37F =< C,
+	C =< 0x1FFF,
+	!.
+pn_chars_base(C) :-
+	0x200C =< C,
+	C =< 0x200D,
+	!.
+pn_chars_base(C) :-
+	0x2070 =< C,
+	C =< 0x218F,
+	!.
+pn_chars_base(C) :-
+	0x2C00 =< C,
+	C =< 0x2FEF,
+	!.
+pn_chars_base(C) :-
+	0x3001 =< C,
+	C =< 0xD7FF,
+	!.
+pn_chars_base(C) :-
+	0xF900 =< C,
+	C =< 0xFDCF,
+	!.
+pn_chars_base(C) :-
+	0xFDF0 =< C,
+	C =< 0xFFFD,
+	!.
+pn_chars_base(C) :-
+	0x10000 =< C,
+	C =< 0xEFFFF.
+
+
+pn_chars(C) :-
+	code_type(C, csym),
+	!.
+pn_chars(C) :-
+	pn_chars_base(C),
+	!.
+pn_chars(0'-) :-
+	!.
+pn_chars(0xB7) :-
+	!.
+pn_chars(C) :-
+	0x0300 =< C,
+	C =< 0x036F,
+	!.
+pn_chars(C) :-
+	0x203F =< C,
+	C =< 0x2040.
+
+
+local_name(0'\\, In, C, Atom) :-
+	!,
+	get_code(In, C0),
+	reserved_char_escapes(C0),
+	get_code(In, C1),
+	local_name_chars(C1, In, C, T),
+	atom_codes(Atom, [C0|T]).
+local_name(0'%, In, C, Atom) :-
+	!,
+	get_code(In, C0),
+	code_type(C0, xdigit(_)),
+	get_code(In, C1),
+	code_type(C1, xdigit(_)),
+	get_code(In, C2),
+	local_name_chars(C2, In, C, T),
+	atom_codes(Atom, [0'%, C0, C1|T]).
+local_name(C0, In, C, Atom) :-
+	local_name_start_char(C0),
+	get_code(In, C1),
+	local_name_chars(C1, In, C, T),
+	atom_codes(Atom, [C0|T]).
+
+
+local_name_chars(0'\\, In, C, [C0|T]) :-
+	!,
+	get_code(In, C0),
+	reserved_char_escapes(C0),
+	get_code(In, C1),
+	local_name_chars(C1, In, C, T).
+local_name_chars(0'%, In, C, [0'%, C0, C1|T]) :-
+	!,
+	get_code(In, C0),
+	code_type(C0, xdigit(_)),
+	get_code(In, C1),
+	code_type(C1, xdigit(_)),
+	get_code(In, C2),
+	local_name_chars(C2, In, C, T).
+local_name_chars(0'., In, C, [0'.|T]) :-
+	peek_code(In, C1),
+	(	local_name_char(C1)
+	;	C1 = 0'.
+	),
+	!,
+	get_code(In, C1),
+	local_name_chars(C1, In, C, T).
+local_name_chars(C0, In, C, [C0|T]) :-
+	local_name_char(C0),
+	!,
+	get_code(In, C1),
+	local_name_chars(C1, In, C, T).
+local_name_chars(C, _, C, []).
+
+
+local_name_start_char(C) :-
+	name_start_char(C),
+	!.
+local_name_start_char(0':).
+local_name_start_char(0'%).
+local_name_start_char(0'\\).
+
+
+local_name_char(C) :-
+	pn_chars(C),
+	!.
+local_name_char(0':).
+local_name_char(0'%).
+local_name_char(0'\\).
+
+
+reserved_char_escapes(0'~).
+reserved_char_escapes(0'.).
+reserved_char_escapes(0'-).
+reserved_char_escapes(0'!).
+reserved_char_escapes(0'$).
+reserved_char_escapes(0'&).
+reserved_char_escapes(0'').
+reserved_char_escapes(0'().
+reserved_char_escapes(0')).
+reserved_char_escapes(0'*).
+reserved_char_escapes(0'+).
+reserved_char_escapes(0',).
+reserved_char_escapes(0';).
+reserved_char_escapes(0'=).
+reserved_char_escapes(0'/).
+reserved_char_escapes(0'?).
+reserved_char_escapes(0'#).
+reserved_char_escapes(0'@).
+reserved_char_escapes(0'%).
+reserved_char_escapes(0'_).
+
+
+punctuation(0'(, '(').
+punctuation(0'), ')').
+punctuation(0'[, '[').
+punctuation(0'], ']').
+punctuation(0',, ',').
+punctuation(0':, ':').
+punctuation(0';, ';').
+punctuation(0'{, '{').
+punctuation(0'}, '}').
+punctuation(0'?, '?').
+punctuation(0'!, '!').
+punctuation(0'^, '^').
+punctuation(0'=, '=').
+punctuation(0'<, '<').
+punctuation(0'>, '>').
+punctuation(0'$, '$').
+
+
+skip_line(-1, _, -1) :-
+	!.
+skip_line(0xA, In, C) :-
+	!,
+	cnt(line_number),
+	get_code(In, C).
+skip_line(0xD, In, C) :-
+	!,
+	get_code(In, C).
+skip_line(_, In, C) :-
+	get_code(In, C1),
+	skip_line(C1, In, C).
+
+
+white_space(0x9).
+white_space(0xA) :-
+	cnt(line_number).
+white_space(0xD).
+white_space(0x20).
+
+
+%   Reasoning output
 
 w0([]) :-
 	!.
@@ -2246,7 +3755,7 @@ w3 :-
 	).
 
 
-wi('<>', _, rule(_, _, A), _) :-	% wi(Source, Premise, Conclusion, Rule)
+wi('<>', _, rule(_, _, A), _) :-	%   wi(Source, Premise, Conclusion, Rule)
 	!,
 	write('[ '),
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
@@ -2270,7 +3779,7 @@ wi(A, B, C, Rule) :-
 	write('>').
 
 
-wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
+wj(Cnt, A, true, C, Rule) :-	%   wj(Count, Source, Premise, Conclusion, Rule)
 	var(Rule),
 	C \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
 	!,
@@ -2542,7 +4051,7 @@ wt(cn([X|Y])) :-
 	;	Z = cn(Y)
 	),
 	wt(Z).
-% DEPRECATED
+%   DEPRECATED
 wt(dn(X)) :-
 	!,
 	wt(X),
@@ -2603,7 +4112,7 @@ wt0(X) :-
 	atom_concat(some, Y, X),
 	!,
 	(	\+flag('no-qvars'),
-		\+flag('no-blank')	% DEPRECATED
+		\+flag('no-blank')	%   DEPRECATED
 	->	(	rule_uvar(L),
 			(	ncllit
 			->	(	memberchk(X, L)
@@ -2680,7 +4189,7 @@ wt0(X) :-
 			write('?')
 		)
 	;	(	\+flag('no-qvars'),
-			\+flag('no-blank')	% DEPRECATED
+			\+flag('no-blank')	%   DEPRECATED
 		->	true
 		;	flag('no-skolem', Prefix),
 			sub_atom(X, 1, _, _, Prefix)
@@ -2795,7 +4304,7 @@ wt2(literal(X, type(Y))) :-
 	wt(Y).
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X|Y], Z)) :-
 	flag(nope),
-	flag(tquery),	% DEPRECATED
+	flag(tquery),	%   DEPRECATED
 	!,
 	'<http://www.w3.org/2000/10/swap/log#conjunction>'(Y, U),
 	write('{'),
@@ -2811,7 +4320,7 @@ wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X
 	write('}').
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>'([X|Y], Z)) :-
 	flag(nope),
-	flag(tquery),	% DEPRECATED
+	flag(tquery),	%   DEPRECATED
 	!,
 	'<http://www.w3.org/2000/10/swap/log#conjunction>'(Y, U),
 	write('{'),
@@ -3083,7 +4592,7 @@ wq([X|Y], allv) :-
 	write('. ').
 wq([X|Y], some) :-
 	(	\+flag('no-qvars'),
-		\+flag('no-blank')	% DEPRECATED
+		\+flag('no-blank')	%   DEPRECATED
 	->	write('@forSome '),
 		wt(X),
 		wk(Y),
@@ -3172,7 +4681,7 @@ ws(cn(X)) :-
 	ws(Y).
 ws(X) :-
 	X =.. Y,
-	(	flag(tquery)	% DEPRECATED
+	(	flag(tquery)	%   DEPRECATED
 	->	true
 	;	last(Y, Z),
 		(	\+number(Z),
@@ -3314,21 +4823,21 @@ indentation(C) :-
 
 
 
-% ----------------------------
-% EAM (Euler Abstract Machine)
-% ----------------------------
+%   ------------------------------------------------------
+%   EAM (Euler Abstract Machine) supporting Unifying Logic
+%   ------------------------------------------------------
 
-% In a nutshell:
+%   In a nutshell:
 %
-%  1/ Select rule P => C
-%  2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
-%  3/ If P & NOT(C) assert C (forward chaining) and remove brake
-%  4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/
-%  5/ If brake or tactic linear-select stop, else start again at 1/
+%    1/ Select rule P => C
+%    2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
+%    3/ If P & NOT(C) assert C (forward chaining) and remove brake
+%    4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/
+%    5/ If brake or tactic linear-select stop, else start again at 1/
 
 eam(Span) :-
 	(	cnt(tr),
-		(	(	flag(brake, BrakeLim)	% DEPRECATED
+		(	(	flag(brake, BrakeLim)	%   DEPRECATED
 			;	flag('limited-brake', BrakeLim)
 			),
 			nb_getval(tr, TR),
@@ -3337,7 +4846,7 @@ eam(Span) :-
 			->	true
 			;	w3
 			),
-			(	flag(brake, _)	% DEPRECATED
+			(	flag(brake, _)	%   DEPRECATED
 			->	throw(maximimum_brake_count(TR))
 			;	throw(halt)
 			)
@@ -3397,7 +4906,7 @@ eam(Span) :-
 		;	true
 		),
 		cnt(tp),
-		(	(	flag(step, StepLim)	% DEPRECATED
+		(	(	flag(step, StepLim)	%   DEPRECATED
 			;	flag('limited-step', StepLim)
 			),
 			nb_getval(tp, Step),
@@ -3406,7 +4915,7 @@ eam(Span) :-
 			->	true
 			;	w3
 			),
-			(	flag(step, _)	% DEPRECATED
+			(	flag(step, _)	%   DEPRECATED
 			->	throw(maximimum_step_count(Step))
 			;	throw(halt)
 			)
@@ -3424,7 +4933,7 @@ eam(Span) :-
 		->	makevars(Concd, Concdr, beta)
 		;	Concdr = Concd
 		),
-		(	flag(think),	% DEPRECATED
+		(	flag(think),	%   DEPRECATED
 			\+flag(nope),
 			term_index(Prem, Pnd),
 			term_index(Concdr, Cnd),
@@ -3459,7 +4968,7 @@ eam(Span) :-
 		findall([D, F],
 			(	member([D, D], Lc),
 				unify(D, F),
-				(	flag(think),	% DEPRECATED
+				(	flag(think),	%   DEPRECATED
 					\+flag(nope)
 				->	true
 				;	catch(\+call(F), _, true)
@@ -3510,7 +5019,7 @@ eam(Span) :-
 	).
 
 
-astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Rule)
+astep(A, B, Cd, Cn, Rule) :-	%   astep(Source, Premise, Conclusion, Conclusion_unique, Rule)
 	(	Cn = cn([Dn|En])
 	->	functor(Dn, P, N),
 		(	\+pred(P),
@@ -3607,7 +5116,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 	).
 
 
-istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
+istep(Src, Prem, Conc, Rule) :-		%   istep(Source, Premise, Conclusion, Rule)
 	copy_term_nat(Prem, Prec),
 	labelvars(Prec, 0, _),
 	term_index(Conc, Cnd),
@@ -3626,7 +5135,7 @@ pstep(Rule) :-
 	catch(cnt(RTP), _, nb_setval(RTP, 0)).
 
 
-% DEPRECATED
+%   DEPRECATED
 hstep(A, B) :-
 	(	nonvar(A),
 		A = exopred(P, S, O)
@@ -3637,10 +5146,10 @@ hstep(A, B) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 qstep(A, B) :-
 	prfstep(A, _, B, _, _, _, _, _).
-% DEPRECATED
+%   DEPRECATED
 qstep(A, true) :-
 	(	nonvar(A)
 	->	(	A =.. [P, [S1, S2|S3], O]
@@ -3658,7 +5167,7 @@ qstep(A, true) :-
 	\+prfstep(A, _, _, _, _, _, _, _).
 
 
-% DJITI (Dimensional Just In Time Indexing)
+%   DJITI (Deep Just In Time Indexing)
 
 djiti(answer(cn(A)), cn(B)) :-
 	!,
@@ -3836,7 +5345,7 @@ djitis(A) :-
 	assertz(A).
 
 
-% Built-ins
+%   Built-ins
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, B)|C], D) :-
 	within_scope(_),
@@ -3880,13 +5389,13 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#closure>'(Sc, A) :-
 	within_scope(Sc),
 	hstep(A, _).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#distinct>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -4130,7 +5639,7 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reason>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B) :-
 	when(
 		(	ground(A)
@@ -4159,7 +5668,7 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reverse>'(A, B) :-
 	reverse(A, B).
 
@@ -4261,7 +5770,7 @@ djitis(A) :-
 	A =.. [C, B, D].
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>'(_, A) :-
 	when(
 		(	nonvar(A)
@@ -4336,7 +5845,7 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#resolve-uri>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -4347,7 +5856,7 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#substring>'([literal(A, _), B|C], literal(D, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	ground([A, B, C])
@@ -4363,7 +5872,7 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#substring-after>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -4375,7 +5884,7 @@ djitis(A) :-
 	).
 
 
-% DEPRECATED
+%   DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#substring-before>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -5187,11 +6696,9 @@ djitis(A) :-
 	).
 
 
-% RIF built-ins
-%
-% according to RIF Datatypes and Built-Ins 1.0 -- http://www.w3.org/TR/rif-dtb/
+%   RIF built-ins according to RIF Datatypes and Built-Ins 1.0 -- http://www.w3.org/TR/rif-dtb/
 
-% 4.1.1.1 pred:literal-not-identical
+%   4.1.1.1 pred:literal-not-identical
 
 '<http://www.w3.org/2007/rif-builtin-predicate#literal-not-identical>'([literal(A, B), literal(C, B)], D) :-
 	when(
@@ -5204,7 +6711,7 @@ djitis(A) :-
 	).
 
 
-% 4.4.4 pred:iri-string
+%   4.4.4 pred:iri-string
 
 '<http://www.w3.org/2007/rif-builtin-predicate#iri-string>'([A, literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
 	when(
@@ -5228,7 +6735,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.1 Numeric Functions
+%   4.5.1 Numeric Functions
 
 '<http://www.w3.org/2007/rif-builtin-function#numeric-add>'([A, B], C) :-
 	when(
@@ -5303,7 +6810,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.2.1 pred:numeric-equal
+%   4.5.2.1 pred:numeric-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-equal>'([A, B], C) :-
 	when(
@@ -5319,7 +6826,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.2.2 pred:numeric-less-than
+%   4.5.2.2 pred:numeric-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-less-than>'([A, B], C) :-
 	when(
@@ -5335,7 +6842,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.2.3 pred:numeric-greater-than
+%   4.5.2.3 pred:numeric-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-greater-than>'([A, B], C) :-
 	when(
@@ -5351,7 +6858,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.2.4 pred:numeric-not-equal
+%   4.5.2.4 pred:numeric-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-not-equal>'([A, B], C) :-
 	when(
@@ -5367,7 +6874,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.2.5 pred:numeric-less-than-or-equal
+%   4.5.2.5 pred:numeric-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-less-than-or-equal>'([A, B], C) :-
 	when(
@@ -5383,7 +6890,7 @@ djitis(A) :-
 	).
 
 
-% 4.5.2.6 pred:numeric-greater-than-or-equal
+%   4.5.2.6 pred:numeric-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-greater-than-or-equal>'([A, B], C) :-
 	when(
@@ -5399,7 +6906,7 @@ djitis(A) :-
 	).
 
 
-% 4.6.1.1 func:not
+%   4.6.1.1 func:not
 
 '<http://www.w3.org/2007/rif-builtin-function#not>'([A], B) :-
 	when(
@@ -5415,7 +6922,7 @@ djitis(A) :-
 	).
 
 
-% 4.6.2.1 pred:boolean-equal
+%   4.6.2.1 pred:boolean-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#boolean-equal>'([A, B], C) :-
 	when(
@@ -5429,7 +6936,7 @@ djitis(A) :-
 	).
 
 
-% 4.6.2.2 pred:boolean-less-than
+%   4.6.2.2 pred:boolean-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#boolean-less-than>'([A, B], C) :-
 	when(
@@ -5443,7 +6950,7 @@ djitis(A) :-
 	).
 
 
-% 4.6.2.3 pred:boolean-greater-than
+%   4.6.2.3 pred:boolean-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#boolean-greater-than>'([A, B], C) :-
 	when(
@@ -5457,7 +6964,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.1 func:compare @@partial implementation: no collation
+%   4.7.1.1 func:compare @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-function#compare>'([literal(A, B), literal(C, B)], D) :-
 	!,
@@ -5472,7 +6979,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.2 func:concat
+%   4.7.1.2 func:concat
 
 '<http://www.w3.org/2007/rif-builtin-function#concat>'(A, literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -5490,7 +6997,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.3 func:string-join
+%   4.7.1.3 func:string-join
 
 '<http://www.w3.org/2007/rif-builtin-function#string-join>'([A, literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -5512,7 +7019,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.4 func:substring
+%   4.7.1.4 func:substring
 
 '<http://www.w3.org/2007/rif-builtin-function#substring>'([literal(A, _), B, C], literal(D, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!,
@@ -5554,7 +7061,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.5 func:string-length
+%   4.7.1.5 func:string-length
 
 '<http://www.w3.org/2007/rif-builtin-function#string-length>'([literal(A, _)], B) :-
 	when(
@@ -5565,7 +7072,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.6 func:upper-case
+%   4.7.1.6 func:upper-case
 
 '<http://www.w3.org/2007/rif-builtin-function#upper-case>'([literal(A, B)], literal(C, B)) :-
 	when(
@@ -5576,7 +7083,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.7 func:lower-case
+%   4.7.1.7 func:lower-case
 
 '<http://www.w3.org/2007/rif-builtin-function#lower-case>'([literal(A, B)], literal(C, B)) :-
 	when(
@@ -5587,7 +7094,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.8 func:encode-for-uri
+%   4.7.1.8 func:encode-for-uri
 
 '<http://www.w3.org/2007/rif-builtin-function#encode-for-uri>'([literal(A, B)], literal(C, B)) :-
 	when(
@@ -5598,7 +7105,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.11 func:substring-before @@partial implementation: no collation
+%   4.7.1.11 func:substring-before @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-function#substring-before>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -5611,7 +7118,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.1.12 func:substring-after @@partial implementation: no collation
+%   4.7.1.12 func:substring-after @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-function#substring-after>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -5624,7 +7131,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.2.1 pred:contains @@partial implementation: no collation
+%   4.7.2.1 pred:contains @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-predicate#contains>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
 	when(
@@ -5638,7 +7145,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.2.2 pred:starts-with @@partial implementation: no collation
+%   4.7.2.2 pred:starts-with @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-predicate#starts-with>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
 	when(
@@ -5651,7 +7158,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.2.3 pred:ends-with @@partial implementation: no collation
+%   4.7.2.3 pred:ends-with @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-predicate#ends-with>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
 	when(
@@ -5664,7 +7171,7 @@ djitis(A) :-
 	).
 
 
-% 4.7.2.4 pred:matches @@partial implementation: no flags
+%   4.7.2.4 pred:matches @@partial implementation: no flags
 
 '<http://www.w3.org/2007/rif-builtin-predicate#matches>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
 	when(
@@ -5679,7 +7186,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.1 func:year-from-dateTime
+%   4.8.1.1 func:year-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#year-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
 	when(
@@ -5695,7 +7202,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.2 func:month-from-dateTime
+%   4.8.1.2 func:month-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#month-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
 	when(
@@ -5711,7 +7218,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.3 func:day-from-dateTime
+%   4.8.1.3 func:day-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#day-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
 	when(
@@ -5727,7 +7234,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.4 func:hours-from-dateTime
+%   4.8.1.4 func:hours-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#hours-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
 	when(
@@ -5743,7 +7250,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.5 func:minutes-from-dateTime
+%   4.8.1.5 func:minutes-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#minutes-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
 	when(
@@ -5759,7 +7266,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.6 func:seconds-from-dateTime
+%   4.8.1.6 func:seconds-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#seconds-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
 	when(
@@ -5775,7 +7282,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.7 func:year-from-date
+%   4.8.1.7 func:year-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#year-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>'))], B) :-
 	when(
@@ -5791,7 +7298,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.8 func:month-from-date
+%   4.8.1.8 func:month-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#month-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>'))], B) :-
 	when(
@@ -5807,7 +7314,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.9 func:day-from-date
+%   4.8.1.9 func:day-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#day-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>'))], B) :-
 	when(
@@ -5823,7 +7330,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.10 func:hours-from-time
+%   4.8.1.10 func:hours-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#hours-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))], B) :-
 	when(
@@ -5839,7 +7346,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.11 func:minutes-from-time
+%   4.8.1.11 func:minutes-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#minutes-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))], B) :-
 	when(
@@ -5855,7 +7362,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.12 func:seconds-from-time
+%   4.8.1.12 func:seconds-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#seconds-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))], B) :-
 	when(
@@ -5871,7 +7378,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.13 func:years-from-duration
+%   4.8.1.13 func:years-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#years-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], 0) :-
 	!.
@@ -5890,7 +7397,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.14 func:months-from-duration
+%   4.8.1.14 func:months-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#months-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], 0) :-
 	!.
@@ -5909,7 +7416,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.15 func:days-from-duration
+%   4.8.1.15 func:days-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#days-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], _) :-
 	!.
@@ -5928,7 +7435,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.16 func:hours-from-duration
+%   4.8.1.16 func:hours-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#hours-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], _) :-
 	!.
@@ -5947,7 +7454,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.17 func:minutes-from-duration
+%   4.8.1.17 func:minutes-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#minutes-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], _) :-
 	!.
@@ -5966,7 +7473,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.18 func:seconds-from-duration
+%   4.8.1.18 func:seconds-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#seconds-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], _) :-
 	!.
@@ -5985,7 +7492,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.19 func:timezone-from-dateTime
+%   4.8.1.19 func:timezone-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#timezone-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))],
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6005,7 +7512,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.20 func:timezone-from-date
+%   4.8.1.20 func:timezone-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#timezone-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>'))],
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6025,7 +7532,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.21 func:timezone-from-time
+%   4.8.1.21 func:timezone-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#timezone-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))],
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6045,7 +7552,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.22 func:subtract-dateTimes
+%   4.8.1.22 func:subtract-dateTimes
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dateTimes>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6068,7 +7575,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.23 func:subtract-dates
+%   4.8.1.23 func:subtract-dates
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dates>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6091,7 +7598,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.24 func:subtract-times
+%   4.8.1.24 func:subtract-times
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-times>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6114,7 +7621,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.25 func:add-yearMonthDurations
+%   4.8.1.25 func:add-yearMonthDurations
 
 '<http://www.w3.org/2007/rif-builtin-function#add-yearMonthDurations>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))) :-
@@ -6137,7 +7644,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.26 func:subtract-yearMonthDurations
+%   4.8.1.26 func:subtract-yearMonthDurations
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-yearMonthDurations>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))) :-
@@ -6160,7 +7667,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.27 func:multiply-yearMonthDuration
+%   4.8.1.27 func:multiply-yearMonthDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#multiply-yearMonthDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')), B],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))) :-
@@ -6182,7 +7689,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.28 func:divide-yearMonthDuration
+%   4.8.1.28 func:divide-yearMonthDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#divide-yearMonthDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')), B],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))) :-
@@ -6204,7 +7711,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.29 func:divide-yearMonthDuration-by-yearMonthDuration
+%   4.8.1.29 func:divide-yearMonthDuration-by-yearMonthDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#divide-yearMonthDuration-by-yearMonthDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], C) :-
@@ -6224,7 +7731,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.30 func:add-dayTimeDurations
+%   4.8.1.30 func:add-dayTimeDurations
 
 '<http://www.w3.org/2007/rif-builtin-function#add-dayTimeDurations>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6247,7 +7754,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.31 func:subtract-dayTimeDurations
+%   4.8.1.31 func:subtract-dayTimeDurations
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dayTimeDurations>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6270,7 +7777,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.32 func:multiply-dayTimeDuration
+%   4.8.1.32 func:multiply-dayTimeDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#multiply-dayTimeDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')), B],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6292,7 +7799,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.33 func:divide-dayTimeDuration
+%   4.8.1.33 func:divide-dayTimeDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#divide-dayTimeDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')), B],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))) :-
@@ -6314,7 +7821,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.34 func:divide-dayTimeDuration-by-dayTimeDuration
+%   4.8.1.34 func:divide-dayTimeDuration-by-dayTimeDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#divide-dayTimeDuration-by-dayTimeDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], C) :-
@@ -6334,7 +7841,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.35 func:add-yearMonthDuration-to-dateTime
+%   4.8.1.35 func:add-yearMonthDuration-to-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#add-yearMonthDuration-to-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))) :-
@@ -6365,7 +7872,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.36 func:add-yearMonthDuration-to-date
+%   4.8.1.36 func:add-yearMonthDuration-to-date
 
 '<http://www.w3.org/2007/rif-builtin-function#add-yearMonthDuration-to-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#date>'))) :-
@@ -6393,7 +7900,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.37 func:add-dayTimeDuration-to-dateTime
+%   4.8.1.37 func:add-dayTimeDuration-to-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#add-dayTimeDuration-to-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))) :-
@@ -6422,7 +7929,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.38 func:add-dayTimeDuration-to-date
+%   4.8.1.38 func:add-dayTimeDuration-to-date
 
 '<http://www.w3.org/2007/rif-builtin-function#add-dayTimeDuration-to-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#date>'))) :-
@@ -6448,7 +7955,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.39 func:add-dayTimeDuration-to-time
+%   4.8.1.39 func:add-dayTimeDuration-to-time
 
 '<http://www.w3.org/2007/rif-builtin-function#add-dayTimeDuration-to-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#time>'))) :-
@@ -6478,7 +7985,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.40 func:subtract-yearMonthDuration-from-dateTime
+%   4.8.1.40 func:subtract-yearMonthDuration-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-yearMonthDuration-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))) :-
@@ -6509,7 +8016,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.41 func:subtract-yearMonthDuration-from-date
+%   4.8.1.41 func:subtract-yearMonthDuration-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-yearMonthDuration-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#date>'))) :-
@@ -6537,7 +8044,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.42 func:subtract-dayTimeDuration-from-dateTime
+%   4.8.1.42 func:subtract-dayTimeDuration-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dayTimeDuration-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))) :-
@@ -6566,7 +8073,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.43 func:subtract-dayTimeDuration-from-date
+%   4.8.1.43 func:subtract-dayTimeDuration-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dayTimeDuration-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#date>'))) :-
@@ -6592,7 +8099,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.1.44 func:subtract-dayTimeDuration-from-time
+%   4.8.1.44 func:subtract-dayTimeDuration-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dayTimeDuration-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], literal(C, type('<http://www.w3.org/2001/XMLSchema#time>'))) :-
@@ -6622,7 +8129,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.1 pred:dateTime-equal
+%   4.8.2.1 pred:dateTime-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], C) :-
@@ -6641,7 +8148,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.2 pred:dateTime-less-than
+%   4.8.2.2 pred:dateTime-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], C) :-
@@ -6660,7 +8167,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.3 pred:dateTime-greater-than
+%   4.8.2.3 pred:dateTime-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], C) :-
@@ -6679,7 +8186,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.4 pred:date-equal
+%   4.8.2.4 pred:date-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], C) :-
@@ -6698,7 +8205,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.5 pred:date-less-than
+%   4.8.2.5 pred:date-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], C) :-
@@ -6717,7 +8224,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.6 pred:date-greater-than
+%   4.8.2.6 pred:date-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], C) :-
@@ -6736,7 +8243,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.7 pred:time-equal
+%   4.8.2.7 pred:time-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], C) :-
@@ -6755,7 +8262,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.8 pred:time-less-than
+%   4.8.2.8 pred:time-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], C) :-
@@ -6774,7 +8281,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.9 pred:time-greater-than
+%   4.8.2.9 pred:time-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], C) :-
@@ -6793,7 +8300,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.10 pred:duration-equal
+%   4.8.2.10 pred:duration-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#duration-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#duration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#duration>'))], C) :-
@@ -6812,7 +8319,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.11 pred:dayTimeDuration-less-than
+%   4.8.2.11 pred:dayTimeDuration-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dayTimeDuration-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], C) :-
@@ -6831,7 +8338,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.12 pred:dayTimeDuration-greater-than
+%   4.8.2.12 pred:dayTimeDuration-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dayTimeDuration-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], C) :-
@@ -6850,7 +8357,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.13 pred:yearMonthDuration-less-than
+%   4.8.2.13 pred:yearMonthDuration-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#yearMonthDuration-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], C) :-
@@ -6869,7 +8376,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.14 pred:yearMonthDuration-greater-than
+%   4.8.2.14 pred:yearMonthDuration-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#yearMonthDuration-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], C) :-
@@ -6888,7 +8395,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.15 pred:dateTime-not-equal
+%   4.8.2.15 pred:dateTime-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-not-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], C) :-
@@ -6907,7 +8414,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.16 pred:dateTime-less-than-or-equal
+%   4.8.2.16 pred:dateTime-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], C) :-
@@ -6926,7 +8433,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.17 pred:dateTime-greater-than-or-equal
+%   4.8.2.17 pred:dateTime-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], C) :-
@@ -6945,7 +8452,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.18 pred:date-not-equal
+%   4.8.2.18 pred:date-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-not-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], C) :-
@@ -6964,7 +8471,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.19 pred:date-less-than-or-equal
+%   4.8.2.19 pred:date-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], C) :-
@@ -6983,7 +8490,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.20 pred:date-greater-than-or-equal
+%   4.8.2.20 pred:date-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#date>'))], C) :-
@@ -7002,7 +8509,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.21 pred:time-not-equal
+%   4.8.2.21 pred:time-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-not-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], C) :-
@@ -7021,7 +8528,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.22 pred:time-less-than-or-equal
+%   4.8.2.22 pred:time-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], C) :-
@@ -7040,7 +8547,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.23 pred:time-greater-than-or-equal
+%   4.8.2.23 pred:time-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#time>'))], C) :-
@@ -7059,7 +8566,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.24 pred:duration-not-equal
+%   4.8.2.24 pred:duration-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#duration-not-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#duration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#duration>'))], C) :-
@@ -7078,7 +8585,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.25 pred:dayTimeDuration-less-than-or-equal
+%   4.8.2.25 pred:dayTimeDuration-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dayTimeDuration-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], C) :-
@@ -7097,7 +8604,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.26 pred:dayTimeDuration-greater-than-or-equal
+%   4.8.2.26 pred:dayTimeDuration-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dayTimeDuration-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], C) :-
@@ -7116,7 +8623,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.27 pred:yearMonthDuration-less-than-or-equal
+%   4.8.2.27 pred:yearMonthDuration-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#yearMonthDuration-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], C) :-
@@ -7135,7 +8642,7 @@ djitis(A) :-
 	).
 
 
-% 4.8.2.28 pred:yearMonthDuration-greater-than-or-equal
+%   4.8.2.28 pred:yearMonthDuration-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#yearMonthDuration-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], C) :-
@@ -7154,7 +8661,7 @@ djitis(A) :-
 	).
 
 
-% 4.10.1.1 func:PlainLiteral-from-string-lang
+%   4.10.1.1 func:PlainLiteral-from-string-lang
 
 '<http://www.w3.org/2007/rif-builtin-function#PlainLiteral-from-string-lang>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -7164,21 +8671,21 @@ djitis(A) :-
 	downcase_atom(B, C).
 
 
-% 4.10.1.2 func:string-from-PlainLiteral
+%   4.10.1.2 func:string-from-PlainLiteral
 
 '<http://www.w3.org/2007/rif-builtin-function#string-from-PlainLiteral>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))], literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!.
 '<http://www.w3.org/2007/rif-builtin-function#string-from-PlainLiteral>'([literal(A, lang(_))], literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))).
 
 
-% 4.10.1.3 func:lang-from-PlainLiteral
+%   4.10.1.3 func:lang-from-PlainLiteral
 
 '<http://www.w3.org/2007/rif-builtin-function#lang-from-PlainLiteral>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#string>'))], literal('', type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!.
 '<http://www.w3.org/2007/rif-builtin-function#lang-from-PlainLiteral>'([literal(_, lang(A))], literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))).
 
 
-% 4.10.1.4 func:PlainLiteral-compare @@partial implementation: no collation
+%   4.10.1.4 func:PlainLiteral-compare @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-function#PlainLiteral-compare>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))], D) :-
 	!,
@@ -7203,7 +8710,7 @@ djitis(A) :-
 	).
 
 
-% 4.10.1.5 func:PlainLiteral-length
+%   4.10.1.5 func:PlainLiteral-length
 
 '<http://www.w3.org/2007/rif-builtin-function#PlainLiteral-length>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
 	!,
@@ -7212,7 +8719,7 @@ djitis(A) :-
 	sub_atom(A, 0, C, 0, _).
 
 
-% 4.10.2.1 pred:matches-language-range @@partial implementation: no false results
+%   4.10.2.1 pred:matches-language-range @@partial implementation: no false results
 
 '<http://www.w3.org/2007/rif-builtin-predicate#matches-language-range>'([literal(A, lang(B)), literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))], true) :-
 	A \= '',
@@ -7227,7 +8734,7 @@ djitis(A) :-
 	regex(I, J, _).
 
 
-% 4.11.3.1 pred:is-list
+%   4.11.3.1 pred:is-list
 
 '<http://www.w3.org/2007/rif-builtin-predicate#is-list>'([A], B) :-
 	(	is_list(A)
@@ -7236,7 +8743,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.3.2 pred:list-contains
+%   4.11.3.2 pred:list-contains
 
 '<http://www.w3.org/2007/rif-builtin-predicate#list-contains>'([A, B], C) :-
 	when(
@@ -7249,12 +8756,12 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.1 func:make-list
+%   4.11.4.1 func:make-list
 
 '<http://www.w3.org/2007/rif-builtin-function#make-list>'(A, A).
 
 
-% 4.11.4.2 func:count
+%   4.11.4.2 func:count
 
 '<http://www.w3.org/2007/rif-builtin-function#count>'([A], B) :-
 	when(
@@ -7265,7 +8772,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.3 func:get
+%   4.11.4.3 func:get
 
 '<http://www.w3.org/2007/rif-builtin-function#get>'([A, B], C) :-
 	when(
@@ -7278,7 +8785,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.4 func:sublist
+%   4.11.4.4 func:sublist
 
 '<http://www.w3.org/2007/rif-builtin-function#sublist>'([A, B, C], D) :-
 	!,
@@ -7326,13 +8833,13 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.5 func:append
+%   4.11.4.5 func:append
 
 '<http://www.w3.org/2007/rif-builtin-function#append>'([A|B], C) :-
 	append(A, B, C).
 
 
-% 4.11.4.6 func:concatenate
+%   4.11.4.6 func:concatenate
 
 '<http://www.w3.org/2007/rif-builtin-function#concatenate>'(A, B) :-
 	when(
@@ -7343,7 +8850,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.7 func:insert-before
+%   4.11.4.7 func:insert-before
 
 '<http://www.w3.org/2007/rif-builtin-function#insert-before>'([A, B, C], D) :-
 	when(
@@ -7363,7 +8870,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.8 func:remove
+%   4.11.4.8 func:remove
 
 '<http://www.w3.org/2007/rif-builtin-function#remove>'([A, B], C) :-
 	when(
@@ -7383,13 +8890,13 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.9 func:reverse
+%   4.11.4.9 func:reverse
 
 '<http://www.w3.org/2007/rif-builtin-function#reverse>'([A], B) :-
 	reverse(A, B).
 
 
-% 4.11.4.10 func:index-of
+%   4.11.4.10 func:index-of
 
 '<http://www.w3.org/2007/rif-builtin-function#index-of>'([A, B], C) :-
 	when(
@@ -7405,7 +8912,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.11 func:union
+%   4.11.4.11 func:union
 
 '<http://www.w3.org/2007/rif-builtin-function#union>'(A, B) :-
 	when(
@@ -7417,7 +8924,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.12 func:distinct-values
+%   4.11.4.12 func:distinct-values
 
 '<http://www.w3.org/2007/rif-builtin-function#distinct-values>'([A], B) :-
 	when(
@@ -7428,7 +8935,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.13 func:intersect
+%   4.11.4.13 func:intersect
 
 '<http://www.w3.org/2007/rif-builtin-function#intersect>'([A, B], C) :-
 	when(
@@ -7445,7 +8952,7 @@ djitis(A) :-
 	).
 
 
-% 4.11.4.14 func:except
+%   4.11.4.14 func:except
 
 '<http://www.w3.org/2007/rif-builtin-function#except>'([A, B], C) :-
 	when(
@@ -7462,7 +8969,7 @@ djitis(A) :-
 	).
 
 
-% Prolog built-ins
+%   Prolog built-ins
 
 prolog_sym(abolish, abolish, rel).
 prolog_sym(abort, abort, rel).
@@ -7765,7 +9272,7 @@ prolog_sym(writeln, writeln, rel).
 prolog_sym(writeq, writeq, rel).
 
 
-% support
+%   support
 
 def_pfx('math:', '<http://www.w3.org/2000/10/swap/math#>').
 def_pfx('e:', '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>').
@@ -7835,7 +9342,7 @@ within_scope([A, B]) :-
 	->	B = 1
 	;	true
 	),
-	(	(	flag('no-span')	% DEPRECATED
+	(	(	flag('no-span')	%   DEPRECATED
 		;	B = 0
 		)
 	->	brake
@@ -8474,7 +9981,7 @@ getcwd(A) :-
 :- endif.
 
 
-% Modified Base64 for XML identifiers
+%   Modified Base64 for XML identifiers
 
 base64xml(A, B) :-
 	base64(A, C),
@@ -9614,7 +11121,7 @@ mf(A) :-
 	flush_output(user_error).
 
 
-% Regular Expressions inspired by http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html
+%   Regular Expressions inspired by http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html
 
 regex(RE_esc, Input_esc, Outputs_esc) :-
 	escape_string(RE, RE_esc),
@@ -9791,1513 +11298,4 @@ regexp_wildcard([0'*|A], [0'., 0'*|B]) :-
 	regexp_wildcard(A, B).
 regexp_wildcard([A|B], [A|C]) :-
 	regexp_wildcard(B, C).
-
-
-% N3 parser
-%
-% according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
-% inspired by http://code.google.com/p/km-rdf/wiki/Henry
-
-barename(BareName, [name(BareName)|L2], L2).
-
-
-barename_csl([BareName|Tail], L1, L3) :-
-	barename(BareName, L1, L2),
-	!,
-	barename_csl_tail(Tail, L2, L3).
-barename_csl([], L1, L1).
-
-
-barename_csl_tail([BareName|Tail], [','|L2], L4) :-
-	!,
-	barename(BareName, L2, L3),
-	barename_csl_tail(Tail, L3, L4).
-barename_csl_tail([], L1, L1).
-
-
-% DEPRECATED
-boolean(true, [atname('true')|L2], L2) :-
-	!.
-boolean(true, [name('true')|L2], L2) :-
-	!.
-% DEPRECATED
-boolean(false, [atname('false')|L2], L2) :-
-	!.
-boolean(false, [name('false')|L2], L2) :-
-	!.
-boolean(Boolean, L1, L2) :-
-	literal(Atom, type(T), L1, L2),
-	T = '\'<http://www.w3.org/2001/XMLSchema#boolean>\'',
-	memberchk([Boolean, Atom], [[true, '\'true\''], [true, true], [true, '\'1\''], [false, '\'false\''], [false, false], [false, '\'0\'']]).
-
-
-% DEPRECATED
-declaration([atname(base)|L2], L3) :-
-	!,
-	explicituri(U, L2, L3),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(base_uri(_)),
-	assertz(base_uri(URI)).
-declaration([name(Name)|L2], L4) :-
-	downcase_atom(Name, 'base'),
-	!,
-	explicituri(U, L2, L3),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(base_uri(_)),
-	assertz(base_uri(URI)),
-	withoutdot(L3, L4).
-% DEPRECATED
-declaration([atname(keywords)|L2], L3) :-
-	!,
-	barename_csl(List, L2, L3),
-	retractall(keywords(_)),
-	assertz(keywords(List)).
-% DEPRECATED
-declaration([atname(prefix)|L2], L4) :-
-	!,
-	prefix(Prefix, L2, L3),
-	explicituri(U, L3, L4),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(ns(Prefix, _)),
-	assertz(ns(Prefix, URI)),
-	put_pfx(Prefix, URI).
-declaration([name(Name)|L2], L5) :-
-	downcase_atom(Name, 'prefix'),
-	prefix(Prefix, L2, L3),
-	explicituri(U, L3, L4),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(ns(Prefix, _)),
-	assertz(ns(Prefix, URI)),
-	put_pfx(Prefix, URI),
-	withoutdot(L4, L5).
-
-
-document(Triples, L1, L2) :-
-	statements_optional(Triples, L1, L2).
-
-
-dtlang(lang(Langcode), [atname(Name)|L2], L2) :-
-	!,
-	atomic_list_concat(['\'', Name, '\''], Langcode).
-dtlang(type(Datatype), [caretcaret|L2], L3) :-
-	!,
-	uri(Datatype, L2, L3).
-dtlang(type('\'<http://www.w3.org/2001/XMLSchema#string>\''), L1, L1).
-
-
-% DEPRECATED
-existential([atname(forSome)|L2], L3) :-
-	!,
-	symbol_csl(Symbols, L2, L3),
-	nb_getval(fdepth, D),
-	forall(
-		(	member(S, Symbols)
-		),
-		(	(	\+qevar(S, _, D)
-			->	gensym('qe_', Q),
-				asserta(qevar(S, Q, D))
-			;	true
-			)
-		)
-	).
-
-
-explicituri(ExplicitURI, [relative_uri(ExplicitURI)|L2], L2).
-
-
-expression(Node, T, L1, L3) :-
-	pathitem(N1, T1, L1, L2),
-	pathtail(N1, P, N2, T2, L2, L3),
-	append(T1, T2, T3),
-	(	P = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#disjunction>\''
-	->	(	distinct(N1, Distinct)
-		->	true
-		;	Distinct = N1
-		),
-		dlist(Distinct, Node),
-		T = []
-	;	Node = N2,
-		T = T3
-	),
-	(	keywords(List),
-		memberchk(Node, List)
-	->	nb_getval(line_number, Ln),
-		throw(invalid_keyword_use(Node, after_line(Ln)))
-	;	true
-	).
-
-
-formulacontent(Formula, L1, L2) :-
-	statementlist(List, L1, L2),
-	(	nb_getval(fdepth, 1),
-		retract(forward),
-		retract(backward)
-	->	L = List
-	;	distinct(List, L)
-	),
-	clist(L, Formula).
-
-
-literal(Atom, DtLang, L1, L3) :-
-	string(Codes, L1, L2),
-	dtlang(DtLang, L2, L3),
-	escape_string(Codes, B),
-	escape_string(B, C),
-	atom_codes(A, C),
-	(	sub_atom(A, _, 1, _, '\'')
-	->	escape_squote(C, D),
-		atom_codes(E, D)
-	;	E = A
-	),
-	atomic_list_concat(['\'', E, '\''], Atom).
-
-
-numericliteral(Number, [numeric(Type, NumB)|L2], L2) :-
-	numeral(NumB, NumC),
-	(	flag(strict),
-		Type = decimal
-	->	rdiv_codes(Number, NumC)
-	;	number_codes(Number, NumC)
-	).
-
-
-object(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2).
-
-
-objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
-	!,
-	object(Object, Triples, L2, L3),
-	objecttail(Subject, Verb, Tail, L3, L4),
-	append(Triples, Tail, T),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, Object, Subject]
-		;	Triple = exopred(V, Object, Subject)
-		)
-	;	(	atom(Verb),
-			\+sub_atom(Verb, 0, 1, _, '_')
-		->	Triple =.. [Verb, Subject, Object]
-		;	Triple = exopred(Verb, Subject, Object)
-		)
-	).
-objecttail(_, _, [], L1, L1).
-
-
-pathitem([], [], L1, L2) :-
-	symbol(S, L1, L2),
-	S = '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>\'',
-	!.
-pathitem(Name, [], L1, L2) :-
-	symbol(S, L1, L2),
-	!,
-	(	qevar(S, N, D)
-	->	(	D >= 1,
-			nb_getval(fdepth, FD),
-			FD >= D,
-			\+flag('pass-all-ground')
-		->	atom_concat('_', N, Name),
-			nb_setval(smod, false)
-		;	nb_getval(var_ns, Vns),
-			atomic_list_concat(['\'<', Vns, N, '>\''], Name)
-		)
-	;	(	quvar(S, N, D)
-		->	(	(	D = 1,
-					nb_getval(fdepth, FD),
-					FD >= 1
-				;	flag('pass-all-ground')
-				)
-			->	nb_getval(var_ns, Vns),
-				atomic_list_concat(['\'<', Vns, N, '>\''], Name)
-			;	atom_concat('_', N, Name),
-				nb_setval(smod, false)
-			)
-		;	(	atom(S),
-				atom_concat('\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#', A, S),
-				atom_concat(B, '>\'', A)
-			->	(	B = conjunction
-				->	Pred = '\',\''
-				;	(	B = disjunction
-					->	Pred = '\';\''
-					;	(	prolog_sym(B, Pred, _)
-						->	true
-						;	nb_getval(line_number, Ln),
-							throw(invalid_prolog_builtin(B, after_line(Ln)))
-						)
-					)
-				),
-				Name = prolog:Pred
-			;	Name = S
-			)
-		)
-	),
-	(	quvar(S, _, _)
-	->	nb_setval(smod, false)
-	;	true
-	).
-pathitem(VarID, [], [uvar(Var)|L2], L2) :-
-	!,
-	atom_codes(Var, VarCodes),
-	subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], VarCodes, VarTidy),
-	atom_codes(VarAtom, [0'_|VarTidy]),
-	(	flag('pass-all-ground')
-	->	nb_getval(var_ns, Vns),
-		atom_codes(VarFrag, VarTidy),
-		atomic_list_concat(['\'<', Vns, VarFrag, '>\''], VarID)
-	;	VarID = VarAtom
-	),
-	nb_setval(smod, false).
-pathitem(Number, [], L1, L2) :-
-	numericliteral(Number, L1, L2),
-	!.
-pathitem(Boolean, [], L1, L2) :-
-	boolean(Boolean, L1, L2),
-	!.
-pathitem(Atom, [], L1, L2) :-
-	literal(A, type(T), L1, L2),
-	T = '\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>\'',
-	!,
-	atom_codes(A, B),
-	escape_string(C, B),
-	atom_codes(Atom, C).
-pathitem(Number, [], L1, L2) :-
-	literal(Atom, type(Type), L1, L2),
-	memberchk(Type, ['\'<http://www.w3.org/2001/XMLSchema#integer>\'', '\'<http://www.w3.org/2001/XMLSchema#decimal>\'', '\'<http://www.w3.org/2001/XMLSchema#double>\'']),
-	sub_atom(Atom, 1, _, 1, A),
-	atom_codes(A, NumB),
-	numeral(NumB, NumC),
-	(	flag(strict),
-		Type = '\'<http://www.w3.org/2001/XMLSchema#decimal>\''
-	->	rdiv_codes(Number, NumC)
-	;	number_codes(Number, NumC)
-	),
-	!.
-pathitem(literal(Atom, DtLang), [], L1, L2) :-
-	literal(Atom, DtLang, L1, L2),
-	!.
-pathitem(BNode, Triples, ['['|L2], L4) :-
-	!,
-	gensym('bn_', S),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], BN)
-	;	atom_concat('_', S, BN),
-		nb_setval(smod, false)
-	),
-	propertylist(BN, T, L2, [']'|L4]),
-	(	memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), T),
-		memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), T),
-		del(T, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\''(X, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>\''), U),
-		del(U, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), V),
-		del(V, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), W)
-	->	BNode = [Head|Tail],
-		Triples = W
-	;	BNode = BN,
-		Triples = T
-	).
-pathitem(set(Distinct), Triples, ['(', '$'|L2], L4) :-
-	!,
-	pathlist(List, Triples, L2, ['$', ')'|L4]),
-	(	nb_getval(smod, true)
-	->	sort(List, Distinct)
-	;	distinct(List, Distinct)
-	).
-pathitem(List, Triples, ['('|L2], L4) :-
-	!,
-	pathlist(List, Triples, L2, [')'|L4]).
-pathitem(Node, [] , ['{'|L2], L4):-
-	nb_getval(fdepth, I),
-	J is I+1,
-	nb_setval(fdepth, J),
-	nb_setval(smod, true),
-	formulacontent(Node, L2, ['}'|L4]),
-	retractall(quvar(_, _, J)),
-	retractall(qevar(_, _, J)),
-	retractall(evar(_, _, J)),
-	nb_setval(fdepth, I),
-	nb_setval(smod, false).
-
-
-pathlist([Node|Rest], Triples, L1, L3) :-
-	expression(Node, T, L1, L2),
-	!,
-	pathlist(Rest, Tail, L2, L3),
-	append(T, Tail, Triples).
-pathlist([], [], L1, L1).
-
-
-pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
-	!,
-	pathitem(Verb, Triples2, L2, L3),
-	dynamic_verb(Verb),
-	gensym('bn_', S),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
-	;	atom_concat('_', S, BNode),
-		nb_setval(smod, false)
-	),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, BNode, Node]
-		;	Triple = exopred(V, BNode, Node)
-		)
-	;	(	Verb = prolog:Pred
-		->	(	BNode = true
-			->	Triple =.. [Pred|Node]
-			;	(	BNode = false
-				->	T =.. [Pred|Node],
-					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)
-					->	T =.. [Pred|Node],
-						Triple = is(BNode, T)
-					;	Triple =.. [Pred, Node, BNode]
-					)
-				)
-			)
-		;	(	atom(Verb),
-				\+sub_atom(Verb, 0, 1, _, '_')
-			->	Triple =.. [Verb, Node, BNode]
-			;	Triple = exopred(Verb, Node, BNode)
-			)
-		)
-	),
-	pathtail(BNode, _, PNode, Tail, L3, L4),
-	append(Triples2, Tail, Triples).
-pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
-	!,
-	pathitem(Verb, Triples2, L2, L3),
-	dynamic_verb(Verb),
-	gensym('bn_', S),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
-	;	atom_concat('_', S, BNode),
-		nb_setval(smod, false)
-	),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, Node, BNode]
-		;	Triple = exopred(V, Node, BNode)
-		)
-	;	(	Verb = prolog:Pred
-		->	(	Node = true
-			->	Triple =.. [Pred|BNode]
-			;	(	Node = false
-				->	T =.. [Pred|BNode],
-					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)
-					->	T =.. [Pred|BNode],
-						Triple = is(Node, T)
-					;	Triple =.. [Pred, BNode, Node]
-					)
-				)
-			)
-		;	(	atom(Verb),
-				\+sub_atom(Verb, 0, 1, _, '_')
-			->	Triple =.. [Verb, BNode, Node]
-			;	Triple = exopred(Verb, BNode, Node)
-			)
-		)
-	),
-	pathtail(BNode, _, PNode, Tail, L3, L4),
-	append(Triples2, Tail, Triples).
-pathtail(Node, void, Node, [], L1, L1).
-
-
-prefix(Prefix, [Prefix:''|L2], L2).
-
-
-propertylist(Subject, [Triple|Triples], L1, L5) :-
-	verb(Verb, Triples1, L1, L2),
-	dynamic_verb(Verb),
-	!,
-	object(Object, Triples2, L2, L3),
-	objecttail(Subject, Verb, Triples3, L3, L4),
-	propertylisttail(Subject, Triples4, L4, L5),
-	append(Triples1, Triples2, Triples12),
-	append(Triples12, Triples3, Triples123),
-	append(Triples123, Triples4, Triples),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, Object, Subject]
-		;	Triple = exopred(V, Object, Subject)
-		)
-	;	(	Verb = prolog:Pred
-		->	(	Object = true
-			->	Triple =.. [Pred|Subject]
-			;	(	Object = false
-				->	T =.. [Pred|Subject],
-					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)
-					->	T =.. [Pred|Subject],
-						Triple = is(Object, T)
-					;	Triple =.. [Pred, Subject, Object]
-					)
-				)
-			)
-		;	(	atom(Verb),
-				\+sub_atom(Verb, 0, 1, _, '_')
-			->	Triple =.. [Verb, Subject, Object]
-			;	Triple = exopred(Verb, Subject, Object)
-			)
-		)
-	).
-propertylist(_, [], L1, L1).
-
-
-propertylisttail(Subject, Triples, [';'|L2], L4) :-
-	!,
-	propertylisttailsemis(L2, L3),
-	propertylist(Subject, Triples, L3, L4).
-propertylisttail(_, [], L1, L1).
-
-
-propertylisttailsemis([';'|L2], L3) :-
-	!,
-	propertylisttailsemis(L2, L3).
-propertylisttailsemis(L1, L1).
-
-
-qname(URI, [NS:Name|L2], L2) :-
-	(	ns(NS, Base)
-	->	atomic_list_concat([Base, Name], Name1),
-		(	sub_atom(Name1, _, 1, _, '\'')
-		->	atom_codes(Name1, Codes1),
-			escape_squote(Codes1, Codes2),
-			atom_codes(Name2, Codes2)
-		;	Name2 = Name1
-		),
-		atomic_list_concat(['\'<', Name2, '>\''], URI)
-	;	nb_getval(line_number, Ln),
-		throw(no_prefix_directive(NS, after_line(Ln)))
-	),
-	!.
-
-
-simpleStatement(Triples, L1, L3) :-
-	subject(Subject, Triples1, L1, L2),
-	(	Subject = (D1;D2)
-	->	Triples = [(D1;D2)]
-	;	propertylist(Subject, Triples2, L2, L3),
-		append(Triples1, Triples2, Triples)
-	).
-
-
-statement([], L1, L2) :-
-	declaration(L1, L2),
-	!.
-statement([], L1, L2) :-
-	universal(L1, L2),
-	!.
-statement([], L1, L2) :-
-	existential(L1, L2),
-	!.
-statement(Statement, L1, L2) :-
-	simpleStatement(Statement, L1, L2).
-
-
-statementlist(Triples, L1, L3) :-
-	statement(Tr, L1, L2),
-	!,
-	statementtail(T, L2, L3),
-	append(Tr, T, Triples).
-statementlist([], L1, L1).
-
-
-statements_optional(Triples, L1, L4) :-
-	statement(Tr, L1, [dot(Ln)|L3]),
-	!,
-	nb_setval(line_number, Ln),
-	statements_optional(T, L3, L4),
-	append(Tr, T, Triples).
-statements_optional([], L1, L1).
-
-
-statementtail(T, [dot(Ln)|L2], L3) :-
-	!,
-	nb_setval(line_number, Ln),
-	statementlist(T, L2, L3).
-statementtail([], L1, L1).
-
-
-string(Codes, [literal(Codes)|L2], L2).
-
-
-subject(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2).
-
-
-symbol(Name, L1, L2) :-
-	uri(Name, L1, L2),
-	!.
-symbol(Name, [name(N)|L2], L2) :-
-	!,
-	(	keywords(List)
-	->	(	memberchk(N, List)
-		->	Name = N
-		;	ns('', Base),
-			atomic_list_concat(['\'<', Base, N, '>\''], Name)
-		)
-	;	(	memberchk(N, [true, false])
-		->	Name = N
-		;	nb_getval(line_number, Ln),
-			throw(invalid_keyword(N, after_line(Ln)))
-		)
-	).
-symbol(Name, [bnode(Label)|L2], L2) :-
-	nb_getval(fdepth, D),
-	(	D =:= 0
-	->	N = Label
-	;	atom_codes(Label, LabelCodes),
-		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
-		atom_codes(N, LabelTidy)
-	),
-	(	(	\+forward,
-			\+backward
-		->	evar(N, S)
-		;	evar(N, S, 1)
-		)
-	->	true
-	;	atom_concat(N, '_', M),
-		gensym(M, S),
-		(	\+forward,
-			\+backward
-		->	assertz(evar(N, S))
-		;	assertz(evar(N, S, 1))
-		)
-	),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		(	flag('pass-all-ground')
-		->	atomic_list_concat(['\'<', Vns, N, '>\''], Name)
-		;	atomic_list_concat(['\'<', Vns, 'e_', S, '>\''], Name)
-		)
-	;	atom_concat('_e_', S, Name),
-		nb_setval(smod, false)
-	).
-
-
-symbol_csl([Symbol|Tail], L1, L3) :-
-	symbol(Symbol, L1, L2),
-	!,
-	symbol_csl_tail(Tail, L2, L3).
-symbol_csl([], L1, L1).
-
-
-symbol_csl_tail([Symbol|T], [','|L2], L4) :-
-	!,
-	symbol(Symbol, L2, L3),
-	symbol_csl_tail(T, L3, L4).
-symbol_csl_tail([], L1, L1).
-
-
-% DEPRECATED
-universal([atname(forAll)|L2], L3) :-
-	!,
-	symbol_csl(Symbols, L2, L3),
-	nb_getval(fdepth, D),
-	(	\+flag(traditional),
-		D > 0
-	->	throw(not_supported('@forAll', at_formula_depth(D)))
-	;	true
-	),
-	forall(
-		(	member(S, Symbols)
-		),
-		(	(	\+quvar(S, _, D)
-			->	gensym('qu_', Q),
-				asserta(quvar(S, Q, D))
-			;	true
-			)
-		)
-	).
-
-
-uri(Name, L1, L2) :-
-	explicituri(U, L1, L2),
-	!,
-	base_uri(V),
-	resolve_uri(U, V, W),
-	(	sub_atom(W, _, 1, _, '\'')
-	->	atom_codes(W, X),
-		escape_squote(X, Y),
-		atom_codes(Z, Y)
-	;	Z = W
-	),
-	atomic_list_concat(['\'<', Z, '>\''], Name).
-uri(Name, L1, L2) :-
-	qname(Name, L1, L2).
-
-
-verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
-	!,
-	(	nb_getval(fdepth, 0)
-	->	assertz(forward)
-	;	true
-	).
-verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
-	!.
-verb(':-', [], ['<', '='|L2], L2) :-
-	!,
-	(	nb_getval(fdepth, 0)
-	->	assertz(backward)
-	;	true
-	).
-% DEPRECATED
-verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
-	!.
-verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [name(a)|L2], L2) :-
-	!.
-% DEPRECATED
-verb(Node, Triples, [atname(has)|L2], L3) :-
-	!,
-	expression(Node, Triples, L2, L3).
-verb(Node, Triples, [name(has)|L2], L3) :-
-	!,
-	expression(Node, Triples, L2, L3).
-% DEPRECATED
-verb(isof(Node), Triples, [atname(is)|L2], L4) :-
-	!,
-	expression(Node, Triples, L2, [atname(of)|L4]).
-verb(isof(Node), Triples, [name(is)|L2], L4) :-
-	!,
-	expression(Node, Triples, L2, [name(of)|L4]).
-verb(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2).
-
-
-withoutdot([dot(Ln)|L2], [dot(Ln)|L2]) :-
-	!,
-	throw(unexpected_dot(after_line(Ln))).
-withoutdot(L1, [dot(Ln)|L1]) :-
-	nb_getval(line_number, Ln).
-
-
-% N3 tokenizer
-
-tokens(In, List) :-
-	get_code(In, C0),
-	(	token(C0, In, C1, Tok1)
-	->	true
-	;	nb_getval(line_number, Ln),
-		char_code(Char, C0),
-		throw(illegal_token(char_code(Char, C0), line(Ln)))
-	),
-	(	Tok1 == end_of_file
-	->	List = []
-	;	List = [Tok1|Tokens],
-		tokens(C1, In, Tokens)
-	).
-
-
-tokens(C0, In, List) :-
-	(	token(C0, In, C1, H)
-	->	true
-	;	nb_getval(line_number, Ln),
-		char_code(Char, C0),
-		throw(illegal_token(char_code(Char, C0), line(Ln)))
-	),
-	(	H == end_of_file
-	->	List = []
-	;	List = [H|T],
-		tokens(C1, In, T)
-	).
-
-
-token(-1, _, -1, end_of_file) :-
-	!.
-token(0'., In, C, Token) :-
-	(	peek_code(In, C0),
-		(	e(C0)
-		->	T1 = [0'0|T2],
-			get_code(In, CN1)
-		;	0'0 =< C0,
-			C0 =< 0'9,
-			get_code(In, C1),
-			integer_codes(C1, In, CN1, T1, T2)
-		)
-	->	(	exponent(CN1, In, C, T2)
-		->	Type = double
-		;	C = CN1,
-			T2 = [],
-			Type = decimal
-		),
-		Token = numeric(Type, [0'0, 0'.|T1])
-	;	nb_getval(line_number, Ln),
-		get_code(In, C),
-		!,
-		Token = dot(Ln)
-	).
-token(0'#, In, C, Token) :-
-	!,
-	get_code(In, C1),
-	skip_line(C1, In, C2),
-	token(C2, In, C, Token).
-token(C0, In, C, Token) :-
-	white_space(C0),
-	!,
-	get_code(In, C1),
-	token(C1, In, C, Token).
-token(C0, In, C, Number) :-
-	0'0 =< C0,
-	C0 =< 0'9,
-	!,
-	number_n(C0, In, C, Number).
-token(0'-, In, C, Number) :-
-	!,
-	number_n(0'-, In, C, Number).
-token(0'+, In, C, Number) :-
-	!,
-	number_n(0'+, In, C, Number).
-token(0'", In, C, literal(Codes)) :-
-	!,
-	(	peek_code(In, 0'")
-	->	get_code(In, 0'"),
-		(	peek_code(In, 0'")
-		->	get_code(In, 0'"),
-			get_code(In, C1),
-			dq_string(C1, In, C, Codes)
-		;	get_code(In, C),
-			Codes = []
-		)
-	;	get_code(In, C1),
-		string_dq(C1, In, C, Codes)
-	).
-token(0'', In, C, literal(Codes)) :-
-	!,
-	(	peek_code(In, 0'')
-	->	get_code(In, 0''),
-		(	peek_code(In, 0'')
-		->	get_code(In, 0''),
-			get_code(In, C1),
-			sq_string(C1, In, C, Codes)
-		;	get_code(In, C),
-			Codes = []
-		)
-	;	get_code(In, C1),
-		string_sq(C1, In, C, Codes)
-	).
-token(0'?, In, C, uvar(Name)) :-
-	!,
-	get_code(In, C0),
-	(	name(C0, In, C, Name)
-	->	true
-	;	C = C0,
-		nb_getval(line_number, Ln),
-		throw(empty_quickvar_name(line(Ln)))
-	).
-token(0'_, In, C, bnode(Name)) :-
-	peek_code(In, 0':),
-	!,
-	get_code(In, _),
-	get_code(In, C0),
-	(	name(C0, In, C, Name)
-	->	true
-	;	C = C0,
-		Name = ''
-	).
-token(0'<, In, C, relative_uri(URI)) :-
-	peek_code(In, C1),
-	C1 \== 0'=,
-	!,
-	get_code(In, C1),
-	iri_chars(C1, In, C, Codes),
-	D = Codes,
-	atom_codes(URI, D).
-token(0':, In, C, Token) :-
-	!,
-	get_code(In, C0),
-	(	local_name(C0, In, C, Name)
-	->	Token = '':Name
-	;	Token = '':'',
-		C = C0
-	).
-token(0'@, In, C, atname(Name)) :-
-	get_code(In, C0),
-	token(C0, In, C, name(Name)),
-	!.
-token(0'^, In, C, caretcaret) :-
-	peek_code(In, 0'^),
-	!,
-	get_code(In, _),
-	get_code(In, C).
-token(C0, In, C, Token) :-
-	name(C0, In, C1, Name),
-	!,
-	(	C1 == 0':
-	->	get_code(In, C2),
-		(	local_name(C2, In, C, Name2)
-		->	Token = (Name:Name2)
-		;	Token = (Name:''),
-			C = C2
-		)
-	;	Token = name(Name),
-		C = C1
-	).
-token(C0, In, C, P) :-
-	punctuation(C0, P),
-	!,
-	get_code(In, C).
-
-
-number_n(0'-, In, CN, numeric(T, [0'-|Codes])) :-
-	!,
-	get_code(In, C0),
-	number_nn(C0, In, CN, numeric(T, Codes)).
-number_n(0'+, In, CN, numeric(T, [0'+|Codes])) :-
-	!,
-	get_code(In, C0),
-	number_nn(C0, In, CN, numeric(T, Codes)).
-number_n(C0, In, CN, Value) :-
-	number_nn(C0, In, CN, Value).
-
-
-number_nn(C, In, CN, numeric(Type, Codes)) :-
-	integer_codes(C, In, CN0, Codes, T0),
-	(	CN0 == 0'.,
-		peek_code(In, C0),
-		(	e(C0)
-		->	T1 = [0'0|T2],
-			get_code(In, CN1)
-		;	0'0 =< C0,
-			C0 =< 0'9,
-			get_code(In, C1),
-			integer_codes(C1, In, CN1, T1, T2)
-		),
-		T0 = [0'.|T1]
-	->	(	exponent(CN1, In, CN, T2)
-		->	Type = double
-		;	CN = CN1,
-			T2 = [],
-			Type = decimal
-		)
-	;	(	exponent(CN0, In, CN, T0)
-		->	Type = double
-		;	T0 = [],
-			CN = CN0,
-			Type = integer
-		)
-	).
-
-
-integer_codes(C0, In, CN, [C0|T0], T) :-
-	0'0 =< C0,
-	C0 =< 0'9,
-	!,
-	get_code(In, C1),
-	integer_codes(C1, In, CN, T0, T).
-integer_codes(CN, _, CN, T, T).
-
-
-exponent(C0, In, CN, [C0|T0]) :-
-	e(C0),
-	!,
-	get_code(In, C1),
-	optional_sign(C1, In, CN0, T0, T1),
-	integer_codes(CN0, In, CN, T1, []),
-	(	T1 = []
-	->	nb_getval(line_number, Ln),
-		throw(invalid_exponent(line(Ln)))
-	;	true
-	).
-
-
-optional_sign(C0, In, CN, [C0|T], T) :-
-	sign(C0),
-	!,
-	get_code(In, CN).
-optional_sign(CN, _, CN, T, T).
-
-
-e(0'e).
-e(0'E).
-
-
-sign(0'-).
-sign(0'+).
-
-
-dq_string(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-dq_string(0'", In, C, []) :-
-	(	retract(got_dq)
-	->	true
-	;	peek_code(In, 0'"),
-		get_code(In, _)
-	),
-	(	retract(got_dq)
-	->	assertz(got_dq)
-	;	assertz(got_dq),
-		peek_code(In, 0'"),
-		get_code(In, _),
-		assertz(got_dq)
-	),
-	!,
-	(	peek_code(In, 0'")
-	->	nb_getval(line_number, Ln),
-		throw(unexpected_double_quote(line(Ln)))
-	;	true
-	),
-	retractall(got_dq),
-	get_code(In, C).
-dq_string(0'", In, C, [0'"|T]) :-
-	!,
-	(	retract(got_dq)
-	->	C1 = 0'"
-	;	get_code(In, C1)
-	),
-	dq_string(C1, In, C, T).
-dq_string(0'\\, In, C, [H|T]) :-
-	(	retract(got_dq)
-	->	C1 = 0'"
-	;	get_code(In, C1)
-	),
-	!,
-	string_escape(C1, In, C2, H),
-	dq_string(C2, In, C, T).
-dq_string(C0, In, C, [C0|T]) :-
-	(	retract(got_dq)
-	->	C1 = 0'"
-	;	get_code(In, C1)
-	),
-	dq_string(C1, In, C, T).
-
-
-sq_string(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-sq_string(0'', In, C, []) :-
-	(	retract(got_sq)
-	->	true
-	;	peek_code(In, 0''),
-		get_code(In, _)
-	),
-	(	retract(got_sq)
-	->	assertz(got_sq)
-	;	assertz(got_sq),
-		peek_code(In, 0''),
-		get_code(In, _),
-		assertz(got_sq)
-	),
-	!,
-	(	peek_code(In, 0'')
-	->	nb_getval(line_number, Ln),
-		throw(unexpected_single_quote(line(Ln)))
-	;	true
-	),
-	retractall(got_sq),
-	get_code(In, C).
-sq_string(0'', In, C, [0''|T]) :-
-	!,
-	(	retract(got_sq)
-	->	C1 = 0''
-	;	get_code(In, C1)
-	),
-	sq_string(C1, In, C, T).
-sq_string(0'\\, In, C, [H|T]) :-
-	(	retract(got_sq)
-	->	C1 = 0''
-	;	get_code(In, C1)
-	),
-	!,
-	string_escape(C1, In, C2, H),
-	sq_string(C2, In, C, T).
-sq_string(C0, In, C, [C0|T]) :-
-	(	retract(got_sq)
-	->	C1 = 0''
-	;	get_code(In, C1)
-	),
-	sq_string(C1, In, C, T).
-
-
-string_dq(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-string_dq(0'\n, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_line(line(Ln))).
-string_dq(0'", In, C, []) :-
-	!,
-	get_code(In, C).
-string_dq(0'\\, In, C, D) :-
-	get_code(In, C1),
-	!,
-	string_escape(C1, In, C2, H),
-	(	current_prolog_flag(windows, true),
-		H > 0xFFFF
-	->	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [H|T]
-	),
-	string_dq(C2, In, C, T).
-string_dq(C0, In, C, D) :-
-	(	current_prolog_flag(windows, true),
-		C0 > 0xFFFF
-	->	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [C0|T]
-	),
-	get_code(In, C1),
-	string_dq(C1, In, C, T).
-
-
-string_sq(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-string_sq(0'', In, C, []) :-
-	!,
-	get_code(In, C).
-string_sq(0'\\, In, C, D) :-
-	get_code(In, C1),
-	!,
-	string_escape(C1, In, C2, H),
-	(	current_prolog_flag(windows, true),
-		H > 0xFFFF
-	->	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [H|T]
-	),
-	string_sq(C2, In, C, T).
-string_sq(C0, In, C, D) :-
-	(	current_prolog_flag(windows, true),
-		C0 > 0xFFFF
-	->	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [C0|T]
-	),
-	get_code(In, C1),
-	string_sq(C1, In, C, T).
-
-
-string_escape(0't, In, C, 0'\t) :-
-	!,
-	get_code(In, C).
-string_escape(0'b, In, C, 0'\b) :-
-	!,
-	get_code(In, C).
-string_escape(0'n, In, C, 0'\n) :-
-	!,
-	get_code(In, C).
-string_escape(0'r, In, C, 0'\r) :-
-	!,
-	get_code(In, C).
-string_escape(0'f, In, C, 0'\f) :-
-	!,
-	get_code(In, C).
-string_escape(0'", In, C, 0'") :-
-	!,
-	get_code(In, C).
-string_escape(0'', In, C, 0'') :-
-	!,
-	get_code(In, C).
-string_escape(0'\\, In, C, 0'\\) :-
-	!,
-	get_code(In, C).
-string_escape(0'u, In, C, Code) :-
-	!,
-	get_hhhh(In, A),
-	(	0xD800 =< A,
-		A =< 0xDBFF
-	->	get_code(In, 0'\\),
-		get_code(In, 0'u),
-		get_hhhh(In, B),
-		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
-	;	Code is A
-	),
-	get_code(In, C).
-string_escape(0'U, In, C, Code) :-
-	!,
-	get_hhhh(In, Code0),
-	get_hhhh(In, Code1),
-	Code is Code0 << 16 + Code1,
-	get_code(In, C).
-string_escape(C, _, _, _) :-
-	nb_getval(line_number, Ln),
-	atom_codes(A, [0'\\, C]),
-	throw(illegal_string_escape_sequence(A, line(Ln))).
-
-
-get_hhhh(In, Code) :-
-	get_code(In, C1),
-	code_type(C1, xdigit(D1)),
-	get_code(In, C2),
-	code_type(C2, xdigit(D2)),
-	get_code(In, C3),
-	code_type(C3, xdigit(D3)),
-	get_code(In, C4),
-	code_type(C4, xdigit(D4)),
-	Code is D1<<12+D2<<8+D3<<4+D4.
-
-
-language(C0, In, C, [C0|Codes]) :-
-	code_type(C0, lower),
-	get_code(In, C1),
-	lwr_word(C1, In, C2, Codes, Tail),
-	sub_langs(C2, In, C, Tail, []).
-
-
-lwr_word(C0, In, C, [C0|T0], T) :-
-	code_type(C0, lower),
-	!,
-	get_code(In, C1),
-	lwr_word(C1, In, C, T0, T).
-lwr_word(C, _, C, T, T).
-
-
-sub_langs(0'-, In, C, [0'-, C1|Codes], T) :-
-	get_code(In, C1),
-	lwrdig(C1),
-	!,
-	get_code(In, C2),
-	lwrdigs(C2, In, C3, Codes, Tail),
-	sub_langs(C3, In, C, Tail, T).
-sub_langs(C, _, C, T, T).
-
-
-lwrdig(C) :-
-	code_type(C, lower),
-	!.
-lwrdig(C) :-
-	code_type(C, digit).
-
-
-lwrdigs(C0, In, C, [C0|T0], T) :-
-	lwrdig(C0),
-	!,
-	get_code(In, C1),
-	lwr_word(C1, In, C, T0, T).
-lwrdigs(C, _, C, T, T).
-
-
-iri_chars(0'>, In, C, []) :-
-	!,
-	get_code(In, C).
-iri_chars(0'\\, In, C, D) :-
-	!,
-	get_code(In, C1),
-	iri_escape(C1, In, C2, H),
-	\+non_iri_char(H),
-	(	current_prolog_flag(windows, true),
-		H > 0xFFFF
-	->	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [H|T]
-	),
-	iri_chars(C2, In, C, T).
-iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
-	!,
-	get_code(In, C1),
-	code_type(C1, xdigit(_)),
-	get_code(In, C2),
-	code_type(C2, xdigit(_)),
-	get_code(In, C3),
-	iri_chars(C3, In, C, T).
-iri_chars(-1, _, _, _) :-
-	!,
-	fail.
-iri_chars(C0, In, C, D) :-
-	\+non_iri_char(C0),
-	(	current_prolog_flag(windows, true),
-		C0 > 0xFFFF
-	->	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [C0|T]
-	),
-	get_code(In, C1),
-	iri_chars(C1, In, C, T).
-
-
-iri_escape(0'u, In, C, Code) :-
-	!,
-	get_hhhh(In, A),
-	(	0xD800 =< A,
-		A =< 0xDBFF
-	->	get_code(In, 0'\\),
-		get_code(In, 0'u),
-		get_hhhh(In, B),
-		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
-	;	Code is A
-	),
-	get_code(In, C).
-iri_escape(0'U, In, C, Code) :-
-	!,
-	get_hhhh(In, Code0),
-	get_hhhh(In, Code1),
-	Code is Code0 << 16 + Code1,
-	get_code(In, C).
-iri_escape(C, _, _, _) :-
-	nb_getval(line_number, Ln),
-	atom_codes(A, [0'\\, C]),
-	throw(illegal_iri_escape_sequence(A, line(Ln))).
-
-
-non_iri_char(0x20).
-non_iri_char(0'<).
-non_iri_char(0'>).
-non_iri_char(0'").
-non_iri_char(0'{).
-non_iri_char(0'}).
-non_iri_char(0'|).
-non_iri_char(0'^).
-non_iri_char(0'`).
-non_iri_char(0'\\).
-
-
-name(C0, In, C, Atom) :-
-	name_start_char(C0),
-	get_code(In, C1),
-	name_chars(C1, In, C, T),
-	atom_codes(Atom, [C0|T]).
-
-
-name_start_char(C) :-
-	pn_chars_base(C),
-	!.
-name_start_char(0'_).
-name_start_char(C) :-
-	code_type(C, digit).
-
-
-name_chars(0'., In, C, [0'.|T]) :-
-	peek_code(In, C1),
-	pn_chars(C1),
-	!,
-	get_code(In, C1),
-	name_chars(C1, In, C, T).
-name_chars(C0, In, C, [C0|T]) :-
-	pn_chars(C0),
-	!,
-	get_code(In, C1),
-	name_chars(C1, In, C, T).
-name_chars(C, _, C, []).
-
-
-pn_chars_base(C) :-
-	code_type(C, alpha),
-	!.
-pn_chars_base(C) :-
-	0xC0 =< C,
-	C =< 0xD6,
-	!.
-pn_chars_base(C) :-
-	0xD8 =< C,
-	C =< 0xF6,
-	!.
-pn_chars_base(C) :-
-	0xF8 =< C,
-	C =< 0x2FF,
-	!.
-pn_chars_base(C) :-
-	0x370 =< C,
-	C =< 0x37D,
-	!.
-pn_chars_base(C) :-
-	0x37F =< C,
-	C =< 0x1FFF,
-	!.
-pn_chars_base(C) :-
-	0x200C =< C,
-	C =< 0x200D,
-	!.
-pn_chars_base(C) :-
-	0x2070 =< C,
-	C =< 0x218F,
-	!.
-pn_chars_base(C) :-
-	0x2C00 =< C,
-	C =< 0x2FEF,
-	!.
-pn_chars_base(C) :-
-	0x3001 =< C,
-	C =< 0xD7FF,
-	!.
-pn_chars_base(C) :-
-	0xF900 =< C,
-	C =< 0xFDCF,
-	!.
-pn_chars_base(C) :-
-	0xFDF0 =< C,
-	C =< 0xFFFD,
-	!.
-pn_chars_base(C) :-
-	0x10000 =< C,
-	C =< 0xEFFFF.
-
-
-pn_chars(C) :-
-	code_type(C, csym),
-	!.
-pn_chars(C) :-
-	pn_chars_base(C),
-	!.
-pn_chars(0'-) :-
-	!.
-pn_chars(0xB7) :-
-	!.
-pn_chars(C) :-
-	0x0300 =< C,
-	C =< 0x036F,
-	!.
-pn_chars(C) :-
-	0x203F =< C,
-	C =< 0x2040.
-
-
-local_name(0'\\, In, C, Atom) :-
-	!,
-	get_code(In, C0),
-	reserved_char_escapes(C0),
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T),
-	atom_codes(Atom, [C0|T]).
-local_name(0'%, In, C, Atom) :-
-	!,
-	get_code(In, C0),
-	code_type(C0, xdigit(_)),
-	get_code(In, C1),
-	code_type(C1, xdigit(_)),
-	get_code(In, C2),
-	local_name_chars(C2, In, C, T),
-	atom_codes(Atom, [0'%, C0, C1|T]).
-local_name(C0, In, C, Atom) :-
-	local_name_start_char(C0),
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T),
-	atom_codes(Atom, [C0|T]).
-
-
-local_name_chars(0'\\, In, C, [C0|T]) :-
-	!,
-	get_code(In, C0),
-	reserved_char_escapes(C0),
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T).
-local_name_chars(0'%, In, C, [0'%, C0, C1|T]) :-
-	!,
-	get_code(In, C0),
-	code_type(C0, xdigit(_)),
-	get_code(In, C1),
-	code_type(C1, xdigit(_)),
-	get_code(In, C2),
-	local_name_chars(C2, In, C, T).
-local_name_chars(0'., In, C, [0'.|T]) :-
-	peek_code(In, C1),
-	(	local_name_char(C1)
-	;	C1 = 0'.
-	),
-	!,
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T).
-local_name_chars(C0, In, C, [C0|T]) :-
-	local_name_char(C0),
-	!,
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T).
-local_name_chars(C, _, C, []).
-
-
-local_name_start_char(C) :-
-	name_start_char(C),
-	!.
-local_name_start_char(0':).
-local_name_start_char(0'%).
-local_name_start_char(0'\\).
-
-
-local_name_char(C) :-
-	pn_chars(C),
-	!.
-local_name_char(0':).
-local_name_char(0'%).
-local_name_char(0'\\).
-
-
-reserved_char_escapes(0'~).
-reserved_char_escapes(0'.).
-reserved_char_escapes(0'-).
-reserved_char_escapes(0'!).
-reserved_char_escapes(0'$).
-reserved_char_escapes(0'&).
-reserved_char_escapes(0'').
-reserved_char_escapes(0'().
-reserved_char_escapes(0')).
-reserved_char_escapes(0'*).
-reserved_char_escapes(0'+).
-reserved_char_escapes(0',).
-reserved_char_escapes(0';).
-reserved_char_escapes(0'=).
-reserved_char_escapes(0'/).
-reserved_char_escapes(0'?).
-reserved_char_escapes(0'#).
-reserved_char_escapes(0'@).
-reserved_char_escapes(0'%).
-reserved_char_escapes(0'_).
-
-
-punctuation(0'(, '(').
-punctuation(0'), ')').
-punctuation(0'[, '[').
-punctuation(0'], ']').
-punctuation(0',, ',').
-punctuation(0':, ':').
-punctuation(0';, ';').
-punctuation(0'{, '{').
-punctuation(0'}, '}').
-punctuation(0'?, '?').
-punctuation(0'!, '!').
-punctuation(0'^, '^').
-punctuation(0'=, '=').
-punctuation(0'<, '<').
-punctuation(0'>, '>').
-punctuation(0'$, '$').
-
-
-skip_line(-1, _, -1) :-
-	!.
-skip_line(0xA, In, C) :-
-	!,
-	cnt(line_number),
-	get_code(In, C).
-skip_line(0xD, In, C) :-
-	!,
-	get_code(In, C).
-skip_line(_, In, C) :-
-	get_code(In, C1),
-	skip_line(C1, In, C).
-
-
-white_space(0x9).
-white_space(0xA) :-
-	cnt(line_number).
-white_space(0xD).
-white_space(0x20).
 

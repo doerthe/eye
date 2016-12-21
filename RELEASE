@@ -1,5 +1,6 @@
                                   EYE release
 
+[v16.1221.2306] 2 part source code: GRE (Generic Reasoning Engine) supporting Explainable Reasoning and EAM (Euler Abstract Machine) supporting Unifying Logic
 [v16.1220.2028] fixing bug with log:implies built-in (obs from Dörthe Arndt)
 [v16.1220.1724] correcting the output of existentials in derived rules (obs from Dörthe Arndt)
 [v16.1219.2244] dropping beta status
