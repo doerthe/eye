@@ -1,7 +1,6 @@
                                   EYE release
 
-[v16.1229.1111] updating LICENSE
-[v16.1223.1242] updating --license
+[v16.1229.1117] updating --license
 [v16.1221.2306] 2 part source code: GRE (Generic Reasoning Engine) supporting Explainable Reasoning and EAM (Euler Abstract Machine) supporting Unifying Logic
 [v16.1220.2028] fixing bug with log:implies built-in (obs from Dörthe Arndt)
 [v16.1220.1724] correcting the output of existentials in derived rules (obs from Dörthe Arndt)
