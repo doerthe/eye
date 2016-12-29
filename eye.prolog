@@ -124,7 +124,7 @@
 
 % Infos
 
-version_info('EYE rel. v16.1223.1242 josd').
+version_info('EYE rel. v16.1229.1111 josd').
 
 
 license_info('Simplified BSD License
