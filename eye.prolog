@@ -5,6 +5,81 @@
 % See https://github.com/josd/eye
 
 
+version_info('EYE rel. v17.0101.2008 josd').
+
+
+license_info('ISC License
+
+Copyright (c) 2009, Jos De Roo
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR
+ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
+WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
+OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.').
+
+
+help_info('Usage: eye <options>* <data>* <query>*
+eye
+	swipl -x eye.pvm --
+<options>
+	--curl-http-header <field>	to pass HTTP header <field> to curl
+	--debug				output debug info on stderr
+	--debug-cnt			output debug info about counters on stderr
+	--debug-djiti			output debug info about DJITI on stderr
+	--debug-pvm			output debug info about PVM code on stderr
+	--help				show help info
+	--hmac-key <key>		HMAC key
+	--ignore-inference-fuse		do not halt in case of inference fuse
+	--ignore-syntax-error		do not halt in case of syntax error
+	--image <pvm-file>		output all <data> and all code to <pvm-file>
+	--license			show license info
+	--multi-query			query answer loop
+	--n3p				output all <data> as N3 P-code on stdout
+	--no-distinct-input		no distinct triples in the input
+	--no-distinct-output		no distinct answers in the output
+	--no-genid			no generated id in Skolem IRI
+	--no-numerals			no numerals in the output
+	--no-qnames			no qnames in the output
+	--no-qvars			no qvars in the output
+	--no-skolem <prefix>		no uris with <prefix> in the output
+	--nope				no proof explanation
+	--pass-all-ground		ground the rules and run --pass-all
+	--pass-only-new			output only new derived triples
+	--pass-turtle			output the --turtle data
+	--probe				output speedtest info on stderr
+	--profile			output profile info on stderr
+	--rule-histogram		output rule histogram info on stderr
+	--statistics			output statistics info on stderr
+	--streaming-reasoning		streaming reasoning on --turtle data
+	--strict			strict mode
+	--strings			output log:outputString objects on stdout
+	--tactic existing-path		Euler path using homomorphism
+	--tactic limited-answer <count>	give only a limited number of answers
+	--tactic limited-brake <count>	take only a limited number of brakes
+	--tactic limited-step <count>	take only a limited number of steps
+	--tactic linear-select		select each rule only once
+	--traditional			traditional mode
+	--version			show version info
+	--warn				output warning info on stderr
+	--wcache <uri> <file>		to tell that <uri> is cached as <file>
+<data>
+	<n3-data>			N3 triples and rules
+	--plugin <n3p-data>		N3 P-code
+	--proof <n3-proof>		N3 proof
+	--turtle <ttl-data>		Turtle data
+<query>
+	--pass				output deductive closure
+	--pass-all			output deductive closure plus rules
+	--query <n3-query>		output filtered with filter rules').
+
+
 % Directives
 
 :- if(current_prolog_flag(dialect, swi)).
@@ -120,89 +195,6 @@
 :- dynamic('<http://www.w3.org/2000/10/swap/log#implies>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#outputString>'/2).
 :- dynamic('<http://www.w3.org/2002/07/owl#sameAs>'/2).
-
-
-% Infos
-
-version_info('EYE rel. v16.1229.1117 josd').
-
-
-license_info('MIT License
-
-Copyright (c) 2009 Jos De Roo
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.').
-
-
-help_info('Usage: eye <options>* <data>* <query>*
-eye
-	swipl -x eye.pvm --
-<options>
-	--curl-http-header <field>	to pass HTTP header <field> to curl
-	--debug				output debug info on stderr
-	--debug-cnt			output debug info about counters on stderr
-	--debug-djiti			output debug info about DJITI on stderr
-	--debug-pvm			output debug info about PVM code on stderr
-	--help				show help info
-	--hmac-key <key>		HMAC key
-	--ignore-inference-fuse		do not halt in case of inference fuse
-	--ignore-syntax-error		do not halt in case of syntax error
-	--image <pvm-file>		output all <data> and all code to <pvm-file>
-	--license			show license info
-	--multi-query			query answer loop
-	--n3p				output all <data> as N3 P-code on stdout
-	--no-distinct-input		no distinct triples in the input
-	--no-distinct-output		no distinct answers in the output
-	--no-genid			no generated id in Skolem IRI
-	--no-numerals			no numerals in the output
-	--no-qnames			no qnames in the output
-	--no-qvars			no qvars in the output
-	--no-skolem <prefix>		no uris with <prefix> in the output
-	--nope				no proof explanation
-	--pass-all-ground		ground the rules and run --pass-all
-	--pass-only-new			output only new derived triples
-	--pass-turtle			output the --turtle data
-	--probe				output speedtest info on stderr
-	--profile			output profile info on stderr
-	--rule-histogram		output rule histogram info on stderr
-	--statistics			output statistics info on stderr
-	--streaming-reasoning		streaming reasoning on --turtle data
-	--strict			strict mode
-	--strings			output log:outputString objects on stdout
-	--tactic existing-path		Euler path using homomorphism
-	--tactic limited-answer <count>	give only a limited number of answers
-	--tactic limited-brake <count>	take only a limited number of brakes
-	--tactic limited-step <count>	take only a limited number of steps
-	--tactic linear-select		select each rule only once
-	--traditional			traditional mode
-	--version			show version info
-	--warn				output warning info on stderr
-	--wcache <uri> <file>		to tell that <uri> is cached as <file>
-<data>
-	<n3-data>			N3 triples and rules
-	--plugin <n3p-data>		N3 P-code
-	--proof <n3-proof>		N3 proof
-	--turtle <ttl-data>		Turtle data
-<query>
-	--pass				output deductive closure
-	--pass-all			output deductive closure plus rules
-	--query <n3-query>		output filtered with filter rules').
 
 
 % Main goal
