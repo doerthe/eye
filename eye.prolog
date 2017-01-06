@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0103.1920 josd').
+version_info('EYE rel. v17.0106.2058 josd').
 
 
 license_info('MIT License
@@ -2162,11 +2162,8 @@ existential([atname(forSome)|L2], L3) :-
 	forall(
 		(	member(S, Symbols)
 		),
-		(	(	\+qevar(S, _, D)
-			->	gensym('qe_', Q),
-				asserta(qevar(S, Q, D))
-			;	true
-			)
+		(	gensym('qe_', Q),
+			asserta(qevar(S, Q, D))
 		)
 	).
 
@@ -2261,7 +2258,8 @@ pathitem([], [], L1, L2) :-
 pathitem(Name, [], L1, L2) :-
 	symbol(S, L1, L2),
 	!,
-	(	qevar(S, N, D)
+	(	qevar(S, N, D),
+		\+quvar(S, _, _)
 	->	(	D >= 1,
 			nb_getval(fdepth, FD),
 			FD >= D,
@@ -2686,11 +2684,8 @@ universal([atname(forAll)|L2], L3) :-
 	forall(
 		(	member(S, Symbols)
 		),
-		(	(	\+quvar(S, _, D)
-			->	gensym('qu_', Q),
-				asserta(quvar(S, Q, D))
-			;	true
-			)
+		(	gensym('qu_', Q),
+			asserta(quvar(S, Q, D))
 		)
 	).
 
