@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0106.2058] fixing @forAll and @forSome (obs from Dörthe Arndt)
 [v17.0103.1920] updating --license
 
 [v16.1221.2306] 2 part source code: GRE (Generic Reasoning Engine) supporting Explainable Reasoning and EAM (Euler Abstract Machine) supporting Unifying Logic
