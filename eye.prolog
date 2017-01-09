@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0106.2058 josd').
+version_info('EYE rel. v17.0109.2255 josd').
 
 
 license_info('MIT License
@@ -134,7 +134,6 @@ eye
 :- dynamic(bref/2).
 :- dynamic(bvar/1).
 :- dynamic(cpred/1).
-:- dynamic(evar/2).
 :- dynamic(evar/3).
 :- dynamic(exopred/3).		% exopred(Predicate, Subject, Object)
 :- dynamic(fact/1).
@@ -1663,7 +1662,6 @@ n3_n3p(Argument, Mode) :-
 	retractall(keywords(_)),
 	retractall(quvar(_, _, _)),
 	retractall(qevar(_, _, _)),
-	retractall(evar(_, _)),
 	retractall(evar(_, _, _)),
 	nb_setval(line_number, 1),
 	nb_setval(sc, 0),
@@ -2632,7 +2630,7 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 	),
 	(	(	\+forward,
 			\+backward
-		->	evar(N, S)
+		->	evar(N, S, D)
 		;	evar(N, S, 1)
 		)
 	->	true
@@ -2640,7 +2638,7 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		gensym(M, S),
 		(	\+forward,
 			\+backward
-		->	assertz(evar(N, S))
+		->	assertz(evar(N, S, D))
 		;	assertz(evar(N, S, 1))
 		)
 	),
