@@ -45,7 +45,7 @@ Implicit Quantification in N3 [13]
   In ETC [5] the scope of implicit universals is the implication and
   the scope of implicit existentials is the conjunction.
   The scope of implicit universals in C0 is the top level and the scope of
-  implicit existentials in C0 is the direct formula in which they they occur.
+  implicit existentials in C0 is the direct formula in which they occur.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
