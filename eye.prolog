@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0109.2352 josd').
+version_info('EYE rel. v17.0110.1302 josd').
 
 
 license_info('MIT License
@@ -2630,7 +2630,7 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 	),
 	(	(	\+forward,
 			\+backward
-		->	evar(N, S, D)
+		->	evar(N, S, 0)
 		;	evar(N, S, 1)
 		)
 	->	true
@@ -2638,7 +2638,7 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		gensym(M, S),
 		(	\+forward,
 			\+backward
-		->	assertz(evar(N, S, D))
+		->	assertz(evar(N, S, 0))
 		;	assertz(evar(N, S, 1))
 		)
 	),
