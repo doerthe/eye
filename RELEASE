@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0112.2155] adding prolog:copy_term_nat to copy a term for which attributes are not copied
 [v17.0110.1302] working with SWI-Prolog 7.3.35
 [v17.0106.2058] fixing @forAll and @forSome (obs from Dörthe Arndt)
 [v17.0103.1920] updating --license

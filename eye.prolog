@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0110.1302 josd').
+version_info('EYE rel. v17.0112.2155 josd').
 
 
 license_info('MIT License
@@ -9017,6 +9017,7 @@ prolog_sym(compare, compare, rel).
 prolog_sym(compound, compound, rel).
 prolog_sym(conjunction, ',', rel).
 prolog_sym(copy_term, copy_term, rel).
+prolog_sym(copy_term_nat, copy_term_nat, rel).
 prolog_sym(cos, cos, func).
 prolog_sym(cosh, cosh, func).
 prolog_sym(cputime, cputime, func).
