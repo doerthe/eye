@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0112.2155 josd').
+version_info('EYE rel. v17.0113.1339 josd').
 
 
 license_info('MIT License
@@ -2278,23 +2278,7 @@ pathitem(Name, [], L1, L2) :-
 			;	atom_concat('_', N, Name),
 				nb_setval(smod, false)
 			)
-		;	(	atom(S),
-				atom_concat('\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#', A, S),
-				atom_concat(B, '>\'', A)
-			->	(	B = conjunction
-				->	Pred = '\',\''
-				;	(	B = disjunction
-					->	Pred = '\';\''
-					;	(	prolog_sym(B, Pred, _)
-						->	true
-						;	nb_getval(line_number, Ln),
-							throw(invalid_prolog_builtin(B, after_line(Ln)))
-						)
-					)
-				),
-				Name = prolog:Pred
-			;	Name = S
-			)
+		;	Name = S
 		)
 	),
 	(	quvar(S, _, _)
@@ -2396,7 +2380,8 @@ pathlist([], [], L1, L1).
 
 pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	!,
-	pathitem(Verb, Triples2, L2, L3),
+	pathitem(Item, Triples2, L2, L3),
+	prolog_verb(Item, Verb),
 	dynamic_verb(Verb),
 	gensym('bn_', S),
 	(	(	nb_getval(fdepth, 0)
@@ -2437,7 +2422,8 @@ pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	append(Triples2, Tail, Triples).
 pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
 	!,
-	pathitem(Verb, Triples2, L2, L3),
+	pathitem(Item, Triples2, L2, L3),
+	prolog_verb(Item, Verb),
 	dynamic_verb(Verb),
 	gensym('bn_', S),
 	(	(	nb_getval(fdepth, 0)
@@ -2483,7 +2469,8 @@ prefix(Prefix, [Prefix:''|L2], L2).
 
 
 propertylist(Subject, [Triple|Triples], L1, L5) :-
-	verb(Verb, Triples1, L1, L2),
+	verb(Item, Triples1, L1, L2),
+	prolog_verb(Item, Verb),
 	dynamic_verb(Verb),
 	!,
 	object(Object, Triples2, L2, L3),
@@ -11052,6 +11039,26 @@ wcacher(A, B) :-
 	sub_atom(A, 0, I, _, C),
 	sub_atom(A, I, _, 0, E),
 	atomic_list_concat([D, E], B).
+
+
+prolog_verb(S, Name) :-
+	(	atom(S),
+		atom_concat('\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#', A, S),
+		atom_concat(B, '>\'', A)
+	->	(	B = conjunction
+		->	Pred = '\',\''
+		;	(	B = disjunction
+			->	Pred = '\';\''
+			;	(	prolog_sym(B, Pred, _)
+				->	true
+				;	nb_getval(line_number, Ln),
+					throw(invalid_prolog_builtin(B, after_line(Ln)))
+				)
+			)
+		),
+		Name = prolog:Pred
+	;	Name = S
+	).
 
 
 dynamic_verb(Verb) :-
