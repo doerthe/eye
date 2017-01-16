@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0116.1734] throwing not_supported_conclusion exception when a derived rule is not ground
 [v17.0116.1719] correcing the output of lists in nt files (obs from Ruben Verborgh)
 [v17.0113.1339] fixing invalid_prolog_builtin exception (obs from Elric Verbruggen)
 [v17.0112.2155] adding prolog:copy_term_nat to copy a term for which attributes are not copied
