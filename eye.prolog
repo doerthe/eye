@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0116.1734 josd').
+version_info('EYE rel. v17.0116.2244 josd').
 
 
 license_info('MIT License
@@ -5277,8 +5277,6 @@ djitis(exopred(P, S, O)) :-
 	),
 	assertz(exopred(P, S, O, Si, Oi, Sp, Op)).
 djitis('<http://www.w3.org/2000/10/swap/log#implies>'(P, C)) :-
-	findvars((P, C), V, delta),
-	V \= [],
 	throw(not_supported_conclusion('<http://www.w3.org/2000/10/swap/log#implies>'(P, C))).
 djitis(A) :-
 	ground(A),
