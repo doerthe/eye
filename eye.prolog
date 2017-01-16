@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0113.1339 josd').
+version_info('EYE rel. v17.0116.1524 josd').
 
 
 license_info('MIT License
@@ -4150,38 +4150,41 @@ wt0(X) :-
 	J is I+1,
 	sub_atom(X, J, _, 1, Y),
 	\+sub_atom(Y, 0, 3, _, 'qe_'),
-	(	rule_uvar(L),
-		(	ncllit
-		->	(	memberchk(Y, L)
-			->	true
-			;	retract(rule_uvar(L)),
-				assertz(rule_uvar([Y|L]))
+	(	getlist(X, M)
+	->	wt(M)
+	;	(	rule_uvar(L),
+			(	ncllit
+			->	(	memberchk(Y, L)
+				->	true
+				;	retract(rule_uvar(L)),
+					assertz(rule_uvar([Y|L]))
+				)
+			;	memberchk(Y, L)
 			)
-		;	memberchk(Y, L)
-		)
-	->	(	\+flag(nope),
-			sub_atom(Y, 0, 2, _, 'e_')
-		->	write('_:')
-		;	sub_atom(Y, 0, 2, _, Z),
-			memberchk(Z, ['x_', 't_']),
-			write('?')
-		)
-	;	(	\+flag('no-qvars'),
-			\+flag('no-blank')	% DEPRECATED
-		->	true
-		;	flag('no-skolem', Prefix),
-			sub_atom(X, 1, _, _, Prefix)
+		->	(	\+flag(nope),
+				sub_atom(Y, 0, 2, _, 'e_')
+			->	write('_:')
+			;	sub_atom(Y, 0, 2, _, Z),
+				memberchk(Z, ['x_', 't_']),
+				write('?')
+			)
+		;	(	\+flag('no-qvars'),
+				\+flag('no-blank')	% DEPRECATED
+			->	true
+			;	flag('no-skolem', Prefix),
+				sub_atom(X, 1, _, _, Prefix)
+			),
+			write('_:')
 		),
-		write('_:')
+		write(Y),
+		(	sub_atom(Y, 0, 2, _, 'x_')
+		->	write('_'),
+			nb_getval(rn, N),
+			write(N)
+		;	true
+		)
 	),
-	!,
-	write(Y),
-	(	sub_atom(Y, 0, 2, _, 'x_')
-	->	write('_'),
-		nb_getval(rn, N),
-		write(N)
-	;	true
-	).
+	!.
 wt0(X) :-
 	flag('no-skolem', Prefix),
 	(	\+flag(traditional)
