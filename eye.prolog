@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0116.1524 josd').
+version_info('EYE rel. v17.0116.1719 josd').
 
 
 license_info('MIT License
@@ -4193,8 +4193,11 @@ wt0(X) :-
 	),
 	sub_atom(X, 1, _, _, Prefix),
 	!,
-	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, ['no-skolem', Prefix, X]),
-	wt0(Y).
+	(	getlist(X, M)
+	->	wt(M)
+	;	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, ['no-skolem', Prefix, X]),
+		wt0(Y)
+	).
 wt0(X) :-
 	(	wtcache(X, W)
 	->	true
