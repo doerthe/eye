@@ -1,7 +1,7 @@
                                   EYE release
 
-[v17.0116.2244] throwing not_supported_conclusion exception for a derived rule
-[v17.0116.1719] correcting the output of lists in NTriples files (obs from Ruben Verborgh)
+[v17.0116.2244] throwing not_supported_conclusion exception for derived rules
+[v17.0116.1719] correcting the output of lists in N-Triples files (obs from Ruben Verborgh)
 [v17.0113.1339] fixing invalid_prolog_builtin exception (obs from Elric Verbruggen)
 [v17.0112.2155] adding prolog:copy_term_nat to copy a term for which attributes are not copied
 [v17.0110.1302] working with SWI-Prolog 7.3.35
