@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0117.1638 josd').
+version_info('EYE rel. v17.0117.2134 josd').
 
 
 license_info('MIT License
@@ -1973,6 +1973,12 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) 
 	(	Y \= dn(_)
 	->	true
 	;	nb_setval(defcl, false)
+	),
+	(	Y = '\'<http://www.w3.org/2000/10/swap/log#implies>\''(U, _),
+		findvars(U, V, beta),
+		V \= []
+	->	throw('derived_rule_may_not_contain_existential_in_premise'('\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)))
+	;	true
 	),
 	(	flag(tactic, 'linear-select')
 	->	write(implies(X, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>\''(X, Y), Src)),
