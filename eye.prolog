@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0116.2244 josd').
+version_info('EYE rel. v17.0117.1638 josd').
 
 
 license_info('MIT License
@@ -5276,8 +5276,6 @@ djitis(exopred(P, S, O)) :-
 		)
 	),
 	assertz(exopred(P, S, O, Si, Oi, Sp, Op)).
-djitis('<http://www.w3.org/2000/10/swap/log#implies>'(P, C)) :-
-	throw(not_supported_conclusion('<http://www.w3.org/2000/10/swap/log#implies>'(P, C))).
 djitis(A) :-
 	ground(A),
 	A =.. [P, S, O],
@@ -5354,6 +5352,11 @@ djitis(A) :-
 		;	B is -(C*log(C)+(1-C)*log(1-C))/log(2)
 		)
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#calculate>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], C) :-
+	read_term_from_atom(A, D, [variables(B)]),
+	C is D.
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
