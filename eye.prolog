@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0117.2134 josd').
+version_info('EYE rel. v17.0124.1445 josd').
 
 
 license_info('MIT License
@@ -1974,6 +1974,17 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) 
 	->	true
 	;	nb_setval(defcl, false)
 	),
+	(	forall(
+			(	cmember(I, X)
+			),
+			(	I = '\'<http://www.w3.org/2000/10/swap/log#implies>\''(J, _),
+				findvars(J, K, beta),
+				K \= []
+			->	throw('premise_rule_may_not_contain_existential_in_premise'('\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)))
+			;	true
+			)
+		)
+	),
 	(	Y = '\'<http://www.w3.org/2000/10/swap/log#implies>\''(U, _),
 		findvars(U, V, beta),
 		V \= []
@@ -1994,7 +2005,7 @@ tr_n3p([':-'(Y, X)|Z], Src, Mode) :-
 	findvars(Y, V, beta),
 	(	V = []
 	->	true
-	;	throw('EYE_component_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
+	;	throw('backward_rule_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
 	),
 	write(':-'(Y, X)),
 	writeln('.'),
@@ -2621,19 +2632,11 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
 		atom_codes(N, LabelTidy)
 	),
-	(	(	\+forward,
-			\+backward
-		->	evar(N, S, 0)
-		;	evar(N, S, 1)
-		)
+	(	evar(N, S, D)
 	->	true
 	;	atom_concat(N, '_', M),
 		gensym(M, S),
-		(	\+forward,
-			\+backward
-		->	assertz(evar(N, S, 0))
-		;	assertz(evar(N, S, 1))
-		)
+		assertz(evar(N, S, D))
 	),
 	(	(	nb_getval(fdepth, 0)
 		;	flag('pass-all-ground')

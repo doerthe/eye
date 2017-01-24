@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0124.1445] standardizing apart implicit existentials and throwing premise_rule_may_not_contain_existential_in_premise exception
 [v17.0117.2134] throwing derived_rule_may_not_contain_existential_in_premise exception
 [v17.0117.1638] adding experimental e:calculate built-in http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#calculate
 [v17.0116.1719] correcting the output of lists in N-Triples files (obs from Ruben Verborgh)

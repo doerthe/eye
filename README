@@ -40,10 +40,7 @@ Design issues
 -------------
 
 Implicit Quantification in N3 [13]
-  A N3 resource contains implications of the form Ci => Cj or Cj <= Ci with
-  Ci and Cj conjunctions and a conjunction of the remaining statements C0.
-  In ETC [5] the scope of implicit universals is the implication and
-  the scope of implicit existentials is the conjunction.
+  In ETC [5] implicit existentials in N3 formulae are standardized apart.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
