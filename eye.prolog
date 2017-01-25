@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0124.1445 josd').
+version_info('EYE rel. v17.0125.1018 josd').
 
 
 license_info('MIT License
@@ -126,7 +126,6 @@ eye
 
 :- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
 :- dynamic(argi/1).
-:- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
 :- dynamic(bgot/3).
@@ -139,7 +138,6 @@ eye
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
-:- dynamic(forward/0).
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
@@ -382,7 +380,6 @@ gre(Argus) :-
 	nb_setval(fnet, not_done),
 	nb_setval(table, -1),
 	nb_setval(tuple, -1),
-	nb_setval(defcl, true),
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
 	nb_setval(cdepth, 0),
@@ -1970,10 +1967,6 @@ tr_n3p([X|Z], Src, query) :-
 	tr_n3p(Z, Src, query).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) :-
 	!,
-	(	Y \= dn(_)
-	->	true
-	;	nb_setval(defcl, false)
-	),
 	(	forall(
 			(	cmember(I, X)
 			),
@@ -2188,18 +2181,8 @@ explicituri(ExplicitURI, [relative_uri(ExplicitURI)|L2], L2).
 
 expression(Node, T, L1, L3) :-
 	pathitem(N1, T1, L1, L2),
-	pathtail(N1, P, N2, T2, L2, L3),
-	append(T1, T2, T3),
-	(	P = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#disjunction>\''
-	->	(	distinct(N1, Distinct)
-		->	true
-		;	Distinct = N1
-		),
-		dlist(Distinct, Node),
-		T = []
-	;	Node = N2,
-		T = T3
-	),
+	pathtail(N1, Node, T2, L2, L3),
+	append(T1, T2, T),
 	(	keywords(List),
 		memberchk(Node, List)
 	->	nb_getval(line_number, Ln),
@@ -2209,13 +2192,7 @@ expression(Node, T, L1, L3) :-
 
 
 formulacontent(Formula, L1, L2) :-
-	statementlist(List, L1, L2),
-	(	nb_getval(fdepth, 1),
-		retract(forward),
-		retract(backward)
-	->	L = List
-	;	distinct(List, L)
-	),
+	statementlist(L, L1, L2),
 	clist(L, Formula).
 
 
@@ -2395,7 +2372,7 @@ pathlist([Node|Rest], Triples, L1, L3) :-
 pathlist([], [], L1, L1).
 
 
-pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
+pathtail(Node, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	!,
 	pathitem(Item, Triples2, L2, L3),
 	prolog_verb(Item, Verb),
@@ -2435,9 +2412,9 @@ pathtail(Node, Verb, PNode, [Triple|Triples], ['!'|L2], L4) :-
 			)
 		)
 	),
-	pathtail(BNode, _, PNode, Tail, L3, L4),
+	pathtail(BNode, PNode, Tail, L3, L4),
 	append(Triples2, Tail, Triples).
-pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
+pathtail(Node, PNode, [Triple|Triples], ['^'|L2], L4) :-
 	!,
 	pathitem(Item, Triples2, L2, L3),
 	prolog_verb(Item, Verb),
@@ -2477,9 +2454,9 @@ pathtail(Node, Verb, PNode, [Triple|Triples], ['^'|L2], L4) :-
 			)
 		)
 	),
-	pathtail(BNode, _, PNode, Tail, L3, L4),
+	pathtail(BNode, PNode, Tail, L3, L4),
 	append(Triples2, Tail, Triples).
-pathtail(Node, void, Node, [], L1, L1).
+pathtail(Node, Node, [], L1, L1).
 
 
 prefix(Prefix, [Prefix:''|L2], L2).
@@ -2701,19 +2678,11 @@ uri(Name, L1, L2) :-
 
 
 verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
-	!,
-	(	nb_getval(fdepth, 0)
-	->	assertz(forward)
-	;	true
-	).
+	!.
 verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
 	!.
 verb(':-', [], ['<', '='|L2], L2) :-
-	!,
-	(	nb_getval(fdepth, 0)
-	->	assertz(backward)
-	;	true
-	).
+	!.
 % DEPRECATED
 verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
 	!.
@@ -3842,12 +3811,7 @@ wj(Cnt, A, B, C, Rule) :-
 		unifiable(Prem, B, Bs),
 		(	unifiable(Conc, C, Cs)
 		->	true
-		;	(	Conc = dn(G),
-				member(H, G),
-				unifiable(H, C, Cs)
-			->	true
-			;	Cs = []
-			)
+		;	Cs = []
 		),
 		append(Bs, Cs, Ds),
 		sort(Ds, Bindings),
@@ -4038,12 +4002,6 @@ wt(cn([X|Y])) :-
 	;	Z = cn(Y)
 	),
 	wt(Z).
-% DEPRECATED
-wt(dn(X)) :-
-	!,
-	wt(X),
-	write('!'),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#disjunction>').
 wt(set(X)) :-
 	!,
 	write('($'),
@@ -4852,10 +4810,6 @@ eam(Span) :-
 		),
 		implies(Prem, Conc, Src),
 		ignore(Prem = exopred(_, _, _)),
-		(	var(Conc)
-		->	true
-		;	Conc \= dn(_)
-		),
 		(	flag(nope),
 			\+flag('rule-histogram')
 		->	true
@@ -9419,24 +9373,6 @@ unify(A, B) :-
 unify(A, A).
 
 
-dn([A|B]) :-
-	(	call(A)
-	;	(	B = [C]
-		->	true
-		;	C = dn(B)
-		),
-		call(C)
-	).
-
-
-dlist([], false) :-
-	!.
-dlist([A], A) :-
-	A \= dn(_),
-	!.
-dlist(A, dn(A)).
-
-
 cn([A|B]) :-
 	call(A),
 	(	B = [C]
@@ -10349,8 +10285,6 @@ raw_type(rdiv(_, _), '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 raw_type('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#epsilon>', '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	!.
 raw_type(cn(_), '<http://www.w3.org/2000/10/swap/log#Formula>') :-
-	!.
-raw_type(dn(_), '<http://www.w3.org/2000/10/swap/log#Formula>') :-
 	!.
 raw_type(set(_), '<http://www.w3.org/2000/10/swap/log#Set>') :-
 	!.
