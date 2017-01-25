@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0125.1018 josd').
+version_info('EYE rel. v17.0125.2247 josd').
 
 
 license_info('MIT License
@@ -6054,7 +6054,6 @@ djitis(A) :-
 		(	catch(cnt(graph), _, nb_setval(graph, 0)),
 			nb_getval(graph, N),
 			copy_term_nat(X, U),
-			labelvars(U, 0, _),
 			makevars(Y, V, beta),
 			agraph(N, U),
 			qgraph(N, V)
