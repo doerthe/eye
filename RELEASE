@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0126.1508] fixing <= built-in so that graph built-ins work correctly (obs from Dörthe Arndt)
 [v17.0125.2247] modifying the implementation of log:includes
 [v17.0125.1018] removing e:disjunction and simplifying N3 parsing
 [v17.0124.1445] standardizing apart implicit existentials and throwing premise_rule_may_not_contain_existential_in_premise exception
