@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0126.1508 josd').
+version_info('EYE rel. v17.0127.0006 josd').
 
 
 license_info('MIT License
@@ -9437,9 +9437,9 @@ cn_conj(A, B) :-
 
 
 conj_cn(A, B) :-
-	c_list(D, A),
+	c_list(C, A),
 	c_d(C, D),
-	clist(C, B).
+	clist(D, B).
 
 
 c_d([], []) :-
@@ -9979,16 +9979,12 @@ inv(true, false).
 	;	true
 	),
 	clause(A, D),
-	c_list(E, D),
-	c_d(E, F),
-	clist(F, G),
 	(	flag(nope)
-	->	B = G
-	;	(	G = when(H, I)
+	->	conj_cn(D, B)
+	;	(	D = when(H, I)
 		->	c_append(J, istep(Src, _, _, _), I),
 			B = when(H, J)
-		;	cn_conj(G, V),
-			c_append(K, istep(Src, _, _, _), V),
+		;	c_append(K, istep(Src, _, _, _), D),
 			conj_cn(K, B)
 		),
 		term_index(':-'(A, B), Ind),
