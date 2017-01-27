@@ -1,6 +1,6 @@
                                   EYE release
 
-[v17.0127.1610] rule of the
+[v17.0127.1613] reverting the interpretation of P => P
 [v17.0127.0006] refactoring N3 formulae
 [v17.0126.1508] fixing <= built-in so that graph built-ins work correctly (obs from Dörthe Arndt)
 [v17.0125.2247] modifying the implementation of log:includes

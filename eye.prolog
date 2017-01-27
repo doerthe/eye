@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0127.1610 josd').
+version_info('EYE rel. v17.0127.1613 josd').
 
 
 license_info('MIT License
