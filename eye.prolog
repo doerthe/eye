@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0127.0006 josd').
+version_info('EYE rel. v17.0127.1610 josd').
 
 
 license_info('MIT License
@@ -1918,18 +1918,6 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		writeln('.')
 	),
 	tr_n3p(Z, Src, query).
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, X)|Z], Src, Mode) :-
-	!,
-	(	flag(nope),
-		\+flag('limited-answer', _),
-		flag('no-distinct-output')
-	->	write(query(X, X)),
-		writeln('.')
-	;	djiti(answer(X), A),
-		write(implies(X, A, Src)),
-		writeln('.')
-	),
-	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	!,
 	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
