@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0131.1345 josd').
+version_info('EYE rel. v17.0131.1541 josd').
 
 
 license_info('MIT License
@@ -5306,7 +5306,13 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#calculate>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], C) :-
-	read_term_from_atom(A, D, [variables(B)]),
+	findall(U,
+		(	member(V, B),
+			getnumber(V, U)
+		),
+		W
+	),
+	read_term_from_atom(A, D, [variables(W)]),
 	C is D.
 
 
