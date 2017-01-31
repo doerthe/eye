@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0131.1541] improving e:calculate to accept numeric datatype literals
 [v17.0131.1345] reimplementing e:sublist which was broken (obs from Hong Sun)
 [v17.0127.1613] reverting the interpretation of P => P
 [v17.0127.0006] refactoring N3 formulae
