@@ -5,7 +5,7 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0127.1613 josd').
+version_info('EYE rel. v17.0131.1345 josd').
 
 
 license_info('MIT License
@@ -5681,15 +5681,9 @@ djitis(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sublist>'(A, B) :-
 	when(
-		(	nonvar(A),
-			nonvar(B)
+		(	nonvar(A)
 		),
-		(	forall(
-				(	member(C, B)
-				),
-				(	member(C, A)
-				)
-			)
+		(	append([_, B, _], A)
 		)
 	).
 
