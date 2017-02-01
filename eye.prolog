@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0201.0840 josd').
+version_info('EYE rel. v17.0201.1921 josd').
 
 
 license_info('MIT License
@@ -1399,6 +1399,7 @@ args(['--turtle', Argument|Args]) :-
 					Rt \= scope(_),
 					Rt \= pfx(_, _),
 					Rt \= pred(_),
+					Rt \= cpred(_),
 					Rt \= scount(_)
 				->	Rt =.. [P, S, O],
 					implies(Prem, Conc, _),
@@ -1556,35 +1557,70 @@ n3pin(Rt, In, File) :-
 		->	nb_setval(current_scope, Scope)
 		;	true
 		),
-		(	Rt \= implies(_, _, _),
-			Rt \= scount(_),
-			\+flag('no-distinct-input'),
-			call(Rt)
-		->	true
-		;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-			->	djitis(Rt),
-				(	flag(n3p),
-					Rt \= scount(_)
-				->	format('~q.~n', [Rt])
-				;	true
+		(	Rt = ':-'(Ci, Pi)
+		->	(	Ci = true
+			->	call(Pi)
+			;	nb_getval(current_scope, Si),
+				copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
+				cn_conj(Pi, Pn),
+				(	flag(nope)
+				->	Ph = Pn
+				;	(	Pi = when(Ai, Bi)
+					->	c_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
+						Ph = when(Ai, Bh)
+					;	c_append(Pn, istep(Si, Pi, Ci, Ri), Ph)
+					)
+				),
+				(	flag('rule-histogram')
+				->	(	Ph = when(Ak, Bk)
+					->	c_append(Bk, pstep(Ri), Bj),
+						Pj = when(Ak, Bj)
+					;	c_append(Ph, pstep(Ri), Pj)
+					)
+				;	Pj = Ph
+				),
+				functor(Ci, CPi, _),
+				(	flag(n3p)
+				->	portray_clause(cpred(CPi)),
+					portray_clause(':-'(Ci, Pn))
+				;	(	\+cpred(CPi)
+					->	assertz(cpred(CPi))
+					;	true
+					),
+					assertz(':-'(Ci, Pj))
 				)
-			;	true
-			),
-			(	Rt \= flag(_, _),
-				Rt \= scope(_),
-				Rt \= pfx(_, _),
-				Rt \= pred(_),
-				Rt \= scount(_)
-			->	(	flag(nope)
-				->	true
-				;	nb_getval(current_scope, Src),
-					term_index(Rt, Rnd),
-					(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
-					->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+			)
+		;	(	Rt \= implies(_, _, _),
+				Rt \= scount(_),
+				\+flag('no-distinct-input'),
+				call(Rt)
+			->	true
+			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+				->	djitis(Rt),
+					(	flag(n3p),
+						Rt \= scount(_)
+					->	format('~q.~n', [Rt])
 					;	true
 					)
+				;	true
+				),
+				(	Rt \= flag(_, _),
+					Rt \= scope(_),
+					Rt \= pfx(_, _),
+					Rt \= pred(_),
+					Rt \= cpred(_),
+					Rt \= scount(_)
+				->	(	flag(nope)
+					->	true
+					;	term_index(Rt, Rnd),
+						nb_getval(current_scope, Src),
+						(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
+						->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+						;	true
+						)
+					)
+				;	true
 				)
-			;	true
 			)
 		)
 	).
@@ -1797,7 +1833,11 @@ n3_n3p(Argument, Mode) :-
 						)
 					;	(	Rt = ':-'(Ci, Pi)
 						->	(	Ci = true
-							->	call(Pi)
+							->	(	flag(n3p)
+								->	cn_conj(Pi, Pc),
+									portray_clause(':-'(Pc))
+								;	call(Pi)
+								)
 							;	atomic_list_concat(['<', Arg, '>'], Si),
 								copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
 								cn_conj(Pi, Pn),
@@ -1821,7 +1861,7 @@ n3_n3p(Argument, Mode) :-
 								functor(Ci, CPi, _),
 								(	flag(n3p)
 								->	portray_clause(cpred(CPi)),
-									portray_clause(':-'(Ci, Pj))
+									portray_clause(':-'(Ci, Pn))
 								;	(	\+cpred(CPi)
 									->	assertz(cpred(CPi))
 									;	true
@@ -5698,7 +5738,7 @@ djitis(A) :-
 	(	var(X)
 	->	ignore(get_time(X)),
 		wg(Y)
-	;	write(Y)
+	;	writeq(Y)
 	),
 	nl,
 	told.
@@ -11048,7 +11088,7 @@ timestamp(Stamp) :-
 
 
 fm(A) :-
-	format(user_error, '*** ~w~n', [A]),
+	format(user_error, '*** ~q~n', [A]),
 	flush_output(user_error).
 
 
@@ -11056,7 +11096,7 @@ mf(A) :-
 	forall(
 		(	call(A)
 		),
-		(	format(user_error, '*** ~w~n', [A])
+		(	format(user_error, '*** ~q~n', [A])
 		)
 	),
 	flush_output(user_error).
