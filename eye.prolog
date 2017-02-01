@@ -5,7 +5,43 @@
 % See https://github.com/josd/eye
 
 
-version_info('EYE rel. v17.0131.1541 josd').
+:- if(current_prolog_flag(dialect, swi)).
+:- if(current_prolog_flag(version_data, swi(6, _, _, _))).
+:- style_check(-atom).
+:- endif.
+:- initialization(catch(set_prolog_stack(local, limit(2^33)), _, true)).
+:- initialization(catch(set_prolog_stack(global, limit(2^35)), _, true)).
+:- initialization(set_prolog_flag(agc_margin, 10000000)).
+:- endif.
+
+
+:- use_module(library(lists)).
+:- use_module(library(gensym)).
+:- use_module(library(system)).
+:- use_module(library(terms)).
+:- use_module(library('url.pl')).
+:- use_module(library(charsio)).
+:- if(current_prolog_flag(dialect, swi)).
+:- use_module(library(when), [when/2]).
+:- use_module(library(qsave)).
+:- catch(use_module(library(base64)), _, true).
+:- catch(use_module(library(process)), _, true).
+:- catch(use_module(library(sha)), _, true).
+:- catch(use_module(library(uri)), _, true).
+:- endif.
+:- if(\+current_predicate(date_time_stamp/2)).
+:- load_foreign_files(['pl-tai'], [], install).
+:- endif.
+
+
+:- if(current_predicate(set_stream/2)).
+:- initialization(catch(set_stream(user_output, encoding(utf8)), _, true)).
+:- else.
+:- set_prolog_flag(encoding, utf8).
+:- endif.
+
+
+version_info('EYE rel. v17.0201.0840 josd').
 
 
 license_info('MIT License
@@ -84,44 +120,6 @@ eye
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--query <n3-query>		output filtered with filter rules').
-
-
-% Directives
-
-:- if(current_prolog_flag(dialect, swi)).
-:- if(current_prolog_flag(version_data, swi(6, _, _, _))).
-:- style_check(-atom).
-:- endif.
-:- initialization(catch(set_prolog_stack(local, limit(2^33)), _, true)).
-:- initialization(catch(set_prolog_stack(global, limit(2^35)), _, true)).
-:- initialization(set_prolog_flag(agc_margin, 10000000)).
-:- endif.
-
-
-:- use_module(library(lists)).
-:- use_module(library(gensym)).
-:- use_module(library(system)).
-:- use_module(library(terms)).
-:- use_module(library('url.pl')).
-:- use_module(library(charsio)).
-:- if(current_prolog_flag(dialect, swi)).
-:- use_module(library(when), [when/2]).
-:- use_module(library(qsave)).
-:- catch(use_module(library(base64)), _, true).
-:- catch(use_module(library(process)), _, true).
-:- catch(use_module(library(sha)), _, true).
-:- catch(use_module(library(uri)), _, true).
-:- endif.
-:- if(\+current_predicate(date_time_stamp/2)).
-:- load_foreign_files(['pl-tai'], [], install).
-:- endif.
-
-
-:- if(current_predicate(set_stream/2)).
-:- initialization(catch(set_stream(user_output, encoding(utf8)), _, true)).
-:- else.
-:- set_prolog_flag(encoding, utf8).
-:- endif.
 
 
 :- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
