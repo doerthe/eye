@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0201.1921 josd').
+version_info('EYE rel. v17.0203.1445 josd').
 
 
 license_info('MIT License
@@ -1968,7 +1968,10 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
 	;	V = Y
 	),
-	(	\+flag('limited-answer', _),
+	(	(	\+flag('limited-answer', _)
+		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _),
+			flag(strings)	
+		),
 		flag(nope)
 	->	write(query(X, V)),
 		writeln('.')
@@ -4695,7 +4698,13 @@ wst :-
 		write('\r\n'),
 		wct(Select, Header),
 		cnt(output_statements, Headerl),
-		fail
+		cnt(answer_count),
+		nb_getval(answer_count, AnswerCount),
+		(	flag('limited-answer', AnswerLimit),
+			AnswerCount >= AnswerLimit
+		->	true
+		;	fail
+		)
 	;	true
 	).
 
