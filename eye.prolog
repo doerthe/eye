@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0203.1445 josd').
+version_info('EYE rel. v17.0207.1438 josd').
 
 
 license_info('MIT License
@@ -10014,18 +10014,35 @@ inv(true, false).
 	;	true
 	),
 	clause(A, D),
-	(	flag(nope)
-	->	conj_cn(D, B)
-	;	(	D = when(H, I)
-		->	c_append(J, istep(Src, _, _, _), I),
-			B = when(H, J)
-		;	c_append(K, istep(Src, _, _, _), D),
-			conj_cn(K, B)
-		),
-		term_index(':-'(A, B), Ind),
-		(	\+prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src)
-		->	assertz(prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src))
-		;	true
+	functor(A, P, 2),
+	(	D =	(	(	compound(U)
+				->	term_index(U, Ui),
+					term_arg_1(U, Up)
+				;	true
+				),
+				(	compound(V)
+				->	term_index(V, Vi),
+					term_arg_1(V, Vp)
+				;	true
+				),
+				Y =.. [P, U, V, Ui, Vi, Up, Vp],
+				call(Y)
+			)
+	->	call(D),
+		B = true
+	;	(	flag(nope)
+		->	conj_cn(D, B)
+		;	(	D = when(H, I)
+			->	c_append(J, istep(Src, _, _, _), I),
+				B = when(H, J)
+			;	c_append(K, istep(Src, _, _, _), D),
+				conj_cn(K, B)
+			),
+			term_index(':-'(A, B), Ind),
+			(	\+prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src)
+			->	assertz(prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src))
+			;	true
+			)
 		)
 	).
 
