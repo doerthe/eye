@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0207.1438 josd').
+version_info('EYE rel. v17.0207.1536 josd').
 
 
 license_info('MIT License
@@ -1970,7 +1970,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 	),
 	(	(	\+flag('limited-answer', _)
 		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _),
-			flag(strings)	
+			flag(strings)
 		),
 		flag(nope)
 	->	write(query(X, V)),
@@ -6556,7 +6556,9 @@ djitis(A) :-
 	when(
 		(	ground([X, Y])
 		),
-		(	X @> Y
+		(	getstring(X, U),
+			getstring(Y, V),
+			U @> V
 		)
 	).
 
@@ -6565,7 +6567,9 @@ djitis(A) :-
 	when(
 		(	ground([X, Y])
 		),
-		(	X @< Y
+		(	getstring(X, U),
+			getstring(Y, V),
+			U @< V
 		)
 	).
 
@@ -6589,7 +6593,9 @@ djitis(A) :-
 	when(
 		(	ground([X, Y])
 		),
-		(	X @=< Y
+		(	getstring(X, U),
+			getstring(Y, V),
+			U @=< V
 		)
 	).
 
@@ -6598,7 +6604,9 @@ djitis(A) :-
 	when(
 		(	ground([X, Y])
 		),
-		(	X @>= Y
+		(	getstring(X, U),
+			getstring(Y, V),
+			U @>= V
 		)
 	).
 
@@ -10431,6 +10439,12 @@ getlist(A, [B|C]) :-
 	'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>'(A, B),
 	'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'(A, D),
 	getlist(D, C).
+
+
+getstring(A, B) :-
+	'<http://www.w3.org/2000/10/swap/log#uri>'(A, B),
+	!.
+getstring(A, A).
 
 
 getcodes(literal(A, _), B) :-
