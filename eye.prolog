@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0208.1020 josd').
+version_info('EYE rel. v17.0208.1103 josd').
 
 
 license_info('MIT License
@@ -5736,7 +5736,7 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	sublist(B, A)
+		(	sublist(A, B)
 		)
 	).
 
@@ -9695,16 +9695,19 @@ last_tail([_|B], C) :-
 	last_tail(B, C).
 
 
-sublist(A, A).
-sublist(A, [B|C]) :-
-	sublist(C, B, A).
+sublist(A, A) :-
+	!.
+sublist([A|B], C) :-
+	sublist(B, A, C).
 
 
-sublist(A, _, A).
+sublist(A, _, A) :-
+	!.
+sublist([A|B], C, [C|D]) :-
+	!,
+	sublist(B, A, D).
 sublist([A|B], _, C) :-
 	sublist(B, A, C).
-sublist([A|B], C, [C|D]) :-
-	sublist(B, A, D).
 
 
 sum([], 0) :-
