@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0208.1103 josd').
+version_info('EYE rel. v17.0208.1332 josd').
 
 
 license_info('MIT License
@@ -5732,7 +5732,17 @@ djitis(A) :-
 	).
 
 
+% DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sublist>'(A, B) :-
+	when(
+		(	nonvar(A)
+		),
+		(	sublist(A, B)
+		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#subsequence>'(A, B) :-
 	when(
 		(	nonvar(A)
 		),

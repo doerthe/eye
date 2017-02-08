@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0208.1332] using e:subsequence instead of e:sublist (obs from Giovanni Mels)
 [v17.0208.1103] improving e:sublist so that (1 2 3 4 5) e:sublist (1 2 4) is the case (obs from Hong Sun)
 [v17.0207.1536] fixing string: comparison built-ins to deal with uris (obs from Hong Sun)
 [v17.0207.1438] correcting <= built-in so that it finds all answers (obs from Hong Sun)
