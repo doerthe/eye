@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0208.1332 josd').
+version_info('EYE rel. v17.0214.2123 josd').
 
 
 license_info('MIT License
@@ -5421,7 +5421,7 @@ djitis(A) :-
 	nonvar(B),
 	\+is_list(B),
 	(	D = [F]
-	->	findall(A,
+	->	findall(A,	% DEPRECATED
 			B,
 			E,
 			F
@@ -5508,6 +5508,19 @@ djitis(A) :-
 	base64xml(D, B).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ignore>'(Sc, A) :-
+	within_scope(Sc),
+	nonvar(A),
+	(	call(A)
+	->	(	flag(nope)
+		->	true
+		;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ignore>'(Sc, A)), R),
+			istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ignore>'(Sc, A), R)
+		)
+	;	true
+	).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#label>'(A, literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	nonvar(A)
@@ -5585,13 +5598,6 @@ djitis(A) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
-	within_scope(Sc),
-	with_output_to_codes(wh, C),
-	atom_codes(A, C),
-	retractall(wpfx(_)).
-
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A) :-
 	within_scope(Sc),
 	nonvar(A),
@@ -5604,6 +5610,13 @@ djitis(A) :-
 			istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A), R)
 		)
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
+	within_scope(Sc),
+	with_output_to_codes(wh, C),
+	atom_codes(A, C),
+	retractall(wpfx(_)).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#propertyChainExtension>'([A], [B, C]) :-
