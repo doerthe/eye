@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0214.2123 josd').
+version_info('EYE rel. v17.0215.2319 josd').
 
 
 license_info('MIT License
@@ -9621,13 +9621,9 @@ intersection([X|Y], Z) :-
 	intersection(Y, I),
 	(	I = true
 	->	Z = true
-	;	findall(U,
-			(	cmember(U, X),
-				cmember(V, I),
-				unify(U, V)
-			),
-			W
-		),
+	;	clist(U, X),
+		clist(V, I),
+		intersection(U, V, W),
 		clist(W, Z)
 	).
 
