@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0215.2319 josd').
+version_info('EYE rel. v17.0216.2023 josd').
 
 
 license_info('MIT License
@@ -9597,20 +9597,24 @@ difference([true, _], true) :-
 difference([X, true], X) :-
 	!.
 difference([X, Y], Z) :-
-	findall(U,
-		(	cmember(U, X),
-			\+(	(	cmember(V, Y),
-					unify(U, V)
-				)
-			)
-		),
-		W
-	),
+	clist(U, X),
+	clist(V, Y),
+	difference(U, V, W),
 	(	W = []
 	->	Z = true
 	;	clist(W, G),
 		Z = G
 	).
+
+difference([], _, []) :-
+	!.
+difference([X|Y], U, V) :-
+	member(Z, U),
+	unify(X, Z),
+	!,
+	difference(Y, U, V).
+difference([X|Y], U, [X|V]) :-
+	difference(Y, U, V).
 
 
 intersection([X], X) :-
@@ -9623,9 +9627,21 @@ intersection([X|Y], Z) :-
 	->	Z = true
 	;	clist(U, X),
 		clist(V, I),
-		intersection(U, V, W),
+		intersect(U, V, W),
 		clist(W, Z)
 	).
+
+
+intersect([], _, []) :-
+	!.
+intersect([X|Y], U, V) :-
+	member(Z, U),
+	unify(X, Z),
+	!,
+	V = [X|W],
+	intersect(Y, U, W).
+intersect([_|Y], U, V) :-
+	intersect(Y, U, V).
 
 
 cartesian([], []).
