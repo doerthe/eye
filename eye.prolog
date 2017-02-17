@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0216.2023 josd').
+version_info('EYE rel. v17.0217.1257 josd').
 
 
 license_info('MIT License
@@ -5360,7 +5360,7 @@ djitis(A) :-
 		W
 	),
 	read_term_from_atom(A, D, [variables(W)]),
-	C is D.
+	catch(C is D, _, fail).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
@@ -5486,7 +5486,7 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	intersection(A, M),
+		(	intersect(A, M),
 			unify(M, B)
 		)
 	).
@@ -5750,7 +5750,7 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	sublist(A, B)
+		(	sub_list(A, B)
 		)
 	).
 
@@ -5759,7 +5759,7 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	sublist(A, B)
+		(	sub_list(A, B)
 		)
 	).
 
@@ -6038,18 +6038,8 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	catch(cnt(graph), _, nb_setval(graph, 0)),
-			nb_getval(graph, N),
-			conjoin(N, A),
-			findall(C,
-				(	graph(N, C)
-				),
-				L
-			),
-			retractall(graph(N, _)),
-			sort(L, M),
-			clist(M, K),
-			unify(K, B)
+		(	conjoin(A, M),
+			unify(M, B)
 		)
 	).
 
@@ -9541,17 +9531,6 @@ couple([A|B], [C|D], [[A, C]|E]) :-
 	couple(B, D, E).
 
 
-conjoin(_, []) :-
-	!.
-conjoin(N, [true|Y]) :-
-	!,
-	conjoin(N, Y).
-conjoin(N, [X|Y]) :-
-	\+atom(X),
-	agraph(N, X),
-	conjoin(N, Y).
-
-
 agraph(N, cn([X|Y])) :-
 	!,
 	unify(X, U),
@@ -9592,6 +9571,31 @@ qgraph(N, X) :-
 	).
 
 
+conjoin([X], X) :-
+	!.
+conjoin([true|Y], Z) :-
+	conjoin(Y, Z),
+	!.
+conjoin([X|Y], Z) :-
+	conjoin(Y, C),
+	clist(U, X),
+	clist(V, C),
+	conjoin(U, V, W),
+	sort(W, D),
+	clist(D, Z).
+
+
+conjoin([], U, U) :-
+	!.
+conjoin([X|Y], U, V) :-
+	member(Z, U),
+	unify(X, Z),	
+	!,
+	conjoin(Y, U, V).
+conjoin([X|Y], U, [X|V]) :-
+	conjoin(Y, U, V).
+
+
 difference([true, _], true) :-
 	!.
 difference([X, true], X) :-
@@ -9600,11 +9604,7 @@ difference([X, Y], Z) :-
 	clist(U, X),
 	clist(V, Y),
 	difference(U, V, W),
-	(	W = []
-	->	Z = true
-	;	clist(W, G),
-		Z = G
-	).
+	clist(W, Z).
 
 difference([], _, []) :-
 	!.
@@ -9617,19 +9617,16 @@ difference([X|Y], U, [X|V]) :-
 	difference(Y, U, V).
 
 
-intersection([X], X) :-
+intersect([X], X) :-
 	!.
-intersection([true|_], true) :-
+intersect([true|_], true) :-
 	!.
-intersection([X|Y], Z) :-
-	intersection(Y, I),
-	(	I = true
-	->	Z = true
-	;	clist(U, X),
-		clist(V, I),
-		intersect(U, V, W),
-		clist(W, Z)
-	).
+intersect([X|Y], Z) :-
+	intersect(Y, I),
+	clist(U, X),
+	clist(V, I),
+	intersect(U, V, W),
+	clist(W, Z).
 
 
 intersect([], _, []) :-
@@ -9730,19 +9727,19 @@ last_tail([_|B], C) :-
 	last_tail(B, C).
 
 
-sublist(A, A) :-
+sub_list(A, A) :-
 	!.
-sublist([A|B], C) :-
-	sublist(B, A, C).
+sub_list([A|B], C) :-
+	sub_list(B, A, C).
 
 
-sublist(A, _, A) :-
+sub_list(A, _, A) :-
 	!.
-sublist([A|B], C, [C|D]) :-
+sub_list([A|B], C, [C|D]) :-
 	!,
-	sublist(B, A, D).
-sublist([A|B], _, C) :-
-	sublist(B, A, C).
+	sub_list(B, A, D).
+sub_list([A|B], _, C) :-
+	sub_list(B, A, C).
 
 
 sum([], 0) :-

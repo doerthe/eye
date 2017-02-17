@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0217.1257] fixing the use of universals in log:conjunction
 [v17.0216.2023] fixing the use of universals in e:graphDifference
 [v17.0215.2319] fixing the use of universals in e:graphIntersection (obs from Dörthe Arndt)
 [v17.0214.2123] adding e:ignore built-in to call the object formula within the subject scope and to succeed anyway but only once
