@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0217.1259 josd').
+version_info('EYE rel. v17.0218.2321 josd').
 
 
 license_info('MIT License
@@ -6099,12 +6099,11 @@ djitis(A) :-
 		(	nonvar(X),
 			nonvar(Y)
 		),
-		(	catch(cnt(graph), _, nb_setval(graph, 0)),
-			nb_getval(graph, N),
-			copy_term_nat(X, U),
+		(	copy_term_nat(X, U),
 			makevars(Y, V, beta),
-			agraph(N, U),
-			qgraph(N, V)
+			clist(A, U),
+			clist(B, V),
+			includes(A, B)
 		)
 	).
 
@@ -6124,13 +6123,12 @@ djitis(A) :-
 		(	nonvar(X),
 			nonvar(Y)
 		),
-		(	catch(cnt(graph), _, nb_setval(graph, 0)),
-			nb_getval(graph, N),
-			copy_term_nat(X, U),
+		(	copy_term_nat(X, U),
 			labelvars(U, 0, _),
 			makevars(Y, V, beta),
-			agraph(N, U),
-			\+qgraph(N, V)
+			clist(A, U),
+			clist(B, V),
+			\+includes(A, B)
 		)
 	).
 
@@ -9531,44 +9529,12 @@ couple([A|B], [C|D], [[A, C]|E]) :-
 	couple(B, D, E).
 
 
-agraph(N, cn([X|Y])) :-
-	!,
-	unify(X, U),
-	(	\+graph(N, U)
-	->	assertz(graph(N, U))
-	;	true
-	),
-	(	Y = [Z]
-	->	true
-	;	Z = cn(Y)
-	),
-	agraph(N, Z).
-agraph(N, X) :-
-	unify(X, U),
-	(	\+graph(N, U)
-	->	assertz(graph(N, U))
-	;	true
-	).
-
-
-qgraph(N, cn([X|Y])) :-
-	!,
-	(	X = exopred(_, _, _)
-	->	graph(N, T),
-		unify(T, X)
-	;	graph(N, X)
-	),
-	(	Y = [Z]
-	->	true
-	;	Z = cn(Y)
-	),
-	qgraph(N, Z).
-qgraph(N, X) :-
-	(	X = exopred(_, _, _)
-	->	graph(N, T),
-		unify(T, X)
-	;	graph(N, X)
-	).
+includes(_, []) :-
+	!.
+includes(X, [Y|Z]) :-
+	member(U, X),
+	unify(U, Y),
+	includes(X, Z).
 
 
 conjoin([X], X) :-
