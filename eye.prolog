@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0218.2321 josd').
+version_info('EYE rel. v17.0222.1246 josd').
 
 
 license_info('MIT License
@@ -9409,12 +9409,10 @@ unify(A, B) :-
 	A = cn(_),
 	B = cn(_),
 	!,
-	(	ground(A)
-	->	'<http://www.w3.org/2000/10/swap/log#includes>'(A, B),
-		'<http://www.w3.org/2000/10/swap/log#includes>'(B, A)
-	;	'<http://www.w3.org/2000/10/swap/log#includes>'(B, A),
-		'<http://www.w3.org/2000/10/swap/log#includes>'(A, B)
-	).
+	clist(C, A),
+	clist(D, B),
+	includes(C, D),
+	includes(D, C).
 unify(A, B) :-
 	nonvar(A),
 	nonvar(B),
