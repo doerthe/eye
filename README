@@ -20,6 +20,7 @@ EYE is also available in a Docker container for command line use [8]
 and in a Docker container for HTTP client use [9].
 
 The main building blocks of EYE are depicted in [10].
+The main focus is on EYE Unifying Logic plus EYE Reasoning.
 
 The detailed design of EYE comprises:
  1/ N3 [3] parser specified as Prolog rules
