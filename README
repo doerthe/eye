@@ -5,6 +5,8 @@ It performs semibackward reasoning and it supports Euler paths.
 
 Semibackward reasoning is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.
+This is also called "Reasoning with Incomplete Semibackward Knowledge"
+or RISK in short.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
