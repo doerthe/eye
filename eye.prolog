@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0222.1246 josd').
+version_info('EYE rel. v17.0302.2138 josd').
 
 
 license_info('MIT License
@@ -5585,6 +5585,15 @@ djitis(A) :-
 	).
 
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#multisetEqualTo>'(A, B) :-
+	sort(0, @=<, A, C),
+	sort(0, @=<, B, C).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#multisetNotEqualTo>'(A, B) :-
+	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#multisetEqualTo>'(A, B).
+
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notLabel>'(A, B) :-
 	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#label>'(A, B).
 
@@ -5686,6 +5695,10 @@ djitis(A) :-
 	;	getnumber(Asp, A),
 		Sen is (1-exp(-K*A))*(1+exp(-K))/(1+exp(-K*A))/(1-exp(-K))
 	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sequenceDifference>'([A, B], [C, D]) :-
+	seq_diff(A, B, C, D).
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -9704,6 +9717,15 @@ sub_list([A|B], C, [C|D]) :-
 	sub_list(B, A, D).
 sub_list([A|B], _, C) :-
 	sub_list(B, A, C).
+
+
+seq_diff([], [], [], []) :-
+	!.
+seq_diff([A|B], [A|C], D, E) :-
+	!,
+	seq_diff(B, C, D, E).
+seq_diff([A|B], [C|D], [A|E], [C|F]) :-
+	seq_diff(B, D, E, F).
 
 
 sum([], 0) :-
