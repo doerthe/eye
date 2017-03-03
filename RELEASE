@@ -1,7 +1,6 @@
                                   EYE release
 
-[v17.0303.1415] adding e:multisetEqualTo and e:multisetNotEqualTo built-ins (obs from Hong Sun)
-[v17.0302.2138] adding experimental e:multisetEqualTo and e:sequenceDifference built-ins (obs from Hong Sun)
+[v17.0303.1424] adding e:multisetEqualTo and e:multisetNotEqualTo built-ins (obs from Hong Sun)
 [v17.0222.1246] fixing the unification in log:equalTo (obs from Dörthe Arndt)
 [v17.0218.2321] fixing log:includes and log:notIncludes for empty graphs
 [v17.0217.1259] fixing e:calculate to fail when there is an exception (obs from Herman Muys)
