@@ -5,8 +5,6 @@ It performs semibackward reasoning and it supports Euler paths.
 
 Semibackward reasoning is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.
-This is also called "Semibackward Explainable reasoning with EYE" or
-SEE in short.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
@@ -22,7 +20,8 @@ EYE is also available in a Docker container for command line use [8]
 and in a Docker container for HTTP client use [9].
 
 The main building blocks of EYE are depicted in [10].
-The main focus is on EYE Unifying Logic plus EYE Reasoning.
+The GRE (Generic Reasoning Engine) is supporting Proof [1]
+and EAM (Euler Abstract Machine) is supporting Unifying Logic [1].
 
 The detailed design of EYE comprises:
  1/ N3 [3] parser specified as Prolog rules
