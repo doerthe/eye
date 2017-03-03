@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0302.2138 josd').
+version_info('EYE rel. v17.0303.1415 josd').
 
 
 license_info('MIT License
@@ -361,9 +361,9 @@ argv([Arg|Argvs], [Arg|Argus]) :-
 
 
 
-% ---------------------------------------------------------------
-% GRE (Generic Reasoning Engine) supporting Explainable Reasoning
-% ---------------------------------------------------------------
+% -----------------------------------------------
+% GRE (Generic Reasoning Engine) supporting Proof
+% -----------------------------------------------
 
 gre(Argus) :-
 	statistics(runtime, [T0, _]),
@@ -5697,10 +5697,6 @@ djitis(A) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sequenceDifference>'([A, B], [C, D]) :-
-	seq_diff(A, B, C, D).
-
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	sha_hash(A, C, [algorithm(sha1)]),
 	atom_codes(D, C),
@@ -9717,15 +9713,6 @@ sub_list([A|B], C, [C|D]) :-
 	sub_list(B, A, D).
 sub_list([A|B], _, C) :-
 	sub_list(B, A, C).
-
-
-seq_diff([], [], [], []) :-
-	!.
-seq_diff([A|B], [A|C], D, E) :-
-	!,
-	seq_diff(B, C, D, E).
-seq_diff([A|B], [C|D], [A|E], [C|F]) :-
-	seq_diff(B, D, E, F).
 
 
 sum([], 0) :-
