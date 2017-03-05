@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0305.1247 josd').
+version_info('EYE rel. v17.0305.1249 josd').
 
 
 license_info('MIT License
