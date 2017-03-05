@@ -1,5 +1,6 @@
                                   EYE readme
 
+![EYE] (https://josd.github.io/images/eye.png)
 EYE is a reasoning engine supporting the RGB Semantic Web layers [1].
 It performs semibackward reasoning and it supports Euler paths.
 
