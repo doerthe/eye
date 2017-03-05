@@ -42,7 +42,7 @@ Design issues
 -------------
 
 Implicit Quantification in N3 [13]
-  In ETC [5] implicit existentials in N3 formulae are standardized apart.
+  In ETC [5] the scope of implicit existentials is their top level N3 formula.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.

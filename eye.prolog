@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0303.1424 josd').
+version_info('EYE rel. v17.0305.1249 josd').
 
 
 license_info('MIT License
@@ -2633,16 +2633,18 @@ symbol(Name, [name(N)|L2], L2) :-
 symbol(Name, [bnode(Label)|L2], L2) :-
 	nb_getval(fdepth, D),
 	(	D =:= 0
-	->	N = Label
+	->	N = Label,
+		E = 0
 	;	atom_codes(Label, LabelCodes),
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
-		atom_codes(N, LabelTidy)
+		atom_codes(N, LabelTidy),
+		E = 1
 	),
-	(	evar(N, S, D)
+	(	evar(N, S, E)
 	->	true
 	;	atom_concat(N, '_', M),
 		gensym(M, S),
-		assertz(evar(N, S, D))
+		assertz(evar(N, S, E))
 	),
 	(	(	nb_getval(fdepth, 0)
 		;	flag('pass-all-ground')
