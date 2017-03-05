@@ -1,6 +1,6 @@
 # Euler Yet another proof Engine - EYE
 
-<img align="left" src="https://josd.github.io/images/eye.png"> EYE is a reasoning engine supporting the RGB [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).<br/>
+<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the RGB [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).<br/>
 It performs semibackward reasoning and it supports [Euler paths](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).<br/>
 Via [N3](http://www.w3.org/TeamSubmission/n3/) it is interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).
 
