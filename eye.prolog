@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0307.1637 josd').
+version_info('EYE rel. v17.0307.1654 josd').
 
 
 license_info('MIT License
@@ -226,7 +226,7 @@ main :-
 	(	memberchk('--no-genid', Argus)
 	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
 	;	catch(Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30), _,
-			(	format(user_error, '** ERROR ** EYE requires swipl with the GMP library installed e.g sudo apt install libgmp-dev~n', []),
+			(	format(user_error, '** ERROR ** EYE requires swipl with gmp library support e.g sudo apt install libgmp-dev~n', []),
 				flush_output(user_error),
 				halt(1)
 			)
