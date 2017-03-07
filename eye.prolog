@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0305.1249 josd').
+version_info('EYE rel. v17.0307.1637 josd').
 
 
 license_info('MIT License
@@ -225,7 +225,12 @@ main :-
 	flush_output(user_error),
 	(	memberchk('--no-genid', Argus)
 	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
-	;	Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30),
+	;	catch(Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30), _,
+			(	format(user_error, '** ERROR ** EYE requires swipl with the GMP library installed e.g sudo apt install libgmp-dev~n', []),
+				flush_output(user_error),
+				halt(1)
+			)
+		),
 		atom_number(Run2, Run1),
 		catch(sha_hash(Run2, Run3, [algorithm(sha1)]), _,
 			(	format(user_error, '** ERROR ** EYE requires swipl package clib which can be installed from http://www.swi-prolog.org/Download.html~n', []),

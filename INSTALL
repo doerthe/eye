@@ -5,6 +5,7 @@ For Linux
 
 Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
 
+Install GMP library, e.g. sudo apt install libgmp-dev
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
 Install curl from http://curl.haxx.se/download.html
 Install cturtle from https://github.com/melgi/cturtle/releases/
