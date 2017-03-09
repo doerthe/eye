@@ -7,3 +7,6 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it is interoperable with [Cwm](ht
 See [RELEASE](https://github.com/josd/eye/blob/master/RELEASE), [README](https://github.com/josd/eye/blob/master/README), [INSTALL](https://github.com/josd/eye/blob/master/INSTALL) and [LICENSE](https://github.com/josd/eye/blob/master/LICENSE).<br/>
 Things are described in [N3](http://www.w3.org/TeamSubmission/n3/) thanks to [Tim Berners-Lee](http://www.w3.org/People/Berners-Lee/) and [Dan Connolly](http://www.w3.org/People/Connolly/).<br/>
 The [source code](https://github.com/josd/eye/blob/master/eye.prolog) is by [Jos De Roo](https://josd.github.io/) and the [online course](http://n3.restdesc.org/) is by [Ruben Verborgh](http://ruben.verborgh.org/).<br/>
+
+EYE can be [installed manually] (https://github.com/josd/eye/blob/master/INSTALL) on Linux, Windows and MacOSX.<br/>
+EYE is also available in a [Docker container for command line use] (https://registry.hub.docker.com/u/bdevloed/eye/) and in a [Docker container for HTTP client use] (https://registry.hub.docker.com/u/bdevloed/eyeserver/).<br/>
