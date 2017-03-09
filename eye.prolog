@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0307.1654 josd').
+version_info('EYE rel. v17.0309.2322 josd').
 
 
 license_info('MIT License
@@ -124,6 +124,7 @@ eye
 
 :- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
 :- dynamic(argi/1).
+:- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
 :- dynamic(bgot/3).
@@ -136,6 +137,7 @@ eye
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
+:- dynamic(forward/0).
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
@@ -357,7 +359,7 @@ argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
 	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
-		      '--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
+			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -2227,6 +2229,11 @@ expression(Node, T, L1, L3) :-
 
 formulacontent(Formula, L1, L2) :-
 	statementlist(L, L1, L2),
+	(	nb_getval(fdepth, 1)
+	->	retractall(forward),
+		retractall(backward)
+	;	true
+	),
 	clist(L, Formula).
 
 
@@ -2638,18 +2645,24 @@ symbol(Name, [name(N)|L2], L2) :-
 symbol(Name, [bnode(Label)|L2], L2) :-
 	nb_getval(fdepth, D),
 	(	D =:= 0
-	->	N = Label,
-		E = 0
+	->	N = Label
 	;	atom_codes(Label, LabelCodes),
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
-		atom_codes(N, LabelTidy),
-		E = 1
+		atom_codes(N, LabelTidy)
 	),
-	(	evar(N, S, E)
+	(	(	\+forward,
+			\+backward
+		->	evar(N, S, 0)
+		;	evar(N, S, 1)
+		)
 	->	true
 	;	atom_concat(N, '_', M),
 		gensym(M, S),
-		assertz(evar(N, S, E))
+		(	\+forward,
+			\+backward
+		->	assertz(evar(N, S, 0))
+		;	assertz(evar(N, S, 1))
+		)
 	),
 	(	(	nb_getval(fdepth, 0)
 		;	flag('pass-all-ground')
@@ -2714,11 +2727,19 @@ uri(Name, L1, L2) :-
 
 
 verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
-	!.
+	!,
+	(	nb_getval(fdepth, 0)
+	->	assertz(forward)
+	;	true
+	).
 verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
 	!.
 verb(':-', [], ['<', '='|L2], L2) :-
-	!.
+	!,
+	(	nb_getval(fdepth, 0)
+	->	assertz(backward)
+	;	true
+	).
 % DEPRECATED
 verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
 	!.
@@ -4863,7 +4884,7 @@ eam(Span) :-
 		;	true
 		),
 		catch(call_residue_vars(Prem, Res), Exc,
-			(	Exc =  error(existence_error(procedure, _), _)
+			(	Exc = error(existence_error(procedure, _), _)
 			->	fail
 			;	throw(Exc)
 			)
@@ -9569,7 +9590,7 @@ conjoin([], U, U) :-
 	!.
 conjoin([X|Y], U, V) :-
 	member(Z, U),
-	unify(X, Z),	
+	unify(X, Z),
 	!,
 	conjoin(Y, U, V).
 conjoin([X|Y], U, [X|V]) :-
