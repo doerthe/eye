@@ -1,8 +1,7 @@
                                   EYE release
 
-[v17.0309.2322] the scope of implicit existentials is the premis or conclusion of asserted rules and the top level otherwise
+[v17.0310.1131] the scope of implicit existentials is the direct formula in which they occur
 [v17.0307.1654] throwing an exception when the gmp library is not installed (obs from Carsten Klee)
-[v17.0305.1249] the scope of implicit existentials is their top level N3 formula
 [v17.0303.1424] adding e:multisetEqualTo and e:multisetNotEqualTo built-ins (obs from Hong Sun)
 [v17.0222.1246] fixing the unification in log:equalTo (obs from Dörthe Arndt)
 [v17.0218.2321] fixing log:includes and log:notIncludes for empty graphs

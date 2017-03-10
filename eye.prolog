@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0309.2322 josd').
+version_info('EYE rel. v17.0310.1131 josd').
 
 
 license_info('MIT License
@@ -124,7 +124,6 @@ eye
 
 :- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
 :- dynamic(argi/1).
-:- dynamic(backward/0).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
 :- dynamic(bgot/3).
@@ -137,7 +136,6 @@ eye
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
-:- dynamic(forward/0).
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
 :- dynamic(got_labelvars/2).
@@ -2229,11 +2227,6 @@ expression(Node, T, L1, L3) :-
 
 formulacontent(Formula, L1, L2) :-
 	statementlist(L, L1, L2),
-	(	nb_getval(fdepth, 1)
-	->	retractall(forward),
-		retractall(backward)
-	;	true
-	),
 	clist(L, Formula).
 
 
@@ -2650,19 +2643,11 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
 		atom_codes(N, LabelTidy)
 	),
-	(	(	\+forward,
-			\+backward
-		->	evar(N, S, 0)
-		;	evar(N, S, 1)
-		)
+	(	evar(N, S, D)
 	->	true
 	;	atom_concat(N, '_', M),
 		gensym(M, S),
-		(	\+forward,
-			\+backward
-		->	assertz(evar(N, S, 0))
-		;	assertz(evar(N, S, 1))
-		)
+		assertz(evar(N, S, D))
 	),
 	(	(	nb_getval(fdepth, 0)
 		;	flag('pass-all-ground')
@@ -2727,19 +2712,11 @@ uri(Name, L1, L2) :-
 
 
 verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
-	!,
-	(	nb_getval(fdepth, 0)
-	->	assertz(forward)
-	;	true
-	).
+	!.
 verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
 	!.
 verb(':-', [], ['<', '='|L2], L2) :-
-	!,
-	(	nb_getval(fdepth, 0)
-	->	assertz(backward)
-	;	true
-	).
+	!.
 % DEPRECATED
 verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
 	!.
