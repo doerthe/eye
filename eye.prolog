@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0310.1131 josd').
+version_info('EYE rel. v17.0310.2303 josd').
 
 
 license_info('MIT License
@@ -5545,7 +5545,8 @@ djitis(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#labelvars>'(A, B) :-
-	(	got_labelvars(A, B)
+	(	got_labelvars(C, B),
+		C =@= A
 	->	true
 	;	copy_term_nat(A, B),
 		nb_getval(wn, W),
