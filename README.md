@@ -8,7 +8,7 @@ See [RELEASE](https://github.com/josd/eye/blob/master/RELEASE), [README](https:/
 Things are described in [N3](http://www.w3.org/TeamSubmission/n3/) thanks to [Tim Berners-Lee](http://www.w3.org/People/Berners-Lee/) and [Dan Connolly](http://www.w3.org/People/Connolly/).<br/>
 The [source code](https://github.com/josd/eye/blob/master/eye.prolog) is by [Jos De Roo](https://josd.github.io/) and the [online course](http://n3.restdesc.org/) is by [Ruben Verborgh](http://ruben.verborgh.org/).<br/>
 
-See also the [EYE paper] (http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2) "Drawing Conclusions from Linked Data on the Web: The EYE Reasoner"<br/>
+See also the [EYE paper] (http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2) "Drawing Conclusions from Linked Data on the Web"<br/>
 and the [EYE talk] (http://www.agfa.com/w3c/Talks/2012/04swig/) "EYE looking through N3 glasses".<br/>
 
 EYE can be [installed manually] (https://github.com/josd/eye/blob/master/INSTALL) on Linux, Windows and MacOSX.<br/>
