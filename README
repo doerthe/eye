@@ -42,8 +42,8 @@ Design issues
 -------------
 
 Implicit Quantification in N3 [13]
-  In ETC [5] the scope of implicit existentials is the premis or conclusion
-  of asserted rules and the top level for the remaining asserted statements.
+  In ETC [5] the scope of implicit universals is the top level and the
+  scope of implicit existentials is the direct formula in which they occur.
 
 Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
