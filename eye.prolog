@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0310.2303 josd').
+version_info('EYE rel. v17.0315.0907 josd').
 
 
 license_info('MIT License
@@ -97,6 +97,7 @@ eye
 	--pass-turtle			output the --turtle data
 	--probe				output speedtest info on stderr
 	--profile			output profile info on stderr
+	--random-seed			create random seed
 	--rule-histogram		output rule histogram info on stderr
 	--statistics			output statistics info on stderr
 	--streaming-reasoning		streaming reasoning on --turtle data
@@ -925,6 +926,11 @@ opts(['--quick-answer'|Argus], Args) :-
 	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic limited-answer 1']),
 	retractall(flag('limited-answer', _)),
 	assertz(flag('limited-answer', 1)),
+	opts(Argus, Args).
+opts(['--random-seed'|Argus], Args) :-
+	!,
+	N is random(2^120),
+	nb_setval(random, N),
 	opts(Argus, Args).
 opts(['--rule-histogram'|Argus], Args) :-
 	!,
