@@ -10,7 +10,7 @@ The [source code](https://github.com/josd/eye/blob/master/eye.prolog) is by [Jos
 
 See also the paper [Drawing Conclusions from Linked Data on the Web](http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2)<br/>
 and the talk [EYE looking through N3 glasses](http://www.agfa.com/w3c/Talks/2012/04swig/).<br/>
-[EYE To draw Conclusions - ETC](https://github.com/josd/etc) is used to test [EYE releases](https://github.com/josd/eye/blob/master/RELEASE).<br/>
+[EYE To draw Conclusions](https://github.com/josd/etc) is used to test [EYE releases](https://github.com/josd/eye/blob/master/RELEASE).<br/>
 
 EYE can be [installed manually](https://github.com/josd/eye/blob/master/INSTALL) on Linux, Windows and MacOSX.<br/>
 It is also available in a [docker container for command line use](https://registry.hub.docker.com/u/bdevloed/eye/)<br/>
