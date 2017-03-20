@@ -13,4 +13,4 @@ and the talk [EYE looking through N3 glasses](http://www.agfa.com/w3c/Talks/2012
 
 EYE can be [installed manually](https://github.com/josd/eye/blob/master/INSTALL) on Linux, Windows and MacOSX.<br/>
 It is also available in a [docker container for command line use](https://registry.hub.docker.com/u/bdevloed/eye/)<br/>
-and in a [docker container for HTTP client use] (https://registry.hub.docker.com/u/bdevloed/eyeserver/).<br/>
+and in a [docker container for HTTP client use](https://registry.hub.docker.com/u/bdevloed/eyeserver/).<br/>
