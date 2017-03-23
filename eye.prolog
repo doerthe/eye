@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0315.0907 josd').
+version_info('EYE rel. v17.0323.0016 josd').
 
 
 license_info('MIT License
@@ -972,6 +972,8 @@ opts(['--streaming-reasoning'|Argus], Args) :-
 	!,
 	retractall(flag('streaming-reasoning')),
 	assertz(flag('streaming-reasoning')),
+	retractall(flag('no-qnames')),
+	assertz(flag('no-qnames')),
 	opts(Argus, Args).
 opts(['--strict'|Argus], Args) :-
 	!,
@@ -1441,12 +1443,10 @@ args(['--turtle', Argument|Args]) :-
 								functor(Qt, F, _),
 								(	pred(F)
 								->	true
-								;	assertz(pred(F)),
-									format(':- dynamic(~q).~n', [F/2]),
-									format(':- multifile(~q).~n', [F/2]),
-									format('pred(~q).~n', [F])
+								;	assertz(pred(F))
 								),
-								format('~q.~n', [Qt])
+								wt(Qt),
+								writeln('.')
 							)
 						),
 						nb_getval(sc, I),
@@ -1460,12 +1460,10 @@ args(['--turtle', Argument|Args]) :-
 						functor(Qt, F, _),
 						(	pred(F)
 						->	true
-						;	assertz(pred(F)),
-							format(':- dynamic(~q).~n', [F/2]),
-							format(':- multifile(~q).~n', [F/2]),
-							format('pred(~q).~n', [F])
+						;	assertz(pred(F))
 						),
-						format('~q.~n', [Qt]),
+						wt(Qt),
+						writeln('.'),
 						cnt(sc)
 					)
 				;	(	Rt = pred(F)
@@ -1478,8 +1476,7 @@ args(['--turtle', Argument|Args]) :-
 					(	Rt = scount(SCount)
 					->	assertz(scount(SCount))
 					;	true
-					),
-					format('~q.~n', [Rt])
+					)
 				)
 			;	n3pin(Rt, In, File)
 			),
@@ -1518,7 +1515,6 @@ args(['--turtle', Argument|Args]) :-
 			statistics(inferences, Inf),
 			catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
 			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-			format('~q.~n', [scount(Outp)]),
 			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
 			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 			flush_output(user_error)
