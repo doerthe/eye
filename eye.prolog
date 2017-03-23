@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0323.0016 josd').
+version_info('EYE rel. v17.0323.1113 josd').
 
 
 license_info('MIT License
@@ -5739,6 +5739,17 @@ djitis(A) :-
 		),
 		(	atom_codes(X, U),
 			escape_string(U, V),
+			atom_codes(Z, V)
+		)
+	).
+
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#stringReverse>'(literal(X, Y), literal(Z, Y)) :-
+	when(
+		(	ground(X)
+		),
+		(	atom_codes(X, U),
+			reverse(U, V),
 			atom_codes(Z, V)
 		)
 	).
