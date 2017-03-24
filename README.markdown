@@ -4,8 +4,8 @@
 It performs semibackward reasoning and it supports Euler paths.  
 Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).  
 
-Semibackward reasoning is backward reasoning for EYE components i.e.  
-rules using <= in N3 and forward reasoning for rules using => in N3.  
+Semibackward reasoning is backward reasoning for rules using <= in N3  
+and forward reasoning for rules using => in N3.  
 **Semibackward reasoning from EYE to EYE** is what keeps us going.  
 
 Euler paths are roughly "don't step in your own steps" which is inspired by  
