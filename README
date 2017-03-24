@@ -25,40 +25,40 @@ The GRE (Generic Reasoning Engine) is supporting Proof [1]
 and EAM (Euler Abstract Machine) is supporting Unifying Logic [1].
 
 The detailed design of EYE comprises:  
- 1/ N3 [3] parser specified as Prolog rules  
- 2/ N3Logic [11] to N3P (N3 P-code) compiler  
- 3/ EAM (Euler Abstract Machine) supporting Euler paths  
- 4/ proof construction using the vocabulary for proofs [12]  
- 5/ built-ins and support predicates for the above functionalities  
+1. N3 [3] parser specified as Prolog rules  
+2. N3Logic [11] to N3P (N3 P-code) compiler  
+3. EAM (Euler Abstract Machine) supporting Euler paths  
+4. proof construction using the vocabulary for proofs [12]  
+5. built-ins and support predicates for the above functionalities  
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:  
- 1/ Select rule P => C  
- 2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/  
- 3/ If P & NOT(C) assert C (forward chaining) and remove brake  
- 4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/  
- 5/ If brake or tactic linear-select stop, else start again at 1/  
+1. Select rule P => C  
+2. Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/  
+3. If P & NOT(C) assert C (forward chaining) and remove brake  
+4. If C = answer(A) and tactic limited-answer stop, else backtrack to 2/  
+5. If brake or tactic linear-select stop, else start again at 1/  
 
 
 ## Design issues
 
 Implicit Quantification in N3 [13]  
-  In ETC [5] the scope of implicit universals is the top level and the
+* In ETC [5] the scope of implicit universals is the top level and the
   scope of implicit existentials is the direct formula in which they occur.
 
 Proof output without bindings [14]  
-  In ETC [5] the variable substitutions naturally follow from the proof.
+* In ETC [5] the variable substitutions naturally follow from the proof.
 
 
 ## See also
 
 EYE paper [15]  
-  Drawing Conclusions from Linked Data on the Web: The EYE Reasoner
+* Drawing Conclusions from Linked Data on the Web: The EYE Reasoner
 
 EYE tutorial [16]  
-  Semantic Web Reasoning With EYE
+* Semantic Web Reasoning With EYE
 
 EYE talk [17]  
-  EYE looking through N3 glasses
+* EYE looking through N3 glasses
 
 EYE logo [18]
 
