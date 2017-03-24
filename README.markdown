@@ -1,34 +1,36 @@
 # Euler Yet another proof Engine
 
 <img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/>
-EYE is a reasoning engine supporting the Semantic Web layers [1].
-It performs semibackward reasoning and it supports Euler paths.
+EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
+It performs semibackward reasoning and it supports Euler paths.  
+  
 
-Semibackward reasoning is backward reasoning for EYE components i.e.
+**Semibackward reasoning** is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
-in 1736 for the Königsberg Bridge Problem [2]. EYE sees the rule
+in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html). EYE sees the rule
 P => C as P & NOT(C) => C.
 
-Via N3 [3] EYE is interoperable with Cwm [4].
+Via [N3](http://www.w3.org/TeamSubmission/n3/) EYE is interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).
 
-ETC [5] is used to test EYE releases [6].
+[ETC](https://github.com/josd/etc) is used to test [EYE releases](https://github.com/josd/eye/blob/master/RELEASE).
 
-EYE can be installed manually on Linux, Windows and MacOSX [7].
-EYE is also available in a Docker container for command line use [8]
-and in a Docker container for HTTP client use [9].
+EYE can be [installed manually on Linux, Windows and MacOSX](https://github.com/josd/eye/blob/master/INSTALL).
+EYE is also available in a [Docker container for command line use](https://registry.hub.docker.com/u/bdevloed/eye/)
+and in a [Docker container for HTTP client use](https://registry.hub.docker.com/u/bdevloed/eyeserver/).
 
-The main building blocks of EYE are depicted in [10].
-The GRE (Generic Reasoning Engine) is supporting Proof [1]
-and EAM (Euler Abstract Machine) is supporting Unifying Logic [1].
+The main building blocks of EYE are  
+<img src="https://josd.github.io/images/eye-reasoning-engine.png"" alt="EYE"/>
+The GRE (Generic Reasoning Engine) is supporting [Proof](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a)
+and EAM (Euler Abstract Machine) is supporting [Unifying Logic](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).
 
 The detailed design of EYE comprises:  
-1. N3 [3] parser specified as Prolog rules  
-2. N3Logic [11] to N3P (N3 P-code) compiler  
+1. [N3](http://www.w3.org/TeamSubmission/n3/) parser specified as Prolog rules  
+2. [N3Logic](http://www.w3.org/DesignIssues/N3Logic) to N3P (N3 P-code) compiler  
 3. EAM (Euler Abstract Machine) supporting Euler paths  
-4. proof construction using the vocabulary for proofs [12]  
+4. proof construction using the [vocabulary for proofs](http://www.w3.org/2000/10/swap/reason.n3)  
 5. built-ins and support predicates for the above functionalities  
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:  
@@ -41,45 +43,22 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 ## Design issues
 
-Implicit Quantification in N3 [13]  
-* In ETC [5] the scope of implicit universals is the top level and the
+[Implicit Quantification in N3](https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000)  
+* In [ETC](https://github.com/josd/etc) the scope of implicit universals is the top level and the
   scope of implicit existentials is the direct formula in which they occur.
 
-Proof output without bindings [14]  
-* In ETC [5] the variable substitutions naturally follow from the proof.
+[Proof output without bindings](https://josd.github.io/etc/witch/witch-proof.n3)  
+* In [ETC](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.
 
 
 ## See also
 
-EYE paper [15]  
-* Drawing Conclusions from Linked Data on the Web: The EYE Reasoner
+EYE paper  
+* [Drawing Conclusions from Linked Data on the Web: The EYE Reasoner](http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2)
 
-EYE tutorial [16]  
-* Semantic Web Reasoning With EYE
+EYE tutorial  
+* [Semantic Web Reasoning With EYE](http://n3.restdesc.org/)
 
-EYE talk [17]  
-* EYE looking through N3 glasses
+EYE talk  
+* [EYE looking through N3 glasses](http://www.agfa.com/w3c/Talks/2012/04swig/)
 
-EYE logo [18]
-
-
-## References
-
- [1] http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a  
- [2] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html  
- [3] http://www.w3.org/TeamSubmission/n3/  
- [4] http://www.w3.org/2000/10/swap/doc/cwm  
- [5] https://github.com/josd/etc  
- [6] https://github.com/josd/eye/blob/master/RELEASE  
- [7] https://github.com/josd/eye/blob/master/INSTALL  
- [8] https://registry.hub.docker.com/u/bdevloed/eye/  
- [9] https://registry.hub.docker.com/u/bdevloed/eyeserver/  
-[10] https://josd.github.io/images/eye-reasoning-engine.png  
-[11] http://www.w3.org/DesignIssues/N3Logic  
-[12] http://www.w3.org/2000/10/swap/reason.n3  
-[13] https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
-[14] https://josd.github.io/etc/witch/witch-proof.n3  
-[15] http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2  
-[16] http://n3.restdesc.org/  
-[17] http://www.agfa.com/w3c/Talks/2012/04swig/  
-[18] https://josd.github.io/images/eye.png  
