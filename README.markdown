@@ -1,7 +1,6 @@
 # Euler Yet another proof Engine
 
-<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/>  
-EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
+<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
 It performs semibackward reasoning and it supports Euler paths.  
 
 **Semibackward reasoning** is backward reasoning for EYE components i.e.
@@ -9,8 +8,8 @@ rules using <= in N3 and forward reasoning for rules using => in N3.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
-in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html). EYE sees the rule
-P => C as P & NOT(C) => C.
+in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).
+EYE sees the rule P => C as P & NOT(C) => C.
 
 Via [N3](http://www.w3.org/TeamSubmission/n3/) EYE is interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).
 
@@ -21,7 +20,7 @@ EYE is also available in a [Docker container for command line use](https://regis
 and in a [Docker container for HTTP client use](https://registry.hub.docker.com/u/bdevloed/eyeserver/).
 
 The main building blocks of EYE are  
-<img src="https://josd.github.io/images/eye-reasoning-engine.png" alt="EYE"/>
+<img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>
 The GRE (Generic Reasoning Engine) is supporting [Proof](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a)
 and EAM (Euler Abstract Machine) is supporting [Unifying Logic](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).
 
