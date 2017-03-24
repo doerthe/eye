@@ -8,8 +8,8 @@ Semibackward reasoning is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.  
 **Semibackward reasoning from EYE to EYE** is what keeps us going.  
 
-Euler paths are roughly "don't step in your own steps" and this is inspired  
-by what Leonhard Euler discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
+Euler paths are roughly "don't step in your own steps" which is inspired by  
+what Leonhard Euler discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
 EYE sees the rule P => C as P & NOT(C) => C.  
 
 [ETC](https://github.com/josd/etc) is used to test [EYE releases](https://github.com/josd/eye/blob/master/RELEASE).  
