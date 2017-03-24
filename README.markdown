@@ -6,7 +6,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http:
 
 Semibackward reasoning is backward reasoning for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-**Semibackward reasoning from EYE to EYE** is what keeps us going.  
+__Semibackward reasoning from EYE to EYE__ is what keeps us going.  
 
 Euler paths are roughly "don't step in your own steps" which is inspired by  
 what Leonhard Euler discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
@@ -41,23 +41,26 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 ## Design issues
 
-### Implicit Quantification in N3
+Implicit Quantification in N3
 * See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
 * In [ETC](https://github.com/josd/etc) the scope of implicit universals is the top level and the  
   scope of implicit existentials is the direct formula in which they occur.  
 
-### Proof output without bindings
+Proof output without bindings
 * In [ETC](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.  
 * For an example see https://josd.github.io/etc/witch/witch-proof.n3  
 
 
 ## See also
 
-### EYE paper
+EYE paper
 * [Drawing Conclusions from Linked Data on the Web: The EYE Reasoner](http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2)
 
-### EYE tutorial
+EYE tutorial
 * [Semantic Web Reasoning With EYE](http://n3.restdesc.org/)
 
-### EYE talk
+EYE talk
 * [EYE looking through N3 glasses](http://www.agfa.com/w3c/Talks/2012/04swig/)
+
+---
+[_Jos De Roo_](https://josd.github.io/)
