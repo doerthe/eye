@@ -4,8 +4,8 @@
 It performs semibackward reasoning and it supports Euler paths.  
 Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).  
 
-Semibackward reasoning is backward reasoning for rules using <= in N3  
-and forward reasoning for rules using => in N3.  
+Semibackward reasoning is backward reasoning for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
+and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
 **Semibackward reasoning from EYE to EYE** is what keeps us going.  
 
 Euler paths are roughly "don't step in your own steps" which is inspired by  
@@ -24,14 +24,14 @@ The main building blocks of EYE are
 The GRE (Generic Reasoning Engine) is supporting [Proof](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a)  
 and EAM (Euler Abstract Machine) is supporting [Unifying Logic](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
 
-The detailed design of EYE comprises:  
+The detailed design of EYE comprises:
 1. [N3](http://www.w3.org/TeamSubmission/n3/) parser specified as Prolog rules  
 2. [N3Logic](http://www.w3.org/DesignIssues/N3Logic) to N3P (N3 P-code) compiler  
 3. EAM (Euler Abstract Machine) supporting Euler paths  
 4. proof construction using the [vocabulary for proofs](http://www.w3.org/2000/10/swap/reason.n3)  
 5. built-ins and support predicates for the above functionalities  
 
-This is what the basic EAM (Euler Abstract Machine) does in a nutshell:  
+This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 1. Select rule P => C  
 2. Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1.  
 3. If P & NOT(C) assert C (forward chaining) and remove brake  
@@ -41,12 +41,14 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 ## Design issues
 
-[Implicit Quantification in N3](https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000)  
+Implicit Quantification in N3
+* See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
 * In [ETC](https://github.com/josd/etc) the scope of implicit universals is the top level and the  
   scope of implicit existentials is the direct formula in which they occur.  
 
-[Proof output without bindings](https://josd.github.io/etc/witch/witch-proof.n3)  
+Proof output without bindings
 * In [ETC](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.  
+* For an example see https://josd.github.io/etc/witch/witch-proof.n3  
 
 
 ## See also
