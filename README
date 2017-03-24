@@ -1,9 +1,8 @@
 # Euler Yet another proof Engine
 
-<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/>
+<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/>  
 EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
 It performs semibackward reasoning and it supports Euler paths.  
-  
 
 **Semibackward reasoning** is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.
@@ -22,7 +21,7 @@ EYE is also available in a [Docker container for command line use](https://regis
 and in a [Docker container for HTTP client use](https://registry.hub.docker.com/u/bdevloed/eyeserver/).
 
 The main building blocks of EYE are  
-<img src="https://josd.github.io/images/eye-reasoning-engine.png"" alt="EYE"/>
+<img src="https://josd.github.io/images/eye-reasoning-engine.png" alt="EYE"/>
 The GRE (Generic Reasoning Engine) is supporting [Proof](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a)
 and EAM (Euler Abstract Machine) is supporting [Unifying Logic](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).
 
