@@ -6,6 +6,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http:
 
 **Semibackward reasoning** is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.
+**Semibackward reasoning from EYE to EYE** is what keeps us going.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
