@@ -8,7 +8,7 @@ Semibackward reasoning is backward reasoning for rules using <= in [N3](http://w
 and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
 __Semibackward reasoning from EYE to EYE__ is what keeps us going.  
 
-Euler paths are roughly _don't step in your own steps_ which is inspired by  
+Euler paths are roughly "_don't step in your own steps_" which is inspired by  
 what Leonhard Euler discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
 EYE sees the rule P => C as P & NOT(C) => C.  
 
