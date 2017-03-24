@@ -18,11 +18,8 @@ EYE can be [installed manually on Linux, Windows and MacOSX](https://github.com/
 EYE is also available in a [Docker container for command line use](https://registry.hub.docker.com/u/bdevloed/eye/)  
 and in a [Docker container for HTTP client use](https://registry.hub.docker.com/u/bdevloed/eyeserver/).  
 
-The main building blocks of EYE are  
+The main building blocks of EYE are:  
 <img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>  
-
-The GRE (Generic Reasoning Engine) is supporting [Proof](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a)  
-and EAM (Euler Abstract Machine) is supporting [Unifying Logic](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
 
 The detailed design of EYE comprises:
 1. [N3](http://www.w3.org/TeamSubmission/n3/) parser specified as Prolog rules  
