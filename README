@@ -1,11 +1,11 @@
-                                  EYE readme
+# Euler Yet another proof Engine
 
+<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/>
 EYE is a reasoning engine supporting the Semantic Web layers [1].
 It performs semibackward reasoning and it supports Euler paths.
 
 Semibackward reasoning is backward reasoning for EYE components i.e.
 rules using <= in N3 and forward reasoning for rules using => in N3.
-The main focus is on Semibackward Expressivity and Efficiency - SEE.
 
 Euler paths are roughly "don't step in your own steps" and in that
 respect there is a similarity with what Leonhard Euler discovered
@@ -39,8 +39,7 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
  5/ If brake or tactic linear-select stop, else start again at 1/
 
 
-Design issues
--------------
+## Design issues
 
 Implicit Quantification in N3 [13]
   In ETC [5] the scope of implicit universals is the top level and the
@@ -50,8 +49,7 @@ Proof output without bindings [14]
   In ETC [5] the variable substitutions naturally follow from the proof.
 
 
-See also
---------
+## See also
 
 EYE paper [15]
   Drawing Conclusions from Linked Data on the Web: The EYE Reasoner
@@ -65,8 +63,7 @@ EYE talk [17]
 EYE logo [18]
 
 
-References
-----------
+## References
 
  [1] http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a
  [2] http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html
