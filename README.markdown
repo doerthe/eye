@@ -9,7 +9,7 @@ and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmissio
 __Semibackward reasoning from EYE to EYE__ is what keeps us going.  
 
 Euler paths are roughly "_don't step in your own steps_" which is inspired by  
-what [Leonhard Euler](https://nl.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
+what [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
 EYE sees the rule P => C as P & NOT(C) => C.  
 
 [ETC](https://github.com/josd/etc) is used to test [EYE releases](https://github.com/josd/eye/blob/master/RELEASE).  
