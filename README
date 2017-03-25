@@ -18,7 +18,7 @@ and in a [Docker container for HTTP client use](https://registry.hub.docker.com/
 
 [ETC](https://github.com/josd/etc) is used to test [EYE releases](https://github.com/josd/eye/blob/master/RELEASE).  
 
-# Architecture and design
+## Architecture and design
 
 The main building blocks of EYE are:  
 <img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>  
@@ -37,7 +37,7 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 4. If C = answer(A) and tactic limited-answer stop, else backtrack to 2.  
 5. If brake or tactic linear-select stop, else start again at 1.  
 
-## Design issues
+### Design issues
 
 Implicit Quantification in N3
 * See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
