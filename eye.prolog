@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0327.0947 josd').
+version_info('EYE rel. v17.0327.1035 josd').
 
 
 license_info('MIT License
@@ -398,6 +398,19 @@ gre(Argus) :-
 	->	opts(['--help'], _)
 	;	true
 	),
+	(	flag(strings)
+	->	true
+	;	version_info(Version),
+		format('#Processed by ~w~n', [Version]),
+		findall(Argij,
+			(	argi(Argij)
+			),
+			Argil
+		),
+		append(Argil, Argi),
+		format('#eye~@~@~n~n', [w0(Argi), w1(Argus)]),
+		flush_output
+	),
 	(	(	flag('no-qvars')
 		;	flag('pass-all-ground')
 		)
@@ -493,19 +506,6 @@ gre(Argus) :-
 		\+flag(strings)
 	->	throw(halt)
 	;	true
-	),
-	(	flag(strings)
-	->	true
-	;	version_info(Version),
-		format('#Processed by ~w~n', [Version]),
-		findall(Argij,
-			(	argi(Argij)
-			),
-			Argil
-		),
-		append(Argil, Argi),
-		format('#eye~@~@~n~n', [w0(Argi), w1(Argus)]),
-		flush_output
 	),
 	(	flag(nope)
 	->	true
@@ -1522,6 +1522,7 @@ args(['--turtle', Argument|Args]) :-
 			Brake is TR,
 			statistics(inferences, Inf),
 			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
+			format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n#ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 			flush_output(user_error)
 		;	true
