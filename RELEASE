@@ -1,6 +1,7 @@
                                   EYE release
 
-[v17.0327.0938] improve memory footprint for streaming reasoning
+[v17.0327.0943] improving memory footprint for streaming reasoning
+[v17.0327.0938] improving memory footprint for streaming reasoning
 [v17.0323.1113] adding e:stringReverse built-in (obs from Kristof Depraetere)
 [v17.0323.0016] output of --streaming-reasoning is now N3
 [v17.0315.0907] adding --random-seed command line option to create random seed (obs from Hong Sun)
