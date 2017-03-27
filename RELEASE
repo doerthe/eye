@@ -1,6 +1,6 @@
                                   EYE release
 
-[v17.0327.1035] adding streaming reasoning header and footer comments
+[v17.0327.1209] adding streaming reasoning header and footer comments
 [v17.0327.0947] improving memory footprint for streaming reasoning
 [v17.0323.1113] adding e:stringReverse built-in (obs from Kristof Depraetere)
 [v17.0323.0016] output of --streaming-reasoning is now N3
