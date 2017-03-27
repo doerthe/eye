@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0323.1113 josd').
+version_info('EYE rel. v17.0327.0938 josd').
 
 
 license_info('MIT License
@@ -391,6 +391,7 @@ gre(Argus) :-
 	->	nb_setval(input_statements, Ist)
 	;	nb_setval(input_statements, 0)
 	),
+	nb_setval(output_statements, 0),
 	opts(Argus, Args),
 	(	\+flag('multi-query'),
 		Args = []
@@ -536,7 +537,6 @@ gre(Argus) :-
 	nb_setval(rn, 0),
 	nb_setval(lemma_count, 0),
 	nb_setval(lemma_cursor, 0),
-	nb_setval(output_statements, 0),
 	nb_setval(answer_count, 0),
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
@@ -1465,6 +1465,11 @@ args(['--turtle', Argument|Args]) :-
 						wt(Qt),
 						writeln('.'),
 						cnt(sc)
+					),
+					nb_getval(sc, Scnt),
+					(	Scnt mod 1000000 =:= 0
+					->	garbage_collect_atoms
+					;	true
 					)
 				;	(	Rt = pred(F)
 					->	(	pred(F)
@@ -1504,8 +1509,11 @@ args(['--turtle', Argument|Args]) :-
 		flush_output(user_error),
 		(	flag('streaming-reasoning')
 		->	timestamp(Stamp),
-			statistics(runtime, [Cpu, Wall]),
-			nb_getval(sc, Outp),
+			statistics(runtime, [Cpu, _]),
+			nb_getval(sc, Sc),
+			nb_getval(output_statements, Out),
+			Outp is Sc+Out,
+			nb_setval(output_statements, Outp),
 			nb_getval(tc, TC),
 			Ent is TC,
 			nb_getval(tp, TP),
@@ -1513,9 +1521,7 @@ args(['--turtle', Argument|Args]) :-
 			nb_getval(tr, TR),
 			Brake is TR,
 			statistics(inferences, Inf),
-			catch(Rate is round(Outp/Wall*1000), _, Rate = ''),
 			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-			format(user_error, 'streaming-reasoning ~w [msec cputime] ~w [msec walltime] (~w triples/s)~n', [Cpu, Wall, Rate]),
 			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
 			flush_output(user_error)
 		;	true
