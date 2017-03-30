@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0329.2100 josd').
+version_info('EYE rel. v17.0330.2029 josd').
 
 
 license_info('MIT License
@@ -400,6 +400,7 @@ gre(Argus) :-
 	),
 	(	(	flag(strings)
 		;	flag(image, _)
+		;	flag(n3p)
 		)
 	->	true
 	;	version_info(Version),

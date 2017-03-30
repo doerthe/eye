@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0330.2029] fixing wrong comments in the output of --n3p
 [v17.0329.2100] adding e:graphGoal to convert the subject graph into a prolog goal
 [v17.0327.1209] adding streaming reasoning header and footer comments
 [v17.0327.0947] improving memory footprint for streaming reasoning
