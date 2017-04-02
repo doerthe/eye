@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0330.2029 josd').
+version_info('EYE rel. v17.0402.1742 josd').
 
 
 license_info('MIT License
@@ -454,7 +454,7 @@ gre(Argus) :-
 	(	implies(_, Conc, _),
 		(	var(Conc)
 		;	Conc \= answer(_, _, _, _, _, _, _),
-			Conc \= cn([answer(_, _, _, _, _, _, _)|_])
+			Conc \= (answer(_, _, _, _, _, _, _), _)
 		)
 	->	true
 	;	(	\+flag(image, _),
@@ -502,7 +502,7 @@ gre(Argus) :-
 	;	true
 	),
 	(	\+implies(_, answer(_, _, _, _, _, _, _), _),
-		\+implies(_, cn([answer(_, _, _, _, _, _, _)|_]), _),
+		\+implies(_, (answer(_, _, _, _, _, _, _), _), _),
 		\+query(_, _),
 		\+flag('pass-only-new'),
 		\+flag('multi-query'),
@@ -592,7 +592,7 @@ gre(Argus) :-
 				)
 			),
 			retractall(implies(_, answer(_, _, _, _, _, _, _), _)),
-			retractall(implies(_, cn([answer(_, _, _, _, _, _, _)|_]), _)),
+			retractall(implies(_, (answer(_, _, _, _, _, _, _), _), _)),
 			retractall(query(_, _)),
 			retractall(prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _)),
 			retractall(lemma(_, _, _, _, _, _)),
@@ -688,8 +688,7 @@ gre(Argus) :-
 			(	member(RCnt, CntRr)
 			),
 			(	(	last(RCnt, '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)),
-					cn_conj(X, XC),
-					c_append(XC, pstep(_), Z),
+					conj_append(X, pstep(_), Z),
 					catch(clause(Y, Z), _, fail)
 				->	format(user_error, 'TC=~w TP=~w for component ~w~n', RCnt)
 				;	format(user_error, 'TC=~w TP=~w for rule ~w~n', RCnt)
@@ -1202,7 +1201,7 @@ args(['--pass'|Args]) :-
 		;	true
 		),
 		\+implies(_, answer(_, _, _, _, _, _, _), _),
-		\+implies(_, cn([answer(_, _, _, _, _, _, _)|_]), _)
+		\+implies(_, (answer(_, _, _, _, _, _, _), _), _)
 	->	assertz(query(exopred(P, S, O), exopred(P, S, O)))
 	;	assertz(implies(exopred(P, S, O), answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass>'))
 	),
@@ -1213,18 +1212,18 @@ args(['--pass'|Args]) :-
 	args(Args).
 args(['--pass-all'|Args]) :-
 	!,
-	assertz(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+	assertz(implies((exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')),
 			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-	assertz(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+	assertz(implies(('<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)),
 			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 	assertz(implies(':-'(C, A),
 			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
 	(	flag(n3p)
-	->	portray_clause(implies(cn([exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')]),
+	->	portray_clause(implies((exopred(P, S, O), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(P, '<http://www.w3.org/2000/10/swap/log#implies>')),
 			answer(P, S, O, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		portray_clause(implies(cn(['<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+		portray_clause(implies(('<http://www.w3.org/2000/10/swap/log#implies>'(A, C), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)),
 			answer('<http://www.w3.org/2000/10/swap/log#implies>', A, C, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>')),
-		portray_clause(implies(cn([':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)]),
+		portray_clause(implies((':-'(C, A), '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(A, true)),
 			answer(':-', C, A, _, _, _, _), '<http://eulersharp.sourceforge.net/2003/03swap/pass-all>'))
 	;	true
 	),
@@ -1310,11 +1309,11 @@ args(['--proof', Arg|Args]) :-
 	n3_n3p(Arg, data),
 	(	got_pi
 	->	true
-	;	assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)]),
+	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
 				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(implies(cn(['<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)]),
+		assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
 				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
 		assertz(got_pi)
 	),
@@ -1423,11 +1422,10 @@ args(['--turtle', Argument|Args]) :-
 						;	Prem = Rt
 						)
 					->	true
-					;	(	Prem = cn([exopred(P, S, O)|U])
-						;	Prem = cn([Rt|U])
+					;	(	Prem = (exopred(P, S, O), U)
+						;	Prem = (Rt, U)
 						),
-						clist(U, V),
-						call(V)
+						call(U)
 					),
 					(	ground(Conc)
 					->	true
@@ -1435,7 +1433,8 @@ args(['--turtle', Argument|Args]) :-
 						labelvars(Conc, W, N, skolem),
 						nb_setval(wn, N)
 					),
-					(	Conc = cn(C)
+					(	Conc = (_, _),
+						conj_list(Conc, C)
 					->	forall(
 							(	member(Q, C)
 							),
@@ -1579,27 +1578,26 @@ n3pin(Rt, In, File) :-
 			->	call(Pi)
 			;	nb_getval(current_scope, Si),
 				copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
-				cn_conj(Pi, Pn),
 				(	flag(nope)
-				->	Ph = Pn
+				->	Ph = Pi
 				;	(	Pi = when(Ai, Bi)
-					->	c_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
+					->	conj_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
 						Ph = when(Ai, Bh)
-					;	c_append(Pn, istep(Si, Pi, Ci, Ri), Ph)
+					;	conj_append(Pi, istep(Si, Pi, Ci, Ri), Ph)
 					)
 				),
 				(	flag('rule-histogram')
 				->	(	Ph = when(Ak, Bk)
-					->	c_append(Bk, pstep(Ri), Bj),
+					->	conj_append(Bk, pstep(Ri), Bj),
 						Pj = when(Ak, Bj)
-					;	c_append(Ph, pstep(Ri), Pj)
+					;	conj_append(Ph, pstep(Ri), Pj)
 					)
 				;	Pj = Ph
 				),
 				functor(Ci, CPi, _),
 				(	flag(n3p)
 				->	portray_clause(cpred(CPi)),
-					portray_clause(':-'(Ci, Pn))
+					portray_clause(':-'(Ci, Pi))
 				;	(	\+cpred(CPi)
 					->	assertz(cpred(CPi))
 					;	true
@@ -1748,8 +1746,8 @@ n3_n3p(Argument, Mode) :-
 	),
 	ignore(Parsed = true),
 	(	Mode = semantics
-	->	nb_getval(semantics, TriplesFinal),
-		clist(TriplesFinal, Graph),
+	->	nb_getval(semantics, List),
+		conj_list(Graph, List),
 		write(semantics(Src, Graph)),
 		writeln('.')
 	;	true
@@ -1782,7 +1780,8 @@ n3_n3p(Argument, Mode) :-
 			(	Rt = end_of_file
 			->	true
 			;	djitis(Rt),
-				(	Rt = semantics(_, cn(L))
+				(	Rt = semantics(_, G),
+					conj_list(G, L)
 				->	length(L, N),
 					nb_setval(sc, N)
 				;	Rt \= semantics(_, true),
@@ -1851,26 +1850,24 @@ n3_n3p(Argument, Mode) :-
 					;	(	Rt = ':-'(Ci, Pi)
 						->	(	Ci = true
 							->	(	flag(n3p)
-								->	cn_conj(Pi, Pc),
-									portray_clause(':-'(Pc))
+								->	portray_clause(':-'(Pi))
 								;	call(Pi)
 								)
 							;	atomic_list_concat(['<', Arg, '>'], Si),
 								copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
-								cn_conj(Pi, Pn),
 								(	flag(nope)
-								->	Ph = Pn
+								->	Ph = Pi
 								;	(	Pi = when(Ai, Bi)
-									->	c_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
+									->	conj_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
 										Ph = when(Ai, Bh)
-									;	c_append(Pn, istep(Si, Pi, Ci, Ri), Ph)
+									;	conj_append(Pi, istep(Si, Pi, Ci, Ri), Ph)
 									)
 								),
 								(	flag('rule-histogram')
 								->	(	Ph = when(Ak, Bk)
-									->	c_append(Bk, pstep(Ri), Bj),
+									->	conj_append(Bk, pstep(Ri), Bj),
 										Pj = when(Ak, Bj)
-									;	c_append(Ph, pstep(Ri), Pj)
+									;	conj_append(Ph, pstep(Ri), Pj)
 									)
 								;	Pj = Ph
 								),
@@ -1878,7 +1875,7 @@ n3_n3p(Argument, Mode) :-
 								functor(Ci, CPi, _),
 								(	flag(n3p)
 								->	portray_clause(cpred(CPi)),
-									portray_clause(':-'(Ci, Pn))
+									portray_clause(':-'(Ci, Pi))
 								;	(	\+cpred(CPi)
 									->	assertz(cpred(CPi))
 									;	true
@@ -1929,23 +1926,23 @@ tr_n3p([], _, _) :-
 % DEPRECATED
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, trules) :-
 	!,
-	(	clast(X, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>\''(_, T))
+	conj_list(X, L),
+	(	last(L, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>\''(_, T))
 	->	true
 	;	T = 1.0
 	),
-	clist(L, X),
 	tr_split(L, K, M),
-	clist(K, N),
+	conj_list(N, K),
 	write(implies(N, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>\''([Y|M], T), Src)),
 	writeln('.'),
 	tr_n3p(Z, Src, trules).
 % DEPRECATED
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery) :-
 	!,
-	clist(U, X),
+	conj_list(X, U),
 	tr_split(U, K, M),
 	append(K, ['\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\''([Y|M], T)], J),
-	clist(J, N),
+	conj_list(N, J),
 	write(implies(N, answer('\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\'', [Y|M], T, _, _, _, _), Src)),
 	writeln('.'),
 	tr_n3p(Z, Src, tquery).
@@ -2013,8 +2010,9 @@ tr_n3p([X|Z], Src, query) :-
 	tr_n3p(Z, Src, query).
 tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) :-
 	!,
-	(	forall(
-			(	cmember(I, X)
+	(	conj_list(X, L),
+		forall(
+			(	member(I, L)
 			),
 			(	I = '\'<http://www.w3.org/2000/10/swap/log#implies>\''(J, _),
 				findvars(J, K, beta),
@@ -2065,8 +2063,7 @@ tr_n3p([X|Z], Src, Mode) :-
 		;	write(prfstep(Y, _, true, _, Y, _, forward, Src)),
 			writeln('.')
 		)
-	;	term_index(Y, A),
-		write(':-'(Y, pass(A))),
+	;	write(':-'(Y, true)),
 		writeln('.')
 	),
 	tr_n3p(Z, Src, Mode).
@@ -2239,7 +2236,7 @@ expression(Node, T, L1, L3) :-
 
 formulacontent(Formula, L1, L2) :-
 	statementlist(L, L1, L2),
-	clist(L, Formula).
+	conj_list(Formula, L).
 
 
 literal(Atom, DtLang, L1, L3) :-
@@ -3638,10 +3635,10 @@ w3 :-
 	(	query(Q, A),
 		catch(call(Q), _, fail),
 		(	\+ground(Q)
-		->	clist(La, A),
+		->	conj_list(A, La),
 			partconc(Q, La, Lp),
 			Lp \= [],
-			clist(Lp, Ap)
+			conj_list(Ap, Lp)
 		;	Ap = A
 		),
 		relabel(Ap, B),
@@ -3650,7 +3647,8 @@ w3 :-
 		ws(B),
 		write('.'),
 		nl,
-		(	A = cn(L)
+		(	A = (_, _),
+			conj_list(A, L)
 		->	length(L, I),
 			cnt(output_statements, I)
 		;	cnt(output_statements)
@@ -3921,17 +3919,10 @@ wr(exopred(P, S, O)) :-
 	!,
 	U =.. [P, S, O],
 	wr(U).
-wr(cn([X])) :-
-	!,
-	wr(X).
-wr(cn([X|Y])) :-
+wr((X, Y)) :-
 	!,
 	wr(X),
-	(	Y = [Z]
-	->	true
-	;	Z = cn(Y)
-	),
-	wr(Z).
+	wr(Y).
 wr(Z) :-
 	term_index(Z, Cnd),
 	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
@@ -3949,9 +3940,7 @@ wr(Y) :-
 	write('; '),
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
 	write(' '),
-	(	(	Y = true
-		;	Y = pass(_)
-		)
+	(	Y = true
 	->	wt(Y)
 	;	write('{'),
 		labelvars(Y, 0, _, avar),
@@ -4030,24 +4019,6 @@ wt((X, Y)) :-
 		indent
 	),
 	wt(Y).
-wt(cn([X])) :-
-	!,
-	wt(X).
-wt(cn([X|Y])) :-
-	!,
-	wt(X),
-	ws(X),
-	write('.'),
-	(	flag(strings)
-	->	write(' ')
-	;	nl,
-		indent
-	),
-	(	Y = [Z]
-	->	true
-	;	Z = cn(Y)
-	),
-	wt(Z).
 wt(set(X)) :-
 	!,
 	write('($'),
@@ -4253,9 +4224,6 @@ wt0(X) :-
 	).
 
 
-wt1(pass(_)) :-
-	!,
-	write('true').
 wt1(X) :-
 	X =.. [B|C],
 	wt(C),
@@ -4335,18 +4303,16 @@ wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 	(	flag(nope)
 	->	U = X
 	;	(	X = when(A, B)
-		->	c_append(B, istep(_, _, _, _), C),
+		->	conj_append(B, istep(_, _, _, _), C),
 			U = when(A, C)
-		;	cn_conj(X, V),
-			c_append(V, istep(_, _, _, _), U)
+		;	conj_append(X, istep(_, _, _, _), U)
 		)
 	),
 	(	flag('rule-histogram')
 	->	(	U = when(D, E)
-		->	c_append(E, pstep(_), F),
+		->	conj_append(E, pstep(_), F),
 			Z = when(D, F)
-		;	cn_conj(U, W),
-			c_append(W, pstep(_), Z)
+		;	conj_append(U, pstep(_), Z)
 		)
 	;	Z = U
 	),
@@ -4513,8 +4479,6 @@ wg(X) :-
 	functor(X, F, A),
 	(	(	F = exopred,
 			!
-		;	F = cn,
-			!
 		;	prolog_sym(_, F, _),
 			F \= true,
 			F \= false,
@@ -4672,10 +4636,11 @@ wv(X) :-
 	wg(X).
 
 
-ws(cn(X)) :-
+ws((X, Y)) :-
 	!,
-	last(X, Y),
-	ws(Y).
+	conj_list((X, Y), Z),
+	last(Z, U),
+	ws(U).
 ws(X) :-
 	X =.. Y,
 	(	flag(tquery)	% DEPRECATED
@@ -4923,9 +4888,9 @@ eam(Span) :-
 		djitin(Conc, Concdt),
 		djitir(Concdt, Concdv),
 		(	\+ground(Prem)
-		->	clist(Lv, Concdv),
+		->	conj_list(Concdv, Lv),
 			partconc(Prem, Lv, Lw),
-			clist(Lw, Concd)
+			conj_list(Concd, Lw)
 		;	Concd = Concdv
 		),
 		(	flag(tactic, 'existing-path')
@@ -4946,7 +4911,8 @@ eam(Span) :-
 			catch(cnt(RTC), _, nb_setval(RTC, 0))
 		;	true
 		),
-		(	Concd = cn(Cl)
+		(	Concd = (_, _),
+			conj_list(Concd, Cl)
 		->	length(Cl, Ci),
 			cnt(tc, Ci)
 		;	cnt(tc)
@@ -4962,7 +4928,7 @@ eam(Span) :-
 			flush_output(user_error)
 		;	true
 		),
-		clist(La, Concd),
+		conj_list(Concd, La),
 		couple(La, La, Lc),
 		findall([D, F],
 			(	member([D, D], Lc),
@@ -4976,11 +4942,11 @@ eam(Span) :-
 			Ld
 		),
 		couple(Ls, Le, Ld),
-		clist(Ls, Concs),
-		clist(Le, Conce),
+		conj_list(Concs, Ls),
+		conj_list(Conce, Le),
 		astep(Src, Prem, Concd, Conce, Rule),
 		(	(	Concs = answer(_, _, _, _, _, _, _)
-			;	Concs = cn([answer(_, _, _, _, _, _, _)|_])
+			;	Concs = (answer(_, _, _, _, _, _, _), _)
 			)
 		->	cnt(answer_count)
 		;	true
@@ -5019,7 +4985,7 @@ eam(Span) :-
 
 
 astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Rule)
-	(	Cn = cn([Dn|En])
+	(	Cn = (Dn, En)
 	->	functor(Dn, P, N),
 		(	\+pred(P),
 			P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
@@ -5062,11 +5028,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 				)
 			)
 		),
-		(	En = [Fn]
-		->	true
-		;	Fn = cn(En)
-		),
-		astep(A, B, Cd, Fn, Rule)
+		astep(A, B, Cd, En, Rule)
 	;	(	Cn = true
 		->	true
 		;	functor(Cn, P, N),
@@ -5168,9 +5130,10 @@ qstep(A, true) :-
 
 % DJITI (Deep Just In Time Indexing)
 
-djiti(answer(cn(A)), cn(B)) :-
+djiti(answer((A, B)), (C, D)) :-
 	!,
-	djiti(A, B).
+	djiti(answer(A), C),
+	djiti(answer(B), D).
 djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	nonvar(A)
 	;	atom(P),
@@ -5209,26 +5172,19 @@ djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	).
 djiti(answer(A), answer(A, void, void, _, _, _, _)) :-
 	!.
-djiti([A|B], [C|D]) :-
-	!,
-	djiti(answer(A), C),
-	djiti(B, D).
 djiti(A, A).
 
 
-djitin(answer(cn(A), void, void, _, _, _, _), cn(B)) :-
+djitin(answer((A, B), void, void, _, _, _, _), (answer(A, void, void, _, _, _, _), D)) :-
 	!,
-	djitin(A, B).
-djitin([A|B], [answer(A, void, void, _, _, _, _)|C]) :-
-	!,
-	djitin(B, C).
+	djitin(answer(B, void, void, _, _, _, _), D).
 djitin(A, A).
 
 
-djitir(cn([A|B]), cn([C|D])) :-
+djitir((A, B), (C, D)) :-
 	!,
 	djitir(A, C),
-	djitir(cn(B), cn(D)).
+	djitir(B, D).
 djitir(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
 	!,
 	term_index(S, I),
@@ -5424,10 +5380,10 @@ djitis(A) :-
 	call_cleanup(A, B),
 	(	flag(nope)
 	->	true
-	;	clist(C, A),
-		clist(D, B),
+	;	conj_list(A, C),
+		conj_list(B, D),
 		append(C, D, E),
-		clist(E, F),
+		conj_list(F, E),
 		copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(F, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B)), G),
 		istep('<>', F, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B), G)
 	).
@@ -5481,9 +5437,9 @@ djitis(A) :-
 		(	nonvar(A)
 		),
 		(	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#labelvars>'(A, C),
-			clist(L, C),
+			conj_list(C, L),
 			sort(L, M),
-			clist(M, K),
+			conj_list(K, M),
 			unify(K, B)
 		)
 	).
@@ -5499,11 +5455,11 @@ djitis(A) :-
 	).
 
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphGoal>'(A, B) :-
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphGoal>'(A, A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	cn_conj(A, B)
+		(	true
 		)
 	).
 
@@ -6138,7 +6094,7 @@ djitis(A) :-
 	),
 	Y = Z,
 	Y \= answer(_, _, _, _, _, _, _),
-	Y \= cn([answer(_, _, _, _, _, _, _)|_]).
+	Y \= (answer(_, _, _, _, _, _, _), _).
 
 
 '<http://www.w3.org/2000/10/swap/log#includes>'(X, Y) :-
@@ -6148,8 +6104,8 @@ djitis(A) :-
 		),
 		(	copy_term_nat(X, U),
 			makevars(Y, V, beta),
-			clist(A, U),
-			clist(B, V),
+			conj_list(U, A),
+			conj_list(V, B),
 			includes(A, B)
 		)
 	).
@@ -6173,8 +6129,8 @@ djitis(A) :-
 		(	copy_term_nat(X, U),
 			labelvars(U, 0, _),
 			makevars(Y, V, beta),
-			clist(A, U),
-			clist(B, V),
+			conj_list(U, A),
+			conj_list(V, B),
 			\+includes(A, B)
 		)
 	).
@@ -9453,11 +9409,11 @@ unify(A, B) :-
 unify(A, B) :-
 	nonvar(A),
 	nonvar(B),
-	A = cn(_),
-	B = cn(_),
+	A = (_, _),
+	B = (_, _),
 	!,
-	clist(C, A),
-	clist(D, B),
+	conj_list(A, C),
+	conj_list(B, D),
 	includes(C, D),
 	includes(D, C).
 unify(A, B) :-
@@ -9471,35 +9427,17 @@ unify(A, B) :-
 unify(A, A).
 
 
-cn([A|B]) :-
-	call(A),
-	(	B = [C]
-	->	true
-	;	C = cn(B)
-	),
-	call(C).
-
-
-clist([], true) :-
-	!.
-clist([], pass(_)) :-
-	!.
-clist([A], A) :-
-	A \= cn(_),
-	!.
-clist(A, cn(A)).
-
-
 clistflat([], true) :-
 	!.
 clistflat([A], A) :-
-	A \= cn(_),
+	A \= (_, _),
 	!.
-clistflat(A, cn(B)) :-
+clistflat(A, (B, C)) :-
+	conj_list((B, C), D),
 	(	nonvar(A)
-	->	cflat(A, C),
-		distinct(C, B)
-	;	distinct(B, A)
+	->	cflat(A, E),
+		distinct(E, D)
+	;	distinct(D, A)
 	).
 
 
@@ -9508,7 +9446,8 @@ cflat([], []) :-
 cflat([A|B], C) :-
 	cflat(B, D),
 	copy_term_nat(A, E),
-	(	E = cn(F)
+	(	E = (_, _),
+		conj_list(E, F)
 	->	append(F, D, C)
 	;	(	E = true
 		->	C = D
@@ -9517,56 +9456,19 @@ cflat([A|B], C) :-
 	).
 
 
-cmember(A, cn(B)) :-
-	member(A, B).
-cmember(A, A) :-
-	A \= cn(_).
-
-
-clast(cn(A), B) :-
-	!,
-	last(A, B).
-clast(A, A).
-
-
-cn_conj(A, B) :-
-	clist(C, A),
-	c_d(C, D),
-	c_list(D, B).
-
-
-conj_cn(A, B) :-
-	c_list(C, A),
-	c_d(C, D),
-	clist(D, B).
-
-
-c_d([], []) :-
+conj_list(true, []) :-
 	!.
-c_d([(A;B)|C], [(D;E)|F]) :-
-	!,
-	cn_conj(A, D),
-	cn_conj(B, E),
-	c_d(C, F).
-c_d([A|B], [A|C]) :-
-	c_d(B, C).
-
-
-c_list([], true) :-
-	!.
-c_list([], pass(_)) :-
-	!.
-c_list([A], A) :-
+conj_list(A, [A]) :-
 	A \= (_, _),
 	!.
-c_list([A|B], (A, C)) :-
-	c_list(B, C).
+conj_list((A, B), [A|C]) :-
+	conj_list(B, C).
 
 
-c_append((A, B), C, (A, D)) :-
-	c_append(B, C, D),
+conj_append((A, B), C, (A, D)) :-
+	conj_append(B, C, D),
 	!.
-c_append(A, B, (A, B)).
+conj_append(A, B, (A, B)).
 
 
 couple([], [], []).
@@ -9589,11 +9491,11 @@ conjoin([true|Y], Z) :-
 	!.
 conjoin([X|Y], Z) :-
 	conjoin(Y, C),
-	clist(U, X),
-	clist(V, C),
+	conj_list(X, U),
+	conj_list(C, V),
 	conjoin(U, V, W),
 	sort(W, D),
-	clist(D, Z).
+	conj_list(Z, D).
 
 
 conjoin([], U, U) :-
@@ -9612,10 +9514,10 @@ difference([true, _], true) :-
 difference([X, true], X) :-
 	!.
 difference([X, Y], Z) :-
-	clist(U, X),
-	clist(V, Y),
+	conj_list(X, U),
+	conj_list(Y, V),
 	difference(U, V, W),
-	clist(W, Z).
+	conj_list(Z, W).
 
 difference([], _, []) :-
 	!.
@@ -9634,10 +9536,10 @@ intersect([true|_], true) :-
 	!.
 intersect([X|Y], Z) :-
 	intersect(Y, I),
-	clist(U, X),
-	clist(V, I),
+	conj_list(X, U),
+	conj_list(I, V),
 	intersect(U, V, W),
-	clist(W, Z).
+	conj_list(Z, W).
 
 
 intersect([], _, []) :-
@@ -10097,12 +9999,11 @@ inv(true, false).
 	->	call(D),
 		B = true
 	;	(	flag(nope)
-		->	conj_cn(D, B)
+		->	D = B
 		;	(	D = when(H, I)
-			->	c_append(J, istep(Src, _, _, _), I),
+			->	conj_append(J, istep(Src, _, _, _), I),
 				B = when(H, J)
-			;	c_append(K, istep(Src, _, _, _), D),
-				conj_cn(K, B)
+			;	conj_append(B, istep(Src, _, _, _), D)
 			),
 			term_index(':-'(A, B), Ind),
 			(	\+prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src)
@@ -10215,14 +10116,10 @@ labelvars(A, B, C, D) :-
 labelvars(A, B, B, _) :-
 	atomic(A),
 	!.
-labelvars(cn([A|B]), C, D, Q) :-
+labelvars((A, B), C, D, Q) :-
 	!,
 	labelvars(A, C, E, Q),
-	(	B = [F]
-	->	true
-	;	F = cn(B)
-	),
-	labelvars(F, E, D, Q).
+	labelvars(B, E, D, Q).
 labelvars([A|B], C, D, Q) :-
 	!,
 	labelvars(A, C, E, Q),
@@ -10404,7 +10301,7 @@ raw_type(rdiv(_, _), '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	!.
 raw_type('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#epsilon>', '<http://www.w3.org/2000/01/rdf-schema#Literal>') :-
 	!.
-raw_type(cn(_), '<http://www.w3.org/2000/10/swap/log#Formula>') :-
+raw_type((_, _), '<http://www.w3.org/2000/10/swap/log#Formula>') :-
 	!.
 raw_type(set(_), '<http://www.w3.org/2000/10/swap/log#Set>') :-
 	!.
