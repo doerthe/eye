@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0403.0806 josd').
+version_info('EYE rel. v17.0403.1411 josd').
 
 
 license_info('MIT License
@@ -1747,8 +1747,7 @@ n3_n3p(Argument, Mode) :-
 	ignore(Parsed = true),
 	(	Mode = semantics
 	->	nb_getval(semantics, List),
-		conj_list(Graph, List),
-		write(semantics(Src, Graph)),
+		write(semantics(Src, List)),
 		writeln('.')
 	;	true
 	),
@@ -1780,11 +1779,10 @@ n3_n3p(Argument, Mode) :-
 			(	Rt = end_of_file
 			->	true
 			;	djitis(Rt),
-				(	Rt = semantics(_, G),
-					conj_list(G, L)
+				(	Rt = semantics(_, L)
 				->	length(L, N),
 					nb_setval(sc, N)
-				;	Rt \= semantics(_, true),
+				;	Rt \= semantics(_, []),
 					nb_setval(sc, 1)
 				),
 				fail
@@ -6016,7 +6014,8 @@ djitis(A) :-
 			->	n3_n3p(Tmp2, semantics),
 				absolute_uri(Tmp2, Tmp),
 				atomic_list_concat(['<', Tmp, '>'], Res),
-				semantics(Res, B),
+				semantics(Res, L),
+				conj_list(B, L),
 				labelvars(B, 0, _),
 				delete_file(Tmp1),
 				delete_file(Tmp2)
@@ -6131,8 +6130,8 @@ djitis(A) :-
 	when(
 		(	nonvar(X)
 		),
-		(	(	semantics(X, Q)
-			->	Y = Q
+		(	(	semantics(X, L)
+			->	conj_list(Y, L)
 			;	sub_atom(X, 0, 1, _, '<'),
 				sub_atom(X, _, 1, 0, '>'),
 				sub_atom(X, 1, _, 1, Z),
@@ -6142,7 +6141,8 @@ djitis(A) :-
 						fail
 					)
 				),
-				semantics(X, Y)
+				semantics(X, L),
+				conj_list(Y, L)
 			)
 		)
 	).
