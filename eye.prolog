@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0403.1411 josd').
+version_info('EYE rel. v17.0403.1934 josd').
 
 
 license_info('MIT License
@@ -2054,8 +2054,13 @@ tr_n3p([X|Z], Src, Mode) :-
 	tr_tr(X, Y),
 	(	findvars(Y, U, epsilon),
 		U = []
-	->	write(Y),
-		writeln('.'),
+	->	(	Y =.. [A, B, (C, D)]
+		->	format('~w(~w, (~w', [A, B, C]),
+			wcn(D),
+			format(')).~n')
+		;	write(Y),
+			writeln('.')
+		),
 		(	flag(nope)
 		->	true
 		;	write(prfstep(Y, _, true, _, Y, _, forward, Src)),
@@ -4777,6 +4782,14 @@ wcf(A, _) :-
 	write(B).
 
 
+wcn((A, B)) :-
+	!,
+	format(', ~w', [A]),
+	wcn(B).
+wcn(A) :-
+	format(', ~w', [A]).
+
+
 indent:-
 	nb_getval(indentation, A),
 	tab(A).
@@ -5378,12 +5391,9 @@ djitis(A) :-
 	call_cleanup(A, B),
 	(	flag(nope)
 	->	true
-	;	conj_list(A, C),
-		conj_list(B, D),
-		append(C, D, E),
-		conj_list(F, E),
-		copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(F, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B)), G),
-		istep('<>', F, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B), G)
+	;	conj_append(A, B, C),
+		copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(C, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B)), D),
+		istep('<>', C, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B), D)
 	).
 
 
