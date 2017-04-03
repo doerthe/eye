@@ -32,7 +32,6 @@ e:findall a e:Builtin.
 e:format a e:Builtin.
 e:graphCopy a e:Builtin.
 e:graphDifference a e:Builtin.
-e:graphGoal a e:Builtin.
 e:graphIntersection a e:Builtin.
 e:graphList a e:Builtin.
 e:hmac-sha a e:Builtin.

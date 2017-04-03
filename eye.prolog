@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0402.1742 josd').
+version_info('EYE rel. v17.0403.0806 josd').
 
 
 license_info('MIT License
@@ -5451,15 +5451,6 @@ djitis(A) :-
 		),
 		(	difference(A, M),
 			unify(M, B)
-		)
-	).
-
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphGoal>'(A, A) :-
-	when(
-		(	nonvar(A)
-		),
-		(	true
 		)
 	).
 
