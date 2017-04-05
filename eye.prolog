@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0403.1934 josd').
+version_info('EYE rel. v17.0405.2137 josd').
 
 
 license_info('MIT License
@@ -5477,7 +5477,18 @@ djitis(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	clistflat(B, A)
+		(	conj_list(A, C),
+			(	nonvar(B)
+			->	cflat(B, D),
+				(	ground(D)
+				->	distinct(D, C)
+				;	C = D
+				)
+			;	(	ground(C)
+				->	distinct(C, B)
+				;	B = C
+				)
+			)
 		)
 	).
 
@@ -5538,7 +5549,11 @@ djitis(A) :-
 		),
 		(	(	getlist(A, C)
 			->	true
-			;	clistflat(C, A)
+			;	conj_list(A, D),
+				(	ground(D)
+				->	distinct(D, C)
+				;	C = D
+				)
 			),
 			length(C, B)
 		)
@@ -6325,7 +6340,11 @@ djitis(A) :-
 		),
 		(	(	getlist(X, Z)
 			->	true
-			;	clistflat(Z, X)
+			;	conj_list(X, U),
+				(	ground(U)
+				->	distinct(U, Z)
+				;	Z = U
+				)
 			),
 			length(Z, Y)
 		)
@@ -9428,35 +9447,6 @@ unify(A, B) :-
 unify(A, A).
 
 
-clistflat([], true) :-
-	!.
-clistflat([A], A) :-
-	A \= (_, _),
-	!.
-clistflat(A, (B, C)) :-
-	conj_list((B, C), D),
-	(	nonvar(A)
-	->	cflat(A, E),
-		distinct(E, D)
-	;	distinct(D, A)
-	).
-
-
-cflat([], []) :-
-	!.
-cflat([A|B], C) :-
-	cflat(B, D),
-	copy_term_nat(A, E),
-	(	E = (_, _),
-		conj_list(E, F)
-	->	append(F, D, C)
-	;	(	E = true
-		->	C = D
-		;	C = [E|D]
-		)
-	).
-
-
 conj_list(true, []) :-
 	!.
 conj_list(A, [A]) :-
@@ -9470,6 +9460,20 @@ conj_append((A, B), C, (A, D)) :-
 	conj_append(B, C, D),
 	!.
 conj_append(A, B, (A, B)).
+
+
+cflat([], []).
+cflat([A|B], C) :-
+	cflat(B, D),
+	copy_term_nat(A, E),
+	(	E = (_, _),
+		conj_list(E, F)
+	->	append(F, D, C)
+	;	(	E = true
+		->	C = D
+		;	C = [E|D]
+		)
+	).
 
 
 couple([], [], []).
@@ -9491,23 +9495,14 @@ conjoin([true|Y], Z) :-
 	conjoin(Y, Z),
 	!.
 conjoin([X|Y], Z) :-
-	conjoin(Y, C),
-	conj_list(X, U),
-	conj_list(C, V),
-	conjoin(U, V, W),
-	sort(W, D),
-	conj_list(Z, D).
-
-
-conjoin([], U, U) :-
-	!.
-conjoin([X|Y], U, V) :-
-	member(Z, U),
-	unify(X, Z),
-	!,
-	conjoin(Y, U, V).
-conjoin([X|Y], U, [X|V]) :-
-	conjoin(Y, U, V).
+	conjoin(Y, U),
+	conj_append(X, U, V),
+	(	ground(V)
+	->	conj_list(V, A),
+		sort(A, B),
+		conj_list(Z, B)
+	;	Z = V
+	).
 
 
 difference([true, _], true) :-
