@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0406.1259 josd').
+version_info('EYE rel. v17.0406.2040 josd').
 
 
 license_info('MIT License
@@ -9515,7 +9515,9 @@ difference([X, Y], Z) :-
 	conj_list(X, U),
 	conj_list(Y, V),
 	difference(U, V, W),
-	conj_list(Z, W).
+	distinct(W, J),
+	conj_list(Z, J).
+
 
 difference([], _, []) :-
 	!.
@@ -9537,7 +9539,8 @@ intersect([X|Y], Z) :-
 	conj_list(X, U),
 	conj_list(I, V),
 	intersect(U, V, W),
-	conj_list(Z, W).
+	distinct(W, J),
+	conj_list(Z, J).
 
 
 intersect([], _, []) :-

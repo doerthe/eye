@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0406.2040] removing duplicate triples in e:graphDifference and e:graphIntersection (obs from Dörthe Arndt)
 [v17.0406.1259] fixing issue with empty graphs in log:conjunction (obs from Dörthe Arndt)
 [v17.0405.2137] fixing issue with universals in log:conjunction and e:graphList (obs from Dörthe Arndt)
 [v17.0403.1934] improving the translation of N3 formulae to avoid running out of C stack
