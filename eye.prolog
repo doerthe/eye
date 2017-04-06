@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0405.2137 josd').
+version_info('EYE rel. v17.0406.1259 josd').
 
 
 license_info('MIT License
@@ -9456,6 +9456,8 @@ conj_list((A, B), [A|C]) :-
 	conj_list(B, C).
 
 
+conj_append(A, true, A) :-
+	!.
 conj_append((A, B), C, (A, D)) :-
 	conj_append(B, C, D),
 	!.
