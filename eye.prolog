@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0406.2040 josd').
+version_info('EYE rel. v17.0407.1501 josd').
 
 
 license_info('MIT License
@@ -4203,7 +4203,8 @@ wt0(X) :-
 			atom_codes(F, G),
 			atom_codes('^[A-Z_a-z][\\\\-0-9A-Z_a-z]*$', H),
 			regex(H, G, _)
-		->	atom_concat(E, F, W)
+		->	atom_concat(E, F, W),
+			assertz(wtcache(X, W))
 		;	(	\+flag(strings),
 				atom(X),
 				\+ (sub_atom(X, 0, 1, _, '<'), sub_atom(X, _, 1, 0, '>')),
@@ -4212,8 +4213,7 @@ wt0(X) :-
 			->	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
 			;	W = X
 			)
-		),
-		assertz(wtcache(X, W))
+		)
 	),
 	(	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
 	->	wt2(W)
