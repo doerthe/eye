@@ -56,6 +56,3 @@ EYE tutorial
 
 EYE talk
 * [EYE looking through N3 glasses](http://www.agfa.com/w3c/Talks/2012/04swig/)
-
----
-[_Jos De Roo_](https://josd.github.io/)
