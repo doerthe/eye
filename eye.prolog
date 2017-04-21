@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0407.1501 josd').
+version_info('EYE rel. v17.0421.2103 josd').
 
 
 license_info('MIT License
@@ -4395,7 +4395,7 @@ wt2(':-'(X, Y)) :-
 	;	true
 	),
 	assertz(rule_uvar(R)),
-	(	Y = true
+	(	atomic(Y)
 	->	wt(X)
 	;	wg(X),
 		write(' <= '),
@@ -5785,8 +5785,8 @@ djitis(A) :-
 	tell(user_error),
 	write('TRACE '),
 	(	var(X)
-	->	ignore(get_time(X)),
-		wg(Y)
+	->	copy_term_nat(Y, Z),
+		wg(Z)
 	;	writeq(Y)
 	),
 	nl,
