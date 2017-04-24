@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0421.2304 josd').
+version_info('EYE rel. v17.0424.2043 josd').
 
 
 license_info('MIT License
@@ -1148,7 +1148,7 @@ probe :-
 		->	call(Rg)
 		;	(	call(Rt)
 			->	true
-			;	djitis(Rt)
+			;	djiti_assertz(Rt)
 			)
 		),
 		fail
@@ -1611,7 +1611,7 @@ n3pin(Rt, In, File) :-
 				call(Rt)
 			->	true
 			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
-				->	djitis(Rt),
+				->	djiti_assertz(Rt),
 					(	flag(n3p),
 						Rt \= scount(_)
 					->	format('~q.~n', [Rt])
@@ -1778,7 +1778,7 @@ n3_n3p(Argument, Mode) :-
 			read(Rs, Rt),
 			(	Rt = end_of_file
 			->	true
-			;	djitis(Rt),
+			;	djiti_assertz(Rt),
 				(	Rt = semantics(_, L)
 				->	length(L, N),
 					nb_setval(sc, N)
@@ -1826,7 +1826,7 @@ n3_n3p(Argument, Mode) :-
 							\+flag('no-distinct-input'),
 							call(Rt)
 						->	true
-						;	djitis(Rt),
+						;	djiti_assertz(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1881,7 +1881,7 @@ n3_n3p(Argument, Mode) :-
 									assertz(':-'(Ci, Pj))
 								)
 							)
-						;	djitis(Rt),
+						;	djiti_assertz(Rt),
 							cnt(sc),
 							(	flag(n3p)
 							->	portray_clause(Rt)
@@ -1963,7 +1963,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query)
 		)
 	->	write(query(X, V)),
 		writeln('.')
-	;	djiti(answer(V), A),
+	;	djiti_answer(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -1987,7 +1987,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		flag(nope)
 	->	write(query(X, V)),
 		writeln('.')
-	;	djiti(answer(V), A),
+	;	djiti_answer(answer(V), A),
 		write(implies(X, A, Src)),
 		writeln('.')
 	),
@@ -2001,7 +2001,7 @@ tr_n3p([X|Z], Src, query) :-
 		)
 	->	write(query(true, X)),
 		writeln('.')
-	;	djiti(answer(X), A),
+	;	djiti_answer(answer(X), A),
 		write(implies(true, A, Src)),
 		writeln('.')
 	),
@@ -3661,7 +3661,7 @@ w3 :-
 	),
 	(	answer(B1, B2, B3, B4, B5, B6, B7),
 		relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-		djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+		djiti_answer(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
 		indent,
 		wt(C),
 		ws(C),
@@ -3688,10 +3688,10 @@ w3 :-
 		indent,
 		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, B, Pnd, Cn, R, _, A),
 			R =.. [P, S, O1],
-			djiti(answer(O), O1),
+			djiti_answer(answer(O), O1),
 			Rule =.. [P, S, O],
 			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-			djiti(answer(C), Cn),
+			djiti_answer(answer(C), Cn),
 			nb_setval(empty_gives, C),
 			\+got_wi(A, B, Pnd, C, Rule),
 			assertz(got_wi(A, B, Pnd, C, Rule)),
@@ -3711,7 +3711,7 @@ w3 :-
 			indentation(2),
 			(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, _, _, _, _, _, _),
 				relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
-				djiti(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
+				djiti_answer(answer(C), answer(C1, C2, C3, C4, C5, C6, C7)),
 				nl,
 				indent,
 				getvars(C, D),
@@ -4661,7 +4661,7 @@ wst :-
 	findall([Key, Str],
 		(	'<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)
 		;	answer(A1, A2, A3, A4, A5, A6, A7),
-			djiti(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7))
+			djiti_answer(answer('<http://www.w3.org/2000/10/swap/log#outputString>'(Key, Str)), answer(A1, A2, A3, A4, A5, A6, A7))
 		),
 		KS
 	),
@@ -4896,8 +4896,8 @@ eam(Span) :-
 			)
 		;	true
 		),
-		djitin(Conc, Concdt),
-		djitir(Concdt, Concdv),
+		djiti_concdt(Conc, Concdt),
+		djiti_concdv(Concdt, Concdv),
 		(	\+ground(Prem)
 		->	conj_list(Concdv, Lv),
 			partconc(Prem, Lv, Lw),
@@ -5008,7 +5008,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 		),
 		(	catch(call(Dn), _, fail)
 		->	true
-		;	djitis(Dn),
+		;	djiti_assertz(Dn),
 			(	flag('pass-only-new'),
 				Dn \= answer(_, _, _, _, _, _, _)
 			->	indent,
@@ -5053,7 +5053,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 			),
 			(	catch(call(Cn), _, fail)
 			->	true
-			;	djitis(Cn),
+			;	djiti_assertz(Cn),
 				(	flag('pass-only-new'),
 					Cn \= answer(_, _, _, _, _, _, _)
 				->	indent,
@@ -5141,11 +5141,11 @@ qstep(A, true) :-
 
 % DJITI (Deep Just In Time Indexing)
 
-djiti(answer((A, B)), (C, D)) :-
+djiti_answer(answer((A, B)), (C, D)) :-
 	!,
-	djiti(answer(A), C),
-	djiti(answer(B), D).
-djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
+	djiti_answer(answer(A), C),
+	djiti_answer(answer(B), D).
+djiti_answer(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	nonvar(A)
 	;	atom(P),
 		S \= void
@@ -5164,7 +5164,7 @@ djiti(answer(A), answer(P, S, O, I, J, K, L)) :-
 		term_arg_1(O, L)
 	;	true
 	).
-djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
+djiti_answer(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	(	var(S)
 	;	S \= void
 	),
@@ -5181,31 +5181,31 @@ djiti(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 		term_arg_1(O, L)
 	;	true
 	).
-djiti(answer(A), answer(A, void, void, _, _, _, _)) :-
+djiti_answer(answer(A), answer(A, void, void, _, _, _, _)) :-
 	!.
-djiti(A, A).
+djiti_answer(A, A).
 
 
-djitin(answer((A, B), void, void, _, _, _, _), (answer(A, void, void, _, _, _, _), D)) :-
+djiti_concdt(answer((A, B), void, void, _, _, _, _), (answer(A, void, void, _, _, _, _), D)) :-
 	!,
-	djitin(answer(B, void, void, _, _, _, _), D).
-djitin(A, A).
+	djiti_concdt(answer(B, void, void, _, _, _, _), D).
+djiti_concdt(A, A).
 
 
-djitir((A, B), (C, D)) :-
+djiti_concdv((A, B), (C, D)) :-
 	!,
-	djitir(A, C),
-	djitir(B, D).
-djitir(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
+	djiti_concdv(A, C),
+	djiti_concdv(B, D).
+djiti_concdv(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
 	!,
 	term_index(S, I),
 	term_index(O, J),
 	term_arg_1(S, K),
 	term_arg_1(O, L).
-djitir(A, A).
+djiti_concdv(A, A).
 
 
-djitis(answer(P, S, O, I, J, K, L)) :-
+djiti_fact(answer(P, S, O, I, J, K, L), B) :-
 	atomic(P),
 	!,
 	(	current_predicate(P/7)
@@ -5226,9 +5226,8 @@ djitis(answer(P, S, O, I, J, K, L)) :-
 	->	assertz(preda(P))
 	;	true
 	),
-	B =.. [P, S, O, I, J, K, L, answer],
-	assertz(B).
-djitis(exopred(P, S, O)) :-
+	B =.. [P, S, O, I, J, K, L, answer].
+djiti_fact(exopred(P, S, O), exopred(P, S, O, Si, Oi, Sp, Op)) :-
 	ground(exopred(P, S, O)),
 	(	compound(S)
 	;	compound(O)
@@ -5256,9 +5255,8 @@ djitis(exopred(P, S, O)) :-
 				)
 			)
 		)
-	),
-	assertz(exopred(P, S, O, Si, Oi, Sp, Op)).
-djitis(A) :-
+	).
+djiti_fact(A, B) :-
 	ground(A),
 	A =.. [P, S, O],
 	A \= ':-'(_, _),
@@ -5291,9 +5289,8 @@ djitis(A) :-
 			)
 		)
 	),
-	B =.. [P, S, O, Si, Oi, Sp, Op],
-	assertz(B).
-djitis('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B)) :-
+	B =.. [P, S, O, Si, Oi, Sp, Op].
+djiti_fact('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B), type_index(A, B, C)) :-
 	!,
 	(	current_predicate(type_index/3)
 	->	true
@@ -5305,10 +5302,33 @@ djitis('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B)) :-
 			)
 		)
 	),
-	term_index(A-B, C),
-	assertz(type_index(A, B, C)).
-djitis(A) :-
-	assertz(A).
+	term_index(A-B, C).
+djiti_fact(A, A).
+
+
+djiti_assert(A) :-
+	djiti_fact(A, B),
+	assert(B).
+
+
+djiti_asserta(A) :-
+	djiti_fact(A, B),
+	asserta(B).
+
+
+djiti_assertz(A) :-
+	djiti_fact(A, B),
+	assertz(B).
+
+
+djiti_retract(A) :-
+	djiti_fact(A, B),
+	retract(B).
+
+
+djiti_retractall(A) :-
+	djiti_fact(A, B),
+	retractall(B).
 
 
 % Built-ins
@@ -9017,9 +9037,9 @@ prolog_sym(arithmetic_less_than_or_equal, =<, rel).
 prolog_sym(arithmetic_not_equal, =\=, rel).
 prolog_sym(asin, asin, func).
 prolog_sym(asinh, asinh, func).
-prolog_sym(assert, assert, rel).
-prolog_sym(asserta, asserta, rel).
-prolog_sym(assertz, assertz, rel).
+prolog_sym(assert, djiti_assert, rel).
+prolog_sym(asserta, djiti_asserta, rel).
+prolog_sym(assertz, djiti_assertz, rel).
 prolog_sym(at_end_of_stream, at_end_of_stream, rel).
 prolog_sym(atan, atan, func).
 prolog_sym(atan2, atan2, func).
@@ -9227,8 +9247,8 @@ prolog_sym(recordz, recordz, rel).
 prolog_sym(rem, rem, func).
 prolog_sym(rename_file, rename_file, rel).
 prolog_sym(repeat, repeat, rel).
-prolog_sym(retract, retract, rel).
-prolog_sym(retractall, retractall, rel).
+prolog_sym(retract, djiti_retract, rel).
+prolog_sym(retractall, djiti_retractall, rel).
 prolog_sym(reverse, reverse, rel).
 prolog_sym(round, round, func).
 prolog_sym(same_length, same_length, rel).
