@@ -18,7 +18,7 @@ and in a [Docker container for HTTP client use](https://registry.hub.docker.com/
 
 ## Architecture and design
 
-EYE is designed to run [EYE Thinking Code](https://github.com/josd/etc) and the main building blocks of EYE are:  
+EYE is designed to run [EYE Thinking Code](https://github.com/josd/etc) and the main building blocks are:  
 <img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>  
 
 The detailed design of EYE comprises:
