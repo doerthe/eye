@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE rel. v17.0424.2043 josd').
+version_info('EYE v17.0502.1011 josd').
 
 
 license_info('MIT License
@@ -603,10 +603,6 @@ gre(Argus) :-
 			nb_setval(csv_header, []),
 			cnt(mq),
 			nb_getval(mq, Cnt),
-			(	Cnt mod 10000 =:= 0
-			->	garbage_collect_atoms
-			;	true
-			),
 			statistics(runtime, [_, Ti4]),
 			statistics(walltime, [_, Ti5]),
 			format(user_error, 'reasoning ~w [msec cputime] ~w [msec walltime]~n', [Ti4, Ti5]),
@@ -1467,11 +1463,6 @@ args(['--turtle', Argument|Args]) :-
 						wt(Qt),
 						writeln('.'),
 						cnt(sc)
-					),
-					nb_getval(sc, Scnt),
-					(	Scnt mod 1000000 =:= 0
-					->	garbage_collect_atoms
-					;	true
 					)
 				;	(	Rt = pred(F)
 					->	(	pred(F)
