@@ -6,7 +6,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http:
 
 Semibackward reasoning is backward reasoning for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-This can be seen in [EYE Thinking Code](https://github.com/josd/etc).  
+This can be seen in [Euler Thinking Code](https://github.com/josd/etc).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
@@ -18,7 +18,7 @@ and in a [Docker container for HTTP client use](https://registry.hub.docker.com/
 
 ## Architecture and design
 
-EYE is designed to run [EYE Thinking Code](https://github.com/josd/etc) and the main building blocks are:  
+EYE is designed to run [Euler Thinking Code](https://github.com/josd/etc) and the main building blocks are:  
 <img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>  
 
 The detailed design of EYE comprises:
@@ -39,12 +39,13 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 Implicit Quantification in N3
 * See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
-* In [EYE Thinking Code](https://github.com/josd/etc) the scope of implicit universals is the top level and the  
-  scope of implicit existentials is the direct formula in which they occur.  
+* In [Euler Thinking Code](https://github.com/josd/etc) the scope of implicit universals is the top level  
+  and the scope of implicit existentials is the direct formula in which they occur.  
 
 Proof output without bindings
-* In [EYE Thinking Code](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.  
-* For an example see https://josd.github.io/etc/witch/witch-proof.n3  
+* See https://josd.github.io/etc/witch/witch-proof.n3  
+* In [Euler Thinking Code](https://github.com/josd/etc) the variable substitutions naturally follow from  
+  the proof.  
 
 ## See also
 
