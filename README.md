@@ -6,7 +6,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http:
 
 Semibackward reasoning is backward reasoning for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-This can be seen in [External Thinking Code](https://github.com/josd/etc).  
+This can be seen in [External Triple Constructs](https://github.com/josd/etc).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
@@ -44,8 +44,8 @@ Implicit Quantification in N3
 
 Proof output without bindings
 * See https://josd.github.io/etc/witch/witch-proof.n3  
-* In [External Triple Constructs](https://github.com/josd/etc) variable substitutions naturally follow from  
-  the proof.  
+* In [External Triple Constructs](https://github.com/josd/etc) variable substitutions naturally follow from the  
+  proof.  
 
 ## See also
 
