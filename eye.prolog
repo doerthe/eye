@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE v17.0504.1355 josd').
+version_info('EYE v17.0504.2009 josd').
 
 
 license_info('MIT License
@@ -1407,6 +1407,12 @@ args(['--turtle', Argument|Args]) :-
 		set_stream(In, encoding(utf8)),
 		repeat,
 		read_term(In, Rt, []),
+		cnt(rt),
+		nb_getval(rt, Rtcnt),
+		(	Rtcnt mod 10000 =:= 0
+		->	garbage_collect_atoms
+		;	true
+		),
 		(	Rt = end_of_file
 		->	catch(read_line_to_codes(In, _), _, true)
 		;	(	flag('streaming-reasoning')
@@ -1468,11 +1474,6 @@ args(['--turtle', Argument|Args]) :-
 						wt(Qt),
 						writeln('.'),
 						cnt(sc)
-					),
-					nb_getval(sc, Scnt),
-					(	Scnt mod 100000 =:= 0
-					->	garbage_collect_atoms
-					;	true
 					)
 				;	(	Rt = pred(F)
 					->	(	pred(F)
@@ -1488,7 +1489,6 @@ args(['--turtle', Argument|Args]) :-
 				)
 			;	n3pin(Rt, In, File)
 			),
-			cnt(rt),
 			fail
 		),
 		!,
