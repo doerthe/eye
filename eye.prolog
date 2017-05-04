@@ -41,7 +41,7 @@
 :- endif.
 
 
-version_info('EYE v17.0502.1032 josd').
+version_info('EYE v17.0504.1355 josd').
 
 
 license_info('MIT License
@@ -139,7 +139,7 @@ eye
 :- dynamic(flag/2).
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
-:- dynamic(got_labelvars/2).
+:- dynamic(got_labelvars/3).
 :- dynamic(got_pi/0).
 :- dynamic(got_random/3).
 :- dynamic(got_sq/0).
@@ -1403,6 +1403,7 @@ args(['--turtle', Argument|Args]) :-
 		nb_setval(tc, 0),
 		nb_setval(tp, 0),
 		nb_setval(tr, 0),
+		nb_setval(rt, 0),
 		set_stream(In, encoding(utf8)),
 		repeat,
 		read_term(In, Rt, []),
@@ -1487,6 +1488,7 @@ args(['--turtle', Argument|Args]) :-
 				)
 			;	n3pin(Rt, In, File)
 			),
+			cnt(rt),
 			fail
 		),
 		!,
@@ -5552,14 +5554,16 @@ djiti_retractall(A) :-
 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#labelvars>'(A, B) :-
-	(	got_labelvars(C, B),
-		C =@= A
+	copy_term_nat(A, C),
+	labelvars(C, 0, _),
+	term_index(C, D),
+	(	got_labelvars(C, D, B)
 	->	true
 	;	copy_term_nat(A, B),
 		nb_getval(wn, W),
 		labelvars(B, W, N),
 		nb_setval(wn, N),
-		assertz(got_labelvars(A, B))
+		assertz(got_labelvars(C, D, B))
 	).
 
 
@@ -9367,7 +9371,7 @@ cnt(A) :-
 	C is B+1,
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
-		C mod 1000 =:= 0
+		C mod 10000 =:= 0
 	->	format(user_error, '~w = ~w~n', [A, C]),
 		flush_output(user_error)
 	;	true
@@ -9379,7 +9383,7 @@ cnt(A, I) :-
 	C is B+I,
 	nb_setval(A, C),
 	(	flag('debug-cnt'),
-		C mod 1000 =:= 0
+		C mod 10000 =:= 0
 	->	format(user_error, '~w = ~w~n', [A, C]),
 		flush_output(user_error)
 	;	true
