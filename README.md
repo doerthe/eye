@@ -18,7 +18,7 @@ and in a [Docker container for HTTP client use](https://registry.hub.docker.com/
 
 ## Architecture and design
 
-EYE is designed to run [External Thinking Code](https://github.com/josd/etc) and the main building blocks are:  
+The main building blocks of EYE are:  
 <img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>  
 
 The detailed design of EYE comprises:
@@ -39,12 +39,13 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 Implicit Quantification in N3
 * See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
-* In [External Thinking Code](https://github.com/josd/etc) the scope of implicit universals is the top level and  
-  the scope of implicit existentials is the direct formula in which they occur.  
+* In [External Triple Constructs](https://github.com/josd/etc) the scope of implicit universals is the top level  
+  and the scope of implicit existentials is the direct formula in which they occur.  
 
 Proof output without bindings
 * See https://josd.github.io/etc/witch/witch-proof.n3  
-* In [External Thinking Code](https://github.com/josd/etc) variable substitutions naturally follow from the proof.  
+* In [External Triple Constructs](https://github.com/josd/etc) variable substitutions naturally follow from  
+  the proof.  
 
 ## See also
 
