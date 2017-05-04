@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0504.1355] making the performance of e:labelvars linear (obs from Hong Sun)
 [v17.0502.1032] adjusting the calling of garbage_collect_atoms
 [v17.0424.2043] fixing critical linear logic bug (obs from Hong Sun)
 [v17.0421.2304] fixing e:trace so that it doesn't affect bindings
