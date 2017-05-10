@@ -62,6 +62,7 @@ e:stringSplit a e:Builtin.
 e:subsequence a e:Builtin.
 e:trace a e:Builtin.
 e:transaction a e:Builtin.
+e:transpose a e:Builtin.
 e:tripleList a e:Builtin.
 e:tuple a e:Builtin.
 e:unique a e:Builtin.
