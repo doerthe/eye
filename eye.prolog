@@ -4,7 +4,6 @@
 
 % See https://github.com/josd/eye
 
-
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
 :- style_check(-atom).
@@ -13,7 +12,6 @@
 :- initialization(catch(set_prolog_stack(global, limit(2^35)), _, true)).
 :- initialization(set_prolog_flag(agc_margin, 10000000)).
 :- endif.
-
 
 :- use_module(library(lists)).
 :- use_module(library(gensym)).
@@ -33,16 +31,13 @@
 :- load_foreign_files(['pl-tai'], [], install).
 :- endif.
 
-
 :- if(current_predicate(set_stream/2)).
 :- initialization(catch(set_stream(user_output, encoding(utf8)), _, true)).
 :- else.
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-
-version_info('EYE v17.0504.2009 josd').
-
+version_info('EYE v17.0510.0856 josd').
 
 license_info('MIT License
 
@@ -65,7 +60,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.').
-
 
 help_info('Usage: eye <options>* <data>* <query>*
 eye
@@ -121,7 +115,6 @@ eye
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
 	--query <n3-query>		output filtered with filter rules').
-
 
 :- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
 :- dynamic(argi/1).
@@ -197,7 +190,6 @@ eye
 :- dynamic('<http://www.w3.org/2000/10/swap/log#implies>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#outputString>'/2).
 :- dynamic('<http://www.w3.org/2002/07/owl#sameAs>'/2).
-
 
 % Main goal
 
@@ -351,7 +343,6 @@ main :-
 	flush_output,
 	halt(EC).
 
-
 argv([], []) :-
 	!.
 argv([Arg|Argvs], [U, V|Argus]) :-
@@ -364,7 +355,6 @@ argv([Arg|Argvs], [U, V|Argus]) :-
 	argv(Argvs, Argus).
 argv([Arg|Argvs], [Arg|Argus]) :-
 	argv(Argvs, Argus).
-
 
 
 % -----------------------------------------------
@@ -699,7 +689,6 @@ gre(Argus) :-
 		flush_output(user_error)
 	;	true
 	).
-
 
 % command line options
 
@@ -1108,7 +1097,6 @@ opts([Arg|_], _) :-
 opts([Arg|Argus], [Arg|Args]) :-
 	opts(Argus, Args).
 
-
 probe :-
 	tmp_file(File),
 	(	curl_http_headers(Headers),
@@ -1179,7 +1167,6 @@ probe :-
 	close(In),
 	delete_file(File).
 
-
 curl_http_headers(Headers) :-
 	findall(Header,
 		(	flag('curl-http-header', Field),
@@ -1188,7 +1175,6 @@ curl_http_headers(Headers) :-
 		List
 	),
 	atomic_list_concat(List, Headers).
-
 
 args([]) :-
 	!.
@@ -1544,7 +1530,6 @@ args([Arg|Args]) :-
 	n3_n3p(Arg, data),
 	args(Args).
 
-
 n3pin(Rt, In, File) :-
 	(	Rt = ':-'(Rg)
 	->	call(Rg),
@@ -1641,7 +1626,6 @@ n3pin(Rt, In, File) :-
 			)
 		)
 	).
-
 
 % N3 to N3P compiler
 
@@ -1920,7 +1904,6 @@ n3_n3p(Argument, Mode) :-
 	),
 	!.
 
-
 tr_n3p([], _, _) :-
 	!.
 % DEPRECATED
@@ -2073,7 +2056,6 @@ tr_n3p([X|Z], Src, Mode) :-
 	),
 	tr_n3p(Z, Src, Mode).
 
-
 tr_tr([], []) :-
 	!.
 tr_tr([A|B], [C|D]) :-
@@ -2099,7 +2081,6 @@ tr_tr(A, B) :-
 	tr_tr(D, E),
 	B =.. [C|E].
 
-
 tr_split([], [], []) :-
 	!.
 tr_split([A|B], C, [A|D]) :-
@@ -2113,7 +2094,6 @@ tr_split([A|B], C, D) :-
 tr_split([A|B], [A|C], D) :-
 	tr_split(B, C, D).
 
-
 % N3 parser
 
 % according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
@@ -2121,20 +2101,17 @@ tr_split([A|B], [A|C], D) :-
 
 barename(BareName, [name(BareName)|L2], L2).
 
-
 barename_csl([BareName|Tail], L1, L3) :-
 	barename(BareName, L1, L2),
 	!,
 	barename_csl_tail(Tail, L2, L3).
 barename_csl([], L1, L1).
 
-
 barename_csl_tail([BareName|Tail], [','|L2], L4) :-
 	!,
 	barename(BareName, L2, L3),
 	barename_csl_tail(Tail, L3, L4).
 barename_csl_tail([], L1, L1).
-
 
 % DEPRECATED
 boolean(true, [atname('true')|L2], L2) :-
@@ -2150,7 +2127,6 @@ boolean(Boolean, L1, L2) :-
 	literal(Atom, type(T), L1, L2),
 	T = '\'<http://www.w3.org/2001/XMLSchema#boolean>\'',
 	memberchk([Boolean, Atom], [[true, '\'true\''], [true, true], [true, '\'1\''], [false, '\'false\''], [false, false], [false, '\'0\'']]).
-
 
 % DEPRECATED
 declaration([atname(base)|L2], L3) :-
@@ -2196,10 +2172,8 @@ declaration([name(Name)|L2], L5) :-
 	put_pfx(Prefix, URI),
 	withoutdot(L4, L5).
 
-
 document(Triples, L1, L2) :-
 	statements_optional(Triples, L1, L2).
-
 
 dtlang(lang(Langcode), [atname(Name)|L2], L2) :-
 	!,
@@ -2208,7 +2182,6 @@ dtlang(type(Datatype), [caretcaret|L2], L3) :-
 	!,
 	uri(Datatype, L2, L3).
 dtlang(type('\'<http://www.w3.org/2001/XMLSchema#string>\''), L1, L1).
-
 
 % DEPRECATED
 existential([atname(forSome)|L2], L3) :-
@@ -2223,9 +2196,7 @@ existential([atname(forSome)|L2], L3) :-
 		)
 	).
 
-
 explicituri(ExplicitURI, [relative_uri(ExplicitURI)|L2], L2).
-
 
 expression(Node, T, L1, L3) :-
 	pathitem(N1, T1, L1, L2),
@@ -2238,11 +2209,9 @@ expression(Node, T, L1, L3) :-
 	;	true
 	).
 
-
 formulacontent(Formula, L1, L2) :-
 	statementlist(L, L1, L2),
 	conj_list(Formula, L).
-
 
 literal(Atom, DtLang, L1, L3) :-
 	string(Codes, L1, L2),
@@ -2257,7 +2226,6 @@ literal(Atom, DtLang, L1, L3) :-
 	),
 	atomic_list_concat(['\'', E, '\''], Atom).
 
-
 numericliteral(Number, [numeric(Type, NumB)|L2], L2) :-
 	numeral(NumB, NumC),
 	(	flag(strict),
@@ -2266,10 +2234,8 @@ numericliteral(Number, [numeric(Type, NumB)|L2], L2) :-
 	;	number_codes(Number, NumC)
 	).
 
-
 object(Node, Triples, L1, L2) :-
 	expression(Node, Triples, L1, L2).
-
 
 objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
 	!,
@@ -2289,7 +2255,6 @@ objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
 		)
 	).
 objecttail(_, _, [], L1, L1).
-
 
 pathitem([], [], L1, L2) :-
 	symbol(S, L1, L2),
@@ -2411,14 +2376,12 @@ pathitem(Node, [] , ['{'|L2], L4):-
 	nb_setval(fdepth, I),
 	nb_setval(smod, false).
 
-
 pathlist([Node|Rest], Triples, L1, L3) :-
 	expression(Node, T, L1, L2),
 	!,
 	pathlist(Rest, Tail, L2, L3),
 	append(T, Tail, Triples).
 pathlist([], [], L1, L1).
-
 
 pathtail(Node, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	!,
@@ -2506,9 +2469,7 @@ pathtail(Node, PNode, [Triple|Triples], ['^'|L2], L4) :-
 	append(Triples2, Tail, Triples).
 pathtail(Node, Node, [], L1, L1).
 
-
 prefix(Prefix, [Prefix:''|L2], L2).
-
 
 propertylist(Subject, [Triple|Triples], L1, L5) :-
 	verb(Item, Triples1, L1, L2),
@@ -2549,19 +2510,16 @@ propertylist(Subject, [Triple|Triples], L1, L5) :-
 	).
 propertylist(_, [], L1, L1).
 
-
 propertylisttail(Subject, Triples, [';'|L2], L4) :-
 	!,
 	propertylisttailsemis(L2, L3),
 	propertylist(Subject, Triples, L3, L4).
 propertylisttail(_, [], L1, L1).
 
-
 propertylisttailsemis([';'|L2], L3) :-
 	!,
 	propertylisttailsemis(L2, L3).
 propertylisttailsemis(L1, L1).
-
 
 qname(URI, [NS:Name|L2], L2) :-
 	(	ns(NS, Base)
@@ -2578,7 +2536,6 @@ qname(URI, [NS:Name|L2], L2) :-
 	),
 	!.
 
-
 simpleStatement(Triples, L1, L3) :-
 	subject(Subject, Triples1, L1, L2),
 	(	Subject = (D1;D2)
@@ -2586,7 +2543,6 @@ simpleStatement(Triples, L1, L3) :-
 	;	propertylist(Subject, Triples2, L2, L3),
 		append(Triples1, Triples2, Triples)
 	).
-
 
 statement([], L1, L2) :-
 	declaration(L1, L2),
@@ -2600,14 +2556,12 @@ statement([], L1, L2) :-
 statement(Statement, L1, L2) :-
 	simpleStatement(Statement, L1, L2).
 
-
 statementlist(Triples, L1, L3) :-
 	statement(Tr, L1, L2),
 	!,
 	statementtail(T, L2, L3),
 	append(Tr, T, Triples).
 statementlist([], L1, L1).
-
 
 statements_optional(Triples, L1, L4) :-
 	statement(Tr, L1, [dot(Ln)|L3]),
@@ -2617,20 +2571,16 @@ statements_optional(Triples, L1, L4) :-
 	append(Tr, T, Triples).
 statements_optional([], L1, L1).
 
-
 statementtail(T, [dot(Ln)|L2], L3) :-
 	!,
 	nb_setval(line_number, Ln),
 	statementlist(T, L2, L3).
 statementtail([], L1, L1).
 
-
 string(Codes, [literal(Codes)|L2], L2).
-
 
 subject(Node, Triples, L1, L2) :-
 	expression(Node, Triples, L1, L2).
-
 
 symbol(Name, L1, L2) :-
 	uri(Name, L1, L2),
@@ -2675,20 +2625,17 @@ symbol(Name, [bnode(Label)|L2], L2) :-
 		nb_setval(smod, false)
 	).
 
-
 symbol_csl([Symbol|Tail], L1, L3) :-
 	symbol(Symbol, L1, L2),
 	!,
 	symbol_csl_tail(Tail, L2, L3).
 symbol_csl([], L1, L1).
 
-
 symbol_csl_tail([Symbol|T], [','|L2], L4) :-
 	!,
 	symbol(Symbol, L2, L3),
 	symbol_csl_tail(T, L3, L4).
 symbol_csl_tail([], L1, L1).
-
 
 % DEPRECATED
 universal([atname(forAll)|L2], L3) :-
@@ -2708,7 +2655,6 @@ universal([atname(forAll)|L2], L3) :-
 		)
 	).
 
-
 uri(Name, L1, L2) :-
 	explicituri(U, L1, L2),
 	!,
@@ -2723,7 +2669,6 @@ uri(Name, L1, L2) :-
 	atomic_list_concat(['\'<', Z, '>\''], Name).
 uri(Name, L1, L2) :-
 	qname(Name, L1, L2).
-
 
 verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
 	!.
@@ -2753,13 +2698,11 @@ verb(isof(Node), Triples, [name(is)|L2], L4) :-
 verb(Node, Triples, L1, L2) :-
 	expression(Node, Triples, L1, L2).
 
-
 withoutdot([dot(Ln)|L2], [dot(Ln)|L2]) :-
 	!,
 	throw(unexpected_dot(after_line(Ln))).
 withoutdot(L1, [dot(Ln)|L1]) :-
 	nb_getval(line_number, Ln).
-
 
 % N3 tokenizer
 
@@ -2777,7 +2720,6 @@ tokens(In, List) :-
 		tokens(C1, In, Tokens)
 	).
 
-
 tokens(C0, In, List) :-
 	(	token(C0, In, C1, H)
 	->	true
@@ -2790,7 +2732,6 @@ tokens(C0, In, List) :-
 	;	List = [H|T],
 		tokens(C1, In, T)
 	).
-
 
 token(-1, _, -1, end_of_file) :-
 	!.
@@ -2927,7 +2868,6 @@ token(C0, In, C, P) :-
 	!,
 	get_code(In, C).
 
-
 number_n(0'-, In, CN, numeric(T, [0'-|Codes])) :-
 	!,
 	get_code(In, C0),
@@ -2938,7 +2878,6 @@ number_n(0'+, In, CN, numeric(T, [0'+|Codes])) :-
 	number_nn(C0, In, CN, numeric(T, Codes)).
 number_n(C0, In, CN, Value) :-
 	number_nn(C0, In, CN, Value).
-
 
 number_nn(C, In, CN, numeric(Type, Codes)) :-
 	integer_codes(C, In, CN0, Codes, T0),
@@ -2967,7 +2906,6 @@ number_nn(C, In, CN, numeric(Type, Codes)) :-
 		)
 	).
 
-
 integer_codes(C0, In, CN, [C0|T0], T) :-
 	0'0 =< C0,
 	C0 =< 0'9,
@@ -2975,7 +2913,6 @@ integer_codes(C0, In, CN, [C0|T0], T) :-
 	get_code(In, C1),
 	integer_codes(C1, In, CN, T0, T).
 integer_codes(CN, _, CN, T, T).
-
 
 exponent(C0, In, CN, [C0|T0]) :-
 	e(C0),
@@ -2989,21 +2926,17 @@ exponent(C0, In, CN, [C0|T0]) :-
 	;	true
 	).
 
-
 optional_sign(C0, In, CN, [C0|T], T) :-
 	sign(C0),
 	!,
 	get_code(In, CN).
 optional_sign(CN, _, CN, T, T).
 
-
 e(0'e).
 e(0'E).
 
-
 sign(0'-).
 sign(0'+).
-
 
 dq_string(-1, _, _, []) :-
 	!,
@@ -3052,7 +2985,6 @@ dq_string(C0, In, C, [C0|T]) :-
 	),
 	dq_string(C1, In, C, T).
 
-
 sq_string(-1, _, _, []) :-
 	!,
 	nb_getval(line_number, Ln),
@@ -3100,7 +3032,6 @@ sq_string(C0, In, C, [C0|T]) :-
 	),
 	sq_string(C1, In, C, T).
 
-
 string_dq(-1, _, _, []) :-
 	!,
 	nb_getval(line_number, Ln),
@@ -3135,7 +3066,6 @@ string_dq(C0, In, C, D) :-
 	get_code(In, C1),
 	string_dq(C1, In, C, T).
 
-
 string_sq(-1, _, _, []) :-
 	!,
 	nb_getval(line_number, Ln),
@@ -3165,7 +3095,6 @@ string_sq(C0, In, C, D) :-
 	),
 	get_code(In, C1),
 	string_sq(C1, In, C, T).
-
 
 string_escape(0't, In, C, 0'\t) :-
 	!,
@@ -3214,7 +3143,6 @@ string_escape(C, _, _, _) :-
 	atom_codes(A, [0'\\, C]),
 	throw(illegal_string_escape_sequence(A, line(Ln))).
 
-
 get_hhhh(In, Code) :-
 	get_code(In, C1),
 	code_type(C1, xdigit(D1)),
@@ -3226,13 +3154,11 @@ get_hhhh(In, Code) :-
 	code_type(C4, xdigit(D4)),
 	Code is D1<<12+D2<<8+D3<<4+D4.
 
-
 language(C0, In, C, [C0|Codes]) :-
 	code_type(C0, lower),
 	get_code(In, C1),
 	lwr_word(C1, In, C2, Codes, Tail),
 	sub_langs(C2, In, C, Tail, []).
-
 
 lwr_word(C0, In, C, [C0|T0], T) :-
 	code_type(C0, lower),
@@ -3240,7 +3166,6 @@ lwr_word(C0, In, C, [C0|T0], T) :-
 	get_code(In, C1),
 	lwr_word(C1, In, C, T0, T).
 lwr_word(C, _, C, T, T).
-
 
 sub_langs(0'-, In, C, [0'-, C1|Codes], T) :-
 	get_code(In, C1),
@@ -3251,13 +3176,11 @@ sub_langs(0'-, In, C, [0'-, C1|Codes], T) :-
 	sub_langs(C3, In, C, Tail, T).
 sub_langs(C, _, C, T, T).
 
-
 lwrdig(C) :-
 	code_type(C, lower),
 	!.
 lwrdig(C) :-
 	code_type(C, digit).
-
 
 lwrdigs(C0, In, C, [C0|T0], T) :-
 	lwrdig(C0),
@@ -3265,7 +3188,6 @@ lwrdigs(C0, In, C, [C0|T0], T) :-
 	get_code(In, C1),
 	lwr_word(C1, In, C, T0, T).
 lwrdigs(C, _, C, T, T).
-
 
 iri_chars(0'>, In, C, []) :-
 	!,
@@ -3306,7 +3228,6 @@ iri_chars(C0, In, C, D) :-
 	get_code(In, C1),
 	iri_chars(C1, In, C, T).
 
-
 iri_escape(0'u, In, C, Code) :-
 	!,
 	get_hhhh(In, A),
@@ -3330,7 +3251,6 @@ iri_escape(C, _, _, _) :-
 	atom_codes(A, [0'\\, C]),
 	throw(illegal_iri_escape_sequence(A, line(Ln))).
 
-
 non_iri_char(0x20).
 non_iri_char(0'<).
 non_iri_char(0'>).
@@ -3342,13 +3262,11 @@ non_iri_char(0'^).
 non_iri_char(0'`).
 non_iri_char(0'\\).
 
-
 name(C0, In, C, Atom) :-
 	name_start_char(C0),
 	get_code(In, C1),
 	name_chars(C1, In, C, T),
 	atom_codes(Atom, [C0|T]).
-
 
 name_start_char(C) :-
 	pn_chars_base(C),
@@ -3356,7 +3274,6 @@ name_start_char(C) :-
 name_start_char(0'_).
 name_start_char(C) :-
 	code_type(C, digit).
-
 
 name_chars(0'., In, C, [0'.|T]) :-
 	peek_code(In, C1),
@@ -3370,7 +3287,6 @@ name_chars(C0, In, C, [C0|T]) :-
 	get_code(In, C1),
 	name_chars(C1, In, C, T).
 name_chars(C, _, C, []).
-
 
 pn_chars_base(C) :-
 	code_type(C, alpha),
@@ -3423,7 +3339,6 @@ pn_chars_base(C) :-
 	0x10000 =< C,
 	C =< 0xEFFFF.
 
-
 pn_chars(C) :-
 	code_type(C, csym),
 	!.
@@ -3441,7 +3356,6 @@ pn_chars(C) :-
 pn_chars(C) :-
 	0x203F =< C,
 	C =< 0x2040.
-
 
 local_name(0'\\, In, C, Atom) :-
 	!,
@@ -3464,7 +3378,6 @@ local_name(C0, In, C, Atom) :-
 	get_code(In, C1),
 	local_name_chars(C1, In, C, T),
 	atom_codes(Atom, [C0|T]).
-
 
 local_name_chars(0'\\, In, C, [C0|T]) :-
 	!,
@@ -3495,7 +3408,6 @@ local_name_chars(C0, In, C, [C0|T]) :-
 	local_name_chars(C1, In, C, T).
 local_name_chars(C, _, C, []).
 
-
 local_name_start_char(C) :-
 	name_start_char(C),
 	!.
@@ -3503,14 +3415,12 @@ local_name_start_char(0':).
 local_name_start_char(0'%).
 local_name_start_char(0'\\).
 
-
 local_name_char(C) :-
 	pn_chars(C),
 	!.
 local_name_char(0':).
 local_name_char(0'%).
 local_name_char(0'\\).
-
 
 reserved_char_escapes(0'~).
 reserved_char_escapes(0'.).
@@ -3533,7 +3443,6 @@ reserved_char_escapes(0'@).
 reserved_char_escapes(0'%).
 reserved_char_escapes(0'_).
 
-
 punctuation(0'(, '(').
 punctuation(0'), ')').
 punctuation(0'[, '[').
@@ -3551,7 +3460,6 @@ punctuation(0'<, '<').
 punctuation(0'>, '>').
 punctuation(0'$, '$').
 
-
 skip_line(-1, _, -1) :-
 	!.
 skip_line(0xA, In, C) :-
@@ -3565,13 +3473,11 @@ skip_line(_, In, C) :-
 	get_code(In, C1),
 	skip_line(C1, In, C).
 
-
 white_space(0x9).
 white_space(0xA) :-
 	cnt(line_number).
 white_space(0xD).
 white_space(0x20).
-
 
 % Reasoning output
 
@@ -3589,7 +3495,6 @@ w0([A|B]) :-
 	),
 	w0(B).
 
-
 w1([]) :-
 	!.
 w1([A|B]) :-
@@ -3600,7 +3505,6 @@ w1([A|B]) :-
 	;	format(' ~w', [A])
 	),
 	w1(B).
-
 
 wh :-
 	(	keep_skolem(_)
@@ -3628,7 +3532,6 @@ wh :-
 		;	true
 		)
 	).
-
 
 w3 :-
 	wh,
@@ -3759,7 +3662,6 @@ w3 :-
 	;	true
 	).
 
-
 wi('<>', _, rule(_, _, A), _) :-	% wi(Source, Premise, Conclusion, Rule)
 	!,
 	write('[ '),
@@ -3782,7 +3684,6 @@ wi(A, B, C, Rule) :-
 	write('<#lemma'),
 	write(Cnt),
 	write('>').
-
 
 wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	var(Rule),
@@ -3918,7 +3819,6 @@ wj(Cnt, A, B, C, Rule) :-
 	write('.'),
 	indentation(-2).
 
-
 wr(exopred(P, S, O)) :-
 	atom(P),
 	!,
@@ -3958,7 +3858,6 @@ wr(Y) :-
 		write('}')
 	),
 	write(']').
-
 
 wt(X) :-
 	var(X),
@@ -4062,7 +3961,6 @@ wt(X) :-
 		wt2(X)
 	;	wtn(X)
 	).
-
 
 wt0(!) :-
 	!,
@@ -4228,14 +4126,12 @@ wt0(X) :-
 		write(Z)
 	).
 
-
 wt1(X) :-
 	X =.. [B|C],
 	wt(C),
 	write(' '),
 	wp(B),
 	write(' true').
-
 
 wt2(literal(X, lang(Y))) :-
 	!,
@@ -4446,7 +4342,6 @@ wt2(X) :-
 		wg(O)
 	).
 
-
 wtn(exopred(P, S, O)) :-
 	!,
 	(	atom(P)
@@ -4473,7 +4368,6 @@ wtn(X) :-
 		wp(B),
 		write(' true')
 	).
-
 
 wg(X) :-
 	var(X),
@@ -4509,7 +4403,6 @@ wg(X) :-
 	;	wt(X)
 	).
 
-
 wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>') :-
 	\+flag('no-qnames'),
 	!,
@@ -4531,7 +4424,6 @@ wp(X) :-
 	;	wg(X)
 	).
 
-
 wk([]) :-
 	!.
 wk([X|Y]) :-
@@ -4539,14 +4431,12 @@ wk([X|Y]) :-
 	wt(X),
 	wk(Y).
 
-
 wl([]) :-
 	!.
 wl([X|Y]) :-
 	write(' '),
 	wg(X),
 	wl(Y).
-
 
 wq([], _) :-
 	!.
@@ -4566,7 +4456,6 @@ wq([X|Y], some) :-
 	;	true
 	).
 
-
 wb([]) :-
 	!.
 wb([X = Y|Z]) :-
@@ -4583,7 +4472,6 @@ wb([X = Y|Z]) :-
 	nl,
 	indent,
 	wb(Z).
-
 
 wv(X) :-
 	atom(X),
@@ -4640,7 +4528,6 @@ wv(X) :-
 wv(X) :-
 	wg(X).
 
-
 ws((X, Y)) :-
 	!,
 	conj_list((X, Y), Z),
@@ -4657,7 +4544,6 @@ ws(X) :-
 		;	write(' ')
 		)
 	).
-
 
 wst :-
 	findall([Key, Str],
@@ -4695,7 +4581,6 @@ wst :-
 	;	true
 	).
 
-
 wct([], []) :-
 	!.
 wct([A], [C]) :-
@@ -4705,7 +4590,6 @@ wct([A|B], [C|D]) :-
 	wcf(A, C),
 	write(','),
 	wct(B, D).
-
 
 wcf(A, _) :-
 	var(A),
@@ -4783,7 +4667,6 @@ wcf(A, _) :-
 	with_output_to(atom(B), wg(A)),
 	write(B).
 
-
 wcn((A, B)) :-
 	!,
 	format(', ~w', [A]),
@@ -4791,17 +4674,14 @@ wcn((A, B)) :-
 wcn(A) :-
 	format(', ~w', [A]).
 
-
 indent:-
 	nb_getval(indentation, A),
 	tab(A).
-
 
 indentation(C) :-
 	nb_getval(indentation, A),
 	B is A+C,
 	nb_setval(indentation, B).
-
 
 
 % ------------------------------------------------------
@@ -4996,7 +4876,6 @@ eam(Span) :-
 		eam(Span)
 	).
 
-
 astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_unique, Rule)
 	(	Cn = (Dn, En)
 	->	functor(Dn, P, N),
@@ -5089,7 +4968,6 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 		)
 	).
 
-
 istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
 	copy_term_nat(Prem, Prec),
 	labelvars(Prec, 0, _),
@@ -5100,14 +4978,12 @@ istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
 	;	true
 	).
 
-
 pstep(Rule) :-
 	copy_term_nat(Rule, RuleL),
 	lookup(RTC, tc, RuleL),
 	catch(cnt(RTC), _, nb_setval(RTC, 0)),
 	lookup(RTP, tp, RuleL),
 	catch(cnt(RTP), _, nb_setval(RTP, 0)).
-
 
 % DEPRECATED
 hstep(A, B) :-
@@ -5118,7 +4994,6 @@ hstep(A, B) :-
 		qstep(U, B)
 	;	qstep(A, B)
 	).
-
 
 % DEPRECATED
 qstep(A, B) :-
@@ -5139,7 +5014,6 @@ qstep(A, true) :-
 	),
 	catch(clause(B, true), _, fail),
 	\+prfstep(A, _, _, _, _, _, _, _).
-
 
 % DJITI (Deep Just In Time Indexing)
 
@@ -5187,12 +5061,10 @@ djiti_answer(answer(A), answer(A, void, void, _, _, _, _)) :-
 	!.
 djiti_answer(A, A).
 
-
 djiti_concdt(answer((A, B), void, void, _, _, _, _), (answer(A, void, void, _, _, _, _), D)) :-
 	!,
 	djiti_concdt(answer(B, void, void, _, _, _, _), D).
 djiti_concdt(A, A).
-
 
 djiti_concdv((A, B), (C, D)) :-
 	!,
@@ -5205,7 +5077,6 @@ djiti_concdv(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
 	term_arg_1(S, K),
 	term_arg_1(O, L).
 djiti_concdv(A, A).
-
 
 djiti_fact(answer(P, S, O, I, J, K, L), B) :-
 	atomic(P),
@@ -5307,31 +5178,25 @@ djiti_fact('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B), type_index
 	term_index(A-B, C).
 djiti_fact(A, A).
 
-
 djiti_assert(A) :-
 	djiti_fact(A, B),
 	assert(B).
-
 
 djiti_asserta(A) :-
 	djiti_fact(A, B),
 	asserta(B).
 
-
 djiti_assertz(A) :-
 	djiti_fact(A, B),
 	assertz(B).
-
 
 djiti_retract(A) :-
 	djiti_fact(A, B),
 	retract(B).
 
-
 djiti_retractall(A) :-
 	djiti_fact(A, B),
 	retractall(B).
-
 
 % Built-ins
 
@@ -5346,7 +5211,6 @@ djiti_retractall(A) :-
 	bval(B),
 	bcon(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, B)], C, D).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#binaryEntropy>'(A, B) :-
 	getnumber(A, C),
 	(	C =:= 0.0
@@ -5356,7 +5220,6 @@ djiti_retractall(A) :-
 		;	B is -(C*log(C)+(1-C)*log(1-C))/log(2)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#calculate>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], C) :-
 	findall(U,
@@ -5368,7 +5231,6 @@ djiti_retractall(A) :-
 	read_term_from_atom(A, D, [variables(W)]),
 	catch(C is D, _, fail).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
 	within_scope(Sc),
 	nonvar(A),
@@ -5379,7 +5241,6 @@ djiti_retractall(A) :-
 		istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A), B)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cartesianProduct>'(A, B) :-
 	findall(C,
 		(	cartesian(A, C)
@@ -5387,12 +5248,10 @@ djiti_retractall(A) :-
 		B
 	).
 
-
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#closure>'(Sc, A) :-
 	within_scope(Sc),
 	hstep(A, _).
-
 
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#distinct>'(A, B) :-
@@ -5403,11 +5262,9 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),
 	\+call(B).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B) :-
 	call_cleanup(A, B),
@@ -5417,7 +5274,6 @@ djiti_retractall(A) :-
 		copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(C, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B)), D),
 		istep('<>', C, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B), D)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#findall>'(Sc, [A, B, C|D]) :-
 	within_scope(Sc),
@@ -5449,7 +5305,6 @@ djiti_retractall(A) :-
 	),
 	E = C.
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#format>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	ground([A, B])
@@ -5460,7 +5315,6 @@ djiti_retractall(A) :-
 			atom_codes(C, F)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphCopy>'(A, B) :-
 	when(
@@ -5474,7 +5328,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphDifference>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -5484,7 +5337,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphIntersection>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -5493,7 +5345,6 @@ djiti_retractall(A) :-
 			unify(M, B)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphList>'(A, B) :-
 	when(
@@ -5514,13 +5365,11 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#hmac-sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	flag('hmac-key', Key),
 	hmac_sha(Key, A, C, [algorithm(sha1)]),
 	atom_codes(D, C),
 	base64xml(D, B).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ignore>'(Sc, A) :-
 	within_scope(Sc),
@@ -5533,7 +5382,6 @@ djiti_retractall(A) :-
 		)
 	;	true
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#label>'(A, literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -5552,7 +5400,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#labelvars>'(A, B) :-
 	copy_term_nat(A, C),
 	labelvars(C, 0, _),
@@ -5565,7 +5412,6 @@ djiti_retractall(A) :-
 		nb_setval(wn, N),
 		assertz(got_labelvars(C, D, B))
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#length>'(A, B) :-
 	when(
@@ -5583,10 +5429,8 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
 	\+ \+call(B).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#max>'(A, B) :-
 	when(
@@ -5596,7 +5440,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#min>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -5605,19 +5448,15 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#multisetEqualTo>'(A, B) :-
 	sort(0, @=<, A, C),
 	sort(0, @=<, B, C).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#multisetNotEqualTo>'(A, B) :-
 	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#multisetEqualTo>'(A, B).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#notLabel>'(A, B) :-
 	\+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#label>'(A, B).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#numeral>'(A, B) :-
 	when(
@@ -5626,7 +5465,6 @@ djiti_retractall(A) :-
 		(	getnumber(A, B)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A) :-
 	within_scope(Sc),
@@ -5641,13 +5479,11 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	within_scope(Sc),
 	with_output_to_codes(wh, C),
 	atom_codes(A, C),
 	retractall(wpfx(_)).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#propertyChainExtension>'([A], [B, C]) :-
 	!,
@@ -5657,7 +5493,6 @@ djiti_retractall(A) :-
 	E =.. [A, C, F],
 	catch(call(E), _, fail),
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#propertyChainExtension>'(B, [F, D]).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#random>'([A|B], C) :-
 	term_index([A|B], I),
@@ -5673,7 +5508,6 @@ djiti_retractall(A) :-
 		;	true
 		)
 	).
-
 
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reason>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B) :-
@@ -5703,11 +5537,9 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reverse>'(A, B) :-
 	reverse(A, B).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#roc>'(St, [Sen, Asp]) :-
 	getnumber(St, K),
@@ -5717,17 +5549,14 @@ djiti_retractall(A) :-
 		Sen is (1-exp(-K*A))*(1+exp(-K))/(1+exp(-K*A))/(1-exp(-K))
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	sha_hash(A, C, [algorithm(sha1)]),
 	atom_codes(D, C),
 	base64xml(D, B).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sigmoid>'(A, B) :-
 	getnumber(A, C),
 	B is 1/(1+exp(-C)).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#skolem>'(X, Y) :-
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(Y, X),
@@ -5736,7 +5565,6 @@ djiti_retractall(A) :-
 	;	true
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sort>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -5744,7 +5572,6 @@ djiti_retractall(A) :-
 		(	quicksort(A, B)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#stringEscape>'(literal(X, Y), literal(Z, Y)) :-
 	when(
@@ -5756,7 +5583,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#stringReverse>'(literal(X, Y), literal(Z, Y)) :-
 	when(
 		(	ground(X)
@@ -5766,7 +5592,6 @@ djiti_retractall(A) :-
 			atom_codes(Z, V)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#stringSplit>'([literal(X, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	Z) :-
@@ -5785,7 +5610,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sublist>'(A, B) :-
 	when(
@@ -5795,7 +5619,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#subsequence>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -5803,7 +5626,6 @@ djiti_retractall(A) :-
 		(	sub_list(A, B)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#trace>'(X, Y) :-
 	tell(user_error),
@@ -5816,10 +5638,16 @@ djiti_retractall(A) :-
 	nl,
 	told.
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transpose>'(A, B) :-
+	when(
+		(	nonvar(A)
+		),
+		(	transpose(A, B)
+		)
+	).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tripleList>'(A, [B, C, D]) :-
 	A =.. [C, B, D].
-
 
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>'(_, A) :-
@@ -5829,7 +5657,6 @@ djiti_retractall(A) :-
 		(	A =:= 1.0
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(X, Y) :-
 	when(
@@ -5856,13 +5683,11 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#unique>'(A, B) :-
 	(	got_unique(A, B)
 	->	fail
 	;	assertz(got_unique(A, B))
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#whenGround>'(A, B) :-
 	when(
@@ -5874,7 +5699,6 @@ djiti_retractall(A) :-
 		;	catch(call(B), _, A = B)
 		)
 	).
-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#wwwFormEncode>'(X, literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -5895,7 +5719,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#resolve-uri>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -5905,7 +5728,6 @@ djiti_retractall(A) :-
 		(	resolve_uri(A, B, C)
 		)
 	).
-
 
 % DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#substring>'([literal(A, _), B|C], literal(D, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -5922,7 +5744,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#substring-after>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
 	literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
@@ -5933,7 +5754,6 @@ djiti_retractall(A) :-
 			sub_atom(A, _, W, 0, C)
 		)
 	).
-
 
 % DEPRECATED
 '<http://www.w3.org/2005/xpath-functions#substring-before>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
@@ -5946,12 +5766,10 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/crypto#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	sha_hash(A, C, [algorithm(sha1)]),
 	hash_to_ascii(C, D, []),
 	atom_codes(B, D).
-
 
 '<http://www.w3.org/2000/10/swap/list#append>'(A, B) :-
 	when(
@@ -5961,7 +5779,6 @@ djiti_retractall(A) :-
 			append(C, B)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/list#first>'(A, B) :-
 	when(
@@ -5973,7 +5790,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/list#in>'(A, B) :-
 	when(
 		(	nonvar(B)
@@ -5982,7 +5798,6 @@ djiti_retractall(A) :-
 			member(A, C)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/list#last>'(A, B) :-
 	when(
@@ -5993,7 +5808,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/list#member>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -6003,7 +5817,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/list#rest>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -6012,7 +5825,6 @@ djiti_retractall(A) :-
 			C = [_|B]
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/log#conclusion>'(A, B) :-
 	when(
@@ -6075,7 +5887,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/log#conjunction>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -6084,7 +5895,6 @@ djiti_retractall(A) :-
 			unify(M, B)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/log#dtlit>'([A, B], C) :-
 	when(
@@ -6120,10 +5930,8 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/log#equalTo>'(X, Y) :-
 	unify(X, Y).
-
 
 '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y) :-
 	implies(X, Z, _),
@@ -6134,7 +5942,6 @@ djiti_retractall(A) :-
 	Y = Z,
 	Y \= answer(_, _, _, _, _, _, _),
 	Y \= (answer(_, _, _, _, _, _, _), _).
-
 
 '<http://www.w3.org/2000/10/swap/log#includes>'(X, Y) :-
 	when(
@@ -6149,16 +5956,13 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/log#rawType>'(A, B) :-
 	nonvar(A),
 	raw_type(A, C),
 	C = B.
 
-
 '<http://www.w3.org/2000/10/swap/log#notEqualTo>'(X, Y) :-
 	\+'<http://www.w3.org/2000/10/swap/log#equalTo>'(X, Y).
-
 
 '<http://www.w3.org/2000/10/swap/log#notIncludes>'(X, Y) :-
 	when(
@@ -6173,7 +5977,6 @@ djiti_retractall(A) :-
 			\+includes(A, B)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/log#semantics>'(X, Y) :-
 	when(
@@ -6196,7 +5999,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/log#uri>'(X, Y) :-
 	when(
 		(	nonvar(X)
@@ -6218,7 +6020,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#absoluteValue>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6227,7 +6028,6 @@ djiti_retractall(A) :-
 			Y is abs(U)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#atan2>'([X, Y], Z) :-
 	when(
@@ -6238,7 +6038,6 @@ djiti_retractall(A) :-
 			Z is atan(U/V)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#cos>'(X, Y) :-
 	when(
@@ -6253,7 +6052,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#cosh>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6266,7 +6064,6 @@ djiti_retractall(A) :-
 			X is acosh(W)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#degrees>'(X, Y) :-
 	when(
@@ -6281,7 +6078,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#difference>'([X, Y], Z) :-
 	when(
 		(	ground([X, Y])
@@ -6292,7 +6088,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#equalTo>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6302,7 +6097,6 @@ djiti_retractall(A) :-
 			U =:= V
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#exponentiation>'([X, Y], Z) :-
 	when(
@@ -6321,7 +6115,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#greaterThan>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6331,7 +6124,6 @@ djiti_retractall(A) :-
 			U > V
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#integerQuotient>'([X, Y], Z) :-
 	when(
@@ -6346,7 +6138,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#lessThan>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6356,7 +6147,6 @@ djiti_retractall(A) :-
 			U < V
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#memberCount>'(X, Y) :-
 	when(
@@ -6374,7 +6164,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#negation>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6388,7 +6177,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#notEqualTo>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6398,7 +6186,6 @@ djiti_retractall(A) :-
 			U =\= V
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#notGreaterThan>'(X, Y) :-
 	when(
@@ -6410,7 +6197,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#notLessThan>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6421,7 +6207,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#product>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6429,7 +6214,6 @@ djiti_retractall(A) :-
 		(	product(X, Y)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#quotient>'([X, Y], Z) :-
 	when(
@@ -6444,7 +6228,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#remainder>'([X, Y], Z) :-
 	when(
 		(	ground([X, Y])
@@ -6458,7 +6241,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#rounded>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6467,7 +6249,6 @@ djiti_retractall(A) :-
 			Y is round(round(U))
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#sin>'(X, Y) :-
 	when(
@@ -6482,7 +6263,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#sinh>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6496,7 +6276,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#sum>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6504,7 +6283,6 @@ djiti_retractall(A) :-
 		(	sum(X, Y)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/math#tan>'(X, Y) :-
 	when(
@@ -6519,7 +6297,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/math#tanh>'(X, Y) :-
 	when(
 		(	ground(X)
@@ -6533,7 +6310,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>'(X, Y) :-
 	when(
 		(	nonvar(X)
@@ -6544,7 +6320,6 @@ djiti_retractall(A) :-
 	),
 	!.
 
-
 '<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'(X, Y) :-
 	when(
 		(	nonvar(X)
@@ -6553,7 +6328,6 @@ djiti_retractall(A) :-
 		)
 	),
 	!.
-
 
 '<http://www.w3.org/2000/10/swap/string#concatenation>'(X, literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -6570,7 +6344,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#contains>'(literal(X, Z), literal(Y, Z)) :-
 	when(
 		(	ground([X, Y])
@@ -6578,7 +6351,6 @@ djiti_retractall(A) :-
 		(	sub_atom(X, _, _, _, Y)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/string#containsIgnoringCase>'(literal(X, Z), literal(Y, Z)) :-
 	when(
@@ -6590,7 +6362,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#endsWith>'(literal(X, _), literal(Y, _)) :-
 	when(
 		(	ground([X, Y])
@@ -6598,7 +6369,6 @@ djiti_retractall(A) :-
 		(	sub_atom(X, _, _, 0, Y)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/string#equalIgnoringCase>'(literal(X, _), literal(Y, _)) :-
 	when(
@@ -6608,7 +6378,6 @@ djiti_retractall(A) :-
 			downcase_atom(Y, U)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/string#greaterThan>'(X, Y) :-
 	when(
@@ -6620,7 +6389,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#lessThan>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6630,7 +6398,6 @@ djiti_retractall(A) :-
 			U @< V
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/string#matches>'(literal(X, _), literal(Y, _)) :-
 	when(
@@ -6642,10 +6409,8 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#notEqualIgnoringCase>'(X, Y) :-
 	\+'<http://www.w3.org/2000/10/swap/string#equalIgnoringCase>'(X, Y).
-
 
 '<http://www.w3.org/2000/10/swap/string#notGreaterThan>'(X, Y) :-
 	when(
@@ -6657,7 +6422,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#notLessThan>'(X, Y) :-
 	when(
 		(	ground([X, Y])
@@ -6668,10 +6432,8 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#notMatches>'(X, Y) :-
 	\+'<http://www.w3.org/2000/10/swap/string#matches>'(X, Y).
-
 
 '<http://www.w3.org/2000/10/swap/string#replace>'([literal(X, _), literal(Search, _), literal(Replace, _)], literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -6681,7 +6443,6 @@ djiti_retractall(A) :-
 			atomic_list_concat(Split, Replace, Y)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/string#scrape>'([literal(X, _), literal(Y, _)], literal(Z, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -6693,7 +6454,6 @@ djiti_retractall(A) :-
 			atom_codes(Z, W)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/string#search>'([literal(X, _), literal(Y, _)], Z) :-
 	when(
@@ -6711,7 +6471,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/string#startsWith>'(literal(X, _), literal(Y, _)) :-
 	when(
 		(	ground([X, Y])
@@ -6719,7 +6478,6 @@ djiti_retractall(A) :-
 		(	sub_atom(X, 0, _, _, Y)
 		)
 	).
-
 
 '<http://www.w3.org/2000/10/swap/time#day>'(literal(X, _), literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
@@ -6729,7 +6487,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/time#month>'(literal(X, _), literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	ground(X)
@@ -6738,7 +6495,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2000/10/swap/time#year>'(literal(X, _), literal(Y, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
 		(	ground(X)
@@ -6746,7 +6502,6 @@ djiti_retractall(A) :-
 		(	sub_atom(X, 0, 4, _, Y)
 		)
 	).
-
 
 % RIF built-ins according to RIF Datatypes and Built-Ins 1.0 -- http://www.w3.org/TR/rif-dtb/
 
@@ -6761,7 +6516,6 @@ djiti_retractall(A) :-
 		;	D = false
 		)
 	).
-
 
 % 4.4.4 pred:iri-string
 
@@ -6786,7 +6540,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.5.1 Numeric Functions
 
 '<http://www.w3.org/2007/rif-builtin-function#numeric-add>'([A, B], C) :-
@@ -6796,7 +6549,6 @@ djiti_retractall(A) :-
 		(	sum([A, B], C)
 		)
 	).
-
 
 '<http://www.w3.org/2007/rif-builtin-function#numeric-subtract>'([A, B], C) :-
 	when(
@@ -6808,7 +6560,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2007/rif-builtin-function#numeric-multiply>'([A, B], C) :-
 	when(
 		(	ground([A, B])
@@ -6818,7 +6569,6 @@ djiti_retractall(A) :-
 			C is U*V
 		)
 	).
-
 
 '<http://www.w3.org/2007/rif-builtin-function#numeric-divide>'([A, B], C) :-
 	when(
@@ -6833,7 +6583,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2007/rif-builtin-function#numeric-integer-divide>'([A, B], C) :-
 	when(
 		(	ground([A, B])
@@ -6847,7 +6596,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 '<http://www.w3.org/2007/rif-builtin-function#numeric-mod>'([A, B], C) :-
 	when(
 		(	ground([A, B])
@@ -6860,7 +6608,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.5.2.1 pred:numeric-equal
 
@@ -6877,7 +6624,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.5.2.2 pred:numeric-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-less-than>'([A, B], C) :-
@@ -6892,7 +6638,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.5.2.3 pred:numeric-greater-than
 
@@ -6909,7 +6654,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.5.2.4 pred:numeric-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-not-equal>'([A, B], C) :-
@@ -6924,7 +6668,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.5.2.5 pred:numeric-less-than-or-equal
 
@@ -6941,7 +6684,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.5.2.6 pred:numeric-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#numeric-greater-than-or-equal>'([A, B], C) :-
@@ -6956,7 +6698,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.6.1.1 func:not
 
@@ -6973,7 +6714,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.6.2.1 pred:boolean-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#boolean-equal>'([A, B], C) :-
@@ -6986,7 +6726,6 @@ djiti_retractall(A) :-
 		;	C = false
 		)
 	).
-
 
 % 4.6.2.2 pred:boolean-less-than
 
@@ -7001,7 +6740,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.6.2.3 pred:boolean-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#boolean-greater-than>'([A, B], C) :-
@@ -7014,7 +6752,6 @@ djiti_retractall(A) :-
 		;	C = false
 		)
 	).
-
 
 % 4.7.1.1 func:compare @@partial implementation: no collation
 
@@ -7029,7 +6766,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.7.1.2 func:concat
 
@@ -7047,7 +6783,6 @@ djiti_retractall(A) :-
 			atom_codes(B, D)
 		)
 	).
-
 
 % 4.7.1.3 func:string-join
 
@@ -7069,7 +6804,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.7.1.4 func:substring
 
@@ -7112,7 +6846,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.7.1.5 func:string-length
 
 '<http://www.w3.org/2007/rif-builtin-function#string-length>'([literal(A, _)], B) :-
@@ -7122,7 +6855,6 @@ djiti_retractall(A) :-
 		(	sub_atom(A, 0, B, 0, _)
 		)
 	).
-
 
 % 4.7.1.6 func:upper-case
 
@@ -7134,7 +6866,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.7.1.7 func:lower-case
 
 '<http://www.w3.org/2007/rif-builtin-function#lower-case>'([literal(A, B)], literal(C, B)) :-
@@ -7145,7 +6876,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.7.1.8 func:encode-for-uri
 
 '<http://www.w3.org/2007/rif-builtin-function#encode-for-uri>'([literal(A, B)], literal(C, B)) :-
@@ -7155,7 +6885,6 @@ djiti_retractall(A) :-
 		(	www_form_encode(A, C)
 		)
 	).
-
 
 % 4.7.1.11 func:substring-before @@partial implementation: no collation
 
@@ -7169,7 +6898,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.7.1.12 func:substring-after @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-function#substring-after>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))],
@@ -7181,7 +6909,6 @@ djiti_retractall(A) :-
 			sub_atom(A, _, W, 0, C)
 		)
 	).
-
 
 % 4.7.2.1 pred:contains @@partial implementation: no collation
 
@@ -7196,7 +6923,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.7.2.2 pred:starts-with @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-predicate#starts-with>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
@@ -7209,7 +6935,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.7.2.3 pred:ends-with @@partial implementation: no collation
 
 '<http://www.w3.org/2007/rif-builtin-predicate#ends-with>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
@@ -7221,7 +6946,6 @@ djiti_retractall(A) :-
 		;	C = false
 		)
 	).
-
 
 % 4.7.2.4 pred:matches @@partial implementation: no flags
 
@@ -7236,7 +6960,6 @@ djiti_retractall(A) :-
 		;	C = false
 		)
 	).
-
 
 % 4.8.1.1 func:year-from-dateTime
 
@@ -7253,7 +6976,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.2 func:month-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#month-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
@@ -7268,7 +6990,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.3 func:day-from-dateTime
 
@@ -7285,7 +7006,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.4 func:hours-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#hours-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
@@ -7300,7 +7020,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.5 func:minutes-from-dateTime
 
@@ -7317,7 +7036,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.6 func:seconds-from-dateTime
 
 '<http://www.w3.org/2007/rif-builtin-function#seconds-from-dateTime>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>'))], B) :-
@@ -7332,7 +7050,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.7 func:year-from-date
 
@@ -7349,7 +7066,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.8 func:month-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#month-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>'))], B) :-
@@ -7364,7 +7080,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.9 func:day-from-date
 
@@ -7381,7 +7096,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.10 func:hours-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#hours-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))], B) :-
@@ -7396,7 +7110,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.11 func:minutes-from-time
 
@@ -7413,7 +7126,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.12 func:seconds-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#seconds-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))], B) :-
@@ -7428,7 +7140,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.13 func:years-from-duration
 
@@ -7448,7 +7159,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.14 func:months-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#months-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>'))], 0) :-
@@ -7466,7 +7176,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.15 func:days-from-duration
 
@@ -7486,7 +7195,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.16 func:hours-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#hours-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], _) :-
@@ -7504,7 +7212,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.17 func:minutes-from-duration
 
@@ -7524,7 +7231,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.18 func:seconds-from-duration
 
 '<http://www.w3.org/2007/rif-builtin-function#seconds-from-duration>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>'))], _) :-
@@ -7542,7 +7248,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.19 func:timezone-from-dateTime
 
@@ -7563,7 +7268,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.20 func:timezone-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#timezone-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>'))],
@@ -7583,7 +7287,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.21 func:timezone-from-time
 
 '<http://www.w3.org/2007/rif-builtin-function#timezone-from-time>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>'))],
@@ -7602,7 +7305,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.22 func:subtract-dateTimes
 
@@ -7626,7 +7328,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.23 func:subtract-dates
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dates>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -7648,7 +7349,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.24 func:subtract-times
 
@@ -7672,7 +7372,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.25 func:add-yearMonthDurations
 
 '<http://www.w3.org/2007/rif-builtin-function#add-yearMonthDurations>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
@@ -7694,7 +7393,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.26 func:subtract-yearMonthDurations
 
@@ -7718,7 +7416,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.27 func:multiply-yearMonthDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#multiply-yearMonthDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')), B],
@@ -7739,7 +7436,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.28 func:divide-yearMonthDuration
 
@@ -7762,7 +7458,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.29 func:divide-yearMonthDuration-by-yearMonthDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#divide-yearMonthDuration-by-yearMonthDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
@@ -7781,7 +7476,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.30 func:add-dayTimeDurations
 
@@ -7805,7 +7499,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.31 func:subtract-dayTimeDurations
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dayTimeDurations>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
@@ -7828,7 +7521,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.32 func:multiply-dayTimeDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#multiply-dayTimeDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')), B],
@@ -7849,7 +7541,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.33 func:divide-dayTimeDuration
 
@@ -7872,7 +7563,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.34 func:divide-dayTimeDuration-by-dayTimeDuration
 
 '<http://www.w3.org/2007/rif-builtin-function#divide-dayTimeDuration-by-dayTimeDuration>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
@@ -7891,7 +7581,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.35 func:add-yearMonthDuration-to-dateTime
 
@@ -7923,7 +7612,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.36 func:add-yearMonthDuration-to-date
 
 '<http://www.w3.org/2007/rif-builtin-function#add-yearMonthDuration-to-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -7950,7 +7638,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.37 func:add-dayTimeDuration-to-dateTime
 
@@ -7980,7 +7667,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.38 func:add-dayTimeDuration-to-date
 
 '<http://www.w3.org/2007/rif-builtin-function#add-dayTimeDuration-to-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -8005,7 +7691,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.39 func:add-dayTimeDuration-to-time
 
@@ -8035,7 +7720,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.40 func:subtract-yearMonthDuration-from-dateTime
 
@@ -8067,7 +7751,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.41 func:subtract-yearMonthDuration-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-yearMonthDuration-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -8094,7 +7777,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.42 func:subtract-dayTimeDuration-from-dateTime
 
@@ -8124,7 +7806,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.1.43 func:subtract-dayTimeDuration-from-date
 
 '<http://www.w3.org/2007/rif-builtin-function#subtract-dayTimeDuration-from-date>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -8149,7 +7830,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.1.44 func:subtract-dayTimeDuration-from-time
 
@@ -8180,7 +7860,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.1 pred:dateTime-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
@@ -8198,7 +7877,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.2 pred:dateTime-less-than
 
@@ -8218,7 +7896,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.3 pred:dateTime-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
@@ -8236,7 +7913,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.4 pred:date-equal
 
@@ -8256,7 +7932,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.5 pred:date-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -8274,7 +7949,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.6 pred:date-greater-than
 
@@ -8294,7 +7968,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.7 pred:time-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
@@ -8312,7 +7985,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.8 pred:time-less-than
 
@@ -8332,7 +8004,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.9 pred:time-greater-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-greater-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
@@ -8350,7 +8021,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.10 pred:duration-equal
 
@@ -8370,7 +8040,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.11 pred:dayTimeDuration-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dayTimeDuration-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
@@ -8388,7 +8057,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.12 pred:dayTimeDuration-greater-than
 
@@ -8408,7 +8076,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.13 pred:yearMonthDuration-less-than
 
 '<http://www.w3.org/2007/rif-builtin-predicate#yearMonthDuration-less-than>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
@@ -8426,7 +8093,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.14 pred:yearMonthDuration-greater-than
 
@@ -8446,7 +8112,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.15 pred:dateTime-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-not-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
@@ -8464,7 +8129,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.16 pred:dateTime-less-than-or-equal
 
@@ -8484,7 +8148,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.17 pred:dateTime-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dateTime-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dateTime>')),
@@ -8502,7 +8165,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.18 pred:date-not-equal
 
@@ -8522,7 +8184,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.19 pred:date-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#date-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#date>')),
@@ -8540,7 +8201,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.20 pred:date-greater-than-or-equal
 
@@ -8560,7 +8220,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.21 pred:time-not-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-not-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
@@ -8578,7 +8237,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.22 pred:time-less-than-or-equal
 
@@ -8598,7 +8256,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.23 pred:time-greater-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#time-greater-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#time>')),
@@ -8616,7 +8273,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.24 pred:duration-not-equal
 
@@ -8636,7 +8292,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.25 pred:dayTimeDuration-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#dayTimeDuration-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#dayTimeDuration>')),
@@ -8654,7 +8309,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.26 pred:dayTimeDuration-greater-than-or-equal
 
@@ -8674,7 +8328,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.8.2.27 pred:yearMonthDuration-less-than-or-equal
 
 '<http://www.w3.org/2007/rif-builtin-predicate#yearMonthDuration-less-than-or-equal>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#yearMonthDuration>')),
@@ -8692,7 +8345,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % 4.8.2.28 pred:yearMonthDuration-greater-than-or-equal
 
@@ -8712,7 +8364,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.10.1.1 func:PlainLiteral-from-string-lang
 
 '<http://www.w3.org/2007/rif-builtin-function#PlainLiteral-from-string-lang>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))],
@@ -8722,20 +8373,17 @@ djiti_retractall(A) :-
 	literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))], literal(A, lang(C))) :-
 	downcase_atom(B, C).
 
-
 % 4.10.1.2 func:string-from-PlainLiteral
 
 '<http://www.w3.org/2007/rif-builtin-function#string-from-PlainLiteral>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))], literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!.
 '<http://www.w3.org/2007/rif-builtin-function#string-from-PlainLiteral>'([literal(A, lang(_))], literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))).
 
-
 % 4.10.1.3 func:lang-from-PlainLiteral
 
 '<http://www.w3.org/2007/rif-builtin-function#lang-from-PlainLiteral>'([literal(_, type('<http://www.w3.org/2001/XMLSchema#string>'))], literal('', type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	!.
 '<http://www.w3.org/2007/rif-builtin-function#lang-from-PlainLiteral>'([literal(_, lang(A))], literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))).
-
 
 % 4.10.1.4 func:PlainLiteral-compare @@partial implementation: no collation
 
@@ -8761,7 +8409,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.10.1.5 func:PlainLiteral-length
 
 '<http://www.w3.org/2007/rif-builtin-function#PlainLiteral-length>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))], C) :-
@@ -8769,7 +8416,6 @@ djiti_retractall(A) :-
 	sub_atom(A, 0, C, 0, _).
 '<http://www.w3.org/2007/rif-builtin-function#PlainLiteral-length>'([literal(A, lang(_))], C) :-
 	sub_atom(A, 0, C, 0, _).
-
 
 % 4.10.2.1 pred:matches-language-range @@partial implementation: no false results
 
@@ -8785,7 +8431,6 @@ djiti_retractall(A) :-
 	atom_codes(H, J),
 	regex(I, J, _).
 
-
 % 4.11.3.1 pred:is-list
 
 '<http://www.w3.org/2007/rif-builtin-predicate#is-list>'([A], B) :-
@@ -8793,7 +8438,6 @@ djiti_retractall(A) :-
 	->	B = true
 	;	B = false
 	).
-
 
 % 4.11.3.2 pred:list-contains
 
@@ -8807,11 +8451,9 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.1 func:make-list
 
 '<http://www.w3.org/2007/rif-builtin-function#make-list>'(A, A).
-
 
 % 4.11.4.2 func:count
 
@@ -8822,7 +8464,6 @@ djiti_retractall(A) :-
 		(	length(A, B)
 		)
 	).
-
 
 % 4.11.4.3 func:get
 
@@ -8835,7 +8476,6 @@ djiti_retractall(A) :-
 			nth0(U, A, C)
 		)
 	).
-
 
 % 4.11.4.4 func:sublist
 
@@ -8884,12 +8524,10 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.5 func:append
 
 '<http://www.w3.org/2007/rif-builtin-function#append>'([A|B], C) :-
 	append(A, B, C).
-
 
 % 4.11.4.6 func:concatenate
 
@@ -8900,7 +8538,6 @@ djiti_retractall(A) :-
 		(	append(A, B)
 		)
 	).
-
 
 % 4.11.4.7 func:insert-before
 
@@ -8921,7 +8558,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.8 func:remove
 
 '<http://www.w3.org/2007/rif-builtin-function#remove>'([A, B], C) :-
@@ -8941,12 +8577,10 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.9 func:reverse
 
 '<http://www.w3.org/2007/rif-builtin-function#reverse>'([A], B) :-
 	reverse(A, B).
-
 
 % 4.11.4.10 func:index-of
 
@@ -8963,7 +8597,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.11 func:union
 
 '<http://www.w3.org/2007/rif-builtin-function#union>'(A, B) :-
@@ -8975,7 +8608,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.12 func:distinct-values
 
 '<http://www.w3.org/2007/rif-builtin-function#distinct-values>'([A], B) :-
@@ -8985,7 +8617,6 @@ djiti_retractall(A) :-
 		(	distinct(A, B)
 		)
 	).
-
 
 % 4.11.4.13 func:intersect
 
@@ -9003,7 +8634,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-
 % 4.11.4.14 func:except
 
 '<http://www.w3.org/2007/rif-builtin-function#except>'([A, B], C) :-
@@ -9019,7 +8649,6 @@ djiti_retractall(A) :-
 			)
 		)
 	).
-
 
 % Prolog built-ins
 
@@ -9324,7 +8953,6 @@ prolog_sym(write_term, write_term, rel).
 prolog_sym(writeln, writeln, rel).
 prolog_sym(writeq, writeq, rel).
 
-
 % support
 
 def_pfx('math:', '<http://www.w3.org/2000/10/swap/math#>').
@@ -9339,7 +8967,6 @@ def_pfx('rdf:', '<http://www.w3.org/1999/02/22-rdf-syntax-ns#>').
 def_pfx('string:', '<http://www.w3.org/2000/10/swap/string#>').
 def_pfx('owl:', '<http://www.w3.org/2002/07/owl#>').
 def_pfx('n3:', '<http://www.w3.org/2004/06/rei#>').
-
 
 put_pfx(_, URI) :-
 	atomic_list_concat(['<', URI, '>'], U),
@@ -9356,7 +8983,6 @@ put_pfx(Pf, URI) :-
 	fresh_pf(Pf, Pff),
 	assertz(pfx(Pff, U)).
 
-
 fresh_pf(Pf, Pfx) :-
 	atom_concat(Pf, ':', Pfx),
 	\+pfx(Pfx, _),
@@ -9364,7 +8990,6 @@ fresh_pf(Pf, Pfx) :-
 fresh_pf(_, Pfx) :-
 	gensym(ns, Pfn),
 	fresh_pf(Pfn, Pfx).
-
 
 cnt(A) :-
 	nb_getval(A, B),
@@ -9377,7 +9002,6 @@ cnt(A) :-
 	;	true
 	).
 
-
 cnt(A, I) :-
 	nb_getval(A, B),
 	C is B+I,
@@ -9388,7 +9012,6 @@ cnt(A, I) :-
 		flush_output(user_error)
 	;	true
 	).
-
 
 within_scope([A, B]) :-
 	(	var(B)
@@ -9408,7 +9031,6 @@ within_scope([A, B]) :-
 	),
 	nb_getval(scope, A).
 
-
 exopred(P, S, O) :-
 	(	var(P)
 	->	pred(P)
@@ -9416,7 +9038,6 @@ exopred(P, S, O) :-
 		current_predicate(P/2)
 	),
 	call(P, S, O).
-
 
 unify(A, B) :-
 	nonvar(A),
@@ -9470,7 +9091,6 @@ unify(A, B) :-
 	unify(O, R).
 unify(A, A).
 
-
 conj_list(true, []) :-
 	!.
 conj_list(A, [A]) :-
@@ -9479,14 +9099,12 @@ conj_list(A, [A]) :-
 conj_list((A, B), [A|C]) :-
 	conj_list(B, C).
 
-
 conj_append(A, true, A) :-
 	!.
 conj_append((A, B), C, (A, D)) :-
 	conj_append(B, C, D),
 	!.
 conj_append(A, B, (A, B)).
-
 
 cflat([], []).
 cflat([A|B], C) :-
@@ -9501,11 +9119,9 @@ cflat([A|B], C) :-
 		)
 	).
 
-
 couple([], [], []).
 couple([A|B], [C|D], [[A, C]|E]) :-
 	couple(B, D, E).
-
 
 includes(_, []) :-
 	!.
@@ -9513,7 +9129,6 @@ includes(X, [Y|Z]) :-
 	member(U, X),
 	unify(U, Y),
 	includes(X, Z).
-
 
 conjoin([X], X) :-
 	!.
@@ -9530,7 +9145,6 @@ conjoin([X|Y], Z) :-
 	;	Z = V
 	).
 
-
 difference([true, _], true) :-
 	!.
 difference([X, true], X) :-
@@ -9542,7 +9156,6 @@ difference([X, Y], Z) :-
 	distinct(W, J),
 	conj_list(Z, J).
 
-
 difference([], _, []) :-
 	!.
 difference([X|Y], U, V) :-
@@ -9552,7 +9165,6 @@ difference([X|Y], U, V) :-
 	difference(Y, U, V).
 difference([X|Y], U, [X|V]) :-
 	difference(Y, U, V).
-
 
 intersect([X], X) :-
 	!.
@@ -9566,7 +9178,6 @@ intersect([X|Y], Z) :-
 	distinct(W, J),
 	conj_list(Z, J).
 
-
 intersect([], _, []) :-
 	!.
 intersect([X|Y], U, V) :-
@@ -9578,19 +9189,16 @@ intersect([X|Y], U, V) :-
 intersect([_|Y], U, V) :-
 	intersect(Y, U, V).
 
-
 cartesian([], []).
 cartesian([A|B], [C|D]) :-
 	member(C, A),
 	cartesian(B, D).
-
 
 distinct(A, B) :-
 	(	ground(A)
 	->	distinct_hash(A, B)
 	;	distinct_value(A, B)
 	).
-
 
 distinct_hash([], []) :-
 	(	retract(hash_value(_, _)),
@@ -9610,12 +9218,10 @@ distinct_hash([A|B], C) :-
 	),
 	distinct_hash(B, F).
 
-
 distinct_value([], []).
 distinct_value([A|B], [A|D]) :-
 	del(B, A, E),
 	distinct_value(E, D).
-
 
 del([], _, []).
 del([A|B], C, D) :-
@@ -9627,7 +9233,6 @@ del([A|B], C, D) :-
 del([A|B], C, [A|D]) :-
 	del(B, C, D).
 
-
 subst(_, [], []).
 subst(A, B, C) :-
 	member([D, E], A),
@@ -9638,14 +9243,12 @@ subst(A, B, C) :-
 subst(A, [B|C], [B|D]) :-
 	subst(A, C, D).
 
-
 quicksort([], []).
 quicksort([A|B], C) :-
 	split(A, B, D, E),
 	quicksort(D, F),
 	quicksort(E, G),
 	append(F, [A|G], C).
-
 
 split(_, [], [], []).
 split(A, [B|C], [B|D], E) :-
@@ -9655,7 +9258,6 @@ split(A, [B|C], [B|D], E) :-
 split(A, [B|C], D, [B|E]) :-
 	split(A, C, D, E).
 
-
 last_tail([], []) :-
 	!.
 last_tail([_|B], B) :-
@@ -9664,12 +9266,10 @@ last_tail([_|B], B) :-
 last_tail([_|B], C) :-
 	last_tail(B, C).
 
-
 sub_list(A, A) :-
 	!.
 sub_list([A|B], C) :-
 	sub_list(B, A, C).
-
 
 sub_list(A, _, A) :-
 	!.
@@ -9679,6 +9279,18 @@ sub_list([A|B], C, [C|D]) :-
 sub_list([A|B], _, C) :-
 	sub_list(B, A, C).
 
+transpose([], []).
+transpose([A|B], C) :-
+	transpose(A, [A|B], C).
+
+transpose([], _, []).
+transpose([_|A], B, [C|D]) :-
+	lists_fr(B, C, E),
+	transpose(A, E, D).
+
+lists_fr([], [], []).
+lists_fr([[A|B]|C], [A|D], [B|E]) :-
+	lists_fr(C, D, E).
 
 sum([], 0) :-
 	!.
@@ -9687,14 +9299,12 @@ sum([A|B], C) :-
 	sum(B, D),
 	C is X+D.
 
-
 product([], 1) :-
 	!.
 product([A|B], C) :-
 	getnumber(A, X),
 	product(B, D),
 	C is X*D.
-
 
 rms(A, B) :-
 	findall(C,
@@ -9708,10 +9318,8 @@ rms(A, B) :-
 	length(F, H),
 	B is sqrt(G/H).
 
-
 bmax([A|B], C) :-
 	bmax(B, A, C).
-
 
 bmax([], A, A).
 bmax([A|B], C, D) :-
@@ -9722,10 +9330,8 @@ bmax([A|B], C, D) :-
 	;	bmax(B, C, D)
 	).
 
-
 bmin([A|B], C) :-
 	bmin(B, A, C).
-
 
 bmin([], A, A).
 bmin([A|B], C, D) :-
@@ -9736,7 +9342,6 @@ bmin([A|B], C, D) :-
 	;	bmin(B, C, D)
 	).
 
-
 inconsistent(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#T>')|B]) :-
 	memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#F>'), B),
 	!.
@@ -9746,13 +9351,11 @@ inconsistent(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>
 inconsistent([_|B]) :-
 	inconsistent(B).
 
-
 inverse('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#T>'),
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#F>')) :-
 	!.
 inverse('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#F>'),
 	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#T>')).
-
 
 bnet :-
 	(	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>'([A|B], _),
@@ -9787,10 +9390,8 @@ bnet :-
 	;	true
 	).
 
-
 bval('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#T>').
 bval('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#F>').
-
 
 brel('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, _), '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(B, _)) :-
 	bref(A, B),
@@ -9799,12 +9400,10 @@ brel(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(B, _
 	bref(C, B),
 	brel(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(C, _)).
 
-
 bpar([], []) :-
 	!.
 bpar(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, _)|B], [A|C]) :-
 	bpar(B, C).
-
 
 bget(A, B, 1.0) :-
 	memberchk(A, B),
@@ -9886,7 +9485,6 @@ bget(A, B, C) :-
 		assertz(bgot(A, B, C))
 	).
 
-
 bcon([], _, 1.0) :-
 	!.
 bcon(_, B, 0.5) :-
@@ -9897,7 +9495,6 @@ bcon([A|B], C, D) :-
 	bcon(B, [A|C], F),
 	D is E*F.
 
-
 tmp_file(A) :-
 	(	current_prolog_flag(dialect, swi),
 		current_prolog_flag(windows, true),
@@ -9907,12 +9504,10 @@ tmp_file(A) :-
 	),
 	tmp_file(C, A).
 
-
 readln(In, Line):-
 	get_code(In, Code),
 	readln(Code, Codes, In),
 	atom_codes(Line, Codes).
-
 
 readln(10, [], _) :-
 	!.
@@ -9921,7 +9516,6 @@ readln(-1, [], _) :-
 readln(Code, [Code|Codes], In) :-
 	get_code(In, Next),
 	readln(Next, Codes, In).
-
 
 :- if(current_predicate(operating_system_support:system/2)).
 exec(A, B) :-
@@ -9942,12 +9536,10 @@ exec(A, B) :-
 	).
 :- endif.
 
-
 :- if(\+current_predicate(getcwd/1)).
 getcwd(A) :-
 	working_directory(A, A).
 :- endif.
-
 
 % Modified Base64 for XML identifiers
 
@@ -9956,7 +9548,6 @@ base64xml(A, B) :-
 	atom_codes(C, D),
 	subst([[[0'+], [0'_]], [[0'/], [0':]], [[0'=], []]], D, E),
 	atom_codes(B, E).
-
 
 :- if(current_prolog_flag(dialect, swi)).
 term_index(A, B) :-
@@ -9969,7 +9560,6 @@ term_index(A, B) :-
 	).
 :- endif.
 
-
 term_arg_1(A, B) :-
 	compound(A),
 	!,
@@ -9977,13 +9567,11 @@ term_arg_1(A, B) :-
 	term_index(C, B).
 term_arg_1(_, void).
 
-
 if_then_else(A, B, C) :-
 	(	call(A)
 	->	call(B)
 	;	call(C)
 	).
-
 
 soft_cut(A, B, C) :-
 	(	call(A)
@@ -9991,14 +9579,11 @@ soft_cut(A, B, C) :-
 	;	call(C)
 	).
 
-
 inv(false, true).
 inv(true, false).
 
-
 +(A, B, C) :-
 	plus(A, B, C).
-
 
 ':-'(A, B) :-
 	(	var(A)
@@ -10038,7 +9623,6 @@ inv(true, false).
 		)
 	).
 
-
 lookup(A, B, C) :-
 	table(A, B, C),
 	!.
@@ -10050,7 +9634,6 @@ lookup(A, B, C) :-
 	atom_number(I, N),
 	atomic_list_concat([B, '_table_entry_', I], A),
 	assertz(table(A, B, C)).
-
 
 escape_string([], []) :-
 	!.
@@ -10078,7 +9661,6 @@ escape_string([0'\\|A], [0'\\, 0'\\|B]) :-
 escape_string([A|B], [A|C]) :-
 	escape_string(B, C).
 
-
 escape_squote([], []) :-
 	!.
 escape_squote([0''|A], [0'\\, 0''|B]) :-
@@ -10086,7 +9668,6 @@ escape_squote([0''|A], [0'\\, 0''|B]) :-
 	escape_squote(A, B).
 escape_squote([A|B], [A|C]) :-
 	escape_squote(B, C).
-
 
 escape_unicode([], []) :-
 	!.
@@ -10106,7 +9687,6 @@ escape_unicode([A, B|C], D) :-
 escape_unicode([A|B], [A|C]) :-
 	escape_unicode(B, C).
 
-
 quant(A, some) :-
 	var(A),
 	!.
@@ -10122,11 +9702,9 @@ quant(answer('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>',
 	!.
 quant(_, some).
 
-
 labelvars(A, B, C) :-
 	quant(A, Q),
 	labelvars(A, B, C, Q).
-
 
 labelvars(A, B, C, D) :-
 	var(A),
@@ -10154,7 +9732,6 @@ labelvars(A, B, C, Q) :-
 	functor(A, _, D),
 	labelvars(0, D, A, B, C, Q).
 
-
 labelvars(A, A, _, B, B, _) :-
 	!.
 labelvars(A, B, C, D, E, Q) :-
@@ -10162,7 +9739,6 @@ labelvars(A, B, C, D, E, Q) :-
 	arg(F, C, G),
 	labelvars(G, D, H, Q),
 	labelvars(F, B, C, H, E, Q).
-
 
 relabel([], []) :-
 	!.
@@ -10186,7 +9762,6 @@ relabel(A, B) :-
 	relabel(D, F),
 	B =.. [E|F].
 
-
 partconc(_, [], []).
 partconc(_, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, B)], ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, B)]) :-
 	!.
@@ -10205,7 +9780,6 @@ partconc(A, [B|C], [B|D]) :-
 partconc(A, [_|C], D) :-
 	partconc(A, C, D).
 
-
 commonvars('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, _), B, C) :-
 	!,
 	commonvars(A, B, C).
@@ -10221,11 +9795,9 @@ commonvars(A, B, C) :-
 		C
 	).
 
-
 getvars(A, B) :-
 	findvars(A, C, alpha),
 	distinct(C, B).
-
 
 makevars(A, B, Z) :-
 	findvars(A, C, Z),
@@ -10233,7 +9805,6 @@ makevars(A, B, Z) :-
 	length(D, E),
 	length(F, E),
 	makevars(A, B, D, F).
-
 
 makevars(A, B, C, D) :-
 	atomic(A),
@@ -10257,7 +9828,6 @@ makevars(A, B, E, F) :-
 	makevars(C, D, E, F),
 	B =.. D.
 
-
 findvars(A, B, Z) :-
 	atomic(A),
 	!,
@@ -10279,7 +9849,6 @@ findvars([A|B], C, Z) :-
 findvars(A, B, Z) :-
 	A =.. C,
 	findvars(C, B, Z).
-
 
 findvar(A, alpha) :-
 	!,
@@ -10308,7 +9877,6 @@ findvar(A, epsilon) :-
 	\+atom_concat('_bn_', _, A),
 	\+atom_concat('_e_', _, A).
 
-
 raw_type(A, '<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>') :-
 	is_list(A),
 	!.
@@ -10336,7 +9904,6 @@ raw_type(A, '<http://www.w3.org/2000/10/swap/log#Formula>') :-
 	C >= 2,
 	!.
 raw_type(_, '<http://www.w3.org/2000/10/swap/log#Other>').
-
 
 getnumber(rdiv(A, B), C) :-
 	nonvar(A),
@@ -10385,11 +9952,9 @@ getnumber(literal(A, _), B) :-
 	numeral(C, D),
 	catch(number_codes(B, D), _, fail).
 
-
 getint(A, B) :-
 	getnumber(A, C),
 	B is integer(round(C)).
-
 
 getbool(literal(false, type('<http://www.w3.org/2001/XMLSchema#boolean>')), false).
 getbool(literal(true, type('<http://www.w3.org/2001/XMLSchema#boolean>')), true).
@@ -10397,7 +9962,6 @@ getbool(literal('0', type('<http://www.w3.org/2001/XMLSchema#boolean>')), false)
 getbool(literal('1', type('<http://www.w3.org/2001/XMLSchema#boolean>')), true).
 getbool(false, false).
 getbool(true, true).
-
 
 getlist(A, A) :-
 	var(A),
@@ -10420,12 +9984,10 @@ getlist(A, [B|C]) :-
 	'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'(A, D),
 	getlist(D, C).
 
-
 getstring(A, B) :-
 	'<http://www.w3.org/2000/10/swap/log#uri>'(A, B),
 	!.
 getstring(A, A).
-
 
 getcodes(literal(A, _), B) :-
 	nonvar(A),
@@ -10434,7 +9996,6 @@ getcodes(literal(A, _), B) :-
 getcodes(A, B) :-
 	with_output_to_chars(wg(A), B).
 
-
 preformat([], []) :-
 	!.
 preformat([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], [A|D]) :-
@@ -10442,7 +10003,6 @@ preformat([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], [A|
 	preformat(B, D).
 preformat([A|B], [A|D]) :-
 	preformat(B, D).
-
 
 numeral([0'-, 0'.|A], [0'-, 0'0, 0'.|A]) :-
 	!.
@@ -10464,7 +10024,6 @@ numeral(A, B) :-
 	!.
 numeral(A, A).
 
-
 rdiv_codes(rdiv(A, B), C) :-
 	append(D, [0'.|E], C),
 	append(D, E, F),
@@ -10475,12 +10034,10 @@ rdiv_codes(rdiv(A, B), C) :-
 rdiv_codes(rdiv(A, 1), C) :-
 	number_codes(A, C).
 
-
 lzero([], []) :-
 	!.
 lzero([_|A], [0'0|B]) :-
 	lzero(A, B).
-
 
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#integer>'], B) :-
 	integer(B),
@@ -10544,7 +10101,6 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://w
 	!.
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B], literal(A, type(B))).
 
-
 hash_to_ascii([], L1, L1).
 hash_to_ascii([A|B], [C, D|L3], L4) :-
 	E is A>>4 /\ 15,
@@ -10553,14 +10109,12 @@ hash_to_ascii([A|B], [C, D|L3], L4) :-
 	code_type(D, xdigit(F)),
 	hash_to_ascii(B, L3, L4).
 
-
 :- if(\+current_predicate(get_time/1)).
 get_time(A) :-
 	datime(B),
 	mktime(B, C),
 	A is C*1.0.
 :- endif.
-
 
 memotime(datime(A, B, C, D, E, F), G) :-
 	(	mtime(datime(A, B, C, D, E, F), G)
@@ -10569,7 +10123,6 @@ memotime(datime(A, B, C, D, E, F), G) :-
 		fmsec(F, H, G),
 		assertz(mtime(datime(A, B, C, D, E, F), G))
 	).
-
 
 datetime(A, L1, L13) :-
 	int(B, L1, [0'-|L3]),
@@ -10583,7 +10136,6 @@ datetime(A, L1, L13) :-
 	date_time_stamp(date(B, C, D, E, F, G, I, -, -), J),
 	fmsec(G, J, A).
 
-
 datetime(A, B, C, D, E, F, G, L1, L13) :-
 	int(A, L1, [0'-|L3]),
 	int(B, L3, [0'-|L5]),
@@ -10592,7 +10144,6 @@ datetime(A, B, C, D, E, F, G, L1, L13) :-
 	int(E, L9, [0':|L11]),
 	decimal(F, L11, L12),
 	timezone(G, L12, L13).
-
 
 date(A, L1, L7) :-
 	int(B, L1, [0'-|L3]),
@@ -10603,13 +10154,11 @@ date(A, L1, L7) :-
 	date_time_stamp(date(B, C, D, 0, 0, 0, I, -, -), E),
 	fmsec(0, E, A).
 
-
 date(A, B, C, D, L1, L7) :-
 	int(A, L1, [0'-|L3]),
 	int(B, L3, [0'-|L5]),
 	int(C, L5, L6),
 	timezone(D, L6, L7).
-
 
 time(A, L1, L7) :-
 	int(B, L1, [0':|L3]),
@@ -10621,13 +10170,11 @@ time(A, L1, L7) :-
 	;	A is B*3600+C*60+D-E
 	).
 
-
 time(A, B, C, D, L1, L7) :-
 	int(A, L1, [0':|L3]),
 	int(B, L3, [0':|L5]),
 	decimal(C, L5, L6),
 	timezone(D, L6, L7).
-
 
 duration(A, L1, L7) :-
 	dsign(B, L1, [0'P|L3]),
@@ -10637,20 +10184,17 @@ duration(A, L1, L7) :-
 	dtime(F, L6, L7),
 	A is B*(C*31556952+D*2629746+E*86400.0+F).
 
-
 yearmonthduration(A, L1, L5) :-
 	dsign(B, L1, [0'P|L3]),
 	years(C, L3, L4),
 	months(D, L4, L5),
 	A is B*(C*12+D).
 
-
 daytimeduration(A, L1, L5) :-
 	dsign(B, L1, [0'P|L3]),
 	days(C, L3, L4),
 	dtime(D, L4, L5),
 	A is B*(C*86400.0+D).
-
 
 timezone(A, L1, L4) :-
 	int(B, L1, [0':|L3]),
@@ -10661,11 +10205,9 @@ timezone(0, [0'Z|L2], L2) :-
 	!.
 timezone(0, L1, L1).
 
-
 dsign(1, [0'+|L2], L2).
 dsign(-1, [0'-|L2], L2).
 dsign(1, L1, L1).
-
 
 dtime(A, [0'T|L2], L5) :-
 	!,
@@ -10675,43 +10217,35 @@ dtime(A, [0'T|L2], L5) :-
 	A is B*3600+C*60+D.
 dtime(0, L1, L1).
 
-
 years(A, L1, L3) :-
 	int(A, L1, [0'Y|L3]).
 years(0, L1, L1).
-
 
 months(A, L1, L3) :-
 	int(A, L1, [0'M|L3]).
 months(0, L1, L1) .
 
-
 days(A, L1, L3) :-
 	int(A, L1, [0'D|L3]).
 days(0, L1, L1).
-
 
 hours(A, L1, L3) :-
 	int(A, L1, [0'H|L3]).
 hours(0, L1, L1).
 
-
 minutes(A, L1, L3) :-
 	int(A, L1, [0'M|L3]).
 minutes(0, L1, L1).
 
-
 seconds(A, L1, L3) :-
 	decimal(A, L1, [0'S|L3]).
 seconds(0, L1, L1).
-
 
 int(A, L1, L4) :-
 	sgn(B, L1, L2),
 	digit(C, L2, L3),
 	digits(D, L3, L4),
 	number_codes(A, [B, C|D]).
-
 
 decimal(A, L1, L5) :-
 	sgn(B, L1, L2),
@@ -10721,11 +10255,9 @@ decimal(A, L1, L5) :-
 	append([B, C|D], E, F),
 	number_codes(A, F).
 
-
 sgn(0'+, [0'+|L2], L2).
 sgn(0'-, [0'-|L2], L2).
 sgn(0'+, L1, L1).
-
 
 fraction([0'., A|B], [0'.|L2], L4) :-
 	!,
@@ -10733,23 +10265,19 @@ fraction([0'., A|B], [0'.|L2], L4) :-
 	digits(B, L3, L4).
 fraction([], L1, L1).
 
-
 digits([A|B], L1, L3) :-
 	digit(A, L1, L2),
 	digits(B, L2, L3).
 digits([], L1, L1).
 
-
 digit(A, [A|L2], L2) :-
 	code_type(A, digit).
-
 
 fmsec(A, B, C) :-
 	integer(A),
 	!,
 	C is floor(B).
 fmsec(_, B, B).
-
 
 datetime(A, B) :-
 	stamp_date_time(A, date(Year, Month, Day, Hour, Minute, Second, _, _, _), 0),
@@ -10761,7 +10289,6 @@ datetime(A, B) :-
 	ncodes(Minute, G),
 	ncodes(Sec, H),
 	append([C, [0'-], D, [0'-], E, [0'T], F, [0':], G, [0':], H, [0'Z]], B).
-
 
 datetime(Year, Month, Day, Hour, Minute, Second, Offset, B) :-
 	ycodes(Year, C),
@@ -10784,7 +10311,6 @@ datetime(Year, Month, Day, Hour, Minute, Second, Offset, B) :-
 		append([C, [0'-], D, [0'-], E, [0'T], F, [0':], G, [0':], H, I, J, [0':], K], B)
 	).
 
-
 date(A, B) :-
 	N is A+3600*12,
 	stamp_date_time(N, date(Year, Month, Day, _, _, _, _, _, _), 0),
@@ -10806,7 +10332,6 @@ date(A, B) :-
 		append([C, [0'-], D, [0'-], E, I, J, [0':], K], B)
 	).
 
-
 date(Year, Month, Day, Offset, B) :-
 	ycodes(Year, C),
 	ncodes(Month, D),
@@ -10825,7 +10350,6 @@ date(Year, Month, Day, Offset, B) :-
 		append([C, [0'-], D, [0'-], E, I, J, [0':], K], B)
 	).
 
-
 time(A, B) :-
 	stamp_date_time(A, date(_, _, _, Hour, Minute, Second, _, _, _), 0),
 	fmsec(A, Second, Sec),
@@ -10833,7 +10357,6 @@ time(A, B) :-
 	ncodes(Minute, G),
 	ncodes(Sec, H),
 	append([F, [0':], G, [0':], H, [0'Z]], B).
-
 
 time(Hour, Minute, Second, Offset, B) :-
 	ncodes(Hour, F),
@@ -10853,7 +10376,6 @@ time(Hour, Minute, Second, Offset, B) :-
 		append([F, [0':], G, [0':], H, I, J, [0':], K], B)
 	).
 
-
 yearmonthduration(A, B) :-
 	(	A < 0
 	->	C = [0'-]
@@ -10865,7 +10387,6 @@ yearmonthduration(A, B) :-
 	F is D-(D//12)*12,
 	number_codes(F, Months),
 	append([C, [0'P], Years, [0'Y], Months, [0'M]], B).
-
 
 daytimeduration(A, B) :-
 	AInt is round(floor(A)),
@@ -10885,14 +10406,12 @@ daytimeduration(A, B) :-
 	number_codes(H, Seconds),
 	append([C, [0'P], Days, [0'D, 0'T], Hours, [0'H], Minutes, [0'M], Seconds, [0'S]], B).
 
-
 ncodes(A, B) :-
 	number_codes(A, D),
 	(	A < 10
 	->	append([[0'0], D], B)
 	;	B = D
 	).
-
 
 ycodes(A, B) :-
 	C is abs(A),
@@ -10912,7 +10431,6 @@ ycodes(A, B) :-
 	;	B = [0'-|E]
 	).
 
-
 absolute_uri('-', '-') :-
 	!.
 absolute_uri(A, B) :-
@@ -10928,7 +10446,6 @@ absolute_uri(A, B) :-
 		;	atomic_list_concat(['file://', G], B)
 		)
 	).
-
 
 :- if(current_predicate(uri_resolve/3)).
 resolve_uri(A, _, A) :-
@@ -11026,12 +10543,10 @@ resolve_uri(A, _, _) :-
 	throw(unresolvable_relative_uri(A, after_line(Ln))).
 :- endif.
 
-
 so_uri('http://').
 so_uri('https://').
 so_uri('ftp://').
 so_uri('file://').
-
 
 wcacher(A, B) :-
 	wcache(A, B),
@@ -11041,7 +10556,6 @@ wcacher(A, B) :-
 	sub_atom(A, 0, I, _, C),
 	sub_atom(A, I, _, 0, E),
 	atomic_list_concat([D, E], B).
-
 
 prolog_verb(S, Name) :-
 	(	atom(S),
@@ -11061,7 +10575,6 @@ prolog_verb(S, Name) :-
 		Name = prolog:Pred
 	;	Name = S
 	).
-
 
 dynamic_verb(Verb) :-
 	(	(	atom(Verb)
@@ -11094,7 +10607,6 @@ dynamic_verb(Verb) :-
 	;	true
 	).
 
-
 timestamp(Stamp) :-
 	get_time(StampN),
 	datetime(StampN, StampC),
@@ -11106,11 +10618,9 @@ timestamp(Stamp) :-
 	;	Stamp = StampA
 	).
 
-
 fm(A) :-
 	format(user_error, '*** ~q~n', [A]),
 	flush_output(user_error).
-
 
 mf(A) :-
 	forall(
@@ -11120,7 +10630,6 @@ mf(A) :-
 		)
 	),
 	flush_output(user_error).
-
 
 % Regular Expressions inspired by http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html
 
@@ -11141,7 +10650,6 @@ regex(RE_esc, Input_esc, Outputs_esc) :-
 	),
 	!.
 
-
 tokenize2(_P_RE, [], [], true).
 tokenize2(P_RE, Input, Output, Bos) :-
 	(	rematch1(P_RE, Input, _, Output)
@@ -11150,7 +10658,6 @@ tokenize2(P_RE, Input, Output, Bos) :-
 		Input = [_|Inp],
 		tokenize2(P_RE, Inp, Output, Bos)
 	).
-
 
 rematch1(union(RE1, _RE2), S, U, Selected) :-
 	rematch1(RE1, S, U, Selected).
@@ -11185,7 +10692,6 @@ rematch1(negSet(Set), [C|U], U, []) :-
 rematch1(posSet(Set), [C|U], U, []) :-
 	charSetMember(C, Set).
 
-
 charSetMember(C, [char(C)|_]).
 charSetMember(C, [range(C1, C2)|_]) :-
 	C1 =< C,
@@ -11197,39 +10703,32 @@ charSetMember(C, [posSet(Set)|_]) :-
 charSetMember(C, [_|T]) :-
 	charSetMember(C, T).
 
-
 re(Z, L1, L3) :-
 	basicRE(W, L1, L2),
 	reTail(W, Z, L2, L3).
-
 
 reTail(W, Z, [0'||L2], L4) :-
 	basicRE(X, L2, L3),
 	reTail(union(W, X), Z, L3, L4).
 reTail(W, W, L1, L1).
 
-
 basicRE(Z, L1, L3) :-
 	simpleRE(W, L1, L2),
 	basicREtail(W, Z, L2, L3).
-
 
 basicREtail(W, Z, L1, L3) :-
 	simpleRE(X, L1, L2),
 	basicREtail(conc(W, X), Z, L2, L3).
 basicREtail(W, W, L1, L1).
 
-
 simpleRE(Z, L1, L3) :-
 	elementalRE(W, L1, L2),
 	simpleREtail(W, Z, L2, L3).
-
 
 simpleREtail(W, star(W), [0'*|L2], L2).
 simpleREtail(W, qm(W), [0'?|L2], L2).
 simpleREtail(W, plus(W), [0'+|L2], L2).
 simpleREtail(W, W, L1, L1).
-
 
 elementalRE(any, [0'.|L2], L2).
 elementalRE(group(X), [0'(|L2], L4) :-
@@ -11252,7 +10751,6 @@ elementalRE(negSet(X), [0'[, 0'^|L2], L4) :-
 elementalRE(posSet(X), [0'[|L2], L4) :-
 	setItems(X, L2, [0']|L4]).
 
-
 re_metachar([0'\\]).
 re_metachar([0'|]).
 re_metachar([0'*]).
@@ -11264,13 +10762,11 @@ re_metachar([0'$]).
 re_metachar([0'(]).
 re_metachar([0')]).
 
-
 setItems([Item1|MoreItems], L1, L3) :-
 	setItem(Item1, L1, L2),
 	setItems(MoreItems, L2, L3).
 setItems([Item1], L1, L2) :-
 	setItem(Item1, L1, L2).
-
 
 setItem(posSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), [0'\\, 0'w|L2], L2).
 setItem(negSet([range(0'A, 0'Z), range(0'a, 0'z), range(0'0, 0'9), char(0'_)]), [0'\\, 0'W|L2], L2).
@@ -11286,11 +10782,9 @@ setItem(range(A, B), L1, L4) :-
 	setItem(char(A), L1, [0'-|L3]),
 	setItem(char(B), L3, L4).
 
-
 set_metachar([0'\\]).
 set_metachar([0']]).
 set_metachar([0'-]).
-
 
 regexp_wildcard([], []) :-
 	!.
@@ -11299,4 +10793,3 @@ regexp_wildcard([0'*|A], [0'., 0'*|B]) :-
 	regexp_wildcard(A, B).
 regexp_wildcard([A|B], [A|C]) :-
 	regexp_wildcard(B, C).
-
