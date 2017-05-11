@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0510.0856 josd').
+version_info('EYE v17.0511.0837 josd').
 
 license_info('MIT License
 
@@ -3914,15 +3914,22 @@ wt(X) :-
 	).
 wt((X, Y)) :-
 	!,
-	wt(X),
-	ws(X),
-	write('.'),
-	(	flag(strings)
-	->	write(' ')
-	;	nl,
-		indent
-	),
-	wt(Y).
+	(	atomic(X),
+		X \= '!'
+	->	wt([X, Y]),
+		write(' '),
+		wt('<http://eulersharp.sourceforge.net/2003/03swap/prolog#conjunction>'),
+		write(' true')
+	;	wt(X),
+		ws(X),
+		write('.'),
+		(	flag(strings)
+		->	write(' ')
+		;	nl,
+			indent
+		),
+		wt(Y)
+	).
 wt(set(X)) :-
 	!,
 	write('($'),
