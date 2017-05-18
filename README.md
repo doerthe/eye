@@ -6,7 +6,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http:
 
 Semibackward reasoning is backward reasoning for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-This can be seen in [EYE to see](https://github.com/josd/etc).  
+This can be seen in [EYE Test Cases](https://github.com/josd/etc).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
@@ -39,12 +39,12 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 Implicit Quantification in N3
 * See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
-* In [EYE to see](https://github.com/josd/etc) the scope of implicit universals is the top level and the scope  
+* In [ETC](https://github.com/josd/etc) the scope of implicit universals is the top level and the scope  
   of implicit existentials is the direct formula in which they occur.  
 
 Proof output without bindings
 * See https://josd.github.io/etc/witch/witch-proof.n3  
-* In [EYE to see](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.  
+* In [ETC](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.  
 
 ## See also
 
