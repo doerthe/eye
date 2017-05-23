@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0523.0953] adding experimental e:evaluate built-in http://eulersharp.sourceforge.net/2003/03swap/log-rules.html#evaluate
 [v17.0511.0837] fixing roundtripping of prolog:conjunction triples
 [v17.0510.0856] adding e:transpose built-in
 [v17.0504.2009] fixing the use of garbage_collect_atoms for streaming reasoning
