@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0523.0953 josd').
+version_info('EYE v17.0524.2340 josd').
 
 license_info('MIT License
 
@@ -5268,10 +5268,6 @@ djiti_retractall(A) :-
 		(	distinct(A, B)
 		)
 	).
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#evaluate>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prolog>') :-
-	read_term_from_atom(A, C, [variables(B)]),
-	call(C).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),

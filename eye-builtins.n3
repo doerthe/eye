@@ -30,7 +30,6 @@ e:fail a e:Builtin.
 e:finalize a e:Builtin.
 e:findall a e:Builtin.
 e:format a e:Builtin.
-e:evaluate a e:Builtin.
 e:graphCopy a e:Builtin.
 e:graphDifference a e:Builtin.
 e:graphIntersection a e:Builtin.
