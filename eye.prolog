@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0525.2017 josd').
+version_info('EYE v17.0525.2026 josd').
 
 license_info('MIT License
 
@@ -1252,7 +1252,9 @@ args(['--plugin', Argument|Args]) :-
 		)
 	),
 	(	sub_atom(Arg, _, 7, 0, '.prolog')
-	->	consult(File)
+	->	consult(File),
+		format(user_error, '~n', []),
+		flush_output(user_error)
 	;	(	File = '-'
 		->	In = user_input
 		;	open(File, read, In, [encoding(utf8)])
