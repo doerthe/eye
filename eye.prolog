@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0524.2340 josd').
+version_info('EYE v17.0525.2017 josd').
 
 license_info('MIT License
 
@@ -1251,37 +1251,40 @@ args(['--plugin', Argument|Args]) :-
 			)
 		)
 	),
-	(	File = '-'
-	->	In = user_input
-	;	open(File, read, In, [encoding(utf8)])
-	),
-	repeat,
-	read_term(In, Rt, []),
-	(	Rt = end_of_file
-	->	catch(read_line_to_codes(In, _), _, true)
-	;	n3pin(Rt, In, File),
-		fail
-	),
-	!,
-	(	File = '-'
-	->	true
-	;	close(In)
-	),
-	(	retract(tmpfile(File))
-	->	delete_file(File)
-	;	true
-	),
-	findall(SCnt,
-		(	retract(scount(SCnt))
+	(	sub_atom(Arg, _, 7, 0, '.prolog')
+	->	consult(File)
+	;	(	File = '-'
+		->	In = user_input
+		;	open(File, read, In, [encoding(utf8)])
 		),
-		SCnts
+		repeat,
+		read_term(In, Rt, []),
+		(	Rt = end_of_file
+		->	catch(read_line_to_codes(In, _), _, true)
+		;	n3pin(Rt, In, File),
+			fail
+		),
+		!,
+		(	File = '-'
+		->	true
+		;	close(In)
+		),
+		(	retract(tmpfile(File))
+		->	delete_file(File)
+		;	true
+		),
+		findall(SCnt,
+			(	retract(scount(SCnt))
+			),
+			SCnts
+		),
+		sum(SCnts, SC),
+		nb_getval(input_statements, IN),
+		Inp is SC+IN,
+		nb_setval(input_statements, Inp),
+		format(user_error, 'SC=~w~n', [SC]),
+		flush_output(user_error)
 	),
-	sum(SCnts, SC),
-	nb_getval(input_statements, IN),
-	Inp is SC+IN,
-	nb_setval(input_statements, Inp),
-	format(user_error, 'SC=~w~n', [SC]),
-	flush_output(user_error),
 	args(Args).
 args(['--proof', Arg|Args]) :-
 	!,
