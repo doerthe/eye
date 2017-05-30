@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0525.2026 josd').
+version_info('EYE v17.0530.1233 josd').
 
 license_info('MIT License
 
@@ -4403,7 +4403,7 @@ wg(X) :-
 			F \= literal,
 			F \= rdiv
 		)
-	->	write('{'),
+	->	write('{ '),
 		indentation(2),
 		nb_getval(fdepth, D),
 		E is D+1,
@@ -4411,7 +4411,7 @@ wg(X) :-
 		wt(X),
 		nb_setval(fdepth, D),
 		indentation(-2),
-		write('}')
+		write(' }')
 	;	wt(X)
 	).
 
