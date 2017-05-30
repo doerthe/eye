@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0530.1233] slightly improving the output of generated code
 [v17.0525.2026] improving --plugin option to deal with prolog code
 [v17.0524.2340] using generic prolog:call instead of specific built-ins
 [v17.0511.0837] fixing roundtripping of prolog:conjunction triples
