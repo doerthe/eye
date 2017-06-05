@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0604.1012 josd').
+version_info('EYE v17.0605.0944 josd').
 
 license_info('MIT License
 
@@ -107,11 +107,11 @@ eye
 	--warn				output warning info on stderr
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
-	<n3-data>			N3 triples and rules
-	--builtin <prolog-code>		prolog code as built-ins
-	--plugin <n3p-data>		N3 P-code
-	--proof <n3-proof>		N3 proof
-	--turtle <ttl-data>		Turtle data
+	<uri>				N3 triples and rules
+	--plugin <uri>			N3P code
+	--proof <uri>			N3 proof
+	--turtle <uri>			Turtle data
+	--web-built-in <uri>		Prolog code for built-ins
 <query>
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
@@ -349,7 +349,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--builtin', '--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle', '--web-built-in',
 			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -1090,7 +1090,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--builtin', '--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle', '--web-built-in']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1179,47 +1179,6 @@ curl_http_headers(Headers) :-
 
 args([]) :-
 	!.
-args(['--builtin', Argument|Args]) :-
-	!,
-	absolute_uri(Argument, Arg),
-	(	wcacher(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
-		flush_output(user_error)
-	;	format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error),
-		(	(	sub_atom(Arg, 0, 5, _, 'http:')
-			->	true
-			;	sub_atom(Arg, 0, 6, _, 'https:')
-			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
-			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
-			catch(exec(Cmd, _), Exc,
-				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-					flush_output(user_error),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					flush_output,
-					halt(1)
-				)
-			)
-		;	(	sub_atom(Arg, 0, 5, _, 'file:')
-			->	parse_url(Arg, Parts),
-				memberchk(path(File), Parts)
-			;	File = Arg
-			)
-		)
-	),
-	consult(File),
-	format(user_error, '~n', []),
-	flush_output(user_error),
-	args(Args).
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
@@ -1560,6 +1519,47 @@ args(['--turtle', Argument|Args]) :-
 		;	true
 		)
 	),
+	args(Args).
+args(['--web-built-in', Argument|Args]) :-
+	!,
+	absolute_uri(Argument, Arg),
+	(	wcacher(Arg, File)
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
+			->	true
+			;	sub_atom(Arg, 0, 6, _, 'https:')
+			)
+		->	(	flag('tmp-file', File)	% DEPRECATED
+			->	true
+			;	tmp_file(File),
+				assertz(tmpfile(File))
+			),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			catch(exec(Cmd, _), Exc,
+				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+					flush_output(user_error),
+					(	retract(tmpfile(File))
+					->	delete_file(File)
+					;	true
+					),
+					flush_output,
+					halt(1)
+				)
+			)
+		;	(	sub_atom(Arg, 0, 5, _, 'file:')
+			->	parse_url(Arg, Parts),
+				memberchk(path(File), Parts)
+			;	File = Arg
+			)
+		)
+	),
+	consult(File),
+	format(user_error, '~n', []),
+	flush_output(user_error),
 	args(Args).
 args([Arg|Args]) :-
 	absolute_uri(Arg, A),
