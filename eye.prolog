@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0607.0922 josd').
+version_info('EYE v17.0607.0932 josd').
 
 license_info('MIT License
 
@@ -110,8 +110,8 @@ eye
 	<uri>				N3 triples and rules
 	--plugin <uri>			N3P code
 	--proof <uri>			N3 proof
-	--turtle <uri>			Turtle data
 	--renewable <uri>		Prolog code
+	--turtle <uri>			Turtle data
 <query>
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
@@ -319,10 +319,6 @@ main :-
 				;	true
 				)
 			)
-		),
-		(	predicate_property(type_index(_, _, _), indexed(Indt3))
-		->	format(user_error, 'DJITI type_index/3 indexed ~w~n', [Indt3])
-		;	true
 		),
 		(	predicate_property(implies(_, _, _), indexed(Indi3))
 		->	format(user_error, 'DJITI implies/3 indexed ~w~n', [Indi3])
@@ -5212,19 +5208,6 @@ djiti_fact(A, B) :-
 		)
 	),
 	B =.. [P, S, O, Si, Oi, Sp, Op].
-djiti_fact('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(A, B), type_index(A, B, C)) :-
-	!,
-	(	current_predicate(type_index/3)
-	->	true
-	;	dynamic(type_index/3),
-		assertz(':-'('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(U, V),
-				(	term_index(U-V, W),
-					type_index(U, V, W)
-				)
-			)
-		)
-	),
-	term_index(A-B, C).
 djiti_fact(A, A).
 
 djiti_assert(A) :-
