@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0605.0944 josd').
+version_info('EYE v17.0607.0922 josd').
 
 license_info('MIT License
 
@@ -111,7 +111,7 @@ eye
 	--plugin <uri>			N3P code
 	--proof <uri>			N3 proof
 	--turtle <uri>			Turtle data
-	--web-built-in <uri>		Prolog code for built-ins
+	--renewable <uri>		Prolog code
 <query>
 	--pass				output deductive closure
 	--pass-all			output deductive closure plus rules
@@ -349,7 +349,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle', '--web-built-in',
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle', '--renewable',
 			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -1090,7 +1090,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle', '--web-built-in']),
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle', '--renewable']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1520,7 +1520,7 @@ args(['--turtle', Argument|Args]) :-
 		)
 	),
 	args(Args).
-args(['--web-built-in', Argument|Args]) :-
+args(['--renewable', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcacher(Arg, File)

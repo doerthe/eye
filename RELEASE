@@ -1,6 +1,6 @@
                                   EYE release
 
-[v17.0605.0944] adding --web-built-in switch to load prolog code for built-ins
+[v17.0607.0922] adding --renewable switch to load prolog code
 [v17.0530.1245] improving the style of generated code
 [v17.0525.2026] improving --plugin option to deal with prolog code
 [v17.0524.2340] using generic prolog:call instead of specific built-ins
