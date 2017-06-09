@@ -1,7 +1,7 @@
                                   EYE release
 
+[v17.0609.1457] adding --prolog switch to load Prolog code
 [v17.0607.0932] using JIT indexes over multiple arguments
-[v17.0607.0922] adding --renewable switch to load prolog code
 [v17.0530.1245] improving the style of generated code
 [v17.0525.2026] improving --plugin option to deal with prolog code
 [v17.0524.2340] using generic prolog:call instead of specific built-ins
