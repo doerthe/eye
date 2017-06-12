@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0612.1211 josd').
+version_info('EYE v17.0612.2302 josd').
 
 license_info('MIT License
 
@@ -109,8 +109,8 @@ eye
 <data>
 	<uri>				N3 triples and rules
 	--plugin <uri>			N3P code
-	--power <uri>			Prolog on the web for extended reasoning
 	--proof <uri>			N3 proof
+	--swipl <uri>			swipl code
 	--turtle <uri>			Turtle data
 <query>
 	--pass				output deductive closure
@@ -345,7 +345,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--power', '--proof', '--query', '--tactic', '--turtle',
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--swipl', '--tactic', '--turtle',
 			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -1086,7 +1086,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--power', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--swipl', '--turtle']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1280,7 +1280,32 @@ args(['--plugin', Argument|Args]) :-
 	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error),
 	args(Args).
-args(['--power', Argument|Args]) :-
+args(['--proof', Arg|Args]) :-
+	!,
+	absolute_uri(Arg, A),
+	atomic_list_concat(['<', A, '>'], R),
+	assertz(scope(R)),
+	(	flag(n3p)
+	->	portray_clause(scope(R))
+	;	true
+	),
+	n3_n3p(Arg, data),
+	(	got_pi
+	->	true
+	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(got_pi)
+	),
+	args(Args).
+args(['--query', Arg|Args]) :-
+	!,
+	n3_n3p(Arg, query),
+	args(Args).
+args(['--swipl', Argument|Args]) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcacher(Arg, File)
@@ -1320,31 +1345,6 @@ args(['--power', Argument|Args]) :-
 	consult(File),
 	format(user_error, '~n', []),
 	flush_output(user_error),
-	args(Args).
-args(['--proof', Arg|Args]) :-
-	!,
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	n3_n3p(Arg, data),
-	(	got_pi
-	->	true
-	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(got_pi)
-	),
-	args(Args).
-args(['--query', Arg|Args]) :-
-	!,
-	n3_n3p(Arg, query),
 	args(Args).
 % DEPRECATED
 args(['--tquery', Arg|Args]) :-
