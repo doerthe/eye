@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0612.0841 josd').
+version_info('EYE v17.0612.1211 josd').
 
 license_info('MIT License
 
@@ -3885,7 +3885,7 @@ wr(Y) :-
 	write(' '),
 	(	Y = true
 	->	wt(Y)
-	;	write('{ '),
+	;	write('{'),
 		labelvars(Y, 0, _, avar),
 		getvars(Y, Z),
 		(	\+flag(traditional)
@@ -3893,7 +3893,7 @@ wr(Y) :-
 		;	wq(Z, some)
 		),
 		wt(Y),
-		write(' }')
+		write('}')
 	),
 	write(']').
 
@@ -4218,33 +4218,33 @@ wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X
 	flag(tquery),	% DEPRECATED
 	!,
 	'<http://www.w3.org/2000/10/swap/log#conjunction>'(Y, U),
-	write('{ '),
+	write('{'),
 	wt(U),
 	write('. _: '),
 	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>'),
 	write(' '),
 	wt(Z),
-	write(' } '),
+	write('} '),
 	wp('<http://www.w3.org/2000/10/swap/log#implies>'),
-	write(' { '),
+	write(' {'),
 	wt(X),
-	write(' }').
+	write('}').
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>'([X|Y], Z)) :-
 	flag(nope),
 	flag(tquery),	% DEPRECATED
 	!,
 	'<http://www.w3.org/2000/10/swap/log#conjunction>'(Y, U),
-	write('{ '),
+	write('{'),
 	wt(U),
 	write('. _: '),
 	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>'),
 	write(' '),
 	wt(Z),
-	write(' } '),
+	write('} '),
 	wp('<http://www.w3.org/2000/10/swap/log#implies>'),
-	write(' { '),
+	write(' {'),
 	wt(X),
-	write(' }').
+	write('}').
 wt2('<http://www.w3.org/2000/10/swap/log#implies>'(X, Y)) :-
 	(	flag(nope)
 	->	U = X
@@ -4436,15 +4436,15 @@ wg(X) :-
 			F \= literal,
 			F \= rdiv
 		)
-	->	write('{ '),
-		indentation(2),
+	->	write('{'),
+		indentation(1),
 		nb_getval(fdepth, D),
 		E is D+1,
 		nb_setval(fdepth, E),
 		wt(X),
 		nb_setval(fdepth, D),
-		indentation(-2),
-		write(' }')
+		indentation(-1),
+		write('}')
 	;	wt(X)
 	).
 
