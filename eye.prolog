@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0612.2302 josd').
+version_info('EYE v17.0613.1259 josd').
 
 license_info('MIT License
 
@@ -110,7 +110,6 @@ eye
 	<uri>				N3 triples and rules
 	--plugin <uri>			N3P code
 	--proof <uri>			N3 proof
-	--swipl <uri>			swipl code
 	--turtle <uri>			Turtle data
 <query>
 	--pass				output deductive closure
@@ -345,7 +344,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--swipl', '--tactic', '--turtle',
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
 			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -1086,7 +1085,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--swipl', '--turtle']),
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1304,47 +1303,6 @@ args(['--proof', Arg|Args]) :-
 args(['--query', Arg|Args]) :-
 	!,
 	n3_n3p(Arg, query),
-	args(Args).
-args(['--swipl', Argument|Args]) :-
-	!,
-	absolute_uri(Argument, Arg),
-	(	wcacher(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
-		flush_output(user_error)
-	;	format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error),
-		(	(	sub_atom(Arg, 0, 5, _, 'http:')
-			->	true
-			;	sub_atom(Arg, 0, 6, _, 'https:')
-			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
-			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
-			catch(exec(Cmd, _), Exc,
-				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-					flush_output(user_error),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					flush_output,
-					halt(1)
-				)
-			)
-		;	(	sub_atom(Arg, 0, 5, _, 'file:')
-			->	parse_url(Arg, Parts),
-				memberchk(path(File), Parts)
-			;	File = Arg
-			)
-		)
-	),
-	consult(File),
-	format(user_error, '~n', []),
-	flush_output(user_error),
 	args(Args).
 % DEPRECATED
 args(['--tquery', Arg|Args]) :-
@@ -8738,6 +8696,7 @@ prolog_sym(code_type, code_type, rel).
 prolog_sym(compare, compare, rel).
 prolog_sym(compound, compound, rel).
 prolog_sym(conjunction, ',', rel).
+prolog_sym(consult, consult, rel).
 prolog_sym(copy_term, copy_term, rel).
 prolog_sym(copy_term_nat, copy_term_nat, rel).
 prolog_sym(cos, cos, func).
@@ -8929,6 +8888,7 @@ prolog_sym(set_stream_position, set_stream_position, rel).
 prolog_sym(setarg, setarg, rel).
 prolog_sym(setof, setof, rel).
 prolog_sym(set_random, set_random, rel).
+prolog_sym(shell, shell, rel).
 prolog_sym(sign, sign, func).
 prolog_sym(simple, simple, rel).
 prolog_sym(sin, sin, func).
