@@ -343,6 +343,7 @@ prolog:code_type a e:Builtin.
 prolog:compare a e:Builtin.
 prolog:compound a e:Builtin.
 prolog:conjunction a e:Builtin.
+prolog:consult a e:Builtin.
 prolog:copy_term a e:Builtin.
 prolog:copy_term_nat a e:Builtin.
 prolog:cos a e:Builtin.
@@ -534,6 +535,7 @@ prolog:set_stream_position a e:Builtin.
 prolog:setarg a e:Builtin.
 prolog:setof a e:Builtin.
 prolog:set_random a e:Builtin.
+prolog:shell a e:Builtin.
 prolog:sign a e:Builtin.
 prolog:simple a e:Builtin.
 prolog:sin a e:Builtin.
