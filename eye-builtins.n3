@@ -581,6 +581,7 @@ prolog:unify_with_occurs_check a e:Builtin.
 prolog:univ a e:Builtin.
 prolog:unknown a e:Builtin.
 prolog:update_mutable a e:Builtin.
+prolog:use_module a e:Builtin.
 prolog:var a e:Builtin.
 prolog:variant a e:Builtin.
 prolog:version a e:Builtin.
