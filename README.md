@@ -35,17 +35,6 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 4. If C = answer(A) and tactic limited-answer stop, else backtrack to 2.  
 5. If brake or tactic linear-select stop, else start again at 1.  
 
-### Design issues
-
-Implicit Quantification in N3
-* See https://lists.w3.org/Archives/Public/public-cwm-talk/2015JanMar/0000  
-* In [ETC](https://github.com/josd/etc) the scope of implicit universals is the top level and the scope  
-  of implicit existentials is the direct formula in which they occur.  
-
-Proof output without bindings
-* See https://josd.github.io/etc/witch/witch-proof.n3  
-* In [ETC](https://github.com/josd/etc) the variable substitutions naturally follow from the proof.  
-
 ## See also
 
 EYE paper
