@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0630.2235 josd').
+version_info('EYE v17.0703.0814 josd').
 
 license_info('MIT License
 
@@ -145,6 +145,7 @@ eye
 :- dynamic(intern/1).
 :- dynamic(keep_skolem/1).
 :- dynamic(keywords/1).
+:- dynamic(lemma/6).		% lemma(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
 :- dynamic(mtime/2).
 :- dynamic(ncllit/0).
 :- dynamic(ns/2).
@@ -161,7 +162,6 @@ eye
 :- dynamic(semantics/2).
 :- dynamic(span/1).
 :- dynamic(table/3).
-:- dynamic(theorem/6).		% theorem(Count, Source, Premise, Conclusion, Premise-Conclusion_index, Rule)
 :- dynamic(tmpfile/1).
 :- dynamic(tuple/2).
 :- dynamic(tuple/3).
@@ -323,8 +323,8 @@ main :-
 		->	format(user_error, 'DJITI implies/3 indexed ~w~n', [Indi3])
 		;	true
 		),
-		(	predicate_property(theorem(_, _, _, _, _, _), indexed(Indl6))
-		->	format(user_error, 'DJITI theorem/6 indexed ~w~n', [Indl6])
+		(	predicate_property(lemma(_, _, _, _, _, _), indexed(Indl6))
+		->	format(user_error, 'DJITI lemma/6 indexed ~w~n', [Indl6])
 		;	true
 		),
 		(	predicate_property(prfstep(_, _, _, _, _, _, _, _), indexed(Indp8))
@@ -524,8 +524,8 @@ gre(Argus) :-
 	nb_setval(tp, 0),
 	nb_setval(wn, 0),
 	nb_setval(rn, 0),
-	nb_setval(theorem_count, 0),
-	nb_setval(theorem_cursor, 0),
+	nb_setval(lemma_count, 0),
+	nb_setval(lemma_cursor, 0),
 	nb_setval(answer_count, 0),
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
@@ -581,7 +581,7 @@ gre(Argus) :-
 			retractall(implies(_, (answer(_, _, _, _, _, _, _), _), _)),
 			retractall(query(_, _)),
 			retractall(prfstep(answer(_, _, _, _, _, _, _), _, _, _, _, _, _, _)),
-			retractall(theorem(_, _, _, _, _, _)),
+			retractall(lemma(_, _, _, _, _, _)),
 			retractall(got_wi(_, _, _, _, _)),
 			retractall(wpfx(_)),
 			retractall('<http://www.w3.org/2000/10/swap/log#outputString>'(_, _)),
@@ -1293,10 +1293,10 @@ args(['--proof', Arg|Args]) :-
 	->	true
 	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
 				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-theorem>')),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
 		assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
 				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-theorem>')),
+				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
 		assertz(got_pi)
 	),
 	args(Args).
@@ -3641,18 +3641,18 @@ w3 :-
 		nl
 	;	true
 	),
-	(	nb_getval(theorem_count, Lco),
-		nb_getval(theorem_cursor, Lcu),
+	(	nb_getval(lemma_count, Lco),
+		nb_getval(lemma_cursor, Lcu),
 		Lcu < Lco
 	->	repeat,
-		cnt(theorem_cursor),
-		nb_getval(theorem_cursor, Cursor),
-		theorem(Cursor, Ai, Bi, Ci, _, Di),
+		cnt(lemma_cursor),
+		nb_getval(lemma_cursor, Cursor),
+		lemma(Cursor, Ai, Bi, Ci, _, Di),
 		indent,
 		wj(Cursor, Ai, Bi, Ci, Di),
 		nl,
 		nl,
-		nb_getval(theorem_count, Cnt),
+		nb_getval(lemma_count, Cnt),
 		Cursor = Cnt,
 		!
 	;	true
@@ -3671,13 +3671,13 @@ wi('<>', _, rule(_, _, A), _) :-	% wi(Source, Premise, Conclusion, Rule)
 	write(']').
 wi(A, B, C, Rule) :-
 	term_index(B-C, Ind),
-	(	theorem(Cnt, A, B, C, Ind, Rule)
+	(	lemma(Cnt, A, B, C, Ind, Rule)
 	->	true
-	;	cnt(theorem_count),
-		nb_getval(theorem_count, Cnt),
-		assertz(theorem(Cnt, A, B, C, Ind, Rule))
+	;	cnt(lemma_count),
+		nb_getval(lemma_count, Cnt),
+		assertz(lemma(Cnt, A, B, C, Ind, Rule))
 	),
-	write('<#theorem'),
+	write('<#lemma'),
 	write(Cnt),
 	write('>').
 
@@ -3685,7 +3685,7 @@ wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	var(Rule),
 	C \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
 	!,
-	write('<#theorem'),
+	write('<#lemma'),
 	write(Cnt),
 	write('> '),
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
@@ -3738,7 +3738,7 @@ wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	write('].'),
 	indentation(-2).
 wj(Cnt, A, B, C, Rule) :-
-	write('<#theorem'),
+	write('<#lemma'),
 	write(Cnt),
 	write('> '),
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
