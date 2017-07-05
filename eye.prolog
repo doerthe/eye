@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0703.0814 josd').
+version_info('EYE v17.0705.2041 josd').
 
 license_info('MIT License
 
@@ -8864,6 +8864,7 @@ prolog_sym(put_char, put_char, rel).
 prolog_sym(put_code, put_code, rel).
 prolog_sym(quotient, /, func).
 prolog_sym(random, random, func).
+prolog_sym(random_float, random_float, func).
 prolog_sym(rational, rational, rel).
 prolog_sym(rational_function, rational, func).
 prolog_sym(rationalize, rationalize, func).
