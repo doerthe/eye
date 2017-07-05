@@ -508,6 +508,7 @@ prolog:put_char a e:Builtin.
 prolog:put_code a e:Builtin.
 prolog:quotient a e:Builtin.
 prolog:random a e:Builtin.
+prolog:random_float a e:Builtin.
 prolog:rational a e:Builtin.
 prolog:rational_function a e:Builtin.
 prolog:rationalize a e:Builtin.
