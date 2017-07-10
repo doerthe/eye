@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0705.2041 josd').
+version_info('EYE v17.0710.0913 josd').
 
 license_info('MIT License
 
@@ -5636,7 +5636,7 @@ djiti_retractall(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	transpose(A, B)
+		(	e_transpose(A, B)
 		)
 	).
 
@@ -9276,14 +9276,14 @@ sub_list([A|B], C, [C|D]) :-
 sub_list([A|B], _, C) :-
 	sub_list(B, A, C).
 
-transpose([], []).
-transpose([A|B], C) :-
-	transpose(A, [A|B], C).
+e_transpose([], []).
+e_transpose([A|B], C) :-
+	e_transpose(A, [A|B], C).
 
-transpose([], _, []).
-transpose([_|A], B, [C|D]) :-
+e_transpose([], _, []).
+e_transpose([_|A], B, [C|D]) :-
 	lists_fr(B, C, E),
-	transpose(A, E, D).
+	e_transpose(A, E, D).
 
 lists_fr([], [], []).
 lists_fr([[A|B]|C], [A|D], [B|E]) :-
