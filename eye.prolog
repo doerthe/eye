@@ -2,7 +2,7 @@
 % Euler Yet another proof Engine - EYE -- Jos De Roo
 % --------------------------------------------------
 
-% See https://github.com/josd/eye
+% See http://github.com/josd/eye
 
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0710.0913 josd').
+version_info('EYE v17.0713.1519 josd').
 
 license_info('MIT License
 
@@ -217,7 +217,7 @@ main :-
 	format(user_error, 'eye~@~@~n', [w0(Argi), w1(Argus)]),
 	flush_output(user_error),
 	(	memberchk('--no-genid', Argus)
-	->	Vns = 'http://eulersharp.sourceforge.net/.well-known/genid/#'
+	->	Vns = 'http://josd.github.io/eye/.well-known/genid/#'
 	;	catch(Run1 is random(2^30)*random(2^30)*random(2^30)*random(2^30), _,
 			(	format(user_error, '** ERROR ** EYE requires swipl with gmp library support e.g sudo apt install libgmp-dev~n', []),
 				flush_output(user_error),
@@ -233,7 +233,7 @@ main :-
 		),
 		atom_codes(Run4, Run3),
 		base64xml(Run4, Run5),
-		atomic_list_concat(['http://eulersharp.sourceforge.net/.well-known/genid/', Run5, '#'], Vns)
+		atomic_list_concat(['http://josd.github.io/eye/.well-known/genid/', Run5, '#'], Vns)
 	),
 	nb_setval(var_ns, Vns),
 	version_info(Version),
@@ -243,12 +243,12 @@ main :-
 	format(user_error, '~w~n', [PVersion]),
 	flush_output(user_error),
 	catch(process_create(path(curl), ['--version'], [stdin(null), stdout(null), stderr(null)]), _,
-		(	format(user_error, '** WARNING ** EYE depends on curl which can be installed from https://curl.haxx.se/download.html **~n', []),
+		(	format(user_error, '** WARNING ** EYE depends on curl which can be installed from http://curl.haxx.se/download.html **~n', []),
 			flush_output(user_error)
 		)
 	),
 	catch(process_create(path(cturtle), [], [stdin(null), stdout(null), stderr(null)]), _,
-		(	format(user_error, '** WARNING ** EYE depends on cturtle which can be installed from https://github.com/melgi/cturtle/releases/ **~n', []),
+		(	format(user_error, '** WARNING ** EYE depends on cturtle which can be installed from http://github.com/melgi/cturtle/releases/ **~n', []),
 			flush_output(user_error)
 		)
 	),
@@ -353,9 +353,9 @@ argv([Arg|Argvs], [Arg|Argus]) :-
 	argv(Argvs, Argus).
 
 
-% -----------------------------------------------
-% GRE (Generic Reasoning Engine) supporting Proof
-% -----------------------------------------------
+% ------------------------------
+% GRE (Generic Reasoning Engine)
+% ------------------------------
 
 gre(Argus) :-
 	statistics(runtime, [T0, _]),
@@ -4687,9 +4687,9 @@ indentation(C) :-
 	nb_setval(indentation, B).
 
 
-% ------------------------------------------------------
-% EAM (Euler Abstract Machine) supporting Unifying Logic
-% ------------------------------------------------------
+% ----------------------------
+% EAM (Euler Abstract Machine)
+% ----------------------------
 
 % In a nutshell:
 %
