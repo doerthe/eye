@@ -3,12 +3,12 @@
 For Linux
 ---------
 
-Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
+Unzip eye.zip from http://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install gmp library e.g. sudo apt install libgmp-dev
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
 Install curl from http://curl.haxx.se/download.html
-Install cturtle from https://github.com/melgi/cturtle/releases/
+Install cturtle from http://github.com/melgi/cturtle/releases/
 Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will
@@ -23,11 +23,11 @@ and it should return the version which is in the file VERSION.
 For Windows
 -----------
 
-Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
+Unzip eye.zip from http://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
 Install curl from http://curl.haxx.se/download.html
-Install cturtle from https://github.com/melgi/cturtle/releases/
+Install cturtle from http://github.com/melgi/cturtle/releases/
 Put the swipl, curl and cturtle executables in the path environment variable.
 
 Run the installation script install.cmd which will
@@ -42,10 +42,10 @@ and it should return the version which is in the file VERSION.
 For Mac
 -------
 
-Unzip eye.zip from https://sourceforge.net/projects/eulersharp/files/eulersharp/
+Unzip eye.zip from http://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
-Install cturtle from https://github.com/melgi/cturtle/releases/
+Install cturtle from http://github.com/melgi/cturtle/releases/
 Put the swipl and cturtle executables in the path environment variable.
 
 Run the installation script install.sh which will

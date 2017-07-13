@@ -119,7 +119,7 @@
 - adding e:stringSplit built-in to split a string into a list of strings (obs from Hong Sun)
 - fixing --pass-all and --pass-all-ground to eliminate duplicate results (obs from Hong Sun)
 - supporting --wcache with prefix of uri and prefix of file
-- improving performance of deep taxonomy case https://github.com/josd/etc/tree/master/dt with proof output
+- improving performance of deep taxonomy case http://github.com/josd/etc/tree/master/dt with proof output
 - improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
 - fixing indentation in proof output
@@ -141,7 +141,7 @@
 - fixing --image to store the EYE options (obs from Hong Sun)
 - refactoring the handling of EYE options
 - supporting DJITI which is standing for 'Deep Just In Time Indexing'
-- ETC https://github.com/josd/etc is used to verify EYE releases
+- ETC http://github.com/josd/etc is used to verify EYE releases
 - fixing scoping issue with the deprecated @forSome (obs from Dörthe Arndt)
 - fixing --plugin for ground backward rules (obs from Dörthe Arndt)
 - adding e:skolem built-in to generate a Skolem IRI object which is a function of the arguments in the subject list
@@ -153,7 +153,7 @@
 - updating EYE_INSTALL to put swipl, curl and cturtle in the path environment variable (obs from Kristof Depraetere)
 - fixing --think performance degradation for backward rules (rules using <= in N3)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
-- fixing --think performance degradation for https://github.com/josd/etc/tree/master/djiti
+- fixing --think performance degradation for http://github.com/josd/etc/tree/master/djiti
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
 - avoiding redundant lemmas in r:evidence when using --think option
 - fixing infinite loop when using --think option in conjuction with e:optional
@@ -221,7 +221,7 @@
 - adding logging info for --multi-query
 - fixing --image for blank nodes
 - improving prfstef/8 and lemma/6 indexing to get linear proof output speed (obs from Hong Sun)
-- changing --turtle to use https://github.com/melgi/cturtle thanks to Giovanni Mels
+- changing --turtle to use http://github.com/melgi/cturtle thanks to Giovanni Mels
 - fixing csv output for --turtle input data
 - introducing --strict command line switch to represent xsd decimals as rationals
 - fixing --no-distinct-input option in conjunction with --pass query
@@ -231,7 +231,7 @@
 - adding --pass-turtle switch and passed_291_out_of_291_tests
 - adding extra logging info inf/in=inferences_per_input_statement
 - adding --streaming-reasoning query mode to do streaming reasoning on --turtle data
-- changing --turtle to use https://github.com/melgi/turtle thanks to Giovanni Mels
+- changing --turtle to use http://github.com/melgi/turtle thanks to Giovanni Mels
 - fixing log:includes built-in for subject graphs with universals (obs from Dörthe Arndt)
 - fixing log:implies built-in for queries (obs from Dörthe Arndt)
 - fixing critical bug in e:graphCopy to avoid blank node clashes (obs from Hong Sun)
@@ -360,8 +360,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from https://josd.github.io/etc/rgb/blueproof003.n3)
-- fixing critical bug in proof output (obs from https://josd.github.io/etc/rgb/blueproof002.n3)
+- fixing proof output for queries with true as premis (obs from http://josd.github.io/etc/rgb/blueproof003.n3)
+- fixing critical bug in proof output (obs from http://josd.github.io/etc/rgb/blueproof002.n3)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)
@@ -405,7 +405,7 @@
 - do not output rules with --pass but use --pass-all instead (obs from Dörthe Arndt)
 - fixing univar and exivar issues in the output of rules
 - fixing univar issue in the derivation of rules
-- supporting backward queries like https://raw.githubusercontent.com/josd/bmb/master/query.n3
+- supporting backward queries like http://raw.githubusercontent.com/josd/bmb/master/query.n3
 - output timestamp, output triple count, inference count, elapsed time and inferences/sec speed
 - adjusting local and global stack limits
 - fixing proof explanation in the case of --plugin <n3p_resource>
@@ -415,7 +415,7 @@
 - fixing bnode labels with minus sign (obs from Ruben Verborgh)
 - adding --no-numerals command line switch to have no numerals in output (obs from Hong Sun)
 - adding built-in_redefinition exception
-- fixing log:outputString for queries (obs from Ruben Verborgh at https://github.com/RubenVerborgh/RestoProof/blob/master/step-count.n3)
+- fixing log:outputString for queries (obs from Ruben Verborgh at http://github.com/RubenVerborgh/RestoProof/blob/master/step-count.n3)
 - getting rid of wrong e:trace side effect (obs from Hong Sun)
 - fixing e:labelvars built-in to have distinct blank node labels (obs from Hong Sun)
 - fixing rule and query generation (obs from Hong Sun)
@@ -1094,7 +1094,7 @@
 
 [Euler-2010-04-03]
 - showing cputime and walltime on stderr for starting, networking and reasoning
-- improving support for https uris
+- improving support for http uris
 - correcting output of free variables
 - correction in e:trace for attributed variables
 - simplified rdf:first and rdf:rest built-ins
@@ -1397,7 +1397,7 @@
 - SEM Skolem Euler Machine jTrolog v2.1 based
 - adding web/2 SEMLibrary built-in
 - correcting issues with blank nodes in rule/query conclusions
-- updated jtrolog.jar according to latest changes from Ivar in https://jtrolog.dev.java.net/svn/jtrolog/trunk
+- updated jtrolog.jar according to latest changes from Ivar in http://jtrolog.dev.java.net/svn/jtrolog/trunk
 - use e:disjunction and see also http://lists.w3.org/Archives/Public/public-cwm-talk/2008AprJun/att-0011/00-part
 - drop e:prune built-in
 
@@ -1628,7 +1628,7 @@
 - simplified things for facts and built-ins
 
 [Euler-Acanthomyops-murphii 2007-05-13]
-- svn repository at https://eulersharp.svn.sourceforge.net/svnroot/eulersharp/
+- svn repository at http://eulersharp.svn.sourceforge.net/svnroot/eulersharp/
 - using rule/2 instead of clause/2
 - added e:inverseEntropy as 1 - binaryEntropy
 
