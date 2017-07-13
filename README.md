@@ -19,7 +19,7 @@ and in a [Docker container for HTTP client use](https://registry.hub.docker.com/
 ## Architecture and design
 
 The main building blocks of EYE are:  
-<img src="https://josd.github.io/images/eye-reasoning-engine.png" width="50%" height="50%" alt="eye-reasoning-engine"/>  
+<img src="https://josd.github.io/images/N3-socket.png" width="50%" height="50%" alt="N3-socket"/>  
 
 The detailed design of EYE comprises:
 1. [N3](http://www.w3.org/TeamSubmission/n3/) parser specified as Prolog rules  
