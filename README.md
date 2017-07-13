@@ -1,20 +1,20 @@
 # Euler Yet another proof Engine
 
-<img align="left" src="https://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
+<img align="left" src="http://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
 It performs semibackward reasoning and it supports Euler paths.  
 Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).  
 
 Semibackward reasoning is backward reasoning for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward reasoning for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-This can be seen in the [EYE Transfer Code](https://github.com/josd/etc).  
+This can be seen in the [EYE Transfer Code](http://github.com/josd/etc).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
-what [Leonhard Euler](https://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
+what [Leonhard Euler](http://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
 EYE sees the rule P => C as P & NOT(C) => C.  
 
-EYE can be [installed manually](https://github.com/josd/eye/blob/master/INSTALL) on Linux, Windows and MacOSX.  
-EYE is also available in a [Docker container for command line use](https://registry.hub.docker.com/u/bdevloed/eye/)  
-and in a [Docker container for HTTP client use](https://registry.hub.docker.com/u/bdevloed/eyeserver/).  
+EYE can be [installed manually](http://github.com/josd/eye/blob/master/INSTALL) on Linux, Windows and MacOSX.  
+EYE is also available in a [Docker container for command line use](http://hub.docker.com/r/bdevloed/eye/)  
+and in a [Docker container for HTTP client use](http://hub.docker.com/r/bdevloed/eyeserver/).  
 
 ## Architecture and design
 
