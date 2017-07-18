@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0713.1519 josd').
+version_info('EYE v17.0718.1402 josd').
 
 license_info('MIT License
 
@@ -5469,6 +5469,9 @@ djiti_retractall(A) :-
 		)
 	).
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pcc>'([A, B], C) :-
+	pcc([A, B], C).
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	within_scope(Sc),
 	with_output_to_codes(wh, C),
@@ -5530,6 +5533,9 @@ djiti_retractall(A) :-
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reverse>'(A, B) :-
 	reverse(A, B).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#rms>'(A, B) :-
+	rms(A, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#roc>'(St, [Sen, Asp]) :-
 	getnumber(St, K),
@@ -9303,17 +9309,41 @@ product([A|B], C) :-
 	product(B, D),
 	C is X*D.
 
+pcc([A, B], C) :-
+	sum(A, As),
+	length(A, An),
+	Am is As/An,
+	sum(B, Bs),
+	length(B, Bn),
+	Bm is Bs/Bn,
+	pcc1(A, Am, Ap),
+	pcc1(B, Bm, Bp),
+	pcc2(A, B, Am, Bm, Cp),
+	C is Cp/sqrt(Ap*Bp).
+
+pcc1([], _, 0).
+pcc1([A|B], C, D) :-
+	pcc1(B, C, E),
+	getnumber(A, F),
+	D is (F-C)^2+E.
+
+pcc2([], [], _, _, 0).
+pcc2([A|B], [C|D], E, F, G) :-
+	pcc2(B, D, E, F, H),
+	getnumber(A, I),
+	getnumber(C, J),
+	G is (I-E)*(J-F)+H.
+
 rms(A, B) :-
-	findall(C,
-		(	member(D, A),
-			getnumber(D, E),
-			C is E*E
-		),
-		F
-	),
-	sum(F, G),
-	length(F, H),
-	B is sqrt(G/H).
+	rms1(A, Ar),
+	length(A, An),
+	B is sqrt(Ar/An).
+
+rms1([], 0).
+rms1([A|B], C) :-
+	rms1(B, D),
+	getnumber(A, E),
+	C is E^2+D.
 
 bmax([A|B], C) :-
 	bmax(B, A, C).
@@ -9510,21 +9540,21 @@ racines(P, L) :-
 racine([A, B], Z) :-
 	est(Z, moins(div(B, A))).
 racine([A, B, C], Z) :-
-	est(P, div(B, fois([2, 0], A))), 
-	est(Q, div(C, A)), 
+	est(P, div(B, fois([2, 0], A))),
+	est(Q, div(C, A)),
 	est(Z, add(moins(P), fois(racarreeun, racine(2, moins(carre(P), Q))))).
 racine([A, B, C, D], Zp) :-
-	est(T, div(B, fois([-3, 0], A))), 
-	est(P, div(add(fois([3, 0], fois(A, carre(T))), add(fois([2, 0], fois(B, T)), C)), A)), 
-	est(Q, div(add(fois(A, cube(T)), add(fois(B, carre(T)), add(fois(C, T), D))), A)), 
-	solutionCardan(P, Q, Z), 
+	est(T, div(B, fois([-3, 0], A))),
+	est(P, div(add(fois([3, 0], fois(A, carre(T))), add(fois([2, 0], fois(B, T)), C)), A)),
+	est(Q, div(add(fois(A, cube(T)), add(fois(B, carre(T)), add(fois(C, T), D))), A)),
+	solutionCardan(P, Q, Z),
 	est(Zp, add(Z, T)).
 racine([A, B, C, D, E], Zp) :-
-	est(T, div(B, fois([-4, 0], A))), 
-	est(P, div(add(fois([6, 0], fois(A, carre(T))), add(fois([3, 0], fois(B, T)), C)), A)), 
-	est(Q, div(add(fois(fois([4, 0], A), cube(T)), add(fois(fois([3, 0], B), carre(T)), add(fois(fois([2, 0], C), T), D))), A)), 
-	est(R, div(add(fois(A, pquatre(T)), add(fois(B, cube(T)), add(fois(C, carre(T)), add(fois(D, T), E)))), A)), 
-	solutionLagrange(P, Q, R, Z), 
+	est(T, div(B, fois([-4, 0], A))),
+	est(P, div(add(fois([6, 0], fois(A, carre(T))), add(fois([3, 0], fois(B, T)), C)), A)),
+	est(Q, div(add(fois(fois([4, 0], A), cube(T)), add(fois(fois([3, 0], B), carre(T)), add(fois(fois([2, 0], C), T), D))), A)),
+	est(R, div(add(fois(A, pquatre(T)), add(fois(B, cube(T)), add(fois(C, carre(T)), add(fois(D, T), E)))), A)),
+	solutionLagrange(P, Q, R, Z),
 	est(Zp, add(Z, T)).
 
 % Polynome a partir de ses racines
@@ -9533,10 +9563,10 @@ polynome(L, P) :-
 
 polynome([], P0, P0).
 polynome([X|L], P0, P4) :-
-	conc(P0, [[0, 0]], P1), 
-	est(Xp, moins(X)), 
-	foisl(Xp, P0, P2), 
-	addll(P1, [[0, 0]|P2], P3), 
+	conc(P0, [[0, 0]], P1),
+	est(Xp, moins(X)),
+	foisl(Xp, P0, P2),
+	addll(P1, [[0, 0]|P2], P3),
 	polynome(L, P3, P4).
 
 conc([], L, L).
@@ -9560,35 +9590,35 @@ addll([X|L], [Y|Lp], [Z|Lpp]) :-
 
 % Solution de l'equation du troisieme degre selon Cardan
 solutionCardan(P, Q, Z) :-
-	nul(P), 
+	nul(P),
 	est(Z, fois(racubiqueun, racine(3, moins(Q)))).
 solutionCardan(Pp, Qp, Z) :-
-	nonnul(Pp), 
-	est(P, div(Pp, [3, 0])), 
-	est(Q, div(Qp, [2, 0])), 
-	est(Raccubique, fois(racubiqueun, racine(3, moins(racine(2, add(carre(Q), cube(P))), Q)))), 
+	nonnul(Pp),
+	est(P, div(Pp, [3, 0])),
+	est(Q, div(Qp, [2, 0])),
+	est(Raccubique, fois(racubiqueun, racine(3, moins(racine(2, add(carre(Q), cube(P))), Q)))),
 	est(Z, moins(Raccubique, div(P, Raccubique))).
 
 % Solutions de l'equation du quatrieme degre selon Lagrange
 solutionLagrange(P, Q, R, Z) :-
-	est(A, [1, 0]), 
-	est(B, fois([2, 0], P)), 
-	est(C, moins(carre(P), fois([4, 0], R))), 
-	est(D, moins(carre(Q))), 
-	racines([A, B, C, D], [Y1, Y2, Y3]), 
-	est(Y1p, racine(2, Y1)), 
-	est(Y2p, racine(2, Y2)), 
-	est(Y3p, racine(2, Y3)), 
-	est(U1, div(add(Y1p, add(Y2p, Y3p)), [2, 0])), 
-	est(U2, div(moins(Y1p, add(Y2p, Y3p)), [2, 0])), 
-	est(U3, div(moins(Y3p, add(Y1p, Y2p)), [2, 0])), 
-	est(U4, div(moins(Y2p, add(Y1p, Y3p)), [2, 0])), 
-	est(V1, fois(U1, fois(U2, U3))), 
-	est(V2, fois(U1, fois(U2, U4))), 
-	est(V3, fois(U1, fois(U3, U4))), 
-	est(V4, fois(U2, fois(U3, U4))), 
-	epsilon(E, moins(add(V1, add(V2, add(V3, V4)))), Q), 
-	dans(U, [U1, U2, U3, U4]), 
+	est(A, [1, 0]),
+	est(B, fois([2, 0], P)),
+	est(C, moins(carre(P), fois([4, 0], R))),
+	est(D, moins(carre(Q))),
+	racines([A, B, C, D], [Y1, Y2, Y3]),
+	est(Y1p, racine(2, Y1)),
+	est(Y2p, racine(2, Y2)),
+	est(Y3p, racine(2, Y3)),
+	est(U1, div(add(Y1p, add(Y2p, Y3p)), [2, 0])),
+	est(U2, div(moins(Y1p, add(Y2p, Y3p)), [2, 0])),
+	est(U3, div(moins(Y3p, add(Y1p, Y2p)), [2, 0])),
+	est(U4, div(moins(Y2p, add(Y1p, Y3p)), [2, 0])),
+	est(V1, fois(U1, fois(U2, U3))),
+	est(V2, fois(U1, fois(U2, U4))),
+	est(V3, fois(U1, fois(U3, U4))),
+	est(V4, fois(U2, fois(U3, U4))),
+	epsilon(E, moins(add(V1, add(V2, add(V3, V4)))), Q),
+	dans(U, [U1, U2, U3, U4]),
 	est(Z, fois(E, U)).
 
 epsilon([1, 0], _, Q) :-
@@ -9616,7 +9646,7 @@ est(Z, T) :-
 est(Z, T) :-
 	T =.. [F, X, Y],
 	dif(F, racine),
-	dif(F, '.'), 
+	dif(F, '.'),
 	est(Xp, X),
 	est(Yp, Y),
 	Tp =.. [F, Xp, Yp, Z],
@@ -9626,13 +9656,13 @@ est(Z, racine(N, X)) :-
 	racine(N, Xp, Z).
 
 % Operations sur les complexes
-moins([X1, X2], [Y1, Y2]) :- 
+moins([X1, X2], [Y1, Y2]) :-
 	Y1 is -X1,
 	Y2 is -X2.
-moins([X1, X2], [Y1, Y2], [Z1, Z2]) :- 
+moins([X1, X2], [Y1, Y2], [Z1, Z2]) :-
 	Z1 is X1-Y1,
 	Z2 is X2-Y2.
-add([X1, X2], [Y1, Y2], [Z1, Z2]) :- 
+add([X1, X2], [Y1, Y2], [Z1, Z2]) :-
 	Z1 is X1+Y1,
 	Z2 is X2+Y2.
 fois([X1, X2], [Y1, Y2], [Z1, Z2]) :-
@@ -9666,18 +9696,18 @@ racubiqueun([X, Y]) :-
 
 racine(_, X, [0, 0]) :- nul(X).
 racine(N, X, Y) :-
-	nonnul(X), 
-	polaire(X, [R, T]), 
-	root(N, R, Rp), 
-	Tp is T/N, 
+	nonnul(X),
+	polaire(X, [R, T]),
+	root(N, R, Rp),
+	Tp is T/N,
 	cartesien([Rp, Tp], Y).
 
 root(N, X, Y) :-
 	Y is exp(log(X)/N).
 
 polaire([X, Y], [R, Tp]) :-
-	R is sqrt(X**2+Y**2), 
-	T is acos(abs(X)/R), 
+	R is sqrt(X**2+Y**2),
+	T is acos(abs(X)/R),
 	cadran(X, Y, T, Tp).
 
 cadran(X, Y, T, Tp) :-
