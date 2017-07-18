@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0718.1402 josd').
+version_info('EYE v17.0718.2310 josd').
 
 license_info('MIT License
 
@@ -5190,6 +5190,9 @@ djiti_retractall(A) :-
 
 % Built-ins
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#avg>'(A, B) :-
+	avg(A, B).
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'(['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>'(A, B)|C], D) :-
 	within_scope(_),
 	(	nb_getval(bnet, done)
@@ -5242,6 +5245,9 @@ djiti_retractall(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#closure>'(Sc, A) :-
 	within_scope(Sc),
 	hstep(A, _).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cov>'(A, B) :-
+	cov(A, B).
 
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#distinct>'(A, B) :-
@@ -5572,6 +5578,9 @@ djiti_retractall(A) :-
 		(	quicksort(A, B)
 		)
 	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#std>'(A, B) :-
+	std(A, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#stringEscape>'(literal(X, Y), literal(Z, Y)) :-
 	when(
@@ -9309,30 +9318,32 @@ product([A|B], C) :-
 	product(B, D),
 	C is X*D.
 
-pcc([A, B], C) :-
+avg(A, B) :-
 	sum(A, As),
 	length(A, An),
-	Am is As/An,
-	sum(B, Bs),
-	length(B, Bn),
-	Bm is Bs/Bn,
-	pcc1(A, Am, Ap),
-	pcc1(B, Bm, Bp),
-	pcc2(A, B, Am, Bm, Cp),
-	C is Cp/sqrt(Ap*Bp).
+	B is As/An.
 
-pcc1([], _, 0).
-pcc1([A|B], C, D) :-
-	pcc1(B, C, E),
-	getnumber(A, F),
-	D is (F-C)^2+E.
+cov([A, B], C) :-
+	avg(A, Am),
+	avg(B, Bm),
+	cov1(A, B, Am, Bm, Cp),
+	length(A, An),
+	C is Cp/(An-1).
 
-pcc2([], [], _, _, 0).
-pcc2([A|B], [C|D], E, F, G) :-
-	pcc2(B, D, E, F, H),
+cov1([], [], _, _, 0).
+cov1([A|B], [C|D], E, F, G) :-
+	cov1(B, D, E, F, H),
 	getnumber(A, I),
 	getnumber(C, J),
 	G is (I-E)*(J-F)+H.
+
+pcc([A, B], C) :-
+	avg(A, Am),
+	avg(B, Bm),
+	cov1(A, B, Am, Bm, Cp),
+	std1(A, Am, Ap),
+	std1(B, Bm, Bp),
+	C is Cp/sqrt(Ap*Bp).
 
 rms(A, B) :-
 	rms1(A, Ar),
@@ -9344,6 +9355,18 @@ rms1([A|B], C) :-
 	rms1(B, D),
 	getnumber(A, E),
 	C is E^2+D.
+
+std(A, B) :-
+	avg(A, Am),
+	std1(A, Am, As),
+	length(A, An),
+	B is sqrt(As/(An-1)).
+
+std1([], _, 0).
+std1([A|B], C, D) :-
+	std1(B, C, E),
+	getnumber(A, F),
+	D is (F-C)^2+E.
 
 bmax([A|B], C) :-
 	bmax(B, A, C).
