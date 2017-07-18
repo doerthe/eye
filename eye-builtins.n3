@@ -17,7 +17,6 @@
 @prefix pred: <http://www.w3.org/2007/rif-builtin-predicate#>.
 @prefix prolog: <http://eulersharp.sourceforge.net/2003/03swap/prolog#>.
 
-
 ### Logic Framework Extension Built-ins
 
 e:avg a e:Builtin.
@@ -75,11 +74,9 @@ e:unique a e:Builtin.
 e:whenGround a e:Builtin.
 e:wwwFormEncode a e:Builtin.
 
-
 ### Crypto Built-ins
 
 crypto:sha a e:Builtin.
-
 
 ### List Built-ins
 
@@ -89,7 +86,6 @@ list:in a e:Builtin.
 list:last a e:Builtin.
 list:member a e:Builtin.
 list:rest a e:Builtin.
-
 
 ### Logic Framework Built-ins
 
@@ -105,7 +101,6 @@ log:outputString a e:Builtin.
 log:rawType a e:Builtin.
 log:semantics a e:Builtin.
 log:uri a e:Builtin.
-
 
 ### Math Built-ins
 
@@ -135,12 +130,10 @@ math:sum a e:Builtin.
 math:tan a e:Builtin.
 math:tanh a e:Builtin.
 
-
 ### RDF Built-ins
 
 rdf:first a e:Builtin.
 rdf:rest a e:Builtin.
-
 
 ### String Built-ins
 
@@ -161,13 +154,11 @@ string:scrape a e:Builtin.
 string:search a e:Builtin.
 string:startsWith a e:Builtin.
 
-
 ### Time Built-ins
 
 time:day a e:Builtin.
 time:month a e:Builtin.
 time:year a e:Builtin.
-
 
 ### RIF Built-ins
 
@@ -291,7 +282,6 @@ func:union a e:Builtin.
 func:distinct-values a e:Builtin.
 func:intersect a e:Builtin.
 func:except a e:Builtin.
-
 
 ### Prolog Built-ins
 
