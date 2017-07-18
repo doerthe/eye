@@ -20,11 +20,13 @@
 
 ### Logic Framework Extension Built-ins
 
+e:avg a e:Builtin.
 e:biconditional a e:Builtin.
 e:binaryEntropy a e:Builtin.
 e:calculate a e:Builtin.
 e:call a e:Builtin.
 e:cartesianProduct a e:Builtin.
+e:cov a e:Builtin.
 e:csvTuple a e:Builtin.
 e:fail a e:Builtin.
 e:finalize a e:Builtin.
@@ -59,6 +61,7 @@ e:sha a e:Builtin.
 e:sigmoid a e:Builtin.
 e:skolem a e:Builtin.
 e:sort a e:Builtin.
+e:std a e:Builtin.
 e:stringEscape a e:Builtin.
 e:stringReverse a e:Builtin.
 e:stringSplit a e:Builtin.
