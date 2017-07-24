@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0718.2310 josd').
+version_info('EYE v17.0724.1558 josd').
 
 license_info('MIT License
 
@@ -3691,8 +3691,7 @@ wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
 	write(' '),
 	wp('<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-	write('; '),
-	nl,
+	writeln(';'),
 	indentation(2),
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
@@ -3744,8 +3743,7 @@ wj(Cnt, A, B, C, Rule) :-
 	wp('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'),
 	write(' '),
 	wp('<http://www.w3.org/2000/10/swap/reason#Inference>'),
-	write('; '),
-	nl,
+	writeln(';'),
 	indentation(2),
 	indent,
 	wp('<http://www.w3.org/2000/10/swap/reason#gives>'),
@@ -3790,7 +3788,7 @@ wj(Cnt, A, B, C, Rule) :-
 		nl,
 		indentation(-2),
 		indent,
-		write('}; ')
+		write('};')
 	),
 	nl,
 	indent,
