@@ -35,6 +35,7 @@ e:graphCopy a e:Builtin.
 e:graphDifference a e:Builtin.
 e:graphIntersection a e:Builtin.
 e:graphList a e:Builtin.
+e:graphPair a e:Builtin.
 e:hmac-sha a e:Builtin.
 e:ignore a e:Builtin.
 e:label a e:Builtin.
