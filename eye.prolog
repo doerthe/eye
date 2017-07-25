@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0724.1558 josd').
+version_info('EYE v17.0725.2216 josd').
 
 license_info('MIT License
 
@@ -3858,97 +3858,6 @@ wt(X) :-
 	!,
 	write('?'),
 	write(X).
-wt(rdiv(X, Y)) :-
-	number_codes(Y, [0'1|Z]),
-	lzero(Z, Z),
-	!,
-	(	Z = []
-	->	F = '~d.0'
-	;	length(Z, N),
-		number_codes(X, U),
-		(	length(U, N)
-		->	F = '0.~d'
-		;	atomic_list_concat(['~', N, 'd'], F)
-		)
-	),
-	(	flag('no-numerals')
-	->	write('"')
-	;	true
-	),
-	format(F, [X]),
-	(	flag('no-numerals')
-	->	write('"^^'),
-		wt('<http://www.w3.org/2001/XMLSchema#decimal>')
-	;	true
-	).
-wt(rdiv(X, Y)) :-
-	!,
-	(	flag('no-numerals')
-	->	write('"')
-	;	true
-	),
-	format('~g', [rdiv(X, Y)]),
-	(	flag('no-numerals')
-	->	write('"^^'),
-		wt('<http://www.w3.org/2001/XMLSchema#decimal>')
-	;	true
-	).
-wt(X) :-
-	number(X),
-	!,
-	(	flag('no-numerals')
-	->	dtlit([U, V], X),
-		dtlit([U, V], W),
-		wt(W)
-	;	(	flag(strict),
-			float(X)
-		->	format('~16e', [X])
-		;	write(X)
-		)
-	).
-wt((X, Y)) :-
-	!,
-	(	atomic(X),
-		X \= '!'
-	->	wt([X, Y]),
-		write(' '),
-		wt('<http://eulersharp.sourceforge.net/2003/03swap/prolog#conjunction>'),
-		write(' true')
-	;	wt(X),
-		ws(X),
-		write('.'),
-		(	flag(strings)
-		->	write(' ')
-		;	nl,
-			indent
-		),
-		wt(Y)
-	).
-wt(set(X)) :-
-	!,
-	write('($'),
-	wl(X),
-	write(' $)').
-wt([]) :-
-	!,
-	write('()').
-wt([X|Y]) :-
-	!,
-	(	\+last_tail([X|Y], [])
-	->	write('[ '),
-		wt('<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>'),
-		write(' '),
-		wg(X),
-		write('; '),
-		wt('<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'),
-		write(' '),
-		wt(Y),
-		write(']')
-	;	write('('),
-		wg(X),
-		wl(Y),
-		write(')')
-	).
 wt(X) :-
 	functor(X, _, A),
 	(	A = 0,
@@ -3973,6 +3882,22 @@ wt0(fail) :-
 	write('() '),
 	wp(fail),
 	write(' true').
+wt0([]) :-
+	!,
+	write('()').
+wt0(X) :-
+	number(X),
+	!,
+	(	flag('no-numerals')
+	->	dtlit([U, V], X),
+		dtlit([U, V], W),
+		wt(W)
+	;	(	flag(strict),
+			float(X)
+		->	format('~16e', [X])
+		;	write(X)
+		)
+	).
 wt0(X) :-
 	atom(X),
 	atom_concat(some, Y, X),
@@ -4127,6 +4052,11 @@ wt0(X) :-
 		write(Z)
 	).
 
+wt1(set(X)) :-
+	!,
+	write('($'),
+	wl(X),
+	write(' $)').
 wt1(X) :-
 	X =.. [B|C],
 	wt(C),
@@ -4134,6 +4064,41 @@ wt1(X) :-
 	wp(B),
 	write(' true').
 
+wt2((X, Y)) :-
+	!,
+	(	atomic(X),
+		X \= '!'
+	->	wt2([X, Y]),
+		write(' '),
+		wt0('<http://eulersharp.sourceforge.net/2003/03swap/prolog#conjunction>'),
+		write(' true')
+	;	wt(X),
+		ws(X),
+		write('.'),
+		(	flag(strings)
+		->	write(' ')
+		;	nl,
+			indent
+		),
+		wt(Y)
+	).
+wt2([X|Y]) :-
+	!,
+	(	\+last_tail([X|Y], [])
+	->	write('[ '),
+		wt0('<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>'),
+		write(' '),
+		wg(X),
+		write('; '),
+		wt0('<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'),
+		write(' '),
+		wt(Y),
+		write(']')
+	;	write('('),
+		wg(X),
+		wl(Y),
+		write(')')
+	).
 wt2(literal(X, lang(Y))) :-
 	!,
 	write('"'),
@@ -4169,6 +4134,41 @@ wt2(literal(X, type(Y))) :-
 	write(Z),
 	write('"^^'),
 	wt(Y).
+wt2(rdiv(X, Y)) :-
+	number_codes(Y, [0'1|Z]),
+	lzero(Z, Z),
+	!,
+	(	Z = []
+	->	F = '~d.0'
+	;	length(Z, N),
+		number_codes(X, U),
+		(	length(U, N)
+		->	F = '0.~d'
+		;	atomic_list_concat(['~', N, 'd'], F)
+		)
+	),
+	(	flag('no-numerals')
+	->	write('"')
+	;	true
+	),
+	format(F, [X]),
+	(	flag('no-numerals')
+	->	write('"^^'),
+		wt0('<http://www.w3.org/2001/XMLSchema#decimal>')
+	;	true
+	).
+wt2(rdiv(X, Y)) :-
+	!,
+	(	flag('no-numerals')
+	->	write('"')
+	;	true
+	),
+	format('~g', [rdiv(X, Y)]),
+	(	flag('no-numerals')
+	->	write('"^^'),
+		wt0('<http://www.w3.org/2001/XMLSchema#decimal>')
+	;	true
+	).
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X|Y], Z)) :-
 	flag(nope),
 	flag(tquery),	% DEPRECATED
@@ -4332,7 +4332,7 @@ wt2(X) :-
 	X =.. [P, S, O],
 	(	P \= true,
 		prolog_sym(_, P, _)
-	->	wt([S, O]),
+	->	wt2([S, O]),
 		write(' '),
 		wp(P),
 		write(' true')
@@ -4361,7 +4361,7 @@ wtn(X) :-
 		\+prolog_sym(_, B, _),
 		X \= true,
 		X \= false
-	->	wt([B|C]),
+	->	wt2([B|C]),
 		write('^'),
 		wp('<http://eulersharp.sourceforge.net/2003/03swap/prolog#univ>')
 	;	wt(C),
@@ -5358,6 +5358,8 @@ djiti_retractall(A) :-
 			)
 		)
 	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphPair>'((A, B), [A, B]).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#hmac-sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	flag('hmac-key', Key),
