@@ -4,8 +4,6 @@
 
 % See http://github.com/josd/eye
 
-:- ['marble.prolog'].
-
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
 :- style_check(-atom).
@@ -39,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0803.2100 josd').
+version_info('EYE v17.0806.0020 josd').
 
 license_info('MIT License
 
@@ -109,8 +107,9 @@ eye
 	--warn				output warning info on stderr
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
-	<uri>				N3 triples and rules
+	--n3 <uri>			N3 triples and rules
 	--plugin <uri>			N3P code
+	--prolog <uri>			Prolog code
 	--proof <uri>			N3 proof
 	--turtle <uri>			Turtle data
 <query>
@@ -1087,7 +1086,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--help', '--n3', '--pass', '--pass-all', '--plugin', '--prolog', '--proof', '--query', '--turtle']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1176,6 +1175,198 @@ curl_http_headers(Headers) :-
 
 args([]) :-
 	!.
+args(['--n3', Argument|Args]) :-
+	catch(process_create(path(cn3), [], [stdin(null), stdout(null), stderr(null)]), _,
+		args([Argument|Args])
+	),
+	!,
+	absolute_uri(Argument, Arg),
+	(	wcacher(Arg, File)
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
+			->	true
+			;	sub_atom(Arg, 0, 6, _, 'https:')
+			)
+		->	(	flag('tmp-file', File)	% DEPRECATED
+			->	true
+			;	tmp_file(File),
+				assertz(tmpfile(File))
+			),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			catch(exec(Cmd, _), Exc,
+				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+					flush_output(user_error),
+					(	retract(tmpfile(File))
+					->	delete_file(File)
+					;	true
+					),
+					flush_output,
+					halt(1)
+				)
+			)
+		;	(	sub_atom(Arg, 0, 5, _, 'file:')
+			->	parse_url(Arg, Parts),
+				memberchk(path(File), Parts)
+			;	File = Arg
+			)
+		)
+	),
+	atomic_list_concat(['-b=', Arg], Base),
+	(	flag('pass-n3')
+	->	catch(process_create(path(cn3), ['-f=nt', Base, file(File)], [stdout(std), stderr(std)]), Exc,
+			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		)
+	;	catch(process_create(path(cn3), [Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+				flush_output(user_error),
+				flush_output,
+				halt(1)
+			)
+		),
+		nb_setval(wn, 0),
+		nb_setval(rn, 0),
+		nb_setval(sc, 0),
+		nb_setval(tc, 0),
+		nb_setval(tp, 0),
+		nb_setval(tr, 0),
+		nb_setval(rt, 0),
+		set_stream(In, encoding(utf8)),
+		repeat,
+		read_term(In, Rt, []),
+		cnt(rt),
+		nb_getval(rt, Rtcnt),
+		(	Rtcnt mod 10000 =:= 0
+		->	garbage_collect_atoms
+		;	true
+		),
+		(	Rt = end_of_file
+		->	catch(read_line_to_codes(In, _), _, true)
+		;	(	flag('streaming-reasoning')
+			->	(	Rt \= ':-'(_),
+					Rt \= flag(_, _),
+					Rt \= scope(_),
+					Rt \= pfx(_, _),
+					Rt \= pred(_),
+					Rt \= cpred(_),
+					Rt \= scount(_)
+				->	Rt =.. [P, S, O],
+					implies(Prem, Conc, _),
+					(	(	Prem = exopred(P, S, O)
+						;	Prem = Rt
+						)
+					->	true
+					;	(	Prem = (exopred(P, S, O), U)
+						;	Prem = (Rt, U)
+						),
+						call(U)
+					),
+					(	ground(Conc)
+					->	true
+					;	nb_getval(wn, W),
+						labelvars(Conc, W, N, skolem),
+						nb_setval(wn, N)
+					),
+					(	Conc = (_, _),
+						conj_list(Conc, C)
+					->	forall(
+							(	member(Q, C)
+							),
+							(	(	Q = exopred(X, Y, Z)
+								->	Qt =.. [X, Y, Z]
+								;	Qt = Q
+								),
+								functor(Qt, F, _),
+								(	pred(F)
+								->	true
+								;	assertz(pred(F))
+								),
+								wt(Qt),
+								writeln('.')
+							)
+						),
+						nb_getval(sc, I),
+						length(C, J),
+						K is I+J,
+						nb_setval(sc, K)
+					;	(	Conc = exopred(X, Y, Z)
+						->	Qt =.. [X, Y, Z]
+						;	Qt = Conc
+						),
+						functor(Qt, F, _),
+						(	pred(F)
+						->	true
+						;	assertz(pred(F))
+						),
+						wt(Qt),
+						writeln('.'),
+						cnt(sc)
+					)
+				;	(	Rt = pred(F)
+					->	(	pred(F)
+						->	true
+						;	assertz(pred(F))
+						)
+					;	true
+					),
+					(	Rt = scount(SCount)
+					->	assertz(scount(SCount))
+					;	true
+					)
+				)
+			;	n3pin(Rt, In, File)
+			),
+			fail
+		),
+		!,
+		(	File = '-'
+		->	true
+		;	close(In)
+		),
+		(	retract(tmpfile(File))
+		->	delete_file(File)
+		;	true
+		),
+		findall(SCnt,
+			(	retract(scount(SCnt))
+			),
+			SCnts
+		),
+		sum(SCnts, SC),
+		nb_getval(input_statements, IN),
+		Inp is SC+IN,
+		nb_setval(input_statements, Inp),
+		format(user_error, 'SC=~w~n', [SC]),
+		flush_output(user_error),
+		(	flag('streaming-reasoning')
+		->	timestamp(Stamp),
+			statistics(runtime, [Cpu, _]),
+			nb_getval(sc, Sc),
+			nb_getval(output_statements, Out),
+			Outp is Sc+Out,
+			nb_setval(output_statements, Outp),
+			nb_getval(tc, TC),
+			Ent is TC,
+			nb_getval(tp, TP),
+			Step is TP,
+			nb_getval(tr, TR),
+			Brake is TR,
+			statistics(inferences, Inf),
+			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
+			format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n#ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
+			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
+			flush_output(user_error)
+		;	true
+		)
+	),
+	args(Args).
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
@@ -1280,6 +1471,53 @@ args(['--plugin', Argument|Args]) :-
 	nb_setval(input_statements, Inp),
 	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error),
+	args(Args).
+args(['--prolog', Argument|Args]) :-
+	!,
+	absolute_uri(Argument, Arg),
+	(	wcacher(Arg, File)
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
+			->	true
+			;	sub_atom(Arg, 0, 6, _, 'https:')
+			)
+		->	(	flag('tmp-file', File)	% DEPRECATED
+			->	true
+			;	tmp_file(File),
+				assertz(tmpfile(File))
+			),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			catch(exec(Cmd, _), Exc,
+				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+					flush_output(user_error),
+					(	retract(tmpfile(File))
+					->	delete_file(File)
+					;	true
+					),
+					flush_output,
+					halt(1)
+				)
+			)
+		;	(	sub_atom(Arg, 0, 5, _, 'file:')
+			->	parse_url(Arg, Parts),
+				memberchk(path(File), Parts)
+			;	File = Arg
+			)
+		)
+	),
+	(	File = '-'
+	->	[user]
+	;	load_files(File, [encoding(utf8)])
+	),
+	!,
+	(	retract(tmpfile(File))
+	->	delete_file(File)
+	;	true
+	),
 	args(Args).
 args(['--proof', Arg|Args]) :-
 	!,
