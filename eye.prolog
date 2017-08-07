@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0806.0020 josd').
+version_info('EYE v17.0807.1020 josd').
 
 license_info('MIT License
 
@@ -1176,9 +1176,6 @@ curl_http_headers(Headers) :-
 args([]) :-
 	!.
 args(['--n3', Argument|Args]) :-
-	catch(process_create(path(cn3), [], [stdin(null), stdout(null), stderr(null)]), _,
-		args([Argument|Args])
-	),
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcacher(Arg, File)
@@ -5538,6 +5535,8 @@ djiti_retractall(A) :-
 	;	true
 	),
 	E = C.
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#firstRest>'([A|B], [A, B]).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#format>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], literal(C, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	when(
