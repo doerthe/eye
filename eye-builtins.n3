@@ -1,7 +1,8 @@
-### Euler Proof Engine Built-ins -- Jos De Roo
+### EYE Built-ins -- Jos De Roo
 ###
-### see http://www.w3.org/2000/10/swap/doc/CwmBuiltins
-###     http://eulersharp.sourceforge.net/2003/03swap/log-rules.n3
+### see http://eulersharp.sourceforge.net/2003/03swap/log-rules.n3
+###     http://www.w3.org/2000/10/swap/doc/CwmBuiltins
+###     http://www.w3.org/TR/rif-dtb/
 
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
 @prefix fn: <http://www.w3.org/2006/xpath-functions#>.
