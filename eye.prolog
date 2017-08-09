@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0809.0911 josd').
+version_info('EYE v17.0809.0947 josd').
 
 license_info('MIT License
 
@@ -107,7 +107,7 @@ eye
 	--warn				output warning info on stderr
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
-	--n3 <uri>			N3 triples and rules
+	<uri>				N3 triples and rules
 	--plugin <uri>			N3P code
 	--prolog <uri>			Prolog code
 	--proof <uri>			N3 proof
@@ -1794,7 +1794,7 @@ n3pin(Rt, In, File) :-
 		;	true
 		),
 		(	Rt = ':-'(Ci, Px),
-			conj_trans(Px, Pi)
+			conjify(Px, Pi)
 		->	(	Ci = true
 			->	call(Pi)
 			;	nb_getval(current_scope, Si),
@@ -2066,7 +2066,7 @@ n3_n3p(Argument, Mode) :-
 						;	true
 						)
 					;	(	Rt = ':-'(Ci, Px),
-							conj_trans(Px, Pi)
+							conjify(Px, Pi)
 						->	(	Ci = true
 							->	(	flag(n3p)
 								->	portray_clause(':-'(Pi))
@@ -9365,21 +9365,6 @@ conj_append((A, B), C, (A, D)) :-
 	!.
 conj_append(A, B, (A, B)).
 
-conj_trans((A, B), (C, D)) :-
-	ctrans(A, C),
-	!,
-	conj_trans(B, D).
-conj_trans(A, B) :-
-	ctrans(A, B).
-
-ctrans('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(when, type('<http://www.w3.org/2001/XMLSchema#string>')),
-	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], true), C], true), when(D, C)) :-
-	!,
-	D =.. [A|B].
-ctrans('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(!, type('<http://www.w3.org/2001/XMLSchema#string>'))], true), !) :-
-	!.
-ctrans(A, A).
-
 cflat([], []).
 cflat([A|B], C) :-
 	cflat(B, D),
@@ -10074,6 +10059,18 @@ relabel(A, B) :-
 	relabel(D, F),
 	B =.. [E|F].
 
+conjify((A, B), (C, D)) :-
+	!,
+	conjify(A, C),
+	conjify(B, D).
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(when, _),
+		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(A, _)|B], true), C], true), when(D, C)) :-
+	!,
+	D =.. [A|B].
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(!, _)], true), !) :-
+	!.
+conjify(A, A).
+
 atomify(A, A) :-
 	var(A),
 	!.
@@ -10084,7 +10081,7 @@ atomify([A|B], [C|D]) :-
 	!,
 	atomify(A, C),
 	atomify(B, D).
-atomify(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), A) :-
+atomify(literal(A, _), A) :-
 	!.
 atomify(A, B) :-
 	A =.. [C|D],
