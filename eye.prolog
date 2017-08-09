@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0809.0947 josd').
+version_info('EYE v17.0809.1553 josd').
 
 license_info('MIT License
 
@@ -9864,6 +9864,12 @@ term_arg_1(A, B) :-
 	term_index(C, B).
 term_arg_1(_, void).
 
+if(A, B, C) :-
+	(	call(A)
+	->	call(B)
+	;	call(C)
+	).
+
 if_then_else(A, B, C) :-
 	(	call(A)
 	->	call(B)
@@ -10074,20 +10080,13 @@ conjify(A, A).
 atomify(A, A) :-
 	var(A),
 	!.
-atomify(A, A) :-
-	atomic(A),
-	!.
 atomify([A|B], [C|D]) :-
 	!,
 	atomify(A, C),
 	atomify(B, D).
 atomify(literal(A, _), A) :-
 	!.
-atomify(A, B) :-
-	A =.. [C|D],
-	atomify(C, E),
-	atomify(D, F),
-	B =.. [E|F].
+atomify(A, A).
 
 partconc(_, [], []).
 partconc(_, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, B)], ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(A, B)]) :-
