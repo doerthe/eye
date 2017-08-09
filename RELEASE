@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0809.0911] deprecating prolog: built-ins and using e:calculate and e:predicate instead
 [v17.0807.1020] adding e:firstRest built-in to convert a list into its first rest tuple
 [v17.0806.0020] adding --prolog <uri> and testing with http://josd.github.io/marble/marble.prolog
 [v17.0725.2216] adding e:graphPair built-in used for graph/pair transformation e.g. {:a :b :c. :d :e :f. :g :h :i} e:graphPair ({:a :b :c} {:d :e :f. :g :h :i})

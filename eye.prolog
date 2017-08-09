@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0807.1020 josd').
+version_info('EYE v17.0809.0911 josd').
 
 license_info('MIT License
 
@@ -1793,7 +1793,8 @@ n3pin(Rt, In, File) :-
 		->	nb_setval(current_scope, Scope)
 		;	true
 		),
-		(	Rt = ':-'(Ci, Pi)
+		(	Rt = ':-'(Ci, Px),
+			conj_trans(Px, Pi)
 		->	(	Ci = true
 			->	call(Pi)
 			;	nb_getval(current_scope, Si),
@@ -2064,7 +2065,8 @@ n3_n3p(Argument, Mode) :-
 						->	assertz(prfstep(Ct, Cnd, Pt, Pnd, Qt, Ic, Mt, St))
 						;	true
 						)
-					;	(	Rt = ':-'(Ci, Pi)
+					;	(	Rt = ':-'(Ci, Px),
+							conj_trans(Px, Pi)
 						->	(	Ci = true
 							->	(	flag(n3p)
 								->	portray_clause(':-'(Pi))
@@ -2543,6 +2545,7 @@ pathitem(Number, [], L1, L2) :-
 pathitem(Boolean, [], L1, L2) :-
 	boolean(Boolean, L1, L2),
 	!.
+% DEPRECATED
 pathitem(Atom, [], L1, L2) :-
 	literal(A, type(T), L1, L2),
 	T = '\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>\'',
@@ -2642,7 +2645,7 @@ pathtail(Node, PNode, [Triple|Triples], ['!'|L2], L4) :-
 			;	(	BNode = false
 				->	T =.. [Pred|Node],
 					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)
+				;	(	prolog_sym(_, Pred, func)	% DEPRECATED
 					->	T =.. [Pred|Node],
 						Triple = is(BNode, T)
 					;	Triple =.. [Pred, Node, BNode]
@@ -2684,7 +2687,7 @@ pathtail(Node, PNode, [Triple|Triples], ['^'|L2], L4) :-
 			;	(	Node = false
 				->	T =.. [Pred|BNode],
 					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)
+				;	(	prolog_sym(_, Pred, func)	% DEPRECATED
 					->	T =.. [Pred|BNode],
 						Triple = is(Node, T)
 					;	Triple =.. [Pred, BNode, Node]
@@ -2727,7 +2730,7 @@ propertylist(Subject, [Triple|Triples], L1, L5) :-
 			;	(	Object = false
 				->	T =.. [Pred|Subject],
 					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)
+				;	(	prolog_sym(_, Pred, func)	% DEPRECATED
 					->	T =.. [Pred|Subject],
 						Triple = is(Object, T)
 					;	Triple =.. [Pred, Subject, Object]
@@ -4111,13 +4114,13 @@ wt(X) :-
 
 wt0(!) :-
 	!,
-	write('() '),
-	wp(!),
+	write('("!") '),
+	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'),
 	write(' true').
 wt0(fail) :-
 	!,
-	write('() '),
-	wp(fail),
+	write('("fail") '),
+	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'),
 	write(' true').
 wt0([]) :-
 	!,
@@ -4273,12 +4276,12 @@ wt0(X) :-
 				\+ (sub_atom(X, 0, 1, _, '<'), sub_atom(X, _, 1, 0, '>')),
 				X \= true,
 				X \= false
-			->	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
+			->	W = literal(X, type('<http://www.w3.org/2001/XMLSchema#string>'))
 			;	W = X
 			)
 		)
 	),
-	(	W = literal(X, type('<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>'))
+	(	W = literal(X, type('<http://www.w3.org/2001/XMLSchema#string>'))
 	->	wt2(W)
 	;	(	current_prolog_flag(windows, true)
 		->	atom_codes(W, U),
@@ -4561,14 +4564,14 @@ wt2(prolog:X) :-
 	!,
 	(	X = '\';\''
 	->	Y = disjunction
-	;	prolog_sym(Y, X, _)
+	;	prolog_sym(Y, X, _)	% DEPRECATED
 	),
 	atomic_list_concat(['<http://eulersharp.sourceforge.net/2003/03swap/prolog#', Y, '>'], Z),
 	wt0(Z).
 wt2(X) :-
 	X =.. [P, S, O],
 	(	P \= true,
-		prolog_sym(_, P, _)
+		prolog_sym(_, P, _)	% DEPRECATED
 	->	wt2([S, O]),
 		write(' '),
 		wp(P),
@@ -4595,12 +4598,12 @@ wtn(X) :-
 	X =.. [B|C],
 	(	atom(B),
 		\+sub_atom(B, 0, 1, _, '<'),
-		\+prolog_sym(_, B, _),
+		\+prolog_sym(_, B, _),	% DEPRECATED
 		X \= true,
 		X \= false
-	->	wt2([B|C]),
-		write('^'),
-		wp('<http://eulersharp.sourceforge.net/2003/03swap/prolog#univ>')
+	->	write('"'),
+		write(X),
+		write('"')
 	;	wt(C),
 		write(' '),
 		wp(B),
@@ -4616,13 +4619,13 @@ wg(X) :-
 	functor(X, F, A),
 	(	(	F = exopred,
 			!
-		;	prolog_sym(_, F, _),
+		;	prolog_sym(_, F, _),	% DEPRECATED
 			F \= true,
 			F \= false,
 			F \= '-',
 			F \= /,
 			!
-		;	A >= 2,
+		;	A = 2,
 			F \= '.',
 			F \= '[|]',
 			F \= ':',
@@ -4654,7 +4657,7 @@ wp(':-') :-
 	!,
 	write('<=').
 wp(X) :-
-	(	prolog_sym(Y, X, _),
+	(	prolog_sym(Y, X, _),	% DEPRECATED
 		X \= true,
 		X \= false
 	->	atomic_list_concat(['<http://eulersharp.sourceforge.net/2003/03swap/prolog#', Y, '>'], Z),
@@ -5716,6 +5719,14 @@ djiti_retractall(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pcc>'([A, B], C) :-
 	pcc([A, B], C).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'(A, B) :-
+	atomify(A, C),
+	D =.. C,
+	(	B = true
+	->	call(D)
+	;	\+call(D)
+	).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	within_scope(Sc),
@@ -8894,6 +8905,7 @@ djiti_retractall(A) :-
 		)
 	).
 
+% DEPRECATED
 % Prolog built-ins
 
 prolog_sym(abolish, abolish, rel).
@@ -9352,6 +9364,21 @@ conj_append((A, B), C, (A, D)) :-
 	conj_append(B, C, D),
 	!.
 conj_append(A, B, (A, B)).
+
+conj_trans((A, B), (C, D)) :-
+	ctrans(A, C),
+	!,
+	conj_trans(B, D).
+conj_trans(A, B) :-
+	ctrans(A, B).
+
+ctrans('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(when, type('<http://www.w3.org/2001/XMLSchema#string>')),
+	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], true), C], true), when(D, C)) :-
+	!,
+	D =.. [A|B].
+ctrans('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(!, type('<http://www.w3.org/2001/XMLSchema#string>'))], true), !) :-
+	!.
+ctrans(A, A).
 
 cflat([], []).
 cflat([A|B], C) :-
@@ -10045,6 +10072,24 @@ relabel(A, B) :-
 	A =.. [C|D],
 	relabel(C, E),
 	relabel(D, F),
+	B =.. [E|F].
+
+atomify(A, A) :-
+	var(A),
+	!.
+atomify(A, A) :-
+	atomic(A),
+	!.
+atomify([A|B], [C|D]) :-
+	!,
+	atomify(A, C),
+	atomify(B, D).
+atomify(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), A) :-
+	!.
+atomify(A, B) :-
+	A =.. [C|D],
+	atomify(C, E),
+	atomify(D, F),
 	B =.. [E|F].
 
 partconc(_, [], []).
@@ -10850,7 +10895,7 @@ prolog_verb(S, Name) :-
 		->	Pred = '\',\''
 		;	(	B = disjunction
 			->	Pred = '\';\''
-			;	(	prolog_sym(B, Pred, _)
+			;	(	prolog_sym(B, Pred, _)	% DEPRECATED
 				->	true
 				;	nb_getval(line_number, Ln),
 					throw(invalid_prolog_builtin(B, after_line(Ln)))
