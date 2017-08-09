@@ -2,7 +2,6 @@
 ###
 ### see http://www.w3.org/2000/10/swap/doc/CwmBuiltins
 ###     http://eulersharp.sourceforge.net/2003/03swap/log-rules.n3
-###     http://eulersharp.sourceforge.net/2003/03swap/prolog.n3
 
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
 @prefix fn: <http://www.w3.org/2006/xpath-functions#>.
@@ -50,6 +49,7 @@ e:notLabel a e:Builtin.
 e:numeral a e:Builtin.
 e:optional a e:Builtin.
 e:pcc a e:Builtin.
+e:predicate a e:Builtin.
 e:prefix a e:Builtin.
 e:propertyChainExtension a e:Builtin.
 e:random a e:Builtin.
