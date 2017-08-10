@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0809.1553 josd').
+version_info('EYE v17.0810.0800 josd').
 
 license_info('MIT License
 
@@ -4115,12 +4115,12 @@ wt(X) :-
 wt0(!) :-
 	!,
 	write('("!") '),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'),
+	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'),
 	write(' true').
 wt0(fail) :-
 	!,
 	write('("fail") '),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'),
+	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'),
 	write(' true').
 wt0([]) :-
 	!,
@@ -5487,6 +5487,14 @@ djiti_retractall(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cov>'(A, B) :-
 	cov(A, B).
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'(A, B) :-
+	atomify(A, C),
+	D =.. C,
+	(	B = true
+	->	call(D)
+	;	\+call(D)
+	).
+
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#distinct>'(A, B) :-
 	when(
@@ -5719,14 +5727,6 @@ djiti_retractall(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pcc>'([A, B], C) :-
 	pcc([A, B], C).
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'(A, B) :-
-	atomify(A, C),
-	D =.. C,
-	(	B = true
-	->	call(D)
-	;	\+call(D)
-	).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#prefix>'(Sc, literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	within_scope(Sc),
@@ -10069,11 +10069,11 @@ conjify((A, B), (C, D)) :-
 	!,
 	conjify(A, C),
 	conjify(B, D).
-conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(when, _),
-		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(A, _)|B], true), C], true), when(D, C)) :-
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(when, _),
+		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(A, _)|B], true), C], true), when(D, C)) :-
 	!,
 	D =.. [A|B].
-conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#predicate>'([literal(!, _)], true), !) :-
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(!, _)], true), !) :-
 	!.
 conjify(A, A).
 
