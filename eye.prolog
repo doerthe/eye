@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0810.0800 josd').
+version_info('EYE v17.0810.2104 josd').
 
 license_info('MIT License
 
@@ -5465,7 +5465,7 @@ djiti_retractall(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
 	within_scope(Sc),
 	nonvar(A),
-	call(A),
+	catch(call(A), _, fail),
 	(	flag(nope)
 	->	true
 	;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A)), B),

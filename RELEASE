@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0810.2104] fixing issue with linear logic implementation
 [v17.0810.0800] deprecating prolog: built-ins and using e:calculate and e:derive instead
 [v17.0809.1553] adding if/3 compatible with Sicstus Prolog
 [v17.0807.1020] adding e:firstRest built-in to convert a list into its first rest tuple
