@@ -1,8 +1,7 @@
                                   EYE release
 
+[v17.0811.0745] deprecating prolog: built-ins and using e:calculate and e:derive instead
 [v17.0810.2104] fixing issue with linear logic implementation
-[v17.0810.0800] deprecating prolog: built-ins and using e:calculate and e:derive instead
-[v17.0809.1553] adding if/3 compatible with Sicstus Prolog
 [v17.0807.1020] adding e:firstRest built-in to convert a list into its first rest tuple
 [v17.0806.0020] adding --prolog <uri> and testing with http://josd.github.io/marble/marble.prolog
 [v17.0725.2216] adding e:graphPair built-in used for graph/pair transformation e.g. {:a :b :c. :d :e :f. :g :h :i} e:graphPair ({:a :b :c} {:d :e :f. :g :h :i})

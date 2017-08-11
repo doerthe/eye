@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0810.2104 josd').
+version_info('EYE v17.0811.0745 josd').
 
 license_info('MIT License
 
@@ -9863,12 +9863,6 @@ term_arg_1(A, B) :-
 	arg(1, A, C),
 	term_index(C, B).
 term_arg_1(_, void).
-
-if(A, B, C) :-
-	(	call(A)
-	->	call(B)
-	;	call(C)
-	).
 
 if_then_else(A, B, C) :-
 	(	call(A)
