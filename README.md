@@ -1,10 +1,10 @@
 # Euler Yet another proof Engine
 
 <img align="left" src="http://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
-It performs semibackward reasoning and it supports Euler paths.  
-Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).  
+It performs (multi-core) semibackward chaining and it supports Euler paths.  
+Via [N3](http://www.w3.org/TeamSubmission/n3/) it is interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).  
 
-Semibackward reasoning is backward chaining for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
+Semibackward chaining is backward chaining for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward chaining for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
 This can be seen in [EYE text/n3 code](http://github.com/josd/etc).  
 
