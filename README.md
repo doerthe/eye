@@ -7,8 +7,6 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it interoperable with [Cwm](http:
 Semibackward reasoning is backward chaining for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward chaining for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
 This can be seen in [EYE text/n3 code](http://github.com/josd/etc).  
-EYE also supports "Chained Calculation and Derivation" (CCD) implemented  
-via [e:calculate and e:derive built-ins](http://eulersharp.sourceforge.net/2003/03swap/log-rules).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](http://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
