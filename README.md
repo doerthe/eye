@@ -26,7 +26,7 @@ The detailed design of EYE comprises:
 2. [N3Logic](http://www.w3.org/DesignIssues/N3Logic) to N3P (N3 P-code) compiler  
 3. EAM (Euler Abstract Machine) supporting Euler paths  
 4. proof construction using the [vocabulary for proofs](http://www.w3.org/2000/10/swap/reason.n3)  
-5. built-ins and multi-core processing  
+5. built-ins and multi-core chaining  
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 1. Select rule P => C  
