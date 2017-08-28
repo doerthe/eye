@@ -21,13 +21,6 @@ and in a [Docker container for HTTP client use](http://hub.docker.com/r/bdevloed
 The main building blocks of EYE are:  
 <img src="http://josd.github.io/images/N3-socket.png" width="50%" height="50%" alt="N3-socket"/>  
 
-The detailed design of EYE comprises:
-1. [N3](http://www.w3.org/TeamSubmission/n3/) parser specified as Prolog rules  
-2. [N3Logic](http://www.w3.org/DesignIssues/N3Logic) to N3P (N3 P-code) compiler  
-3. EAM (Euler Abstract Machine) with built-ins  
-4. proof construction using the [vocabulary for proofs](http://www.w3.org/2000/10/swap/reason.n3)  
-5. MAP (Mixed Application Platform) as generic reasoning engine  
-
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 1. Select rule P => C  
 2. Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1.  
