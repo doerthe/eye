@@ -57,6 +57,7 @@ e:random a e:Builtin.
 e:relabel a e:Builtin.
 e:rms a e:Builtin.
 e:roc a e:Builtin.
+e:roots a e:Builtin.
 e:sha a e:Builtin.
 e:sigmoid a e:Builtin.
 e:skolem a e:Builtin.
