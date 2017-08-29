@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0829.0835 josd').
+version_info('EYE v17.0829.1320 josd').
 
 license_info('MIT License
 
@@ -5546,16 +5546,17 @@ djiti_retractall(A) :-
 	when(
 		(	nonvar(A)
 		),
-		(	conj_list(A, C),
+		(	unify(A, C),
+			conj_list(C, D),
 			(	nonvar(B)
-			->	cflat(B, D),
-				(	ground(D)
-				->	distinct(D, C)
-				;	C = D
+			->	cflat(B, E),
+				(	ground(E)
+				->	distinct(E, D)
+				;	D = E
 				)
-			;	(	ground(C)
-				->	distinct(C, B)
-				;	B = C
+			;	(	ground(D)
+				->	distinct(D, B)
+				;	B = D
 				)
 			)
 		)
