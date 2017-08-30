@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0829.1320 josd').
+version_info('EYE v17.0830.2107 josd').
 
 license_info('MIT License
 
@@ -713,6 +713,11 @@ opts(['--brake', Lim|Argus], Args) :-
 	),
 	retractall(flag(brake, _)),
 	assertz(flag(brake, Limit)),
+	opts(Argus, Args).
+opts(['--cn3'|Argus], Args) :-
+	!,
+	retractall(flag(cn3)),
+	assertz(flag(cn3)),
 	opts(Argus, Args).
 opts(['--curl-http-header', Field|Argus], Args) :-
 	!,
@@ -1705,6 +1710,10 @@ args(['--turtle', Argument|Args]) :-
 	),
 	args(Args).
 args([Arg|Args]) :-
+	flag(cn3),
+	!,
+	args(['--n3', Arg|Args]).
+args([Arg|Args]) :-
 	absolute_uri(Arg, A),
 	atomic_list_concat(['<', A, '>'], R),
 	assertz(scope(R)),
@@ -1963,21 +1972,7 @@ n3_n3p(Argument, Mode) :-
 			read(Rs, Rt),
 			(	Rt = end_of_file
 			->	true
-			;	(	predicate_property(Rt, dynamic),
-					functor(Rt, P, 2)
-				->	(	\+pred(P),
-						P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
-						P \= query
-					->	assertz(pred(P)),
-						(	flag(n3p)
-						->	portray_clause(pred(P))
-						;	true
-						)
-					;	true
-					)
-				;	true
-				),
-				(	ground(Rt),
+			;	(	ground(Rt),
 					Rt \= ':-'(_, _)
 				->	(	Rt = dynapred(B/2)
 					->	(	flag(n3p)
@@ -5326,6 +5321,14 @@ djiti_fact(A, B) :-
 	ground(A),
 	A =.. [P, S, O],
 	A \= ':-'(_, _),
+	(	P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
+		P \= query,
+		P \= pfx,
+		P \= flag,
+		\+pred(P)
+	->	assertz(pred(P))
+	;	true
+	),
 	(	compound(S)
 	;	compound(O)
 	),
