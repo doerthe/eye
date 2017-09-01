@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0830.2107 josd').
+version_info('EYE v17.0901.1423 josd').
 
 license_info('MIT License
 
@@ -1250,80 +1250,7 @@ args(['--n3', Argument|Args]) :-
 		),
 		(	Rt = end_of_file
 		->	catch(read_line_to_codes(In, _), _, true)
-		;	(	flag('streaming-reasoning')
-			->	(	Rt \= ':-'(_),
-					Rt \= flag(_, _),
-					Rt \= scope(_),
-					Rt \= pfx(_, _),
-					Rt \= pred(_),
-					Rt \= cpred(_),
-					Rt \= scount(_)
-				->	Rt =.. [P, S, O],
-					implies(Prem, Conc, _),
-					(	(	Prem = exopred(P, S, O)
-						;	Prem = Rt
-						)
-					->	true
-					;	(	Prem = (exopred(P, S, O), U)
-						;	Prem = (Rt, U)
-						),
-						call(U)
-					),
-					(	ground(Conc)
-					->	true
-					;	nb_getval(wn, W),
-						labelvars(Conc, W, N, skolem),
-						nb_setval(wn, N)
-					),
-					(	Conc = (_, _),
-						conj_list(Conc, C)
-					->	forall(
-							(	member(Q, C)
-							),
-							(	(	Q = exopred(X, Y, Z)
-								->	Qt =.. [X, Y, Z]
-								;	Qt = Q
-								),
-								functor(Qt, F, _),
-								(	pred(F)
-								->	true
-								;	assertz(pred(F))
-								),
-								wt(Qt),
-								writeln('.')
-							)
-						),
-						nb_getval(sc, I),
-						length(C, J),
-						K is I+J,
-						nb_setval(sc, K)
-					;	(	Conc = exopred(X, Y, Z)
-						->	Qt =.. [X, Y, Z]
-						;	Qt = Conc
-						),
-						functor(Qt, F, _),
-						(	pred(F)
-						->	true
-						;	assertz(pred(F))
-						),
-						wt(Qt),
-						writeln('.'),
-						cnt(sc)
-					)
-				;	(	Rt = pred(F)
-					->	(	pred(F)
-						->	true
-						;	assertz(pred(F))
-						)
-					;	true
-					),
-					(	Rt = scount(SCount)
-					->	assertz(scount(SCount))
-					;	true
-					)
-				)
-			;	n3pin(Rt, In, File)
-			),
+		;	n3pin(Rt, In, File),
 			fail
 		),
 		!,
