@@ -28,7 +28,7 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 4. If C = answer(A) and tactic limited-answer stop, else backtrack to 2.  
 5. If brake or tactic linear-select stop, else start again at 1.  
 
-EAM (Euler Abstract Machine) also includes EYE-bits i.e. EYE built-ins
+EAM (Euler Abstract Machine) also includes EYE-bits i.e. EYE built-ins  
 used in theories written in text/n3 code.
 
 ## See also
