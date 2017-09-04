@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0901.1423 josd').
+version_info('EYE v17.0904.2007 josd').
 
 license_info('MIT License
 
@@ -3957,12 +3957,18 @@ wr(Y) :-
 	->	wt(Y)
 	;	write('{'),
 		labelvars(Y, 0, _, avar),
-		getvars(Y, Z),
 		(	\+flag(traditional)
-		->	true
-		;	wq(Z, some)
+		->	(	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#calculate>'(_, _)
+				;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'(_, _)
+				)
+			->	makevars(Y, X, zeta)
+			;	X = Y
+			)
+		;	getvars(Y, Z),
+			wq(Z, some),
+			X = Y
 		),
-		wt(Y),
+		wt(X),
 		write('}')
 	),
 	write(']').
@@ -10298,27 +10304,30 @@ findvar(A, alpha) :-
 	nb_getval(var_ns, Vns),
 	sub_atom(A, 1, _, _, Vns).
 findvar(A, beta) :-
-	!,
 	(	nb_getval(var_ns, Vns),
 		sub_atom(A, 1, _, _, Vns)
 	;	atom_concat('_bn_', _, A)
 	;	atom_concat('_e_', _, A)
 	;	atom_concat(some, _, A)
-	).
+	),
+	!.
 findvar(A, gamma) :-
 	!,
 	sub_atom(A, _, 19, _, '/.well-known/genid/'),
 	\+sub_atom(A, _, 4, _, '#bn_'),
 	\+sub_atom(A, _, 3, _, '#e_').
 findvar(A, delta) :-
-	!,
 	(	sub_atom(A, _, 19, _, '/.well-known/genid/')
 	;	atom_concat(some, _, A)
-	).
+	),
+	!.
 findvar(A, epsilon) :-
+	!,
 	sub_atom(A, 0, 1, _, '_'),
 	\+atom_concat('_bn_', _, A),
 	\+atom_concat('_e_', _, A).
+findvar(A, zeta) :-
+	atom_concat(some, _, A).
 
 raw_type(A, '<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>') :-
 	is_list(A),
