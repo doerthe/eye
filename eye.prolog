@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0905.1354 josd').
+version_info('EYE v17.0905.1556 josd').
 
 license_info('MIT License
 
@@ -4918,7 +4918,7 @@ eam(Span) :-
 			prfstep(Concdr, Cnd, _, _, _, _, _, _),
 			\+prfstep(_, _, Prem, Pnd, _, Rule, _, _)
 		->	true
-		;	\+call(Concdr)
+		;	\+catch(call(Concdr), _, fail)
 		),
 		(	flag('rule-histogram')
 		->	lookup(RTC, tc, RuleL),
@@ -5394,7 +5394,7 @@ djiti_retractall(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),
-	\+call(B).
+	\+catch(call(B), _, fail).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>'(A, B) :-
 	call_cleanup(A, B),
@@ -5509,7 +5509,7 @@ djiti_retractall(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ignore>'(Sc, A) :-
 	within_scope(Sc),
 	nonvar(A),
-	(	call(A)
+	(	catch(call(A), _, fail)
 	->	(	flag(nope)
 		->	true
 		;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#ignore>'(Sc, A)), R),
@@ -5565,7 +5565,7 @@ djiti_retractall(A) :-
 	).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#match>'(_, B) :-
-	\+ \+call(B).
+	\+ \+catch(call(B), _, fail).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#max>'(A, B) :-
 	when(
@@ -5604,9 +5604,9 @@ djiti_retractall(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A) :-
 	within_scope(Sc),
 	nonvar(A),
-	(	\+call(A)
+	(	\+catch(call(A), _, fail)
 	->	true
-	;	call(A),
+	;	catch(call(A), _, fail),
 		(	flag(nope)
 		->	true
 		;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A)), R),
