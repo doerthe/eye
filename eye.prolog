@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0904.2007 josd').
+version_info('EYE v17.0905.1354 josd').
 
 license_info('MIT License
 
@@ -5379,8 +5379,8 @@ djiti_retractall(A) :-
 	atomify(A, C),
 	D =.. C,
 	(	B = true
-	->	call(D)
-	;	\+call(D)
+	->	catch(call(D), _, fail)
+	;	\+catch(call(D), _, fail)
 	).
 
 % DEPRECATED
