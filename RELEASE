@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0907.1215] implementing e:graphMember built-in to get the triples from the subject graph
 [v17.0905.1556] fixing undefined procedure errors in EAM (Euler Abstract Machine) and in EYE-bits (EYE built-in theories)
 [v17.0905.1354] fixing critical bug in e:derive EYE-bits
 [v17.0904.2007] fixing proofs with e:calculate and e:derive

@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0905.1556 josd').
+version_info('EYE v17.0907.1215 josd').
 
 license_info('MIT License
 
@@ -5495,6 +5495,16 @@ djiti_retractall(A) :-
 				;	B = D
 				)
 			)
+		)
+	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphMember>'(A, B) :-
+	when(
+		(	nonvar(A)
+		),
+		(	conj_list(A, C),
+			member(D, C),
+			unify(D, B)
 		)
 	).
 
