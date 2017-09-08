@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0907.1215 josd').
+version_info('EYE v17.0908.1137 josd').
 
 license_info('MIT License
 
@@ -9382,8 +9382,12 @@ distinct_hash([A|B], C) :-
 
 distinct_value([], []).
 distinct_value([A|B], [A|D]) :-
+	nonvar(A),
+	!,
 	del(B, A, E),
 	distinct_value(E, D).
+distinct_value([_|A], B) :-
+	distinct_value(A, B).
 
 del([], _, []).
 del([A|B], C, D) :-
