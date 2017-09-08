@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0908.1137 josd').
+version_info('EYE v17.0908.2321 josd').
 
 license_info('MIT License
 
@@ -1090,7 +1090,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--n3', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1179,122 +1179,6 @@ curl_http_headers(Headers) :-
 
 args([]) :-
 	!.
-args(['--n3', Argument|Args]) :-
-	!,
-	absolute_uri(Argument, Arg),
-	(	wcacher(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
-		flush_output(user_error)
-	;	format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error),
-		(	(	sub_atom(Arg, 0, 5, _, 'http:')
-			->	true
-			;	sub_atom(Arg, 0, 6, _, 'https:')
-			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
-			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, '"', Arg, '" -o ', File], Cmd),
-			catch(exec(Cmd, _), Exc,
-				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-					flush_output(user_error),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					flush_output,
-					halt(1)
-				)
-			)
-		;	(	sub_atom(Arg, 0, 5, _, 'file:')
-			->	parse_url(Arg, Parts),
-				memberchk(path(File), Parts)
-			;	File = Arg
-			)
-		)
-	),
-	atomic_list_concat(['-b=', Arg], Base),
-	(	flag('pass-n3')
-	->	catch(process_create(path(cn3), ['-f=nt', Base, file(File)], [stdout(std), stderr(std)]), Exc,
-			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	;	catch(process_create(path(cn3), [Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
-			(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		),
-		nb_setval(wn, 0),
-		nb_setval(rn, 0),
-		nb_setval(sc, 0),
-		nb_setval(tc, 0),
-		nb_setval(tp, 0),
-		nb_setval(tr, 0),
-		nb_setval(rt, 0),
-		set_stream(In, encoding(utf8)),
-		repeat,
-		read_term(In, Rt, []),
-		cnt(rt),
-		nb_getval(rt, Rtcnt),
-		(	Rtcnt mod 10000 =:= 0
-		->	garbage_collect_atoms
-		;	true
-		),
-		(	Rt = end_of_file
-		->	catch(read_line_to_codes(In, _), _, true)
-		;	n3pin(Rt, In, File),
-			fail
-		),
-		!,
-		(	File = '-'
-		->	true
-		;	close(In)
-		),
-		(	retract(tmpfile(File))
-		->	delete_file(File)
-		;	true
-		),
-		findall(SCnt,
-			(	retract(scount(SCnt))
-			),
-			SCnts
-		),
-		sum(SCnts, SC),
-		nb_getval(input_statements, IN),
-		Inp is SC+IN,
-		nb_setval(input_statements, Inp),
-		format(user_error, 'SC=~w~n', [SC]),
-		flush_output(user_error),
-		(	flag('streaming-reasoning')
-		->	timestamp(Stamp),
-			statistics(runtime, [Cpu, _]),
-			nb_getval(sc, Sc),
-			nb_getval(output_statements, Out),
-			Outp is Sc+Out,
-			nb_setval(output_statements, Outp),
-			nb_getval(tc, TC),
-			Ent is TC,
-			nb_getval(tp, TP),
-			Step is TP,
-			nb_getval(tr, TR),
-			Brake is TR,
-			statistics(inferences, Inf),
-			catch(Speed is round(Inf/Cpu*1000), _, Speed = ''),
-			format('#~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n#ENDS~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
-			format(user_error, '~w in=~d out=~d ent=~d step=~w brake=~w inf=~w sec=~3d inf/sec=~w~n~n', [Stamp, Inp, Outp, Ent, Step, Brake, Inf, Cpu, Speed]),
-			flush_output(user_error)
-		;	true
-		)
-	),
-	args(Args).
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
@@ -1637,10 +1521,6 @@ args(['--turtle', Argument|Args]) :-
 	),
 	args(Args).
 args([Arg|Args]) :-
-	flag(cn3),
-	!,
-	args(['--n3', Arg|Args]).
-args([Arg|Args]) :-
 	absolute_uri(Arg, A),
 	atomic_list_concat(['<', A, '>'], R),
 	assertz(scope(R)),
@@ -1648,8 +1528,98 @@ args([Arg|Args]) :-
 	->	portray_clause(scope(R))
 	;	true
 	),
-	n3_n3p(Arg, data),
+	(	flag(cn3)
+	->	cn3(Arg, data)
+	;	n3_n3p(Arg, data)
+	),
 	args(Args).
+
+cn3(Argument, data) :-
+	!,
+	absolute_uri(Argument, Arg),
+	(	wcacher(Arg, File)
+	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
+		flush_output(user_error)
+	;	format(user_error, 'GET ~w ', [Arg]),
+		flush_output(user_error),
+		(	(	sub_atom(Arg, 0, 5, _, 'http:')
+			->	true
+			;	sub_atom(Arg, 0, 6, _, 'https:')
+			)
+		->	(	flag('tmp-file', File)	% DEPRECATED
+			->	true
+			;	tmp_file(File),
+				assertz(tmpfile(File))
+			),
+			curl_http_headers(Headers),
+			atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, '"', Arg, '" -o ', File], Cmd),
+			catch(exec(Cmd, _), Exc,
+				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+					flush_output(user_error),
+					(	retract(tmpfile(File))
+					->	delete_file(File)
+					;	true
+					),
+					flush_output,
+					halt(1)
+				)
+			)
+		;	(	sub_atom(Arg, 0, 5, _, 'file:')
+			->	parse_url(Arg, Parts),
+				memberchk(path(File), Parts)
+			;	File = Arg
+			)
+		)
+	),
+	atomic_list_concat(['-b=', Arg], Base),
+	catch(process_create(path(cn3), [Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+		(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
+			flush_output(user_error),
+			flush_output,
+			halt(1)
+		)
+	),
+	nb_setval(wn, 0),
+	nb_setval(rn, 0),
+	nb_setval(sc, 0),
+	nb_setval(tc, 0),
+	nb_setval(tp, 0),
+	nb_setval(tr, 0),
+	nb_setval(rt, 0),
+	set_stream(In, encoding(utf8)),
+	repeat,
+	read_term(In, Rt, []),
+	cnt(rt),
+	nb_getval(rt, Rtcnt),
+	(	Rtcnt mod 10000 =:= 0
+	->	garbage_collect_atoms
+	;	true
+	),
+	(	Rt = end_of_file
+	->	catch(read_line_to_codes(In, _), _, true)
+	;	n3pin(Rt, In, File),
+		fail
+	),
+	!,
+	(	File = '-'
+	->	true
+	;	close(In)
+	),
+	(	retract(tmpfile(File))
+	->	delete_file(File)
+	;	true
+	),
+	findall(SCnt,
+		(	retract(scount(SCnt))
+		),
+		SCnts
+	),
+	sum(SCnts, SC),
+	nb_getval(input_statements, IN),
+	Inp is SC+IN,
+	nb_setval(input_statements, Inp),
+	format(user_error, 'SC=~w~n', [SC]),
+	flush_output(user_error).
 
 n3pin(Rt, In, File) :-
 	(	Rt = ':-'(Rg)
@@ -10008,15 +9978,15 @@ term_arg_1(A, B) :-
 term_arg_1(_, void).
 
 if_then_else(A, B, C) :-
-	(	call(A)
-	->	call(B)
-	;	call(C)
+	(	catch(call(A), _, fail)
+	->	catch(call(B), _, fail)
+	;	catch(call(C), _, fail)
 	).
 
 soft_cut(A, B, C) :-
-	(	call(A)
-	*->	call(B)
-	;	call(C)
+	(	catch(call(A), _, fail)
+	*->	catch(call(B), _, fail)
+	;	catch(call(C), _, fail)
 	).
 
 inv(false, true).
@@ -11090,7 +11060,7 @@ fm(A) :-
 
 mf(A) :-
 	forall(
-		(	call(A)
+		(	catch(call(A), _, fail)
 		),
 		(	format(user_error, '*** ~q~n', [A])
 		)
