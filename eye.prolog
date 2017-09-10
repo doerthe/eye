@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0908.2321 josd').
+version_info('EYE v17.0910.1930 josd').
 
 license_info('MIT License
 
@@ -1706,10 +1706,11 @@ n3pin(Rt, In, File) :-
 					Rt \= scount(_)
 				->	(	flag(nope)
 					->	true
-					;	term_index(Rt, Rnd),
+					;	term_index(Rt, Cnd),
+						term_index(true, Pnd),
 						nb_getval(current_scope, Src),
-						(	\+prfstep(Rt, Rnd, true, _, Rt, _, forward, Src)
-						->	assertz(prfstep(Rt, Rnd, true, _, Rt, _, forward, Src))
+						(	\+prfstep(Rt, Cnd, true, Pnd, Rt, _, forward, Src)
+						->	assertz(prfstep(Rt, Cnd, true, Pnd, Rt, _, forward, Src))
 						;	true
 						)
 					)
