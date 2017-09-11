@@ -1,11 +1,11 @@
                                   EYE release
 
+[v17.0911.2231] preparing replacement of N3 parser
 [v17.0910.1930] fixing deep just-in-time indexing issue for proof steps
-[v17.0908.2321] further fixing undefined procedure errors in EYE-bits (EYE built-in theories)
+[v17.0908.2321] fixing undefined procedure errors in EAM (Euler Abstract Machine)
 [v17.0908.1137] fixing e:distinct for lists containing universals (obs from Hong Sun)
 [v17.0907.1215] implementing e:graphMember built-in to get the triples from the subject graph
-[v17.0905.1556] fixing undefined procedure errors in EAM (Euler Abstract Machine) and in EYE-bits (EYE built-in theories)
-[v17.0905.1354] fixing critical bug in e:derive EYE-bits
+[v17.0905.1354] fixing critical bug in e:derive
 [v17.0904.2007] fixing proofs with e:calculate and e:derive
 [v17.0901.1423] fixing streaming reasoning
 [v17.0830.2107] simplifying n3p by dropping pred/1

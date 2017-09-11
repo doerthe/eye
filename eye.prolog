@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0910.1930 josd').
+version_info('EYE v17.0911.2231 josd').
 
 license_info('MIT License
 
@@ -1293,7 +1293,10 @@ args(['--proof', Arg|Args]) :-
 	->	portray_clause(scope(R))
 	;	true
 	),
-	n3_n3p(Arg, data),
+	(	flag(cn3)
+	->	cn3(Arg, data)
+	;	n3_n3p(Arg, data)
+	),
 	(	got_pi
 	->	true
 	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
@@ -1307,7 +1310,10 @@ args(['--proof', Arg|Args]) :-
 	args(Args).
 args(['--query', Arg|Args]) :-
 	!,
-	n3_n3p(Arg, query),
+	(	flag(cn3)
+	->	cn3(Arg, query)
+	;	n3_n3p(Arg, query)
+	),
 	args(Args).
 % DEPRECATED
 args(['--tquery', Arg|Args]) :-
@@ -1534,7 +1540,7 @@ args([Arg|Args]) :-
 	),
 	args(Args).
 
-cn3(Argument, data) :-
+cn3(Argument, Mode) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcacher(Arg, File)
@@ -1587,6 +1593,8 @@ cn3(Argument, data) :-
 	nb_setval(tr, 0),
 	nb_setval(rt, 0),
 	set_stream(In, encoding(utf8)),
+	atomic_list_concat(['<', Arg, '>'], Src),
+	nb_setval(current_scope, Src),
 	repeat,
 	read_term(In, Rt, []),
 	cnt(rt),
@@ -1597,7 +1605,8 @@ cn3(Argument, data) :-
 	),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	n3pin(Rt, In, File),
+	;	cn3tr(Rt, Tt, Src, Mode),
+		n3pin(Tt, In, File),
 		fail
 	),
 	!,
@@ -1620,6 +1629,50 @@ cn3(Argument, data) :-
 	nb_setval(input_statements, Inp),
 	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error).
+
+cn3tr(implies(X, Y, _), W, Src, query) :-
+	!,
+	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, T)
+	->	(	is_list(T)
+		->	H = T
+		;	findvars(X, U, epsilon),
+			distinct(U, H)
+		),
+		nb_setval(csv_header, H),
+		V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, H)
+	;	V = Y
+	),
+	(	\+flag('limited-answer', _),
+		flag(nope),
+		(	flag('no-distinct-output')
+		;	V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _)
+		)
+	->	W = query(X, V)
+	;	djiti_answer(answer(V), A),
+		W = implies(X, A, Src)
+	).
+cn3tr(':-'(Y, X), W, Src, query) :-
+	!,
+	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, T)
+	->	(	is_list(T)
+		->	H = T
+		;	findvars(X, U, epsilon),
+			distinct(U, H)
+		),
+		nb_setval(csv_header, H),
+		V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, H)
+	;	V = Y
+	),
+	(	(	\+flag('limited-answer', _)
+		;	V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _),
+			flag(strings)
+		),
+		flag(nope)
+	->	W = query(X, V)
+	;	djiti_answer(answer(V), A),
+		W = implies(X, A, Src)
+	).
+cn3tr(X, X, _, _).
 
 n3pin(Rt, In, File) :-
 	(	Rt = ':-'(Rg)
@@ -2057,6 +2110,7 @@ tr_n3p([':-'(Y, X)|Z], Src, query) :-
 		writeln('.')
 	),
 	tr_n3p(Z, Src, query).
+% DEPRECATED
 tr_n3p([X|Z], Src, query) :-
 	!,
 	(	\+flag('limited-answer', _),
