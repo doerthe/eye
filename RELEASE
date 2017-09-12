@@ -1,6 +1,6 @@
                                   EYE release
 
-[v17.0911.2231] preparing replacement of N3 parser
+[v17.0912.1520] preparing replacement of N3 parser
 [v17.0910.1930] fixing deep just-in-time indexing issue for proof steps
 [v17.0908.2321] fixing undefined procedure errors in EAM (Euler Abstract Machine)
 [v17.0908.1137] fixing e:distinct for lists containing universals (obs from Hong Sun)
