@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0911.2231 josd').
+version_info('EYE v17.0912.1520 josd').
 
 license_info('MIT License
 
@@ -1260,7 +1260,7 @@ args(['--plugin', Argument|Args]) :-
 	read_term(In, Rt, []),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	n3pin(Rt, In, File),
+	;	n3pin(Rt, In, File, data),
 		fail
 	),
 	!,
@@ -1480,7 +1480,7 @@ args(['--turtle', Argument|Args]) :-
 					;	true
 					)
 				)
-			;	n3pin(Rt, In, File)
+			;	n3pin(Rt, In, File, data)
 			),
 			fail
 		),
@@ -1595,6 +1595,7 @@ cn3(Argument, Mode) :-
 	set_stream(In, encoding(utf8)),
 	atomic_list_concat(['<', Arg, '>'], Src),
 	nb_setval(current_scope, Src),
+	nb_setval(semantics, []),
 	repeat,
 	read_term(In, Rt, []),
 	cnt(rt),
@@ -1605,11 +1606,28 @@ cn3(Argument, Mode) :-
 	),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	cn3tr(Rt, Tt, Src, Mode),
-		n3pin(Tt, In, File),
+	;	cn3tr(Rt, Tr, Src, Mode),
+		(	Mode = semantics
+		->	Tr \= ':-'(_),
+			Tr \= flag(_, _),
+			Tr \= scope(_),
+			Tr \= pfx(_, _),
+			Tr \= pred(_),
+			Tr \= cpred(_),
+			Tr \= scount(_),
+			nb_getval(semantics, TriplesPrev),
+			append(TriplesPrev, [Tr], TriplesNext),
+			nb_setval(semantics, TriplesNext)
+		;	n3pin(Tr, In, File, Mode)
+		),
 		fail
 	),
 	!,
+	(	Mode = semantics
+	->	nb_getval(semantics, List),
+		assertz(semantics(Src, List))
+	;	true
+	),
 	(	File = '-'
 	->	true
 	;	close(In)
@@ -1672,9 +1690,11 @@ cn3tr(':-'(Y, X), W, Src, query) :-
 	;	djiti_answer(answer(V), A),
 		W = implies(X, A, Src)
 	).
+cn3tr(implies(X, Y, _), '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
+	!.
 cn3tr(X, X, _, _).
 
-n3pin(Rt, In, File) :-
+n3pin(Rt, In, File, Mode) :-
 	(	Rt = ':-'(Rg)
 	->	call(Rg),
 		(	flag(n3p)
@@ -1742,7 +1762,8 @@ n3pin(Rt, In, File) :-
 				\+flag('no-distinct-input'),
 				call(Rt)
 			->	true
-			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>')
+			;	(	Rt \= pred('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>'),
+					\+ (Rt = scope(_), Mode = query)
 				->	djiti_assertz(Rt),
 					(	flag(n3p),
 						Rt \= scount(_)
@@ -6055,7 +6076,10 @@ djiti_retractall(A) :-
 			flatten(H, I),
 			atomic_list_concat(I, J),
 			(	catch(exec(J, _), _, fail)
-			->	n3_n3p(Tmp2, semantics),
+			->	(	flag(cn3)
+				->	cn3(Tmp2, semantics)
+				;	n3_n3p(Tmp2, semantics)
+				),
 				absolute_uri(Tmp2, Tmp),
 				atomic_list_concat(['<', Tmp, '>'], Res),
 				semantics(Res, L),
@@ -6170,7 +6194,12 @@ djiti_retractall(A) :-
 			;	sub_atom(X, 0, 1, _, '<'),
 				sub_atom(X, _, 1, 0, '>'),
 				sub_atom(X, 1, _, 1, Z),
-				catch(n3_n3p(Z, semantics), Exc,
+				catch(
+					(	flag(cn3)
+					->	cn3(Z, semantics)
+					;	n3_n3p(Z, semantics)
+					),
+					Exc,
 					(	format(user_error, '** ERROR ** ~w **~n', [Exc]),
 						flush_output(user_error),
 						fail
@@ -10345,6 +10374,7 @@ findvar(A, alpha) :-
 findvar(A, beta) :-
 	(	nb_getval(var_ns, Vns),
 		sub_atom(A, 1, _, _, Vns)
+	;	sub_atom(A, _, 19, _, '/.well-known/genid/')
 	;	atom_concat('_bn_', _, A)
 	;	atom_concat('_e_', _, A)
 	;	atom_concat(some, _, A)
