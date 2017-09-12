@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0912.1520 josd').
+version_info('EYE v17.0912.1602 josd').
 
 license_info('MIT License
 
@@ -378,6 +378,7 @@ gre(Argus) :-
 	;	nb_setval(input_statements, 0)
 	),
 	nb_setval(output_statements, 0),
+	nb_setval(current_scope, '<>'),
 	opts(Argus, Args),
 	(	\+flag('multi-query'),
 		Args = []
