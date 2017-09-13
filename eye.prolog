@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0912.1602 josd').
+version_info('EYE v17.0913.1953 josd').
 
 license_info('MIT License
 
@@ -4008,7 +4008,8 @@ wr(Y) :-
 		->	(	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#calculate>'(_, _)
 				;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'(_, _)
 				)
-			->	makevars(Y, X, zeta)
+			->	makevars(Y, X, zeta),
+				numbervars(X, 0, _)
 			;	X = Y
 			)
 		;	getvars(Y, Z),
@@ -4224,6 +4225,10 @@ wt1(set(X)) :-
 	write('($'),
 	wl(X),
 	write(' $)').
+wt1('$VAR'(X)) :-
+	!,
+	write('?V'),
+	write(X).
 wt1(X) :-
 	X =.. [B|C],
 	wt(C),
