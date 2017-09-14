@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0914.1240 josd').
+version_info('EYE v17.0914.1540 josd').
 
 license_info('MIT License
 
@@ -1608,7 +1608,7 @@ cn3(Argument, Mode) :-
 	nb_setval(current_scope, Src),
 	nb_setval(semantics, []),
 	repeat,
-	read_term(In, Rt, []),
+	read_term(In, Rt, [variable_names(Vars)]),
 	cnt(rt),
 	nb_getval(rt, Rtcnt),
 	(	Rtcnt mod 10000 =:= 0
@@ -1617,7 +1617,7 @@ cn3(Argument, Mode) :-
 	),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	cn3tr(Rt, Tr, Src, Mode),
+	;	cn3tr(Rt, Vars, Tr, Src, Mode),
 		(	Mode = semantics
 		->	Tr \= ':-'(_),
 			Tr \= flag(_, _),
@@ -1659,51 +1659,71 @@ cn3(Argument, Mode) :-
 	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error).
 
-cn3tr(implies(X, Y, _), W, Src, query) :-
+cn3tr(implies(X, Y, _), V, W, Src, query) :-
 	!,
 	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, T)
 	->	(	is_list(T)
-		->	H = T
-		;	findvars(X, U, epsilon),
-			distinct(U, H)
+		->	U = T
+		;	term_variables(X, U)
 		),
-		nb_setval(csv_header, H),
-		V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, H)
-	;	V = Y
+		copy_term_nat([U, V], [D, E]),
+		numbervars([D, E], 0, _),
+		findall(A,
+			(	member(B, D),
+				memberchk(C=B, E),
+				(	atom_concat('_', A, C)
+				->	true
+				;	A = C
+				)
+			),
+			H
+		),
+		nb_setval(csv_header, H)
+	;	true
 	),
 	(	\+flag('limited-answer', _),
 		flag(nope),
 		(	flag('no-distinct-output')
-		;	V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _)
+		;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _)
 		)
-	->	W = query(X, V)
-	;	djiti_answer(answer(V), A),
+	->	W = query(X, Y)
+	;	djiti_answer(answer(Y), A),
 		W = implies(X, A, Src)
 	).
-cn3tr(':-'(Y, X), W, Src, query) :-
+cn3tr(':-'(Y, X), V, W, Src, query) :-
 	!,
 	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, T)
 	->	(	is_list(T)
-		->	H = T
-		;	findvars(X, U, epsilon),
-			distinct(U, H)
+		->	U = T
+		;	term_variables(X, U)
 		),
-		nb_setval(csv_header, H),
-		V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, H)
-	;	V = Y
+		copy_term_nat([U, V], [D, E]),
+		numbervars([D, E], 0, _),
+		findall(A,
+			(	member(B, D),
+				memberchk(C=B, E),
+				(	atom_concat('_', A, C)
+				->	true
+				;	A = C
+				)
+			),
+			H
+		),
+		nb_setval(csv_header, H)
+	;	true
 	),
 	(	(	\+flag('limited-answer', _)
-		;	V = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _),
+		;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, _),
 			flag(strings)
 		),
 		flag(nope)
-	->	W = query(X, V)
-	;	djiti_answer(answer(V), A),
+	->	W = query(X, Y)
+	;	djiti_answer(answer(Y), A),
 		W = implies(X, A, Src)
 	).
-cn3tr(implies(X, Y, _), '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
+cn3tr(implies(X, Y, _), _, '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
 	!.
-cn3tr(X, X, _, _).
+cn3tr(X, X, _, _, _).
 
 n3pin(Rt, In, File, Mode) :-
 	(	Rt = ':-'(Rg)
