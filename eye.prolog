@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0914.1540 josd').
+version_info('EYE v17.0914.1555 josd').
 
 license_info('MIT License
 
@@ -1723,7 +1723,7 @@ cn3tr(':-'(Y, X), V, W, Src, query) :-
 	).
 cn3tr(implies(X, Y, _), _, '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
 	!.
-cn3tr(X, X, _, _, _).
+cn3tr(X, _, X, _, _).
 
 n3pin(Rt, In, File, Mode) :-
 	(	Rt = ':-'(Rg)
