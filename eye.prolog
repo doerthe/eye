@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0913.1953 josd').
+version_info('EYE v17.0914.1240 josd').
 
 license_info('MIT License
 
@@ -65,6 +65,7 @@ help_info('Usage: eye <options>* <data>* <query>*
 eye
 	swipl -x eye.pvm --
 <options>
+	--cn3				use external cn3 parser
 	--curl-http-header <field>	to pass HTTP header <field> to curl
 	--debug				output debug info on stderr
 	--debug-cnt			output debug info about counters on stderr
@@ -251,6 +252,15 @@ main :-
 		(	format(user_error, '** WARNING ** EYE depends on cturtle which can be installed from http://github.com/melgi/cturtle/releases/ **~n', []),
 			flush_output(user_error)
 		)
+	),
+	(	memberchk('--cn3', Argus)
+	->	catch(process_create(path(cn3), [], [stdin(null), stdout(null), stderr(null)]), _,
+			(	format(user_error, '** ERROR ** EYE option --cn3 requires cn3 **~n', []),
+				flush_output(user_error),
+				halt(1)
+			)
+		)
+	;	true
 	),
 	(	retract(prolog_file_type(qlf, qlf))
 	->	assertz(prolog_file_type(pvm, qlf))
@@ -2178,7 +2188,7 @@ tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) 
 	tr_n3p(Z, Src, Mode).
 tr_n3p([':-'(Y, X)|Z], Src, Mode) :-
 	!,
-	findvars(Y, V, beta),
+	findvars(Y, V, eta),
 	(	V = []
 	->	true
 	;	throw('backward_rule_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
@@ -5365,6 +5375,11 @@ djiti_retract(A) :-
 djiti_retractall(A) :-
 	djiti_fact(A, B),
 	retractall(B).
+
+
+% ------
+% EYELib
+% ------
 
 % Built-ins
 
@@ -10378,9 +10393,7 @@ findvar(A, alpha) :-
 	nb_getval(var_ns, Vns),
 	sub_atom(A, 1, _, _, Vns).
 findvar(A, beta) :-
-	(	nb_getval(var_ns, Vns),
-		sub_atom(A, 1, _, _, Vns)
-	;	sub_atom(A, _, 19, _, '/.well-known/genid/')
+	(	sub_atom(A, _, 19, _, '/.well-known/genid/')
 	;	atom_concat('_bn_', _, A)
 	;	atom_concat('_e_', _, A)
 	;	atom_concat(some, _, A)
@@ -10402,7 +10415,16 @@ findvar(A, epsilon) :-
 	\+atom_concat('_bn_', _, A),
 	\+atom_concat('_e_', _, A).
 findvar(A, zeta) :-
+	!,
 	atom_concat(some, _, A).
+findvar(A, eta) :-
+	(	nb_getval(var_ns, Vns),
+		sub_atom(A, 1, _, _, Vns)
+	;	atom_concat('_bn_', _, A)
+	;	atom_concat('_e_', _, A)
+	;	atom_concat(some, _, A)
+	),
+	!.
 
 raw_type(A, '<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>') :-
 	is_list(A),
