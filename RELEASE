@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0914.1540] fixing csv output in conjunction with --cn3
 [v17.0914.1240] fixing backward_rule_may_not_contain_existential_in_conclusion exception (obs from Hong Sun)
 [v17.0913.1953] fixing universal variable names in proof output
 [v17.0912.1602] preparing replacement of N3 parser
