@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0915.0910 josd').
+version_info('EYE v17.0915.1303 josd').
 
 license_info('MIT License
 
@@ -1619,16 +1619,18 @@ cn3(Argument, Mode) :-
 	->	catch(read_line_to_codes(In, _), _, true)
 	;	cn3tr(Rt, Vars, Tr, Src, Mode),
 		(	Mode = semantics
-		->	Tr \= ':-'(_),
-			Tr \= flag(_, _),
-			Tr \= scope(_),
-			Tr \= pfx(_, _),
-			Tr \= pred(_),
-			Tr \= cpred(_),
-			Tr \= scount(_),
-			nb_getval(semantics, TriplesPrev),
-			append(TriplesPrev, [Tr], TriplesNext),
-			nb_setval(semantics, TriplesNext)
+		->	(	Tr = scount(_)
+			->	assertz(Tr)
+			;	Tr \= ':-'(_),
+				Tr \= flag(_, _),
+				Tr \= scope(_),
+				Tr \= pfx(_, _),
+				Tr \= pred(_),
+				Tr \= cpred(_),
+				nb_getval(semantics, TriplesPrev),
+				append(TriplesPrev, [Tr], TriplesNext),
+				nb_setval(semantics, TriplesNext)
+			)
 		;	n3pin(Tr, In, File, Mode)
 		),
 		fail
