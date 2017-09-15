@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0914.1555 josd').
+version_info('EYE v17.0915.0910 josd').
 
 license_info('MIT License
 
@@ -1723,6 +1723,11 @@ cn3tr(':-'(Y, X), V, W, Src, query) :-
 	).
 cn3tr(implies(X, Y, _), _, '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
 	!.
+cn3tr(pfx(X, Y), _, pfx(X, Y), _, _) :-
+	!,
+	sub_atom(X, 0, _, 1, A),
+	sub_atom(Y, 1, _, 1, B),
+	put_pfx(A, B).
 cn3tr(X, _, X, _, _).
 
 n3pin(Rt, In, File, Mode) :-
@@ -5396,12 +5401,9 @@ djiti_retractall(A) :-
 	djiti_fact(A, B),
 	retractall(B).
 
-
-% ------
-% EYELib
-% ------
-
+%
 % Built-ins
+% 
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#avg>'(A, B) :-
 	avg(A, B).
@@ -9210,7 +9212,9 @@ prolog_sym(write_term, write_term, rel).
 prolog_sym(writeln, writeln, rel).
 prolog_sym(writeq, writeq, rel).
 
-% support
+%
+% Support
+%
 
 def_pfx('math:', '<http://www.w3.org/2000/10/swap/math#>').
 def_pfx('e:', '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#>').
