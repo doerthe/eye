@@ -1,4 +1,7 @@
 #!/bin/bash
+# --------------------------
+# installing EYE in /opt/eye
+# --------------------------
 SCRIPT_DIR=$( cd "$( dirname "$0" )" && pwd )
 mkdir -p /opt/eye/src
 cp -a $SCRIPT_DIR/eye.prolog /opt/eye/src
