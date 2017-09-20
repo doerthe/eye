@@ -37,4 +37,4 @@ EYE tutorial
 * [Semantic Web Reasoning With EYE](http://n3.restdesc.org/)
 
 EYE talk
-* [EYE looking through N3 glasses](http://www.agfa.com/w3c/Talks/2012/04swig/)
+* [EYE looking through N3 glasses](http://josd.github.io/Talks/2012/04swig/index.html)
