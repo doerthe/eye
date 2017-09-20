@@ -19,7 +19,10 @@ and in a [Docker container for HTTP client use](http://hub.docker.com/r/bdevloed
 ## Architecture and design
 
 Here are the layers of the EYE stack:  
-<img src="http://josd.github.io/images/EYE-stack.png" width="50%" height="50%" alt="EYE-stack"/>  
+<img src="http://josd.github.io/images/EYE-stack.png" width="67%" height="67%" alt="EYE-stack"/>  
+
+[EYE text/n3 code](http://github.com/josd/etc) is exchanged via N3 socket:
+<img src="http://josd.github.io/images/N3-socket.png" width="67%" height="67%" alt="N3-socket"/>  
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 1. Select rule P => C  
