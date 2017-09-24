@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0915.1303 josd').
+version_info('EYE v17.0924.2226 josd').
 
 license_info('MIT License
 
@@ -5405,7 +5405,7 @@ djiti_retractall(A) :-
 
 %
 % Built-ins
-% 
+%
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#avg>'(A, B) :-
 	avg(A, B).
@@ -5662,6 +5662,25 @@ djiti_retractall(A) :-
 				)
 			),
 			length(C, B)
+		)
+	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#linImplies>'(A, B) :-
+	unify(A, C),
+	conj_list(C, D),
+	forall(
+		(	member(E, D)
+		),
+		(	retractall(E)
+		)
+	),
+	unify(B, F),
+	conj_list(F, G),
+	forall(
+		(	member(H, G),
+			\+call(H)
+		),
+		(	assertz(H)
 		)
 	).
 
