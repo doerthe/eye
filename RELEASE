@@ -1,6 +1,6 @@
                                   EYE release
 
-[v17.0924.2226] adding e:linLogImplies built-in that implements linear logic implication
+[v17.0924.2237] adding e:linLogImplies built-in that implements linear logic implication
 [v17.0915.1303] fixing input statement counter for cn3
 [v17.0915.0910] keeping track of namespace prefixes coming from cn3
 [v17.0914.1555] fixing csv output in conjunction with --cn3

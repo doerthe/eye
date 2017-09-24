@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0924.2226 josd').
+version_info('EYE v17.0924.2237 josd').
 
 license_info('MIT License
 
@@ -5665,7 +5665,7 @@ djiti_retractall(A) :-
 		)
 	).
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#linImplies>'(A, B) :-
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#linLogImplies>'(A, B) :-
 	unify(A, C),
 	conj_list(C, D),
 	forall(
