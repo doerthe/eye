@@ -55,7 +55,6 @@ e:pcc a e:Builtin.
 e:prefix a e:Builtin.
 e:propertyChainExtension a e:Builtin.
 e:random a e:Builtin.
-e:rdfLinearImplication a e:Builtin.
 e:relabel a e:Builtin.
 e:rms a e:Builtin.
 e:roc a e:Builtin.
@@ -77,6 +76,8 @@ e:tuple a e:Builtin.
 e:unique a e:Builtin.
 e:whenGround a e:Builtin.
 e:wwwFormEncode a e:Builtin.
+e:yields a e:Builtin.
+
 
 ### Crypto Built-ins
 
