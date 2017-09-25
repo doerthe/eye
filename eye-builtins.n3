@@ -19,6 +19,7 @@
 ### Logic Framework Extension Built-ins
 
 e:avg a e:Builtin.
+e:becomes a e:Builtin.
 e:biconditional a e:Builtin.
 e:binaryEntropy a e:Builtin.
 e:calculate a e:Builtin.
@@ -70,7 +71,6 @@ e:stringSplit a e:Builtin.
 e:subsequence a e:Builtin.
 e:trace a e:Builtin.
 e:transaction a e:Builtin.
-e:transition a e:Builtin.
 e:transpose a e:Builtin.
 e:tripleList a e:Builtin.
 e:tuple a e:Builtin.
