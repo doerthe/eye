@@ -43,7 +43,6 @@ e:ignore a e:Builtin.
 e:label a e:Builtin.
 e:labelvars a e:Builtin.
 e:length a e:Builtin.
-e:linLogImplies a e:Builtin.
 e:match a e:Builtin.
 e:max a e:Builtin.
 e:min a e:Builtin.
@@ -56,6 +55,7 @@ e:pcc a e:Builtin.
 e:prefix a e:Builtin.
 e:propertyChainExtension a e:Builtin.
 e:random a e:Builtin.
+e:rdfLinearImplication a e:Builtin.
 e:relabel a e:Builtin.
 e:rms a e:Builtin.
 e:roc a e:Builtin.
