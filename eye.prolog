@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0925.0853 josd').
+version_info('EYE v17.0925.1154 josd').
 
 license_info('MIT License
 
@@ -5748,25 +5748,6 @@ djiti_retractall(A) :-
 		)
 	).
 
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#rdfLinearImplication>'(A, B) :-
-	unify(A, C),
-	conj_list(C, D),
-	forall(
-		(	member(E, D)
-		),
-		(	retractall(E)
-		)
-	),
-	unify(B, F),
-	conj_list(F, G),
-	forall(
-		(	member(H, G),
-			\+call(H)
-		),
-		(	assertz(H)
-		)
-	).
-
 % DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reason>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), B) :-
 	when(
@@ -5984,6 +5965,25 @@ djiti_retractall(A) :-
 				atom_codes(Y, V)
 			;	www_form_encode(X, Y)
 			)
+		)
+	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#yields>'(A, B) :-
+	unify(A, C),
+	conj_list(C, D),
+	forall(
+		(	member(E, D)
+		),
+		(	retractall(E)
+		)
+	),
+	unify(B, F),
+	conj_list(F, G),
+	forall(
+		(	member(H, G),
+			\+call(H)
+		),
+		(	assertz(H)
 		)
 	).
 

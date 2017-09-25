@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0925.1154] adding e:yields built-in that implements RDF linear implication
 [v17.0915.1303] fixing input statement counter for cn3
 [v17.0915.0910] keeping track of namespace prefixes coming from cn3
 [v17.0914.1555] fixing csv output in conjunction with --cn3
