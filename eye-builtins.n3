@@ -70,13 +70,13 @@ e:stringSplit a e:Builtin.
 e:subsequence a e:Builtin.
 e:trace a e:Builtin.
 e:transaction a e:Builtin.
+e:transition a e:Builtin.
 e:transpose a e:Builtin.
 e:tripleList a e:Builtin.
 e:tuple a e:Builtin.
 e:unique a e:Builtin.
 e:whenGround a e:Builtin.
 e:wwwFormEncode a e:Builtin.
-e:yields a e:Builtin.
 
 
 ### Crypto Built-ins

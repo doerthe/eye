@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0925.1154 josd').
+version_info('EYE v17.0925.1332 josd').
 
 license_info('MIT License
 
@@ -5887,6 +5887,25 @@ djiti_retractall(A) :-
 	nl,
 	told.
 
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transition>'(A, B) :-
+	unify(A, C),
+	conj_list(C, D),
+	forall(
+		(	member(E, D)
+		),
+		(	retractall(E)
+		)
+	),
+	unify(B, F),
+	conj_list(F, G),
+	forall(
+		(	member(H, G),
+			\+call(H)
+		),
+		(	assertz(H)
+		)
+	).
+
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transpose>'(A, B) :-
 	when(
 		(	nonvar(A)
@@ -5965,25 +5984,6 @@ djiti_retractall(A) :-
 				atom_codes(Y, V)
 			;	www_form_encode(X, Y)
 			)
-		)
-	).
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#yields>'(A, B) :-
-	unify(A, C),
-	conj_list(C, D),
-	forall(
-		(	member(E, D)
-		),
-		(	retractall(E)
-		)
-	),
-	unify(B, F),
-	conj_list(F, G),
-	forall(
-		(	member(H, G),
-			\+call(H)
-		),
-		(	assertz(H)
 		)
 	).
 
