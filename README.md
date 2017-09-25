@@ -1,12 +1,12 @@
 # Euler Yet another proof Engine
 
 <img align="left" src="http://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
-It performs semibackward inference and it supports Euler paths.  
+It performs semibackward chaining and it supports Euler paths.  
 Via [N3](http://www.w3.org/TeamSubmission/n3/) it is interoperable with [Cwm](http://www.w3.org/2000/10/swap/doc/cwm).  
 
-Semibackward inference is backward inference for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
-and forward inference for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-EYE semibackward inference is applied in [EYE text/n3 code](http://github.com/josd/etc).  
+Semibackward chaining is backward chaining for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
+and forward chaining for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
+EYE semibackward chaining is applied in [EYE text/n3 code](http://github.com/josd/etc).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](http://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
@@ -23,8 +23,8 @@ Here are the layers of the EYE stack:
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 1. Select rule P => C  
-2. Prove P & NOT(C) (backward inference) and if it fails backtrack to 1.  
-3. If P & NOT(C) assert C (forward inference) and remove brake  
+2. Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1.  
+3. If P & NOT(C) assert C (forward chaining) and remove brake  
 4. If C = answer(A) and tactic limited-answer stop, else backtrack to 2.  
 5. If brake or tactic linear-select stop, else start again at 1.  
 
