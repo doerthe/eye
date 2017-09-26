@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0926.1036] adding DJITI (Deep Just In Time Indexing) support for e:becomes built-in
 [v17.0926.0932] fixing eye built-ins for false graph literals
 [v17.0925.1941] adding e:becomes built-in to perform RDF linear implication i.e. retracting the subject graph and asserting the object graph
 [v17.0915.1303] fixing input statement counter for cn3
