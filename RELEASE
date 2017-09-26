@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0926.1547] fixing e:becomes built-in to do proper unification (obs from Hong Sun)
 [v17.0926.1400] adding --source command line option to read command line arguments from file (obs from Jos De Baerdemaeker)
 [v17.0926.1036] adding DJITI (Deep Just In Time Indexing) support for e:becomes built-in
 [v17.0926.0932] fixing eye built-ins for false graph literals

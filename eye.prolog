@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0926.1400 josd').
+version_info('EYE v17.0926.1547 josd').
 
 license_info('MIT License
 
@@ -5427,6 +5427,7 @@ djiti_retractall(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#becomes>'(A, B) :-
 	unify(A, C),
+	catch(call(C), _, fail),
 	conj_list(C, D),
 	forall(
 		(	member(E, D)
@@ -5440,13 +5441,7 @@ djiti_retractall(A) :-
 		(	member(H, G),
 			\+call(H)
 		),
-		(	djiti_assertz(H),
-			functor(H, P, N),
-			(	\+pred(P),
-				N = 2
-			->	assertz(pred(P))
-			;	true
-			)
+		(	djiti_assertz(H)
 		)
 	).
 
