@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0925.1941 josd').
+version_info('EYE v17.0926.0932 josd').
 
 license_info('MIT License
 
@@ -9377,6 +9377,7 @@ conj_list(true, []) :-
 	!.
 conj_list(A, [A]) :-
 	A \= (_, _),
+	A \= false,
 	!.
 conj_list((A, B), [A|C]) :-
 	conj_list(B, C).
