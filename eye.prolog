@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0926.1036 josd').
+version_info('EYE v17.0926.1400 josd').
 
 license_info('MIT License
 
@@ -94,6 +94,7 @@ eye
 	--profile			output profile info on stderr
 	--random-seed			create random seed
 	--rule-histogram		output rule histogram info on stderr
+	--source <file>			read command line arguments from <file>
 	--statistics			output statistics info on stderr
 	--streaming-reasoning		streaming reasoning on --turtle data
 	--strict			strict mode
@@ -200,13 +201,27 @@ main :-
 	->	true
 	;	Argvp = Argv
 	),
-	(	Argvp = ['-']
+	(	Argvp = ['-']	% DEPRECATED
 	->	catch((read_line_to_codes(user_input, Ac), atom_codes(As, Ac)), _, As = ''),
 		(	As = ''
 		->	Argvs = []
 		;	atomic_list_concat(Argvs, ' ', As)
 		)
-	;	Argvs = Argvp
+	;	(	Argvp = ['--source', File]
+		->	(	File = '-'
+			->	read_stream_to_codes(user_input, Codes)
+			;	read_file_to_codes(File, Codes, [])
+			),
+			string_codes(String, Codes),
+			split_string(String, "\s\t\r\n", "\s\t\r\n", List),
+			findall(Argvj,
+				(	member(Member, List),
+					atom_string(Argvj, Member)
+				),
+				Argvs
+			)
+		;	Argvs = Argvp
+		)
 	),
 	argv(Argvs, Argus),
 	findall(Argij,
