@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.0927.1020] fixing --pass-all for rules with univar as conclusion
 [v17.0927.1001] fixing the n3p representation of rdf:nil (obs from Giovanni Mels)
 [v17.0926.1547] fixing e:becomes built-in to do proper unification (obs from Hong Sun)
 [v17.0926.1400] adding --source command line option to read command line arguments from file (obs from Jos De Baerdemaeker)

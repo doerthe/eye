@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0927.1001 josd').
+version_info('EYE v17.0927.1020 josd').
 
 license_info('MIT License
 
@@ -6223,8 +6223,11 @@ djiti_retractall(A) :-
 	;	true
 	),
 	Y = Z,
-	Y \= answer(_, _, _, _, _, _, _),
-	Y \= (answer(_, _, _, _, _, _, _), _).
+	(	var(Y)
+	->	true
+	;	Y \= answer(_, _, _, _, _, _, _),
+		Y \= (answer(_, _, _, _, _, _, _), _)
+	).
 
 '<http://www.w3.org/2000/10/swap/log#includes>'(X, Y) :-
 	when(
