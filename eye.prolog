@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0927.1020 josd').
+version_info('EYE v17.0927.2204 josd').
 
 license_info('MIT License
 
@@ -320,7 +320,8 @@ main :-
 	),
 	(	flag('debug-pvm')
 	->	tell(user_error),
-		ignore(vm_list(_))
+		ignore(vm_list(_)),
+		told
 	;	true
 	),
 	(	flag('debug-djiti')
@@ -5435,7 +5436,7 @@ djiti_retractall(A) :-
 	conj_list(F, G),
 	forall(
 		(	member(H, G),
-			\+call(H)
+			\+catch(call(H), _, fail)
 		),
 		(	djiti_assertz(H)
 		)
