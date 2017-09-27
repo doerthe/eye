@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0926.1547 josd').
+version_info('EYE v17.0927.1001 josd').
 
 license_info('MIT License
 
@@ -2464,10 +2464,6 @@ objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
 	).
 objecttail(_, _, [], L1, L1).
 
-pathitem([], [], L1, L2) :-
-	symbol(S, L1, L2),
-	S = '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>\'',
-	!.
 pathitem(Name, [], L1, L2) :-
 	symbol(S, L1, L2),
 	!,
