@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0927.2204 josd').
+version_info('EYE v17.0928.1521 josd').
 
 license_info('MIT License
 
@@ -65,7 +65,7 @@ help_info('Usage: eye <options>* <data>* <query>*
 eye
 	swipl -x eye.pvm --
 <options>
-	--cn3				use external cn3 parser
+	--carl				use external carl parser
 	--curl-http-header <field>	to pass HTTP header <field> to curl
 	--debug				output debug info on stderr
 	--debug-cnt			output debug info about counters on stderr
@@ -268,9 +268,9 @@ main :-
 			flush_output(user_error)
 		)
 	),
-	(	memberchk('--cn3', Argus)
-	->	catch(process_create(path(cn3), [], [stdin(null), stdout(null), stderr(null)]), _,
-			(	format(user_error, '** ERROR ** EYE option --cn3 requires cn3 **~n', []),
+	(	memberchk('--carl', Argus)
+	->	catch(process_create(path(carl), [], [stdin(null), stdout(null), stderr(null)]), _,
+			(	format(user_error, '** ERROR ** EYE option --carl requires carl which can be installed from http://github.com/melgi/carl/releases/ **~n', []),
 				flush_output(user_error),
 				halt(1)
 			)
@@ -741,10 +741,10 @@ opts(['--brake', Lim|Argus], Args) :-
 	retractall(flag(brake, _)),
 	assertz(flag(brake, Limit)),
 	opts(Argus, Args).
-opts(['--cn3'|Argus], Args) :-
+opts(['--carl'|Argus], Args) :-
 	!,
-	retractall(flag(cn3)),
-	assertz(flag(cn3)),
+	retractall(flag(carl)),
+	assertz(flag(carl)),
 	opts(Argus, Args).
 opts(['--curl-http-header', Field|Argus], Args) :-
 	!,
@@ -1320,8 +1320,8 @@ args(['--proof', Arg|Args]) :-
 	->	portray_clause(scope(R))
 	;	true
 	),
-	(	flag(cn3)
-	->	cn3(Arg, data)
+	(	flag(carl)
+	->	carl(Arg, data)
 	;	n3_n3p(Arg, data)
 	),
 	(	got_pi
@@ -1337,8 +1337,8 @@ args(['--proof', Arg|Args]) :-
 	args(Args).
 args(['--query', Arg|Args]) :-
 	!,
-	(	flag(cn3)
-	->	cn3(Arg, query)
+	(	flag(carl)
+	->	carl(Arg, query)
 	;	n3_n3p(Arg, query)
 	),
 	args(Args).
@@ -1561,13 +1561,13 @@ args([Arg|Args]) :-
 	->	portray_clause(scope(R))
 	;	true
 	),
-	(	flag(cn3)
-	->	cn3(Arg, data)
+	(	flag(carl)
+	->	carl(Arg, data)
 	;	n3_n3p(Arg, data)
 	),
 	args(Args).
 
-cn3(Argument, Mode) :-
+carl(Argument, Mode) :-
 	!,
 	absolute_uri(Argument, Arg),
 	(	wcacher(Arg, File)
@@ -1605,7 +1605,7 @@ cn3(Argument, Mode) :-
 		)
 	),
 	atomic_list_concat(['-b=', Arg], Base),
-	catch(process_create(path(cn3), [Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
+	catch(process_create(path(carl), [Base, file(File)], [stdout(pipe(In)), stderr(std)]), Exc,
 		(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
 			flush_output(user_error),
 			flush_output,
@@ -1633,7 +1633,7 @@ cn3(Argument, Mode) :-
 	),
 	(	Rt = end_of_file
 	->	catch(read_line_to_codes(In, _), _, true)
-	;	cn3tr(Rt, Vars, Tr, Src, Mode),
+	;	carltr(Rt, Vars, Tr, Src, Mode),
 		(	Mode = semantics
 		->	(	Tr = scount(_)
 			->	assertz(Tr)
@@ -1677,7 +1677,7 @@ cn3(Argument, Mode) :-
 	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error).
 
-cn3tr(implies(X, Y, _), V, W, Src, query) :-
+carltr(implies(X, Y, _), V, W, Src, query) :-
 	!,
 	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, T)
 	->	(	is_list(T)
@@ -1708,7 +1708,7 @@ cn3tr(implies(X, Y, _), V, W, Src, query) :-
 	;	djiti_answer(answer(Y), A),
 		W = implies(X, A, Src)
 	).
-cn3tr(':-'(Y, X), V, W, Src, query) :-
+carltr(':-'(Y, X), V, W, Src, query) :-
 	!,
 	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>'(_, T)
 	->	(	is_list(T)
@@ -1739,14 +1739,14 @@ cn3tr(':-'(Y, X), V, W, Src, query) :-
 	;	djiti_answer(answer(Y), A),
 		W = implies(X, A, Src)
 	).
-cn3tr(implies(X, Y, _), _, '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
+carltr(implies(X, Y, _), _, '<http://www.w3.org/2000/10/swap/log#implies>'(X, Y), _, semantics) :-
 	!.
-cn3tr(pfx(X, Y), _, pfx(X, Y), _, _) :-
+carltr(pfx(X, Y), _, pfx(X, Y), _, _) :-
 	!,
 	sub_atom(X, 0, _, 1, A),
 	sub_atom(Y, 1, _, 1, B),
 	put_pfx(A, B).
-cn3tr(X, _, X, _, _).
+carltr(X, _, X, _, _).
 
 n3pin(Rt, In, File, Mode) :-
 	(	Rt = ':-'(Rg)
@@ -6153,8 +6153,8 @@ djiti_retractall(A) :-
 			flatten(H, I),
 			atomic_list_concat(I, J),
 			(	catch(exec(J, _), _, fail)
-			->	(	flag(cn3)
-				->	cn3(Tmp2, semantics)
+			->	(	flag(carl)
+				->	carl(Tmp2, semantics)
 				;	n3_n3p(Tmp2, semantics)
 				),
 				absolute_uri(Tmp2, Tmp),
@@ -6275,8 +6275,8 @@ djiti_retractall(A) :-
 				sub_atom(X, _, 1, 0, '>'),
 				sub_atom(X, 1, _, 1, Z),
 				catch(
-					(	flag(cn3)
-					->	cn3(Z, semantics)
+					(	flag(carl)
+					->	carl(Z, semantics)
 					;	n3_n3p(Z, semantics)
 					),
 					Exc,
