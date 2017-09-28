@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0928.1521 josd').
+version_info('EYE v17.0928.2136 josd').
 
 license_info('MIT License
 
@@ -1622,40 +1622,24 @@ carl(Argument, Mode) :-
 	set_stream(In, encoding(utf8)),
 	atomic_list_concat(['<', Arg, '>'], Src),
 	nb_setval(current_scope, Src),
-	nb_setval(semantics, []),
-	repeat,
-	read_term(In, Rt, [variable_names(Vars)]),
-	cnt(rt),
-	nb_getval(rt, Rtcnt),
-	(	Rtcnt mod 10000 =:= 0
-	->	garbage_collect_atoms
-	;	true
-	),
-	(	Rt = end_of_file
-	->	catch(read_line_to_codes(In, _), _, true)
-	;	carltr(Rt, Vars, Tr, Src, Mode),
-		(	Mode = semantics
-		->	(	Tr = scount(_)
-			->	assertz(Tr)
-			;	Tr \= ':-'(_),
-				Tr \= flag(_, _),
-				Tr \= scope(_),
-				Tr \= pfx(_, _),
-				Tr \= pred(_),
-				Tr \= cpred(_),
-				nb_getval(semantics, TriplesPrev),
-				append(TriplesPrev, [Tr], TriplesNext),
-				nb_setval(semantics, TriplesNext)
-			)
-		;	n3pin(Tr, In, File, Mode)
-		),
-		fail
-	),
-	!,
 	(	Mode = semantics
-	->	nb_getval(semantics, List),
+	->	carls(In, Src, List),
 		assertz(semantics(Src, List))
-	;	true
+	;	repeat,
+		read_term(In, Rt, [variable_names(Vars)]),
+		cnt(rt),
+		nb_getval(rt, Rtcnt),
+		(	Rtcnt mod 10000 =:= 0
+		->	garbage_collect_atoms
+		;	true
+		),
+		(	Rt = end_of_file
+		->	catch(read_line_to_codes(In, _), _, true)
+		;	carltr(Rt, Vars, Tr, Src, Mode),
+			n3pin(Tr, In, File, Mode),
+			fail
+		),
+		!
 	),
 	(	File = '-'
 	->	true
@@ -1676,6 +1660,27 @@ carl(Argument, Mode) :-
 	nb_setval(input_statements, Inp),
 	format(user_error, 'SC=~w~n', [SC]),
 	flush_output(user_error).
+
+carls(In, Src, List) :-
+	read_term(In, Rt, [variable_names(Vars)]),
+	(	Rt = end_of_file
+	->	List = []
+	;	carltr(Rt, Vars, Tr, Src, semantics),
+		(	Tr = scount(_)
+		->	assertz(Tr),
+			List = Rest
+		;	(	Tr \= ':-'(_),
+				Tr \= flag(_, _),
+				Tr \= scope(_),
+				Tr \= pfx(_, _),
+				Tr \= pred(_),
+				Tr \= cpred(_)
+			->	List = [Tr|Rest]
+			;	List = Rest
+			)
+		),
+		carls(In, Src, Rest)
+	).
 
 carltr(implies(X, Y, _), V, W, Src, query) :-
 	!,
