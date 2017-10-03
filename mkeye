@@ -1,0 +1,25 @@
+#!/bin/bash
+((!$#)) && echo Missing release message! && exit 1
+pushd ~/github.com/josd/eye
+if ! cmp /opt/eye/src/eye.prolog eye.prolog >/dev/null 2>&1
+then
+  export RELEASE="$(date -u +"%y.%m%d.%H%M")"
+  cat /opt/eye/src/eye.prolog | sed -e "s/EYE.*josd/EYE v$RELEASE josd/" > eye.prolog
+  sed -i '3 i\[v'"$RELEASE"'] '"$1"'' RELEASE
+  swipl -q -f eye.prolog -g main -- --version 2>&1 | grep josd > VERSION
+  sudo ./install.sh
+fi
+mkdir -p /tmp/eye
+rsync -azv eye.prolog eye.sh eye.cmd install.sh install.cmd INSTALL LICENSE RELEASE README.md VERSION /tmp/eye
+pushd /tmp
+zip -9ur eye.zip eye
+popd
+rsync -azv /tmp/eye.zip .
+git commit -a -m "$1"
+git push
+git checkout gh-pages
+git pull
+git merge master -m republish
+git push
+git checkout master
+popd
