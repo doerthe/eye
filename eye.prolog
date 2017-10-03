@@ -1,6 +1,6 @@
-% --------------------------------------------------
-% Euler Yet another proof Engine - EYE -- Jos De Roo
-% --------------------------------------------------
+% ---------------------------------------------
+% EYE Yet another decision Engine -- Jos De Roo
+% ---------------------------------------------
 
 % See http://github.com/josd/eye
 
@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.0928.2136 josd').
+version_info('EYE v17.1003.2120 josd').
 
 license_info('MIT License
 
