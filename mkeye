@@ -9,6 +9,7 @@ then
   swipl -q -f eye.prolog -g main -- --version 2>&1 | grep josd > VERSION
   sudo ./install.sh
 fi
+rm -fr /tmp/eye
 mkdir -p /tmp/eye
 rsync -azv eye.prolog eye.sh eye.cmd install.sh install.cmd INSTALL LICENSE RELEASE README.md VERSION /tmp/eye
 pushd /tmp
