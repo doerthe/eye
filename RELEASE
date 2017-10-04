@@ -1,6 +1,6 @@
                                   EYE release
 
-[v17.1004.0805] working with swipl 7.7
+[v17.1004.0813] working with swipl 7.7
 [v17.0928.2136] improving the performance of log:semantics when using --carl
 [v17.0928.1521] introducing --carl to use http://github.com/melgi/carl thanks to Giovanni Mels
 [v17.0927.2204] fixing exception in e:becomes built-in
