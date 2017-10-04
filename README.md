@@ -1,4 +1,6 @@
-# Euler Yet another proof Engine
+# The EYE reasoner
+
+## Euler Yet another proof Engine
 
 <img align="left" src="http://josd.github.io/images/eye.png" alt="EYE"/> EYE is a reasoning engine supporting the [Semantic Web layers](http://www.w3.org/DesignIssues/diagrams/sweb-stack/2006a).  
 It performs semibackward chaining and it supports Euler paths.  
