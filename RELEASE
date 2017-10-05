@@ -155,7 +155,7 @@
 - adding e:stringSplit built-in to split a string into a list of strings (obs from Hong Sun)
 - fixing --pass-all and --pass-all-ground to eliminate duplicate results (obs from Hong Sun)
 - supporting --wcache with prefix of uri and prefix of file
-- improving performance of deep taxonomy case http://github.com/josd/etc/tree/master/dt with proof output
+- improving performance of deep taxonomy case http://github.com/josd/fluid/tree/master/dt with proof output
 - improving performance of --multi-query with proof output
 - fixing issue with e:csvTuple proof output
 - fixing indentation in proof output
@@ -189,7 +189,7 @@
 - updating EYE_INSTALL to put swipl, curl and cturtle in the path environment variable (obs from Kristof Depraetere)
 - fixing --think performance degradation for backward rules (rules using <= in N3)
 - fixing circular proof when using --think option (obs from Giovanni Mels)
-- fixing --think performance degradation for http://github.com/josd/etc/tree/master/djiti
+- fixing --think performance degradation for http://github.com/josd/fluid/tree/master/djiti
 - fixing jiti (just in time indexing) issue for the proof generation (obs from Hong Sun)
 - avoiding redundant lemmas in r:evidence when using --think option
 - fixing infinite loop when using --think option in conjuction with e:optional
@@ -396,8 +396,8 @@
 - supporting Skolem IRIs like http://eulersharp.sourceforge.net/.well-known/genid/165710554195678051784816931502136832#sk2 via --no-qvars option
 - fixing --pvm and --nope for proof output
 - correcting [ a r:Fact; r:gives {true}] to [ a r:Fact; r:gives true] in proof output
-- fixing proof output for queries with true as premis (obs from http://josd.github.io/etc/rgb/blueproof003.n3)
-- fixing critical bug in proof output (obs from http://josd.github.io/etc/rgb/blueproof002.n3)
+- fixing proof output for queries with true as premis (obs from http://josd.github.io/fluid/rgb/blueproof003.n3)
+- fixing critical bug in proof output (obs from http://josd.github.io/fluid/rgb/blueproof002.n3)
 - output qnames when possible
 - refactoring strela (stretch relax) part of EYE
 - fixing issue with redundant answers coming from multiple queries (obs from Hong Sun)
