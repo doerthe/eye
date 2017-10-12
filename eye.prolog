@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1005.2123 josd').
+version_info('EYE v17.1012.2110 josd').
 
 license_info('MIT License
 
@@ -4181,6 +4181,7 @@ wt0(X) :-
 	\+flag('pass-all-ground'),
 	\+keep_skolem(X),
 	nb_getval(var_ns, Vns),
+	atom(X),
 	sub_atom(X, 1, I, _, Vns),
 	J is I+1,
 	sub_atom(X, J, _, 1, Y),
@@ -4226,6 +4227,7 @@ wt0(X) :-
 	->	true
 	;	flag(nope)
 	),
+	atom(X),
 	sub_atom(X, 1, _, _, Prefix),
 	!,
 	(	getlist(X, M)
@@ -4271,7 +4273,12 @@ wt0(X) :-
 			atom_codes(Z, V)
 		;	Z = W
 		),
-		write(Z)
+		(	blob(Z, text)
+		->	write(Z)
+		;	write('"'),
+			write(Z),
+			write('"')
+		)
 	).
 
 wt1(set(X)) :-
