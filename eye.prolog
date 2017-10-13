@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1012.2134 josd').
+version_info('EYE v17.1013.2031 josd').
 
 license_info('MIT License
 
@@ -4273,7 +4273,7 @@ wt0(X) :-
 			atom_codes(Z, V)
 		;	Z = W
 		),
-		(	blob(Z, text)
+		(	atom(Z)
 		->	write(Z)
 		;	'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tuple>'(A, [blob, Z]),
 			wt(A)
