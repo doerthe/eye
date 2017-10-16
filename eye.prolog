@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1013.2031 josd').
+version_info('EYE v17.1016.2201 josd').
 
 license_info('MIT License
 
@@ -4291,10 +4291,16 @@ wt1('$VAR'(X)) :-
 	write(X).
 wt1(X) :-
 	X =.. [B|C],
-	wt(C),
-	write(' '),
-	wp(B),
-	write(' true').
+	(	atom(B),
+		\+ (sub_atom(B, 0, 1, _, '<'), sub_atom(B, _, 1, 0, '>'))
+	->	write('"'),
+		writeq(X),
+		write('"')
+	;	wt(C),
+		write(' '),
+		wp(B),
+		write(' true')
+	).
 
 wt2((X, Y)) :-
 	!,
@@ -4562,12 +4568,13 @@ wt2(prolog:X) :-
 	wt0(Z).
 wt2(X) :-
 	X =.. [P, S, O],
-	(	P \= true,
-		prolog_sym(_, P, _)	% DEPRECATED
-	->	wt2([S, O]),
-		write(' '),
-		wp(P),
-		write(' true')
+	(	atom(P),
+		\+ (sub_atom(P, 0, 1, _, '<'), sub_atom(P, _, 1, 0, '>')),
+		\+atom_concat(avar, _, P),
+		\+atom_concat(some, _, P)
+	->	write('"'),
+		writeq(X),
+		write('"')
 	;	wg(S),
 		write(' '),
 		wp(P),
@@ -4589,12 +4596,9 @@ wtn(exopred(P, S, O)) :-
 wtn(X) :-
 	X =.. [B|C],
 	(	atom(B),
-		\+sub_atom(B, 0, 1, _, '<'),
-		\+prolog_sym(_, B, _),	% DEPRECATED
-		X \= true,
-		X \= false
+		\+ (sub_atom(B, 0, 1, _, '<'), sub_atom(B, _, 1, 0, '>'))
 	->	write('"'),
-		write(X),
+		writeq(X),
 		write('"')
 	;	wt(C),
 		write(' '),
@@ -4622,7 +4626,11 @@ wg(X) :-
 			F \= '[|]',
 			F \= ':',
 			F \= literal,
-			F \= rdiv
+			F \= rdiv,
+			(	sub_atom(F, 0, 1, _, '<'),
+				sub_atom(F, _, 1, 0, '>')
+			;	F = ':-'
+			)
 		)
 	->	write('{'),
 		indentation(1),
@@ -5505,6 +5513,10 @@ djiti_retractall(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#closure>'(Sc, A) :-
 	within_scope(Sc),
 	hstep(A, _).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#compoundTerm>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], C) :-
+	atomify(B, D),
+	read_term_from_atom(A, C, [variables(D)]).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cov>'(A, B) :-
 	cov(A, B).
@@ -10369,7 +10381,8 @@ atomify([A|B], [C|D]) :-
 	!,
 	atomify(A, C),
 	atomify(B, D).
-atomify(literal(A, _), A) :-
+atomify(literal(A, _), B) :-
+	read_term_from_atom(A, B, []),
 	!.
 atomify(A, A).
 
@@ -10717,7 +10730,7 @@ dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://w
 	!.
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), prolog:atom], A) :-
 	atomic(A),
-	\+sub_atom(A, 0, 1, _, '<'),
+	\+ (sub_atom(A, 0, 1, _, '<'), sub_atom(A, _, 1, 0, '>')),
 	!.
 dtlit([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), '<http://www.w3.org/2001/XMLSchema#string>'], literal(A, lang(_))) :-
 	!.
