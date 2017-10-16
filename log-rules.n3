@@ -140,6 +140,12 @@ e:columns a rdf:Property;
 	rdfs:domain rdfs:Class;
 	rdfs:range rdf:List.
 
+e:compoundTerm a rdf:Property, e:Builtin;
+	rdfs:comment """built-in to create a compound term e.g. ("date(_Y, _M, _D, 0, 0, 0.0, 0, 'UTC', -)" ?Y ?M ?D) e:compoundTerm ?T.
+			the first element of the subject list is the template expression in which variable names start with an underscore and the rest of the subject list are the variable values""";
+	rdfs:domain rdf:List;
+	rdfs:range rdfs:Resource.
+
 e:conditional a rdf:Property;
 	rdfs:comment "object is conditional belief of first element of subject list given rest of subject list";
 	rdfs:domain rdf:List;
