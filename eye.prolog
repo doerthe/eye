@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1016.2201 josd').
+version_info('EYE v17.1017.0822 josd').
 
 license_info('MIT License
 
@@ -10381,8 +10381,7 @@ atomify([A|B], [C|D]) :-
 	!,
 	atomify(A, C),
 	atomify(B, D).
-atomify(literal(A, _), B) :-
-	read_term_from_atom(A, B, []),
+atomify(literal(A, _), A) :-
 	!.
 atomify(A, A).
 

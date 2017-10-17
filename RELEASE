@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.1017.0822] fixing atomify/2 for the purpose of e:derive built-in
 [v17.1016.2201] adding e:compoundTerm built-in to create a compound term
 [v17.1013.2031] fixing proof output for non text blobs
 [v17.0928.2136] improving the performance of log:semantics when using --carl
