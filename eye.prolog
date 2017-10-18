@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1017.0822 josd').
+version_info('EYE v17.1018.0849 josd').
 
 license_info('MIT License
 
@@ -109,7 +109,7 @@ eye
 	--warn				output warning info on stderr
 	--wcache <uri> <file>		to tell that <uri> is cached as <file>
 <data>
-	<uri>				N3 triples and rules
+	--n3 <uri>			N3 triples and rules
 	--plugin <uri>			N3P code
 	--proof <uri>			N3 proof
 	--turtle <uri>			Turtle data
@@ -370,7 +370,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--n3', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
 			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
@@ -1117,7 +1117,7 @@ opts(['--yabc', File|Argus], Args) :-
 	assertz(flag(image, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--help', '--n3', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
 	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
@@ -1206,6 +1206,20 @@ curl_http_headers(Headers) :-
 
 args([]) :-
 	!.
+args(['--n3', Arg|Args]) :-
+	!,
+	absolute_uri(Arg, A),
+	atomic_list_concat(['<', A, '>'], R),
+	assertz(scope(R)),
+	(	flag(n3p)
+	->	portray_clause(scope(R))
+	;	true
+	),
+	(	flag(carl)
+	->	carl(Arg, data)
+	;	n3_n3p(Arg, data)
+	),
+	args(Args).
 args(['--pass'|Args]) :-
 	!,
 	(	flag(nope),
@@ -1554,18 +1568,7 @@ args(['--turtle', Argument|Args]) :-
 	),
 	args(Args).
 args([Arg|Args]) :-
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	(	flag(carl)
-	->	carl(Arg, data)
-	;	n3_n3p(Arg, data)
-	),
-	args(Args).
+	args(['--n3', Arg|Args]).
 
 carl(Argument, Mode) :-
 	!,
