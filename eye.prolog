@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1018.0849 josd').
+version_info('EYE v17.1023.2239 josd').
 
 license_info('MIT License
 
@@ -1340,12 +1340,14 @@ args(['--proof', Arg|Args]) :-
 	),
 	(	got_pi
 	->	true
-	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
-		assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(S, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
-				'<http://www.w3.org/2000/10/swap/reason#gives>'(S, G)),
-				G, '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(LEMMA, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(LEMMA, GRAPH),
+				'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphMember>'(GRAPH, exopred(P, S, O))),
+				exopred(P, S, O), '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
+		assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(LEMMA, '<http://www.w3.org/2000/10/swap/reason#Extraction>'),
+				'<http://www.w3.org/2000/10/swap/reason#gives>'(LEMMA, GRAPH),
+				'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#graphMember>'(GRAPH, exopred(P, S, O))),
+				exopred(P, S, O), '<http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>')),
 		assertz(got_pi)
 	),
 	args(Args).
@@ -5127,6 +5129,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 			P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
 			P \= '<http://www.w3.org/2000/10/swap/log#implies>',
 			P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>',
+			P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>',
 			N = 2
 		->	assertz(pred(P))
 		;	true
@@ -5172,6 +5175,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 				P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
 				P \= '<http://www.w3.org/2000/10/swap/log#implies>',
 				P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>',
+				P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>',
 				N = 2
 			->	assertz(pred(P))
 			;	true
@@ -5335,7 +5339,8 @@ djiti_fact(answer(P, S, O, I, J, K, L), B) :-
 			)
 		)
 	),
-	(	\+pred(P)
+	(	P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>',
+		\+pred(P)
 	->	assertz(pred(P))
 	;	true
 	),
@@ -5378,6 +5383,7 @@ djiti_fact(A, B) :-
 	A =.. [P, S, O],
 	A \= ':-'(_, _),
 	(	P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>',
+		P \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#finalize>',
 		P \= query,
 		P \= pfx,
 		P \= flag,
