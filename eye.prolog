@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1023.2239 josd').
+version_info('EYE v17.1024.1424 josd').
 
 license_info('MIT License
 
@@ -10217,18 +10217,18 @@ inv(true, false).
 			)
 	->	call(D),
 		B = true
-	;	(	flag(nope)
-		->	D = B
-		;	(	D = when(H, I)
+	;	(	\+flag(nope),
+			(	D = when(H, I)
 			->	conj_append(J, istep(Src, _, _, _), I),
 				B = when(H, J)
 			;	conj_append(B, istep(Src, _, _, _), D)
-			),
-			term_index(':-'(A, B), Ind),
+			)
+		->	term_index(':-'(A, B), Ind),
 			(	\+prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src)
 			->	assertz(prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src))
 			;	true
 			)
+		;	D = B
 		)
 	).
 
