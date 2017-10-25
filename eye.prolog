@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1024.1424 josd').
+version_info('EYE v17.1025.2201 josd').
 
 license_info('MIT License
 
@@ -175,23 +175,16 @@ eye
 :- dynamic(wcache/2).
 :- dynamic(wpfx/1).
 :- dynamic(wtcache/2).
-:- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/fl-rules#mu>'/2).
-:- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/fl-rules#pi>'/2).
-:- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/fl-rules#sigma>'/2).
 :- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'/2).
 :- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>'/2).
-:- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reflexive>'/2).
 :- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>'/2).
 :- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>'/2).
 :- dynamic('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'/2).
 :- dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>'/2).
 :- dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>'/2).
 :- dynamic('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'/2).
-:- dynamic('<http://www.w3.org/2000/10/swap/list#in>'/2).
-:- dynamic('<http://www.w3.org/2000/10/swap/list#member>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#implies>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#outputString>'/2).
-:- dynamic('<http://www.w3.org/2002/07/owl#sameAs>'/2).
 
 % Main goal
 
@@ -436,31 +429,7 @@ gre(Argus) :-
 	;	true
 	),
 	(	flag(n3p)
-	->	format(':- style_check(-discontiguous).~n', []),
-		format(':- style_check(-singleton).~n', []),
-		format(':- multifile(exopred/3).~n', []),
-		format(':- multifile(implies/3).~n', []),
-		format(':- multifile(pfx/2).~n', []),
-		format(':- multifile(pred/1).~n', []),
-		format(':- multifile(prfstep/8).~n', []),
-		format(':- multifile(scope/1).~n', []),
-		format(':- multifile(scount/1).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/fl-rules#mu>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/fl-rules#pi>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/fl-rules#sigma>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#reflexive>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#relabel>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>\'/2).~n', []),
-		format(':- multifile(\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>\'/2).~n', []),
-		format(':- multifile(\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\'/2).~n', []),
-		format(':- multifile(\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\'/2).~n', []),
-		format(':- multifile(\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'/2).~n', []),
-		format(':- multifile(\'<http://www.w3.org/2000/10/swap/log#implies>\'/2).~n', []),
-		format(':- multifile(\'<http://www.w3.org/2000/10/swap/log#outputString>\'/2).~n', []),
-		format(':- multifile(\'<http://www.w3.org/2002/07/owl#sameAs>\'/2).~n', []),
-		format('flag(\'no-skolem\', \'~w\').~n', [Vns])
+	->	format('flag(\'no-skolem\', \'~w\').~n', [Vns])
 	;	true
 	),
 	args(Args),
@@ -1134,10 +1103,7 @@ probe :-
 		S1 is 100000000/T1
 	;	open(File, write, Out, [encoding(utf8)]),
 		tell(Out),
-		format(':- style_check(-discontiguous).~n', []),
-		format(':- style_check(-singleton).~n', []),
 		(	between(0, 99, I),
-			format(':- dynamic(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\'/2).~n', [I]),
 			format('pred(\'<http://eulersharp.sourceforge.net/2007/07test/graph#i~d>\').~n', [I]),
 			fail
 		;	true
@@ -1765,7 +1731,8 @@ n3pin(Rt, In, File, Mode) :-
 		->	format('~q.~n', [Rt])
 		;	true
 		)
-	;	(	(	Rt = ':-'(Rh, _)
+	;	dynify(Rt),
+		(	(	Rt = ':-'(Rh, _)
 			->	predicate_property(Rh, dynamic)
 			;	predicate_property(Rt, dynamic)
 			)
@@ -2008,33 +1975,27 @@ n3_n3p(Argument, Mode) :-
 			read(Rs, Rt),
 			(	Rt = end_of_file
 			->	true
-			;	(	ground(Rt),
+			;	dynify(Rt),
+				(	ground(Rt),
 					Rt \= ':-'(_, _)
-				->	(	Rt = dynapred(B/2)
-					->	(	flag(n3p)
-						->	format(':- dynamic(~q).~n', [B/2]),
-							format(':- multifile(~q).~n', [B/2])
+				->	(	predicate_property(Rt, dynamic)
+					->	true
+					;	close(Rs),
+						(	retract(tmpfile(Tmp_p))
+						->	delete_file(Tmp_p)
 						;	true
-						)
-					;	(	predicate_property(Rt, dynamic)
-						->	true
-						;	close(Rs),
-							(	retract(tmpfile(Tmp_p))
-							->	delete_file(Tmp_p)
-							;	true
-							),
-							throw(builtin_redefinition(Rt))
 						),
-						(	Rt \= implies(_, _, _),
-							\+flag('no-distinct-input'),
-							call(Rt)
-						->	true
-						;	djiti_assertz(Rt),
-							cnt(sc),
-							(	flag(n3p)
-							->	portray_clause(Rt)
-							;	true
-							)
+						throw(builtin_redefinition(Rt))
+					),
+					(	Rt \= implies(_, _, _),
+						\+flag('no-distinct-input'),
+						call(Rt)
+					->	true
+					;	djiti_assertz(Rt),
+						cnt(sc),
+						(	flag(n3p)
+						->	portray_clause(Rt)
+						;	true
 						)
 					)
 				;	(	Rt = prfstep(Ct, _, Pt, _, Qt, It, Mt, St)
@@ -2603,7 +2564,6 @@ pathtail(Node, PNode, [Triple|Triples], ['!'|L2], L4) :-
 	!,
 	pathitem(Item, Triples2, L2, L3),
 	prolog_verb(Item, Verb),
-	dynamic_verb(Verb),
 	gensym('bn_', S),
 	(	(	nb_getval(fdepth, 0)
 		;	flag('pass-all-ground')
@@ -2645,7 +2605,6 @@ pathtail(Node, PNode, [Triple|Triples], ['^'|L2], L4) :-
 	!,
 	pathitem(Item, Triples2, L2, L3),
 	prolog_verb(Item, Verb),
-	dynamic_verb(Verb),
 	gensym('bn_', S),
 	(	(	nb_getval(fdepth, 0)
 		;	flag('pass-all-ground')
@@ -2690,7 +2649,6 @@ prefix(Prefix, [Prefix:''|L2], L2).
 propertylist(Subject, [Triple|Triples], L1, L5) :-
 	verb(Item, Triples1, L1, L2),
 	prolog_verb(Item, Verb),
-	dynamic_verb(Verb),
 	!,
 	object(Object, Triples2, L2, L3),
 	objecttail(Subject, Verb, Triples3, L3, L4),
@@ -10371,6 +10329,35 @@ relabel(A, B) :-
 	relabel(D, F),
 	B =.. [E|F].
 
+dynify(A) :-
+	var(A),
+	!.
+dynify((A, B)) :-
+	!,
+	dynify(A),
+	dynify(B).
+dynify(implies(A, B, _)) :-
+	!,
+	dynify(A),
+	dynify(B).
+dynify(':-'(A, B)) :-
+	!,
+	dynify(A),
+	dynify(B).
+dynify(answer(A, _, _, _, _, _, _)) :-
+	nonvar(A),
+	!,
+	(	current_predicate(A/2)
+	->	true
+	;	dynamic(A/2)
+	).
+dynify(A) :-
+	functor(A, F, N),
+	(	current_predicate(F/N)
+	->	true
+	;	dynamic(F/N)
+	).
+
 conjify((A, B), (C, D)) :-
 	!,
 	conjify(A, C),
@@ -11217,37 +11204,6 @@ prolog_verb(S, Name) :-
 		),
 		Name = prolog:Pred
 	;	Name = S
-	).
-
-dynamic_verb(Verb) :-
-	(	(	atom(Verb)
-		->	V = Verb
-		;	Verb = isof(V)
-		),
-		\+sub_atom(V, 0, 1, _, '_')
-	->	(	intern(V)
-		->	true
-		;	assertz(intern(V)),
-			(	sub_atom(V, 0, 1, _, '\'')
-			->	sub_atom(V, 1, _, 1, A),
-				(	sub_atom(A, _, 1, _, '\'')
-				->	atom_codes(A, C),
-					escape_squote(D, C),
-					atom_codes(B, D)
-				;	B = A
-				)
-			;	B = V
-			),
-			(	current_predicate(B/2)
-			->	true
-			;	dynamic(B/2),
-				(	flag(n3p)
-				->	format('dynapred(~q).~n', [B/2])
-				;	true
-				)
-			)
-		)
-	;	true
 	).
 
 timestamp(Stamp) :-
