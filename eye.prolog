@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1025.2201 josd').
+version_info('EYE v17.1027.1407 josd').
 
 license_info('MIT License
 
@@ -4500,7 +4500,13 @@ wt2(':-'(X, Y)) :-
 	;	wg(X),
 		write(' <= '),
 		wg(Y),
-		retract(rule_uvar(_))
+		retract(rule_uvar(U)),
+		(	U \= [],
+			retract(rule_uvar(V)),
+			append(U, V, W)
+		->	assertz(rule_uvar(W))
+		;	true
+		)
 	),
 	(	nb_getval(fdepth, 0)
 	->	retract(ncllit)
