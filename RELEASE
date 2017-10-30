@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.1030.2055] fixing e:becomes with universals in the object (obs from Hong Sun)
 [v17.1027.1407] fixing proof output for nested universal backward rule conclusion
 [v17.1025.2201] removing all directives from N3P
 [v17.1024.1424] fixing proofchain issue with --proof in conjunction with <= rules
