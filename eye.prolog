@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1027.1407 josd').
+version_info('EYE v17.1030.2055 josd').
 
 license_info('MIT License
 
@@ -5424,6 +5424,9 @@ djiti_retractall(A) :-
 		(	djiti_retract(E)
 		)
 	),
+	nb_getval(wn, W),
+	labelvars(B, W, N),
+	nb_setval(wn, N),
 	unify(B, F),
 	conj_list(F, G),
 	forall(
