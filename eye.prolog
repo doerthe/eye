@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1030.2055 josd').
+version_info('EYE v17.1106.2229 josd').
 
 license_info('MIT License
 
@@ -1409,16 +1409,16 @@ args(['--turtle', Argument|Args]) :-
 		set_stream(In, encoding(utf8)),
 		repeat,
 		read_term(In, Rt, []),
-		cnt(rt),
-		nb_getval(rt, Rtcnt),
-		(	Rtcnt mod 10000 =:= 0
-		->	garbage_collect_atoms
-		;	true
-		),
 		(	Rt = end_of_file
 		->	catch(read_line_to_codes(In, _), _, true)
 		;	(	flag('streaming-reasoning')
-			->	(	Rt \= ':-'(_),
+			->	cnt(rt),
+				nb_getval(rt, Rtcnt),
+				(	Rtcnt mod 10000 =:= 0
+				->	garbage_collect_atoms
+				;	true
+				),
+				(	Rt \= ':-'(_),
 					Rt \= flag(_, _),
 					Rt \= scope(_),
 					Rt \= pfx(_, _),
@@ -1589,7 +1589,6 @@ carl(Argument, Mode) :-
 	nb_setval(tc, 0),
 	nb_setval(tp, 0),
 	nb_setval(tr, 0),
-	nb_setval(rt, 0),
 	set_stream(In, encoding(utf8)),
 	atomic_list_concat(['<', Arg, '>'], Src),
 	nb_setval(current_scope, Src),
@@ -1598,12 +1597,6 @@ carl(Argument, Mode) :-
 		assertz(semantics(Src, List))
 	;	repeat,
 		read_term(In, Rt, [variable_names(Vars)]),
-		cnt(rt),
-		nb_getval(rt, Rtcnt),
-		(	Rtcnt mod 10000 =:= 0
-		->	garbage_collect_atoms
-		;	true
-		),
 		(	Rt = end_of_file
 		->	catch(read_line_to_codes(In, _), _, true)
 		;	carltr(Rt, Vars, Tr, Src, Mode),
