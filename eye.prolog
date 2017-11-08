@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1108.2040 josd').
+version_info('EYE v17.1108.2144 josd').
 
 license_info('MIT License
 
@@ -274,10 +274,6 @@ main :-
 	->	assertz(prolog_file_type(pvm, qlf))
 	;	true
 	),
-	(	memberchk('--profile', Argus)
-	->	profiler(_, cputime)
-	;	true
-	),
 	catch(gre(Argus), Exc,
 		(	Exc = halt
 		->	true
@@ -285,14 +281,6 @@ main :-
 			flush_output(user_error),
 			nb_setval(exit_code, 1)
 		)
-	),
-	(	memberchk('--profile', Argus)
-	->	profiler(_, false),
-		tell(user_error),
-		show_profile([]),
-		nl,
-		told
-	;	true
 	),
 	(	flag(statistics)
 	->	statistics
@@ -566,7 +554,11 @@ gre(Argus) :-
 			told,
 			fail
 		)
-	;	catch(eam(0), Exc3,
+	;	(	flag(profile)
+		->	profiler(_, cputime)
+		;	true
+		),
+		catch(eam(0), Exc3,
 			(	(	Exc3 = halt
 				->	true
 				;	format(user_error, '** ERROR ** eam ** ~w~n', [Exc3]),
@@ -574,6 +566,14 @@ gre(Argus) :-
 					nb_setval(exit_code, 1)
 				)
 			)
+		),
+		(	flag(profile)
+		->	profiler(_, false),
+			tell(user_error),
+			show_profile([]),
+			nl,
+			told
+		;	true
 		)
 	),
 	(	flag(strings)
