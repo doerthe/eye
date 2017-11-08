@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1106.2229 josd').
+version_info('EYE v17.1108.2040 josd').
 
 license_info('MIT License
 
@@ -275,12 +275,7 @@ main :-
 	;	true
 	),
 	(	memberchk('--profile', Argus)
-	->	(	current_predicate(profon/0)
-		->	yap_flag(profiling, on),
-			profinit,
-			profon
-		;	profiler(_, cputime)
-		)
+	->	profiler(_, cputime)
 	;	true
 	),
 	catch(gre(Argus), Exc,
@@ -292,19 +287,11 @@ main :-
 		)
 	),
 	(	memberchk('--profile', Argus)
-	->	(	current_predicate(profon/0)
-		->	profoff,
-			showprofres,
-			format(user_error, '~n', []),
-			flush_output(user_error)
-		;	profiler(_, false),
-			tell(user_error),
-			(	current_predicate(show_profile/2)
-			->	show_profile(plain, 25)
-			;	show_profile([top(-1)])
-			),
-			told
-		)
+	->	profiler(_, false),
+		tell(user_error),
+		show_profile([]),
+		nl,
+		told
 	;	true
 	),
 	(	flag(statistics)
@@ -318,40 +305,10 @@ main :-
 	;	true
 	),
 	(	flag('debug-djiti')
-	->	forall(
-			(	pred(Pred)
-			),
-			(	(	P =.. [Pred, _, _],
-					predicate_property(P, indexed(Ind2))
-				->	format(user_error, 'DJITI ~w/2 indexed ~w~n', [Pred, Ind2])
-				;	true
-				),
-				(	P =.. [Pred, _, _, _, _, _, _],
-					predicate_property(P, indexed(Ind6))
-				->	format(user_error, 'DJITI ~w/6 indexed ~w~n', [Pred, Ind6])
-				;	true
-				),
-				(	P =.. [Pred, _, _, _, _, _, _, _],
-					predicate_property(P, indexed(Ind7))
-				->	format(user_error, 'DJITI ~w/7 indexed ~w~n', [Pred, Ind7])
-				;	true
-				)
-			)
-		),
-		(	predicate_property(implies(_, _, _), indexed(Indi3))
-		->	format(user_error, 'DJITI implies/3 indexed ~w~n', [Indi3])
-		;	true
-		),
-		(	predicate_property(lemma(_, _, _, _, _, _), indexed(Indl6))
-		->	format(user_error, 'DJITI lemma/6 indexed ~w~n', [Indl6])
-		;	true
-		),
-		(	predicate_property(prfstep(_, _, _, _, _, _, _, _), indexed(Indp8))
-		->	format(user_error, 'DJITI prfstep/8 indexed ~w~n', [Indp8])
-		;	true
-		),
-		format(user_error, '~n', []),
-		flush_output(user_error)
+	->	tell(user_error),
+		jiti_list,
+		nl,
+		told
 	;	true
 	),
 	nb_getval(exit_code, EC),

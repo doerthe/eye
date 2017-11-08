@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.1108.2040] improving the implementation of --profile and --debug-djiti
 [v17.1106.2229] removing the unneeded garbage_collect_atoms in carl/2
 [v17.1030.2055] fixing e:becomes with universals in the object (obs from Hong Sun)
 [v17.1027.1407] fixing proof output for nested universal backward rule conclusion
