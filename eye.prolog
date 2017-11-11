@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1111.2131 josd').
+version_info('EYE v17.1111.2305 josd').
 
 license_info('MIT License
 
@@ -1672,8 +1672,6 @@ carltr(pfx(X, Y), _, pfx(X, Y), _, _) :-
 	sub_atom(X, 0, _, 1, A),
 	sub_atom(Y, 1, _, 1, B),
 	put_pfx(A, B).
-carltr(':-'(X, true), _, X, _, _) :-
-	!.
 carltr(X, _, X, _, _).
 
 n3pin(Rt, In, File, Mode) :-
