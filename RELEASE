@@ -1,5 +1,6 @@
                                   EYE release
 
+[v17.1111.2131] fixing translation issue in --carl
 [v17.1108.2144] improving the implementation of --profile to just cover reasoning
 [v17.1108.2040] improving the implementation of --debug-djiti
 [v17.1106.2229] removing the unneeded garbage_collect_atoms in carl/2
