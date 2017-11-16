@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1111.2305 josd').
+version_info('EYE v17.1116.2259 josd').
 
 license_info('MIT License
 
@@ -118,7 +118,7 @@ eye
 	--pass-all			output deductive closure plus rules
 	--query <n3-query>		output filtered with filter rules').
 
-:- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_arg_1, Object_arg_1)
+:- dynamic(answer/7).		% answer(Predicate, Subject, Object, Subject_index, Object_index, Subject_deep_index, Object_deep_index)
 :- dynamic(argi/1).
 :- dynamic(base_uri/1).
 :- dynamic(bcnd/2).
@@ -154,7 +154,7 @@ eye
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
 :- dynamic(preda/1).
-:- dynamic(prfstep/8).		% prfstep(Conclusion_triple, Conclusion_triple_index, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
+:- dynamic(prfstep/8).		% prfstep(Conclusion_triple, Conclusion_triple_deep_index, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
 :- dynamic(qevar/3).
 :- dynamic(query/2).
 :- dynamic(quvar/3).
@@ -1750,24 +1750,21 @@ n3pin(Rt, In, File, Mode) :-
 						Rt \= scount(_)
 					->	format('~q.~n', [Rt])
 					;	true
-					)
-				;	true
-				),
-				(	Rt \= flag(_, _),
-					Rt \= scope(_),
-					Rt \= pfx(_, _),
-					Rt \= pred(_),
-					Rt \= cpred(_),
-					Rt \= scount(_)
-				->	(	flag(nope)
-					->	true
-					;	term_index(Rt, Cnd),
-						term_index(true, Pnd),
-						nb_getval(current_scope, Src),
-						(	\+prfstep(Rt, Cnd, true, Pnd, Rt, _, forward, Src)
-						->	assertz(prfstep(Rt, Cnd, true, Pnd, Rt, _, forward, Src))
-						;	true
+					),
+					(	Rt \= flag(_, _),
+						Rt \= scope(_),
+						Rt \= pfx(_, _),
+						Rt \= pred(_),
+						Rt \= cpred(_),
+						Rt \= scount(_)
+					->	(	flag(nope)
+						->	true
+						;	term_deep_index(Rt, Cnd),
+							term_index(true, Pnd),
+							nb_getval(current_scope, Src),
+							assertz(prfstep(Rt, Cnd, true, Pnd, Rt, _, forward, Src))
 						)
+					;	true
 					)
 				;	true
 				)
@@ -1949,7 +1946,7 @@ n3_n3p(Argument, Mode) :-
 						)
 					)
 				;	(	Rt = prfstep(Ct, _, Pt, _, Qt, It, Mt, St)
-					->	term_index(Ct, Cnd),
+					->	term_deep_index(Ct, Cnd),
 						term_index(Pt, Pnd),
 						(	nonvar(It)
 						->	copy_term_nat(It, Ic)
@@ -3715,11 +3712,10 @@ w3 :-
 		indentation(2),
 		nl,
 		indent,
-		(	prfstep(answer(B1, B2, B3, B4, B5, B6, B7), _, B, Pnd, Cn, R, _, A),
+		(	prfstep(answer(_, _, _, _, _, _, _), _, B, Pnd, Cn, R, _, A),
 			R =.. [P, S, O1],
 			djiti_answer(answer(O), O1),
 			Rule =.. [P, S, O],
-			relabel([B1, B2, B3, B4, B5, B6, B7], [C1, C2, C3, C4, C5, C6, C7]),
 			djiti_answer(answer(C), Cn),
 			nb_setval(empty_gives, C),
 			\+got_wi(A, B, Pnd, C, Rule),
@@ -3951,7 +3947,7 @@ wr((X, Y)) :-
 	wr(X),
 	wr(Y).
 wr(Z) :-
-	term_index(Z, Cnd),
+	term_deep_index(Z, Cnd),
 	prfstep(Z, Cnd, Y, _, Q, Rule, _, X),
 	!,
 	nl,
@@ -4952,8 +4948,8 @@ eam(Span) :-
 		),
 		(	flag(think),	% DEPRECATED
 			\+flag(nope),
+			term_deep_index(Concdr, Cnd),
 			term_index(Prem, Pnd),
-			term_index(Concdr, Cnd),
 			prfstep(Concdr, Cnd, _, _, _, _, _, _),
 			\+prfstep(_, _, Prem, Pnd, _, Rule, _, _)
 		->	true
@@ -5061,23 +5057,17 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 				nl,
 				cnt(output_statements)
 			;	true
-			)
-		),
-		(	flag(nope)
-		->	true
-		;	term_index(Dn, Cnd),
-			term_index(B, Pnd),
-			(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
-				Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
-				prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
-					'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-			->	(	\+prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A)
+			),
+			(	flag(nope)
+			->	true
+			;	term_deep_index(Dn, Cnd),
+				term_index(B, Pnd),
+				(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
+					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
+					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
+						'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
 				->	assertz(prfstep(Dn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-				;	true
-				)
-			;	(	\+prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A)
-				->	assertz(prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A))
-				;	true
+				;	assertz(prfstep(Dn, Cnd, B, Pnd, Cd, Rule, forward, A))
 				)
 			)
 		),
@@ -5107,23 +5097,17 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 					nl,
 					cnt(output_statements)
 				;	true
-				)
-			),
-			(	flag(nope)
-			->	true
-			;	term_index(Cn, Cnd),
-				term_index(B, Pnd),
-				(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
-					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
-					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
-						'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-				->	(	\+prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A)
+				),
+				(	flag(nope)
+				->	true
+				;	term_deep_index(Cn, Cnd),
+					term_index(B, Pnd),
+					(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
+						Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
+						prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), _, Q3, Q4, _,
+							'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
 					->	assertz(prfstep(Cn, Cnd, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-					;	true
-					)
-				;	(	\+prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A)
-					->	assertz(prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A))
-					;	true
+					;	assertz(prfstep(Cn, Cnd, B, Pnd, Cd, Rule, forward, A))
 					)
 				)
 			)
@@ -5133,7 +5117,7 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
 	copy_term_nat(Prem, Prec),
 	labelvars(Prec, 0, _),
-	term_index(Conc, Cnd),
+	term_deep_index(Conc, Cnd),
 	term_index(Prec, Pnd),
 	(	\+prfstep(Conc, Cnd, Prec, Pnd, Conc, Rule, backward, Src)
 	->	assertz(prfstep(Conc, Cnd, Prec, Pnd, Conc, Rule, backward, Src))
@@ -5193,13 +5177,13 @@ djiti_answer(answer(A), answer(P, S, O, I, J, K, L)) :-
 	(	var(I),
 		compound(S)
 	->	term_index(S, I),
-		term_arg_1(S, K)
+		term_deep_index(S, K)
 	;	true
 	),
 	(	var(J),
 		compound(O)
 	->	term_index(O, J),
-		term_arg_1(O, L)
+		term_deep_index(O, L)
 	;	true
 	).
 djiti_answer(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
@@ -5210,13 +5194,13 @@ djiti_answer(answer(exopred(P, S, O)), answer(P, S, O, I, J, K, L)) :-
 	(	var(I),
 		compound(S)
 	->	term_index(S, I),
-		term_arg_1(S, K)
+		term_deep_index(S, K)
 	;	true
 	),
 	(	var(J),
 		compound(O)
 	->	term_index(O, J),
-		term_arg_1(O, L)
+		term_deep_index(O, L)
 	;	true
 	).
 djiti_answer(answer(A), answer(A, void, void, _, _, _, _)) :-
@@ -5236,8 +5220,8 @@ djiti_concdv(answer(P, S, O, _, _, _, _), answer(P, S, O, I, J, K, L)) :-
 	!,
 	term_index(S, I),
 	term_index(O, J),
-	term_arg_1(S, K),
-	term_arg_1(O, L).
+	term_deep_index(S, K),
+	term_deep_index(O, L).
 djiti_concdv(A, A).
 
 djiti_fact(answer(P, S, O, I, J, K, L), B) :-
@@ -5271,20 +5255,20 @@ djiti_fact(exopred(P, S, O), exopred(P, S, O, Si, Oi, Sp, Op)) :-
 	!,
 	term_index(S, Si),
 	term_index(O, Oi),
-	term_arg_1(S, Sp),
-	term_arg_1(O, Op),
+	term_deep_index(S, Sp),
+	term_deep_index(O, Op),
 	(	current_predicate(exopred/7)
 	->	true
 	;	dynamic(exopred/7),
 		assertz(':-'(exopred(P, U, V),
 				(	(	compound(U)
 					->	term_index(U, Ui),
-						term_arg_1(U, Up)
+						term_deep_index(U, Up)
 					;	true
 					),
 					(	compound(V)
 					->	term_index(V, Vi),
-						term_arg_1(V, Vp)
+						term_deep_index(V, Vp)
 					;	true
 					),
 					exopred(P, U, V, Ui, Vi, Up, Vp)
@@ -5311,8 +5295,8 @@ djiti_fact(A, B) :-
 	!,
 	term_index(S, Si),
 	term_index(O, Oi),
-	term_arg_1(S, Sp),
-	term_arg_1(O, Op),
+	term_deep_index(S, Sp),
+	term_deep_index(O, Op),
 	(	current_predicate(P/6)
 	->	true
 	;	dynamic(P/6),
@@ -5320,12 +5304,12 @@ djiti_fact(A, B) :-
 		assertz(':-'(X,
 				(	(	compound(U)
 					->	term_index(U, Ui),
-						term_arg_1(U, Up)
+						term_deep_index(U, Up)
 					;	true
 					),
 					(	compound(V)
 					->	term_index(V, Vi),
-						term_arg_1(V, Vp)
+						term_deep_index(V, Vp)
 					;	true
 					),
 					Y =.. [P, U, V, Ui, Vi, Up, Vp],
@@ -10086,12 +10070,12 @@ term_index(A, B) :-
 	).
 :- endif.
 
-term_arg_1(A, B) :-
-	compound(A),
-	!,
-	arg(1, A, C),
+term_deep_index(A, B) :-
+	(	compound(A)
+	->	arg(1, A, C)
+	;	C = A
+	),
 	term_index(C, B).
-term_arg_1(_, void).
 
 if_then_else(A, B, C) :-
 	(	catch(call(A), _, fail)
@@ -10121,12 +10105,12 @@ inv(true, false).
 	functor(A, P, 2),
 	(	D =	(	(	compound(U)
 				->	term_index(U, Ui),
-					term_arg_1(U, Up)
+					term_deep_index(U, Up)
 				;	true
 				),
 				(	compound(V)
 				->	term_index(V, Vi),
-					term_arg_1(V, Vp)
+					term_deep_index(V, Vp)
 				;	true
 				),
 				Y =.. [P, U, V, Ui, Vi, Up, Vp],
@@ -10140,9 +10124,10 @@ inv(true, false).
 				B = when(H, J)
 			;	conj_append(B, istep(Src, _, _, _), D)
 			)
-		->	term_index(':-'(A, B), Ind),
-			(	\+prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src)
-			->	assertz(prfstep(':-'(A, B), Ind, true, _, ':-'(A, B), _, forward, Src))
+		->	term_deep_index(':-'(A, B), Cnd),
+			term_index(true, Pnd),
+			(	\+prfstep(':-'(A, B), Cnd, true, Pnd, ':-'(A, B), _, forward, Src)
+			->	assertz(prfstep(':-'(A, B), Cnd, true, Pnd, ':-'(A, B), _, forward, Src))
 			;	true
 			)
 		;	D = B
