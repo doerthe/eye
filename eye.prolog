@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1116.2259 josd').
+version_info('EYE v17.1117.1002 josd').
 
 license_info('MIT License
 
@@ -10073,7 +10073,7 @@ term_index(A, B) :-
 term_deep_index(A, B) :-
 	(	compound(A)
 	->	arg(1, A, C)
-	;	C = A
+	;	C = void
 	),
 	term_index(C, B).
 
