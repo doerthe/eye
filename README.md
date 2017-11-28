@@ -20,8 +20,7 @@ and in a [Docker container for HTTP client use](http://hub.docker.com/r/bdevloed
 
 ### Architecture and design
 
-EYE supports Multi-Agent Generic reasoning with Mutual proof Assistance  
-also called [MAGMA](http://github.com/josd/fluid/tree/master/magma) and here are the layers of the EYE stack:  
+Here are the layers of the EYE stack:  
 <img src="http://josd.github.io/images/EYE-stack.png" width="50%" height="50%" alt="EYE-stack"/>  
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
