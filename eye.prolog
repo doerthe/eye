@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1201.1242 josd').
+version_info('EYE v17.1204.1538 josd').
 
 license_info('MIT License
 
@@ -153,7 +153,7 @@ eye
 :- dynamic(ns/2).
 :- dynamic(pfx/2).
 :- dynamic(pred/1).
-:- dynamic(prfstep/6).		% prfstep(Conclusion_triple, Premise, Conclusion, Rule, Chaining, Source)
+:- dynamic(prfstep/7).		% prfstep(Conclusion_triple, Premise, Premise_index, Conclusion, Rule, Chaining, Source)
 :- dynamic(qevar/3).
 :- dynamic(query/2).
 :- dynamic(quvar/3).
@@ -513,7 +513,7 @@ gre(Argus) :-
 			retractall(implies(_, answer(_, _, _), _)),
 			retractall(implies(_, (answer(_, _, _), _), _)),
 			retractall(query(_, _)),
-			retractall(prfstep(answer(_, _, _), _, _, _, _, _)),
+			retractall(prfstep(answer(_, _, _), _, _, _, _, _, _)),
 			retractall(lemma(_, _, _, _, _, _)),
 			retractall(got_wi(_, _, _, _, _)),
 			retractall(wpfx(_)),
@@ -1751,8 +1751,9 @@ n3pin(Rt, In, File, Mode) :-
 						Rt \= scount(_)
 					->	(	flag(nope)
 						->	true
-						;	nb_getval(current_scope, Src),
-							assertz(prfstep(Rt, true, Rt, _, forward, Src))
+						;	term_index(true, Pnd),
+							nb_getval(current_scope, Src),
+							assertz(prfstep(Rt, true, Pnd, Rt, _, forward, Src))
 						)
 					;	true
 					)
@@ -1935,13 +1936,14 @@ n3_n3p(Argument, Mode) :-
 						;	true
 						)
 					)
-				;	(	Rt = prfstep(Ct, Pt, Qt, It, Mt, St)
-					->	(	nonvar(It)
+				;	(	Rt = prfstep(Ct, Pt, _, Qt, It, Mt, St)
+					->	term_index(Pt, Pnd),
+						(	nonvar(It)
 						->	copy_term_nat(It, Ic)
 						;	Ic = It
 						),
-						(	\+prfstep(Ct, Pt, Qt, Ic, Mt, St)
-						->	assertz(prfstep(Ct, Pt, Qt, Ic, Mt, St))
+						(	\+prfstep(Ct, Pt, Pnd, Qt, Ic, Mt, St)
+						->	assertz(prfstep(Ct, Pt, Pnd, Qt, Ic, Mt, St))
 						;	true
 						)
 					;	(	Rt = ':-'(Ci, Px),
@@ -2163,7 +2165,7 @@ tr_n3p([X|Z], Src, Mode) :-
 		),
 		(	flag(nope)
 		->	true
-		;	write(prfstep(Y, true, Y, _, forward, Src)),
+		;	write(prfstep(Y, true, _, Y, _, forward, Src)),
 			writeln('.')
 		)
 	;	write(':-'(Y, true)),
@@ -3686,7 +3688,7 @@ w3 :-
 	;	nl
 	).
 w3 :-
-	(	prfstep(answer(_, _, _), _, _, _, _, _),
+	(	prfstep(answer(_, _, _), _, _, _, _, _, _),
 		!,
 		nb_setval(empty_gives, false),
 		indent,
@@ -3700,13 +3702,12 @@ w3 :-
 		indentation(2),
 		nl,
 		indent,
-		(	prfstep(answer(_, _, _), B, Cn, R, _, A),
+		(	prfstep(answer(_, _, _), B, Pnd, Cn, R, _, A),
 			R =.. [P, S, O1],
 			djiti_answer(answer(O), O1),
 			Rule =.. [P, S, O],
 			djiti_answer(answer(C), Cn),
 			nb_setval(empty_gives, C),
-			term_index(B, Pnd),
 			\+got_wi(A, B, Pnd, C, Rule),
 			assertz(got_wi(A, B, Pnd, C, Rule)),
 			wp('<http://www.w3.org/2000/10/swap/reason#component>'),
@@ -3723,7 +3724,7 @@ w3 :-
 		->	write(' true.')
 		;	write(' {'),
 			indentation(2),
-			(	prfstep(answer(B1, B2, B3), _, _, _, _, _),
+			(	prfstep(answer(B1, B2, B3), _, _, _, _, _, _),
 				relabel([B1, B2, B3], [C1, C2, C3]),
 				djiti_answer(answer(C), answer(C1, C2, C3)),
 				nl,
@@ -3794,7 +3795,7 @@ wi(A, B, C, Rule) :-
 	write(Cnt),
 	write('>').
 
-wj(Cnt, A, true, C, Rule) :-	% wj(Count, Source, Premise, Conclusion, Rule)
+wj(Cnt, A, true, C, Rule) :-		% wj(Count, Source, Premise, Conclusion, Rule)
 	var(Rule),
 	C \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, _),
 	!,
@@ -3936,7 +3937,7 @@ wr((X, Y)) :-
 	wr(X),
 	wr(Y).
 wr(Z) :-
-	prfstep(Z, Y, Q, Rule, _, X),
+	prfstep(Z, Y, _, Q, Rule, _, X),
 	!,
 	nl,
 	indent,
@@ -4935,8 +4936,9 @@ eam(Span) :-
 		),
 		(	flag(think),	% DEPRECATED
 			\+flag(nope),
-			prfstep(Concdr, _, _, _, _, _),
-			\+prfstep(_, Prem, _, Rule, _, _)
+			term_index(Prem, Pnd),
+			prfstep(Concdr, _, _, _, _, _, _),
+			\+prfstep(_, Prem, Pnd, _, Rule, _, _)
 		->	true
 		;	\+catch(call(Concdr), _, fail)
 		),
@@ -5047,10 +5049,11 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 			->	true
 			;	(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
 					Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
-					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), Q3, _,
+					prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), Q3, Q4, _,
 						'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-				->	assertz(prfstep(Dn, Q3, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-				;	assertz(prfstep(Dn, B, Cd, Rule, forward, A))
+				->	assertz(prfstep(Dn, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+				;	term_index(B, Pnd),
+					assertz(prfstep(Dn, B, Pnd, Cd, Rule, forward, A))
 				)
 			)
 		),
@@ -5085,10 +5088,11 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 				->	true
 				;	(	B = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1),
 						Rule = '<http://www.w3.org/2000/10/swap/log#implies>'(Q6, R6),
-						prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), Q3, _,
+						prfstep('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(P1, Q1), Q3, Q4, _,
 							'<http://www.w3.org/2000/10/swap/log#implies>'(P6, Q6), forward, A)
-					->	assertz(prfstep(Cn, Q3, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
-					;	assertz(prfstep(Cn, B, Cd, Rule, forward, A))
+					->	assertz(prfstep(Cn, Q3, Q4, Cd, '<http://www.w3.org/2000/10/swap/log#implies>'(P6, R6), forward, A))
+					;	term_index(B, Pnd),
+						assertz(prfstep(Cn, B, Pnd, Cd, Rule, forward, A))
 					)
 				)
 			)
@@ -5098,8 +5102,9 @@ astep(A, B, Cd, Cn, Rule) :-	% astep(Source, Premise, Conclusion, Conclusion_uni
 istep(Src, Prem, Conc, Rule) :-		% istep(Source, Premise, Conclusion, Rule)
 	copy_term_nat(Prem, Prec),
 	labelvars(Prec, 0, _),
-	(	\+prfstep(Conc, Prec, Conc, Rule, backward, Src)
-	->	assertz(prfstep(Conc, Prec, Conc, Rule, backward, Src))
+	term_index(Prec, Pnd),
+	(	\+prfstep(Conc, Prec, Pnd, Conc, Rule, backward, Src)
+	->	assertz(prfstep(Conc, Prec, Pnd, Conc, Rule, backward, Src))
 	;	true
 	).
 
@@ -5122,7 +5127,7 @@ hstep(A, B) :-
 
 % DEPRECATED
 qstep(A, B) :-
-	prfstep(A, B, _, _, _, _).
+	prfstep(A, B, _, _, _, _, _).
 % DEPRECATED
 qstep(A, true) :-
 	(	nonvar(A)
@@ -5138,7 +5143,7 @@ qstep(A, true) :-
 		B = A
 	),
 	catch(clause(B, true), _, fail),
-	\+prfstep(A, _, _, _, _, _).
+	\+prfstep(A, _, _, _, _, _, _).
 
 % DJITI (Deep Just In Time Indexing)
 
@@ -9955,8 +9960,9 @@ inv(true, false).
 			B = when(H, J)
 		;	conj_append(B, istep(Src, _, _, _), D)
 		)
-	->	(	\+prfstep(':-'(A, B), true, ':-'(A, B), _, forward, Src)
-		->	assertz(prfstep(':-'(A, B), true, ':-'(A, B), _, forward, Src))
+	->	term_index(true, Pnd),
+		(	\+prfstep(':-'(A, B), true, Pnd, ':-'(A, B), _, forward, Src)
+		->	assertz(prfstep(':-'(A, B), true, Pnd, ':-'(A, B), _, forward, Src))
 		;	true
 		)
 	;	D = B
