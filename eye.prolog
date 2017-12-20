@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1204.1538 josd').
+version_info('EYE v17.1220.1410 josd').
 
 license_info('MIT License
 
@@ -5290,6 +5290,7 @@ djiti_assertz(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cov>'(A, B) :-
 	cov(A, B).
 
+% DEPRECATED
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'(A, B) :-
 	atomify(A, C),
 	D =.. C,
@@ -5537,6 +5538,14 @@ djiti_assertz(A) :-
 		;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A)), R),
 			istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#optional>'(Sc, A), R)
 		)
+	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'(A, B) :-
+	atomify(A, C),
+	D =.. C,
+	(	B = true
+	->	catch(call(D), _, fail)
+	;	\+catch(call(D), _, fail)
 	).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pcc>'([A, B], C) :-
