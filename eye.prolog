@@ -37,7 +37,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1220.1410 josd').
+version_info('EYE v17.1220.1429 josd').
 
 license_info('MIT License
 
@@ -3958,7 +3958,8 @@ wr(Y) :-
 		labelvars(Y, 0, _, avar),
 		(	\+flag(traditional)
 		->	(	(	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#calculate>'(_, _)
-				;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'(_, _)
+				;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'(_, _)	% DEPRECATED
+				;	Y = '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'(_, _)
 				)
 			->	makevars(Y, X, zeta),
 				numbervars(X, 0, _)
@@ -3995,12 +3996,12 @@ wt(X) :-
 wt0(!) :-
 	!,
 	write('("!") '),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'),
+	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'),
 	write(' true').
 wt0(fail) :-
 	!,
 	write('("fail") '),
-	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'),
+	wp('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'),
 	write(' true').
 wt0([]) :-
 	!,
@@ -10149,11 +10150,19 @@ conjify((A, B), (C, D)) :-
 	!,
 	conjify(A, C),
 	conjify(B, D).
+% DEPRECATED
 conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(when, _),
 		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(A, _)|B], true), C], true), when(D, C)) :-
 	!,
 	D =.. [A|B].
+% DEPRECATED
 conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(!, _)], true), !) :-
+	!.
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'([literal(when, _),
+		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'([literal(A, _)|B], true), C], true), when(D, C)) :-
+	!,
+	D =.. [A|B].
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#pass>'([literal(!, _)], true), !) :-
 	!.
 conjify(A, A).
 
