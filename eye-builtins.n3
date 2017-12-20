@@ -28,6 +28,7 @@ e:cartesianProduct a e:Builtin.
 e:compoundTerm a e:Builtin.
 e:cov a e:Builtin.
 e:csvTuple a e:Builtin.
+e:derive a e:Builtin.
 e:fail a e:Builtin.
 e:finalize a e:Builtin.
 e:findall a e:Builtin.
@@ -52,7 +53,6 @@ e:multisetNotEqualTo a e:Builtin.
 e:notLabel a e:Builtin.
 e:numeral a e:Builtin.
 e:optional a e:Builtin.
-e:pass a e:Builtin.
 e:pcc a e:Builtin.
 e:prefix a e:Builtin.
 e:propertyChainExtension a e:Builtin.
