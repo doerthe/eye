@@ -161,6 +161,15 @@ e:csvTuple a rdf:Property, e:Builtin;
 	rdfs:domain rdfs:Resource;
 	rdfs:range rdf:List.
 
+e:derive a rdf:Property, e:Builtin;
+	rdfs:comment """built-in to interpret prolog predicates e.g.
+				("atom_codes" "HOME" (72 79 77 69)) e:derive true.
+				("=.." ?U ("date" 1970 1 1 0 0 0.0 0 "UTC" "-")) e:derive true.
+				("date_time_stamp" ?U 0^math:equalTo) e:derive true.
+			the supported prolog predicates are described in http://www.swi-prolog.org/pldoc/man?section=builtin""";
+	rdfs:domain rdf:List;
+	rdfs:range xsd:boolean.
+
 e:fail a rdf:Property, e:Builtin;
 	rdfs:comment "built-in to call the object formula within the subject scope and to succeed when the call fails";
 	rdfs:domain e:Scope;
@@ -288,15 +297,6 @@ e:optional a rdf:Property, e:Builtin;
 	rdfs:comment "built-in to call the object formula within the subject scope and to succeed anyway";
 	rdfs:domain e:Scope;
 	rdfs:range log:Formula.
-
-e:pass a rdf:Property, e:Builtin;
-	rdfs:comment """built-in to pass on to the prolog kernel e.g.
-				("atom_codes" "HOME" (72 79 77 69)) e:pass true.
-				("=.." ?U ("date" 1970 1 1 0 0 0.0 0 "UTC" "-")) e:pass true.
-				("date_time_stamp" ?U 0^math:equalTo) e:pass true.
-			the supported prolog predicates are described in http://www.swi-prolog.org/pldoc/man?section=builtin""";
-	rdfs:domain rdf:List;
-	rdfs:range xsd:boolean.
 
 e:pcc a rdf:Property, e:Builtin;
 	rdfs:comment "built-in to calculate the Pearson correlation coefficient e.g. ((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.80 1.66)) e:pcc 0.9569729506311461";

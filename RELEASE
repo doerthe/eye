@@ -1,6 +1,5 @@
                                   EYE release
 
-[v17.1220.1429] deprecating e:derive and using e:pass instead
 [v17.1204.1538] finetuning deep Just-In-Time Indexing of prfstep/7
 [v17.1201.1242] improving deep indexing with swipl version 7.7.4
 [v17.1117.1002] improving deep indexing for atomic terms
