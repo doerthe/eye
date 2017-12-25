@@ -2,7 +2,8 @@
 % Euler Yet another proof Engine -- Jos De Roo
 % --------------------------------------------
 
-% See http://github.com/josd/eye
+% See http://github.com/josd/eye - The EYE Reasoner
+% and http://github.com/josd/etc - EYE Two-way Chaining
 
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
@@ -37,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1204.1538 josd').
+version_info('EYE v17.1225.2218 josd').
 
 license_info('MIT License
 
