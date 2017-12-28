@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1225.2218 josd').
+version_info('EYE v17.1228.2216 josd').
 
 license_info('MIT License
 
@@ -10141,11 +10141,11 @@ conjify((A, B), (C, D)) :-
 	!,
 	conjify(A, C),
 	conjify(B, D).
-conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(when, _),
-		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(A, _)|B], true), C], true), when(D, C)) :-
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(when, type('<http://www.w3.org/2001/XMLSchema#string>')),
+		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], true), C], true), when(D, C)) :-
 	!,
 	D =.. [A|B].
-conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(!, _)], true), !) :-
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(!, type('<http://www.w3.org/2001/XMLSchema#string>'))], true), !) :-
 	!.
 conjify(A, A).
 
@@ -10156,7 +10156,7 @@ atomify([A|B], [C|D]) :-
 	!,
 	atomify(A, C),
 	atomify(B, D).
-atomify(literal(A, _), A) :-
+atomify(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), A) :-
 	!.
 atomify(A, A).
 
