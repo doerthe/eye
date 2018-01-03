@@ -1,9 +1,9 @@
 % --------------------------------------------
 % Euler Yet another proof Engine -- Jos De Roo
 % --------------------------------------------
-
-% See http://github.com/josd/eye - The EYE Reasoner
-% and http://github.com/josd/etc - EYE Two-way Chaining
+%
+% See http://github.com/josd/eye
+%
 
 :- if(current_prolog_flag(dialect, swi)).
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v17.1228.2216 josd').
+version_info('EYE v18.0103.0943 josd').
 
 license_info('MIT License
 
@@ -186,7 +186,9 @@ eye
 :- dynamic('<http://www.w3.org/2000/10/swap/log#implies>'/2).
 :- dynamic('<http://www.w3.org/2000/10/swap/log#outputString>'/2).
 
+%
 % Main goal
+%
 
 main :-
 	current_prolog_flag(argv, Argv),
@@ -632,7 +634,9 @@ gre(Argus) :-
 	;	true
 	).
 
+%
 % command line options
+%
 
 opts([], []) :-
 	!.
@@ -2212,10 +2216,12 @@ tr_split([A|B], C, D) :-
 tr_split([A|B], [A|C], D) :-
 	tr_split(B, C, D).
 
+%
 % N3 parser
-
+%
 % according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
 % inspired by http://code.google.com/p/km-rdf/wiki/Henry
+%
 
 barename(BareName, [name(BareName)|L2], L2).
 
@@ -2816,7 +2822,9 @@ withoutdot([dot(Ln)|L2], [dot(Ln)|L2]) :-
 withoutdot(L1, [dot(Ln)|L1]) :-
 	nb_getval(line_number, Ln).
 
+%
 % N3 tokenizer
+%
 
 tokens(In, List) :-
 	get_code(In, C0),
@@ -3591,7 +3599,9 @@ white_space(0xA) :-
 white_space(0xD).
 white_space(0x20).
 
+%
 % Reasoning output
+%
 
 w0([]) :-
 	!.
@@ -4833,7 +4843,7 @@ indentation(C) :-
 % ----------------------------
 % EAM (Euler Abstract Machine)
 % ----------------------------
-
+%
 % In a nutshell:
 %
 %  1/ Select rule P => C
@@ -4841,6 +4851,7 @@ indentation(C) :-
 %  3/ If P & NOT(C) assert C (forward chaining) and remove brake
 %  4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/
 %  5/ If brake or tactic linear-select stop, else start again at 1/
+%
 
 eam(Span) :-
 	(	cnt(tr),
@@ -5146,7 +5157,9 @@ qstep(A, true) :-
 	catch(clause(B, true), _, fail),
 	\+prfstep(A, _, _, _, _, _, _).
 
+%
 % DJITI (Deep Just In Time Indexing)
+%
 
 djiti_answer(answer((A, B)), (C, D)) :-
 	!,
@@ -9402,8 +9415,10 @@ product([A|B], C) :-
 	product(B, D),
 	C is X*D.
 
+%
 % Solving polynomial equations of degree 4
 % See http://alain.colmerauer.free.fr/alcol/ArchivesPublications/Equation4/Equation4.pdf
+%
 
 % strike leading zero coefficients of polynomial
 lz([[A, B]|C], D) :-
@@ -9911,7 +9926,9 @@ getcwd(A) :-
 	working_directory(A, A).
 :- endif.
 
+%
 % Modified Base64 for XML identifiers
+%
 
 base64xml(A, B) :-
 	base64(A, C),
@@ -11009,7 +11026,9 @@ mf(A) :-
 	),
 	flush_output(user_error).
 
+%
 % Regular Expressions inspired by http://www.cs.sfu.ca/~cameron/Teaching/384/99-3/regexp-plg.html
+%
 
 regex(RE_esc, Input_esc, Outputs_esc) :-
 	escape_string(RE, RE_esc),
