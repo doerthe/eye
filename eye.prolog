@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0103.0943 josd').
+version_info('EYE v18.0108.1025 josd').
 
 license_info('MIT License
 
@@ -5222,8 +5222,7 @@ djiti_assertz(A) :-
 	avg(A, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#becomes>'(A, B) :-
-	unify(A, C),
-	catch(call(C), _, fail),
+	catch(call_with_exopred(A, C), _, fail),
 	conj_list(C, D),
 	forall(
 		(	member(E, D)
@@ -5234,13 +5233,13 @@ djiti_assertz(A) :-
 	nb_getval(wn, W),
 	labelvars(B, W, N),
 	nb_setval(wn, N),
-	unify(B, F),
-	conj_list(F, G),
+	conj_list(B, F),
 	forall(
-		(	member(H, G),
-			\+catch(call(H), _, fail)
+		(	member(G, F),
+			\+catch(call_with_exopred(G, _), _, fail)
 		),
-		(	djiti_assertz(H)
+		(	unify(G, H),
+			djiti_assertz(H)
 		)
 	).
 
@@ -9134,6 +9133,33 @@ within_scope([A, B]) :-
 		span(B)
 	),
 	nb_getval(scope, A).
+
+call_with_exopred((A, B), (C, D)) :-
+	!,
+	call_with_exopred(A, C),
+	call_with_exopred(B, D).
+call_with_exopred(A, B) :-
+	A =.. [C, exopred(D, E, F), exopred(G, H, I)],
+	!,
+	B =.. [C, J, K],
+	call(B),
+	J =.. [D, E, F],
+	K =.. [G, H, I].
+call_with_exopred(A, B) :-
+	A =.. [C, exopred(D, E, F), G],
+	!,
+	B =.. [C, H, G],
+	call(B),
+	H =.. [D, E, F].
+call_with_exopred(A, B) :-
+	A =.. [C, D, exopred(E, F, G)],
+	!,
+	B =.. [C, D, H],
+	call(B),
+	H =.. [E, F, G].
+call_with_exopred(A, B) :-
+	unify(A, B),
+	call(B).
 
 exopred(P, S, O) :-
 	(	var(P)
