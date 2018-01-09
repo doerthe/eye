@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0108.1025 josd').
+version_info('EYE v18.0109.1008 josd').
 
 license_info('MIT License
 
@@ -4846,11 +4846,11 @@ indentation(C) :-
 %
 % In a nutshell:
 %
-%  1/ Select rule P => C
-%  2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
-%  3/ If P & NOT(C) assert C (forward chaining) and remove brake
-%  4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/
-%  5/ If brake or tactic linear-select stop, else start again at 1/
+% 1/ Select rule P => C
+% 2/ Prove P & NOT(C) (backward chaining) and if it fails backtrack to 1/
+% 3/ If P & NOT(C) assert C (forward chaining) and remove brake
+% 4/ If C = answer(A) and tactic limited-answer stop, else backtrack to 2/
+% 5/ If brake or tactic linear-select stop, else start again at 1/
 %
 
 eam(Span) :-
@@ -5222,7 +5222,7 @@ djiti_assertz(A) :-
 	avg(A, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#becomes>'(A, B) :-
-	catch(call_with_exopred(A, C), _, fail),
+	catch(exocall(A, C), _, fail),
 	conj_list(C, D),
 	forall(
 		(	member(E, D)
@@ -5236,7 +5236,7 @@ djiti_assertz(A) :-
 	conj_list(B, F),
 	forall(
 		(	member(G, F),
-			\+catch(call_with_exopred(G, _), _, fail)
+			\+catch(exocall(G, _), _, fail)
 		),
 		(	unify(G, H),
 			djiti_assertz(H)
@@ -9134,32 +9134,45 @@ within_scope([A, B]) :-
 	),
 	nb_getval(scope, A).
 
-call_with_exopred((A, B), (C, D)) :-
+exocall((A, B), (C, D)) :-
 	!,
-	call_with_exopred(A, C),
-	call_with_exopred(B, D).
-call_with_exopred(A, B) :-
-	A =.. [C, exopred(D, E, F), exopred(G, H, I)],
+	exocall(A, C),
+	exocall(B, D).
+exocall(exopred(A, B, C), D) :-
+	(	var(A)
+	->	pred(A)
+	;	atom(A),
+		current_predicate(A/2)
+	),
 	!,
-	B =.. [C, J, K],
+	E =.. [A, B, C],
+	exocall(E, D).
+exocall(A, B) :-
+	A =.. [C, D, E],
+	compound(D),
+	compound(E),
+	!,
+	B =.. [C, F, G],
 	call(B),
-	J =.. [D, E, F],
-	K =.. [G, H, I].
-call_with_exopred(A, B) :-
-	A =.. [C, exopred(D, E, F), G],
+	unify(D, F),
+	unify(E, G).
+exocall(A, B) :-
+	A =.. [C, D, E],
+	compound(D),
 	!,
-	B =.. [C, H, G],
+	B =.. [C, F, E],
 	call(B),
-	H =.. [D, E, F].
-call_with_exopred(A, B) :-
-	A =.. [C, D, exopred(E, F, G)],
+	unify(D, F).
+exocall(A, B) :-
+	A =.. [C, D, E],
+	compound(E),
 	!,
-	B =.. [C, D, H],
+	B =.. [C, D, F],
 	call(B),
-	H =.. [E, F, G].
-call_with_exopred(A, B) :-
-	unify(A, B),
-	call(B).
+	unify(E, F).
+exocall(A, B) :-
+	call(A),
+	unify(A, B).
 
 exopred(P, S, O) :-
 	(	var(P)
@@ -9172,8 +9185,6 @@ exopred(P, S, O) :-
 unify(A, B) :-
 	nonvar(A),
 	A = exopred(P, S, O),
-	unify(S, T),
-	unify(O, R),
 	(	(	nonvar(B)
 		;	nonvar(P)
 		)
@@ -9182,14 +9193,14 @@ unify(A, B) :-
 		;	true
 		),
 		B =.. [P, T, R],
-		atom(P)
+		atom(P),
+		unify(S, T),
+		unify(O, R)
 	),
 	!.
 unify(A, B) :-
 	nonvar(B),
 	B = exopred(P, S, O),
-	unify(S, T),
-	unify(O, R),
 	(	(	nonvar(A)
 		;	nonvar(P)
 		)
@@ -9198,7 +9209,9 @@ unify(A, B) :-
 		;	true
 		),
 		A =.. [P, T, R],
-		atom(P)
+		atom(P),
+		unify(S, T),
+		unify(O, R)
 	),
 	!.
 unify(A, B) :-
