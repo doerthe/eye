@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0110.1518 josd').
+version_info('EYE v18.0110.1636 josd').
 
 license_info('MIT License
 
@@ -5222,8 +5222,8 @@ djiti_assertz(A) :-
 	avg(A, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#becomes>'(A, B) :-
+	catch(call(A), _, fail),
 	unify(A, C),
-	catch(call(C), _, fail),
 	conj_list(C, D),
 	forall(
 		(	member(E, D)
@@ -5278,11 +5278,12 @@ djiti_assertz(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A) :-
 	within_scope(Sc),
 	nonvar(A),
-	catch(call(A), _, fail),
+	conjify(A, B),
+	catch(call(B), _, fail),
 	(	flag(nope)
 	->	true
-	;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A)), B),
-		istep('<>', A, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, A), B)
+	;	copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(B, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, B)), C),
+		istep('<>', B, '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#call>'(Sc, B), C)
 	).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#cartesianProduct>'(A, B) :-
