@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0109.1008 josd').
+version_info('EYE v18.0110.1518 josd').
 
 license_info('MIT License
 
@@ -5222,7 +5222,8 @@ djiti_assertz(A) :-
 	avg(A, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#becomes>'(A, B) :-
-	catch(exocall(A, C), _, fail),
+	unify(A, C),
+	catch(call(C), _, fail),
 	conj_list(C, D),
 	forall(
 		(	member(E, D)
@@ -5233,13 +5234,13 @@ djiti_assertz(A) :-
 	nb_getval(wn, W),
 	labelvars(B, W, N),
 	nb_setval(wn, N),
-	conj_list(B, F),
+	unify(B, F),
+	conj_list(F, G),
 	forall(
-		(	member(G, F),
-			\+catch(exocall(G, _), _, fail)
+		(	member(H, G),
+			\+catch(call(H), _, fail)
 		),
-		(	unify(G, H),
-			djiti_assertz(H)
+		(	djiti_assertz(H)
 		)
 	).
 
@@ -9133,46 +9134,6 @@ within_scope([A, B]) :-
 		span(B)
 	),
 	nb_getval(scope, A).
-
-exocall((A, B), (C, D)) :-
-	!,
-	exocall(A, C),
-	exocall(B, D).
-exocall(exopred(A, B, C), D) :-
-	(	var(A)
-	->	pred(A)
-	;	atom(A),
-		current_predicate(A/2)
-	),
-	!,
-	E =.. [A, B, C],
-	exocall(E, D).
-exocall(A, B) :-
-	A =.. [C, D, E],
-	compound(D),
-	compound(E),
-	!,
-	B =.. [C, F, G],
-	call(B),
-	unify(D, F),
-	unify(E, G).
-exocall(A, B) :-
-	A =.. [C, D, E],
-	compound(D),
-	!,
-	B =.. [C, F, E],
-	call(B),
-	unify(D, F).
-exocall(A, B) :-
-	A =.. [C, D, E],
-	compound(E),
-	!,
-	B =.. [C, D, F],
-	call(B),
-	unify(E, F).
-exocall(A, B) :-
-	call(A),
-	unify(A, B).
 
 exopred(P, S, O) :-
 	(	var(P)
