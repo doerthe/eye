@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0110.1636 josd').
+version_info('EYE v18.0116.1628 josd').
 
 license_info('MIT License
 
@@ -5018,7 +5018,7 @@ eam(Span) :-
 			;	true
 			),
 			nb_getval(limit, Limit),
-			Span < Limit,
+			Span =< Limit,
 			eam(S)
 		;	(	flag(strings)
 			->	true
