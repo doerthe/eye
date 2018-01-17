@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0116.1628 josd').
+version_info('EYE v18.0117.1050 josd').
 
 license_info('MIT License
 
@@ -4887,18 +4887,10 @@ eam(Span) :-
 			flush_output(user_error)
 		;	true
 		),
-		catch(call_residue_vars(Prem, Res), Exc,
+		catch(call(Prem), Exc,
 			(	Exc = error(existence_error(procedure, _), _)
 			->	fail
 			;	throw(Exc)
-			)
-		),
-		(	Res = []
-		->	true
-		;	(	flag(debug)
-			->	format(user_error, '.. eam/1 residual variables ~q left by premise ~q~n', [Res, Prem]),
-				flush_output(user_error),
-				fail
 			)
 		),
 		(	(	Conc = false
@@ -5018,7 +5010,7 @@ eam(Span) :-
 			;	true
 			),
 			nb_getval(limit, Limit),
-			Span =< Limit,
+			Span < Limit,
 			eam(S)
 		;	(	flag(strings)
 			->	true
