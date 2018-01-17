@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0117.1050 josd').
+version_info('EYE v18.0117.1550 josd').
 
 license_info('MIT License
 
@@ -4887,7 +4887,7 @@ eam(Span) :-
 			flush_output(user_error)
 		;	true
 		),
-		catch(call(Prem), Exc,
+		catch(call(Prem), Exc,		% just call(Prem) instead of call_residue_vars(Prem, [])
 			(	Exc = error(existence_error(procedure, _), _)
 			->	fail
 			;	throw(Exc)
@@ -4959,7 +4959,7 @@ eam(Span) :-
 		),
 		(	Concd \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>'(_, _)
 		->	nb_getval(wn, W),
-			labelvars(Prem-Concd, W, N),
+			labelvars(Prem-Concd, W, N),	% failing when Prem contains attributed variables
 			nb_setval(wn, N)
 		;	true
 		),
@@ -10069,7 +10069,7 @@ labelvars(A, B, C, D) :-
 	(	D == skolem
 	->	nb_getval(var_ns, Vns),
 		atomic_list_concat(['<', Vns, 'sk_', E, '>'], A)
-	;	atomic_list_concat([D, E], A)
+	;	atomic_list_concat([D, E], A)	% failing when A is an attributed variable
 	),
 	C is B+1.
 labelvars(A, B, B, _) :-

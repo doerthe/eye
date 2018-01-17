@@ -1,5 +1,6 @@
                                   EYE release
 
+[v18.0117.1550] adding a few comments concerning attributed variables from the coroutining
 [v18.0117.1050] replacing call_residue_vars with simple call and reverting brake mechanism
 [v18.0116.1628] improving the safety of the brake mechanism
 [v18.0110.1636] fixing e:becomes and e:call built-ins
