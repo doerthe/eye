@@ -8,7 +8,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it is interoperable with [Cwm](ht
 
 Semibackward chaining is backward chaining for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward chaining for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-This can be seen in [FLUID Computation](http://github.com/josd/fluid).  
+This can be seen in [FLUID Code](http://github.com/josd/fluid).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](http://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  
@@ -20,8 +20,8 @@ and in a [Docker container for HTTP client use](http://hub.docker.com/r/bdevloed
 
 ### Architecture and design
 
-Here are the layers of the EYE stack:  
-<img src="http://josd.github.io/images/EYE-stack.png" width="60%" height="60%" alt="EYE-stack"/>  
+Here are the layers of the EYE Stack:  
+<img src="http://josd.github.io/images/EYE-stack.png" width="60%" height="60%" alt="EYE Stack"/>  
 
 This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 1. Select rule P => C  
