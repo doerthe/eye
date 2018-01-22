@@ -9,7 +9,8 @@ Install gmp library e.g. sudo apt install libgmp-dev
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
 Install curl from http://curl.haxx.se/download.html
 Install cturtle from http://github.com/melgi/cturtle/releases/
-Put the swipl, curl and cturtle executables in the path environment variable.
+Install carl from http://github.com/melgi/carl/releases/
+Put the swipl, curl, cturtle and carl executables in the path environment variable.
 
 Run the installation script install.sh which will
 - copy the EYE source file eye.prolog to /opt/eye/src/eye.prolog
@@ -28,7 +29,8 @@ Unzip eye.zip from http://sourceforge.net/projects/eulersharp/files/eulersharp/
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
 Install curl from http://curl.haxx.se/download.html
 Install cturtle from http://github.com/melgi/cturtle/releases/
-Put the swipl, curl and cturtle executables in the path environment variable.
+Install carl from http://github.com/melgi/carl/releases/
+Put the swipl, curl, cturtle and carl executables in the path environment variable.
 
 Run the installation script install.cmd which will
 - copy the EYE source file eye.prolog to C:\Program Files\eye\src\eye.prolog
@@ -46,7 +48,8 @@ Unzip eye.zip from http://sourceforge.net/projects/eulersharp/files/eulersharp/
 
 Install swipl kernel + package clib from http://www.swi-prolog.org/Download.html
 Install cturtle from http://github.com/melgi/cturtle/releases/
-Put the swipl and cturtle executables in the path environment variable.
+Install carl from http://github.com/melgi/carl/releases/
+Put the swipl, cturtle and carl executables in the path environment variable.
 
 Run the installation script install.sh which will
 - copy the EYE source file eye.prolog to /opt/eye/src/eye.prolog
