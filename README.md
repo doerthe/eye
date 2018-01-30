@@ -32,11 +32,11 @@ This is what the basic EAM (Euler Abstract Machine) does in a nutshell:
 
 ### See also
 
-EYE paper  
+EYE paper
 * [Drawing Conclusions from Linked Data on the Web: The EYE Reasoner](http://online.qmags.com/ISW0515?cid=3244717&eid=19361&pg=25#pg25&mode2)
 
-EYE tutorial  
+EYE tutorial
 * [Semantic Web Reasoning With EYE](http://n3.restdesc.org/)
 
-EYE talk  
+EYE talk
 * [EYE looking through N3 glasses](http://josd.github.io/Talks/2012/04swig/index.html)
