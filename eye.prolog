@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0117.1550 josd').
+version_info('EYE v18.0130.1333 josd').
 
 license_info('MIT License
 
@@ -311,7 +311,7 @@ argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
 	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--n3', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
-			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--wget-path', '--yabc']),	% DEPRECATED
+			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--yabc']),	% DEPRECATED
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -1026,12 +1026,6 @@ opts(['--wcache', Argument, File|Argus], Args) :-
 	absolute_uri(Argument, Arg),
 	retractall(wcache(Arg, _)),
 	assertz(wcache(Arg, File)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--wget-path', _|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--wget-path']),
-	flush_output(user_error),
 	opts(Argus, Args).
 % DEPRECATED
 opts(['--yabc', File|Argus], Args) :-
