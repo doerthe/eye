@@ -1,7 +1,7 @@
                                   EYE release
 
-[v18.0131.1643] restyle
-[v18.0131.1211] removing deprecated command line options and making Carl mandatory
+[v18.0131.1741] making Carl mandatory
+[v18.0131.1211] removing deprecated command line options
 [v18.0117.1550] adding a few comments concerning attributed variables from the coroutining
 [v18.0117.1050] replacing call_residue_vars with simple call and reverting brake mechanism
 [v18.0116.1628] improving the safety of the brake mechanism
