@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0130.1333 josd').
+version_info('EYE v18.0131.1211 josd').
 
 license_info('MIT License
 
@@ -66,7 +66,6 @@ help_info('Usage: eye <options>* <data>* <query>*
 eye
 	swipl -x eye.pvm --
 <options>
-	--carl				use external carl parser
 	--curl-http-header <field>	to pass HTTP header <field> to curl
 	--debug				output debug info on stderr
 	--debug-cnt			output debug info about counters on stderr
@@ -263,14 +262,10 @@ main :-
 			flush_output(user_error)
 		)
 	),
-	(	memberchk('--carl', Argus)
-	->	catch(process_create(path(carl), [], [stdin(null), stdout(null), stderr(null)]), _,
-			(	format(user_error, '** ERROR ** EYE option --carl requires carl which can be installed from http://github.com/melgi/carl/releases/ **~n', []),
-				flush_output(user_error),
-				halt(1)
-			)
+	catch(process_create(path(carl), [], [stdin(null), stdout(null), stderr(null)]), _,
+		(	format(user_error, '** WARNING ** EYE v18 depends on carl which can be installed from http://github.com/melgi/carl/releases/ **~n', []),
+			flush_output(user_error)
 		)
-	;	true
 	),
 	(	retract(prolog_file_type(qlf, qlf))
 	->	assertz(prolog_file_type(pvm, qlf))
@@ -310,8 +305,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--n3', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle',
-			'--brake', '--step', '--tmp-file', '--tquery', '--trules', '--yabc']),	% DEPRECATED
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--n3', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle']),
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -472,8 +466,6 @@ gre(Argus) :-
 	nb_setval(answer_count, 0),
 	(	flag('multi-query')
 	->	nb_setval(mq, 0),
-		tmp_file(Tmp),
-		assertz(flag('tmp-file', Tmp)),	% DEPRECATED
 		repeat,
 		catch((read_line_to_codes(user_input, Fc), atom_codes(Fa, Fc)), _, Fa = end_of_file),
 		(	atomic_list_concat([Fi, Fo], ',', Fa)
@@ -640,35 +632,6 @@ gre(Argus) :-
 
 opts([], []) :-
 	!.
-% DEPRECATED
-opts(['--ances'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--ances']),
-	flush_output(user_error),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--brake', Lim|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--brake', '--tactic limited-brake']),
-	flush_output(user_error),
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** brake ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	retractall(flag(brake, _)),
-	assertz(flag(brake, Limit)),
-	opts(Argus, Args).
-opts(['--carl'|Argus], Args) :-
-	!,
-	retractall(flag(carl)),
-	assertz(flag(carl)),
-	opts(Argus, Args).
 opts(['--curl-http-header', Field|Argus], Args) :-
 	!,
 	assertz(flag('curl-http-header', Field)),
@@ -721,12 +684,6 @@ opts(['--image', File|Argus], Args) :-
 	retractall(flag(image, _)),
 	assertz(flag(image, File)),
 	opts(Argus, Args).
-% DEPRECATED
-opts(['--kgb'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--kgb']),
-	flush_output(user_error),
-	opts(Argus, Args).
 opts(['--license'|_], _) :-
 	!,
 	license_info(License),
@@ -742,28 +699,6 @@ opts(['--n3p'|Argus], Args) :-
 	!,
 	retractall(flag(n3p)),
 	assertz(flag(n3p)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--no-blank'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-blank']),
-	flush_output(user_error),
-	retractall(flag('no-blank')),
-	assertz(flag('no-blank')),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--no-branch'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-branch']),
-	flush_output(user_error),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--no-distinct'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--no-distinct', 'no-distinct-output']),
-	flush_output(user_error),
-	retractall(flag('no-distinct-output')),
-	assertz(flag('no-distinct-output')),
 	opts(Argus, Args).
 opts(['--no-distinct-input'|Argus], Args) :-
 	!,
@@ -799,14 +734,6 @@ opts(['--no-skolem', Prefix|Argus], Args) :-
 	!,
 	assertz(flag('no-skolem', Prefix)),
 	opts(Argus, Args).
-% DEPRECATED
-opts(['--no-span'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--no-span']),
-	flush_output(user_error),
-	retractall(flag('no-span')),
-	assertz(flag('no-span')),
-	opts(Argus, Args).
 opts(['--nope'|Argus], Args) :-
 	!,
 	retractall(flag(nope)),
@@ -827,14 +754,6 @@ opts(['--pass-turtle'|Argus], Args) :-
 	retractall(flag('pass-turtle')),
 	assertz(flag('pass-turtle')),
 	opts(Argus, Args).
-% DEPRECATED
-opts(['--pcl'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--pcl', '--n3p']),
-	flush_output(user_error),
-	retractall(flag(n3p)),
-	assertz(flag(n3p)),
-	opts(Argus, Args).
 opts(['--probe'|_], _) :-
 	!,
 	probe,
@@ -843,31 +762,6 @@ opts(['--profile'|Argus], Args) :-
 	!,
 	retractall(flag(profile)),
 	assertz(flag(profile)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--quiet'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quiet']),
-	flush_output(user_error),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--quick-false'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-false']),
-	flush_output(user_error),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--quick-possible'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--quick-possible']),
-	flush_output(user_error),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--quick-answer'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--quick-answer', '--tactic limited-answer 1']),
-	retractall(flag('limited-answer', _)),
-	assertz(flag('limited-answer', 1)),
 	opts(Argus, Args).
 opts(['--random-seed'|Argus], Args) :-
 	!,
@@ -879,36 +773,10 @@ opts(['--rule-histogram'|Argus], Args) :-
 	retractall(flag('rule-histogram')),
 	assertz(flag('rule-histogram')),
 	opts(Argus, Args).
-% DEPRECATED
-opts(['--single-answer'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--single-answer', '--tactic limited-answer 1']),
-	flush_output(user_error),
-	retractall(flag('limited-answer', _)),
-	assertz(flag('limited-answer', 1)),
-	opts(Argus, Args).
 opts(['--statistics'|Argus], Args) :-
 	!,
 	retractall(flag(statistics)),
 	assertz(flag(statistics)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--step', Lim|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--step', '--tactic limited-step']),
-	flush_output(user_error),
-	(	number(Lim)
-	->	Limit = Lim
-	;	catch(atom_number(Lim, Limit), Exc,
-			(	format(user_error, '** ERROR ** step ** ~w~n', [Exc]),
-				flush_output(user_error),
-				flush_output,
-				halt(1)
-			)
-		)
-	),
-	retractall(flag(step, _)),
-	assertz(flag(step, Limit)),
 	opts(Argus, Args).
 opts(['--streaming-reasoning'|Argus], Args) :-
 	!,
@@ -982,32 +850,9 @@ opts(['--tactic', 'linear-select'|Argus], Args) :-
 	retractall(flag(tactic, 'linear-select')),
 	assertz(flag(tactic, 'linear-select')),
 	opts(Argus, Args).
-% DEPRECATED
-opts(['--tactic', 'single-answer'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED and is now ~w~n', ['--tactic single-answer', '--tactic limited-answer 1']),
-	flush_output(user_error),
-	retractall(flag('limited-answer', _)),
-	assertz(flag('limited-answer', 1)),
-	opts(Argus, Args).
 opts(['--tactic', Tactic|_], _) :-
 	!,
 	throw(not_supported_tactic(Tactic)).
-% DEPRECATED
-opts(['--think'|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--think']),
-	retractall(flag(think)),
-	assertz(flag(think)),
-	opts(Argus, Args).
-% DEPRECATED
-opts(['--tmp-file', File|Argus], Args) :-
-	!,
-	format(user_error, '** WARNING ** option ~w is DEPRECATED~n', ['--tmp-file']),
-	flush_output(user_error),
-	retractall(flag('tmp-file', _)),
-	assertz(flag('tmp-file', File)),
-	opts(Argus, Args).
 opts(['--traditional'|Argus], Args) :-
 	!,
 	retractall(flag(traditional)),
@@ -1027,15 +872,8 @@ opts(['--wcache', Argument, File|Argus], Args) :-
 	retractall(wcache(Arg, _)),
 	assertz(wcache(Arg, File)),
 	opts(Argus, Args).
-% DEPRECATED
-opts(['--yabc', File|Argus], Args) :-
-	!,
-	retractall(flag(image, _)),
-	assertz(flag(image, File)),
-	opts(Argus, Args).
 opts([Arg|_], _) :-
 	\+memberchk(Arg, ['--help', '--n3', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
-	\+memberchk(Arg, ['--tquery', '--trules']),	% DEPRECATED
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
 	throw(not_supported_option(Arg)).
@@ -1129,10 +967,7 @@ args(['--n3', Arg|Args]) :-
 	->	portray_clause(scope(R))
 	;	true
 	),
-	(	flag(carl)
-	->	carl(Arg, data)
-	;	n3_n3p(Arg, data)
-	),
+	carl(Arg, data),
 	args(Args).
 args(['--pass'|Args]) :-
 	!,
@@ -1182,11 +1017,8 @@ args(['--plugin', Argument|Args]) :-
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
+		->	tmp_file(File),
+			assertz(tmpfile(File)),
 			curl_http_headers(Headers),
 			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
@@ -1248,10 +1080,7 @@ args(['--proof', Arg|Args]) :-
 	->	portray_clause(scope(R))
 	;	true
 	),
-	(	flag(carl)
-	->	carl(Arg, data)
-	;	n3_n3p(Arg, data)
-	),
+	carl(Arg, data),
 	(	got_pi
 	->	true
 	;	assertz(implies(('<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>'(LEMMA, '<http://www.w3.org/2000/10/swap/reason#Inference>'),
@@ -1267,28 +1096,7 @@ args(['--proof', Arg|Args]) :-
 	args(Args).
 args(['--query', Arg|Args]) :-
 	!,
-	(	flag(carl)
-	->	carl(Arg, query)
-	;	n3_n3p(Arg, query)
-	),
-	args(Args).
-% DEPRECATED
-args(['--tquery', Arg|Args]) :-
-	!,
-	assertz(flag(tquery)),
-	n3_n3p(Arg, tquery),
-	args(Args).
-% DEPRECATED
-args(['--trules', Arg|Args]) :-
-	!,
-	absolute_uri(Arg, A),
-	atomic_list_concat(['<', A, '>'], R),
-	assertz(scope(R)),
-	(	flag(n3p)
-	->	portray_clause(scope(R))
-	;	true
-	),
-	n3_n3p(Arg, trules),
+	carl(Arg, query),
 	args(Args).
 args(['--turtle', Argument|Args]) :-
 	!,
@@ -1302,11 +1110,8 @@ args(['--turtle', Argument|Args]) :-
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
+		->	tmp_file(File),
+			assertz(tmpfile(File)),
 			curl_http_headers(Headers),
 			atomic_list_concat(['curl -s -L -H "Accept: text/turtle" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
@@ -1498,11 +1303,8 @@ carl(Argument, Mode) :-
 			->	true
 			;	sub_atom(Arg, 0, 6, _, 'https:')
 			)
-		->	(	flag('tmp-file', File)	% DEPRECATED
-			->	true
-			;	tmp_file(File),
-				assertz(tmpfile(File))
-			),
+		->	tmp_file(File),
+			assertz(tmpfile(File)),
 			curl_http_headers(Headers),
 			atomic_list_concat(['curl -s -L -H "Accept: text/n3" ', Headers, '"', Arg, '" -o ', File], Cmd),
 			catch(exec(Cmd, _), Exc,
@@ -1761,1837 +1563,6 @@ n3pin(Rt, In, File, Mode) :-
 			)
 		)
 	).
-
-% N3 to N3P compiler
-
-n3_n3p(Argument, Mode) :-
-	absolute_uri(Argument, Arg),
-	(	flag('tmp-file', Tmp)	% DEPRECATED
-	->	true
-	;	tmp_file(Tmp)
-	),
-	(	flag('ignore-syntax-error')
-	->	Ise = 'IGNORED'
-	;	Ise = 'ERROR'
-	),
-	(	wcacher(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
-		flush_output(user_error)
-	;	format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error),
-		(	(	sub_atom(Arg, 0, 5, _, 'http:')
-			->	true
-			;	sub_atom(Arg, 0, 6, _, 'https:')
-			)
-		->	File = Tmp,
-			(	flag('tmp-file', _)	% DEPRECATED
-			->	true
-			;	assertz(tmpfile(File))
-			),
-			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/n3, text/turtle" ', Headers, '"', Arg, '" -o ', File], Cmd),
-			catch(exec(Cmd, _), Exc1,
-				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc1]),
-					flush_output(user_error),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					flush_output,
-					halt(1)
-				)
-			)
-		;	(	sub_atom(Arg, 0, 5, _, 'file:')
-			->	(	parse_url(Arg, Parts)
-				->	memberchk(path(File), Parts)
-				;	sub_atom(Arg, 7, _, 0, File)
-				)
-			;	File = Arg
-			)
-		)
-	),
-	(	File = '-'
-	->	In = user_input
-	;	open(File, read, In, [encoding(utf8)])
-	),
-	retractall(base_uri(_)),
-	(	Arg = '-'
-	->	absolute_uri('', Abu),
-		assertz(base_uri(Abu))
-	;	assertz(base_uri(Arg))
-	),
-	retractall(ns(_, _)),
-	(	Arg = '-'
-	->	D = '#'
-	;	atomic_list_concat([Arg, '#'], D)
-	),
-	assertz(ns('', D)),
-	retractall(keywords(_)),
-	retractall(quvar(_, _, _)),
-	retractall(qevar(_, _, _)),
-	retractall(evar(_, _, _)),
-	nb_setval(line_number, 1),
-	nb_setval(sc, 0),
-	nb_setval(semantics, []),
-	nb_setval(smod, true),
-	atomic_list_concat(['\'<', Arg, '>\''], Src),
-	atomic_list_concat([Tmp, '_p'], Tmp_p),
-	assertz(tmpfile(Tmp_p)),
-	open(Tmp_p, write, Ws, [encoding(utf8)]),
-	tell(Ws),
-	catch(
-		(	repeat,
-			tokens(In, Tokens),
-			document(Triples, Tokens, Rest),
-			(	Rest = []
-			->	true
-			;	nb_getval(line_number, Ln),
-				throw(invalid_document(after_line(Ln)))
-			),
-			(	Mode = semantics
-			->	nb_getval(semantics, TriplesPrev),
-				append(TriplesPrev, Triples, TriplesNext),
-				nb_setval(semantics, TriplesNext)
-			;	tr_n3p(Triples, Src, Mode)
-			),
-			Tokens = []
-		),
-		Exc2,
-		(	(	wcacher(Arg, File)
-			->	format(user_error, '** ~w ** ~w FROM ~w ** ~w~n', [Ise, Arg, File, Exc2])
-			;	format(user_error, '** ~w ** ~w ** ~w~n', [Ise, Arg, Exc2])
-			),
-			flush_output(user_error),
-			ignore(Parsed = fail)
-		)
-	),
-	ignore(Parsed = true),
-	(	Mode = semantics
-	->	nb_getval(semantics, List),
-		write(semantics(Src, List)),
-		writeln('.')
-	;	true
-	),
-	told,
-	(	File = '-'
-	->	true
-	;	close(In)
-	),
-	(	retract(tmpfile(Tmp))
-	->	delete_file(Tmp)
-	;	true
-	),
-	(	call(Parsed)
-	->	(	flag(n3p)
-		->	forall(
-				(	pfx(Pp, Pu),
-					\+wpfx(Pp)
-				),
-				(	portray_clause(pfx(Pp, Pu)),
-					assertz(wpfx(Pp))
-				)
-			)
-		;	true
-		),
-		open(Tmp_p, read, Rs, [encoding(utf8)]),
-		(	Mode = semantics
-		->	repeat,
-			read(Rs, Rt),
-			(	Rt = end_of_file
-			->	true
-			;	djiti_assertz(Rt),
-				(	Rt = semantics(_, L)
-				->	length(L, N),
-					nb_setval(sc, N)
-				;	Rt \= semantics(_, []),
-					nb_setval(sc, 1)
-				),
-				fail
-			)
-		;	repeat,
-			read(Rs, Rt),
-			(	Rt = end_of_file
-			->	true
-			;	dynify(Rt),
-				(	ground(Rt),
-					Rt \= ':-'(_, _)
-				->	(	predicate_property(Rt, dynamic)
-					->	true
-					;	close(Rs),
-						(	retract(tmpfile(Tmp_p))
-						->	delete_file(Tmp_p)
-						;	true
-						),
-						throw(builtin_redefinition(Rt))
-					),
-					(	Rt \= implies(_, _, _),
-						\+flag('no-distinct-input'),
-						call(Rt)
-					->	true
-					;	djiti_assertz(Rt),
-						cnt(sc),
-						(	flag(n3p)
-						->	portray_clause(Rt)
-						;	true
-						)
-					)
-				;	(	Rt = prfstep(Ct, Pt, _, Qt, It, Mt, St)
-					->	term_index(Pt, Pnd),
-						(	nonvar(It)
-						->	copy_term_nat(It, Ic)
-						;	Ic = It
-						),
-						(	\+prfstep(Ct, Pt, Pnd, Qt, Ic, Mt, St)
-						->	assertz(prfstep(Ct, Pt, Pnd, Qt, Ic, Mt, St))
-						;	true
-						)
-					;	(	Rt = ':-'(Ci, Px),
-							conjify(Px, Pi)
-						->	(	Ci = true
-							->	(	flag(n3p)
-								->	portray_clause(':-'(Pi))
-								;	call(Pi)
-								)
-							;	atomic_list_concat(['<', Arg, '>'], Si),
-								copy_term_nat('<http://www.w3.org/2000/10/swap/log#implies>'(Pi, Ci), Ri),
-								(	flag(nope)
-								->	Ph = Pi
-								;	(	Pi = when(Ai, Bi)
-									->	conj_append(Bi, istep(Si, Pi, Ci, Ri), Bh),
-										Ph = when(Ai, Bh)
-									;	conj_append(Pi, istep(Si, Pi, Ci, Ri), Ph)
-									)
-								),
-								(	flag('rule-histogram')
-								->	(	Ph = when(Ak, Bk)
-									->	conj_append(Bk, pstep(Ri), Bj),
-										Pj = when(Ak, Bj)
-									;	conj_append(Ph, pstep(Ri), Pj)
-									)
-								;	Pj = Ph
-								),
-								cnt(sc),
-								functor(Ci, CPi, _),
-								(	flag(n3p)
-								->	portray_clause(cpred(CPi)),
-									portray_clause(':-'(Ci, Pi))
-								;	(	\+cpred(CPi)
-									->	assertz(cpred(CPi))
-									;	true
-									),
-									assertz(':-'(Ci, Pj))
-								)
-							)
-						;	djiti_assertz(Rt),
-							cnt(sc),
-							(	flag(n3p)
-							->	portray_clause(Rt)
-							;	true
-							)
-						)
-					)
-				),
-				fail
-			)
-		),
-		close(Rs),
-		(	retract(tmpfile(Tmp_p))
-		->	delete_file(Tmp_p)
-		;	true
-		),
-		nb_getval(sc, SC),
-		nb_getval(input_statements, IN),
-		Inp is SC+IN,
-		nb_setval(input_statements, Inp),
-		format(user_error, 'SC=~w~n', [SC]),
-		flush_output(user_error)
-	;	(	retract(tmpfile(Tmp_p))
-		->	catch(delete_file(Tmp_p), _, true)
-		;	true
-		),
-		(	\+flag('ignore-syntax-error'),
-			\+flag('multi-query')
-		->	nl,
-			flush_output,
-			halt(1)
-		;	true
-		)
-	),
-	!.
-
-tr_n3p([], _, _) :-
-	!.
-% DEPRECATED
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, trules) :-
-	!,
-	conj_list(X, L),
-	(	last(L, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>\''(_, T))
-	->	true
-	;	T = 1.0
-	),
-	tr_split(L, K, M),
-	conj_list(N, K),
-	write(implies(N, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>\''([Y|M], T), Src)),
-	writeln('.'),
-	tr_n3p(Z, Src, trules).
-% DEPRECATED
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, tquery) :-
-	!,
-	conj_list(X, U),
-	tr_split(U, K, M),
-	append(K, ['\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\''([Y|M], T)], J),
-	conj_list(N, J),
-	write(implies(N, answer('\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>\'', [Y|M], T), Src)),
-	writeln('.'),
-	tr_n3p(Z, Src, tquery).
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, query) :-
-	!,
-	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
-	->	(	is_list(T)
-		->	H = T
-		;	findvars(X, U, epsilon),
-			distinct(U, H)
-		),
-		nb_setval(csv_header, H),
-		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
-	;	V = Y
-	),
-	(	\+flag('limited-answer', _),
-		flag(nope),
-		(	flag('no-distinct-output')
-		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
-		)
-	->	write(query(X, V)),
-		writeln('.')
-	;	djiti_answer(answer(V), A),
-		write(implies(X, A, Src)),
-		writeln('.')
-	),
-	tr_n3p(Z, Src, query).
-tr_n3p([':-'(Y, X)|Z], Src, query) :-
-	!,
-	(	Y = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, T)
-	->	(	is_list(T)
-		->	H = T
-		;	findvars(X, U, epsilon),
-			distinct(U, H)
-		),
-		nb_setval(csv_header, H),
-		V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, H)
-	;	V = Y
-	),
-	(	(	\+flag('limited-answer', _)
-		;	V = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _),
-			flag(strings)
-		),
-		flag(nope)
-	->	write(query(X, V)),
-		writeln('.')
-	;	djiti_answer(answer(V), A),
-		write(implies(X, A, Src)),
-		writeln('.')
-	),
-	tr_n3p(Z, Src, query).
-% DEPRECATED
-tr_n3p([X|Z], Src, query) :-
-	!,
-	(	\+flag('limited-answer', _),
-		flag(nope),
-		(	flag('no-distinct-output')
-		;	X = '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#csvTuple>\''(_, _)
-		)
-	->	write(query(true, X)),
-		writeln('.')
-	;	djiti_answer(answer(X), A),
-		write(implies(true, A, Src)),
-		writeln('.')
-	),
-	tr_n3p(Z, Src, query).
-tr_n3p(['\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)|Z], Src, Mode) :-
-	!,
-	(	conj_list(X, L),
-		forall(
-			(	member(I, L)
-			),
-			(	I = '\'<http://www.w3.org/2000/10/swap/log#implies>\''(J, _),
-				findvars(J, K, beta),
-				K \= []
-			->	throw('premise_rule_may_not_contain_existential_in_premise'('\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)))
-			;	true
-			)
-		)
-	),
-	(	Y = '\'<http://www.w3.org/2000/10/swap/log#implies>\''(U, _),
-		findvars(U, V, beta),
-		V \= []
-	->	throw('derived_rule_may_not_contain_existential_in_premise'('\'<http://www.w3.org/2000/10/swap/log#implies>\''(X, Y)))
-	;	true
-	),
-	(	flag(tactic, 'linear-select')
-	->	write(implies(X, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>\''(X, Y), Src)),
-		writeln('.'),
-		write(implies('\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#transaction>\''(X, Y), Y, Src)),
-		writeln('.')
-	;	write(implies(X, Y, Src)),
-		writeln('.')
-	),
-	tr_n3p(Z, Src, Mode).
-tr_n3p([':-'(Y, X)|Z], Src, Mode) :-
-	!,
-	findvars(Y, V, eta),
-	(	V = []
-	->	true
-	;	throw('backward_rule_may_not_contain_existential_in_conclusion'(':-'(Y, X)))
-	),
-	write(':-'(Y, X)),
-	writeln('.'),
-	tr_n3p(Z, Src, Mode).
-tr_n3p(['\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>\''(X, Y)|Z], Src, Mode) :-
-	!,
-	write('\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#tactic>\''(X, Y)),
-	writeln('.'),
-	tr_n3p(Z, Src, Mode).
-tr_n3p([X|Z], Src, Mode) :-
-	tr_tr(X, Y),
-	(	findvars(Y, U, epsilon),
-		U = []
-	->	(	Y =.. [A, B, (C, D)]
-		->	format('~w(~w, (~w', [A, B, C]),
-			wcn(D),
-			format(')).~n')
-		;	write(Y),
-			writeln('.')
-		),
-		(	flag(nope)
-		->	true
-		;	write(prfstep(Y, true, _, Y, _, forward, Src)),
-			writeln('.')
-		)
-	;	write(':-'(Y, true)),
-		writeln('.')
-	),
-	tr_n3p(Z, Src, Mode).
-
-tr_tr([], []) :-
-	!.
-tr_tr([A|B], [C|D]) :-
-	!,
-	tr_tr(A, C),
-	tr_tr(B, D).
-tr_tr(A, B) :-
-	atom(A),
-	!,
-	(	atom_concat('_', C, A),
-		(	atom_concat('bn_', _, C)
-		;	atom_concat('e_', _, C)
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, C, '>\''], B)
-	;	B = A
-	).
-tr_tr(A, A) :-
-	number(A),
-	!.
-tr_tr(A, B) :-
-	A =.. [C|D],
-	tr_tr(D, E),
-	B =.. [C|E].
-
-tr_split([], [], []) :-
-	!.
-tr_split([A|B], C, [A|D]) :-
-	functor(A, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#boolean>\'', _),
-	!,
-	tr_split(B, C, D).
-tr_split([A|B], C, D) :-
-	functor(A, '\'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#true>\'', _),
-	!,
-	tr_split(B, C, D).
-tr_split([A|B], [A|C], D) :-
-	tr_split(B, C, D).
-
-%
-% N3 parser
-%
-% according to http://www.w3.org/2000/10/swap/grammar/n3-ietf.txt
-% inspired by http://code.google.com/p/km-rdf/wiki/Henry
-%
-
-barename(BareName, [name(BareName)|L2], L2).
-
-barename_csl([BareName|Tail], L1, L3) :-
-	barename(BareName, L1, L2),
-	!,
-	barename_csl_tail(Tail, L2, L3).
-barename_csl([], L1, L1).
-
-barename_csl_tail([BareName|Tail], [','|L2], L4) :-
-	!,
-	barename(BareName, L2, L3),
-	barename_csl_tail(Tail, L3, L4).
-barename_csl_tail([], L1, L1).
-
-% DEPRECATED
-boolean(true, [atname('true')|L2], L2) :-
-	!.
-boolean(true, [name('true')|L2], L2) :-
-	!.
-% DEPRECATED
-boolean(false, [atname('false')|L2], L2) :-
-	!.
-boolean(false, [name('false')|L2], L2) :-
-	!.
-boolean(Boolean, L1, L2) :-
-	literal(Atom, type(T), L1, L2),
-	T = '\'<http://www.w3.org/2001/XMLSchema#boolean>\'',
-	memberchk([Boolean, Atom], [[true, '\'true\''], [true, true], [true, '\'1\''], [false, '\'false\''], [false, false], [false, '\'0\'']]).
-
-% DEPRECATED
-declaration([atname(base)|L2], L3) :-
-	!,
-	explicituri(U, L2, L3),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(base_uri(_)),
-	assertz(base_uri(URI)).
-declaration([name(Name)|L2], L4) :-
-	downcase_atom(Name, 'base'),
-	!,
-	explicituri(U, L2, L3),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(base_uri(_)),
-	assertz(base_uri(URI)),
-	withoutdot(L3, L4).
-% DEPRECATED
-declaration([atname(keywords)|L2], L3) :-
-	!,
-	barename_csl(List, L2, L3),
-	retractall(keywords(_)),
-	assertz(keywords(List)).
-% DEPRECATED
-declaration([atname(prefix)|L2], L4) :-
-	!,
-	prefix(Prefix, L2, L3),
-	explicituri(U, L3, L4),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(ns(Prefix, _)),
-	assertz(ns(Prefix, URI)),
-	put_pfx(Prefix, URI).
-declaration([name(Name)|L2], L5) :-
-	downcase_atom(Name, 'prefix'),
-	prefix(Prefix, L2, L3),
-	explicituri(U, L3, L4),
-	base_uri(V),
-	resolve_uri(U, V, URI),
-	retractall(ns(Prefix, _)),
-	assertz(ns(Prefix, URI)),
-	put_pfx(Prefix, URI),
-	withoutdot(L4, L5).
-
-document(Triples, L1, L2) :-
-	statements_optional(Triples, L1, L2).
-
-dtlang(lang(Langcode), [atname(Name)|L2], L2) :-
-	!,
-	atomic_list_concat(['\'', Name, '\''], Langcode).
-dtlang(type(Datatype), [caretcaret|L2], L3) :-
-	!,
-	uri(Datatype, L2, L3).
-dtlang(type('\'<http://www.w3.org/2001/XMLSchema#string>\''), L1, L1).
-
-% DEPRECATED
-existential([atname(forSome)|L2], L3) :-
-	!,
-	symbol_csl(Symbols, L2, L3),
-	nb_getval(fdepth, D),
-	forall(
-		(	member(S, Symbols)
-		),
-		(	gensym('qe_', Q),
-			asserta(qevar(S, Q, D))
-		)
-	).
-
-explicituri(ExplicitURI, [relative_uri(ExplicitURI)|L2], L2).
-
-expression(Node, T, L1, L3) :-
-	pathitem(N1, T1, L1, L2),
-	pathtail(N1, Node, T2, L2, L3),
-	append(T1, T2, T),
-	(	keywords(List),
-		memberchk(Node, List)
-	->	nb_getval(line_number, Ln),
-		throw(invalid_keyword_use(Node, after_line(Ln)))
-	;	true
-	).
-
-formulacontent(Formula, L1, L2) :-
-	statementlist(L, L1, L2),
-	conj_list(Formula, L).
-
-literal(Atom, DtLang, L1, L3) :-
-	string(Codes, L1, L2),
-	dtlang(DtLang, L2, L3),
-	escape_string(Codes, B),
-	escape_string(B, C),
-	atom_codes(A, C),
-	(	sub_atom(A, _, 1, _, '\'')
-	->	escape_squote(C, D),
-		atom_codes(E, D)
-	;	E = A
-	),
-	atomic_list_concat(['\'', E, '\''], Atom).
-
-numericliteral(Number, [numeric(Type, NumB)|L2], L2) :-
-	numeral(NumB, NumC),
-	(	flag(strict),
-		Type = decimal
-	->	rdiv_codes(Number, NumC)
-	;	number_codes(Number, NumC)
-	).
-
-object(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2).
-
-objecttail(Subject, Verb, [Triple|T], [','|L2], L4) :-
-	!,
-	object(Object, Triples, L2, L3),
-	objecttail(Subject, Verb, Tail, L3, L4),
-	append(Triples, Tail, T),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, Object, Subject]
-		;	Triple = exopred(V, Object, Subject)
-		)
-	;	(	atom(Verb),
-			\+sub_atom(Verb, 0, 1, _, '_')
-		->	Triple =.. [Verb, Subject, Object]
-		;	Triple = exopred(Verb, Subject, Object)
-		)
-	).
-objecttail(_, _, [], L1, L1).
-
-pathitem(Name, [], L1, L2) :-
-	symbol(S, L1, L2),
-	!,
-	(	qevar(S, N, D),
-		\+quvar(S, _, _)
-	->	(	D >= 1,
-			nb_getval(fdepth, FD),
-			FD >= D,
-			\+flag('pass-all-ground')
-		->	atom_concat('_', N, Name),
-			nb_setval(smod, false)
-		;	nb_getval(var_ns, Vns),
-			atomic_list_concat(['\'<', Vns, N, '>\''], Name)
-		)
-	;	(	quvar(S, N, D)
-		->	(	(	D = 1,
-					nb_getval(fdepth, FD),
-					FD >= 1
-				;	flag('pass-all-ground')
-				)
-			->	nb_getval(var_ns, Vns),
-				atomic_list_concat(['\'<', Vns, N, '>\''], Name)
-			;	atom_concat('_', N, Name),
-				nb_setval(smod, false)
-			)
-		;	Name = S
-		)
-	),
-	(	quvar(S, _, _)
-	->	nb_setval(smod, false)
-	;	true
-	).
-pathitem(VarID, [], [uvar(Var)|L2], L2) :-
-	!,
-	atom_codes(Var, VarCodes),
-	subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], VarCodes, VarTidy),
-	atom_codes(VarAtom, [0'_|VarTidy]),
-	(	flag('pass-all-ground')
-	->	nb_getval(var_ns, Vns),
-		atom_codes(VarFrag, VarTidy),
-		atomic_list_concat(['\'<', Vns, VarFrag, '>\''], VarID)
-	;	VarID = VarAtom
-	),
-	nb_setval(smod, false).
-pathitem(Number, [], L1, L2) :-
-	numericliteral(Number, L1, L2),
-	!.
-pathitem(Boolean, [], L1, L2) :-
-	boolean(Boolean, L1, L2),
-	!.
-% DEPRECATED
-pathitem(Atom, [], L1, L2) :-
-	literal(A, type(T), L1, L2),
-	T = '\'<http://eulersharp.sourceforge.net/2003/03swap/prolog#atom>\'',
-	!,
-	atom_codes(A, B),
-	escape_string(C, B),
-	atom_codes(Atom, C).
-pathitem(Number, [], L1, L2) :-
-	literal(Atom, type(Type), L1, L2),
-	memberchk(Type, ['\'<http://www.w3.org/2001/XMLSchema#integer>\'', '\'<http://www.w3.org/2001/XMLSchema#decimal>\'', '\'<http://www.w3.org/2001/XMLSchema#double>\'']),
-	sub_atom(Atom, 1, _, 1, A),
-	atom_codes(A, NumB),
-	numeral(NumB, NumC),
-	(	flag(strict),
-		Type = '\'<http://www.w3.org/2001/XMLSchema#decimal>\''
-	->	rdiv_codes(Number, NumC)
-	;	number_codes(Number, NumC)
-	),
-	!.
-pathitem(literal(Atom, DtLang), [], L1, L2) :-
-	literal(Atom, DtLang, L1, L2),
-	!.
-pathitem(BNode, Triples, ['['|L2], L4) :-
-	!,
-	gensym('bn_', S),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], BN)
-	;	atom_concat('_', S, BN),
-		nb_setval(smod, false)
-	),
-	propertylist(BN, T, L2, [']'|L4]),
-	(	memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), T),
-		memberchk('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), T),
-		del(T, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\''(X, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#List>\''), U),
-		del(U, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#first>\''(X, Head), V),
-		del(V, '\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#rest>\''(X, Tail), W)
-	->	BNode = [Head|Tail],
-		Triples = W
-	;	BNode = BN,
-		Triples = T
-	).
-pathitem(set(Distinct), Triples, ['(', '$'|L2], L4) :-
-	!,
-	pathlist(List, Triples, L2, ['$', ')'|L4]),
-	(	nb_getval(smod, true)
-	->	sort(List, Distinct)
-	;	distinct(List, Distinct)
-	).
-pathitem(List, Triples, ['('|L2], L4) :-
-	!,
-	pathlist(List, Triples, L2, [')'|L4]).
-pathitem(Node, [] , ['{'|L2], L4):-
-	nb_getval(fdepth, I),
-	J is I+1,
-	nb_setval(fdepth, J),
-	nb_setval(smod, true),
-	formulacontent(Node, L2, ['}'|L4]),
-	retractall(quvar(_, _, J)),
-	retractall(qevar(_, _, J)),
-	retractall(evar(_, _, J)),
-	nb_setval(fdepth, I),
-	nb_setval(smod, false).
-
-pathlist([Node|Rest], Triples, L1, L3) :-
-	expression(Node, T, L1, L2),
-	!,
-	pathlist(Rest, Tail, L2, L3),
-	append(T, Tail, Triples).
-pathlist([], [], L1, L1).
-
-pathtail(Node, PNode, [Triple|Triples], ['!'|L2], L4) :-
-	!,
-	pathitem(Item, Triples2, L2, L3),
-	prolog_verb(Item, Verb),
-	gensym('bn_', S),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
-	;	atom_concat('_', S, BNode),
-		nb_setval(smod, false)
-	),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, BNode, Node]
-		;	Triple = exopred(V, BNode, Node)
-		)
-	;	(	Verb = prolog:Pred
-		->	(	BNode = true
-			->	Triple =.. [Pred|Node]
-			;	(	BNode = false
-				->	T =.. [Pred|Node],
-					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)	% DEPRECATED
-					->	T =.. [Pred|Node],
-						Triple = is(BNode, T)
-					;	Triple =.. [Pred, Node, BNode]
-					)
-				)
-			)
-		;	(	atom(Verb),
-				\+sub_atom(Verb, 0, 1, _, '_')
-			->	Triple =.. [Verb, Node, BNode]
-			;	Triple = exopred(Verb, Node, BNode)
-			)
-		)
-	),
-	pathtail(BNode, PNode, Tail, L3, L4),
-	append(Triples2, Tail, Triples).
-pathtail(Node, PNode, [Triple|Triples], ['^'|L2], L4) :-
-	!,
-	pathitem(Item, Triples2, L2, L3),
-	prolog_verb(Item, Verb),
-	gensym('bn_', S),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		atomic_list_concat(['\'<', Vns, S, '>\''], BNode)
-	;	atom_concat('_', S, BNode),
-		nb_setval(smod, false)
-	),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, Node, BNode]
-		;	Triple = exopred(V, Node, BNode)
-		)
-	;	(	Verb = prolog:Pred
-		->	(	Node = true
-			->	Triple =.. [Pred|BNode]
-			;	(	Node = false
-				->	T =.. [Pred|BNode],
-					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)	% DEPRECATED
-					->	T =.. [Pred|BNode],
-						Triple = is(Node, T)
-					;	Triple =.. [Pred, BNode, Node]
-					)
-				)
-			)
-		;	(	atom(Verb),
-				\+sub_atom(Verb, 0, 1, _, '_')
-			->	Triple =.. [Verb, BNode, Node]
-			;	Triple = exopred(Verb, BNode, Node)
-			)
-		)
-	),
-	pathtail(BNode, PNode, Tail, L3, L4),
-	append(Triples2, Tail, Triples).
-pathtail(Node, Node, [], L1, L1).
-
-prefix(Prefix, [Prefix:''|L2], L2).
-
-propertylist(Subject, [Triple|Triples], L1, L5) :-
-	verb(Item, Triples1, L1, L2),
-	prolog_verb(Item, Verb),
-	!,
-	object(Object, Triples2, L2, L3),
-	objecttail(Subject, Verb, Triples3, L3, L4),
-	propertylisttail(Subject, Triples4, L4, L5),
-	append(Triples1, Triples2, Triples12),
-	append(Triples12, Triples3, Triples123),
-	append(Triples123, Triples4, Triples),
-	(	Verb = isof(V)
-	->	(	atom(V),
-			\+sub_atom(V, 0, 1, _, '_')
-		->	Triple =.. [V, Object, Subject]
-		;	Triple = exopred(V, Object, Subject)
-		)
-	;	(	Verb = prolog:Pred
-		->	(	Object = true
-			->	Triple =.. [Pred|Subject]
-			;	(	Object = false
-				->	T =.. [Pred|Subject],
-					Triple = \+(T)
-				;	(	prolog_sym(_, Pred, func)	% DEPRECATED
-					->	T =.. [Pred|Subject],
-						Triple = is(Object, T)
-					;	Triple =.. [Pred, Subject, Object]
-					)
-				)
-			)
-		;	(	atom(Verb),
-				\+sub_atom(Verb, 0, 1, _, '_')
-			->	Triple =.. [Verb, Subject, Object]
-			;	Triple = exopred(Verb, Subject, Object)
-			)
-		)
-	).
-propertylist(_, [], L1, L1).
-
-propertylisttail(Subject, Triples, [';'|L2], L4) :-
-	!,
-	propertylisttailsemis(L2, L3),
-	propertylist(Subject, Triples, L3, L4).
-propertylisttail(_, [], L1, L1).
-
-propertylisttailsemis([';'|L2], L3) :-
-	!,
-	propertylisttailsemis(L2, L3).
-propertylisttailsemis(L1, L1).
-
-qname(URI, [NS:Name|L2], L2) :-
-	(	ns(NS, Base)
-	->	atomic_list_concat([Base, Name], Name1),
-		(	sub_atom(Name1, _, 1, _, '\'')
-		->	atom_codes(Name1, Codes1),
-			escape_squote(Codes1, Codes2),
-			atom_codes(Name2, Codes2)
-		;	Name2 = Name1
-		),
-		atomic_list_concat(['\'<', Name2, '>\''], URI)
-	;	nb_getval(line_number, Ln),
-		throw(no_prefix_directive(NS, after_line(Ln)))
-	),
-	!.
-
-simpleStatement(Triples, L1, L3) :-
-	subject(Subject, Triples1, L1, L2),
-	(	Subject = (D1;D2)
-	->	Triples = [(D1;D2)]
-	;	propertylist(Subject, Triples2, L2, L3),
-		append(Triples1, Triples2, Triples)
-	).
-
-statement([], L1, L2) :-
-	declaration(L1, L2),
-	!.
-statement([], L1, L2) :-
-	universal(L1, L2),
-	!.
-statement([], L1, L2) :-
-	existential(L1, L2),
-	!.
-statement(Statement, L1, L2) :-
-	simpleStatement(Statement, L1, L2).
-
-statementlist(Triples, L1, L3) :-
-	statement(Tr, L1, L2),
-	!,
-	statementtail(T, L2, L3),
-	append(Tr, T, Triples).
-statementlist([], L1, L1).
-
-statements_optional(Triples, L1, L4) :-
-	statement(Tr, L1, [dot(Ln)|L3]),
-	!,
-	nb_setval(line_number, Ln),
-	statements_optional(T, L3, L4),
-	append(Tr, T, Triples).
-statements_optional([], L1, L1).
-
-statementtail(T, [dot(Ln)|L2], L3) :-
-	!,
-	nb_setval(line_number, Ln),
-	statementlist(T, L2, L3).
-statementtail([], L1, L1).
-
-string(Codes, [literal(Codes)|L2], L2).
-
-subject(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2).
-
-symbol(Name, L1, L2) :-
-	uri(Name, L1, L2),
-	!.
-symbol(Name, [name(N)|L2], L2) :-
-	!,
-	(	keywords(List)
-	->	(	memberchk(N, List)
-		->	Name = N
-		;	ns('', Base),
-			atomic_list_concat(['\'<', Base, N, '>\''], Name)
-		)
-	;	(	memberchk(N, [true, false])
-		->	Name = N
-		;	nb_getval(line_number, Ln),
-			throw(invalid_keyword(N, after_line(Ln)))
-		)
-	).
-symbol(Name, [bnode(Label)|L2], L2) :-
-	nb_getval(fdepth, D),
-	(	D =:= 0
-	->	N = Label
-	;	atom_codes(Label, LabelCodes),
-		subst([[[0'-], [0'_, 0'M, 0'I, 0'N, 0'U, 0'S, 0'_]], [[0'.], [0'_, 0'D, 0'O, 0'T, 0'_]]], LabelCodes, LabelTidy),
-		atom_codes(N, LabelTidy)
-	),
-	(	evar(N, S, D)
-	->	true
-	;	atom_concat(N, '_', M),
-		gensym(M, S),
-		assertz(evar(N, S, D))
-	),
-	(	(	nb_getval(fdepth, 0)
-		;	flag('pass-all-ground')
-		)
-	->	nb_getval(var_ns, Vns),
-		(	flag('pass-all-ground')
-		->	atomic_list_concat(['\'<', Vns, N, '>\''], Name)
-		;	atomic_list_concat(['\'<', Vns, 'e_', S, '>\''], Name)
-		)
-	;	atom_concat('_e_', S, Name),
-		nb_setval(smod, false)
-	).
-
-symbol_csl([Symbol|Tail], L1, L3) :-
-	symbol(Symbol, L1, L2),
-	!,
-	symbol_csl_tail(Tail, L2, L3).
-symbol_csl([], L1, L1).
-
-symbol_csl_tail([Symbol|T], [','|L2], L4) :-
-	!,
-	symbol(Symbol, L2, L3),
-	symbol_csl_tail(T, L3, L4).
-symbol_csl_tail([], L1, L1).
-
-% DEPRECATED
-universal([atname(forAll)|L2], L3) :-
-	!,
-	symbol_csl(Symbols, L2, L3),
-	nb_getval(fdepth, D),
-	(	\+flag(traditional),
-		D > 0
-	->	throw(not_supported_keyword('@forAll', at_formula_depth(D)))
-	;	true
-	),
-	forall(
-		(	member(S, Symbols)
-		),
-		(	gensym('qu_', Q),
-			asserta(quvar(S, Q, D))
-		)
-	).
-
-uri(Name, L1, L2) :-
-	explicituri(U, L1, L2),
-	!,
-	base_uri(V),
-	resolve_uri(U, V, W),
-	(	sub_atom(W, _, 1, _, '\'')
-	->	atom_codes(W, X),
-		escape_squote(X, Y),
-		atom_codes(Z, Y)
-	;	Z = W
-	),
-	atomic_list_concat(['\'<', Z, '>\''], Name).
-uri(Name, L1, L2) :-
-	qname(Name, L1, L2).
-
-verb('\'<http://www.w3.org/2000/10/swap/log#implies>\'', [], ['=', '>'|L2], L2) :-
-	!.
-verb('\'<http://www.w3.org/2002/07/owl#sameAs>\'', [], ['='|L2], L2) :-
-	!.
-verb(':-', [], ['<', '='|L2], L2) :-
-	!.
-% DEPRECATED
-verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [atname(a)|L2], L2) :-
-	!.
-verb('\'<http://www.w3.org/1999/02/22-rdf-syntax-ns#type>\'', [], [name(a)|L2], L2) :-
-	!.
-% DEPRECATED
-verb(Node, Triples, [atname(has)|L2], L3) :-
-	!,
-	expression(Node, Triples, L2, L3).
-verb(Node, Triples, [name(has)|L2], L3) :-
-	!,
-	expression(Node, Triples, L2, L3).
-% DEPRECATED
-verb(isof(Node), Triples, [atname(is)|L2], L4) :-
-	!,
-	expression(Node, Triples, L2, [atname(of)|L4]).
-verb(isof(Node), Triples, [name(is)|L2], L4) :-
-	!,
-	expression(Node, Triples, L2, [name(of)|L4]).
-verb(Node, Triples, L1, L2) :-
-	expression(Node, Triples, L1, L2).
-
-withoutdot([dot(Ln)|L2], [dot(Ln)|L2]) :-
-	!,
-	throw(unexpected_dot(after_line(Ln))).
-withoutdot(L1, [dot(Ln)|L1]) :-
-	nb_getval(line_number, Ln).
-
-%
-% N3 tokenizer
-%
-
-tokens(In, List) :-
-	get_code(In, C0),
-	(	token(C0, In, C1, Tok1)
-	->	true
-	;	nb_getval(line_number, Ln),
-		char_code(Char, C0),
-		throw(illegal_token(char_code(Char, C0), line(Ln)))
-	),
-	(	Tok1 == end_of_file
-	->	List = []
-	;	List = [Tok1|Tokens],
-		tokens(C1, In, Tokens)
-	).
-
-tokens(C0, In, List) :-
-	(	token(C0, In, C1, H)
-	->	true
-	;	nb_getval(line_number, Ln),
-		char_code(Char, C0),
-		throw(illegal_token(char_code(Char, C0), line(Ln)))
-	),
-	(	H == end_of_file
-	->	List = []
-	;	List = [H|T],
-		tokens(C1, In, T)
-	).
-
-token(-1, _, -1, end_of_file) :-
-	!.
-token(0'., In, C, Token) :-
-	(	peek_code(In, C0),
-		(	e(C0)
-		->	T1 = [0'0|T2],
-			get_code(In, CN1)
-		;	0'0 =< C0,
-			C0 =< 0'9,
-			get_code(In, C1),
-			integer_codes(C1, In, CN1, T1, T2)
-		)
-	->	(	exponent(CN1, In, C, T2)
-		->	Type = double
-		;	C = CN1,
-			T2 = [],
-			Type = decimal
-		),
-		Token = numeric(Type, [0'0, 0'.|T1])
-	;	nb_getval(line_number, Ln),
-		get_code(In, C),
-		!,
-		Token = dot(Ln)
-	).
-token(0'#, In, C, Token) :-
-	!,
-	get_code(In, C1),
-	skip_line(C1, In, C2),
-	token(C2, In, C, Token).
-token(C0, In, C, Token) :-
-	white_space(C0),
-	!,
-	get_code(In, C1),
-	token(C1, In, C, Token).
-token(C0, In, C, Number) :-
-	0'0 =< C0,
-	C0 =< 0'9,
-	!,
-	number_n(C0, In, C, Number).
-token(0'-, In, C, Number) :-
-	!,
-	number_n(0'-, In, C, Number).
-token(0'+, In, C, Number) :-
-	!,
-	number_n(0'+, In, C, Number).
-token(0'", In, C, literal(Codes)) :-
-	!,
-	(	peek_code(In, 0'")
-	->	get_code(In, 0'"),
-		(	peek_code(In, 0'")
-		->	get_code(In, 0'"),
-			get_code(In, C1),
-			dq_string(C1, In, C, Codes)
-		;	get_code(In, C),
-			Codes = []
-		)
-	;	get_code(In, C1),
-		string_dq(C1, In, C, Codes)
-	).
-token(0'', In, C, literal(Codes)) :-
-	!,
-	(	peek_code(In, 0'')
-	->	get_code(In, 0''),
-		(	peek_code(In, 0'')
-		->	get_code(In, 0''),
-			get_code(In, C1),
-			sq_string(C1, In, C, Codes)
-		;	get_code(In, C),
-			Codes = []
-		)
-	;	get_code(In, C1),
-		string_sq(C1, In, C, Codes)
-	).
-token(0'?, In, C, uvar(Name)) :-
-	!,
-	get_code(In, C0),
-	(	name(C0, In, C, Name)
-	->	true
-	;	C = C0,
-		nb_getval(line_number, Ln),
-		throw(empty_quickvar_name(line(Ln)))
-	).
-token(0'_, In, C, bnode(Name)) :-
-	peek_code(In, 0':),
-	!,
-	get_code(In, _),
-	get_code(In, C0),
-	(	name(C0, In, C, Name)
-	->	true
-	;	C = C0,
-		Name = ''
-	).
-token(0'<, In, C, relative_uri(URI)) :-
-	peek_code(In, C1),
-	C1 \== 0'=,
-	!,
-	get_code(In, C1),
-	iri_chars(C1, In, C, Codes),
-	D = Codes,
-	atom_codes(URI, D).
-token(0':, In, C, Token) :-
-	!,
-	get_code(In, C0),
-	(	local_name(C0, In, C, Name)
-	->	Token = '':Name
-	;	Token = '':'',
-		C = C0
-	).
-token(0'@, In, C, atname(Name)) :-
-	get_code(In, C0),
-	token(C0, In, C, name(Name)),
-	!.
-token(0'^, In, C, caretcaret) :-
-	peek_code(In, 0'^),
-	!,
-	get_code(In, _),
-	get_code(In, C).
-token(C0, In, C, Token) :-
-	name(C0, In, C1, Name),
-	!,
-	(	C1 == 0':
-	->	get_code(In, C2),
-		(	local_name(C2, In, C, Name2)
-		->	Token = (Name:Name2)
-		;	Token = (Name:''),
-			C = C2
-		)
-	;	Token = name(Name),
-		C = C1
-	).
-token(C0, In, C, P) :-
-	punctuation(C0, P),
-	!,
-	get_code(In, C).
-
-number_n(0'-, In, CN, numeric(T, [0'-|Codes])) :-
-	!,
-	get_code(In, C0),
-	number_nn(C0, In, CN, numeric(T, Codes)).
-number_n(0'+, In, CN, numeric(T, [0'+|Codes])) :-
-	!,
-	get_code(In, C0),
-	number_nn(C0, In, CN, numeric(T, Codes)).
-number_n(C0, In, CN, Value) :-
-	number_nn(C0, In, CN, Value).
-
-number_nn(C, In, CN, numeric(Type, Codes)) :-
-	integer_codes(C, In, CN0, Codes, T0),
-	(	CN0 == 0'.,
-		peek_code(In, C0),
-		(	e(C0)
-		->	T1 = [0'0|T2],
-			get_code(In, CN1)
-		;	0'0 =< C0,
-			C0 =< 0'9,
-			get_code(In, C1),
-			integer_codes(C1, In, CN1, T1, T2)
-		),
-		T0 = [0'.|T1]
-	->	(	exponent(CN1, In, CN, T2)
-		->	Type = double
-		;	CN = CN1,
-			T2 = [],
-			Type = decimal
-		)
-	;	(	exponent(CN0, In, CN, T0)
-		->	Type = double
-		;	T0 = [],
-			CN = CN0,
-			Type = integer
-		)
-	).
-
-integer_codes(C0, In, CN, [C0|T0], T) :-
-	0'0 =< C0,
-	C0 =< 0'9,
-	!,
-	get_code(In, C1),
-	integer_codes(C1, In, CN, T0, T).
-integer_codes(CN, _, CN, T, T).
-
-exponent(C0, In, CN, [C0|T0]) :-
-	e(C0),
-	!,
-	get_code(In, C1),
-	optional_sign(C1, In, CN0, T0, T1),
-	integer_codes(CN0, In, CN, T1, []),
-	(	T1 = []
-	->	nb_getval(line_number, Ln),
-		throw(invalid_exponent(line(Ln)))
-	;	true
-	).
-
-optional_sign(C0, In, CN, [C0|T], T) :-
-	sign(C0),
-	!,
-	get_code(In, CN).
-optional_sign(CN, _, CN, T, T).
-
-e(0'e).
-e(0'E).
-
-sign(0'-).
-sign(0'+).
-
-dq_string(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-dq_string(0'", In, C, []) :-
-	(	retract(got_dq)
-	->	true
-	;	peek_code(In, 0'"),
-		get_code(In, _)
-	),
-	(	retract(got_dq)
-	->	assertz(got_dq)
-	;	assertz(got_dq),
-		peek_code(In, 0'"),
-		get_code(In, _),
-		assertz(got_dq)
-	),
-	!,
-	(	peek_code(In, 0'")
-	->	nb_getval(line_number, Ln),
-		throw(unexpected_double_quote(line(Ln)))
-	;	true
-	),
-	retractall(got_dq),
-	get_code(In, C).
-dq_string(0'", In, C, [0'"|T]) :-
-	!,
-	(	retract(got_dq)
-	->	C1 = 0'"
-	;	get_code(In, C1)
-	),
-	dq_string(C1, In, C, T).
-dq_string(0'\\, In, C, [H|T]) :-
-	(	retract(got_dq)
-	->	C1 = 0'"
-	;	get_code(In, C1)
-	),
-	!,
-	string_escape(C1, In, C2, H),
-	dq_string(C2, In, C, T).
-dq_string(C0, In, C, [C0|T]) :-
-	(	retract(got_dq)
-	->	C1 = 0'"
-	;	get_code(In, C1)
-	),
-	dq_string(C1, In, C, T).
-
-sq_string(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-sq_string(0'', In, C, []) :-
-	(	retract(got_sq)
-	->	true
-	;	peek_code(In, 0''),
-		get_code(In, _)
-	),
-	(	retract(got_sq)
-	->	assertz(got_sq)
-	;	assertz(got_sq),
-		peek_code(In, 0''),
-		get_code(In, _),
-		assertz(got_sq)
-	),
-	!,
-	(	peek_code(In, 0'')
-	->	nb_getval(line_number, Ln),
-		throw(unexpected_single_quote(line(Ln)))
-	;	true
-	),
-	retractall(got_sq),
-	get_code(In, C).
-sq_string(0'', In, C, [0''|T]) :-
-	!,
-	(	retract(got_sq)
-	->	C1 = 0''
-	;	get_code(In, C1)
-	),
-	sq_string(C1, In, C, T).
-sq_string(0'\\, In, C, [H|T]) :-
-	(	retract(got_sq)
-	->	C1 = 0''
-	;	get_code(In, C1)
-	),
-	!,
-	string_escape(C1, In, C2, H),
-	sq_string(C2, In, C, T).
-sq_string(C0, In, C, [C0|T]) :-
-	(	retract(got_sq)
-	->	C1 = 0''
-	;	get_code(In, C1)
-	),
-	sq_string(C1, In, C, T).
-
-string_dq(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-string_dq(0'\n, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_line(line(Ln))).
-string_dq(0'", In, C, []) :-
-	!,
-	get_code(In, C).
-string_dq(0'\\, In, C, D) :-
-	get_code(In, C1),
-	!,
-	string_escape(C1, In, C2, H),
-	(	current_prolog_flag(windows, true),
-		H > 0xFFFF
-	->	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [H|T]
-	),
-	string_dq(C2, In, C, T).
-string_dq(C0, In, C, D) :-
-	(	current_prolog_flag(windows, true),
-		C0 > 0xFFFF
-	->	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [C0|T]
-	),
-	get_code(In, C1),
-	string_dq(C1, In, C, T).
-
-string_sq(-1, _, _, []) :-
-	!,
-	nb_getval(line_number, Ln),
-	throw(unexpected_end_of_input(line(Ln))).
-string_sq(0'', In, C, []) :-
-	!,
-	get_code(In, C).
-string_sq(0'\\, In, C, D) :-
-	get_code(In, C1),
-	!,
-	string_escape(C1, In, C2, H),
-	(	current_prolog_flag(windows, true),
-		H > 0xFFFF
-	->	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [H|T]
-	),
-	string_sq(C2, In, C, T).
-string_sq(C0, In, C, D) :-
-	(	current_prolog_flag(windows, true),
-		C0 > 0xFFFF
-	->	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [C0|T]
-	),
-	get_code(In, C1),
-	string_sq(C1, In, C, T).
-
-string_escape(0't, In, C, 0'\t) :-
-	!,
-	get_code(In, C).
-string_escape(0'b, In, C, 0'\b) :-
-	!,
-	get_code(In, C).
-string_escape(0'n, In, C, 0'\n) :-
-	!,
-	get_code(In, C).
-string_escape(0'r, In, C, 0'\r) :-
-	!,
-	get_code(In, C).
-string_escape(0'f, In, C, 0'\f) :-
-	!,
-	get_code(In, C).
-string_escape(0'", In, C, 0'") :-
-	!,
-	get_code(In, C).
-string_escape(0'', In, C, 0'') :-
-	!,
-	get_code(In, C).
-string_escape(0'\\, In, C, 0'\\) :-
-	!,
-	get_code(In, C).
-string_escape(0'u, In, C, Code) :-
-	!,
-	get_hhhh(In, A),
-	(	0xD800 =< A,
-		A =< 0xDBFF
-	->	get_code(In, 0'\\),
-		get_code(In, 0'u),
-		get_hhhh(In, B),
-		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
-	;	Code is A
-	),
-	get_code(In, C).
-string_escape(0'U, In, C, Code) :-
-	!,
-	get_hhhh(In, Code0),
-	get_hhhh(In, Code1),
-	Code is Code0 << 16 + Code1,
-	get_code(In, C).
-string_escape(C, _, _, _) :-
-	nb_getval(line_number, Ln),
-	atom_codes(A, [0'\\, C]),
-	throw(illegal_string_escape_sequence(A, line(Ln))).
-
-get_hhhh(In, Code) :-
-	get_code(In, C1),
-	code_type(C1, xdigit(D1)),
-	get_code(In, C2),
-	code_type(C2, xdigit(D2)),
-	get_code(In, C3),
-	code_type(C3, xdigit(D3)),
-	get_code(In, C4),
-	code_type(C4, xdigit(D4)),
-	Code is D1<<12+D2<<8+D3<<4+D4.
-
-language(C0, In, C, [C0|Codes]) :-
-	code_type(C0, lower),
-	get_code(In, C1),
-	lwr_word(C1, In, C2, Codes, Tail),
-	sub_langs(C2, In, C, Tail, []).
-
-lwr_word(C0, In, C, [C0|T0], T) :-
-	code_type(C0, lower),
-	!,
-	get_code(In, C1),
-	lwr_word(C1, In, C, T0, T).
-lwr_word(C, _, C, T, T).
-
-sub_langs(0'-, In, C, [0'-, C1|Codes], T) :-
-	get_code(In, C1),
-	lwrdig(C1),
-	!,
-	get_code(In, C2),
-	lwrdigs(C2, In, C3, Codes, Tail),
-	sub_langs(C3, In, C, Tail, T).
-sub_langs(C, _, C, T, T).
-
-lwrdig(C) :-
-	code_type(C, lower),
-	!.
-lwrdig(C) :-
-	code_type(C, digit).
-
-lwrdigs(C0, In, C, [C0|T0], T) :-
-	lwrdig(C0),
-	!,
-	get_code(In, C1),
-	lwr_word(C1, In, C, T0, T).
-lwrdigs(C, _, C, T, T).
-
-iri_chars(0'>, In, C, []) :-
-	!,
-	get_code(In, C).
-iri_chars(0'\\, In, C, D) :-
-	!,
-	get_code(In, C1),
-	iri_escape(C1, In, C2, H),
-	\+non_iri_char(H),
-	(	current_prolog_flag(windows, true),
-		H > 0xFFFF
-	->	E is (H-0x10000)>>10+0xD800,
-		F is (H-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [H|T]
-	),
-	iri_chars(C2, In, C, T).
-iri_chars(0'%, In, C, [0'%, C1, C2|T]) :-
-	!,
-	get_code(In, C1),
-	code_type(C1, xdigit(_)),
-	get_code(In, C2),
-	code_type(C2, xdigit(_)),
-	get_code(In, C3),
-	iri_chars(C3, In, C, T).
-iri_chars(-1, _, _, _) :-
-	!,
-	fail.
-iri_chars(C0, In, C, D) :-
-	\+non_iri_char(C0),
-	(	current_prolog_flag(windows, true),
-		C0 > 0xFFFF
-	->	E is (C0-0x10000)>>10+0xD800,
-		F is (C0-0x10000) mod 0x400+0xDC00,
-		D = [E, F|T]
-	;	D = [C0|T]
-	),
-	get_code(In, C1),
-	iri_chars(C1, In, C, T).
-
-iri_escape(0'u, In, C, Code) :-
-	!,
-	get_hhhh(In, A),
-	(	0xD800 =< A,
-		A =< 0xDBFF
-	->	get_code(In, 0'\\),
-		get_code(In, 0'u),
-		get_hhhh(In, B),
-		Code is 0x10000+(A-0xD800)*0x400+(B-0xDC00)
-	;	Code is A
-	),
-	get_code(In, C).
-iri_escape(0'U, In, C, Code) :-
-	!,
-	get_hhhh(In, Code0),
-	get_hhhh(In, Code1),
-	Code is Code0 << 16 + Code1,
-	get_code(In, C).
-iri_escape(C, _, _, _) :-
-	nb_getval(line_number, Ln),
-	atom_codes(A, [0'\\, C]),
-	throw(illegal_iri_escape_sequence(A, line(Ln))).
-
-non_iri_char(0x20).
-non_iri_char(0'<).
-non_iri_char(0'>).
-non_iri_char(0'").
-non_iri_char(0'{).
-non_iri_char(0'}).
-non_iri_char(0'|).
-non_iri_char(0'^).
-non_iri_char(0'`).
-non_iri_char(0'\\).
-
-name(C0, In, C, Atom) :-
-	name_start_char(C0),
-	get_code(In, C1),
-	name_chars(C1, In, C, T),
-	atom_codes(Atom, [C0|T]).
-
-name_start_char(C) :-
-	pn_chars_base(C),
-	!.
-name_start_char(0'_).
-name_start_char(C) :-
-	code_type(C, digit).
-
-name_chars(0'., In, C, [0'.|T]) :-
-	peek_code(In, C1),
-	pn_chars(C1),
-	!,
-	get_code(In, C1),
-	name_chars(C1, In, C, T).
-name_chars(C0, In, C, [C0|T]) :-
-	pn_chars(C0),
-	!,
-	get_code(In, C1),
-	name_chars(C1, In, C, T).
-name_chars(C, _, C, []).
-
-pn_chars_base(C) :-
-	code_type(C, alpha),
-	!.
-pn_chars_base(C) :-
-	0xC0 =< C,
-	C =< 0xD6,
-	!.
-pn_chars_base(C) :-
-	0xD8 =< C,
-	C =< 0xF6,
-	!.
-pn_chars_base(C) :-
-	0xF8 =< C,
-	C =< 0x2FF,
-	!.
-pn_chars_base(C) :-
-	0x370 =< C,
-	C =< 0x37D,
-	!.
-pn_chars_base(C) :-
-	0x37F =< C,
-	C =< 0x1FFF,
-	!.
-pn_chars_base(C) :-
-	0x200C =< C,
-	C =< 0x200D,
-	!.
-pn_chars_base(C) :-
-	0x2070 =< C,
-	C =< 0x218F,
-	!.
-pn_chars_base(C) :-
-	0x2C00 =< C,
-	C =< 0x2FEF,
-	!.
-pn_chars_base(C) :-
-	0x3001 =< C,
-	C =< 0xD7FF,
-	!.
-pn_chars_base(C) :-
-	0xF900 =< C,
-	C =< 0xFDCF,
-	!.
-pn_chars_base(C) :-
-	0xFDF0 =< C,
-	C =< 0xFFFD,
-	!.
-pn_chars_base(C) :-
-	0x10000 =< C,
-	C =< 0xEFFFF.
-
-pn_chars(C) :-
-	code_type(C, csym),
-	!.
-pn_chars(C) :-
-	pn_chars_base(C),
-	!.
-pn_chars(0'-) :-
-	!.
-pn_chars(0xB7) :-
-	!.
-pn_chars(C) :-
-	0x0300 =< C,
-	C =< 0x036F,
-	!.
-pn_chars(C) :-
-	0x203F =< C,
-	C =< 0x2040.
-
-local_name(0'\\, In, C, Atom) :-
-	!,
-	get_code(In, C0),
-	reserved_char_escapes(C0),
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T),
-	atom_codes(Atom, [C0|T]).
-local_name(0'%, In, C, Atom) :-
-	!,
-	get_code(In, C0),
-	code_type(C0, xdigit(_)),
-	get_code(In, C1),
-	code_type(C1, xdigit(_)),
-	get_code(In, C2),
-	local_name_chars(C2, In, C, T),
-	atom_codes(Atom, [0'%, C0, C1|T]).
-local_name(C0, In, C, Atom) :-
-	local_name_start_char(C0),
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T),
-	atom_codes(Atom, [C0|T]).
-
-local_name_chars(0'\\, In, C, [C0|T]) :-
-	!,
-	get_code(In, C0),
-	reserved_char_escapes(C0),
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T).
-local_name_chars(0'%, In, C, [0'%, C0, C1|T]) :-
-	!,
-	get_code(In, C0),
-	code_type(C0, xdigit(_)),
-	get_code(In, C1),
-	code_type(C1, xdigit(_)),
-	get_code(In, C2),
-	local_name_chars(C2, In, C, T).
-local_name_chars(0'., In, C, [0'.|T]) :-
-	peek_code(In, C1),
-	(	local_name_char(C1)
-	;	C1 = 0'.
-	),
-	!,
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T).
-local_name_chars(C0, In, C, [C0|T]) :-
-	local_name_char(C0),
-	!,
-	get_code(In, C1),
-	local_name_chars(C1, In, C, T).
-local_name_chars(C, _, C, []).
-
-local_name_start_char(C) :-
-	name_start_char(C),
-	!.
-local_name_start_char(0':).
-local_name_start_char(0'%).
-local_name_start_char(0'\\).
-
-local_name_char(C) :-
-	pn_chars(C),
-	!.
-local_name_char(0':).
-local_name_char(0'%).
-local_name_char(0'\\).
-
-reserved_char_escapes(0'~).
-reserved_char_escapes(0'.).
-reserved_char_escapes(0'-).
-reserved_char_escapes(0'!).
-reserved_char_escapes(0'$).
-reserved_char_escapes(0'&).
-reserved_char_escapes(0'').
-reserved_char_escapes(0'().
-reserved_char_escapes(0')).
-reserved_char_escapes(0'*).
-reserved_char_escapes(0'+).
-reserved_char_escapes(0',).
-reserved_char_escapes(0';).
-reserved_char_escapes(0'=).
-reserved_char_escapes(0'/).
-reserved_char_escapes(0'?).
-reserved_char_escapes(0'#).
-reserved_char_escapes(0'@).
-reserved_char_escapes(0'%).
-reserved_char_escapes(0'_).
-
-punctuation(0'(, '(').
-punctuation(0'), ')').
-punctuation(0'[, '[').
-punctuation(0'], ']').
-punctuation(0',, ',').
-punctuation(0':, ':').
-punctuation(0';, ';').
-punctuation(0'{, '{').
-punctuation(0'}, '}').
-punctuation(0'?, '?').
-punctuation(0'!, '!').
-punctuation(0'^, '^').
-punctuation(0'=, '=').
-punctuation(0'<, '<').
-punctuation(0'>, '>').
-punctuation(0'$, '$').
-
-skip_line(-1, _, -1) :-
-	!.
-skip_line(0xA, In, C) :-
-	!,
-	cnt(line_number),
-	get_code(In, C).
-skip_line(0xD, In, C) :-
-	!,
-	get_code(In, C).
-skip_line(_, In, C) :-
-	get_code(In, C1),
-	skip_line(C1, In, C).
-
-white_space(0x9).
-white_space(0xA) :-
-	cnt(line_number).
-white_space(0xD).
-white_space(0x20).
 
 %
 % Reasoning output
@@ -4027,8 +1998,7 @@ wt0(X) :-
 	atom(X),
 	atom_concat(some, Y, X),
 	!,
-	(	\+flag('no-qvars'),
-		\+flag('no-blank')	% DEPRECATED
+	(	\+flag('no-qvars')
 	->	(	rule_uvar(L),
 			(	ncllit
 			->	(	memberchk(X, L)
@@ -4107,8 +2077,7 @@ wt0(X) :-
 				memberchk(Z, ['x_', 't_']),
 				write('?')
 			)
-		;	(	\+flag('no-qvars'),
-				\+flag('no-blank')	% DEPRECATED
+		;	(	\+flag('no-qvars')
 			->	true
 			;	flag('no-skolem', Prefix),
 				sub_atom(X, 1, _, _, Prefix)
@@ -4312,7 +2281,6 @@ wt2(rdiv(X, Y)) :-
 	).
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X|Y], Z)) :-
 	flag(nope),
-	flag(tquery),	% DEPRECATED
 	!,
 	'<http://www.w3.org/2000/10/swap/log#conjunction>'(Y, U),
 	write('{'),
@@ -4328,7 +2296,6 @@ wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#biconditional>'([X
 	write('}').
 wt2('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#conditional>'([X|Y], Z)) :-
 	flag(nope),
-	flag(tquery),	% DEPRECATED
 	!,
 	'<http://www.w3.org/2000/10/swap/log#conjunction>'(Y, U),
 	write('{'),
@@ -4597,8 +2564,7 @@ wq([X|Y], allv) :-
 	wk(Y),
 	write('. ').
 wq([X|Y], some) :-
-	(	\+flag('no-qvars'),
-		\+flag('no-blank')	% DEPRECATED
+	(	\+flag('no-qvars')
 	->	write('@forSome '),
 		wt(X),
 		wk(Y),
@@ -4685,14 +2651,11 @@ ws((X, Y)) :-
 	ws(U).
 ws(X) :-
 	X =.. Y,
-	(	flag(tquery)	% DEPRECATED
+	last(Y, Z),
+	(	\+number(Z),
+		Z \= rdiv(_, _)
 	->	true
-	;	last(Y, Z),
-		(	\+number(Z),
-			Z \= rdiv(_, _)
-		->	true
-		;	write(' ')
-		)
+	;	write(' ')
 	).
 
 wst :-
@@ -4849,19 +2812,14 @@ indentation(C) :-
 
 eam(Span) :-
 	(	cnt(tr),
-		(	(	flag(brake, BrakeLim)	% DEPRECATED
-			;	flag('limited-brake', BrakeLim)
-			),
+		(	flag('limited-brake', BrakeLim),
 			nb_getval(tr, TR),
 			TR >= BrakeLim
 		->	(	flag(strings)
 			->	true
 			;	w3
 			),
-			(	flag(brake, _)	% DEPRECATED
-			->	throw(maximimum_brake_count(TR))
-			;	throw(halt)
-			)
+			throw(halt)
 		;	true
 		),
 		(	flag(debug)
@@ -4906,19 +2864,14 @@ eam(Span) :-
 		;	true
 		),
 		cnt(tp),
-		(	(	flag(step, StepLim)	% DEPRECATED
-			;	flag('limited-step', StepLim)
-			),
+		(	flag('limited-step', StepLim),
 			nb_getval(tp, Step),
 			Step > StepLim
 		->	(	flag(strings)
 			->	true
 			;	w3
 			),
-			(	flag(step, _)	% DEPRECATED
-			->	throw(maximimum_step_count(Step))
-			;	throw(halt)
-			)
+			throw(halt)
 		;	true
 		),
 		djiti_conc(Conc, Concdv),
@@ -4932,14 +2885,7 @@ eam(Span) :-
 		->	makevars(Concd, Concdr, beta)
 		;	Concdr = Concd
 		),
-		(	flag(think),	% DEPRECATED
-			\+flag(nope),
-			term_index(Prem, Pnd),
-			prfstep(Concdr, _, _, _, _, _, _),
-			\+prfstep(_, Prem, Pnd, _, Rule, _, _)
-		->	true
-		;	\+catch(call(Concdr), _, fail)
-		),
+		\+catch(call(Concdr), _, fail),
 		(	flag('rule-histogram')
 		->	lookup(RTC, tc, RuleL),
 			catch(cnt(RTC), _, nb_setval(RTC, 0))
@@ -4967,11 +2913,7 @@ eam(Span) :-
 		findall([D, F],
 			(	member([D, D], Lc),
 				unify(D, F),
-				(	flag(think),	% DEPRECATED
-					\+flag(nope)
-				->	true
-				;	catch(\+call(F), _, true)
-				)
+				catch(\+call(F), _, true)
 			),
 			Ld
 		),
@@ -5946,10 +3888,7 @@ djiti_assertz(A) :-
 			flatten(H, I),
 			atomic_list_concat(I, J),
 			(	catch(exec(J, _), _, fail)
-			->	(	flag(carl)
-				->	carl(Tmp2, semantics)
-				;	n3_n3p(Tmp2, semantics)
-				),
+			->	carl(Tmp2, semantics),
 				absolute_uri(Tmp2, Tmp),
 				atomic_list_concat(['<', Tmp, '>'], Res),
 				semantics(Res, L),
@@ -6068,10 +4007,7 @@ djiti_assertz(A) :-
 				sub_atom(X, _, 1, 0, '>'),
 				sub_atom(X, 1, _, 1, Z),
 				catch(
-					(	flag(carl)
-					->	carl(Z, semantics)
-					;	n3_n3p(Z, semantics)
-					),
+					carl(Z, semantics),
 					Exc,
 					(	format(user_error, '** ERROR ** ~w **~n', [Exc]),
 						flush_output(user_error),
@@ -9109,9 +7045,7 @@ within_scope([A, B]) :-
 	->	B = 1
 	;	true
 	),
-	(	(	flag('no-span')	% DEPRECATED
-		;	B = 0
-		)
+	(	B = 0
 	->	brake
 	;	nb_getval(limit, C),
 		(	C < B
