@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0131.1211 josd').
+version_info('EYE v18.0131.1643 josd').
 
 license_info('MIT License
 
@@ -259,11 +259,6 @@ main :-
 	),
 	catch(process_create(path(cturtle), [], [stdin(null), stdout(null), stderr(null)]), _,
 		(	format(user_error, '** WARNING ** EYE depends on cturtle which can be installed from http://github.com/melgi/cturtle/releases/ **~n', []),
-			flush_output(user_error)
-		)
-	),
-	catch(process_create(path(carl), [], [stdin(null), stdout(null), stderr(null)]), _,
-		(	format(user_error, '** WARNING ** EYE v18 depends on carl which can be installed from http://github.com/melgi/carl/releases/ **~n', []),
 			flush_output(user_error)
 		)
 	),
