@@ -338,6 +338,11 @@ e:roots a rdf:Property, e:Builtin;
 	rdfs:domain e:Polynomial;
 	rdfs:range e:Roots.
 
+e:see a rdf:Property, e:Builtin;
+	rdfs:comment "built-in to support python3 'script engine execution'; the subject is a list of lines with python3 code and the object is a list of lines with the output";
+	rdfs:domain rdf:List;
+	rdfs:range rdf:List.
+
 e:sha a rdf:Property, e:Builtin;
 	rdfs:comment "built-in function where the object is a Modified Base64 for XML identifiers encoded SHA-1 hash of the subject";
 	rdfs:domain rdfs:Literal;
