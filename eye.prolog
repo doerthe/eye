@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0212.2124 josd').
+version_info('EYE v18.0214.2047 josd').
 
 license_info('MIT License
 
@@ -3561,19 +3561,6 @@ djiti_assertz(A) :-
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#roots>'(A, B) :-
 	lz(A, C),
 	racines(C, B).
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#see>'(A, B) :-
-	catch(process_create(path(python3), [], [stdin(pipe(Out)), stdout(pipe(In)), stderr(std)]), Exc,
-		(	format(user_error, '** ERROR ** ~w~n', [Exc]),
-			flush_output(user_error),
-			flush_output,
-			halt(1)
-		)
-	),
-	write_lines(Out, A),
-	close(Out),
-	read_lines(In, B),
-	close(In).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#sha>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
 	sha_hash(A, C, [algorithm(sha1)]),
@@ -7823,23 +7810,6 @@ tmp_file(A) :-
 	),
 	tmp_file(C, A).
 
-write_lines(_, []) :-
-	!.
-write_lines(Stream, [literal(Line, type('<http://www.w3.org/2001/XMLSchema#string>'))|Lines]) :-
-	writeln(Stream, Line),
-	write_lines(Stream, Lines).
-
-read_lines(Stream, Lines) :-
-	read_line_to_codes(Stream, Codes),
-	read_lines(Stream, Codes, Lines).
-
-read_lines(_, end_of_file, []) :-
-	!.
-read_lines(Stream, Codes, [literal(Line, type('<http://www.w3.org/2001/XMLSchema#string>'))|Lines]) :-
-	atom_codes(Line, Codes),
-	read_line_to_codes(Stream, NextCodes),
-	read_lines(Stream, NextCodes, Lines).
-
 :- if(current_predicate(operating_system_support:system/2)).
 exec(A, B) :-
 	(	system(A, B)
@@ -8100,6 +8070,8 @@ conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([lite
 		'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(A, type('<http://www.w3.org/2001/XMLSchema#string>'))|B], true), C], true), when(D, C)) :-
 	!,
 	D =.. [A|B].
+conjify('<http://eulersharp.sourceforge.net/2003/03swap/prolog#cut>'([], true), !) :-	% DEPRECATED
+	!.
 conjify('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#derive>'([literal(!, type('<http://www.w3.org/2001/XMLSchema#string>'))], true), !) :-
 	!.
 conjify(A, A).
