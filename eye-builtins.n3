@@ -29,6 +29,7 @@ e:compoundTerm a e:Builtin.
 e:cov a e:Builtin.
 e:csvTuple a e:Builtin.
 e:derive a e:Builtin.
+e:explanation a e:Builtin.
 e:fail a e:Builtin.
 e:finalize a e:Builtin.
 e:findall a e:Builtin.
