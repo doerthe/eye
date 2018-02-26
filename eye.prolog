@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0222.2321 josd').
+version_info('EYE v18.0226.1028 josd').
 
 license_info('MIT License
 
@@ -111,7 +111,6 @@ eye
 <data>
 	--n3 <uri>			N3 triples and rules
 	--plugin <uri>			N3P code
-	--prolog <uri>			Prolog code
 	--proof <uri>			N3 proof
 	--turtle <uri>			Turtle data
 <query>
@@ -306,7 +305,7 @@ argv([], []) :-
 argv([Arg|Argvs], [U, V|Argus]) :-
 	sub_atom(Arg, B, 1, E, '='),
 	sub_atom(Arg, 0, B, _, U),
-	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--n3', '--no-skolem', '--plugin', '--prolog', '--proof', '--query', '--tactic', '--turtle']),
+	memberchk(U, ['--curl-http-header', '--hmac-key', '--image', '--n3', '--no-skolem', '--plugin', '--proof', '--query', '--tactic', '--turtle']),
 	!,
 	sub_atom(Arg, _, E, 0, V),
 	argv(Argvs, Argus).
@@ -874,7 +873,7 @@ opts(['--wcache', Argument, File|Argus], Args) :-
 	assertz(wcache(Arg, File)),
 	opts(Argus, Args).
 opts([Arg|_], _) :-
-	\+memberchk(Arg, ['--help', '--n3', '--pass', '--pass-all', '--plugin', '--prolog', '--proof', '--query', '--turtle']),
+	\+memberchk(Arg, ['--help', '--n3', '--pass', '--pass-all', '--plugin', '--proof', '--query', '--turtle']),
 	sub_atom(Arg, 0, 2, _, '--'),
 	!,
 	throw(not_supported_option(Arg)).
@@ -1070,48 +1069,6 @@ args(['--plugin', Argument|Args]) :-
 	Inp is SC+IN,
 	nb_setval(input_statements, Inp),
 	format(user_error, 'SC=~w~n', [SC]),
-	flush_output(user_error),
-	args(Args).
-args(['--prolog', Argument|Args]) :-
-	!,
-	absolute_uri(Argument, Arg),
-	(	wcacher(Arg, File)
-	->	format(user_error, 'GET ~w FROM ~w ', [Arg, File]),
-		flush_output(user_error)
-	;	format(user_error, 'GET ~w ', [Arg]),
-		flush_output(user_error),
-		(	(	sub_atom(Arg, 0, 5, _, 'http:')
-			->	true
-			;	sub_atom(Arg, 0, 6, _, 'https:')
-			)
-		->	tmp_file(File),
-			assertz(tmpfile(File)),
-			curl_http_headers(Headers),
-			atomic_list_concat(['curl -s -L -H "Accept: text/plain" ', Headers, '"', Arg, '" -o ', File], Cmd),
-			catch(exec(Cmd, _), Exc,
-				(	format(user_error, '** ERROR ** ~w ** ~w~n', [Arg, Exc]),
-					flush_output(user_error),
-					(	retract(tmpfile(File))
-					->	delete_file(File)
-					;	true
-					),
-					flush_output,
-					halt(1)
-				)
-			)
-		;	(	sub_atom(Arg, 0, 5, _, 'file:')
-			->	parse_url(Arg, Parts),
-				memberchk(path(File), Parts)
-			;	File = Arg
-			)
-		)
-	),
-	(	File = '-'
-	->	Consult = user
-	;	Consult = File
-	),
-	consult([Consult]),
-	format(user_error, '~n', []),
 	flush_output(user_error),
 	args(Args).
 args(['--proof', Arg|Args]) :-
@@ -3292,14 +3249,6 @@ djiti_assertz(A) :-
 		(	distinct(A, B)
 		)
 	).
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#explanation>'(literal(A, type('<http://www.w3.org/2001/XMLSchema#string>')), literal(B, type('<http://www.w3.org/2001/XMLSchema#string>'))) :-
-	term_to_atom(C, A),
-	catch(call(C), _, fail),
-	with_output_to_codes(chr_show_store(user), D),
-	subst([[[0',], [0',, 0x20]], [[0'\n], [0',, 0x20]]], D, E),
-	atom_codes(F, E),
-	sub_atom(F, 0, _, 2, B).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),
