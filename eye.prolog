@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0226.1028 josd').
+version_info('EYE v18.0301.2115 josd').
 
 license_info('MIT License
 
@@ -132,6 +132,7 @@ eye
 :- dynamic(fact/1).
 :- dynamic(flag/1).
 :- dynamic(flag/2).
+:- dynamic(fpred/1).
 :- dynamic(got_dq/0).
 :- dynamic(got_head/0).
 :- dynamic(got_labelvars/3).
@@ -3122,6 +3123,20 @@ djiti_fact(answer(P, S, O), answer(P, S, O)) :-
 	->	assertz(pred(P))
 	;	true
 	).
+djiti_fact(implies(A, B, C), implies(A, B, C)) :-
+	nonvar(B),
+	conj_list(B, D),
+	forall(
+		(	member(E, D)
+		),
+		(	E =.. [P, _, _],
+			(	\+fpred(P)
+			->	assertz(fpred(P))
+			;	true
+			)
+		)
+	),
+	!.
 djiti_fact(A, A) :-
 	ground(A),
 	A =.. [P, _, _],
@@ -3249,6 +3264,10 @@ djiti_assertz(A) :-
 		(	distinct(A, B)
 		)
 	).
+
+'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#explanation>'(A, B) :-
+	explanation(A, [], C),
+	conj_list(B, C).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),
@@ -7335,6 +7354,76 @@ product([A|B], C) :-
 	getnumber(A, X),
 	product(B, D),
 	C is X*D.
+
+%
+% Explainability support
+%
+
+explanation(true, E, E) :-
+	!.
+explanation((A, B), E0, E) :-
+	!,
+	explanation(A, E0, E1),
+	explanation(B, E1, E).
+explanation(A, E0, E) :-
+	A \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, _),
+	A \= !,
+	(	clause(A, B)
+	;	implies(B, C, _),
+		conj_list(C, D),
+		member(A, D)
+	),
+	explanation(B, E0, E).
+explanation(A, E, E) :-
+	memberchk(A, E).
+explanation(A, E, [A|E]) :-
+	\+memberchk(A, E),
+	A =.. [P, _, _],
+	\+fpred(P),
+	\+cpred(P),
+	\+not_explanation(A, E, E).
+explanation('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A), E0, E) :-
+	within_scope(Sc),
+	\+memberchk(A, E0),
+	not_explanation(A, E0, E).
+
+not_explanation(true, E, E) :-
+	!.
+not_explanation((A, B), E0, E) :-
+	!,
+	(	not_explanation(A, E0, E)
+	;	not_explanation(B, E0, E)
+	).
+not_explanation(A, E0, E) :-
+	A \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, _),
+	A \= !,
+	setof(B,
+		(	clause(A, B)
+		;	implies(B, C, _),
+			conj_list(C, D),
+			member(A, D)
+		),
+		L
+	),
+	not_explanation_list(L, E0, E).
+not_explanation(A, E, E) :-
+	memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, A), E).
+not_explanation(A, E, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A)|E]) :-
+	within_scope(Sc),
+	\+memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A), E),
+	A =.. [P, _, _],
+	\+fpred(P),
+	\+cpred(P),
+	\+explanation(A, E, E).
+not_explanation('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A), E0, E) :-
+	within_scope(Sc),
+	\+memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A), E0),
+	explanation(A, E0, E).
+
+not_explanation_list([], E, E).
+not_explanation_list([B|Bs], E0, E) :-
+	not_explanation(B, E0, E1),
+	not_explanation_list(Bs, E1, E).
 
 %
 % Solving polynomial equations of degree 4

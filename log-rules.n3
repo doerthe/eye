@@ -170,6 +170,11 @@ e:derive a rdf:Property, e:Builtin;
 	rdfs:domain rdf:List;
 	rdfs:range xsd:boolean.
 
+e:explanation a rdf:Property, e:Builtin;
+	rdfs:comment "built-in to support abductive explanations i.e the object is an explanation of the subject observations";
+	rdfs:domain log:Formula;
+	rdfs:range log:Formula.
+
 e:fail a rdf:Property, e:Builtin;
 	rdfs:comment "built-in to call the object formula within the subject scope and to succeed when the call fails";
 	rdfs:domain e:Scope;
