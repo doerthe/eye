@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0301.2115 josd').
+version_info('EYE v18.0302.1317 josd').
 
 license_info('MIT License
 
@@ -7357,6 +7357,7 @@ product([A|B], C) :-
 
 %
 % Explainability support
+% Inspired by the book "Simply Logical" Section 8.3 Abduction and diagnostic reasoning
 %
 
 explanation(true, E, E) :-
@@ -7367,7 +7368,7 @@ explanation((A, B), E0, E) :-
 	explanation(B, E1, E).
 explanation(A, E0, E) :-
 	A \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, _),
-	A \= !,
+	A \= '!',
 	(	clause(A, B)
 	;	implies(B, C, _),
 		conj_list(C, D),
@@ -7375,7 +7376,8 @@ explanation(A, E0, E) :-
 	),
 	explanation(B, E0, E).
 explanation(A, E, E) :-
-	memberchk(A, E).
+	memberchk(A, E),
+	!.
 explanation(A, E, [A|E]) :-
 	\+memberchk(A, E),
 	A =.. [P, _, _],
@@ -7396,7 +7398,7 @@ not_explanation((A, B), E0, E) :-
 	).
 not_explanation(A, E0, E) :-
 	A \= '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, _),
-	A \= !,
+	A \= '!',
 	setof(B,
 		(	clause(A, B)
 		;	implies(B, C, _),
@@ -7407,7 +7409,8 @@ not_explanation(A, E0, E) :-
 	),
 	not_explanation_list(L, E0, E).
 not_explanation(A, E, E) :-
-	memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, A), E).
+	memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(_, A), E),
+	!.
 not_explanation(A, E, ['<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A)|E]) :-
 	within_scope(Sc),
 	\+memberchk('<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(Sc, A), E),
