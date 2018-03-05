@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0305.2205 josd').
+version_info('EYE v18.0305.2307 josd').
 
 license_info('MIT License
 
@@ -3281,7 +3281,14 @@ djiti_assertz(A) :-
 			)
 		)
 	),
-	conj_list(B, C).
+	conj_list(A, G),
+	findall(H,
+		(	member(H, C),
+			\+member(H, G)
+		),
+		I	
+	),
+	conj_list(B, I).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),
