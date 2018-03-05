@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0302.1317 josd').
+version_info('EYE v18.0305.1057 josd').
 
 license_info('MIT License
 
@@ -2186,7 +2186,9 @@ wt2((X, Y)) :-
 	;	wt(X),
 		ws(X),
 		write('.'),
-		(	flag(strings)
+		(	(	flag(strings)
+			;	flag(nope)
+			)
 		->	write(' ')
 		;	nl,
 			indent
@@ -3267,6 +3269,18 @@ djiti_assertz(A) :-
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#explanation>'(A, B) :-
 	explanation(A, [], C),
+	forall(
+		(	implies(D, false, _)
+		),
+		(	conj_list(D, E),
+			\+forall(
+				(	member(F, E)
+				),
+				(	member(F, C)
+				)
+			)
+		)
+	),
 	conj_list(B, C).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
