@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0305.2307 josd').
+version_info('EYE v18.0312.0936 josd').
 
 license_info('MIT License
 
@@ -3266,29 +3266,6 @@ djiti_assertz(A) :-
 		(	distinct(A, B)
 		)
 	).
-
-'<http://eulersharp.sourceforge.net/2003/03swap/log-rules#explanation>'(A, B) :-
-	explanation(A, [], C),
-	forall(
-		(	implies(D, false, _)
-		),
-		(	conj_list(D, E),
-			\+forall(
-				(	member(F, E)
-				),
-				(	member(F, C)
-				)
-			)
-		)
-	),
-	conj_list(A, G),
-	findall(H,
-		(	member(H, C),
-			\+member(H, G)
-		),
-		I	
-	),
-	conj_list(B, I).
 
 '<http://eulersharp.sourceforge.net/2003/03swap/log-rules#fail>'(A, B) :-
 	within_scope(A),
@@ -7375,76 +7352,6 @@ product([A|B], C) :-
 	getnumber(A, X),
 	product(B, D),
 	C is X*D.
-
-%
-% Explainability support
-% Inspired by the book "Simply Logical" Section 8.3 Abduction and diagnostic reasoning
-%
-
-explanation(true, E, E) :-
-	!.
-explanation((A, B), E0, E) :-
-	!,
-	explanation(A, E0, E1),
-	explanation(B, E1, E).
-explanation(A, E0, E) :-
-	A \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, false),
-	A \= '!',
-	(	clause(A, B)
-	;	implies(B, C, _),
-		conj_list(C, D),
-		member(A, D)
-	),
-	explanation(B, E0, E).
-explanation(A, E, E) :-
-	memberchk(A, E),
-	!.
-explanation(A, E, [A|E]) :-
-	\+memberchk(A, E),
-	A =.. [P, _, _],
-	\+fpred(P),
-	\+cpred(P),
-	\+not_explanation(A, E, E).
-explanation('<http://www.w3.org/2000/10/swap/log#implies>'(A, false), E0, E) :-
-	\+memberchk(A, E0),
-	not_explanation(A, E0, E).
-
-not_explanation(true, E, E) :-
-	!.
-not_explanation((A, B), E0, E) :-
-	!,
-	(	not_explanation(A, E0, E)
-	;	not_explanation(B, E0, E)
-	).
-not_explanation(A, E0, E) :-
-	A \= '<http://www.w3.org/2000/10/swap/log#implies>'(_, false),
-	A \= '!',
-	setof(B,
-		(	clause(A, B)
-		;	implies(B, C, _),
-			conj_list(C, D),
-			member(A, D)
-		),
-		L
-	),
-	not_explanation_list(L, E0, E).
-not_explanation(A, E, E) :-
-	memberchk('<http://www.w3.org/2000/10/swap/log#implies>'(A, false), E),
-	!.
-not_explanation(A, E, ['<http://www.w3.org/2000/10/swap/log#implies>'(A, false)|E]) :-
-	\+memberchk('<http://www.w3.org/2000/10/swap/log#implies>'(A, false), E),
-	A =.. [P, _, _],
-	\+fpred(P),
-	\+cpred(P),
-	\+explanation(A, E, E).
-not_explanation('<http://www.w3.org/2000/10/swap/log#implies>'(A, false), E0, E) :-
-	\+memberchk('<http://www.w3.org/2000/10/swap/log#implies>'(A, false), E0),
-	explanation(A, E0, E).
-
-not_explanation_list([], E, E).
-not_explanation_list([B|Bs], E0, E) :-
-	not_explanation(B, E0, E1),
-	not_explanation_list(Bs, E1, E).
 
 %
 % Solving polynomial equations of degree 4
