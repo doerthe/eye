@@ -1,5 +1,6 @@
                                   EYE release
 
+[v18.0409.2008] fixing log:includes and log:notIncludes (obs from Dörthe Arndt)
 [v18.0312.0936] implementing abduction as successive assertion of hypotheses
 [v18.0214.2047] fixing deprecated prolog:cut in conjunction with Carl (obs from Hong Sun)
 [v18.0131.1741] making Carl mandatory

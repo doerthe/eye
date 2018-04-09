@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0312.0936 josd').
+version_info('EYE v18.0409.2008 josd').
 
 license_info('MIT License
 
@@ -3985,9 +3985,8 @@ djiti_assertz(A) :-
 			nonvar(Y)
 		),
 		(	copy_term_nat(X, U),
-			makevars(Y, V, beta),
 			conj_list(U, A),
-			conj_list(V, B),
+			conj_list(Y, B),
 			includes(A, B)
 		)
 	).
@@ -4007,9 +4006,8 @@ djiti_assertz(A) :-
 		),
 		(	copy_term_nat(X, U),
 			labelvars(U, 0, _),
-			makevars(Y, V, beta),
 			conj_list(U, A),
-			conj_list(V, B),
+			conj_list(Y, B),
 			\+includes(A, B)
 		)
 	).
