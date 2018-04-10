@@ -1,4 +1,4 @@
-# EYE Reasoner
+# EYE
 
 ### Euler Yet another proof Engine
 
