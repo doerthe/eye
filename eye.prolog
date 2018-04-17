@@ -38,7 +38,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0409.2008 josd').
+version_info('EYE v18.0417.2132 josd').
 
 license_info('MIT License
 
@@ -2117,8 +2117,13 @@ wt0(X) :-
 			->	J > 1,
 				sub_atom(X, 0, I, _, C),
 				atom_concat(C, '#>', D)
-			;	J = 1,
-				D = X
+			;	(	sub_atom_last(X, I, 1, J, '/')
+				->	J > 1,
+					sub_atom(X, 0, I, _, C),
+					atom_concat(C, '/>', D)
+				;	J = 1,
+					D = X
+				)
 			),
 			pfx(E, D),
 			K is J-1,
@@ -7907,6 +7912,15 @@ inv(true, false).
 		;	true
 		)
 	;	D = B
+	).
+
+sub_atom_last(A, B, C, D, E) :-
+	sub_atom(A, B, C, D, E),
+	F is B+1,
+	sub_atom(A, F, _, 0, G),
+	(	sub_atom(G, _, C, _, E)
+	->	sub_atom_last(G, B, C, D, E)
+	;	true
 	).
 
 lookup(A, B, C) :-
