@@ -4,8 +4,8 @@ from tensor2tensor.data_generators import text_problems
 from tensor2tensor.utils import registry
 
 @registry.register_problem
-class ObsInt(text_problems.Text2TextProblem):
-  """Predict interpretation from observation."""
+class ObservationPrediction(text_problems.Text2TextProblem):
+  """Transduction from observation to prediction."""
 
   @property
   def approx_vocab_size(self):
