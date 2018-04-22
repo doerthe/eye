@@ -16,8 +16,10 @@ Run the [observation_prediction script](https://github.com/josd/eye/blob/master/
 
 See the transductions from [sample.observation](https://github.com/josd/eye/blob/master/transduction/sample.observation) to [sample.prediction](https://github.com/josd/eye/blob/master/transduction/sample.prediction):  
 
-A_PERSON with weight 74 kg and height 179 cm  
-A_TURBINE with size factor 4 and subjected to windspeed 62 km/h  
-->-  
-A_PERSON has BMI class N  
-A_TURBINE producing 9533 kW  
+```
+A_PERSON with weight 74 kg and height 179 cm
+A_TURBINE with size factor 4 and subjected to windspeed 62 km/h
+->-
+A_PERSON has BMI class N
+A_TURBINE producing 9533 kW
+```
