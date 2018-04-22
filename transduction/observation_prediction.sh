@@ -41,8 +41,3 @@ t2t-decoder \
   --output_dir=$TRAIN_DIR \
   --problems=$PROBLEM \
   --t2t_usr_dir=$USER_DIR
-
-# See the transductions
-cat sample.observation
-echo '->-'
-cat sample.prediction
