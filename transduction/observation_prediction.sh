@@ -44,5 +44,5 @@ t2t-decoder \
 
 # See the transductions
 cat sample.observation
-echo '->'
+echo '->-'
 cat sample.prediction
