@@ -1,5 +1,5 @@
 #!/bin/bash
-PROBLEM=obs_int
+PROBLEM=observation_prediction
 MODEL=transformer
 HPARAMS=transformer_small
 
@@ -33,9 +33,9 @@ t2t-trainer \
 # Decode
 t2t-decoder \
   --data_dir=$DATA_DIR \
-  --decode_from_file=sample.obs \
+  --decode_from_file=sample.observation \
   --decode_hparams="beam_size=4,alpha=0.6" \
-  --decode_to_file=sample.int \
+  --decode_to_file=sample.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
@@ -43,6 +43,6 @@ t2t-decoder \
   --t2t_usr_dir=$USER_DIR
 
 # See the transductions
-cat sample.obs
+cat sample.observation
 echo '->'
-cat sample.int
+cat sample.prediction

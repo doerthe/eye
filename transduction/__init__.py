@@ -1,1 +1,1 @@
-from . import obs_int
+from . import observation_interpretation
