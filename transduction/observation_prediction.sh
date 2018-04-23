@@ -25,7 +25,7 @@ t2t-trainer \
   --local_eval_frequency=100 \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
-  --problems=$PROBLEM \
+  --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
   --train_steps=2000 \
   --worker_gpu_memory_fraction=0.75
@@ -39,5 +39,6 @@ t2t-decoder \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
-  --problems=$PROBLEM \
-  --t2t_usr_dir=$USER_DIR
+  --problem=$PROBLEM \
+  --t2t_usr_dir=$USER_DIR \
+  --worker_gpu_memory_fraction=0.75
