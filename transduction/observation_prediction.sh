@@ -20,7 +20,6 @@ t2t-datagen \
 # Train
 t2t-trainer \
   --data_dir=$DATA_DIR \
-  --eval_steps=3 \
   --hparams_set=$HPARAMS \
   --local_eval_frequency=100 \
   --model=$MODEL \
