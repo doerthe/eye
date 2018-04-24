@@ -8,4 +8,4 @@ In logic, statistical inference, and supervised learning, transduction or transd
 
 ### Concrete example
 
-Jupyter notebook [Transduction from observation to prediction](observation_prediction.py).  
+Jupyter notebook [Transduction from observation to prediction](observation_prediction.ipynb).  
