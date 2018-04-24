@@ -20,6 +20,7 @@ t2t-datagen \
 # Train
 t2t-trainer \
   --data_dir=$DATA_DIR \
+  --eval_steps=3 \
   --hparams_set=$HPARAMS \
   --local_eval_frequency=100 \
   --model=$MODEL \
@@ -33,7 +34,7 @@ t2t-trainer \
 t2t-decoder \
   --data_dir=$DATA_DIR \
   --decode_from_file=sample.observation \
-  --decode_hparams="beam_size=4,alpha=0.6" \
+  --decode_hparams="beam_size=3,alpha=0.6,return_beams=True,write_beam_scores=True" \
   --decode_to_file=sample.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
