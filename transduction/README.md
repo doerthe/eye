@@ -20,6 +20,6 @@ See the transductions from [sample.observation](https://github.com/josd/eye/blob
 A_PERSON with weight 74 kg and height 179 cm
 A_TURBINE with size factor 4 and subjected to windspeed 62 km/h
 ->-
-A_PERSON has BMI class N
-A_TURBINE producing 9533 kW
+A_PERSON has BMI class N	-0.37	A_PERSON has BMI class U	-4.58	A_PERSON has BMI class O	-4.83
+A_TURBINE producing 9533 kW	-0.37	A_TURBINE producing 16682 kW	-3.19	A_TURBINE producing 2383 kW	-3.54
 ```
