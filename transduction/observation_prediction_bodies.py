@@ -22,10 +22,10 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
     # 50% evaluation data
     return [{
         "split": problem.DatasetSplit.TRAIN,
-        "shards": 8,
+        "shards": 6,
     }, {
         "split": problem.DatasetSplit.EVAL,
-        "shards": 2,
+        "shards": 4,
     }]
 
   def generate_samples(self, data_dir, tmp_dir, dataset_split):
