@@ -1,11 +1,11 @@
 #!/bin/bash
-PROBLEM=observation_prediction
+PROBLEM=observation_prediction_bodies
 MODEL=transformer
 HPARAMS=transformer_small
 
 USER_DIR=$PWD
-DATA_DIR=$HOME/t2t_data
-TMP_DIR=/tmp/t2t_datagen
+DATA_DIR=$HOME/t2t_data/$PROBLEM
+TMP_DIR=/tmp/t2t_datagen/$PROBLEM
 TRAIN_DIR=$HOME/t2t_train/$PROBLEM/$MODEL-$HPARAMS
 
 mkdir -p $DATA_DIR $TMP_DIR $TRAIN_DIR
@@ -33,9 +33,9 @@ t2t-trainer \
 # Decode
 t2t-decoder \
   --data_dir=$DATA_DIR \
-  --decode_from_file=sample.observation \
+  --decode_from_file=sample_bodies.observation \
   --decode_hparams="beam_size=3,alpha=0.6,return_beams=True,write_beam_scores=True" \
-  --decode_to_file=sample.prediction \
+  --decode_to_file=sample_bodies.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
