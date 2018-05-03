@@ -4,8 +4,8 @@ from tensor2tensor.data_generators import text_problems
 from tensor2tensor.utils import registry
 
 @registry.register_problem
-class ObservationPrediction(text_problems.Text2TextProblem):
-  """Transduction from observation to prediction."""
+class ObservationPredictionBodies(text_problems.Text2TextProblem):
+  """Transduction from observation to prediction for bodies."""
 
   @property
   def approx_vocab_size(self):
@@ -22,10 +22,10 @@ class ObservationPrediction(text_problems.Text2TextProblem):
     # 50% evaluation data
     return [{
         "split": problem.DatasetSplit.TRAIN,
-        "shards": 5,
+        "shards": 8,
     }, {
         "split": problem.DatasetSplit.EVAL,
-        "shards": 5,
+        "shards": 2,
     }]
 
   def generate_samples(self, data_dir, tmp_dir, dataset_split):
