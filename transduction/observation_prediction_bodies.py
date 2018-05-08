@@ -19,7 +19,6 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
   @property
   def dataset_splits(self):
     """Splits of data to produce and number of output shards for each."""
-    # 50% evaluation data
     return [{
         "split": problem.DatasetSplit.TRAIN,
         "shards": 6,
@@ -67,3 +66,8 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
         "inputs": "A_PERSON with weight " + repr(weight) + " kg and height " + repr(height) + " cm",
         "targets": "A_PERSON has BMI class " + bmi_class
       }
+
+if __name__ == '__main__':
+  gen = ObservationPredictionBodies.generate_samples(None, None, None, None)
+  for i in gen:
+    print(i)
