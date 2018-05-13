@@ -20,14 +20,14 @@ t2t-datagen \
 # Train
 t2t-trainer \
   --data_dir=$DATA_DIR \
-  --eval_steps=3 \
+  --eval_steps=10 \
   --hparams_set=$HPARAMS \
   --local_eval_frequency=100 \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
-  --train_steps=2000 \
+  --train_steps=1000 \
   --worker_gpu_memory_fraction=0.75
 
 # Decode
