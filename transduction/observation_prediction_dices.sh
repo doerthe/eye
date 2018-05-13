@@ -1,5 +1,5 @@
 #!/bin/bash
-PROBLEM=observation_prediction_dice
+PROBLEM=observation_prediction_dices
 MODEL=transformer
 HPARAMS=transformer_small
 
@@ -33,9 +33,9 @@ t2t-trainer \
 # Decode
 t2t-decoder \
   --data_dir=$DATA_DIR \
-  --decode_from_file=sample_dice.observation \
+  --decode_from_file=sample_dices.observation \
   --decode_hparams="beam_size=3,alpha=0.6,return_beams=True,write_beam_scores=True" \
-  --decode_to_file=sample_dice.prediction \
+  --decode_to_file=sample_dices.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
