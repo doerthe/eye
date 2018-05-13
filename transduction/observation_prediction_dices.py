@@ -4,8 +4,8 @@ from tensor2tensor.data_generators import text_problems
 from tensor2tensor.utils import registry
 
 @registry.register_problem
-class ObservationPredictionDice(text_problems.Text2TextProblem):
-  """Transduction from observation to prediction for throwing a dice."""
+class ObservationPredictionDices(text_problems.Text2TextProblem):
+  """Transduction from observation to prediction for dices."""
 
   @property
   def approx_vocab_size(self):
@@ -40,6 +40,6 @@ class ObservationPredictionDice(text_problems.Text2TextProblem):
       }
 
 if __name__ == '__main__':
-  gen = ObservationPredictionDice.generate_samples(None, None, None, None)
+  gen = ObservationPredictionDices.generate_samples(None, None, None, None)
   for i in gen:
     print(i)

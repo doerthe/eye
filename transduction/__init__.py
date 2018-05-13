@@ -1,2 +1,2 @@
 from . import observation_prediction_bodies
-from . import observation_prediction_dice
+from . import observation_prediction_dices
