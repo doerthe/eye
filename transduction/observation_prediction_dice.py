@@ -33,10 +33,9 @@ class ObservationPredictionDice(text_problems.Text2TextProblem):
     del dataset_split
 
     for n in range(100000):
-      throw = random.randint(1, 100000)
       outcome = random.randint(1, 6)
       yield {
-        "inputs": "A_THROW t" + repr(throw),
+        "inputs": "A_THROW " + repr(n),
         "targets": "outcome " + repr(outcome)
       }
 
