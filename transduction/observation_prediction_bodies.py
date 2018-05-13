@@ -21,10 +21,10 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
     """Splits of data to produce and number of output shards for each."""
     return [{
         "split": problem.DatasetSplit.TRAIN,
-        "shards": 6,
+        "shards": 7,
     }, {
         "split": problem.DatasetSplit.EVAL,
-        "shards": 4,
+        "shards": 3,
     }]
 
   def generate_samples(self, data_dir, tmp_dir, dataset_split):
@@ -32,7 +32,7 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
     del tmp_dir
     del dataset_split
 
-    for n in range(10000):
+    for n in range(100000):
       # wind turbine size factor
       size_factor = random.randint(1, 10)
       # wind speed
