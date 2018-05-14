@@ -9,7 +9,7 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
 
   @property
   def approx_vocab_size(self):
-    return 512
+    return 256
 
   @property
   def is_generate_per_split(self):
