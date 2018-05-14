@@ -9,7 +9,7 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
 
   @property
   def approx_vocab_size(self):
-    return 2**14  # ~16k
+    return 2**10  # ~1k
 
   @property
   def is_generate_per_split(self):
@@ -32,11 +32,11 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
     del tmp_dir
     del dataset_split
 
-    for n in range(100000):
+    for n in range(10000):
       outcome = random.randint(1, 6)
       yield {
         "inputs": "A_THROW " + repr(n),
-        "targets": "outcome " + repr(outcome)
+        "targets": repr(outcome)
       }
 
 if __name__ == '__main__':
