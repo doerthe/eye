@@ -9,8 +9,6 @@
 :- if(current_prolog_flag(version_data, swi(6, _, _, _))).
 :- style_check(-atom).
 :- endif.
-:- initialization(catch(set_prolog_stack(local, limit(2^33)), _, true)).
-:- initialization(catch(set_prolog_stack(global, limit(2^35)), _, true)).
 :- initialization(set_prolog_flag(agc_margin, 10000000)).
 :- endif.
 
@@ -38,7 +36,7 @@
 :- set_prolog_flag(encoding, utf8).
 :- endif.
 
-version_info('EYE v18.0417.2132 josd').
+version_info('EYE v18.0515.2100 josd').
 
 license_info('MIT License
 
@@ -163,7 +161,7 @@ eye
 :- dynamic(scount/1).
 :- dynamic(semantics/2).
 :- dynamic(span/1).
-:- dynamic(table/3).
+:- dynamic(tabl/3).
 :- dynamic(tmpfile/1).
 :- dynamic(tuple/2).
 :- dynamic(tuple/3).
@@ -329,7 +327,7 @@ gre(Argus) :-
 	nb_setval(limit, -1),
 	nb_setval(bnet, not_done),
 	nb_setval(fnet, not_done),
-	nb_setval(table, -1),
+	nb_setval(tabl, -1),
 	nb_setval(tuple, -1),
 	nb_setval(fdepth, 0),
 	nb_setval(pdepth, 0),
@@ -598,9 +596,9 @@ gre(Argus) :-
 	flush_output(user_error),
 	(	flag('rule-histogram')
 	->	findall([RTC, RTP, R],
-			(	table(ETP, tp, Rule),
+			(	tabl(ETP, tp, Rule),
 				nb_getval(ETP, RTP),
-				(	table(ETC, tc, Rule)
+				(	tabl(ETC, tc, Rule)
 				->	nb_getval(ETC, RTC)
 				;	RTC = 0
 				),
@@ -7924,16 +7922,16 @@ sub_atom_last(A, B, C, D, E) :-
 	).
 
 lookup(A, B, C) :-
-	table(A, B, C),
+	tabl(A, B, C),
 	!.
 lookup(A, B, C) :-
 	var(A),
-	nb_getval(table, M),
+	nb_getval(tabl, M),
 	N is M+1,
-	nb_setval(table, N),
+	nb_setval(tabl, N),
 	atom_number(I, N),
-	atomic_list_concat([B, '_table_entry_', I], A),
-	assertz(table(A, B, C)).
+	atomic_list_concat([B, '_tabl_entry_', I], A),
+	assertz(tabl(A, B, C)).
 
 escape_string([], []) :-
 	!.

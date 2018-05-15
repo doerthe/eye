@@ -1,5 +1,6 @@
                                   EYE release
 
+[v18.0515.2100] making it run with SWI-Prolog 7.7.14
 [v18.0417.2132] supporting abbreviated URIs when the namespace prefix ends with '/' (obs from Sander Vanden Hautte)
 [v18.0409.2008] fixing log:includes and log:notIncludes (obs from Dörthe Arndt)
 [v18.0312.0936] implementing abduction as successive assertion of hypotheses
