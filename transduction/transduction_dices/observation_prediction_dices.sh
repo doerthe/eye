@@ -34,7 +34,7 @@ t2t-trainer \
 t2t-decoder \
   --data_dir=$DATA_DIR \
   --decode_from_file=sample_dices.observation \
-  --decode_hparams="beam_size=3,alpha=0.6,return_beams=True,write_beam_scores=True" \
+  --decode_hparams="beam_size=6,alpha=0.6,return_beams=True,write_beam_scores=True" \
   --decode_to_file=sample_dices.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
