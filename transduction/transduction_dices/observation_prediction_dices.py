@@ -32,7 +32,7 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
     del tmp_dir
     del dataset_split
 
-    for n in range(100000):
+    for n in range(1000):
       outcome = random.randint(1, 6)
       yield {
         "inputs": "A_THROW " + repr(n),
