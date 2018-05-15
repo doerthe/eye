@@ -36,7 +36,7 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
       outcome = random.randint(1, 6)
       yield {
         "inputs": "A_THROW " + repr(n),
-        "targets": " " + repr(outcome)
+        "targets": repr(outcome)
       }
 
 if __name__ == '__main__':
