@@ -4,9 +4,9 @@ MODEL=transformer
 HPARAMS=transformer_small
 
 USER_DIR=$PWD
-DATA_DIR=$HOME/t2t_data/$PROBLEM
+DATA_DIR=/tmp/t2t_data/$PROBLEM
 TMP_DIR=/tmp/t2t_datagen/$PROBLEM
-TRAIN_DIR=$HOME/t2t_train/$PROBLEM/$MODEL-$HPARAMS
+TRAIN_DIR=/tmp/t2t_train/$PROBLEM/$MODEL-$HPARAMS
 
 mkdir -p $DATA_DIR $TMP_DIR $TRAIN_DIR
 
