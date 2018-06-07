@@ -9,4 +9,4 @@ In logic, statistical inference, and supervised learning, transduction or transd
 ### Concrete examples
 
 - [Transduction from observation to prediction for bodies](transduction_bodies/observation_prediction_bodies.ipynb).  
-- [Transduction from observation to prediction for dices](transduction_bodies/observation_prediction_dices.ipynb).  
+- [Transduction from observation to prediction for dices](transduction_dices/observation_prediction_dices.ipynb).  
