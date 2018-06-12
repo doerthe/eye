@@ -45,9 +45,9 @@ t2t-trainer \
 # Decode
 t2t-decoder \
   --data_dir=$DATA_DIR \
-  --decode_from_file=train_dices.observation \
+  --decode_from_file=test_dices.observation \
   --decode_hparams="beam_size=6,alpha=0.6,return_beams=True,write_beam_scores=True" \
-  --decode_to_file=train_dices.prediction \
+  --decode_to_file=test_dices.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
