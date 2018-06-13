@@ -17,7 +17,7 @@ t2t-datagen \
   --t2t_usr_dir=$USER_DIR \
   --tmp_dir=$TMP_DIR
 
-# Train with Adam for 700 steps
+# Train with Adam for 1000 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
@@ -27,9 +27,9 @@ t2t-trainer \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
-  --train_steps=700
+  --train_steps=1000
 
-# Train with SGD for 700 steps
+# Train with SGD for 800 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
@@ -40,7 +40,7 @@ t2t-trainer \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
-  --train_steps=1400
+  --train_steps=1800
 
 # Decode
 t2t-decoder \
