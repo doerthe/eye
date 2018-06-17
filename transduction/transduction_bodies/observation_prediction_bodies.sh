@@ -45,9 +45,9 @@ t2t-trainer \
 # Decode
 t2t-decoder \
   --data_dir=$DATA_DIR \
-  --decode_from_file=sample_bodies.observation \
+  --decode_from_file=test_bodies.observation \
   --decode_hparams="beam_size=2,alpha=0.6,return_beams=True,write_beam_scores=True" \
-  --decode_to_file=sample_bodies.prediction \
+  --decode_to_file=test_bodies.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
