@@ -1,7 +1,7 @@
 #!/bin/bash
 PROBLEM=observation_prediction_bodies
 MODEL=transformer
-HPARAMS=transformer_small
+HPARAMS=transformer_l4
 
 USER_DIR=$PWD
 DATA_DIR=/tmp/t2t_data/$PROBLEM
