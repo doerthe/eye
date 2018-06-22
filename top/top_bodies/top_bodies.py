@@ -4,7 +4,7 @@ from tensor2tensor.data_generators import text_problems
 from tensor2tensor.utils import registry
 
 @registry.register_problem
-class ObservationPredictionBodies(text_problems.Text2TextProblem):
+class TopBodies(text_problems.Text2TextProblem):
   """Transduction from observation to prediction for bodies."""
 
   @property
