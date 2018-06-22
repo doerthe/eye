@@ -1,6 +1,6 @@
-# Transduction
+# TOP
 
-### Introduction
+### Transduction from Observation to Prediction
 
 Excerpt from Wikipedia [Transduction (machine_learning)](https://en.wikipedia.org/wiki/Transduction_(machine_learning)):  
 
