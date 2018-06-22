@@ -67,6 +67,13 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
         "targets": "A_PERSON has BMI class " + bmi_class
       }
 
+      # outcome of throwing a dice
+      outcome = random.randint(1, 6)
+      yield {
+        "inputs": "A_THROW",
+        "targets": "A " + repr(outcome)
+      }
+
 if __name__ == '__main__':
   gen = ObservationPredictionBodies.generate_samples(None, None, None, None)
   for i in gen:

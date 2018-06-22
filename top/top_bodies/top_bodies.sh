@@ -1,5 +1,5 @@
 #!/bin/bash
-PROBLEM=observation_prediction_bodies
+PROBLEM=top_bodies
 MODEL=transformer
 HPARAMS=transformer_l4
 
