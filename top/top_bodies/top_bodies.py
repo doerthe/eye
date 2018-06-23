@@ -67,8 +67,8 @@ class TopBodies(text_problems.Text2TextProblem):
         "targets": "A_PERSON has BMI class " + bmi_class
       }
 
-      # outcome of throwing a dice
-      outcome = random.randint(1, 6)
+      # outcome of throwing a coin
+      outcome = random.randint(0, 1)
       yield {
         "inputs": "A_THROW",
         "targets": "A " + repr(outcome)
