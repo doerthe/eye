@@ -1,5 +1,9 @@
 # TOP
 
+One way to make a specialized reasoner is via the eye --image command line switch.  
+An alternative way to make a specialized reasoner is training a TOP (Transduction from Observation to Prediction) model.  
+The former is using [N3](https://www.w3.org/TeamSubmission/n3/) and the latter is using SEE (SEmi-formal Expressions).  
+
 ### Transduction from Observation to Prediction
 
 Excerpt from Wikipedia [Transduction (machine_learning)](https://en.wikipedia.org/wiki/Transduction_(machine_learning)):  
