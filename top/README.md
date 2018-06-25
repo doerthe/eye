@@ -1,7 +1,7 @@
 # TOP
 
-One way to make a specialized reasoner is via the eye --image command line switch.  
-Another way to make a specialized reasoner is via the training of a TOP (Transduction from Observation to Prediction) model.  
+One way to make a Specialized EYE Engine (SEE) is via the eye --image command line switch.  
+Another way on top of that is via the training of a TOP (Transduction from Observation to Prediction) model.  
 
 ### Transduction from Observation to Prediction
 
