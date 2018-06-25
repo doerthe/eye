@@ -17,11 +17,23 @@ t2t-datagen \
   --t2t_usr_dir=$USER_DIR \
   --tmp_dir=$TMP_DIR
 
-# Train with Adam for 5000 steps
+# Train with Adam for 4000 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
-  --hparams="learning_rate_constant=0.3" \
+  --hparams_set=$HPARAMS \
+  --local_eval_frequency=100 \
+  --model=$MODEL \
+  --output_dir=$TRAIN_DIR \
+  --problem=$PROBLEM \
+  --t2t_usr_dir=$USER_DIR \
+  --train_steps=4000
+
+# Train with SGD for 1000 steps
+t2t-trainer \
+  --data_dir=$DATA_DIR \
+  --eval_steps=10 \
+  --hparams="optimizer=SGD" \
   --hparams_set=$HPARAMS \
   --local_eval_frequency=100 \
   --model=$MODEL \
