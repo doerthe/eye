@@ -1,10 +1,10 @@
-# TOP
+# SEE
 
 One way to make a Specialized EYE Engine (SEE) is via the eye --image option.  
-Another way is to train a TOP (Transduction from Observation to Prediction)  
-model via [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor).  
+Another way is to train a "transduction from observation to prediction" model  
+via [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor).  
 
-### Transduction from Observation to Prediction
+### Transduction from observation to prediction
 
 Excerpt from Wikipedia [Transduction (machine_learning)](https://en.wikipedia.org/wiki/Transduction_(machine_learning)):  
 
@@ -19,4 +19,4 @@ inconsistent predictions.
 
 ### Concrete example
 
-- [Transduction from observation to prediction for bodies](top_bodies/top_bodies.ipynb).  
+- [Transduction from observation to prediction for bodies](transduction_bodies/observation_prediction_bodies.ipynb).  
