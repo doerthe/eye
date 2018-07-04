@@ -10,14 +10,14 @@ TRAIN_DIR=/tmp/t2t_train/$PROBLEM/$MODEL-$HPARAMS
 
 mkdir -p $DATA_DIR $TMP_DIR $TRAIN_DIR
 
-# Generate data
+# generate data
 t2t-datagen \
   --data_dir=$DATA_DIR \
   --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
   --tmp_dir=$TMP_DIR
 
-# Train with Adam for 2000 steps
+# train with Adam for 4000 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
@@ -27,9 +27,9 @@ t2t-trainer \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
-  --train_steps=2000
+  --train_steps=4000
 
-# Train with SGD for 1000 steps
+# train with SGD for 1000 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
@@ -40,9 +40,9 @@ t2t-trainer \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
   --t2t_usr_dir=$USER_DIR \
-  --train_steps=3000
+  --train_steps=5000
 
-# Decode
+# decode
 t2t-decoder \
   --data_dir=$DATA_DIR \
   --decode_from_file=test_bodies.observation \
