@@ -4,7 +4,7 @@ from tensor2tensor.data_generators import text_problems
 from tensor2tensor.utils import registry
 
 @registry.register_problem
-class TopBodies(text_problems.Text2TextProblem):
+class ObservationPredictionBodies(text_problems.Text2TextProblem):
   """Transduction from observation to prediction for bodies."""
 
   @property
@@ -65,13 +65,6 @@ class TopBodies(text_problems.Text2TextProblem):
       yield {
         "inputs": "A_PERSON with weight " + repr(weight) + " kg and height " + repr(height) + " cm",
         "targets": "A_PERSON has BMI class " + bmi_class
-      }
-
-      # outcome of throwing a coin
-      outcome = random.randint(0, 1)
-      yield {
-        "inputs": "A_THROW",
-        "targets": "A " + repr(outcome)
       }
 
 if __name__ == '__main__':
