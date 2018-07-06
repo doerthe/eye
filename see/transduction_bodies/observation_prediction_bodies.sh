@@ -21,8 +21,8 @@ t2t-datagen \
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
+  --eval_throttle_seconds=30 \
   --hparams_set=$HPARAMS \
-  --local_eval_frequency=100 \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
@@ -33,9 +33,9 @@ t2t-trainer \
 t2t-trainer \
   --data_dir=$DATA_DIR \
   --eval_steps=10 \
+  --eval_throttle_seconds=30 \
   --hparams="optimizer=SGD" \
   --hparams_set=$HPARAMS \
-  --local_eval_frequency=100 \
   --model=$MODEL \
   --output_dir=$TRAIN_DIR \
   --problem=$PROBLEM \
