@@ -1,8 +1,8 @@
 # SEE
 
-One way to make a Specialized EYE Engine (SEE) is via the eye --image option.  
+One way to make a Specialized EYE (SEE) is via the eye --image option.  
 Another way is to train a "transduction from observation to prediction" model  
-via [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor).  
+using [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor) Transformer.  
 
 ### Transduction from observation to prediction
 
