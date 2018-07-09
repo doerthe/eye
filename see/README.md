@@ -2,6 +2,7 @@
 
 One way to make Specialized Euler Engines (SEE) is via the eye --image  
 command line option. There is an example at [Easter Image](https://github.com/josd/fluid/tree/master/image).  
+
 Another way is to train a "transduction from observation to prediction" model  
 using [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor) Transformer.  
 
