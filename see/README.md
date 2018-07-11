@@ -1,8 +1,8 @@
 # SEE
 
-### Specialized Explainable reasoning Engines
+### Specialized Explainable inference Engines
 
-One way to make "Specialized Explainable reasoning Engines" is to use the  
+One way to make "Specialized Explainable inference Engines" is to use the  
 eye --image command line option. There is a concrete example at [Easter Image](https://github.com/josd/fluid/tree/master/image).  
 
 Another way is to train a "transduction from observation to prediction" model  
