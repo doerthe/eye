@@ -6,9 +6,9 @@ One way to make "Specialized Explainable inference Engines" is to use the
 eye --image command line option.  
 There is a concrete example at [Easter Image](https://github.com/josd/fluid/tree/master/image).  
 
-Another way to make "Specialized Explainable inference Engines" is to train a  
-"transduction from observation to prediction" model using [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor)  
-Transformer.  
+Another way to make "Specialized Explainable inference Engines" is to train  
+a "transduction from observation to prediction" model using [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor)  
+[transformer.py](https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py).  
 
 ### Transduction from observation to prediction
 
