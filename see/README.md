@@ -1,6 +1,6 @@
 # SEE
 
-One way to make "Specialized Euler Engines" (SEE) is to use the eye --image  
+One way to make "Specialized Evolvable Engines" (SEE) is to use the eye --image  
 command line option. There is a concrete example at [Easter Image](https://github.com/josd/fluid/tree/master/image).  
 
 Another way is to train a "transduction from observation to prediction" model  
