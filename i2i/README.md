@@ -1,14 +1,9 @@
-# SEE
+# I2I
 
-### Specialized Explainable inference Engines
+### Instance2Instance
 
-One way to make "Specialized Explainable inference Engines" is to use the  
-eye --image command line option.  
-There is a concrete example at [Easter Image](https://github.com/josd/fluid/tree/master/image).  
-
-Another way to make "Specialized Explainable inference Engines" is to train  
-a "transduction from observation to prediction" model using [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor)  
-attention based [transformer.py](https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py).  
+Instance2Instance is using [Tensor2Tensor](https://github.com/tensorflow/tensor2tensor) attention based [transformer](https://github.com/tensorflow/tensor2tensor/blob/master/tensor2tensor/models/transformer.py)  
+to train a "transduction from observation to prediction" model.  
 
 ### Transduction from observation to prediction
 
