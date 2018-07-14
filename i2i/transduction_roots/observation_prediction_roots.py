@@ -35,11 +35,11 @@ class ObservationPredictionRoots(text_problems.Text2TextProblem):
 
     for n in range(100000):
       # coefficient a
-      a = 1
+      a = random.randint(1, 100)
       # coefficient b
-      b = random.randint(-50, +50)
+      b = random.randint(-50, 50)
       # coefficient c
-      c = random.randint(-50, +50)
+      c = random.randint(-50, 50)
       # roots
       r1 = (-b-cmath.sqrt(b**2-4*a*c))/(2*a)
       r2 = (-b+cmath.sqrt(b**2-4*a*c))/(2*a)
