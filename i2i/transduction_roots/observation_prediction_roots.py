@@ -33,13 +33,13 @@ class ObservationPredictionRoots(text_problems.Text2TextProblem):
     del tmp_dir
     del dataset_split
 
-    for n in range(1000000):
+    for n in range(100000):
       # coefficient a
-      a = random.randint(1, 32)
+      a = random.randint(1, 10)
       # coefficient b
-      b = random.randint(-15, 16)
+      b = random.randint(-10, 10)
       # coefficient c
-      c = random.randint(-15, 16)
+      c = random.randint(-10, 10)
       # roots
       r1 = (-b-cmath.sqrt(b**2-4*a*c))/(2*a)
       r2 = (-b+cmath.sqrt(b**2-4*a*c))/(2*a)
