@@ -6,7 +6,7 @@ from tensor2tensor.utils import registry
 
 @registry.register_problem
 class ObservationPredictionRoots(text_problems.Text2TextProblem):
-  """Transduction from observation to prediction for roots of quadratic equation ax**2 + bx + c = 0"""
+  """Transduction from observation to prediction for roots of polynomial ax**2 + bx + c = 0"""
 
   @property
   def approx_vocab_size(self):
