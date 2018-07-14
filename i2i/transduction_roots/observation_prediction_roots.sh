@@ -46,7 +46,7 @@ t2t-trainer \
 t2t-decoder \
   --data_dir=$DATA_DIR \
   --decode_from_file=test_roots.observation \
-  --decode_hparams="beam_size=1,alpha=0.6,return_beams=True,write_beam_scores=True" \
+  --decode_hparams="beam_size=1,alpha=0.6" \
   --decode_to_file=test_roots.prediction \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
