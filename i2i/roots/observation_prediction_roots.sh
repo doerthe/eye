@@ -8,7 +8,11 @@ DATA_DIR=/tmp/t2t_data/$PROBLEM
 TMP_DIR=/tmp/t2t_datagen/$PROBLEM
 TRAIN_DIR=/tmp/t2t_train/$PROBLEM/$MODEL-$HPARAMS
 
+# create data and train directories
 mkdir -p $DATA_DIR $TMP_DIR $TRAIN_DIR
+
+# clear data and train directories
+rm -fr $DATA_DIR $TMP_DIR $TRAIN_DIR
 
 # generate data
 t2t-datagen \
