@@ -20,7 +20,7 @@ t2t-datagen \
 # train with Adam for 10000 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
-  --eval_steps=10 \
+  --eval_steps=1000 \
   --eval_throttle_seconds=30 \
   --hparams_set=$HPARAMS \
   --model=$MODEL \
@@ -32,7 +32,7 @@ t2t-trainer \
 # train with SGD for 2000 steps
 t2t-trainer \
   --data_dir=$DATA_DIR \
-  --eval_steps=10 \
+  --eval_steps=1000 \
   --eval_throttle_seconds=30 \
   --hparams="optimizer=SGD" \
   --hparams_set=$HPARAMS \

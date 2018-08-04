@@ -24,10 +24,10 @@ class ObservationPredictionRoots(text_problems.Text2TextProblem):
     """Splits of data to produce and number of output shards for each."""
     return [{
         "split": problem.DatasetSplit.TRAIN,
-        "shards": 7,
+        "shards": 8,
     }, {
         "split": problem.DatasetSplit.EVAL,
-        "shards": 3,
+        "shards": 2,
     }]
 
   def generate_samples(self, data_dir, tmp_dir, dataset_split):
