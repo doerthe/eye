@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import random
 import cmath
 from tensor2tensor.data_generators import problem
@@ -46,9 +48,10 @@ class ObservationPredictionRoots(text_problems.Text2TextProblem):
       r2 = (-b+cmath.sqrt(b**2-4*a*c))/(2*a)
       # feed the protocol buffer
       yield {
-        "inputs": "A_POLYNOMIAL with coefficients " + repr(a) + " " + repr(b) + " " + repr(c),
-        "targets": "A_ROOT real " + r1.real.__format__('.2f') + " imag " + r1.imag.__format__('.2f') + \
-          " A_ROOT real " + r2.real.__format__('.2f') + " imag " + r2.imag.__format__('.2f')
+        "inputs": "(" + repr(a) + " " + repr(b) + " " + repr(c) + ") a <i2i#Polynomial>.",
+        "targets": "(" + repr(a) + " " + repr(b) + " " + repr(c) + ") <i2i#roots> " +\
+          "((" + r1.real.__format__('.2f') + " " + r1.imag.__format__('.2f') + ") " + \
+          "(" + r2.real.__format__('.2f') + " " + r2.imag.__format__('.2f') + "))."
       }
 
 if __name__ == '__main__':
