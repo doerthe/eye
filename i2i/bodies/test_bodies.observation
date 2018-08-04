@@ -1,2 +1,2 @@
-A_PERSON with weight 74 kg and height 179 cm
-A_TURBINE with size factor 4 and subjected to windspeed 62 km/h
+_:PERSON <i2i#weight_kg> 74; <i2i#height_cm> 179.
+_:TURBINE <i2i#size_factor> 4; <i2i#windspeed_km_h> 62.

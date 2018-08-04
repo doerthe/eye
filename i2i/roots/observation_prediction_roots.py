@@ -48,8 +48,8 @@ class ObservationPredictionRoots(text_problems.Text2TextProblem):
       r2 = (-b+cmath.sqrt(b**2-4*a*c))/(2*a)
       # feed the protocol buffer
       yield {
-        "inputs": "(" + repr(a) + " " + repr(b) + " " + repr(c) + ") a <i2i#Polynomial>.",
-        "targets": "(" + repr(a) + " " + repr(b) + " " + repr(c) + ") <i2i#roots> " +\
+        "inputs": "_:POLYNOMIAL <i2i#coefficients> (" + repr(a) + " " + repr(b) + " " + repr(c) + ").",
+        "targets": "_:POLYNOMIAL <i2i#roots> " +\
           "((" + r1.real.__format__('.2f') + " " + r1.imag.__format__('.2f') + ") " + \
           "(" + r2.real.__format__('.2f') + " " + r2.imag.__format__('.2f') + "))."
       }

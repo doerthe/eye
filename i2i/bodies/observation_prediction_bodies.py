@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import random
 from tensor2tensor.data_generators import problem
 from tensor2tensor.data_generators import text_problems
@@ -40,8 +42,8 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
       # wind turbine power
       turbine_power = int(0.01*size_factor*wind_speed**3)
       yield {
-        "inputs": "A_TURBINE with size factor " + repr(size_factor) + " and subjected to windspeed " + repr(wind_speed) + " km/h",
-        "targets": "A_TURBINE producing " + repr(turbine_power) + " kW"
+        "inputs": "_:TURBINE <i2i#size_factor> " + repr(size_factor) + "; <i2i#windspeed_km_h> " + repr(wind_speed) + ".",
+        "targets": "_:TURBINE <i2i#producing_kW> " + repr(turbine_power) + "."
       }
 
       # weight
@@ -63,8 +65,8 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
       elif bmi >= 40:
         bmi_class = "O3"
       yield {
-        "inputs": "A_PERSON with weight " + repr(weight) + " kg and height " + repr(height) + " cm",
-        "targets": "A_PERSON has BMI class " + bmi_class
+        "inputs": "_:PERSON <i2i#weight_kg> " + repr(weight) + "; <i2i#height_cm> " + repr(height) + ".",
+        "targets": "_:PERSON <i2i#bmi_class> " + repr(bmi_class) + "."
       }
 
 if __name__ == '__main__':
