@@ -1,2 +1,2 @@
-A_PERSON has BMI class N	-0.42	A_PERSON has BMI class O	-4.60
-A_TURBINE producing 9533 kW	-0.40	A_TURBINE producing 8215 kW	-3.95
+_:PERSON <i2i#bmi_class> 'N'.
+_:TURBINE <i2i#producing_kW> 10001.
