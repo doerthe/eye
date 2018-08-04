@@ -1,1 +1,1 @@
-A_ROOT real 0.25 imag -2.11 A_ROOT real 0.25 imag 2.11
+_:POLYNOMIAL <i2i#roots> ((0.25 -2.11) (0.25 2.11)).
