@@ -23,10 +23,10 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
     """Splits of data to produce and number of output shards for each."""
     return [{
         "split": problem.DatasetSplit.TRAIN,
-        "shards": 9,
+        "shards": 8,
     }, {
         "split": problem.DatasetSplit.EVAL,
-        "shards": 1,
+        "shards": 2,
     }]
 
   def generate_samples(self, data_dir, tmp_dir, dataset_split):
