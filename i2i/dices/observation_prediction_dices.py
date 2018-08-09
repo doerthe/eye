@@ -39,10 +39,6 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
       # outcome of throwing a dice
       outcome = random.randint(1, 6)
       yield {
-        "inputs": "A_THROW",
-        "targets": "A " + repr(outcome)
-      }
-      yield {
         "inputs": "_:THROW <i2i#doneWith> <i2i#dice1>.",
         "targets": "_:THROW <i2i#outcome> " + repr(outcome) + "."
       }
