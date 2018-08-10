@@ -18,6 +18,8 @@ transductive model are not achievable by any inductive model. Note that this
 is caused by transductive inference on different test sets producing mutually  
 inconsistent predictions.  
 
-### Concrete example
+### Concrete examples
 
-- [Transduction from observation to prediction for bodies](transduction_bodies/observation_prediction_bodies.ipynb).  
+- [Transduction from observation to prediction for bodies](bodies/observation_prediction_bodies.ipynb).  
+- [Transduction from observation to prediction for roots](roots/observation_prediction_bodies.ipynb).  
+- [Transduction from observation to prediction for dices](dices/observation_prediction_bodies.ipynb).  
