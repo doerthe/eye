@@ -1,2 +1,2 @@
-_:PERSON <i2i#weight_kg> 74; <i2i#height_cm> 179.
-_:TURBINE <i2i#size_factor> 4; <i2i#windspeed_km_h> 62.
+_:PERSON <http://goo.gl/hbNgwP#weight_kg> 74; <http://goo.gl/hbNgwP#height_cm> 179.
+_:TURBINE <http://goo.gl/hbNgwP#size_factor> 4; <http://goo.gl/hbNgwP#windspeed_km_h> 62.

@@ -39,8 +39,8 @@ class ObservationPredictionDices(text_problems.Text2TextProblem):
       # outcome of throwing a dice
       outcome = random.randint(1, 6)
       yield {
-        "inputs": "_:THROW <i2i#doneWith> <i2i#dice1>.",
-        "targets": "_:THROW <i2i#outcome> " + repr(outcome) + "."
+        "inputs": "_:THROW <http://goo.gl/hbNgwP#doneWith> <http://goo.gl/hbNgwP#dice1>.",
+        "targets": "_:THROW <http://goo.gl/hbNgwP#outcome> " + repr(outcome) + "."
       }
 
 if __name__ == '__main__':
