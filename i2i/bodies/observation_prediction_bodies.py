@@ -42,8 +42,8 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
       # wind turbine power
       turbine_power = int(0.01*size_factor*wind_speed**3)
       yield {
-        "inputs": "_:TURBINE <i2i#size_factor> " + repr(size_factor) + "; <i2i#windspeed_km_h> " + repr(wind_speed) + ".",
-        "targets": "_:TURBINE <i2i#producing_kW> " + repr(turbine_power) + "."
+        "inputs": "_:TURBINE <http://goo.gl/hbNgwP#size_factor> " + repr(size_factor) + "; <http://goo.gl/hbNgwP#windspeed_km_h> " + repr(wind_speed) + ".",
+        "targets": "_:TURBINE <http://goo.gl/hbNgwP#producing_kW> " + repr(turbine_power) + "."
       }
 
       # weight
@@ -65,8 +65,8 @@ class ObservationPredictionBodies(text_problems.Text2TextProblem):
       elif bmi >= 40:
         bmi_class = "O3"
       yield {
-        "inputs": "_:PERSON <i2i#weight_kg> " + repr(weight) + "; <i2i#height_cm> " + repr(height) + ".",
-        "targets": "_:PERSON <i2i#bmi_class> " + repr(bmi_class) + "."
+        "inputs": "_:PERSON <http://goo.gl/hbNgwP#weight_kg> " + repr(weight) + "; <http://goo.gl/hbNgwP#height_cm> " + repr(height) + ".",
+        "targets": "_:PERSON <http://goo.gl/hbNgwP#bmi_class> " + repr(bmi_class) + "."
       }
 
 if __name__ == '__main__':
