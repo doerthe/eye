@@ -20,6 +20,6 @@ inconsistent predictions.
 
 ### Concrete examples
 
-- [Transduction from observation to prediction for bodies](bodies/observation_prediction_bodies.ipynb).  
-- [Transduction from observation to prediction for roots](roots/observation_prediction_bodies.ipynb).  
-- [Transduction from observation to prediction for dices](dices/observation_prediction_bodies.ipynb).  
+- [Transduction from observation to prediction for bodies](bodies).  
+- [Transduction from observation to prediction for roots of polynomial](roots).  
+- [Transduction from observation to prediction for dices](dices).  
