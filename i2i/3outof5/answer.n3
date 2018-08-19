@@ -123,6 +123,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i2i/3outof5/sample.n3>].
 
-#2018-08-19T20:30:52.404Z in=34 out=1 ent=1 step=1 brake=2 inf=45554 sec=0.106 inf/sec=429755
+#2018-08-19T21:02:37.578Z in=34 out=1 ent=1 step=1 brake=2 inf=45347 sec=0.035 inf/sec=1295629
 #ENDS
 

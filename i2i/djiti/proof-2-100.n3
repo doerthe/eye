@@ -348,6 +348,6 @@ PREFIX : <http://josd.github.io/eye/i2i#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i2i/djiti/proof-100.n3>].
 
-#2018-08-19T20:31:06.529Z in=124 out=6 ent=23 step=48 brake=2 inf=70244 sec=0.105 inf/sec=668990
+#2018-08-19T21:02:48.882Z in=124 out=6 ent=23 step=48 brake=2 inf=70155 sec=0.052 inf/sec=1349135
 #ENDS
 
