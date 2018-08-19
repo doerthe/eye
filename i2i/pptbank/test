@@ -1,0 +1,2 @@
+#!/bin/bash
+eye "$@" --n3 http://josd.github.io/eye/i2i/pptbank/bankSW.n3 --n3 http://josd.github.io/eye/i2i/pptbank/checking.n3 --query http://josd.github.io/eye/i2i/pptbank/query.n3 > proof.n3

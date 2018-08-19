@@ -1,0 +1,3 @@
+@prefix : <http://josd.github.io/eye/i2i/witch#>.
+
+{?x a :FLOATS, :WOMAN} => {?x a :FLOATINGWOMAN}.
