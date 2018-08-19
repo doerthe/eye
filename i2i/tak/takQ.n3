@@ -1,0 +1,4 @@
+PREFIX : <http://josd.github.io/eye/i2i#>
+
+{(18 13 8) :tak ?A} => {(18 13 8) :tak ?A}.
+

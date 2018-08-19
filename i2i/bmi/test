@@ -1,0 +1,2 @@
+#!/bin/bash
+eye "$@" --n3 http://josd.github.io/eye/i2i/bmi/bmi_instances.n3 --n3 http://josd.github.io/eye/i2i/bmi/bmi_rules.n3 --n3 http://josd.github.io/eye/i2i/bmi/weightStatus_rules.n3 --n3 http://josd.github.io/eye/i2i/bmi/age_rules_backward.n3 --query http://josd.github.io/eye/i2i/bmi/bmi_query.n3 > bmi_proof.n3
