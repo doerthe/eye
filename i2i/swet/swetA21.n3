@@ -51,6 +51,6 @@ _:t_43 e:answer {:obs097 :ascribed :Sprinkler. :obs097 :ascribed :WetGrass}.
 _:t_44 e:answer {:obs099 :ascribed :Sprinkler. :obs099 :ascribed :WetGrass}.
 _:t_45 e:answer {:obs100 :ascribed :Sprinkler. :obs100 :ascribed :WetGrass}.
 
-#2018-07-09T20:00:04.348Z in=608 out=46 ent=46 step=46 brake=1 inf=74576 sec=0.039 inf/sec=1912205
+#2018-08-19T20:31:54.956Z in=608 out=46 ent=46 step=46 brake=1 inf=74810 sec=0.119 inf/sec=628655
 #ENDS
 

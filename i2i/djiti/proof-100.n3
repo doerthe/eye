@@ -153,6 +153,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i2i/djiti/graph-100.n3>].
 
-#2018-07-09T19:59:45.703Z in=104 out=6 ent=6 step=6 brake=1 inf=43165 sec=0.033 inf/sec=1308030
+#2018-08-19T20:31:02.581Z in=104 out=6 ent=6 step=6 brake=1 inf=43520 sec=0.093 inf/sec=467957
 #ENDS
 
