@@ -107,6 +107,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i2i/witch/witch.n3>].
 
-#2018-07-09T20:00:05.894Z in=20 out=1 ent=7 step=25 brake=5 inf=26565 sec=0.030 inf/sec=885500
+#2018-08-19T20:31:59.490Z in=20 out=1 ent=7 step=25 brake=5 inf=26850 sec=0.078 inf/sec=344231
 #ENDS
 

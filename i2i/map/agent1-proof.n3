@@ -208,6 +208,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i2i/gps/gps-plugin.n3>].
 
-#2018-07-09T19:59:56.367Z in=56 out=1 ent=1 step=1 brake=2 inf=61245 sec=0.035 inf/sec=1749857
+#2018-08-19T20:31:33.669Z in=56 out=1 ent=1 step=1 brake=2 inf=61672 sec=0.103 inf/sec=598757
 #ENDS
 

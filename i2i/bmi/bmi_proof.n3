@@ -1144,6 +1144,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i2i/bmi/bmi_instances.n3>].
 
-#2018-07-09T19:59:42.293Z in=295 out=50 ent=100 step=48 brake=4 inf=217890 sec=0.076 inf/sec=2866974
+#2018-08-19T20:30:54.373Z in=295 out=50 ent=100 step=48 brake=4 inf=219147 sec=0.206 inf/sec=1063820
 #ENDS
 

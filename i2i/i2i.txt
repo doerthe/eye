@@ -1,1974 +1,1974 @@
 ~/github.com/josd/eye/i2i/3outof5 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/3outof5/sample.n3 --query http://josd.github.io/eye/i2i/3outof5/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/3outof5/sample.n3 translating file:///tmp/swipl_eye_26087_0
-Done: translated 5 triples in 0.5 ms (9336 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/3outof5/sample.n3 translating file:///tmp/swipl_eye_10399_0
+Done: translated 5 triples in 0.3 ms (14730 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/3outof5/query.n3 translating file:///tmp/swipl_eye_26087_1
-Done: translated 29 triples in 0.3 ms (91962 triples/s)
+GET http://josd.github.io/eye/i2i/3outof5/query.n3 translating file:///tmp/swipl_eye_10399_1
+Done: translated 29 triples in 0.7 ms (42167 triples/s)
 SC=29
-networking 3 [msec cputime] 72 [msec walltime]
-reasoning 11 [msec cputime] 11 [msec walltime]
-2018-07-09T19:59:41.556Z in=34 out=1 ent=1 step=1 brake=2 inf=44656 sec=0.038 inf/sec=1175158
+networking 7 [msec cputime] 235 [msec walltime]
+reasoning 39 [msec cputime] 39 [msec walltime]
+2018-08-19T20:30:52.404Z in=34 out=1 ent=1 step=1 brake=2 inf=45554 sec=0.106 inf/sec=429755
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/bi ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/bi/biP.n3 --query http://josd.github.io/eye/i2i/bi/biQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/bi/biP.n3 translating file:///tmp/swipl_eye_26104_0
-Done: translated 424 triples in 1.0 ms (404250 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/bi/biP.n3 translating file:///tmp/swipl_eye_10416_0
+Done: translated 424 triples in 4.5 ms (95014 triples/s)
 SC=424
-GET http://josd.github.io/eye/i2i/bi/biQ.n3 translating file:///tmp/swipl_eye_26104_1
-Done: translated 17 triples in 0.3 ms (58424 triples/s)
+GET http://josd.github.io/eye/i2i/bi/biQ.n3 translating file:///tmp/swipl_eye_10416_1
+Done: translated 17 triples in 0.6 ms (26875 triples/s)
 SC=17
-networking 6 [msec cputime] 49 [msec walltime]
-GET http://josd.github.io/eye/i2i/bi/abc.n3 translating file:///tmp/swipl_eye_26104_2
-Done: translated 1 triples in 0.3 ms (3910 triples/s)
+networking 19 [msec cputime] 248 [msec walltime]
+GET http://josd.github.io/eye/i2i/bi/abc.n3 translating file:///tmp/swipl_eye_10416_2
+Done: translated 1 triples in 0.4 ms (2470 triples/s)
 SC=1
-GET http://josd.github.io/eye/i2i/bi/ab_c.n3 translating file:///tmp/swipl_eye_26104_3
-Done: translated 1 triples in 0.2 ms (5437 triples/s)
+GET http://josd.github.io/eye/i2i/bi/ab_c.n3 translating file:///tmp/swipl_eye_10416_3
+Done: translated 1 triples in 0.3 ms (3898 triples/s)
 SC=1
-GET http://josd.github.io/eye/i2i/bi/medic.n3 translating file:///tmp/swipl_eye_26104_4
-Done: translated 27 triples in 0.3 ms (101110 triples/s)
+GET http://josd.github.io/eye/i2i/bi/medic.n3 translating file:///tmp/swipl_eye_10416_4
+Done: translated 27 triples in 0.7 ms (36643 triples/s)
 SC=27
-reasoning 160 [msec cputime] 227 [msec walltime]
-2018-07-09T19:59:41.972Z in=470 out=97 ent=145 step=755 brake=4 inf=955146 sec=0.191 inf/sec=5000764
+reasoning 420 [msec cputime] 680 [msec walltime]
+2018-08-19T20:30:53.537Z in=470 out=97 ent=145 step=755 brake=4 inf=957786 sec=0.502 inf/sec=1907940
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/bmi ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/bmi/bmi_instances.n3 --n3 http://josd.github.io/eye/i2i/bmi/bmi_rules.n3 --n3 http://josd.github.io/eye/i2i/bmi/weightStatus_rules.n3 --n3 http://josd.github.io/eye/i2i/bmi/age_rules_backward.n3 --query http://josd.github.io/eye/i2i/bmi/bmi_query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/bmi/bmi_instances.n3 translating file:///tmp/swipl_eye_26133_0
-Done: translated 68 triples in 0.4 ms (186583 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/bmi/bmi_instances.n3 translating file:///tmp/swipl_eye_10445_0
+Done: translated 68 triples in 1.1 ms (61169 triples/s)
 SC=68
-GET http://josd.github.io/eye/i2i/bmi/bmi_rules.n3 translating file:///tmp/swipl_eye_26133_1
-Done: translated 98 triples in 0.5 ms (187686 triples/s)
+GET http://josd.github.io/eye/i2i/bmi/bmi_rules.n3 translating file:///tmp/swipl_eye_10445_1
+Done: translated 98 triples in 1.4 ms (69564 triples/s)
 SC=98
-GET http://josd.github.io/eye/i2i/bmi/weightStatus_rules.n3 translating file:///tmp/swipl_eye_26133_2
-Done: translated 74 triples in 0.4 ms (196606 triples/s)
+GET http://josd.github.io/eye/i2i/bmi/weightStatus_rules.n3 translating file:///tmp/swipl_eye_10445_2
+Done: translated 74 triples in 1.1 ms (69670 triples/s)
 SC=74
-GET http://josd.github.io/eye/i2i/bmi/age_rules_backward.n3 translating file:///tmp/swipl_eye_26133_3
-Done: translated 32 triples in 0.2 ms (146029 triples/s)
+GET http://josd.github.io/eye/i2i/bmi/age_rules_backward.n3 translating file:///tmp/swipl_eye_10445_3
+Done: translated 32 triples in 0.7 ms (48799 triples/s)
 SC=32
-GET http://josd.github.io/eye/i2i/bmi/bmi_query.n3 translating file:///tmp/swipl_eye_26133_4
-Done: translated 23 triples in 0.3 ms (81089 triples/s)
+GET http://josd.github.io/eye/i2i/bmi/bmi_query.n3 translating file:///tmp/swipl_eye_10445_4
+Done: translated 23 triples in 0.4 ms (64244 triples/s)
 SC=23
-networking 8 [msec cputime] 120 [msec walltime]
-reasoning 43 [msec cputime] 43 [msec walltime]
-2018-07-09T19:59:42.293Z in=295 out=50 ent=100 step=48 brake=4 inf=217890 sec=0.076 inf/sec=2866974
+networking 26 [msec cputime] 506 [msec walltime]
+reasoning 116 [msec cputime] 117 [msec walltime]
+2018-08-19T20:30:54.373Z in=295 out=50 ent=100 step=48 brake=4 inf=219147 sec=0.206 inf/sec=1063820
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/bmt ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/bmt/1tt1.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt2.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt3.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt4.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt5.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt6.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt7.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt8.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt9.n3 --n3 http://josd.github.io/eye/i2i/bmt/1tt10.n3 --query http://josd.github.io/eye/i2i/bmt/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 32 [msec walltime]
-GET http://josd.github.io/eye/i2i/bmt/1tt1.n3 translating file:///tmp/swipl_eye_26162_0
-Done: translated 1000 triples in 8.4 ms (119640 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/bmt/1tt1.n3 translating file:///tmp/swipl_eye_10475_0
+Done: translated 1000 triples in 32.0 ms (31220 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt2.n3 translating file:///tmp/swipl_eye_26162_1
-Done: translated 1000 triples in 8.8 ms (113480 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt2.n3 translating file:///tmp/swipl_eye_10475_1
+Done: translated 1000 triples in 39.4 ms (25366 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt3.n3 translating file:///tmp/swipl_eye_26162_2
-Done: translated 1000 triples in 9.3 ms (107055 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt3.n3 translating file:///tmp/swipl_eye_10475_2
+Done: translated 1000 triples in 32.7 ms (30601 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt4.n3 translating file:///tmp/swipl_eye_26162_3
-Done: translated 1000 triples in 11.8 ms (84689 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt4.n3 translating file:///tmp/swipl_eye_10475_3
+Done: translated 1000 triples in 31.7 ms (31541 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt5.n3 translating file:///tmp/swipl_eye_26162_4
-Done: translated 1000 triples in 9.7 ms (102913 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt5.n3 translating file:///tmp/swipl_eye_10475_4
+Done: translated 1000 triples in 34.3 ms (29140 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt6.n3 translating file:///tmp/swipl_eye_26162_5
-Done: translated 1000 triples in 9.8 ms (101620 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt6.n3 translating file:///tmp/swipl_eye_10475_5
+Done: translated 1000 triples in 33.5 ms (29865 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt7.n3 translating file:///tmp/swipl_eye_26162_6
-Done: translated 1000 triples in 9.3 ms (107364 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt7.n3 translating file:///tmp/swipl_eye_10475_6
+Done: translated 1000 triples in 30.9 ms (32400 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt8.n3 translating file:///tmp/swipl_eye_26162_7
-Done: translated 1000 triples in 9.8 ms (101664 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt8.n3 translating file:///tmp/swipl_eye_10475_7
+Done: translated 1000 triples in 31.7 ms (31515 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt9.n3 translating file:///tmp/swipl_eye_26162_8
-Done: translated 1000 triples in 9.8 ms (101697 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt9.n3 translating file:///tmp/swipl_eye_10475_8
+Done: translated 1000 triples in 33.0 ms (30259 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/1tt10.n3 translating file:///tmp/swipl_eye_26162_9
-Done: translated 1000 triples in 13.3 ms (75060 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/1tt10.n3 translating file:///tmp/swipl_eye_10475_9
+Done: translated 1000 triples in 36.2 ms (27661 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/bmt/query.n3 translating file:///tmp/swipl_eye_26162_10
-Done: translated 12 triples in 0.5 ms (26456 triples/s)
+GET http://josd.github.io/eye/i2i/bmt/query.n3 translating file:///tmp/swipl_eye_10475_10
+Done: translated 12 triples in 0.5 ms (23434 triples/s)
 SC=12
-networking 139 [msec cputime] 433 [msec walltime]
-reasoning 696 [msec cputime] 699 [msec walltime]
-2018-07-09T19:59:43.567Z in=10012 out=1518 ent=1518 step=1518 brake=1 inf=4715889 sec=0.861 inf/sec=5477223
+networking 452 [msec cputime] 1674 [msec walltime]
+reasoning 1816 [msec cputime] 1821 [msec walltime]
+2018-08-19T20:30:58.068Z in=10012 out=1518 ent=1518 step=1518 brake=1 inf=4717884 sec=2.331 inf/sec=2023974
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/crypto ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --hmac-key k123 --n3 http://josd.github.io/eye/i2i/crypto/cryptoP.n3 --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/crypto/cryptoP.n3 translating file:///tmp/swipl_eye_26215_0
-Done: translated 9 triples in 0.1 ms (69682 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/crypto/cryptoP.n3 translating file:///tmp/swipl_eye_10528_0
+Done: translated 9 triples in 0.5 ms (16391 triples/s)
 SC=9
-networking 2 [msec cputime] 23 [msec walltime]
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:43.753Z in=9 out=3 ent=6 step=12 brake=2 inf=27111 sec=0.029 inf/sec=934862
+networking 4 [msec cputime] 138 [msec walltime]
+reasoning 13 [msec cputime] 13 [msec walltime]
+2018-08-19T20:30:58.450Z in=9 out=3 ent=6 step=12 brake=2 inf=27411 sec=0.080 inf/sec=342638
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/cs ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --turtle http://josd.github.io/eye/i2i/cs/data-001.n3 --n3 http://josd.github.io/eye/i2i/cs/rules-001.n3 --query http://josd.github.io/eye/i2i/cs/query-001.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/cs/data-001.n3 translating file:///tmp/swipl_eye_26227_0
-Done: translated 10 triples in 0.2 ms (64474 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/cs/data-001.n3 translating file:///tmp/swipl_eye_10540_0
+Done: translated 10 triples in 0.5 ms (22082 triples/s)
 SC=10
-GET http://josd.github.io/eye/i2i/cs/rules-001.n3 translating file:///tmp/swipl_eye_26227_1
-Done: translated 30 triples in 0.2 ms (137060 triples/s)
+GET http://josd.github.io/eye/i2i/cs/rules-001.n3 translating file:///tmp/swipl_eye_10540_1
+Done: translated 30 triples in 0.8 ms (38922 triples/s)
 SC=30
-GET http://josd.github.io/eye/i2i/cs/query-001.n3 translating file:///tmp/swipl_eye_26227_2
-Done: translated 3 triples in 0.2 ms (13398 triples/s)
+GET http://josd.github.io/eye/i2i/cs/query-001.n3 translating file:///tmp/swipl_eye_10540_2
+Done: translated 3 triples in 0.5 ms (6581 triples/s)
 SC=3
-networking 3 [msec cputime] 69 [msec walltime]
-reasoning 6 [msec cputime] 6 [msec walltime]
-2018-07-09T19:59:43.866Z in=43 out=2 ent=4 step=8 brake=2 inf=40850 sec=0.033 inf/sec=1237879
+networking 12 [msec cputime] 499 [msec walltime]
+reasoning 21 [msec cputime] 21 [msec walltime]
+2018-08-19T20:30:59.075Z in=43 out=2 ent=4 step=8 brake=2 inf=41168 sec=0.097 inf/sec=424412
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/csv ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --turtle http://josd.github.io/eye/i2i/csv/select-data.n3 --query http://josd.github.io/eye/i2i/csv/select-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/csv/select-data.n3 translating file:///tmp/swipl_eye_26248_0
-Done: translated 17 triples in 0.3 ms (56248 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/csv/select-data.n3 translating file:///tmp/swipl_eye_10561_0
+Done: translated 17 triples in 0.6 ms (30192 triples/s)
 SC=17
-GET http://josd.github.io/eye/i2i/csv/select-query.n3 translating file:///tmp/swipl_eye_26248_1
-Done: translated 5 triples in 0.1 ms (34530 triples/s)
+GET http://josd.github.io/eye/i2i/csv/select-query.n3 translating file:///tmp/swipl_eye_10561_1
+Done: translated 5 triples in 0.5 ms (10728 triples/s)
 SC=5
-networking 3 [msec cputime] 46 [msec walltime]
-reasoning 15 [msec cputime] 15 [msec walltime]
-2018-07-09T19:59:44.066Z in=22 out=17 ent=17 step=17 brake=2 inf=71737 sec=0.042 inf/sec=1708024
+networking 9 [msec cputime] 167 [msec walltime]
+reasoning 51 [msec cputime] 52 [msec walltime]
+2018-08-19T20:30:59.500Z in=22 out=17 ent=17 step=17 brake=2 inf=72724 sec=0.122 inf/sec=596098
 
 eye --n3 http://josd.github.io/eye/i2i/csv/select-data-extra.n3 --query http://josd.github.io/eye/i2i/csv/select-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 32 [msec walltime]
-GET http://josd.github.io/eye/i2i/csv/select-data-extra.n3 translating file:///tmp/swipl_eye_26262_0
-Done: translated 12 triples in 0.2 ms (76487 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/csv/select-data-extra.n3 translating file:///tmp/swipl_eye_10575_0
+Done: translated 12 triples in 0.5 ms (26256 triples/s)
 SC=12
-GET http://josd.github.io/eye/i2i/csv/select-query.n3 translating file:///tmp/swipl_eye_26262_1
-Done: translated 5 triples in 0.1 ms (47084 triples/s)
+GET http://josd.github.io/eye/i2i/csv/select-query.n3 translating file:///tmp/swipl_eye_10575_1
+Done: translated 5 triples in 0.5 ms (10045 triples/s)
 SC=5
-networking 2 [msec cputime] 46 [msec walltime]
-reasoning 12 [msec cputime] 12 [msec walltime]
-2018-07-09T19:59:44.261Z in=17 out=5 ent=5 step=5 brake=2 inf=47498 sec=0.040 inf/sec=1187450
+networking 7 [msec cputime] 172 [msec walltime]
+reasoning 38 [msec cputime] 38 [msec walltime]
+2018-08-19T20:30:59.904Z in=17 out=5 ent=5 step=5 brake=2 inf=48367 sec=0.106 inf/sec=456292
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/de ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/de/de.n3 --n3 http://josd.github.io/eye/i2i/de/deA.n3 --query http://josd.github.io/eye/i2i/de/deQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/de/de.n3 translating file:///tmp/swipl_eye_26278_0
-Done: translated 18 triples in 0.1 ms (121102 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/de/de.n3 translating file:///tmp/swipl_eye_10591_0
+Done: translated 18 triples in 0.7 ms (26245 triples/s)
 SC=18
-GET http://josd.github.io/eye/i2i/de/deA.n3 translating file:///tmp/swipl_eye_26278_1
-Done: translated 1 triples in 0.1 ms (11677 triples/s)
+GET http://josd.github.io/eye/i2i/de/deA.n3 translating file:///tmp/swipl_eye_10591_1
+Done: translated 1 triples in 0.3 ms (3198 triples/s)
 SC=1
-GET http://josd.github.io/eye/i2i/de/deQ.n3 translating file:///tmp/swipl_eye_26278_2
-Done: translated 3 triples in 0.2 ms (12303 triples/s)
+GET http://josd.github.io/eye/i2i/de/deQ.n3 translating file:///tmp/swipl_eye_10591_2
+Done: translated 3 triples in 0.5 ms (6605 triples/s)
 SC=3
-networking 3 [msec cputime] 68 [msec walltime]
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:44.371Z in=22 out=1 ent=6 step=18 brake=3 inf=24206 sec=0.031 inf/sec=780839
+networking 9 [msec cputime] 271 [msec walltime]
+reasoning 11 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:00.286Z in=22 out=1 ent=6 step=18 brake=3 inf=24513 sec=0.080 inf/sec=306413
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/dp ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/dp/dp.n3 --query http://josd.github.io/eye/i2i/dp/dpQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/dp/dp.n3 translating file:///tmp/swipl_eye_26298_0
-Done: translated 40 triples in 0.2 ms (171608 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/dp/dp.n3 translating file:///tmp/swipl_eye_10611_0
+Done: translated 40 triples in 0.9 ms (42978 triples/s)
 SC=40
-GET http://josd.github.io/eye/i2i/dp/dpQ.n3 translating file:///tmp/swipl_eye_26298_1
-Done: translated 3 triples in 0.3 ms (9329 triples/s)
+GET http://josd.github.io/eye/i2i/dp/dpQ.n3 translating file:///tmp/swipl_eye_10611_1
+Done: translated 3 triples in 0.4 ms (7608 triples/s)
 SC=3
-networking 2 [msec cputime] 46 [msec walltime]
-reasoning 5 [msec cputime] 756 [msec walltime]
-2018-07-09T19:59:45.211Z in=43 out=1 ent=2 step=2 brake=1 inf=31423 sec=0.033 inf/sec=952212
+networking 8 [msec cputime] 179 [msec walltime]
+reasoning 16 [msec cputime] 769 [msec walltime]
+2018-08-19T20:31:01.335Z in=43 out=1 ent=2 step=2 brake=1 inf=31727 sec=0.083 inf/sec=382253
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/dpe ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/dpe/dpe_theory.n3 --n3 http://josd.github.io/eye/i2i/dpe/dpe_assumption.n3 --query http://josd.github.io/eye/i2i/dpe/dpe_query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 32 [msec walltime]
-GET http://josd.github.io/eye/i2i/dpe/dpe_theory.n3 translating file:///tmp/swipl_eye_26320_0
-Done: translated 41 triples in 0.3 ms (158118 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/dpe/dpe_theory.n3 translating file:///tmp/swipl_eye_10633_0
+Done: translated 41 triples in 0.7 ms (61399 triples/s)
 SC=41
-GET http://josd.github.io/eye/i2i/dpe/dpe_assumption.n3 translating file:///tmp/swipl_eye_26320_1
-Done: translated 6 triples in 0.3 ms (18012 triples/s)
+GET http://josd.github.io/eye/i2i/dpe/dpe_assumption.n3 translating file:///tmp/swipl_eye_10633_1
+Done: translated 6 triples in 0.4 ms (13421 triples/s)
 SC=6
-GET http://josd.github.io/eye/i2i/dpe/dpe_query.n3 translating file:///tmp/swipl_eye_26320_2
-Done: translated 5 triples in 0.3 ms (16736 triples/s)
+GET http://josd.github.io/eye/i2i/dpe/dpe_query.n3 translating file:///tmp/swipl_eye_10633_2
+Done: translated 5 triples in 0.5 ms (9962 triples/s)
 SC=5
-networking 4 [msec cputime] 68 [msec walltime]
-reasoning 6 [msec cputime] 6 [msec walltime]
-2018-07-09T19:59:45.428Z in=52 out=2 ent=32 step=120 brake=4 inf=42144 sec=0.036 inf/sec=1170667
+networking 10 [msec cputime] 331 [msec walltime]
+reasoning 21 [msec cputime] 20 [msec walltime]
+2018-08-19T20:31:01.892Z in=52 out=2 ent=32 step=120 brake=4 inf=42487 sec=0.094 inf/sec=451989
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/djiti ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --turtle http://josd.github.io/eye/i2i/djiti/graph-10.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/graph-10.n3 translating file:///tmp/swipl_eye_26341_0
-Done: translated 10 triples in 0.1 ms (74698 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/graph-10.n3 translating file:///tmp/swipl_eye_10654_0
+Done: translated 10 triples in 0.5 ms (21425 triples/s)
 SC=10
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26341_1
-Done: translated 4 triples in 0.1 ms (36106 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10654_1
+Done: translated 4 triples in 0.5 ms (8810 triples/s)
 SC=4
-networking 3 [msec cputime] 46 [msec walltime]
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:45.617Z in=14 out=2 ent=2 step=2 brake=1 inf=25564 sec=0.031 inf/sec=824645
+networking 8 [msec cputime] 182 [msec walltime]
+reasoning 10 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:02.290Z in=14 out=2 ent=2 step=2 brake=1 inf=25880 sec=0.081 inf/sec=319506
 
 eye --turtle http://josd.github.io/eye/i2i/djiti/graph-100.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/graph-100.n3 translating file:///tmp/swipl_eye_26354_0
-Done: translated 100 triples in 0.5 ms (195627 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/graph-100.n3 translating file:///tmp/swipl_eye_10667_0
+Done: translated 100 triples in 1.1 ms (88646 triples/s)
 SC=100
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26354_1
-Done: translated 4 triples in 0.1 ms (30316 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10667_1
+Done: translated 4 triples in 0.4 ms (10938 triples/s)
 SC=4
-networking 4 [msec cputime] 47 [msec walltime]
-reasoning 5 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:45.703Z in=104 out=6 ent=6 step=6 brake=1 inf=43165 sec=0.033 inf/sec=1308030
+networking 14 [msec cputime] 180 [msec walltime]
+reasoning 19 [msec cputime] 18 [msec walltime]
+2018-08-19T20:31:02.581Z in=104 out=6 ent=6 step=6 brake=1 inf=43520 sec=0.093 inf/sec=467957
 
 eye --turtle http://josd.github.io/eye/i2i/djiti/graph-1000.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/graph-1000.n3 translating file:///tmp/swipl_eye_26367_0
-Done: translated 1000 triples in 9.9 ms (100694 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 58 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/graph-1000.n3 translating file:///tmp/swipl_eye_10680_0
+Done: translated 1000 triples in 38.6 ms (25874 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26367_1
-Done: translated 4 triples in 0.2 ms (26376 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10680_1
+Done: translated 4 triples in 0.3 ms (11816 triples/s)
 SC=4
-networking 16 [msec cputime] 63 [msec walltime]
-reasoning 59 [msec cputime] 59 [msec walltime]
-2018-07-09T19:59:45.859Z in=1004 out=92 ent=92 step=92 brake=1 inf=389866 sec=0.100 inf/sec=3898660
+networking 55 [msec cputime] 256 [msec walltime]
+reasoning 153 [msec cputime] 153 [msec walltime]
+2018-08-19T20:31:03.078Z in=1004 out=92 ent=92 step=92 brake=1 inf=391021 sec=0.266 inf/sec=1470004
 
 eye --turtle http://josd.github.io/eye/i2i/djiti/graph-10000.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/graph-10000.n3 translating file:///tmp/swipl_eye_26381_0
-Done: translated 10000 triples in 180.4 ms (55437 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/graph-10000.n3 translating file:///tmp/swipl_eye_10694_0
+Done: translated 10000 triples in 482.8 ms (20713 triples/s)
 SC=10000
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26381_1
-Done: translated 4 triples in 0.5 ms (7511 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10694_1
+Done: translated 4 triples in 0.3 ms (12113 triples/s)
 SC=4
-networking 191 [msec cputime] 258 [msec walltime]
-reasoning 732 [msec cputime] 734 [msec walltime]
-2018-07-09T19:59:46.989Z in=10004 out=966 ent=966 step=966 brake=1 inf=3872524 sec=0.949 inf/sec=4080636
+networking 505 [msec cputime] 778 [msec walltime]
+reasoning 1683 [msec cputime] 1687 [msec walltime]
+2018-08-19T20:31:05.735Z in=10004 out=966 ent=966 step=966 brake=1 inf=3881588 sec=2.247 inf/sec=1727453
 
 eye --proof http://josd.github.io/eye/i2i/djiti/proof-10.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/proof-10.n3 translating file:///tmp/swipl_eye_26395_0
-Done: translated 50 triples in 0.4 ms (133475 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 79 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/proof-10.n3 translating file:///tmp/swipl_eye_10708_0
+Done: translated 50 triples in 0.7 ms (74815 triples/s)
 SC=50
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26395_1
-Done: translated 4 triples in 0.2 ms (19557 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10708_1
+Done: translated 4 triples in 0.5 ms (8376 triples/s)
 SC=4
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 5 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:47.173Z in=54 out=2 ent=8 step=18 brake=2 inf=37633 sec=0.031 inf/sec=1213968
+networking 10 [msec cputime] 190 [msec walltime]
+reasoning 18 [msec cputime] 18 [msec walltime]
+2018-08-19T20:31:06.140Z in=54 out=2 ent=8 step=18 brake=2 inf=37973 sec=0.088 inf/sec=431511
 
 eye --proof http://josd.github.io/eye/i2i/djiti/proof-100.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/proof-100.n3 translating file:///tmp/swipl_eye_26409_0
-Done: translated 120 triples in 0.4 ms (293526 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/proof-100.n3 translating file:///tmp/swipl_eye_10722_0
+Done: translated 120 triples in 1.6 ms (74056 triples/s)
 SC=120
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26409_1
-Done: translated 4 triples in 0.3 ms (12551 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10722_1
+Done: translated 4 triples in 0.4 ms (10428 triples/s)
 SC=4
-networking 3 [msec cputime] 45 [msec walltime]
-reasoning 10 [msec cputime] 9 [msec walltime]
-2018-07-09T19:59:47.363Z in=124 out=6 ent=23 step=48 brake=2 inf=69835 sec=0.037 inf/sec=1887432
+networking 13 [msec cputime] 169 [msec walltime]
+reasoning 31 [msec cputime] 30 [msec walltime]
+2018-08-19T20:31:06.529Z in=124 out=6 ent=23 step=48 brake=2 inf=70244 sec=0.105 inf/sec=668990
 
 eye --proof http://josd.github.io/eye/i2i/djiti/proof-1000.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/proof-1000.n3 translating file:///tmp/swipl_eye_26423_0
-Done: translated 1682 triples in 13.7 ms (122623 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/proof-1000.n3 translating file:///tmp/swipl_eye_10736_0
+Done: translated 1682 triples in 47.9 ms (35086 triples/s)
 SC=1682
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26423_1
-Done: translated 4 triples in 0.4 ms (9225 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10736_1
+Done: translated 4 triples in 0.5 ms (8674 triples/s)
 SC=4
-networking 18 [msec cputime] 70 [msec walltime]
-reasoning 110 [msec cputime] 110 [msec walltime]
-2018-07-09T19:59:47.678Z in=1686 out=92 ent=355 step=712 brake=2 inf=802977 sec=0.152 inf/sec=5282743
+networking 62 [msec cputime] 275 [msec walltime]
+reasoning 316 [msec cputime] 316 [msec walltime]
+2018-08-19T20:31:07.317Z in=1686 out=92 ent=355 step=712 brake=2 inf=804989 sec=0.440 inf/sec=1829520
 
 eye --proof http://josd.github.io/eye/i2i/djiti/proof-10000.n3 --query http://josd.github.io/eye/i2i/djiti/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/djiti/proof-10000.n3 translating file:///tmp/swipl_eye_26437_0
-Done: translated 17274 triples in 168.8 ms (102316 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 57 [msec cputime] 81 [msec walltime]
+GET http://josd.github.io/eye/i2i/djiti/proof-10000.n3 translating file:///tmp/swipl_eye_10750_0
+Done: translated 17274 triples in 522.0 ms (33093 triples/s)
 SC=17274
-GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_26437_1
-Done: translated 4 triples in 0.3 ms (11568 triples/s)
+GET http://josd.github.io/eye/i2i/djiti/query.n3 translating file:///tmp/swipl_eye_10750_1
+Done: translated 4 triples in 0.4 ms (9270 triples/s)
 SC=4
-networking 173 [msec cputime] 243 [msec walltime]
-reasoning 1155 [msec cputime] 1156 [msec walltime]
-2018-07-09T19:59:49.214Z in=17278 out=966 ent=3682 step=7366 brake=2 inf=8106686 sec=1.353 inf/sec=5991638
+networking 535 [msec cputime] 815 [msec walltime]
+reasoning 3235 [msec cputime] 3242 [msec walltime]
+2018-08-19T20:31:11.564Z in=17278 out=966 ent=3682 step=7366 brake=2 inf=8124465 sec=3.827 inf/sec=2122933
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/dt ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/dt/test-facts.n3 --n3 http://josd.github.io/eye/i2i/dt/test-dt-1000.n3 --query http://josd.github.io/eye/i2i/dt/test-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/dt/test-facts.n3 translating file:///tmp/swipl_eye_26454_0
-Done: translated 2 triples in 0.2 ms (10274 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/dt/test-facts.n3 translating file:///tmp/swipl_eye_10767_0
+Done: translated 2 triples in 0.4 ms (4574 triples/s)
 SC=2
-GET http://josd.github.io/eye/i2i/dt/test-dt-1000.n3 translating file:///tmp/swipl_eye_26454_1
-Done: translated 9003 triples in 45.1 ms (199407 triples/s)
+GET http://josd.github.io/eye/i2i/dt/test-dt-1000.n3 translating file:///tmp/swipl_eye_10767_1
+Done: translated 9003 triples in 145.6 ms (61848 triples/s)
 SC=9003
-GET http://josd.github.io/eye/i2i/dt/test-query.n3 translating file:///tmp/swipl_eye_26454_2
-Done: translated 3 triples in 0.4 ms (8102 triples/s)
+GET http://josd.github.io/eye/i2i/dt/test-query.n3 translating file:///tmp/swipl_eye_10767_2
+Done: translated 3 triples in 0.4 ms (7944 triples/s)
 SC=3
-networking 50 [msec cputime] 129 [msec walltime]
-reasoning 304 [msec cputime] 304 [msec walltime]
-2018-07-09T19:59:49.843Z in=9008 out=1 ent=2999 step=5998 brake=2 inf=1935585 sec=0.378 inf/sec=5120595
+networking 161 [msec cputime] 502 [msec walltime]
+reasoning 853 [msec cputime] 853 [msec walltime]
+2018-08-19T20:31:13.201Z in=9008 out=1 ent=2999 step=5998 brake=2 inf=1940860 sec=1.077 inf/sec=1802098
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/easter ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/easter/easterP.n3 --query http://josd.github.io/eye/i2i/easter/easterF.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/easter/easterP.n3 translating file:///tmp/swipl_eye_26475_0
-Done: translated 54 triples in 0.4 ms (152419 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/easter/easterP.n3 translating file:///tmp/swipl_eye_10788_0
+Done: translated 54 triples in 1.2 ms (46732 triples/s)
 SC=54
-GET http://josd.github.io/eye/i2i/easter/easterF.n3 translating file:///tmp/swipl_eye_26475_1
-Done: translated 3 triples in 0.3 ms (9158 triples/s)
+GET http://josd.github.io/eye/i2i/easter/easterF.n3 translating file:///tmp/swipl_eye_10788_1
+Done: translated 3 triples in 0.5 ms (6532 triples/s)
 SC=3
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 27 [msec cputime] 26 [msec walltime]
-2018-07-09T19:59:50.059Z in=57 out=16 ent=32 step=64 brake=2 inf=200252 sec=0.053 inf/sec=3778340
+networking 9 [msec cputime] 1904 [msec walltime]
+reasoning 84 [msec cputime] 84 [msec walltime]
+2018-08-19T20:31:15.404Z in=57 out=16 ent=32 step=64 brake=2 inf=200616 sec=0.155 inf/sec=1294297
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/einstein ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/einstein/einstein.n3 --query http://josd.github.io/eye/i2i/einstein/einsteinQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/einstein/einstein.n3 translating file:///tmp/swipl_eye_26492_0
-Done: translated 25 triples in 0.3 ms (77510 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/einstein/einstein.n3 translating file:///tmp/swipl_eye_10805_0
+Done: translated 25 triples in 0.9 ms (27021 triples/s)
 SC=25
-GET http://josd.github.io/eye/i2i/einstein/einsteinQ.n3 translating file:///tmp/swipl_eye_26492_1
-Done: translated 3 triples in 0.2 ms (14272 triples/s)
+GET http://josd.github.io/eye/i2i/einstein/einsteinQ.n3 translating file:///tmp/swipl_eye_10805_1
+Done: translated 3 triples in 0.3 ms (10924 triples/s)
 SC=3
-networking 2 [msec cputime] 46 [msec walltime]
-reasoning 110 [msec cputime] 109 [msec walltime]
-2018-07-09T19:59:50.252Z in=28 out=1 ent=2 step=4 brake=2 inf=671449 sec=0.135 inf/sec=4973696
+networking 7 [msec cputime] 180 [msec walltime]
+reasoning 298 [msec cputime] 298 [msec walltime]
+2018-08-19T20:31:16.088Z in=28 out=1 ent=2 step=4 brake=2 inf=671742 sec=0.368 inf/sec=1825386
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/equation4 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --nope --n3 http://josd.github.io/eye/i2i/equation4/polynomial.n3 --query http://josd.github.io/eye/i2i/equation4/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/equation4/polynomial.n3 translating file:///tmp/swipl_eye_26509_0
-Done: translated 1000 triples in 37.5 ms (26684 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/equation4/polynomial.n3 translating file:///tmp/swipl_eye_10822_0
+Done: translated 1000 triples in 90.3 ms (11070 triples/s)
 SC=1000
-GET http://josd.github.io/eye/i2i/equation4/query.n3 translating file:///tmp/swipl_eye_26509_1
-Done: translated 4 triples in 0.4 ms (10304 triples/s)
+GET http://josd.github.io/eye/i2i/equation4/query.n3 translating file:///tmp/swipl_eye_10822_1
+Done: translated 4 triples in 0.4 ms (10594 triples/s)
 SC=4
-networking 50 [msec cputime] 125 [msec walltime]
-reasoning 1245 [msec cputime] 2036 [msec walltime]
-2018-07-09T19:59:52.551Z in=1004 out=1000 ent=1000 step=1000 brake=1 inf=9855366 sec=1.319 inf/sec=7471847
+networking 121 [msec cputime] 465 [msec walltime]
+reasoning 3997 [msec cputime] 5261 [msec walltime]
+2018-08-19T20:31:22.017Z in=1004 out=1000 ent=1000 step=1000 brake=1 inf=9855640 sec=4.179 inf/sec=2358373
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/fcm ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/fcm/fcm-plugin.n3 --n3 http://josd.github.io/eye/i2i/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/i2i/fcm/example001P.n3 --n3 http://josd.github.io/eye/i2i/fcm/example002P.n3 --query http://josd.github.io/eye/i2i/fcm/example003Q.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/fcm/fcm-plugin.n3 translating file:///tmp/swipl_eye_26525_0
-Done: translated 47 triples in 0.5 ms (101112 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/fcm/fcm-plugin.n3 translating file:///tmp/swipl_eye_10838_0
+Done: translated 47 triples in 1.6 ms (28787 triples/s)
 SC=47
-GET http://josd.github.io/eye/i2i/fcm/fl-rules.n3 translating file:///tmp/swipl_eye_26525_1
-Done: translated 133 triples in 0.5 ms (277344 triples/s)
+GET http://josd.github.io/eye/i2i/fcm/fl-rules.n3 translating file:///tmp/swipl_eye_10838_1
+Done: translated 133 triples in 1.3 ms (98745 triples/s)
 SC=133
-GET http://josd.github.io/eye/i2i/fcm/example001P.n3 translating file:///tmp/swipl_eye_26525_2
-Done: translated 39 triples in 0.3 ms (152151 triples/s)
+GET http://josd.github.io/eye/i2i/fcm/example001P.n3 translating file:///tmp/swipl_eye_10838_2
+Done: translated 39 triples in 0.8 ms (48393 triples/s)
 SC=39
-GET http://josd.github.io/eye/i2i/fcm/example002P.n3 translating file:///tmp/swipl_eye_26525_3
-Done: translated 38 triples in 0.3 ms (120925 triples/s)
+GET http://josd.github.io/eye/i2i/fcm/example002P.n3 translating file:///tmp/swipl_eye_10838_3
+Done: translated 38 triples in 0.5 ms (76384 triples/s)
 SC=38
-GET http://josd.github.io/eye/i2i/fcm/example003Q.n3 translating file:///tmp/swipl_eye_26525_4
-Done: translated 3 triples in 0.2 ms (13063 triples/s)
+GET http://josd.github.io/eye/i2i/fcm/example003Q.n3 translating file:///tmp/swipl_eye_10838_4
+Done: translated 3 triples in 0.4 ms (7533 triples/s)
 SC=3
-networking 7 [msec cputime] 115 [msec walltime]
-reasoning 72 [msec cputime] 77 [msec walltime]
-2018-07-09T19:59:52.785Z in=260 out=8 ent=50 step=307 brake=6 inf=465967 sec=0.103 inf/sec=4523951
+networking 24 [msec cputime] 2154 [msec walltime]
+reasoning 198 [msec cputime] 205 [msec walltime]
+2018-08-19T20:31:24.487Z in=260 out=8 ent=50 step=307 brake=6 inf=467488 sec=0.282 inf/sec=1657759
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/fgcm ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/fgcm/fgcm-plugin.n3 --n3 http://josd.github.io/eye/i2i/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/i2i/fgcm/patient.n3 --n3 http://josd.github.io/eye/i2i/fgcm/fgcm-model.n3 --query http://josd.github.io/eye/i2i/fgcm/fgcm-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/fgcm/fgcm-plugin.n3 translating file:///tmp/swipl_eye_26554_0
-Done: translated 172 triples in 0.8 ms (202671 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/fgcm/fgcm-plugin.n3 translating file:///tmp/swipl_eye_10867_0
+Done: translated 172 triples in 3.2 ms (52947 triples/s)
 SC=172
-GET http://josd.github.io/eye/i2i/fcm/fl-rules.n3 translating file:///tmp/swipl_eye_26554_1
-Done: translated 133 triples in 0.6 ms (239973 triples/s)
+GET http://josd.github.io/eye/i2i/fcm/fl-rules.n3 translating file:///tmp/swipl_eye_10867_1
+Done: translated 133 triples in 1.7 ms (76420 triples/s)
 SC=133
-GET http://josd.github.io/eye/i2i/fgcm/patient.n3 translating file:///tmp/swipl_eye_26554_2
-Done: translated 9 triples in 0.2 ms (46151 triples/s)
+GET http://josd.github.io/eye/i2i/fgcm/patient.n3 translating file:///tmp/swipl_eye_10867_2
+Done: translated 9 triples in 0.5 ms (16441 triples/s)
 SC=9
-GET http://josd.github.io/eye/i2i/fgcm/fgcm-model.n3 translating file:///tmp/swipl_eye_26554_3
-Done: translated 313 triples in 0.9 ms (333337 triples/s)
+GET http://josd.github.io/eye/i2i/fgcm/fgcm-model.n3 translating file:///tmp/swipl_eye_10867_3
+Done: translated 313 triples in 2.7 ms (117018 triples/s)
 SC=313
-GET http://josd.github.io/eye/i2i/fgcm/fgcm-query.n3 translating file:///tmp/swipl_eye_26554_4
-Done: translated 3 triples in 0.2 ms (13586 triples/s)
+GET http://josd.github.io/eye/i2i/fgcm/fgcm-query.n3 translating file:///tmp/swipl_eye_10867_4
+Done: translated 3 triples in 0.5 ms (5907 triples/s)
 SC=3
-networking 10 [msec cputime] 122 [msec walltime]
-reasoning 154 [msec cputime] 157 [msec walltime]
-2018-07-09T19:59:53.204Z in=630 out=18 ent=237 step=1917 brake=5 inf=804766 sec=0.189 inf/sec=4258021
+networking 40 [msec cputime] 574 [msec walltime]
+reasoning 428 [msec cputime] 432 [msec walltime]
+2018-08-19T20:31:25.702Z in=630 out=18 ent=237 step=1917 brake=5 inf=807174 sec=0.529 inf/sec=1525849
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/fib ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/fib/fib.n3 --query http://josd.github.io/eye/i2i/fib/fibQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/fib/fib.n3 translating file:///tmp/swipl_eye_26583_0
-Done: translated 11 triples in 0.3 ms (43052 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/fib/fib.n3 translating file:///tmp/swipl_eye_10896_0
+Done: translated 11 triples in 0.4 ms (26237 triples/s)
 SC=11
-GET http://josd.github.io/eye/i2i/fib/fibQ.n3 translating file:///tmp/swipl_eye_26583_1
-Done: translated 3 triples in 0.2 ms (13582 triples/s)
+GET http://josd.github.io/eye/i2i/fib/fibQ.n3 translating file:///tmp/swipl_eye_10896_1
+Done: translated 3 triples in 0.5 ms (6253 triples/s)
 SC=3
-networking 1 [msec cputime] 43 [msec walltime]
-reasoning 22 [msec cputime] 22 [msec walltime]
-2018-07-09T19:59:53.408Z in=14 out=1 ent=1 step=1 brake=1 inf=148661 sec=0.047 inf/sec=3163000
+networking 7 [msec cputime] 182 [msec walltime]
+reasoning 67 [msec cputime] 68 [msec walltime]
+2018-08-19T20:31:26.164Z in=14 out=1 ent=1 step=1 brake=1 inf=148955 sec=0.137 inf/sec=1087263
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/gedcom ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/gedcom/gedcom-facts.n3 --n3 http://josd.github.io/eye/i2i/gedcom/gedcom-relations.n3 --n3 http://josd.github.io/eye/i2i/gedcom/rpo-rules.n3 --query http://josd.github.io/eye/i2i/gedcom/gedcom-filter.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/gedcom/gedcom-facts.n3 translating file:///tmp/swipl_eye_26599_0
-Done: translated 88 triples in 0.3 ms (253512 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/gedcom/gedcom-facts.n3 translating file:///tmp/swipl_eye_10912_0
+Done: translated 88 triples in 0.8 ms (111336 triples/s)
 SC=88
-GET http://josd.github.io/eye/i2i/gedcom/gedcom-relations.n3 translating file:///tmp/swipl_eye_26599_1
-Done: translated 109 triples in 0.4 ms (281423 triples/s)
+GET http://josd.github.io/eye/i2i/gedcom/gedcom-relations.n3 translating file:///tmp/swipl_eye_10912_1
+Done: translated 109 triples in 0.9 ms (117308 triples/s)
 SC=109
-GET http://josd.github.io/eye/i2i/gedcom/rpo-rules.n3 translating file:///tmp/swipl_eye_26599_2
-Done: translated 144 triples in 0.3 ms (441798 triples/s)
+GET http://josd.github.io/eye/i2i/gedcom/rpo-rules.n3 translating file:///tmp/swipl_eye_10912_2
+Done: translated 144 triples in 1.4 ms (105409 triples/s)
 SC=144
-GET http://josd.github.io/eye/i2i/gedcom/gedcom-filter.n3 translating file:///tmp/swipl_eye_26599_3
-Done: translated 6 triples in 0.4 ms (14639 triples/s)
+GET http://josd.github.io/eye/i2i/gedcom/gedcom-filter.n3 translating file:///tmp/swipl_eye_10912_3
+Done: translated 6 triples in 0.5 ms (11656 triples/s)
 SC=6
-networking 5 [msec cputime] 89 [msec walltime]
-reasoning 95 [msec cputime] 95 [msec walltime]
-2018-07-09T19:59:53.659Z in=347 out=6 ent=1591 step=18973 brake=12 inf=751128 sec=0.125 inf/sec=6009024
+networking 30 [msec cputime] 365 [msec walltime]
+reasoning 276 [msec cputime] 276 [msec walltime]
+2018-08-19T20:31:26.907Z in=347 out=6 ent=1591 step=18973 brake=12 inf=752091 sec=0.369 inf/sec=2038187
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/glass ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/glass/test.n3 --query http://josd.github.io/eye/i2i/glass/testQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/glass/test.n3 translating file:///tmp/swipl_eye_26624_0
-Done: translated 10 triples in 0.3 ms (36951 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/glass/test.n3 translating file:///tmp/swipl_eye_10937_0
+Done: translated 10 triples in 0.6 ms (17793 triples/s)
 SC=10
-GET http://josd.github.io/eye/i2i/glass/testQ.n3 translating file:///tmp/swipl_eye_26624_1
-Done: translated 36 triples in 0.3 ms (129234 triples/s)
+GET http://josd.github.io/eye/i2i/glass/testQ.n3 translating file:///tmp/swipl_eye_10937_1
+Done: translated 36 triples in 0.7 ms (54144 triples/s)
 SC=36
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 5 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:53.849Z in=46 out=6 ent=7 step=30 brake=2 inf=42760 sec=0.032 inf/sec=1336250
+networking 8 [msec cputime] 170 [msec walltime]
+reasoning 19 [msec cputime] 20 [msec walltime]
+2018-08-19T20:31:27.299Z in=46 out=6 ent=7 step=30 brake=2 inf=43078 sec=0.088 inf/sec=489523
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/gps ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/gps/gps-plugin.n3 --n3 http://josd.github.io/eye/i2i/gps/gps-example1.n3 --query http://josd.github.io/eye/i2i/gps/gps-query1.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_26641_0
-Done: translated 47 triples in 0.4 ms (118805 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_10954_0
+Done: translated 47 triples in 0.9 ms (50175 triples/s)
 SC=47
-GET http://josd.github.io/eye/i2i/gps/gps-example1.n3 translating file:///tmp/swipl_eye_26641_1
-Done: translated 9 triples in 0.6 ms (15529 triples/s)
+GET http://josd.github.io/eye/i2i/gps/gps-example1.n3 translating file:///tmp/swipl_eye_10954_1
+Done: translated 9 triples in 0.5 ms (18061 triples/s)
 SC=9
-GET http://josd.github.io/eye/i2i/gps/gps-query1.n3 translating file:///tmp/swipl_eye_26641_2
-Done: translated 4 triples in 0.4 ms (9264 triples/s)
+GET http://josd.github.io/eye/i2i/gps/gps-query1.n3 translating file:///tmp/swipl_eye_10954_2
+Done: translated 4 triples in 0.7 ms (5553 triples/s)
 SC=4
-networking 4 [msec cputime] 93 [msec walltime]
-reasoning 12 [msec cputime] 12 [msec walltime]
-2018-07-09T19:59:54.093Z in=60 out=1 ent=1 step=1 brake=2 inf=79827 sec=0.040 inf/sec=1995675
+networking 12 [msec cputime] 273 [msec walltime]
+reasoning 36 [msec cputime] 37 [msec walltime]
+2018-08-19T20:31:27.813Z in=60 out=1 ent=1 step=1 brake=2 inf=80327 sec=0.110 inf/sec=730245
 
 eye --n3 http://josd.github.io/eye/i2i/gps/gps-plugin.n3 --n3 http://josd.github.io/eye/i2i/gps/gps-example2.n3 --query http://josd.github.io/eye/i2i/gps/gps-query2.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_26659_0
-Done: translated 47 triples in 0.4 ms (126462 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_10972_0
+Done: translated 47 triples in 1.1 ms (42263 triples/s)
 SC=47
-GET http://josd.github.io/eye/i2i/gps/gps-example2.n3 translating file:///tmp/swipl_eye_26659_1
-Done: translated 150 triples in 0.5 ms (277523 triples/s)
+GET http://josd.github.io/eye/i2i/gps/gps-example2.n3 translating file:///tmp/swipl_eye_10972_1
+Done: translated 150 triples in 1.9 ms (77269 triples/s)
 SC=150
-GET http://josd.github.io/eye/i2i/gps/gps-query2.n3 translating file:///tmp/swipl_eye_26659_2
-Done: translated 4 triples in 0.4 ms (10525 triples/s)
+GET http://josd.github.io/eye/i2i/gps/gps-query2.n3 translating file:///tmp/swipl_eye_10972_2
+Done: translated 4 triples in 0.5 ms (7353 triples/s)
 SC=4
-networking 3 [msec cputime] 67 [msec walltime]
-reasoning 356 [msec cputime] 400 [msec walltime]
-2018-07-09T19:59:54.697Z in=201 out=10 ent=10 step=10 brake=2 inf=2313565 sec=0.385 inf/sec=6009260
+networking 18 [msec cputime] 263 [msec walltime]
+reasoning 951 [msec cputime] 1021 [msec walltime]
+2018-08-19T20:31:29.290Z in=201 out=10 ent=10 step=10 brake=2 inf=2319655 sec=1.028 inf/sec=2256474
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/graph ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/graph/graph.axiom.n3 --n3 http://josd.github.io/eye/i2i/graph/rpo-rules.n3 --query http://josd.github.io/eye/i2i/graph/graph.filter.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/graph/graph.axiom.n3 translating file:///tmp/swipl_eye_26680_0
-Done: translated 12 triples in 0.2 ms (66414 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/graph/graph.axiom.n3 translating file:///tmp/swipl_eye_10993_0
+Done: translated 12 triples in 0.5 ms (23847 triples/s)
 SC=12
-GET http://josd.github.io/eye/i2i/graph/rpo-rules.n3 translating file:///tmp/swipl_eye_26680_1
-Done: translated 156 triples in 0.4 ms (376906 triples/s)
+GET http://josd.github.io/eye/i2i/graph/rpo-rules.n3 translating file:///tmp/swipl_eye_10993_1
+Done: translated 156 triples in 1.6 ms (95405 triples/s)
 SC=156
-GET http://josd.github.io/eye/i2i/graph/graph.filter.n3 translating file:///tmp/swipl_eye_26680_2
-Done: translated 3 triples in 0.2 ms (12606 triples/s)
+GET http://josd.github.io/eye/i2i/graph/graph.filter.n3 translating file:///tmp/swipl_eye_10993_2
+Done: translated 3 triples in 0.5 ms (6418 triples/s)
 SC=3
-networking 4 [msec cputime] 66 [msec walltime]
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:54.938Z in=171 out=1 ent=24 step=70 brake=2 inf=39395 sec=0.033 inf/sec=1193788
+networking 18 [msec cputime] 588 [msec walltime]
+reasoning 17 [msec cputime] 16 [msec walltime]
+2018-08-19T20:31:30.111Z in=171 out=1 ent=24 step=70 brake=2 inf=39703 sec=0.098 inf/sec=405133
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/h2o ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --turtle http://josd.github.io/eye/i2i/h2o/hypothesis-001.n3 --turtle http://josd.github.io/eye/i2i/h2o/data-001.n3 --n3 http://josd.github.io/eye/i2i/h2o/rules-001.n3 --query http://josd.github.io/eye/i2i/h2o/query-001.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/h2o/hypothesis-001.n3 translating file:///tmp/swipl_eye_26700_0
-Done: translated 1 triples in 0.2 ms (4226 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/h2o/hypothesis-001.n3 translating file:///tmp/swipl_eye_11013_0
+Done: translated 1 triples in 0.4 ms (2273 triples/s)
 SC=1
-GET http://josd.github.io/eye/i2i/h2o/data-001.n3 translating file:///tmp/swipl_eye_26700_1
-Done: translated 7 triples in 0.2 ms (30638 triples/s)
+GET http://josd.github.io/eye/i2i/h2o/data-001.n3 translating file:///tmp/swipl_eye_11013_1
+Done: translated 7 triples in 0.7 ms (10243 triples/s)
 SC=7
-GET http://josd.github.io/eye/i2i/h2o/rules-001.n3 translating file:///tmp/swipl_eye_26700_2
-Done: translated 5 triples in 0.2 ms (22528 triples/s)
+GET http://josd.github.io/eye/i2i/h2o/rules-001.n3 translating file:///tmp/swipl_eye_11013_2
+Done: translated 5 triples in 0.4 ms (12163 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/h2o/query-001.n3 translating file:///tmp/swipl_eye_26700_3
-Done: translated 3 triples in 0.2 ms (12672 triples/s)
+GET http://josd.github.io/eye/i2i/h2o/query-001.n3 translating file:///tmp/swipl_eye_11013_3
+Done: translated 3 triples in 0.3 ms (9224 triples/s)
 SC=3
-networking 4 [msec cputime] 88 [msec walltime]
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:55.067Z in=16 out=1 ent=6 step=12 brake=2 inf=27264 sec=0.032 inf/sec=852000
+networking 15 [msec cputime] 337 [msec walltime]
+reasoning 11 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:30.557Z in=16 out=1 ent=6 step=12 brake=2 inf=27536 sec=0.086 inf/sec=320186
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/hanoi ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/hanoi/hanoi.n3 --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 28 [msec walltime]
-GET http://josd.github.io/eye/i2i/hanoi/hanoi.n3 translating file:///tmp/swipl_eye_26724_0
-Done: translated 13 triples in 0.3 ms (40178 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/hanoi/hanoi.n3 translating file:///tmp/swipl_eye_11037_0
+Done: translated 13 triples in 0.6 ms (21025 triples/s)
 SC=13
-networking 2 [msec cputime] 22 [msec walltime]
-reasoning 5 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:55.160Z in=13 out=1 ent=2 step=2 brake=1 inf=34005 sec=0.030 inf/sec=1133500
+networking 5 [msec cputime] 86 [msec walltime]
+reasoning 16 [msec cputime] 16 [msec walltime]
+2018-08-19T20:31:30.757Z in=13 out=1 ent=2 step=2 brake=1 inf=34308 sec=0.081 inf/sec=423556
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/image ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/image/year.n3 --n3 http://josd.github.io/eye/i2i/image/easter.n3 --image ype.pvm
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/image/year.n3 translating file:///tmp/swipl_eye_26737_0
-Done: translated 5 triples in 0.2 ms (20821 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/image/year.n3 translating file:///tmp/swipl_eye_11050_0
+Done: translated 5 triples in 0.4 ms (14213 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/image/easter.n3 translating file:///tmp/swipl_eye_26737_1
-Done: translated 38 triples in 0.4 ms (92121 triples/s)
+GET http://josd.github.io/eye/i2i/image/easter.n3 translating file:///tmp/swipl_eye_11050_1
+Done: translated 38 triples in 1.1 ms (34815 triples/s)
 SC=38
-networking 2 [msec cputime] 45 [msec walltime]
+networking 7 [msec cputime] 164 [msec walltime]
 eye --n3 http://josd.github.io/eye/i2i/image/year.n3 --n3 http://josd.github.io/eye/i2i/image/easter.n3 --query http://josd.github.io/eye/i2i/image/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/image/query.n3 translating file:///tmp/swipl_eye_26749_0
-Done: translated 3 triples in 0.3 ms (8822 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 56 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/image/query.n3 translating file:///tmp/swipl_eye_11062_0
+Done: translated 3 triples in 0.3 ms (8775 triples/s)
 SC=3
-networking 1 [msec cputime] 21 [msec walltime]
-reasoning 161 [msec cputime] 161 [msec walltime]
-2018-07-09T19:59:55.741Z in=46 out=101 ent=202 step=404 brake=2 inf=1216304 sec=0.186 inf/sec=6539269
+networking 3 [msec cputime] 90 [msec walltime]
+reasoning 478 [msec cputime] 479 [msec walltime]
+2018-08-19T20:31:32.308Z in=46 out=101 ent=202 step=404 brake=2 inf=1216607 sec=0.537 inf/sec=2265562
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/iq ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --no-genid --n3 http://josd.github.io/eye/i2i/iq/iq.n3 --pass-all
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/iq/iq.n3 translating file:///tmp/swipl_eye_26762_0
-Done: translated 29 triples in 0.3 ms (113383 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/iq/iq.n3 translating file:///tmp/swipl_eye_11075_0
+Done: translated 29 triples in 0.5 ms (55040 triples/s)
 SC=29
-networking 1 [msec cputime] 22 [msec walltime]
-reasoning 8 [msec cputime] 8 [msec walltime]
-2018-07-09T19:59:55.929Z in=29 out=10 ent=13 step=26 brake=2 inf=55737 sec=0.033 inf/sec=1689000
+networking 4 [msec cputime] 86 [msec walltime]
+reasoning 29 [msec cputime] 29 [msec walltime]
+2018-08-19T20:31:32.639Z in=29 out=10 ent=13 step=26 brake=2 inf=56048 sec=0.093 inf/sec=602667
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/lldm ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/lldm/lldmD.n3 --n3 http://josd.github.io/eye/i2i/lldm/lldmP.n3 --query http://josd.github.io/eye/i2i/lldm/lldmF.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 28 [msec walltime]
-GET http://josd.github.io/eye/i2i/lldm/lldmD.n3 translating file:///tmp/swipl_eye_26775_0
-Done: translated 9 triples in 0.2 ms (37989 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/lldm/lldmD.n3 translating file:///tmp/swipl_eye_11088_0
+Done: translated 9 triples in 0.5 ms (19566 triples/s)
 SC=9
-GET http://josd.github.io/eye/i2i/lldm/lldmP.n3 translating file:///tmp/swipl_eye_26775_1
-Done: translated 343 triples in 0.6 ms (564394 triples/s)
+GET http://josd.github.io/eye/i2i/lldm/lldmP.n3 translating file:///tmp/swipl_eye_11088_1
+Done: translated 343 triples in 2.0 ms (168748 triples/s)
 SC=343
-GET http://josd.github.io/eye/i2i/lldm/lldmF.n3 translating file:///tmp/swipl_eye_26775_2
-Done: translated 4 triples in 0.3 ms (14050 triples/s)
+GET http://josd.github.io/eye/i2i/lldm/lldmF.n3 translating file:///tmp/swipl_eye_11088_2
+Done: translated 4 triples in 0.5 ms (7770 triples/s)
 SC=4
-networking 5 [msec cputime] 67 [msec walltime]
-reasoning 21 [msec cputime] 21 [msec walltime]
-2018-07-09T19:59:56.155Z in=356 out=1 ent=39 step=124 brake=4 inf=129539 sec=0.049 inf/sec=2643653
+networking 24 [msec cputime] 280 [msec walltime]
+reasoning 63 [msec cputime] 63 [msec walltime]
+2018-08-19T20:31:33.189Z in=356 out=1 ent=39 step=124 brake=4 inf=130041 sec=0.151 inf/sec=861199
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/map ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/gps/gps-plugin.n3 --n3 http://josd.github.io/eye/i2i/map/agent1-map.n3 --query http://josd.github.io/eye/i2i/map/agent1-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_26796_0
-Done: translated 47 triples in 0.3 ms (143877 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_11109_0
+Done: translated 47 triples in 0.9 ms (52623 triples/s)
 SC=47
-GET http://josd.github.io/eye/i2i/map/agent1-map.n3 translating file:///tmp/swipl_eye_26796_1
-Done: translated 5 triples in 0.3 ms (18484 triples/s)
+GET http://josd.github.io/eye/i2i/map/agent1-map.n3 translating file:///tmp/swipl_eye_11109_1
+Done: translated 5 triples in 0.4 ms (11976 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/map/agent1-query.n3 translating file:///tmp/swipl_eye_26796_2
-Done: translated 4 triples in 0.2 ms (21689 triples/s)
+GET http://josd.github.io/eye/i2i/map/agent1-query.n3 translating file:///tmp/swipl_eye_11109_2
+Done: translated 4 triples in 0.4 ms (11427 triples/s)
 SC=4
-networking 3 [msec cputime] 66 [msec walltime]
-reasoning 9 [msec cputime] 9 [msec walltime]
-2018-07-09T19:59:56.367Z in=56 out=1 ent=1 step=1 brake=2 inf=61245 sec=0.035 inf/sec=1749857
+networking 11 [msec cputime] 243 [msec walltime]
+reasoning 30 [msec cputime] 30 [msec walltime]
+2018-08-19T20:31:33.669Z in=56 out=1 ent=1 step=1 brake=2 inf=61672 sec=0.103 inf/sec=598757
 
 eye --n3 http://josd.github.io/eye/i2i/gps/gps-plugin.n3 --n3 http://josd.github.io/eye/i2i/map/agent2-map.n3 --proof http://josd.github.io/eye/i2i/map/agent1-proof.n3 --query http://josd.github.io/eye/i2i/map/agent2-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_26814_0
-Done: translated 47 triples in 0.4 ms (106572 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/gps/gps-plugin.n3 translating file:///tmp/swipl_eye_11127_0
+Done: translated 47 triples in 0.9 ms (51977 triples/s)
 SC=47
-GET http://josd.github.io/eye/i2i/map/agent2-map.n3 translating file:///tmp/swipl_eye_26814_1
-Done: translated 5 triples in 0.3 ms (18023 triples/s)
+GET http://josd.github.io/eye/i2i/map/agent2-map.n3 translating file:///tmp/swipl_eye_11127_1
+Done: translated 5 triples in 0.5 ms (9447 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/map/agent1-proof.n3 translating file:///tmp/swipl_eye_26814_2
-Done: translated 253 triples in 0.8 ms (313947 triples/s)
+GET http://josd.github.io/eye/i2i/map/agent1-proof.n3 translating file:///tmp/swipl_eye_11127_2
+Done: translated 253 triples in 2.6 ms (98482 triples/s)
 SC=253
-GET http://josd.github.io/eye/i2i/map/agent2-query.n3 translating file:///tmp/swipl_eye_26814_3
-Done: translated 4 triples in 0.2 ms (21417 triples/s)
+GET http://josd.github.io/eye/i2i/map/agent2-query.n3 translating file:///tmp/swipl_eye_11127_3
+Done: translated 4 triples in 0.4 ms (9719 triples/s)
 SC=4
-networking 6 [msec cputime] 92 [msec walltime]
-reasoning 20 [msec cputime] 19 [msec walltime]
-2018-07-09T19:59:56.613Z in=309 out=1 ent=10 step=82 brake=4 inf=127431 sec=0.050 inf/sec=2548620
+networking 25 [msec cputime] 363 [msec walltime]
+reasoning 60 [msec cputime] 64 [msec walltime]
+2018-08-19T20:31:34.290Z in=309 out=1 ent=10 step=82 brake=4 inf=128005 sec=0.146 inf/sec=876747
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/medic ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/medic/medic.n3 --query http://josd.github.io/eye/i2i/medic/medicF.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/medic/medic.n3 translating file:///tmp/swipl_eye_26839_0
-Done: translated 27 triples in 0.3 ms (83184 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/medic/medic.n3 translating file:///tmp/swipl_eye_11152_0
+Done: translated 27 triples in 0.8 ms (35337 triples/s)
 SC=27
-GET http://josd.github.io/eye/i2i/medic/medicF.n3 translating file:///tmp/swipl_eye_26839_1
-Done: translated 3 triples in 0.2 ms (12723 triples/s)
+GET http://josd.github.io/eye/i2i/medic/medicF.n3 translating file:///tmp/swipl_eye_11152_1
+Done: translated 3 triples in 0.5 ms (5682 triples/s)
 SC=3
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 5 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:56.800Z in=30 out=2 ent=4 step=8 brake=4 inf=34379 sec=0.031 inf/sec=1109000
+networking 9 [msec cputime] 179 [msec walltime]
+reasoning 16 [msec cputime] 16 [msec walltime]
+2018-08-19T20:31:34.690Z in=30 out=2 ent=4 step=8 brake=4 inf=34699 sec=0.089 inf/sec=389876
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/mmln ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/mmln/mmln-gv-example.n3 --n3 http://josd.github.io/eye/i2i/mmln/mmln-gv-mln.n3 --n3 http://josd.github.io/eye/i2i/mmln/mmln-plugin.n3 --query http://josd.github.io/eye/i2i/mmln/mmln-gv-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/mmln/mmln-gv-example.n3 translating file:///tmp/swipl_eye_26856_0
-Done: translated 15 triples in 0.2 ms (64017 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/mmln/mmln-gv-example.n3 translating file:///tmp/swipl_eye_11169_0
+Done: translated 15 triples in 0.5 ms (31212 triples/s)
 SC=15
-GET http://josd.github.io/eye/i2i/mmln/mmln-gv-mln.n3 translating file:///tmp/swipl_eye_26856_1
-Done: translated 1516 triples in 7.4 ms (206159 triples/s)
+GET http://josd.github.io/eye/i2i/mmln/mmln-gv-mln.n3 translating file:///tmp/swipl_eye_11169_1
+Done: translated 1516 triples in 24.3 ms (62391 triples/s)
 SC=1516
-GET http://josd.github.io/eye/i2i/mmln/mmln-plugin.n3 translating file:///tmp/swipl_eye_26856_2
-Done: translated 10 triples in 0.5 ms (21587 triples/s)
+GET http://josd.github.io/eye/i2i/mmln/mmln-plugin.n3 translating file:///tmp/swipl_eye_11169_2
+Done: translated 10 triples in 0.6 ms (16158 triples/s)
 SC=10
-GET http://josd.github.io/eye/i2i/mmln/mmln-gv-query.n3 translating file:///tmp/swipl_eye_26856_3
-Done: translated 5 triples in 0.3 ms (18608 triples/s)
+GET http://josd.github.io/eye/i2i/mmln/mmln-gv-query.n3 translating file:///tmp/swipl_eye_11169_3
+Done: translated 5 triples in 0.4 ms (12273 triples/s)
 SC=5
-networking 13 [msec cputime] 103 [msec walltime]
-reasoning 236 [msec cputime] 236 [msec walltime]
-2018-07-09T19:59:57.287Z in=1546 out=47 ent=105 step=330 brake=4 inf=1534762 sec=0.274 inf/sec=5601321
+networking 42 [msec cputime] 420 [msec walltime]
+reasoning 886 [msec cputime] 886 [msec walltime]
+2018-08-19T20:31:36.202Z in=1546 out=47 ent=105 step=330 brake=4 inf=1536673 sec=0.991 inf/sec=1550629
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/mq ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --wcache http://josd.github.io/eye/i2i/mq . --turtle http://josd.github.io/eye/i2i/mq/data.n3 --multi-query
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 29 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 84 [msec walltime]
 GET http://josd.github.io/eye/i2i/mq/data.n3 FROM ./data.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/data.n3
-Done: translated 100000 triples in 1048.2 ms (95399 triples/s)
+Done: translated 100000 triples in 3303.1 ms (30275 triples/s)
 SC=100000
-networking 1052 [msec cputime] 1054 [msec walltime]
+networking 3318 [msec cputime] 3322 [msec walltime]
 GET http://josd.github.io/eye/i2i/mq/queries/query1.n3 FROM ./queries/query1.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query1.n3
-Done: translated 6 triples in 0.3 ms (23544 triples/s)
+Done: translated 6 triples in 0.5 ms (11736 triples/s)
 SC=6
-reasoning 33 [msec cputime] 34 [msec walltime]
-2018-07-09T19:59:58.514Z mq=1 out=0 inf=1896 sec=0.034 out/sec=0 inf/sec=55765
+reasoning 85 [msec cputime] 89 [msec walltime]
+2018-08-19T20:31:39.822Z mq=1 out=0 inf=1873 sec=0.089 out/sec=0 inf/sec=21045
 
 GET http://josd.github.io/eye/i2i/mq/queries/query2.n3 FROM ./queries/query2.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query2.n3
-Done: translated 6 triples in 0.2 ms (24563 triples/s)
+Done: translated 6 triples in 0.4 ms (14685 triples/s)
 SC=6
-reasoning 5 [msec cputime] 6 [msec walltime]
-2018-07-09T19:59:58.521Z mq=2 out=3 inf=16956 sec=0.006 out/sec=500 inf/sec=2826000
+reasoning 14 [msec cputime] 16 [msec walltime]
+2018-08-19T20:31:39.839Z mq=2 out=3 inf=16984 sec=0.016 out/sec=188 inf/sec=1061500
 
 GET http://josd.github.io/eye/i2i/mq/queries/query3.n3 FROM ./queries/query3.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query3.n3
-Done: translated 6 triples in 0.2 ms (31796 triples/s)
+Done: translated 6 triples in 0.3 ms (17247 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.523Z mq=3 out=0 inf=1907 sec=0.002 out/sec=0 inf/sec=953500
+reasoning 3 [msec cputime] 6 [msec walltime]
+2018-08-19T20:31:39.845Z mq=3 out=0 inf=1885 sec=0.006 out/sec=0 inf/sec=314167
 
 GET http://josd.github.io/eye/i2i/mq/queries/query4.n3 FROM ./queries/query4.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query4.n3
-Done: translated 6 triples in 0.2 ms (32933 triples/s)
+Done: translated 6 triples in 0.5 ms (12836 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.526Z mq=4 out=1 inf=7566 sec=0.003 out/sec=333 inf/sec=2522000
+reasoning 9 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:39.857Z mq=4 out=1 inf=7569 sec=0.011 out/sec=91 inf/sec=688091
 
 GET http://josd.github.io/eye/i2i/mq/queries/query5.n3 FROM ./queries/query5.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query5.n3
-Done: translated 6 triples in 0.2 ms (32271 triples/s)
+Done: translated 6 triples in 0.3 ms (17230 triples/s)
 SC=6
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.531Z mq=5 out=4 inf=13424 sec=0.004 out/sec=1000 inf/sec=3356000
+reasoning 11 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:39.871Z mq=5 out=4 inf=13447 sec=0.013 out/sec=308 inf/sec=1034385
 
 GET http://josd.github.io/eye/i2i/mq/queries/query6.n3 FROM ./queries/query6.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query6.n3
-Done: translated 6 triples in 0.2 ms (39116 triples/s)
+Done: translated 6 triples in 0.3 ms (17991 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.533Z mq=6 out=0 inf=1907 sec=0.002 out/sec=0 inf/sec=953500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:39.877Z mq=6 out=0 inf=1885 sec=0.005 out/sec=0 inf/sec=377000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query7.n3 FROM ./queries/query7.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query7.n3
-Done: translated 6 triples in 0.2 ms (28851 triples/s)
+Done: translated 6 triples in 0.3 ms (17192 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.538Z mq=7 out=2 inf=11648 sec=0.004 out/sec=500 inf/sec=2912000
+reasoning 12 [msec cputime] 14 [msec walltime]
+2018-08-19T20:31:39.891Z mq=7 out=2 inf=11671 sec=0.014 out/sec=143 inf/sec=833643
 
 GET http://josd.github.io/eye/i2i/mq/queries/query8.n3 FROM ./queries/query8.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query8.n3
-Done: translated 6 triples in 0.2 ms (38771 triples/s)
+Done: translated 6 triples in 0.3 ms (20979 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.541Z mq=8 out=1 inf=7516 sec=0.003 out/sec=333 inf/sec=2505333
+reasoning 9 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:39.903Z mq=8 out=1 inf=7520 sec=0.011 out/sec=91 inf/sec=683636
 
 GET http://josd.github.io/eye/i2i/mq/queries/query9.n3 FROM ./queries/query9.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query9.n3
-Done: translated 6 triples in 0.2 ms (39455 triples/s)
+Done: translated 6 triples in 0.3 ms (20666 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.545Z mq=9 out=1 inf=7666 sec=0.003 out/sec=333 inf/sec=2555333
+reasoning 6 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:39.913Z mq=9 out=1 inf=7669 sec=0.009 out/sec=111 inf/sec=852111
 
 GET http://josd.github.io/eye/i2i/mq/queries/query10.n3 FROM ./queries/query10.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query10.n3
-Done: translated 6 triples in 0.2 ms (29778 triples/s)
+Done: translated 6 triples in 0.3 ms (22113 triples/s)
 SC=6
-reasoning 4 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:58.550Z mq=10 out=3 inf=13266 sec=0.005 out/sec=600 inf/sec=2653200
+reasoning 13 [msec cputime] 15 [msec walltime]
+2018-08-19T20:31:39.928Z mq=10 out=3 inf=13293 sec=0.015 out/sec=200 inf/sec=886200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query11.n3 FROM ./queries/query11.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query11.n3
-Done: translated 6 triples in 0.2 ms (29656 triples/s)
+Done: translated 6 triples in 0.3 ms (18716 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.552Z mq=11 out=0 inf=1879 sec=0.001 out/sec=0 inf/sec=1879000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:39.934Z mq=11 out=0 inf=1857 sec=0.005 out/sec=0 inf/sec=371400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query12.n3 FROM ./queries/query12.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query12.n3
-Done: translated 6 triples in 0.2 ms (34294 triples/s)
+Done: translated 6 triples in 0.3 ms (17834 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.554Z mq=12 out=0 inf=1894 sec=0.001 out/sec=0 inf/sec=1894000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:39.939Z mq=12 out=0 inf=1871 sec=0.005 out/sec=0 inf/sec=374200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query13.n3 FROM ./queries/query13.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query13.n3
-Done: translated 6 triples in 0.2 ms (36300 triples/s)
+Done: translated 6 triples in 0.3 ms (18856 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.556Z mq=13 out=0 inf=1948 sec=0.002 out/sec=0 inf/sec=974000
+reasoning 4 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:39.946Z mq=13 out=0 inf=1926 sec=0.005 out/sec=0 inf/sec=385200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query14.n3 FROM ./queries/query14.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query14.n3
-Done: translated 6 triples in 0.2 ms (32957 triples/s)
+Done: translated 6 triples in 0.3 ms (18885 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.559Z mq=14 out=0 inf=1899 sec=0.002 out/sec=0 inf/sec=949500
+reasoning 2 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:39.951Z mq=14 out=0 inf=1877 sec=0.005 out/sec=0 inf/sec=375400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query15.n3 FROM ./queries/query15.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query15.n3
-Done: translated 6 triples in 0.2 ms (33849 triples/s)
+Done: translated 6 triples in 0.4 ms (15962 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.562Z mq=15 out=1 inf=7274 sec=0.003 out/sec=333 inf/sec=2424667
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:39.962Z mq=15 out=1 inf=7278 sec=0.010 out/sec=100 inf/sec=727800
 
 GET http://josd.github.io/eye/i2i/mq/queries/query16.n3 FROM ./queries/query16.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query16.n3
-Done: translated 6 triples in 0.2 ms (33778 triples/s)
+Done: translated 6 triples in 0.3 ms (17299 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.565Z mq=16 out=1 inf=6044 sec=0.002 out/sec=500 inf/sec=3022000
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:39.972Z mq=16 out=1 inf=6048 sec=0.009 out/sec=111 inf/sec=672000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query17.n3 FROM ./queries/query17.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query17.n3
-Done: translated 6 triples in 0.2 ms (32188 triples/s)
+Done: translated 6 triples in 0.4 ms (16675 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.569Z mq=17 out=1 inf=7513 sec=0.003 out/sec=333 inf/sec=2504333
+reasoning 8 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:39.982Z mq=17 out=1 inf=7516 sec=0.009 out/sec=111 inf/sec=835111
 
 GET http://josd.github.io/eye/i2i/mq/queries/query18.n3 FROM ./queries/query18.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query18.n3
-Done: translated 6 triples in 0.2 ms (34227 triples/s)
+Done: translated 6 triples in 0.3 ms (18639 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.571Z mq=18 out=0 inf=1846 sec=0.002 out/sec=0 inf/sec=923000
+reasoning 2 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:39.988Z mq=18 out=0 inf=1824 sec=0.005 out/sec=0 inf/sec=364800
 
 GET http://josd.github.io/eye/i2i/mq/queries/query19.n3 FROM ./queries/query19.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query19.n3
-Done: translated 6 triples in 0.2 ms (33287 triples/s)
+Done: translated 6 triples in 0.3 ms (18956 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.574Z mq=19 out=1 inf=6190 sec=0.002 out/sec=500 inf/sec=3095000
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:39.999Z mq=19 out=1 inf=6193 sec=0.010 out/sec=100 inf/sec=619300
 
 GET http://josd.github.io/eye/i2i/mq/queries/query20.n3 FROM ./queries/query20.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query20.n3
-Done: translated 6 triples in 0.2 ms (34364 triples/s)
+Done: translated 6 triples in 0.5 ms (12255 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.576Z mq=20 out=0 inf=1824 sec=0.001 out/sec=0 inf/sec=1824000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.005Z mq=20 out=0 inf=1802 sec=0.005 out/sec=0 inf/sec=360400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query21.n3 FROM ./queries/query21.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query21.n3
-Done: translated 6 triples in 0.2 ms (36701 triples/s)
+Done: translated 6 triples in 0.3 ms (18889 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.580Z mq=21 out=1 inf=7529 sec=0.003 out/sec=333 inf/sec=2509667
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.016Z mq=21 out=1 inf=7532 sec=0.010 out/sec=100 inf/sec=753200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query22.n3 FROM ./queries/query22.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query22.n3
-Done: translated 6 triples in 0.2 ms (29429 triples/s)
+Done: translated 6 triples in 0.3 ms (19155 triples/s)
 SC=6
-reasoning 4 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:58.585Z mq=22 out=3 inf=15685 sec=0.005 out/sec=600 inf/sec=3137000
+reasoning 14 [msec cputime] 17 [msec walltime]
+2018-08-19T20:31:40.033Z mq=22 out=3 inf=15728 sec=0.017 out/sec=176 inf/sec=925176
 
 GET http://josd.github.io/eye/i2i/mq/queries/query23.n3 FROM ./queries/query23.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query23.n3
-Done: translated 6 triples in 0.3 ms (23311 triples/s)
+Done: translated 6 triples in 0.4 ms (15410 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.590Z mq=23 out=3 inf=10989 sec=0.004 out/sec=750 inf/sec=2747250
+reasoning 9 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:40.045Z mq=23 out=3 inf=11002 sec=0.011 out/sec=273 inf/sec=1000182
 
 GET http://josd.github.io/eye/i2i/mq/queries/query24.n3 FROM ./queries/query24.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query24.n3
-Done: translated 6 triples in 0.2 ms (37989 triples/s)
+Done: translated 6 triples in 0.4 ms (15457 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.594Z mq=24 out=1 inf=6061 sec=0.003 out/sec=333 inf/sec=2020333
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.055Z mq=24 out=1 inf=6064 sec=0.009 out/sec=111 inf/sec=673778
 
 GET http://josd.github.io/eye/i2i/mq/queries/query25.n3 FROM ./queries/query25.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query25.n3
-Done: translated 6 triples in 0.2 ms (34927 triples/s)
+Done: translated 6 triples in 0.3 ms (20706 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.597Z mq=25 out=1 inf=5189 sec=0.002 out/sec=500 inf/sec=2594500
+reasoning 5 [msec cputime] 7 [msec walltime]
+2018-08-19T20:31:40.063Z mq=25 out=1 inf=5177 sec=0.007 out/sec=143 inf/sec=739571
 
 GET http://josd.github.io/eye/i2i/mq/queries/query26.n3 FROM ./queries/query26.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query26.n3
-Done: translated 6 triples in 0.2 ms (34452 triples/s)
+Done: translated 6 triples in 0.3 ms (18527 triples/s)
 SC=6
-reasoning 5 [msec cputime] 6 [msec walltime]
-2018-07-09T19:59:58.603Z mq=26 out=5 inf=19150 sec=0.006 out/sec=833 inf/sec=3191667
+reasoning 16 [msec cputime] 18 [msec walltime]
+2018-08-19T20:31:40.081Z mq=26 out=5 inf=19204 sec=0.018 out/sec=278 inf/sec=1066889
 
 GET http://josd.github.io/eye/i2i/mq/queries/query27.n3 FROM ./queries/query27.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query27.n3
-Done: translated 6 triples in 0.2 ms (36219 triples/s)
+Done: translated 6 triples in 0.3 ms (20180 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.605Z mq=27 out=0 inf=1909 sec=0.002 out/sec=0 inf/sec=954500
+reasoning 2 [msec cputime] 4 [msec walltime]
+2018-08-19T20:31:40.086Z mq=27 out=0 inf=1887 sec=0.004 out/sec=0 inf/sec=471750
 
 GET http://josd.github.io/eye/i2i/mq/queries/query28.n3 FROM ./queries/query28.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query28.n3
-Done: translated 6 triples in 0.2 ms (31453 triples/s)
+Done: translated 6 triples in 0.8 ms (7810 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.608Z mq=28 out=1 inf=6098 sec=0.002 out/sec=500 inf/sec=3049000
+reasoning 9 [msec cputime] 12 [msec walltime]
+2018-08-19T20:31:40.099Z mq=28 out=1 inf=6100 sec=0.012 out/sec=83 inf/sec=508333
 
 GET http://josd.github.io/eye/i2i/mq/queries/query29.n3 FROM ./queries/query29.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query29.n3
-Done: translated 6 triples in 0.2 ms (28817 triples/s)
+Done: translated 6 triples in 0.4 ms (15938 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.610Z mq=29 out=0 inf=1816 sec=0.002 out/sec=0 inf/sec=908000
+reasoning 3 [msec cputime] 6 [msec walltime]
+2018-08-19T20:31:40.105Z mq=29 out=0 inf=1794 sec=0.006 out/sec=0 inf/sec=299000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query30.n3 FROM ./queries/query30.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query30.n3
-Done: translated 6 triples in 0.2 ms (35916 triples/s)
+Done: translated 6 triples in 0.3 ms (19507 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.613Z mq=30 out=0 inf=1913 sec=0.002 out/sec=0 inf/sec=956500
+reasoning 3 [msec cputime] 4 [msec walltime]
+2018-08-19T20:31:40.111Z mq=30 out=0 inf=1891 sec=0.004 out/sec=0 inf/sec=472750
 
 GET http://josd.github.io/eye/i2i/mq/queries/query31.n3 FROM ./queries/query31.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query31.n3
-Done: translated 6 triples in 0.2 ms (34533 triples/s)
+Done: translated 6 triples in 0.3 ms (21280 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.615Z mq=31 out=0 inf=1919 sec=0.002 out/sec=0 inf/sec=959500
+reasoning 3 [msec cputime] 6 [msec walltime]
+2018-08-19T20:31:40.117Z mq=31 out=0 inf=1897 sec=0.006 out/sec=0 inf/sec=316167
 
 GET http://josd.github.io/eye/i2i/mq/queries/query32.n3 FROM ./queries/query32.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query32.n3
-Done: translated 6 triples in 0.2 ms (24630 triples/s)
+Done: translated 6 triples in 0.3 ms (19142 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.619Z mq=32 out=1 inf=7524 sec=0.004 out/sec=250 inf/sec=1881000
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.128Z mq=32 out=1 inf=7527 sec=0.010 out/sec=100 inf/sec=752700
 
 GET http://josd.github.io/eye/i2i/mq/queries/query33.n3 FROM ./queries/query33.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query33.n3
-Done: translated 6 triples in 0.2 ms (25844 triples/s)
+Done: translated 6 triples in 0.4 ms (15170 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.621Z mq=33 out=0 inf=1881 sec=0.002 out/sec=0 inf/sec=940500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.134Z mq=33 out=0 inf=1860 sec=0.005 out/sec=0 inf/sec=372000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query34.n3 FROM ./queries/query34.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query34.n3
-Done: translated 6 triples in 0.2 ms (31605 triples/s)
+Done: translated 6 triples in 0.3 ms (17264 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.626Z mq=34 out=1 inf=7592 sec=0.003 out/sec=333 inf/sec=2530667
+reasoning 9 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:40.146Z mq=34 out=1 inf=7595 sec=0.011 out/sec=91 inf/sec=690455
 
 GET http://josd.github.io/eye/i2i/mq/queries/query35.n3 FROM ./queries/query35.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query35.n3
-Done: translated 6 triples in 0.2 ms (34874 triples/s)
+Done: translated 6 triples in 0.4 ms (16055 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.629Z mq=35 out=1 inf=7509 sec=0.003 out/sec=333 inf/sec=2503000
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.156Z mq=35 out=1 inf=7511 sec=0.010 out/sec=100 inf/sec=751100
 
 GET http://josd.github.io/eye/i2i/mq/queries/query36.n3 FROM ./queries/query36.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query36.n3
-Done: translated 6 triples in 0.2 ms (27670 triples/s)
+Done: translated 6 triples in 0.4 ms (16998 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.631Z mq=36 out=0 inf=1913 sec=0.002 out/sec=0 inf/sec=956500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.162Z mq=36 out=0 inf=1891 sec=0.005 out/sec=0 inf/sec=378200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query37.n3 FROM ./queries/query37.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query37.n3
-Done: translated 6 triples in 0.2 ms (34832 triples/s)
+Done: translated 6 triples in 0.3 ms (18298 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.633Z mq=37 out=0 inf=1885 sec=0.001 out/sec=0 inf/sec=1885000
+reasoning 2 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.167Z mq=37 out=0 inf=1863 sec=0.005 out/sec=0 inf/sec=372600
 
 GET http://josd.github.io/eye/i2i/mq/queries/query38.n3 FROM ./queries/query38.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query38.n3
-Done: translated 6 triples in 0.2 ms (32326 triples/s)
+Done: translated 6 triples in 0.3 ms (17359 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.637Z mq=38 out=1 inf=7599 sec=0.003 out/sec=333 inf/sec=2533000
+reasoning 11 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:40.181Z mq=38 out=1 inf=7602 sec=0.013 out/sec=77 inf/sec=584769
 
 GET http://josd.github.io/eye/i2i/mq/queries/query39.n3 FROM ./queries/query39.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query39.n3
-Done: translated 6 triples in 0.2 ms (36069 triples/s)
+Done: translated 6 triples in 0.4 ms (16841 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.640Z mq=39 out=1 inf=6037 sec=0.003 out/sec=333 inf/sec=2012333
+reasoning 6 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.190Z mq=39 out=1 inf=6040 sec=0.009 out/sec=111 inf/sec=671111
 
 GET http://josd.github.io/eye/i2i/mq/queries/query40.n3 FROM ./queries/query40.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query40.n3
-Done: translated 6 triples in 0.2 ms (29745 triples/s)
+Done: translated 6 triples in 0.3 ms (18321 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.644Z mq=40 out=1 inf=7495 sec=0.003 out/sec=333 inf/sec=2498333
+reasoning 8 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.200Z mq=40 out=1 inf=7499 sec=0.009 out/sec=111 inf/sec=833222
 
 GET http://josd.github.io/eye/i2i/mq/queries/query41.n3 FROM ./queries/query41.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query41.n3
-Done: translated 6 triples in 0.2 ms (31835 triples/s)
+Done: translated 6 triples in 0.4 ms (16714 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.646Z mq=41 out=0 inf=1894 sec=0.002 out/sec=0 inf/sec=947000
+reasoning 2 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.206Z mq=41 out=0 inf=1872 sec=0.005 out/sec=0 inf/sec=374400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query42.n3 FROM ./queries/query42.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query42.n3
-Done: translated 6 triples in 0.2 ms (38593 triples/s)
+Done: translated 6 triples in 0.3 ms (17593 triples/s)
 SC=6
-reasoning 7 [msec cputime] 7 [msec walltime]
-2018-07-09T19:59:58.654Z mq=42 out=5 inf=21243 sec=0.007 out/sec=714 inf/sec=3034714
+reasoning 19 [msec cputime] 21 [msec walltime]
+2018-08-19T20:31:40.227Z mq=42 out=5 inf=21312 sec=0.021 out/sec=238 inf/sec=1014857
 
 GET http://josd.github.io/eye/i2i/mq/queries/query43.n3 FROM ./queries/query43.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query43.n3
-Done: translated 6 triples in 0.2 ms (32073 triples/s)
+Done: translated 6 triples in 0.4 ms (16148 triples/s)
 SC=6
-reasoning 4 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:58.659Z mq=43 out=3 inf=13762 sec=0.005 out/sec=600 inf/sec=2752400
+reasoning 13 [msec cputime] 15 [msec walltime]
+2018-08-19T20:31:40.243Z mq=43 out=3 inf=13795 sec=0.015 out/sec=200 inf/sec=919667
 
 GET http://josd.github.io/eye/i2i/mq/queries/query44.n3 FROM ./queries/query44.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query44.n3
-Done: translated 6 triples in 0.2 ms (24899 triples/s)
+Done: translated 6 triples in 0.4 ms (16470 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.663Z mq=44 out=1 inf=7569 sec=0.003 out/sec=333 inf/sec=2523000
+reasoning 8 [msec cputime] 12 [msec walltime]
+2018-08-19T20:31:40.256Z mq=44 out=1 inf=7572 sec=0.012 out/sec=83 inf/sec=631000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query45.n3 FROM ./queries/query45.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query45.n3
-Done: translated 6 triples in 0.2 ms (31424 triples/s)
+Done: translated 6 triples in 0.3 ms (17426 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.665Z mq=45 out=0 inf=1799 sec=0.002 out/sec=0 inf/sec=899500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.262Z mq=45 out=0 inf=1777 sec=0.005 out/sec=0 inf/sec=355400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query46.n3 FROM ./queries/query46.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query46.n3
-Done: translated 6 triples in 0.2 ms (36665 triples/s)
+Done: translated 6 triples in 0.3 ms (18174 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.667Z mq=46 out=0 inf=1956 sec=0.002 out/sec=0 inf/sec=978000
+reasoning 4 [msec cputime] 6 [msec walltime]
+2018-08-19T20:31:40.268Z mq=46 out=0 inf=1934 sec=0.006 out/sec=0 inf/sec=322333
 
 GET http://josd.github.io/eye/i2i/mq/queries/query47.n3 FROM ./queries/query47.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query47.n3
-Done: translated 6 triples in 0.2 ms (28359 triples/s)
+Done: translated 6 triples in 0.5 ms (12081 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.669Z mq=47 out=0 inf=1824 sec=0.002 out/sec=0 inf/sec=912000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.274Z mq=47 out=0 inf=1802 sec=0.005 out/sec=0 inf/sec=360400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query48.n3 FROM ./queries/query48.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query48.n3
-Done: translated 6 triples in 0.2 ms (36372 triples/s)
+Done: translated 6 triples in 0.3 ms (17240 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.672Z mq=48 out=1 inf=5174 sec=0.003 out/sec=333 inf/sec=1724667
+reasoning 6 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.284Z mq=48 out=1 inf=5162 sec=0.009 out/sec=111 inf/sec=573556
 
 GET http://josd.github.io/eye/i2i/mq/queries/query49.n3 FROM ./queries/query49.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query49.n3
-Done: translated 6 triples in 0.2 ms (37110 triples/s)
+Done: translated 6 triples in 0.3 ms (20474 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.675Z mq=49 out=0 inf=1884 sec=0.002 out/sec=0 inf/sec=942000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.289Z mq=49 out=0 inf=1862 sec=0.005 out/sec=0 inf/sec=372400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query50.n3 FROM ./queries/query50.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query50.n3
-Done: translated 6 triples in 0.2 ms (30357 triples/s)
+Done: translated 6 triples in 0.3 ms (19831 triples/s)
 SC=6
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.679Z mq=50 out=3 inf=11781 sec=0.004 out/sec=750 inf/sec=2945250
+reasoning 12 [msec cputime] 14 [msec walltime]
+2018-08-19T20:31:40.304Z mq=50 out=3 inf=11824 sec=0.014 out/sec=214 inf/sec=844571
 
 GET http://josd.github.io/eye/i2i/mq/queries/query51.n3 FROM ./queries/query51.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query51.n3
-Done: translated 6 triples in 0.2 ms (35221 triples/s)
+Done: translated 6 triples in 0.4 ms (15833 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.682Z mq=51 out=1 inf=6045 sec=0.003 out/sec=333 inf/sec=2015000
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.314Z mq=51 out=1 inf=6048 sec=0.009 out/sec=111 inf/sec=672000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query52.n3 FROM ./queries/query52.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query52.n3
-Done: translated 6 triples in 0.2 ms (28983 triples/s)
+Done: translated 6 triples in 0.3 ms (17842 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.686Z mq=52 out=1 inf=7485 sec=0.003 out/sec=333 inf/sec=2495000
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.324Z mq=52 out=1 inf=7488 sec=0.009 out/sec=111 inf/sec=832000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query53.n3 FROM ./queries/query53.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query53.n3
-Done: translated 6 triples in 0.2 ms (37735 triples/s)
+Done: translated 6 triples in 0.3 ms (17658 triples/s)
 SC=6
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.690Z mq=53 out=2 inf=9326 sec=0.004 out/sec=500 inf/sec=2331500
+reasoning 8 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:40.336Z mq=53 out=2 inf=9334 sec=0.011 out/sec=182 inf/sec=848545
 
 GET http://josd.github.io/eye/i2i/mq/queries/query54.n3 FROM ./queries/query54.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query54.n3
-Done: translated 6 triples in 0.2 ms (33295 triples/s)
+Done: translated 6 triples in 0.4 ms (16360 triples/s)
 SC=6
-reasoning 0 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.692Z mq=54 out=0 inf=1862 sec=0.001 out/sec=0 inf/sec=1862000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.341Z mq=54 out=0 inf=1840 sec=0.005 out/sec=0 inf/sec=368000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query55.n3 FROM ./queries/query55.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query55.n3
-Done: translated 6 triples in 0.2 ms (39092 triples/s)
+Done: translated 6 triples in 0.4 ms (15324 triples/s)
 SC=6
-reasoning 6 [msec cputime] 6 [msec walltime]
-2018-07-09T19:59:58.698Z mq=55 out=5 inf=18887 sec=0.006 out/sec=833 inf/sec=3147833
+reasoning 17 [msec cputime] 19 [msec walltime]
+2018-08-19T20:31:40.361Z mq=55 out=5 inf=18940 sec=0.019 out/sec=263 inf/sec=996842
 
 GET http://josd.github.io/eye/i2i/mq/queries/query56.n3 FROM ./queries/query56.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query56.n3
-Done: translated 6 triples in 0.2 ms (36515 triples/s)
+Done: translated 6 triples in 0.4 ms (16073 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.702Z mq=56 out=1 inf=7479 sec=0.003 out/sec=333 inf/sec=2493000
+reasoning 6 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.371Z mq=56 out=1 inf=7488 sec=0.009 out/sec=111 inf/sec=832000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query57.n3 FROM ./queries/query57.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query57.n3
-Done: translated 6 triples in 0.2 ms (27437 triples/s)
+Done: translated 6 triples in 0.4 ms (16642 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.705Z mq=57 out=1 inf=4682 sec=0.002 out/sec=500 inf/sec=2341000
+reasoning 5 [msec cputime] 8 [msec walltime]
+2018-08-19T20:31:40.379Z mq=57 out=1 inf=4670 sec=0.008 out/sec=125 inf/sec=583750
 
 GET http://josd.github.io/eye/i2i/mq/queries/query58.n3 FROM ./queries/query58.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query58.n3
-Done: translated 6 triples in 0.2 ms (27136 triples/s)
+Done: translated 6 triples in 0.4 ms (16543 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.707Z mq=58 out=0 inf=1942 sec=0.001 out/sec=0 inf/sec=1942000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.385Z mq=58 out=0 inf=1919 sec=0.005 out/sec=0 inf/sec=383800
 
 GET http://josd.github.io/eye/i2i/mq/queries/query59.n3 FROM ./queries/query59.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query59.n3
-Done: translated 6 triples in 0.2 ms (30706 triples/s)
+Done: translated 6 triples in 0.3 ms (19027 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.711Z mq=59 out=2 inf=9251 sec=0.004 out/sec=500 inf/sec=2312750
+reasoning 12 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:40.399Z mq=59 out=2 inf=9258 sec=0.013 out/sec=154 inf/sec=712154
 
 GET http://josd.github.io/eye/i2i/mq/queries/query60.n3 FROM ./queries/query60.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query60.n3
-Done: translated 6 triples in 0.2 ms (30428 triples/s)
+Done: translated 6 triples in 0.5 ms (12845 triples/s)
 SC=6
-reasoning 11 [msec cputime] 11 [msec walltime]
-2018-07-09T19:59:58.723Z mq=60 out=3 inf=13355 sec=0.011 out/sec=273 inf/sec=1214091
+reasoning 28 [msec cputime] 31 [msec walltime]
+2018-08-19T20:31:40.431Z mq=60 out=3 inf=13383 sec=0.031 out/sec=97 inf/sec=431710
 
 GET http://josd.github.io/eye/i2i/mq/queries/query61.n3 FROM ./queries/query61.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query61.n3
-Done: translated 6 triples in 0.1 ms (61809 triples/s)
+Done: translated 6 triples in 0.3 ms (21994 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.725Z mq=61 out=0 inf=1878 sec=0.002 out/sec=0 inf/sec=939000
+reasoning 2 [msec cputime] 4 [msec walltime]
+2018-08-19T20:31:40.436Z mq=61 out=0 inf=1856 sec=0.004 out/sec=0 inf/sec=464000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query62.n3 FROM ./queries/query62.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query62.n3
-Done: translated 6 triples in 0.2 ms (35120 triples/s)
+Done: translated 6 triples in 0.3 ms (20994 triples/s)
 SC=6
-reasoning 4 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:58.730Z mq=62 out=5 inf=14731 sec=0.005 out/sec=1000 inf/sec=2946200
+reasoning 12 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:40.450Z mq=62 out=5 inf=14783 sec=0.013 out/sec=385 inf/sec=1137154
 
 GET http://josd.github.io/eye/i2i/mq/queries/query63.n3 FROM ./queries/query63.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query63.n3
-Done: translated 6 triples in 0.2 ms (32634 triples/s)
+Done: translated 6 triples in 0.4 ms (17045 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.732Z mq=63 out=0 inf=1878 sec=0.001 out/sec=0 inf/sec=1878000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.456Z mq=63 out=0 inf=1856 sec=0.005 out/sec=0 inf/sec=371200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query64.n3 FROM ./queries/query64.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query64.n3
-Done: translated 6 triples in 0.2 ms (31064 triples/s)
+Done: translated 6 triples in 1.2 ms (5217 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.734Z mq=64 out=0 inf=1956 sec=0.001 out/sec=0 inf/sec=1956000
+reasoning 3 [msec cputime] 6 [msec walltime]
+2018-08-19T20:31:40.463Z mq=64 out=0 inf=1934 sec=0.006 out/sec=0 inf/sec=322333
 
 GET http://josd.github.io/eye/i2i/mq/queries/query65.n3 FROM ./queries/query65.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query65.n3
-Done: translated 6 triples in 0.1 ms (56230 triples/s)
+Done: translated 6 triples in 0.7 ms (8101 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.737Z mq=65 out=1 inf=4682 sec=0.002 out/sec=500 inf/sec=2341000
+reasoning 6 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.472Z mq=65 out=1 inf=4670 sec=0.009 out/sec=111 inf/sec=518889
 
 GET http://josd.github.io/eye/i2i/mq/queries/query66.n3 FROM ./queries/query66.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query66.n3
-Done: translated 6 triples in 0.2 ms (35314 triples/s)
+Done: translated 6 triples in 0.6 ms (10222 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.740Z mq=66 out=2 inf=7604 sec=0.003 out/sec=667 inf/sec=2534667
+reasoning 7 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.483Z mq=66 out=2 inf=7612 sec=0.010 out/sec=200 inf/sec=761200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query67.n3 FROM ./queries/query67.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query67.n3
-Done: translated 6 triples in 0.1 ms (69321 triples/s)
+Done: translated 6 triples in 0.4 ms (13474 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.742Z mq=67 out=0 inf=1907 sec=0.001 out/sec=0 inf/sec=1907000
+reasoning 3 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.492Z mq=67 out=0 inf=1885 sec=0.009 out/sec=0 inf/sec=209444
 
 GET http://josd.github.io/eye/i2i/mq/queries/query68.n3 FROM ./queries/query68.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query68.n3
-Done: translated 6 triples in 0.2 ms (33667 triples/s)
+Done: translated 6 triples in 0.3 ms (22501 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.745Z mq=68 out=1 inf=6101 sec=0.003 out/sec=333 inf/sec=2033667
+reasoning 5 [msec cputime] 7 [msec walltime]
+2018-08-19T20:31:40.500Z mq=68 out=1 inf=6104 sec=0.007 out/sec=143 inf/sec=872000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query69.n3 FROM ./queries/query69.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query69.n3
-Done: translated 6 triples in 0.2 ms (33285 triples/s)
+Done: translated 6 triples in 0.3 ms (22703 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.750Z mq=69 out=2 inf=11347 sec=0.004 out/sec=500 inf/sec=2836750
+reasoning 9 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:40.512Z mq=69 out=2 inf=11370 sec=0.011 out/sec=182 inf/sec=1033636
 
 GET http://josd.github.io/eye/i2i/mq/queries/query70.n3 FROM ./queries/query70.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query70.n3
-Done: translated 6 triples in 0.2 ms (34441 triples/s)
+Done: translated 6 triples in 0.4 ms (15465 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.752Z mq=70 out=0 inf=1877 sec=0.001 out/sec=0 inf/sec=1877000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.517Z mq=70 out=0 inf=1855 sec=0.005 out/sec=0 inf/sec=371000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query71.n3 FROM ./queries/query71.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query71.n3
-Done: translated 6 triples in 0.2 ms (29546 triples/s)
+Done: translated 6 triples in 0.5 ms (12701 triples/s)
 SC=6
-reasoning 4 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:58.757Z mq=71 out=3 inf=13384 sec=0.005 out/sec=600 inf/sec=2676800
+reasoning 13 [msec cputime] 15 [msec walltime]
+2018-08-19T20:31:40.533Z mq=71 out=3 inf=13412 sec=0.015 out/sec=200 inf/sec=894133
 
 GET http://josd.github.io/eye/i2i/mq/queries/query72.n3 FROM ./queries/query72.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query72.n3
-Done: translated 6 triples in 0.2 ms (33510 triples/s)
+Done: translated 6 triples in 0.3 ms (18898 triples/s)
 SC=6
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.762Z mq=72 out=3 inf=10964 sec=0.004 out/sec=750 inf/sec=2741000
+reasoning 9 [msec cputime] 12 [msec walltime]
+2018-08-19T20:31:40.546Z mq=72 out=3 inf=10976 sec=0.012 out/sec=250 inf/sec=914667
 
 GET http://josd.github.io/eye/i2i/mq/queries/query73.n3 FROM ./queries/query73.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query73.n3
-Done: translated 6 triples in 0.2 ms (34417 triples/s)
+Done: translated 6 triples in 0.3 ms (18189 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.766Z mq=73 out=2 inf=9271 sec=0.004 out/sec=500 inf/sec=2317750
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.556Z mq=73 out=2 inf=9279 sec=0.010 out/sec=200 inf/sec=927900
 
 GET http://josd.github.io/eye/i2i/mq/queries/query74.n3 FROM ./queries/query74.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query74.n3
-Done: translated 6 triples in 0.2 ms (36330 triples/s)
+Done: translated 6 triples in 0.4 ms (14472 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.770Z mq=74 out=1 inf=7529 sec=0.003 out/sec=333 inf/sec=2509667
+reasoning 9 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.567Z mq=74 out=1 inf=7532 sec=0.010 out/sec=100 inf/sec=753200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query75.n3 FROM ./queries/query75.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query75.n3
-Done: translated 6 triples in 0.3 ms (22871 triples/s)
+Done: translated 6 triples in 0.3 ms (19129 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.772Z mq=75 out=1 inf=4697 sec=0.002 out/sec=500 inf/sec=2348500
+reasoning 5 [msec cputime] 8 [msec walltime]
+2018-08-19T20:31:40.576Z mq=75 out=1 inf=4685 sec=0.008 out/sec=125 inf/sec=585625
 
 GET http://josd.github.io/eye/i2i/mq/queries/query76.n3 FROM ./queries/query76.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query76.n3
-Done: translated 6 triples in 0.2 ms (36735 triples/s)
+Done: translated 6 triples in 0.4 ms (16194 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.776Z mq=76 out=1 inf=7540 sec=0.003 out/sec=333 inf/sec=2513333
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.586Z mq=76 out=1 inf=7543 sec=0.009 out/sec=111 inf/sec=838111
 
 GET http://josd.github.io/eye/i2i/mq/queries/query77.n3 FROM ./queries/query77.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query77.n3
-Done: translated 6 triples in 0.2 ms (29186 triples/s)
+Done: translated 6 triples in 0.5 ms (12325 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.779Z mq=77 out=1 inf=6049 sec=0.003 out/sec=333 inf/sec=2016333
+reasoning 7 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.596Z mq=77 out=1 inf=6052 sec=0.010 out/sec=100 inf/sec=605200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query78.n3 FROM ./queries/query78.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query78.n3
-Done: translated 6 triples in 0.2 ms (25351 triples/s)
+Done: translated 6 triples in 0.4 ms (15302 triples/s)
 SC=6
-reasoning 5 [msec cputime] 6 [msec walltime]
-2018-07-09T19:59:58.785Z mq=78 out=5 inf=16814 sec=0.006 out/sec=833 inf/sec=2802333
+reasoning 15 [msec cputime] 17 [msec walltime]
+2018-08-19T20:31:40.614Z mq=78 out=5 inf=16851 sec=0.017 out/sec=294 inf/sec=991235
 
 GET http://josd.github.io/eye/i2i/mq/queries/query79.n3 FROM ./queries/query79.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query79.n3
-Done: translated 6 triples in 0.2 ms (29359 triples/s)
+Done: translated 6 triples in 0.3 ms (18435 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.789Z mq=79 out=3 inf=11781 sec=0.003 out/sec=1000 inf/sec=3927000
+reasoning 12 [msec cputime] 14 [msec walltime]
+2018-08-19T20:31:40.629Z mq=79 out=3 inf=11824 sec=0.014 out/sec=214 inf/sec=844571
 
 GET http://josd.github.io/eye/i2i/mq/queries/query80.n3 FROM ./queries/query80.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query80.n3
-Done: translated 6 triples in 0.2 ms (28184 triples/s)
+Done: translated 6 triples in 0.5 ms (11688 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.791Z mq=80 out=0 inf=1900 sec=0.001 out/sec=0 inf/sec=1900000
+reasoning 2 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.635Z mq=80 out=0 inf=1878 sec=0.005 out/sec=0 inf/sec=375600
 
 GET http://josd.github.io/eye/i2i/mq/queries/query81.n3 FROM ./queries/query81.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query81.n3
-Done: translated 6 triples in 0.2 ms (29300 triples/s)
+Done: translated 6 triples in 0.4 ms (15344 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.793Z mq=81 out=0 inf=1882 sec=0.002 out/sec=0 inf/sec=941000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.641Z mq=81 out=0 inf=1860 sec=0.005 out/sec=0 inf/sec=372000
 
 GET http://josd.github.io/eye/i2i/mq/queries/query82.n3 FROM ./queries/query82.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query82.n3
-Done: translated 6 triples in 0.1 ms (40538 triples/s)
+Done: translated 6 triples in 0.3 ms (20979 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.795Z mq=82 out=0 inf=1883 sec=0.001 out/sec=0 inf/sec=1883000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.646Z mq=82 out=0 inf=1861 sec=0.005 out/sec=0 inf/sec=372200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query83.n3 FROM ./queries/query83.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query83.n3
-Done: translated 6 triples in 0.2 ms (29628 triples/s)
+Done: translated 6 triples in 0.4 ms (16822 triples/s)
 SC=6
-reasoning 3 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.799Z mq=83 out=2 inf=9260 sec=0.004 out/sec=500 inf/sec=2315000
+reasoning 10 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:40.659Z mq=83 out=2 inf=9268 sec=0.013 out/sec=154 inf/sec=712923
 
 GET http://josd.github.io/eye/i2i/mq/queries/query84.n3 FROM ./queries/query84.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query84.n3
-Done: translated 6 triples in 0.2 ms (26565 triples/s)
+Done: translated 6 triples in 0.3 ms (18495 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.802Z mq=84 out=0 inf=1893 sec=0.002 out/sec=0 inf/sec=946500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.665Z mq=84 out=0 inf=1872 sec=0.005 out/sec=0 inf/sec=374400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query85.n3 FROM ./queries/query85.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query85.n3
-Done: translated 6 triples in 0.2 ms (38708 triples/s)
+Done: translated 6 triples in 0.4 ms (14720 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.804Z mq=85 out=0 inf=1949 sec=0.001 out/sec=0 inf/sec=1949000
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.671Z mq=85 out=0 inf=1927 sec=0.005 out/sec=0 inf/sec=385400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query86.n3 FROM ./queries/query86.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query86.n3
-Done: translated 6 triples in 0.2 ms (28746 triples/s)
+Done: translated 6 triples in 0.3 ms (18205 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.808Z mq=86 out=1 inf=7580 sec=0.003 out/sec=333 inf/sec=2526667
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.681Z mq=86 out=1 inf=7583 sec=0.010 out/sec=100 inf/sec=758300
 
 GET http://josd.github.io/eye/i2i/mq/queries/query87.n3 FROM ./queries/query87.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query87.n3
-Done: translated 6 triples in 0.2 ms (37075 triples/s)
+Done: translated 6 triples in 0.4 ms (15700 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.810Z mq=87 out=0 inf=1917 sec=0.002 out/sec=0 inf/sec=958500
+reasoning 3 [msec cputime] 6 [msec walltime]
+2018-08-19T20:31:40.688Z mq=87 out=0 inf=1895 sec=0.006 out/sec=0 inf/sec=315833
 
 GET http://josd.github.io/eye/i2i/mq/queries/query88.n3 FROM ./queries/query88.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query88.n3
-Done: translated 6 triples in 0.2 ms (31364 triples/s)
+Done: translated 6 triples in 0.3 ms (20180 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.814Z mq=88 out=1 inf=7509 sec=0.003 out/sec=333 inf/sec=2503000
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.699Z mq=88 out=1 inf=7512 sec=0.010 out/sec=100 inf/sec=751200
 
 GET http://josd.github.io/eye/i2i/mq/queries/query89.n3 FROM ./queries/query89.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query89.n3
-Done: translated 6 triples in 0.2 ms (32838 triples/s)
+Done: translated 6 triples in 0.4 ms (14685 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.817Z mq=89 out=1 inf=6104 sec=0.002 out/sec=500 inf/sec=3052000
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.709Z mq=89 out=1 inf=6107 sec=0.009 out/sec=111 inf/sec=678556
 
 GET http://josd.github.io/eye/i2i/mq/queries/query90.n3 FROM ./queries/query90.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query90.n3
-Done: translated 6 triples in 0.2 ms (36362 triples/s)
+Done: translated 6 triples in 0.3 ms (17775 triples/s)
 SC=6
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.820Z mq=90 out=1 inf=6101 sec=0.003 out/sec=333 inf/sec=2033667
+reasoning 7 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:40.719Z mq=90 out=1 inf=6103 sec=0.009 out/sec=111 inf/sec=678111
 
 GET http://josd.github.io/eye/i2i/mq/queries/query91.n3 FROM ./queries/query91.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query91.n3
-Done: translated 6 triples in 0.2 ms (28817 triples/s)
+Done: translated 6 triples in 0.4 ms (16975 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.822Z mq=91 out=0 inf=1877 sec=0.002 out/sec=0 inf/sec=938500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.724Z mq=91 out=0 inf=1854 sec=0.005 out/sec=0 inf/sec=370800
 
 GET http://josd.github.io/eye/i2i/mq/queries/query92.n3 FROM ./queries/query92.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query92.n3
-Done: translated 6 triples in 0.2 ms (34091 triples/s)
+Done: translated 6 triples in 0.3 ms (19556 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.824Z mq=92 out=0 inf=1875 sec=0.001 out/sec=0 inf/sec=1875000
+reasoning 2 [msec cputime] 4 [msec walltime]
+2018-08-19T20:31:40.730Z mq=92 out=0 inf=1853 sec=0.004 out/sec=0 inf/sec=463250
 
 GET http://josd.github.io/eye/i2i/mq/queries/query93.n3 FROM ./queries/query93.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query93.n3
-Done: translated 6 triples in 0.2 ms (34552 triples/s)
+Done: translated 6 triples in 0.3 ms (17454 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.828Z mq=93 out=1 inf=7602 sec=0.003 out/sec=333 inf/sec=2534000
+reasoning 9 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:40.741Z mq=93 out=1 inf=7605 sec=0.011 out/sec=91 inf/sec=691364
 
 GET http://josd.github.io/eye/i2i/mq/queries/query94.n3 FROM ./queries/query94.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query94.n3
-Done: translated 6 triples in 0.2 ms (33576 triples/s)
+Done: translated 6 triples in 0.3 ms (18761 triples/s)
 SC=6
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.832Z mq=94 out=2 inf=11374 sec=0.004 out/sec=500 inf/sec=2843500
+reasoning 11 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:40.755Z mq=94 out=2 inf=11397 sec=0.013 out/sec=154 inf/sec=876692
 
 GET http://josd.github.io/eye/i2i/mq/queries/query95.n3 FROM ./queries/query95.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query95.n3
-Done: translated 6 triples in 0.2 ms (34358 triples/s)
+Done: translated 6 triples in 0.3 ms (21727 triples/s)
 SC=6
-reasoning 1 [msec cputime] 1 [msec walltime]
-2018-07-09T19:59:58.835Z mq=95 out=0 inf=1913 sec=0.001 out/sec=0 inf/sec=1913000
+reasoning 3 [msec cputime] 4 [msec walltime]
+2018-08-19T20:31:40.760Z mq=95 out=0 inf=1891 sec=0.004 out/sec=0 inf/sec=472750
 
 GET http://josd.github.io/eye/i2i/mq/queries/query96.n3 FROM ./queries/query96.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query96.n3
-Done: translated 6 triples in 0.2 ms (33345 triples/s)
+Done: translated 6 triples in 0.2 ms (25319 triples/s)
 SC=6
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.838Z mq=96 out=1 inf=6049 sec=0.002 out/sec=500 inf/sec=3024500
+reasoning 6 [msec cputime] 7 [msec walltime]
+2018-08-19T20:31:40.768Z mq=96 out=1 inf=6052 sec=0.007 out/sec=143 inf/sec=864571
 
 GET http://josd.github.io/eye/i2i/mq/queries/query97.n3 FROM ./queries/query97.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query97.n3
-Done: translated 6 triples in 0.2 ms (32918 triples/s)
+Done: translated 6 triples in 0.3 ms (18737 triples/s)
 SC=6
-reasoning 2 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:58.841Z mq=97 out=2 inf=8887 sec=0.003 out/sec=667 inf/sec=2962333
+reasoning 8 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:40.779Z mq=97 out=2 inf=8909 sec=0.010 out/sec=200 inf/sec=890900
 
 GET http://josd.github.io/eye/i2i/mq/queries/query98.n3 FROM ./queries/query98.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query98.n3
-Done: translated 6 triples in 0.2 ms (34129 triples/s)
+Done: translated 6 triples in 0.5 ms (12765 triples/s)
 SC=6
-reasoning 5 [msec cputime] 5 [msec walltime]
-2018-07-09T19:59:58.847Z mq=98 out=5 inf=16776 sec=0.005 out/sec=1000 inf/sec=3355200
+reasoning 14 [msec cputime] 16 [msec walltime]
+2018-08-19T20:31:40.796Z mq=98 out=5 inf=16814 sec=0.016 out/sec=313 inf/sec=1050875
 
 GET http://josd.github.io/eye/i2i/mq/queries/query99.n3 FROM ./queries/query99.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query99.n3
-Done: translated 6 triples in 0.3 ms (23368 triples/s)
+Done: translated 6 triples in 0.4 ms (16423 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.849Z mq=99 out=0 inf=1799 sec=0.002 out/sec=0 inf/sec=899500
+reasoning 3 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.802Z mq=99 out=0 inf=1777 sec=0.005 out/sec=0 inf/sec=355400
 
 GET http://josd.github.io/eye/i2i/mq/queries/query100.n3 FROM ./queries/query100.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/mq/queries/query100.n3
-Done: translated 6 triples in 0.2 ms (36531 triples/s)
+Done: translated 6 triples in 0.3 ms (17486 triples/s)
 SC=6
-reasoning 1 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.852Z mq=100 out=0 inf=1865 sec=0.002 out/sec=0 inf/sec=932500
+reasoning 2 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:40.808Z mq=100 out=0 inf=1843 sec=0.005 out/sec=0 inf/sec=368600
 
-2018-07-09T19:59:58.852Z in=100600 out=117 ent=0 step=0 brake=1 inf=5367387 sec=1.336 inf/sec=4017505
+2018-08-19T20:31:40.808Z in=100600 out=117 ent=0 step=0 brake=1 inf=5367604 sec=4.157 inf/sec=1291221
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/n3p ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --plugin http://josd.github.io/eye/i2i/n3p/simple.n3p --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 84 [msec walltime]
 GET http://josd.github.io/eye/i2i/n3p/simple.n3p SC=8
-networking 1 [msec cputime] 20 [msec walltime]
-reasoning 4 [msec cputime] 4 [msec walltime]
-2018-07-09T19:59:58.918Z in=8 out=8 ent=8 step=8 brake=1 inf=31967 sec=0.029 inf/sec=1102310
+networking 2 [msec cputime] 74 [msec walltime]
+reasoning 18 [msec cputime] 17 [msec walltime]
+2018-08-19T20:31:41.123Z in=8 out=8 ent=8 step=8 brake=1 inf=32304 sec=0.084 inf/sec=384571
 
 eye --plugin http://josd.github.io/eye/i2i/n3p/extra.n3p --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 28 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 84 [msec walltime]
 GET http://josd.github.io/eye/i2i/n3p/extra.n3p SC=7
-networking 1 [msec cputime] 20 [msec walltime]
-reasoning 3 [msec cputime] 2 [msec walltime]
-2018-07-09T19:59:58.974Z in=7 out=7 ent=7 step=7 brake=1 inf=26202 sec=0.027 inf/sec=970444
+networking 2 [msec cputime] 85 [msec walltime]
+reasoning 13 [msec cputime] 13 [msec walltime]
+2018-08-19T20:31:41.314Z in=7 out=7 ent=7 step=7 brake=1 inf=26533 sec=0.076 inf/sec=349118
 
 eye --plugin http://josd.github.io/eye/i2i/n3p/literals.n3p --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 28 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 84 [msec walltime]
 GET http://josd.github.io/eye/i2i/n3p/literals.n3p SC=10
-networking 0 [msec cputime] 21 [msec walltime]
-reasoning 4 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:59.030Z in=10 out=10 ent=10 step=10 brake=1 inf=29235 sec=0.027 inf/sec=1082778
+networking 4 [msec cputime] 86 [msec walltime]
+reasoning 14 [msec cputime] 14 [msec walltime]
+2018-08-19T20:31:41.507Z in=10 out=10 ent=10 step=10 brake=1 inf=29583 sec=0.078 inf/sec=379269
 
 eye --plugin http://josd.github.io/eye/i2i/n3p/sample.n3p --pass-all
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 22 [msec cputime] 27 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 84 [msec walltime]
 GET http://josd.github.io/eye/i2i/n3p/sample.n3p SC=12
-networking 1 [msec cputime] 20 [msec walltime]
-reasoning 9 [msec cputime] 8 [msec walltime]
-2018-07-09T19:59:59.089Z in=12 out=12 ent=13 step=29 brake=2 inf=53482 sec=0.032 inf/sec=1671313
+networking 4 [msec cputime] 111 [msec walltime]
+reasoning 27 [msec cputime] 26 [msec walltime]
+2018-08-19T20:31:41.736Z in=12 out=12 ent=13 step=29 brake=2 inf=53818 sec=0.093 inf/sec=578688
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/nbbn ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/nbbn/nbbn-plugin.n3 --n3 http://josd.github.io/eye/i2i/nbbn/nbbn-model.n3 --query http://josd.github.io/eye/i2i/nbbn/nbbn-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/nbbn/nbbn-plugin.n3 translating file:///tmp/swipl_eye_27028_0
-Done: translated 124 triples in 0.4 ms (327692 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/nbbn/nbbn-plugin.n3 translating file:///tmp/swipl_eye_11344_0
+Done: translated 124 triples in 1.6 ms (78127 triples/s)
 SC=124
-GET http://josd.github.io/eye/i2i/nbbn/nbbn-model.n3 translating file:///tmp/swipl_eye_27028_1
-Done: translated 23 triples in 0.2 ms (113867 triples/s)
+GET http://josd.github.io/eye/i2i/nbbn/nbbn-model.n3 translating file:///tmp/swipl_eye_11344_1
+Done: translated 23 triples in 0.5 ms (42835 triples/s)
 SC=23
-GET http://josd.github.io/eye/i2i/nbbn/nbbn-query.n3 translating file:///tmp/swipl_eye_27028_2
-Done: translated 11 triples in 0.2 ms (47932 triples/s)
+GET http://josd.github.io/eye/i2i/nbbn/nbbn-query.n3 translating file:///tmp/swipl_eye_11344_2
+Done: translated 11 triples in 0.5 ms (23925 triples/s)
 SC=11
-networking 3 [msec cputime] 64 [msec walltime]
-reasoning 15 [msec cputime] 14 [msec walltime]
-2018-07-09T19:59:59.307Z in=158 out=1 ent=1 step=1 brake=2 inf=70540 sec=0.042 inf/sec=1679524
+networking 13 [msec cputime] 256 [msec walltime]
+reasoning 48 [msec cputime] 47 [msec walltime]
+2018-08-19T20:31:42.249Z in=158 out=1 ent=1 step=1 brake=2 inf=71379 sec=0.125 inf/sec=571032
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/numeral ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --strict --no-numerals --turtle http://josd.github.io/eye/i2i/numeral/numeral.n3 --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/numeral/numeral.n3 translating file:///tmp/swipl_eye_27049_0
-Done: translated 8 triples in 0.1 ms (75020 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/numeral/numeral.n3 translating file:///tmp/swipl_eye_11365_0
+Done: translated 8 triples in 0.5 ms (17773 triples/s)
 SC=8
-networking 1 [msec cputime] 21 [msec walltime]
-reasoning 4 [msec cputime] 3 [msec walltime]
-2018-07-09T19:59:59.481Z in=8 out=8 ent=8 step=8 brake=1 inf=30909 sec=0.029 inf/sec=1065828
+networking 5 [msec cputime] 85 [msec walltime]
+reasoning 14 [msec cputime] 14 [msec walltime]
+2018-08-19T20:31:42.554Z in=8 out=8 ent=8 step=8 brake=1 inf=31236 sec=0.079 inf/sec=395392
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/pi ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/pi/pi.n3 --query http://josd.github.io/eye/i2i/pi/pi-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 28 [msec walltime]
-GET http://josd.github.io/eye/i2i/pi/pi.n3 translating file:///tmp/swipl_eye_27061_0
-Done: translated 19 triples in 0.3 ms (68925 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/pi/pi.n3 translating file:///tmp/swipl_eye_11377_0
+Done: translated 19 triples in 0.6 ms (32592 triples/s)
 SC=19
-GET http://josd.github.io/eye/i2i/pi/pi-query.n3 translating file:///tmp/swipl_eye_27061_1
-Done: translated 3 triples in 0.2 ms (13942 triples/s)
+GET http://josd.github.io/eye/i2i/pi/pi-query.n3 translating file:///tmp/swipl_eye_11377_1
+Done: translated 3 triples in 0.5 ms (5808 triples/s)
 SC=3
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 420 [msec cputime] 496 [msec walltime]
-2018-07-09T20:00:00.056Z in=22 out=1 ent=1 step=1 brake=1 inf=2902289 sec=0.445 inf/sec=6521998
+networking 6 [msec cputime] 170 [msec walltime]
+reasoning 1185 [msec cputime] 1304 [msec walltime]
+2018-08-19T20:31:44.129Z in=22 out=1 ent=1 step=1 brake=1 inf=2902553 sec=1.251 inf/sec=2320186
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/pptbank ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/pptbank/bankSW.n3 --n3 http://josd.github.io/eye/i2i/pptbank/checking.n3 --query http://josd.github.io/eye/i2i/pptbank/query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/pptbank/bankSW.n3 translating file:///tmp/swipl_eye_27078_0
-Done: translated 3 triples in 0.2 ms (18607 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 64 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/pptbank/bankSW.n3 translating file:///tmp/swipl_eye_11394_0
+Done: translated 3 triples in 0.5 ms (6491 triples/s)
 SC=3
-GET http://josd.github.io/eye/i2i/pptbank/checking.n3 translating file:///tmp/swipl_eye_27078_1
-Done: translated 16 triples in 0.2 ms (96600 triples/s)
+GET http://josd.github.io/eye/i2i/pptbank/checking.n3 translating file:///tmp/swipl_eye_11394_1
+Done: translated 16 triples in 0.6 ms (28686 triples/s)
 SC=16
-GET http://josd.github.io/eye/i2i/pptbank/query.n3 translating file:///tmp/swipl_eye_27078_2
-Done: translated 3 triples in 0.1 ms (31348 triples/s)
+GET http://josd.github.io/eye/i2i/pptbank/query.n3 translating file:///tmp/swipl_eye_11394_2
+Done: translated 3 triples in 0.5 ms (6664 triples/s)
 SC=3
-networking 2 [msec cputime] 66 [msec walltime]
-GET http://josd.github.io/eye/i2i/pptbank/acct3start.n3 translating file:///tmp/swipl_eye_27078_3
-Done: translated 2 triples in 0.2 ms (10581 triples/s)
+networking 10 [msec cputime] 319 [msec walltime]
+GET http://josd.github.io/eye/i2i/pptbank/acct3start.n3 translating file:///tmp/swipl_eye_11394_3
+Done: translated 2 triples in 0.5 ms (4291 triples/s)
 SC=2
-GET http://josd.github.io/eye/i2i/pptbank/acct3check1.n3 translating file:///tmp/swipl_eye_27078_4
-Done: translated 5 triples in 0.2 ms (26831 triples/s)
+GET http://josd.github.io/eye/i2i/pptbank/acct3check1.n3 translating file:///tmp/swipl_eye_11394_4
+Done: translated 5 triples in 0.4 ms (13781 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/pptbank/acct3check2.n3 translating file:///tmp/swipl_eye_27078_5
-Done: translated 5 triples in 0.2 ms (24619 triples/s)
+GET http://josd.github.io/eye/i2i/pptbank/acct3check2.n3 translating file:///tmp/swipl_eye_11394_5
+Done: translated 5 triples in 0.4 ms (11251 triples/s)
 SC=5
-reasoning 7 [msec cputime] 69 [msec walltime]
-2018-07-09T20:00:00.342Z in=34 out=1 ent=2 step=4 brake=1 inf=32592 sec=0.033 inf/sec=987636
+reasoning 25 [msec cputime] 304 [msec walltime]
+2018-08-19T20:31:44.985Z in=34 out=1 ent=2 step=4 brake=1 inf=32848 sec=0.099 inf/sec=331798
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/preduction ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --nope --n3 palindrome.n3 palindrome-declarations.n3 --n3 preduction-plugin.n3 --query palindrome-preduction.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 85 [msec walltime]
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/palindrome.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/palindrome.n3
-Done: translated 25 triples in 0.4 ms (68645 triples/s)
+Done: translated 25 triples in 0.4 ms (58374 triples/s)
 SC=25
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/palindrome-declarations.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/palindrome-declarations.n3
-Done: translated 12 triples in 0.3 ms (41107 triples/s)
+Done: translated 12 triples in 0.4 ms (30432 triples/s)
 SC=12
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/preduction-plugin.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/preduction-plugin.n3
-Done: translated 42 triples in 0.3 ms (141786 triples/s)
+Done: translated 42 triples in 0.5 ms (84938 triples/s)
 SC=42
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/palindrome-preduction.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/palindrome-preduction.n3
-Done: translated 9 triples in 0.2 ms (39253 triples/s)
+Done: translated 9 triples in 0.3 ms (26208 triples/s)
 SC=9
-networking 4 [msec cputime] 8 [msec walltime]
-reasoning 2 [msec cputime] 1 [msec walltime]
-2018-07-09T20:00:00.504Z in=88 out=6 ent=6 step=6 brake=1 inf=26431 sec=0.031 inf/sec=852613
+networking 10 [msec cputime] 20 [msec walltime]
+reasoning 6 [msec cputime] 5 [msec walltime]
+2018-08-19T20:31:45.219Z in=88 out=6 ent=6 step=6 brake=1 inf=26757 sec=0.079 inf/sec=338696
 
 eye --n3 http://josd.github.io/eye/i2i/preduction/palindrome.n3 --query http://josd.github.io/eye/i2i/preduction/palindrome-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/preduction/palindrome.n3 translating file:///tmp/swipl_eye_27121_0
-Done: translated 25 triples in 0.4 ms (63172 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/preduction/palindrome.n3 translating file:///tmp/swipl_eye_11437_0
+Done: translated 25 triples in 0.5 ms (52043 triples/s)
 SC=25
-GET http://josd.github.io/eye/i2i/preduction/palindrome-query.n3 translating file:///tmp/swipl_eye_27121_1
-Done: translated 4 triples in 0.2 ms (17606 triples/s)
+GET http://josd.github.io/eye/i2i/preduction/palindrome-query.n3 translating file:///tmp/swipl_eye_11437_1
+Done: translated 4 triples in 0.5 ms (7774 triples/s)
 SC=4
-networking 2 [msec cputime] 46 [msec walltime]
-reasoning 25 [msec cputime] 24 [msec walltime]
-2018-07-09T20:00:00.711Z in=29 out=1 ent=1 step=1 brake=1 inf=158500 sec=0.053 inf/sec=2990566
+networking 7 [msec cputime] 459 [msec walltime]
+reasoning 70 [msec cputime] 70 [msec walltime]
+2018-08-19T20:31:45.939Z in=29 out=1 ent=1 step=1 brake=1 inf=158789 sec=0.136 inf/sec=1167566
 
 eye --n3 http://josd.github.io/eye/i2i/preduction/palindrome2.n3 --query http://josd.github.io/eye/i2i/preduction/palindrome2-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/preduction/palindrome2.n3 translating file:///tmp/swipl_eye_27135_0
-Done: translated 23 triples in 0.4 ms (51857 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/preduction/palindrome2.n3 translating file:///tmp/swipl_eye_11451_0
+Done: translated 23 triples in 0.6 ms (39830 triples/s)
 SC=23
-GET http://josd.github.io/eye/i2i/preduction/palindrome2-query.n3 translating file:///tmp/swipl_eye_27135_1
-Done: translated 4 triples in 0.3 ms (13327 triples/s)
+GET http://josd.github.io/eye/i2i/preduction/palindrome2-query.n3 translating file:///tmp/swipl_eye_11451_1
+Done: translated 4 triples in 0.6 ms (6781 triples/s)
 SC=4
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 16 [msec cputime] 15 [msec walltime]
-2018-07-09T20:00:00.907Z in=27 out=1 ent=1 step=1 brake=1 inf=114603 sec=0.043 inf/sec=2665186
+networking 7 [msec cputime] 186 [msec walltime]
+reasoning 47 [msec cputime] 47 [msec walltime]
+2018-08-19T20:31:46.367Z in=27 out=1 ent=1 step=1 brake=1 inf=114876 sec=0.116 inf/sec=990310
 
 eye --nope --n3 food.n3 food-declarations.n3 --n3 preduction-plugin.n3 --query food-preduction.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 82 [msec walltime]
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/food.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/food.n3
-Done: translated 35 triples in 0.3 ms (115954 triples/s)
+Done: translated 35 triples in 0.4 ms (89185 triples/s)
 SC=35
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/food-declarations.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/food-declarations.n3
-Done: translated 2 triples in 0.2 ms (8933 triples/s)
+Done: translated 2 triples in 0.4 ms (5246 triples/s)
 SC=2
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/preduction-plugin.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/preduction-plugin.n3
-Done: translated 42 triples in 0.3 ms (132178 triples/s)
+Done: translated 42 triples in 0.6 ms (68468 triples/s)
 SC=42
 GET file:///home/jdroo/github.com/josd/eye/i2i/preduction/food-preduction.n3 translating file:///home/jdroo/github.com/josd/eye/i2i/preduction/food-preduction.n3
-Done: translated 11 triples in 0.3 ms (42935 triples/s)
+Done: translated 11 triples in 0.4 ms (29210 triples/s)
 SC=11
-networking 3 [msec cputime] 8 [msec walltime]
-GET http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 translating file:///tmp/swipl_eye_27149_0
-Done: translated 16 triples in 0.4 ms (38943 triples/s)
+networking 11 [msec cputime] 21 [msec walltime]
+GET http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 translating file:///tmp/swipl_eye_11465_0
+Done: translated 16 triples in 0.6 ms (26311 triples/s)
 SC=16
-reasoning 9 [msec cputime] 30 [msec walltime]
-2018-07-09T20:00:01.079Z in=106 out=35 ent=35 step=35 brake=0 inf=66435 sec=0.037 inf/sec=1795541
+reasoning 29 [msec cputime] 104 [msec walltime]
+2018-08-19T20:31:46.683Z in=106 out=35 ent=35 step=35 brake=0 inf=66746 sec=0.100 inf/sec=667460
 
 eye --n3 http://josd.github.io/eye/i2i/preduction/food-example.n3 --n3 http://josd.github.io/eye/i2i/preduction/food.n3 --n3 http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 --query http://josd.github.io/eye/i2i/preduction/food-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/preduction/food-example.n3 translating file:///tmp/swipl_eye_27163_0
-Done: translated 5 triples in 0.4 ms (12034 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 81 [msec walltime]
+GET http://josd.github.io/eye/i2i/preduction/food-example.n3 translating file:///tmp/swipl_eye_11479_0
+Done: translated 5 triples in 0.3 ms (16537 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/preduction/food.n3 translating file:///tmp/swipl_eye_27163_1
-Done: translated 35 triples in 0.3 ms (119166 triples/s)
+GET http://josd.github.io/eye/i2i/preduction/food.n3 translating file:///tmp/swipl_eye_11479_1
+Done: translated 35 triples in 0.6 ms (54578 triples/s)
 SC=35
-GET http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 translating file:///tmp/swipl_eye_27163_2
-Done: translated 16 triples in 0.4 ms (42265 triples/s)
+GET http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 translating file:///tmp/swipl_eye_11479_2
+Done: translated 16 triples in 0.4 ms (37673 triples/s)
 SC=16
-GET http://josd.github.io/eye/i2i/preduction/food-query.n3 translating file:///tmp/swipl_eye_27163_3
-Done: translated 3 triples in 0.2 ms (18275 triples/s)
+GET http://josd.github.io/eye/i2i/preduction/food-query.n3 translating file:///tmp/swipl_eye_11479_3
+Done: translated 3 triples in 0.4 ms (7177 triples/s)
 SC=3
-networking 4 [msec cputime] 89 [msec walltime]
-reasoning 9 [msec cputime] 9 [msec walltime]
-2018-07-09T20:00:01.312Z in=59 out=16 ent=91 step=338 brake=3 inf=68643 sec=0.038 inf/sec=1806395
+networking 14 [msec cputime] 351 [msec walltime]
+reasoning 32 [msec cputime] 32 [msec walltime]
+2018-08-19T20:31:47.259Z in=59 out=16 ent=91 step=338 brake=3 inf=68949 sec=0.107 inf/sec=644383
 
 eye --n3 http://josd.github.io/eye/i2i/preduction/food-example.n3 --n3 http://josd.github.io/eye/i2i/preduction/food2.n3 --query http://josd.github.io/eye/i2i/preduction/food-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/preduction/food-example.n3 translating file:///tmp/swipl_eye_27185_0
-Done: translated 5 triples in 0.2 ms (20884 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/preduction/food-example.n3 translating file:///tmp/swipl_eye_11501_0
+Done: translated 5 triples in 0.4 ms (12286 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/preduction/food2.n3 translating file:///tmp/swipl_eye_27185_1
-Done: translated 105 triples in 0.4 ms (279137 triples/s)
+GET http://josd.github.io/eye/i2i/preduction/food2.n3 translating file:///tmp/swipl_eye_11501_1
+Done: translated 105 triples in 0.8 ms (135161 triples/s)
 SC=105
-GET http://josd.github.io/eye/i2i/preduction/food-query.n3 translating file:///tmp/swipl_eye_27185_2
-Done: translated 3 triples in 0.3 ms (9212 triples/s)
+GET http://josd.github.io/eye/i2i/preduction/food-query.n3 translating file:///tmp/swipl_eye_11501_2
+Done: translated 3 triples in 0.4 ms (7176 triples/s)
 SC=3
-networking 3 [msec cputime] 67 [msec walltime]
-reasoning 8 [msec cputime] 8 [msec walltime]
-2018-07-09T20:00:01.524Z in=113 out=16 ent=27 step=115 brake=5 inf=54429 sec=0.036 inf/sec=1511917
+networking 13 [msec cputime] 274 [msec walltime]
+reasoning 26 [msec cputime] 26 [msec walltime]
+2018-08-19T20:31:47.754Z in=113 out=16 ent=27 step=115 brake=5 inf=54736 sec=0.101 inf/sec=541941
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/restpath ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/restpath/initial.n3 --n3 http://josd.github.io/eye/i2i/restpath/path-9-3.n3 --query http://josd.github.io/eye/i2i/restpath/goal.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 33 [msec walltime]
-GET http://josd.github.io/eye/i2i/restpath/initial.n3 translating file:///tmp/swipl_eye_27206_0
-Done: translated 1 triples in 0.1 ms (8157 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/restpath/initial.n3 translating file:///tmp/swipl_eye_11522_0
+Done: translated 1 triples in 0.4 ms (2338 triples/s)
 SC=1
-GET http://josd.github.io/eye/i2i/restpath/path-9-3.n3 translating file:///tmp/swipl_eye_27206_1
-Done: translated 98 triples in 0.4 ms (245651 triples/s)
+GET http://josd.github.io/eye/i2i/restpath/path-9-3.n3 translating file:///tmp/swipl_eye_11522_1
+Done: translated 98 triples in 0.5 ms (183733 triples/s)
 SC=98
-GET http://josd.github.io/eye/i2i/restpath/goal.n3 translating file:///tmp/swipl_eye_27206_2
-Done: translated 3 triples in 0.2 ms (19019 triples/s)
+GET http://josd.github.io/eye/i2i/restpath/goal.n3 translating file:///tmp/swipl_eye_11522_2
+Done: translated 3 triples in 0.4 ms (6672 triples/s)
 SC=3
-networking 5 [msec cputime] 72 [msec walltime]
-reasoning 13 [msec cputime] 13 [msec walltime]
-2018-07-09T20:00:01.763Z in=102 out=1 ent=209 step=218 brake=1 inf=77957 sec=0.044 inf/sec=1771750
+networking 12 [msec cputime] 259 [msec walltime]
+reasoning 39 [msec cputime] 39 [msec walltime]
+2018-08-19T20:31:48.264Z in=102 out=1 ent=209 step=218 brake=1 inf=78644 sec=0.114 inf/sec=689860
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/resto ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/resto/resto.n3 --query http://josd.github.io/eye/i2i/resto/restoG.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 32 [msec walltime]
-GET http://josd.github.io/eye/i2i/resto/resto.n3 translating file:///tmp/swipl_eye_27227_0
-Done: translated 69 triples in 0.4 ms (188657 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/resto/resto.n3 translating file:///tmp/swipl_eye_11543_0
+Done: translated 69 triples in 1.0 ms (67377 triples/s)
 SC=69
-GET http://josd.github.io/eye/i2i/resto/restoG.n3 translating file:///tmp/swipl_eye_27227_1
-Done: translated 9 triples in 0.1 ms (70970 triples/s)
+GET http://josd.github.io/eye/i2i/resto/restoG.n3 translating file:///tmp/swipl_eye_11543_1
+Done: translated 9 triples in 0.4 ms (22329 triples/s)
 SC=9
-networking 3 [msec cputime] 45 [msec walltime]
-reasoning 9 [msec cputime] 9 [msec walltime]
-2018-07-09T20:00:01.958Z in=78 out=4 ent=47 step=7 brake=1 inf=56107 sec=0.037 inf/sec=1516405
+networking 11 [msec cputime] 169 [msec walltime]
+reasoning 26 [msec cputime] 26 [msec walltime]
+2018-08-19T20:31:48.667Z in=78 out=4 ent=47 step=7 brake=1 inf=56401 sec=0.100 inf/sec=564010
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/rgb ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/rgb/redgraph001.n3 --query http://josd.github.io/eye/i2i/rgb/greenquery001.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/rgb/redgraph001.n3 translating file:///tmp/swipl_eye_27244_0
-Done: translated 3 triples in 0.1 ms (29742 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/rgb/redgraph001.n3 translating file:///tmp/swipl_eye_11560_0
+Done: translated 3 triples in 0.4 ms (7119 triples/s)
 SC=3
-GET http://josd.github.io/eye/i2i/rgb/greenquery001.n3 translating file:///tmp/swipl_eye_27244_1
-Done: translated 10 triples in 0.1 ms (81733 triples/s)
+GET http://josd.github.io/eye/i2i/rgb/greenquery001.n3 translating file:///tmp/swipl_eye_11560_1
+Done: translated 10 triples in 0.5 ms (19754 triples/s)
 SC=10
-networking 2 [msec cputime] 45 [msec walltime]
-reasoning 3 [msec cputime] 2 [msec walltime]
-2018-07-09T20:00:02.145Z in=13 out=2 ent=2 step=2 brake=1 inf=21677 sec=0.030 inf/sec=722567
+networking 7 [msec cputime] 176 [msec walltime]
+reasoning 10 [msec cputime] 10 [msec walltime]
+2018-08-19T20:31:49.059Z in=13 out=2 ent=2 step=2 brake=1 inf=21938 sec=0.078 inf/sec=281256
 
 eye --n3 http://josd.github.io/eye/i2i/rgb/redgraph002.n3 --query http://josd.github.io/eye/i2i/rgb/greenquery002.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/rgb/redgraph002.n3 translating file:///tmp/swipl_eye_27258_0
-Done: translated 3 triples in 0.1 ms (27700 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/rgb/redgraph002.n3 translating file:///tmp/swipl_eye_11574_0
+Done: translated 3 triples in 0.3 ms (8806 triples/s)
 SC=3
-GET http://josd.github.io/eye/i2i/rgb/greenquery002.n3 translating file:///tmp/swipl_eye_27258_1
-Done: translated 10 triples in 0.2 ms (64994 triples/s)
+GET http://josd.github.io/eye/i2i/rgb/greenquery002.n3 translating file:///tmp/swipl_eye_11574_1
+Done: translated 10 triples in 0.5 ms (19922 triples/s)
 SC=10
-networking 2 [msec cputime] 45 [msec walltime]
-reasoning 2 [msec cputime] 2 [msec walltime]
-2018-07-09T20:00:02.327Z in=13 out=2 ent=2 step=2 brake=1 inf=21848 sec=0.029 inf/sec=753379
+networking 6 [msec cputime] 187 [msec walltime]
+reasoning 9 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:49.449Z in=13 out=2 ent=2 step=2 brake=1 inf=22107 sec=0.077 inf/sec=287104
 
 eye --n3 http://josd.github.io/eye/i2i/rgb/redgraph003.n3 --query http://josd.github.io/eye/i2i/rgb/greenquery003.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 32 [msec walltime]
-GET http://josd.github.io/eye/i2i/rgb/redgraph003.n3 translating file:///tmp/swipl_eye_27271_0
-Done: translated 3 triples in 0.1 ms (22841 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/rgb/redgraph003.n3 translating file:///tmp/swipl_eye_11587_0
+Done: translated 3 triples in 0.3 ms (9218 triples/s)
 SC=3
-GET http://josd.github.io/eye/i2i/rgb/greenquery003.n3 translating file:///tmp/swipl_eye_27271_1
-Done: translated 8 triples in 0.2 ms (36696 triples/s)
+GET http://josd.github.io/eye/i2i/rgb/greenquery003.n3 translating file:///tmp/swipl_eye_11587_1
+Done: translated 8 triples in 0.6 ms (13816 triples/s)
 SC=8
-networking 2 [msec cputime] 45 [msec walltime]
-reasoning 3 [msec cputime] 2 [msec walltime]
-2018-07-09T20:00:02.411Z in=11 out=2 ent=2 step=2 brake=1 inf=20873 sec=0.030 inf/sec=695767
+networking 6 [msec cputime] 169 [msec walltime]
+reasoning 8 [msec cputime] 8 [msec walltime]
+2018-08-19T20:31:49.716Z in=11 out=2 ent=2 step=2 brake=1 inf=21128 sec=0.073 inf/sec=289425
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/rif ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/rif/rifP.n3 --query http://josd.github.io/eye/i2i/rif/rifQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 32 [msec walltime]
-GET http://josd.github.io/eye/i2i/rif/rifP.n3 translating file:///tmp/swipl_eye_27288_0
-Done: translated 666 triples in 4.1 ms (162119 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/rif/rifP.n3 translating file:///tmp/swipl_eye_11604_0
+Done: translated 666 triples in 7.6 ms (87508 triples/s)
 SC=666
-GET http://josd.github.io/eye/i2i/rif/rifQ.n3 translating file:///tmp/swipl_eye_27288_1
-Done: translated 17 triples in 0.4 ms (47729 triples/s)
+GET http://josd.github.io/eye/i2i/rif/rifQ.n3 translating file:///tmp/swipl_eye_11604_1
+Done: translated 17 triples in 0.6 ms (27585 triples/s)
 SC=17
-networking 10 [msec cputime] 59 [msec walltime]
-reasoning 217 [msec cputime] 217 [msec walltime]
-2018-07-09T20:00:02.828Z in=683 out=222 ent=443 step=1776 brake=4 inf=1532098 sec=0.252 inf/sec=6079754
+networking 24 [msec cputime] 256 [msec walltime]
+reasoning 606 [msec cputime] 606 [msec walltime]
+2018-08-19T20:31:50.784Z in=683 out=222 ent=443 step=1776 brake=4 inf=1533453 sec=0.693 inf/sec=2212775
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/rpo ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/rpo/food-example.n3 --n3 http://josd.github.io/eye/i2i/rpo/food.n3 --n3 http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 --query http://josd.github.io/eye/i2i/rpo/food-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/rpo/food-example.n3 translating file:///tmp/swipl_eye_27305_0
-Done: translated 5 triples in 0.4 ms (12276 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/rpo/food-example.n3 translating file:///tmp/swipl_eye_11621_0
+Done: translated 5 triples in 0.3 ms (14466 triples/s)
 SC=5
-GET http://josd.github.io/eye/i2i/rpo/food.n3 translating file:///tmp/swipl_eye_27305_1
-Done: translated 35 triples in 0.3 ms (113216 triples/s)
+GET http://josd.github.io/eye/i2i/rpo/food.n3 translating file:///tmp/swipl_eye_11621_1
+Done: translated 35 triples in 0.7 ms (51963 triples/s)
 SC=35
-GET http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 translating file:///tmp/swipl_eye_27305_2
-Done: translated 16 triples in 0.5 ms (33785 triples/s)
+GET http://josd.github.io/eye/i2i/rpo/rdfs-subClassOf.n3 translating file:///tmp/swipl_eye_11621_2
+Done: translated 16 triples in 0.4 ms (36736 triples/s)
 SC=16
-GET http://josd.github.io/eye/i2i/rpo/food-query.n3 translating file:///tmp/swipl_eye_27305_3
-Done: translated 3 triples in 0.4 ms (8168 triples/s)
+GET http://josd.github.io/eye/i2i/rpo/food-query.n3 translating file:///tmp/swipl_eye_11621_3
+Done: translated 3 triples in 0.4 ms (6863 triples/s)
 SC=3
-networking 4 [msec cputime] 89 [msec walltime]
-reasoning 10 [msec cputime] 10 [msec walltime]
-2018-07-09T20:00:03.088Z in=59 out=16 ent=91 step=338 brake=3 inf=68687 sec=0.038 inf/sec=1807553
+networking 15 [msec cputime] 532 [msec walltime]
+reasoning 32 [msec cputime] 31 [msec walltime]
+2018-08-19T20:31:51.559Z in=59 out=16 ent=91 step=338 brake=3 inf=68991 sec=0.110 inf/sec=627191
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/rs ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/rs/randomsample-rule.n3 --query http://josd.github.io/eye/i2i/rs/randomsample-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/rs/randomsample-rule.n3 translating file:///tmp/swipl_eye_27330_0
-Done: translated 10 triples in 0.3 ms (37348 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/rs/randomsample-rule.n3 translating file:///tmp/swipl_eye_11646_0
+Done: translated 10 triples in 0.5 ms (20551 triples/s)
 SC=10
-GET http://josd.github.io/eye/i2i/rs/randomsample-query.n3 translating file:///tmp/swipl_eye_27330_1
-Done: translated 3 triples in 0.2 ms (14119 triples/s)
+GET http://josd.github.io/eye/i2i/rs/randomsample-query.n3 translating file:///tmp/swipl_eye_11646_1
+Done: translated 3 triples in 0.5 ms (6177 triples/s)
 SC=3
-networking 2 [msec cputime] 43 [msec walltime]
-GET http://josd.github.io/eye/i2i/rs/graph-1000.n3 translating file:///tmp/swipl_eye_27330_2
-Done: translated 1000 triples in 4.3 ms (233124 triples/s)
+networking 7 [msec cputime] 183 [msec walltime]
+GET http://josd.github.io/eye/i2i/rs/graph-1000.n3 translating file:///tmp/swipl_eye_11646_2
+Done: translated 1000 triples in 13.8 ms (72294 triples/s)
 SC=1000
-reasoning 213 [msec cputime] 256 [msec walltime]
-2018-07-09T20:00:03.528Z in=1013 out=1 ent=1 step=1 brake=1 inf=1396295 sec=0.240 inf/sec=5817896
+reasoning 559 [msec cputime] 721 [msec walltime]
+2018-08-19T20:31:52.670Z in=1013 out=1 ent=1 step=1 brake=1 inf=1396557 sec=0.629 inf/sec=2220281
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/skos ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/skos/skos-mapping-sample-snomed-icd10.n3 --n3 http://josd.github.io/eye/i2i/skos/skos-mapping-validation-rules.n3 --query http://josd.github.io/eye/i2i/skos/skos-mapping-validation-query.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/skos/skos-mapping-sample-snomed-icd10.n3 translating file:///tmp/swipl_eye_27351_0
-Done: translated 28 triples in 0.4 ms (75738 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 81 [msec walltime]
+GET http://josd.github.io/eye/i2i/skos/skos-mapping-sample-snomed-icd10.n3 translating file:///tmp/swipl_eye_11667_0
+Done: translated 28 triples in 0.7 ms (42923 triples/s)
 SC=28
-GET http://josd.github.io/eye/i2i/skos/skos-mapping-validation-rules.n3 translating file:///tmp/swipl_eye_27351_1
-Done: translated 215 triples in 0.8 ms (254836 triples/s)
+GET http://josd.github.io/eye/i2i/skos/skos-mapping-validation-rules.n3 translating file:///tmp/swipl_eye_11667_1
+Done: translated 215 triples in 1.2 ms (184091 triples/s)
 SC=215
-GET http://josd.github.io/eye/i2i/skos/skos-mapping-validation-query.n3 translating file:///tmp/swipl_eye_27351_2
-Done: translated 45 triples in 0.3 ms (149505 triples/s)
+GET http://josd.github.io/eye/i2i/skos/skos-mapping-validation-query.n3 translating file:///tmp/swipl_eye_11667_2
+Done: translated 45 triples in 0.7 ms (64814 triples/s)
 SC=45
-networking 6 [msec cputime] 71 [msec walltime]
-reasoning 5 [msec cputime] 4 [msec walltime]
-2018-07-09T20:00:03.746Z in=288 out=1 ent=12 step=28 brake=2 inf=39874 sec=0.035 inf/sec=1139257
+networking 20 [msec cputime] 273 [msec walltime]
+reasoning 17 [msec cputime] 17 [msec walltime]
+2018-08-19T20:31:53.166Z in=288 out=1 ent=12 step=28 brake=2 inf=40140 sec=0.099 inf/sec=405455
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/socrates ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/socrates/socrates.n3 --query http://josd.github.io/eye/i2i/socrates/socratesF.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/socrates/socrates.n3 translating file:///tmp/swipl_eye_27372_0
-Done: translated 6 triples in 0.3 ms (17855 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 63 [msec cputime] 86 [msec walltime]
+GET http://josd.github.io/eye/i2i/socrates/socrates.n3 translating file:///tmp/swipl_eye_11688_0
+Done: translated 6 triples in 0.4 ms (14287 triples/s)
 SC=6
-GET http://josd.github.io/eye/i2i/socrates/socratesF.n3 translating file:///tmp/swipl_eye_27372_1
-Done: translated 3 triples in 0.5 ms (6408 triples/s)
+GET http://josd.github.io/eye/i2i/socrates/socratesF.n3 translating file:///tmp/swipl_eye_11688_1
+Done: translated 3 triples in 0.4 ms (7834 triples/s)
 SC=3
-networking 2 [msec cputime] 45 [msec walltime]
-reasoning 3 [msec cputime] 2 [msec walltime]
-2018-07-09T20:00:03.934Z in=9 out=2 ent=3 step=6 brake=2 inf=21683 sec=0.030 inf/sec=722767
+networking 7 [msec cputime] 167 [msec walltime]
+reasoning 10 [msec cputime] 9 [msec walltime]
+2018-08-19T20:31:53.550Z in=9 out=2 ent=3 step=6 brake=2 inf=21947 sec=0.080 inf/sec=274338
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/streason ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --nope --n3 http://josd.github.io/eye/i2i/streason/streason-rules.n3 --turtle - --streaming-reasoning
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 26 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/streason/streason-rules.n3 translating file:///tmp/swipl_eye_27389_0
-Done: translated 25 triples in 0.3 ms (82302 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/streason/streason-rules.n3 translating file:///tmp/swipl_eye_11705_0
+Done: translated 25 triples in 0.5 ms (50780 triples/s)
 SC=25
 GET - translating file:///dev/stdin
-Done: translated 10 triples in 0.3 ms (30088 triples/s)
+Done: translated 10 triples in 0.3 ms (30412 triples/s)
 SC=10
-2018-07-09T20:00:03.999Z in=35 out=101 ent=0 step=0 brake=0 inf=27304 sec=0.031 inf/sec=880774
+2018-08-19T20:31:53.744Z in=35 out=101 ent=0 step=0 brake=0 inf=27549 sec=0.078 inf/sec=353192
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/swet ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query http://josd.github.io/eye/i2i/swet/swetQ01.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_27403_0
-Done: translated 200 triples in 0.7 ms (298765 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_11719_0
+Done: translated 200 triples in 1.8 ms (113698 triples/s)
 SC=200
-GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_27403_1
-Done: translated 400 triples in 2.1 ms (191154 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_11719_1
+Done: translated 400 triples in 8.1 ms (49386 triples/s)
 SC=400
-GET http://josd.github.io/eye/i2i/swet/swetQ01.n3 translating file:///tmp/swipl_eye_27403_2
-Done: translated 6 triples in 0.4 ms (14604 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetQ01.n3 translating file:///tmp/swipl_eye_11719_2
+Done: translated 6 triples in 0.7 ms (8656 triples/s)
 SC=6
-networking 9 [msec cputime] 75 [msec walltime]
-reasoning 11 [msec cputime] 11 [msec walltime]
-2018-07-09T20:00:04.123Z in=606 out=81 ent=81 step=81 brake=1 inf=92389 sec=0.044 inf/sec=2099750
+networking 32 [msec cputime] 283 [msec walltime]
+reasoning 32 [msec cputime] 32 [msec walltime]
+2018-08-19T20:31:54.157Z in=606 out=81 ent=81 step=81 brake=1 inf=92621 sec=0.125 inf/sec=740968
 
 eye --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query http://josd.github.io/eye/i2i/swet/swetQ11.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_27420_0
-Done: translated 200 triples in 0.7 ms (288258 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 58 [msec cputime] 80 [msec walltime]
+GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_11736_0
+Done: translated 200 triples in 1.9 ms (103761 triples/s)
 SC=200
-GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_27420_1
-Done: translated 400 triples in 2.1 ms (190719 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_11736_1
+Done: translated 400 triples in 8.2 ms (48942 triples/s)
 SC=400
-GET http://josd.github.io/eye/i2i/swet/swetQ11.n3 translating file:///tmp/swipl_eye_27420_2
-Done: translated 8 triples in 0.4 ms (19779 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetQ11.n3 translating file:///tmp/swipl_eye_11736_2
+Done: translated 8 triples in 0.5 ms (17168 triples/s)
 SC=8
-networking 9 [msec cputime] 71 [msec walltime]
-reasoning 9 [msec cputime] 9 [msec walltime]
-2018-07-09T20:00:04.238Z in=608 out=54 ent=54 step=54 brake=1 inf=81499 sec=0.042 inf/sec=1940452
+networking 34 [msec cputime] 282 [msec walltime]
+reasoning 24 [msec cputime] 24 [msec walltime]
+2018-08-19T20:31:54.552Z in=608 out=54 ent=54 step=54 brake=1 inf=81731 sec=0.116 inf/sec=704578
 
 eye --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query http://josd.github.io/eye/i2i/swet/swetQ21.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 28 [msec walltime]
-GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_27437_0
-Done: translated 200 triples in 0.6 ms (354080 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 61 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_11753_0
+Done: translated 200 triples in 1.6 ms (123426 triples/s)
 SC=200
-GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_27437_1
-Done: translated 400 triples in 1.9 ms (207845 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_11753_1
+Done: translated 400 triples in 8.7 ms (46014 triples/s)
 SC=400
-GET http://josd.github.io/eye/i2i/swet/swetQ21.n3 translating file:///tmp/swipl_eye_27437_2
-Done: translated 8 triples in 0.2 ms (46790 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetQ21.n3 translating file:///tmp/swipl_eye_11753_2
+Done: translated 8 triples in 0.4 ms (18433 triples/s)
 SC=8
-networking 8 [msec cputime] 70 [msec walltime]
-reasoning 7 [msec cputime] 7 [msec walltime]
-2018-07-09T20:00:04.348Z in=608 out=46 ent=46 step=46 brake=1 inf=74576 sec=0.039 inf/sec=1912205
+networking 33 [msec cputime] 289 [msec walltime]
+reasoning 25 [msec cputime] 25 [msec walltime]
+2018-08-19T20:31:54.956Z in=608 out=46 ent=46 step=46 brake=1 inf=74810 sec=0.119 inf/sec=628655
 
 eye --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query http://josd.github.io/eye/i2i/swet/swetQ31.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_27454_0
-Done: translated 200 triples in 0.6 ms (312049 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_11770_0
+Done: translated 200 triples in 1.5 ms (137475 triples/s)
 SC=200
-GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_27454_1
-Done: translated 400 triples in 2.3 ms (172798 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetD.n3 translating file:///tmp/swipl_eye_11770_1
+Done: translated 400 triples in 9.0 ms (44485 triples/s)
 SC=400
-GET http://josd.github.io/eye/i2i/swet/swetQ31.n3 translating file:///tmp/swipl_eye_27454_2
-Done: translated 10 triples in 0.5 ms (21816 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetQ31.n3 translating file:///tmp/swipl_eye_11770_2
+Done: translated 10 triples in 0.5 ms (20382 triples/s)
 SC=10
-networking 10 [msec cputime] 74 [msec walltime]
-reasoning 5 [msec cputime] 4 [msec walltime]
-2018-07-09T20:00:04.460Z in=610 out=19 ent=19 step=19 brake=1 inf=54248 sec=0.039 inf/sec=1390974
+networking 34 [msec cputime] 454 [msec walltime]
+reasoning 14 [msec cputime] 14 [msec walltime]
+2018-08-19T20:31:55.514Z in=610 out=19 ent=19 step=19 brake=1 inf=54479 sec=0.110 inf/sec=495264
 
 eye --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --query http://josd.github.io/eye/i2i/swet/swetQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_27471_0
-Done: translated 200 triples in 0.5 ms (375168 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 60 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/swet/swetA.n3 translating file:///tmp/swipl_eye_11787_0
+Done: translated 200 triples in 1.6 ms (128777 triples/s)
 SC=200
-GET http://josd.github.io/eye/i2i/swet/swetQ.n3 translating file:///tmp/swipl_eye_27471_1
-Done: translated 31 triples in 0.2 ms (151706 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetQ.n3 translating file:///tmp/swipl_eye_11787_1
+Done: translated 31 triples in 0.7 ms (43097 triples/s)
 SC=31
-networking 4 [msec cputime] 44 [msec walltime]
-GET http://josd.github.io/eye/i2i/swet/swetA11.n3 translating file:///tmp/swipl_eye_27471_2
-Done: translated 162 triples in 0.6 ms (253530 triples/s)
+networking 15 [msec cputime] 176 [msec walltime]
+GET http://josd.github.io/eye/i2i/swet/swetA11.n3 translating file:///tmp/swipl_eye_11787_2
+Done: translated 162 triples in 1.7 ms (93292 triples/s)
 SC=162
-GET http://josd.github.io/eye/i2i/swet/swetA01.n3 translating file:///tmp/swipl_eye_27471_3
-Done: translated 162 triples in 0.6 ms (279944 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetA01.n3 translating file:///tmp/swipl_eye_11787_3
+Done: translated 162 triples in 1.3 ms (125590 triples/s)
 SC=162
-GET http://josd.github.io/eye/i2i/swet/swetA21.n3 translating file:///tmp/swipl_eye_27471_4
-Done: translated 138 triples in 0.6 ms (249610 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetA21.n3 translating file:///tmp/swipl_eye_11787_4
+Done: translated 138 triples in 1.3 ms (107578 triples/s)
 SC=138
-GET http://josd.github.io/eye/i2i/swet/swetA31.n3 translating file:///tmp/swipl_eye_27471_5
-Done: translated 76 triples in 0.4 ms (172912 triples/s)
+GET http://josd.github.io/eye/i2i/swet/swetA31.n3 translating file:///tmp/swipl_eye_11787_5
+Done: translated 76 triples in 1.1 ms (67571 triples/s)
 SC=76
-reasoning 53 [msec cputime] 140 [msec walltime]
-2018-07-09T20:00:04.681Z in=769 out=3 ent=1 step=1 brake=0 inf=336606 sec=0.082 inf/sec=4104951
+reasoning 159 [msec cputime] 499 [msec walltime]
+2018-08-19T20:31:56.281Z in=769 out=3 ent=1 step=1 brake=0 inf=336877 sec=0.234 inf/sec=1439645
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/tak ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/tak/tak.n3 --query http://josd.github.io/eye/i2i/tak/takQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/tak/tak.n3 translating file:///tmp/swipl_eye_27504_0
-Done: translated 13 triples in 0.4 ms (33092 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/tak/tak.n3 translating file:///tmp/swipl_eye_11820_0
+Done: translated 13 triples in 0.4 ms (29863 triples/s)
 SC=13
-GET http://josd.github.io/eye/i2i/tak/takQ.n3 translating file:///tmp/swipl_eye_27504_1
-Done: translated 3 triples in 0.2 ms (15091 triples/s)
+GET http://josd.github.io/eye/i2i/tak/takQ.n3 translating file:///tmp/swipl_eye_11820_1
+Done: translated 3 triples in 0.4 ms (6972 triples/s)
 SC=3
-networking 2 [msec cputime] 44 [msec walltime]
-reasoning 213 [msec cputime] 231 [msec walltime]
-2018-07-09T20:00:05.031Z in=16 out=1 ent=1 step=1 brake=1 inf=1254563 sec=0.239 inf/sec=5249218
+networking 7 [msec cputime] 204 [msec walltime]
+reasoning 599 [msec cputime] 632 [msec walltime]
+2018-08-19T20:31:57.327Z in=16 out=1 ent=1 step=1 brake=1 inf=1254820 sec=0.668 inf/sec=1878473
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/tfcontext ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --turtle http://josd.github.io/eye/i2i/tfcontext/data-001.n3 --n3 http://josd.github.io/eye/i2i/tfcontext/rules-001.n3 --query http://josd.github.io/eye/i2i/tfcontext/query-001.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/tfcontext/data-001.n3 translating file:///tmp/swipl_eye_27521_0
-Done: translated 7 triples in 0.4 ms (19733 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 84 [msec walltime]
+GET http://josd.github.io/eye/i2i/tfcontext/data-001.n3 translating file:///tmp/swipl_eye_11837_0
+Done: translated 7 triples in 0.5 ms (14104 triples/s)
 SC=7
-GET http://josd.github.io/eye/i2i/tfcontext/rules-001.n3 translating file:///tmp/swipl_eye_27521_1
-Done: translated 4 triples in 0.3 ms (15337 triples/s)
+GET http://josd.github.io/eye/i2i/tfcontext/rules-001.n3 translating file:///tmp/swipl_eye_11837_1
+Done: translated 4 triples in 0.4 ms (9484 triples/s)
 SC=4
-GET http://josd.github.io/eye/i2i/tfcontext/query-001.n3 translating file:///tmp/swipl_eye_27521_2
-Done: translated 15 triples in 0.3 ms (51039 triples/s)
+GET http://josd.github.io/eye/i2i/tfcontext/query-001.n3 translating file:///tmp/swipl_eye_11837_2
+Done: translated 15 triples in 0.6 ms (26944 triples/s)
 SC=15
-networking 4 [msec cputime] 68 [msec walltime]
-reasoning 11 [msec cputime] 11 [msec walltime]
-2018-07-09T20:00:05.252Z in=26 out=7 ent=21 step=42 brake=4 inf=65559 sec=0.040 inf/sec=1638975
+networking 11 [msec cputime] 277 [msec walltime]
+reasoning 32 [msec cputime] 32 [msec walltime]
+2018-08-19T20:31:57.844Z in=26 out=7 ent=21 step=42 brake=4 inf=65909 sec=0.105 inf/sec=627705
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/turing ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/turing/turing.n3 --query http://josd.github.io/eye/i2i/turing/turingQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/turing/turing.n3 translating file:///tmp/swipl_eye_27542_0
-Done: translated 54 triples in 0.4 ms (136047 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/turing/turing.n3 translating file:///tmp/swipl_eye_11858_0
+Done: translated 54 triples in 1.1 ms (51422 triples/s)
 SC=54
-GET http://josd.github.io/eye/i2i/turing/turingQ.n3 translating file:///tmp/swipl_eye_27542_1
-Done: translated 3 triples in 0.3 ms (9304 triples/s)
+GET http://josd.github.io/eye/i2i/turing/turingQ.n3 translating file:///tmp/swipl_eye_11858_1
+Done: translated 3 triples in 0.4 ms (6804 triples/s)
 SC=3
-networking 3 [msec cputime] 45 [msec walltime]
-reasoning 10 [msec cputime] 10 [msec walltime]
-2018-07-09T20:00:05.448Z in=57 out=1 ent=1 step=1 brake=1 inf=63139 sec=0.038 inf/sec=1661553
+networking 9 [msec cputime] 173 [msec walltime]
+reasoning 31 [msec cputime] 30 [msec walltime]
+2018-08-19T20:31:58.254Z in=57 out=1 ent=1 step=1 brake=1 inf=63459 sec=0.102 inf/sec=622147
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/usm ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i2i/usm/usmP.n3 --query http://josd.github.io/eye/i2i/usm/usmQ.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 31 [msec walltime]
-GET http://josd.github.io/eye/i2i/usm/usmP.n3 translating file:///tmp/swipl_eye_27559_0
-Done: translated 55 triples in 0.4 ms (125346 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 85 [msec walltime]
+GET http://josd.github.io/eye/i2i/usm/usmP.n3 translating file:///tmp/swipl_eye_11875_0
+Done: translated 55 triples in 0.6 ms (99443 triples/s)
 SC=55
-GET http://josd.github.io/eye/i2i/usm/usmQ.n3 translating file:///tmp/swipl_eye_27559_1
-Done: translated 5 triples in 0.3 ms (15879 triples/s)
+GET http://josd.github.io/eye/i2i/usm/usmQ.n3 translating file:///tmp/swipl_eye_11875_1
+Done: translated 5 triples in 0.5 ms (9212 triples/s)
 SC=5
-networking 3 [msec cputime] 48 [msec walltime]
-reasoning 8 [msec cputime] 8 [msec walltime]
-2018-07-09T20:00:05.644Z in=60 out=2 ent=24 step=88 brake=5 inf=49264 sec=0.036 inf/sec=1368444
+networking 8 [msec cputime] 164 [msec walltime]
+reasoning 24 [msec cputime] 24 [msec walltime]
+2018-08-19T20:31:58.650Z in=60 out=2 ent=24 step=88 brake=5 inf=49592 sec=0.094 inf/sec=527574
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/utf8 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/utf8/utf8.n3 --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 25 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/utf8/utf8.n3 translating file:///tmp/swipl_eye_27576_0
-Done: translated 5 triples in 0.5 ms (9469 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 83 [msec walltime]
+GET http://josd.github.io/eye/i2i/utf8/utf8.n3 translating file:///tmp/swipl_eye_11892_0
+Done: translated 5 triples in 0.4 ms (11738 triples/s)
 SC=5
-networking 1 [msec cputime] 22 [msec walltime]
-reasoning 3 [msec cputime] 3 [msec walltime]
-2018-07-09T20:00:05.809Z in=5 out=5 ent=5 step=5 brake=1 inf=24759 sec=0.029 inf/sec=853759
+networking 3 [msec cputime] 80 [msec walltime]
+reasoning 12 [msec cputime] 11 [msec walltime]
+2018-08-19T20:31:58.946Z in=5 out=5 ent=5 step=5 brake=1 inf=25040 sec=0.077 inf/sec=325195
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 ~/github.com/josd/eye/i2i/witch ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 http://josd.github.io/eye/i2i/witch/witch.n3 --query http://josd.github.io/eye/i2i/witch/witch-goal.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET http://josd.github.io/eye/i2i/witch/witch.n3 translating file:///tmp/swipl_eye_27588_0
-Done: translated 17 triples in 0.3 ms (56401 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 82 [msec walltime]
+GET http://josd.github.io/eye/i2i/witch/witch.n3 translating file:///tmp/swipl_eye_11904_0
+Done: translated 17 triples in 0.6 ms (29133 triples/s)
 SC=17
-GET http://josd.github.io/eye/i2i/witch/witch-goal.n3 translating file:///tmp/swipl_eye_27588_1
-Done: translated 3 triples in 0.3 ms (8986 triples/s)
+GET http://josd.github.io/eye/i2i/witch/witch-goal.n3 translating file:///tmp/swipl_eye_11904_1
+Done: translated 3 triples in 0.5 ms (6503 triples/s)
 SC=3
-networking 2 [msec cputime] 43 [msec walltime]
-reasoning 4 [msec cputime] 3 [msec walltime]
-2018-07-09T20:00:05.894Z in=20 out=1 ent=7 step=25 brake=5 inf=26565 sec=0.030 inf/sec=885500
+networking 7 [msec cputime] 432 [msec walltime]
+reasoning 12 [msec cputime] 12 [msec walltime]
+2018-08-19T20:31:59.490Z in=20 out=1 ent=7 step=25 brake=5 inf=26850 sec=0.078 inf/sec=344231
 
 eye --no-genid --n3 http://josd.github.io/eye/i2i/witch/floatingwoman.n3 --proof http://josd.github.io/eye/i2i/witch/witch-proof.n3 --query http://josd.github.io/eye/i2i/witch/floatingwoman-goal.n3
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 23 [msec cputime] 29 [msec walltime]
-GET http://josd.github.io/eye/i2i/witch/floatingwoman.n3 translating file:///tmp/swipl_eye_27601_0
-Done: translated 4 triples in 0.3 ms (15334 triples/s)
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 59 [msec cputime] 79 [msec walltime]
+GET http://josd.github.io/eye/i2i/witch/floatingwoman.n3 translating file:///tmp/swipl_eye_11917_0
+Done: translated 4 triples in 0.5 ms (7459 triples/s)
 SC=4
-GET http://josd.github.io/eye/i2i/witch/witch-proof.n3 translating file:///tmp/swipl_eye_27601_1
-Done: translated 90 triples in 0.4 ms (216354 triples/s)
+GET http://josd.github.io/eye/i2i/witch/witch-proof.n3 translating file:///tmp/swipl_eye_11917_1
+Done: translated 90 triples in 0.9 ms (95143 triples/s)
 SC=90
-GET http://josd.github.io/eye/i2i/witch/floatingwoman-goal.n3 translating file:///tmp/swipl_eye_27601_2
-Done: translated 3 triples in 0.2 ms (13719 triples/s)
+GET http://josd.github.io/eye/i2i/witch/floatingwoman-goal.n3 translating file:///tmp/swipl_eye_11917_2
+Done: translated 3 triples in 0.4 ms (7237 triples/s)
 SC=3
-networking 4 [msec cputime] 66 [msec walltime]
-reasoning 10 [msec cputime] 10 [msec walltime]
-2018-07-09T20:00:06.002Z in=97 out=1 ent=9 step=43 brake=3 inf=40135 sec=0.037 inf/sec=1084730
+networking 14 [msec cputime] 302 [msec walltime]
+reasoning 34 [msec cputime] 34 [msec walltime]
+2018-08-19T20:31:59.913Z in=97 out=1 ent=9 step=43 brake=3 inf=40935 sec=0.107 inf/sec=382570
 
 ~/github.com/josd/eye/i2i ~/github.com/josd/eye/i2i
 eye --n3 i2i.diff --pass
 EYE v18.0515.2100 josd
-SWI-Prolog 7.7.17 (x86_64-linux): Jul  9 2018, 19:38:46
-starting 24 [msec cputime] 30 [msec walltime]
-GET file:///home/jdroo/github.com/josd/eye/i2i/eye/i2i.diff translating file:///home/jdroo/github.com/josd/eye/i2i/eye/i2i.diff
+SWI-Prolog 7.7.14 (x86_64-linux): May 15 2018, 22:47:37
+starting 62 [msec cputime] 85 [msec walltime]
+GET file:///home/jdroo/github.com/josd/eye/i2i/i2i.diff translating file:///home/jdroo/github.com/josd/eye/i2i/i2i.diff
 Done: translated 0 triples
 SC=0
-networking 1 [msec cputime] 2 [msec walltime]
+networking 2 [msec cputime] 5 [msec walltime]
 reasoning 0 [msec cputime] 0 [msec walltime]
-2018-07-09T20:00:06.173Z in=0 out=0 ent=0 step=0 brake=1 inf=11890 sec=0.025 inf/sec=475600
+2018-08-19T20:32:00.116Z in=0 out=0 ent=0 step=0 brake=1 inf=12156 sec=0.064 inf/sec=189938
 
