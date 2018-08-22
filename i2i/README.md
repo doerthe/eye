@@ -1,6 +1,6 @@
 # I2I
 
-### Instance to Instance
+### Input to Inference
 
 Test via
 ```
