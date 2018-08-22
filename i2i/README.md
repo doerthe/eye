@@ -1,6 +1,6 @@
 # I2I
 
-### Input to Inference
+### Input to Insight
 
 Test via
 ```
