@@ -1,6 +1,4 @@
-# I
-
-### Insights
+# Insights
 
 Test via
 ```

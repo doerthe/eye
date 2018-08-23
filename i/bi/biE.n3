@@ -4021,6 +4021,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
 
-#2018-08-19T21:02:38.607Z in=470 out=97 ent=145 step=755 brake=4 inf=957580 sec=0.177 inf/sec=5410056
+#2018-08-23T10:53:06.883Z in=470 out=97 ent=145 step=755 brake=4 inf=957807 sec=0.502 inf/sec=1907982
 #ENDS
 

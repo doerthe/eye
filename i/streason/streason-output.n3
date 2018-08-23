@@ -102,6 +102,6 @@ _:sk_19 <http://josd.github.io/eye/i#q> true.
 _:sk_19 <http://josd.github.io/eye/i#q> 9.
 (<http://josd.github.io/eye/i#i4181> <http://josd.github.io/eye/i#i8> <http://josd.github.io/eye/i#i9462>) <http://josd.github.io/eye/i#r5> <http://josd.github.io/eye/i#r10>.
 (<http://josd.github.io/eye/i#i8> <http://josd.github.io/eye/i#i9462> 9 <http://josd.github.io/eye/i#i4181>) <http://josd.github.io/eye/i#r9> true.
-#2018-08-19T21:03:19.717Z in=35 out=101 ent=0 step=0 brake=0 inf=27480 sec=0.032 inf/sec=858750
+#2018-08-23T10:54:19.280Z in=35 out=101 ent=0 step=0 brake=0 inf=27547 sec=0.078 inf/sec=353167
 #ENDS
 

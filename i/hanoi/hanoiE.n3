@@ -149,6 +149,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/hanoi/hanoi.n3>].
 
-#2018-08-19T21:03:02.111Z in=13 out=1 ent=2 step=2 brake=1 inf=34258 sec=0.034 inf/sec=1007588
+#2018-08-23T10:53:48.582Z in=13 out=1 ent=2 step=2 brake=1 inf=34305 sec=0.081 inf/sec=423519
 #ENDS
 
