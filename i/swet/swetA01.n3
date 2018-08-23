@@ -86,6 +86,6 @@ _:t_78 e:answer {:obs098 :ascribed :WetGrass}.
 _:t_79 e:answer {:obs099 :ascribed :WetGrass}.
 _:t_80 e:answer {:obs100 :ascribed :WetGrass}.
 
-#2018-08-19T21:03:20.258Z in=606 out=81 ent=81 step=81 brake=1 inf=92553 sec=0.062 inf/sec=1492790
+#2018-08-23T10:54:20.138Z in=606 out=81 ent=81 step=81 brake=1 inf=92623 sec=0.131 inf/sec=707046
 #ENDS
 

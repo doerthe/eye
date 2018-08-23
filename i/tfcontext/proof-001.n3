@@ -302,6 +302,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/tfcontext/data-001.n3>].
 
-#2018-08-19T21:03:23.342Z in=26 out=7 ent=21 step=42 brake=4 inf=65838 sec=0.051 inf/sec=1290941
+#2018-08-23T10:54:25.478Z in=26 out=7 ent=21 step=42 brake=4 inf=65908 sec=0.108 inf/sec=610259
 #ENDS
 

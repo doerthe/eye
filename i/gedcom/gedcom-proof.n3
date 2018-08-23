@@ -935,6 +935,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   );
   r:rule <#lemma92>.
 
-#2018-08-19T21:02:58.810Z in=347 out=6 ent=1591 step=18973 brake=12 inf=751883 sec=0.120 inf/sec=6265692
+#2018-08-23T10:53:42.901Z in=347 out=6 ent=1591 step=18973 brake=12 inf=752090 sec=0.366 inf/sec=2054891
 #ENDS
 

@@ -1077,6 +1077,6 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/i#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/swet/swetQ.n3>].
 
-#2018-08-19T21:03:22.085Z in=769 out=3 ent=1 step=1 brake=0 inf=336811 sec=0.099 inf/sec=3402131
+#2018-08-23T10:54:23.293Z in=769 out=3 ent=1 step=1 brake=0 inf=336877 sec=0.232 inf/sec=1452056
 #ENDS
 
