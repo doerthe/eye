@@ -1,9 +1,0 @@
-@prefix ck: <http://josd.github.io/eye/i2i/ppt-bank/checking#>.
-
-{
-	?A ck:balance ?B.
-}
-=>
-{
-	?A ck:balance ?B.
-}.

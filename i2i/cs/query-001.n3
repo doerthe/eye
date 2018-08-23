@@ -1,9 +1,0 @@
-PREFIX : <http://josd.github.io/eye/i2i/cs#>
-
-{
-	?O :control1 ?C.
-}
-=>
-{
-	?O :control1 ?C.
-}.

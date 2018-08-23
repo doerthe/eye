@@ -1,3 +1,0 @@
-PREFIX : <http://josd.github.io/eye/i2i#>
-
-{:all :got :dinner} => {:all :got :dinner}.

@@ -1,2 +1,0 @@
-#!/bin/bash
-eye "$@" --n3 http://josd.github.io/eye/i2i/mmln/mmln-gv-example.n3 --n3 http://josd.github.io/eye/i2i/mmln/mmln-gv-mln.n3 --n3 http://josd.github.io/eye/i2i/mmln/mmln-plugin.n3 --query http://josd.github.io/eye/i2i/mmln/mmln-gv-query.n3 > mmln-gv-proof.n3

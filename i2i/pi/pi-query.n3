@@ -1,3 +1,0 @@
-@prefix : <http://josd.github.io/eye/i2i#>.
-
-{(1000 ?Pi) :pi true} => {(1000 ?Pi) :pi true}.

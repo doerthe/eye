@@ -1,0 +1,163 @@
+#Processed by EYE v18.0515.2100 josd
+#eye --n3 http://josd.github.io/eye/i/graph/graph.axiom.n3 --n3 http://josd.github.io/eye/i/graph/rpo-rules.n3 --query http://josd.github.io/eye/i/graph/graph.filter.n3
+
+PREFIX math: <http://www.w3.org/2000/10/swap/math#>
+PREFIX list: <http://www.w3.org/2000/10/swap/list#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX ns1: <http://eulersharp.sourceforge.net/2003/03swap/rpo-rules#>
+PREFIX log: <http://www.w3.org/2000/10/swap/log#>
+PREFIX ns2: <http://www.agfa.com/w3c/euler/graph.axiom#>
+PREFIX : <http://www.agfa.com/w3c/euler/graph.axiom#>
+PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+
+[] a r:Proof, r:Conjunction;
+  r:component <#lemma1>;
+  r:gives {
+    ns2:paris ns2:path ns2:nantes.
+  }.
+
+<#lemma1> a r:Inference;
+  r:gives {
+    ns2:paris ns2:path ns2:nantes.
+  };
+  r:evidence (
+    <#lemma2>
+  );
+  r:rule <#lemma3>.
+
+<#lemma2> a r:Inference;
+  r:gives {
+    ns2:paris ns2:path ns2:nantes.
+  };
+  r:evidence (
+    <#lemma4>
+    <#lemma5>
+    <#lemma6>
+  );
+  r:rule <#lemma7>.
+
+<#lemma3> a r:Extraction;
+  r:gives {
+    {ns2:paris ns2:path ns2:nantes} => {ns2:paris ns2:path ns2:nantes}.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.filter.n3>].
+
+<#lemma4> a r:Extraction;
+  r:gives {
+    ns2:path a owl:TransitiveProperty.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+
+<#lemma5> a r:Inference;
+  r:gives {
+    ns2:angers ns2:path ns2:nantes.
+  };
+  r:evidence (
+    <#lemma8>
+    <#lemma9>
+  );
+  r:rule <#lemma10>.
+
+<#lemma6> a r:Inference;
+  r:gives {
+    ns2:paris ns2:path ns2:angers.
+  };
+  r:evidence (
+    <#lemma4>
+    <#lemma11>
+    <#lemma12>
+  );
+  r:rule <#lemma7>.
+
+<#lemma7> a r:Extraction;
+  r:gives {
+    {?x_0_2 a owl:TransitiveProperty.
+     ?x_1_2 ?x_0_2 ?x_2_2.
+     ?x_3_2 ?x_0_2 ?x_1_2} => {?x_3_2 ?x_0_2 ?x_2_2}.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/rpo-rules.n3>].
+
+<#lemma8> a r:Extraction;
+  r:gives {
+    ns2:oneway rdfs:subPropertyOf ns2:path.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+
+<#lemma9> a r:Extraction;
+  r:gives {
+    ns2:angers ns2:oneway ns2:nantes.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+
+<#lemma10> a r:Extraction;
+  r:gives {
+    {?x_0_3 rdfs:subPropertyOf ?x_1_3.
+     ?x_2_3 ?x_0_3 ?x_3_3} => {?x_2_3 ?x_1_3 ?x_3_3}.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/rpo-rules.n3>].
+
+<#lemma11> a r:Inference;
+  r:gives {
+    ns2:lemans ns2:path ns2:angers.
+  };
+  r:evidence (
+    <#lemma8>
+    <#lemma13>
+  );
+  r:rule <#lemma10>.
+
+<#lemma12> a r:Inference;
+  r:gives {
+    ns2:paris ns2:path ns2:lemans.
+  };
+  r:evidence (
+    <#lemma4>
+    <#lemma14>
+    <#lemma15>
+  );
+  r:rule <#lemma7>.
+
+<#lemma13> a r:Extraction;
+  r:gives {
+    ns2:lemans ns2:oneway ns2:angers.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+
+<#lemma14> a r:Inference;
+  r:gives {
+    ns2:chartres ns2:path ns2:lemans.
+  };
+  r:evidence (
+    <#lemma8>
+    <#lemma16>
+  );
+  r:rule <#lemma10>.
+
+<#lemma15> a r:Inference;
+  r:gives {
+    ns2:paris ns2:path ns2:chartres.
+  };
+  r:evidence (
+    <#lemma8>
+    <#lemma17>
+  );
+  r:rule <#lemma10>.
+
+<#lemma16> a r:Extraction;
+  r:gives {
+    ns2:chartres ns2:oneway ns2:lemans.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+
+<#lemma17> a r:Extraction;
+  r:gives {
+    ns2:paris ns2:oneway ns2:chartres.
+  };
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+
+#2018-08-19T21:03:01.321Z in=171 out=1 ent=24 step=70 brake=2 inf=39654 sec=0.042 inf/sec=944143
+#ENDS
+
