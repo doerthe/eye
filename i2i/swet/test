@@ -1,7 +1,0 @@
-#!/bin/bash
-eye "$@" --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query=http://josd.github.io/eye/i2i/swet/swetQ01.n3 > swetA01.n3
-eye "$@" --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query=http://josd.github.io/eye/i2i/swet/swetQ11.n3 > swetA11.n3
-eye "$@" --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query=http://josd.github.io/eye/i2i/swet/swetQ21.n3 > swetA21.n3
-eye "$@" --nope --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --n3 http://josd.github.io/eye/i2i/swet/swetD.n3 --query=http://josd.github.io/eye/i2i/swet/swetQ31.n3 > swetA31.n3
-
-eye "$@" --n3 http://josd.github.io/eye/i2i/swet/swetA.n3 --query=http://josd.github.io/eye/i2i/swet/swetQ.n3 > swet_proof.n3

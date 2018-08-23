@@ -1,0 +1,2 @@
+#!/bin/bash
+eye "$@" --n3 http://josd.github.io/eye/i/turing/turing.n3 --query http://josd.github.io/eye/i/turing/turingQ.n3 > turing_proof.n3
