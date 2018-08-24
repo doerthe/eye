@@ -1,2 +1,0 @@
-#!/bin/bash
-cat multi-query | eye "$@" --wcache http://josd.github.io/eye/programming/mq . --turtle http://josd.github.io/eye/programming/mq/data.n3 --multi-query > mq_proof.n3

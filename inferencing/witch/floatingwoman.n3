@@ -1,0 +1,3 @@
+@prefix : <http://josd.github.io/eye/inferencing/witch#>.
+
+{?x a :FLOATS, :WOMAN} => {?x a :FLOATINGWOMAN}.

@@ -8,7 +8,7 @@ Via [N3](http://www.w3.org/TeamSubmission/n3/) it is interoperable with [Cwm](ht
 
 Semibackward chaining is backward chaining for rules using <= in [N3](http://www.w3.org/TeamSubmission/n3/)  
 and forward chaining for rules using => in [N3](http://www.w3.org/TeamSubmission/n3/).  
-This can be seen in [I2I](http://github.com/josd/eye/tree/master/i2i).  
+This can be seen in [EYE Inferencing](http://github.com/josd/eye/inferencing).  
 
 Euler paths are roughly _"don't step in your own steps"_ which is inspired by  
 what [Leonhard Euler](http://en.wikipedia.org/wiki/Leonhard_Euler) discovered in 1736 for the [Königsberg Bridge Problem](http://mathworld.wolfram.com/KoenigsbergBridgeProblem.html).  

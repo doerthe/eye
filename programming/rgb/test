@@ -1,4 +1,0 @@
-#!/bin/bash
-eye "$@" --n3 http://josd.github.io/eye/programming/rgb/redgraph001.n3 --query http://josd.github.io/eye/programming/rgb/greenquery001.n3 > blueproof001.n3
-eye "$@" --n3 http://josd.github.io/eye/programming/rgb/redgraph002.n3 --query http://josd.github.io/eye/programming/rgb/greenquery002.n3 > blueproof002.n3
-eye "$@" --n3 http://josd.github.io/eye/programming/rgb/redgraph003.n3 --query http://josd.github.io/eye/programming/rgb/greenquery003.n3 > blueproof003.n3

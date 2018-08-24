@@ -1,4 +1,0 @@
-PREFIX : <http://josd.github.io/eye/programming#>
-
-{(18 13 8) :tak ?A} => {(18 13 8) :tak ?A}.
-
