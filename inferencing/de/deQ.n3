@@ -1,3 +1,0 @@
-PREFIX : <http://josd.github.io/eye/inferencing#>
-
-{?S :saying :C} => {?S :saying :C}.

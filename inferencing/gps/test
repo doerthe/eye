@@ -1,3 +1,0 @@
-#!/bin/bash
-eye "$@" --n3 http://josd.github.io/eye/inferencing/gps/gps-plugin.n3 --n3 http://josd.github.io/eye/inferencing/gps/gps-example1.n3 --query http://josd.github.io/eye/inferencing/gps/gps-query1.n3 > gps-proof1.n3
-eye "$@" --n3 http://josd.github.io/eye/inferencing/gps/gps-plugin.n3 --n3 http://josd.github.io/eye/inferencing/gps/gps-example2.n3 --query http://josd.github.io/eye/inferencing/gps/gps-query2.n3 > gps-proof2.n3

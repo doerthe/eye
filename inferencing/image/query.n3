@@ -1,3 +1,0 @@
-PREFIX : <http://josd.github.io/eye/inferencing#>
-
-{?A :easterFor ?B} => {?A :easterFor ?B}.
