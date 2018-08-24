@@ -1253,6 +1253,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/fib/fib.n3>].
 
-#2018-08-24T19:39:50.651Z in=14 out=1 ent=1 step=1 brake=1 inf=149030 sec=0.136 inf/sec=1095809
+#2018-08-24T22:16:21.525Z in=14 out=1 ent=1 step=1 brake=1 inf=149027 sec=0.137 inf/sec=1087788
 #ENDS
 

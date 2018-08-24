@@ -199,6 +199,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/iq/iq.n3>].
 
-#2018-08-24T19:39:57.183Z in=29 out=10 ent=13 step=26 brake=2 inf=56121 sec=0.097 inf/sec=578567
+#2018-08-24T22:16:28.018Z in=29 out=10 ent=13 step=26 brake=2 inf=56121 sec=0.092 inf/sec=610011
 #ENDS
 

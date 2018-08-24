@@ -133,6 +133,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/n3p/extra.ttl>].
 
-#2018-08-24T19:40:06.361Z in=7 out=7 ent=7 step=7 brake=1 inf=26628 sec=0.077 inf/sec=345818
+#2018-08-24T22:16:36.824Z in=7 out=7 ent=7 step=7 brake=1 inf=26608 sec=0.078 inf/sec=341128
 #ENDS
 

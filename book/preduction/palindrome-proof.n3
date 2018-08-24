@@ -738,6 +738,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/preduction/palindrome.n3>].
 
-#2018-08-24T19:40:10.999Z in=29 out=1 ent=1 step=1 brake=1 inf=158862 sec=0.141 inf/sec=1126681
+#2018-08-24T22:16:41.208Z in=29 out=1 ent=1 step=1 brake=1 inf=158862 sec=0.142 inf/sec=1118746
 #ENDS
 
