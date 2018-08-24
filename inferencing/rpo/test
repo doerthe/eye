@@ -1,2 +1,0 @@
-#!/bin/bash
-eye "$@" --n3 http://josd.github.io/eye/inferencing/rpo/food-example.n3 --n3 http://josd.github.io/eye/inferencing/rpo/food.n3 --n3 http://josd.github.io/eye/inferencing/rpo/rdfs-subClassOf.n3 --query http://josd.github.io/eye/inferencing/rpo/food-query.n3 > food-proof.n3

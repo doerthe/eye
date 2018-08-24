@@ -1,0 +1,2 @@
+#!/bin/bash
+eye "$@" --n3 http://josd.github.io/eye/book/fcm/fcm-plugin.n3 --n3 http://josd.github.io/eye/book/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/book/fcm/example001P.n3 --n3 http://josd.github.io/eye/book/fcm/example002P.n3 --query http://josd.github.io/eye/book/fcm/example003Q.n3 > fcm_proof.n3
