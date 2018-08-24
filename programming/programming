@@ -1,4 +1,5 @@
 #!/bin/bash
+<<<<<<< HEAD:programming/programming
 function i {
    echo "# $(date)" > i.diff
    pushd 3outof5; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../i.diff; popd
@@ -61,4 +62,68 @@ pushd ~/github.com/josd/eye/i
 i "$@" 2>&1 | tee i.txt
 echo stamp,in,out,ent,step,brake,inf,sec,inf/sec > i.csv
 cat i.txt | grep in= | sed -e 's/in=//' -e 's/out=//' -e 's/ent=//' -e 's/step=//' -e 's/brake=//' -e 's/inf=//' -e 's/sec=//' -e 's/inf\/sec=//' -e 's/ /,/g' >> i.csv
+=======
+function programming {
+   echo "# $(date)" > programming.diff
+   pushd 3outof5; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd bi; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd bmi; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd bmt; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd crypto; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd cs; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd csv; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd de; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd dp; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd dpe; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd djiti; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd dt; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd easter; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd einstein; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd equation4; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd fcm; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd fgcm; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd fib; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd gedcom; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd glass; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd gps; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd graph; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd h2o; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd hanoi; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd image; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd iq; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd lldm; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd map; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd medic; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd mmln; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd mq; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd n3p; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd nbbn; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd numeral; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd pi; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd pptbank; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd preduction; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd restpath; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd resto; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd rgb; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd rif; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd rpo; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd rs; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd skos; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd socrates; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd streason; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd swet; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd tak; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd tfcontext; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd turing; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd usm; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd utf8; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   pushd witch; ./test "$@"; git diff -U0 . | grep -E -v '^diff|^index|^Binary|^--|^\+-|\+\+|^@@|#Processed by|#DONE|in=|#ENDS' >> ../programming.diff; popd
+   eye --n3 programming.diff --pass > /dev/null
+}
+
+pushd ~/github.com/josd/eye/programming
+programming "$@" 2>&1 | tee programming.txt
+echo stamp,in,out,ent,step,brake,inf,sec,inf/sec > programming.csv
+cat programming.txt | grep in= | sed -e 's/in=//' -e 's/out=//' -e 's/ent=//' -e 's/step=//' -e 's/brake=//' -e 's/inf=//' -e 's/sec=//' -e 's/inf\/sec=//' -e 's/ /,/g' >> programming.csv
+>>>>>>> master:programming/programming
 popd

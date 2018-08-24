@@ -1,6 +1,10 @@
 ### example taken from http://skolemmachines.org/reports/SkolemMachines.pdf
 
+<<<<<<< HEAD:programming/usm/usmP.n3
 @prefix : <http://josd.github.io/eye/i#>.
+=======
+@prefix : <http://josd.github.io/eye/programming#>.
+>>>>>>> master:programming/usm/usmP.n3
 
 # 2-Counter machine
 # Example: R1 + R2 -> R1

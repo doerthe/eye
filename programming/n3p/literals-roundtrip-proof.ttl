@@ -1,5 +1,9 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
 #eye --plugin http://josd.github.io/eye/i/n3p/literals.n3p --pass
+=======
+#eye --plugin http://josd.github.io/eye/programming/n3p/literals.n3p --pass
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX : <http://example.org/try#>
@@ -123,7 +127,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s :p 11 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma12> a r:Extraction;
   r:gives {
@@ -135,55 +143,91 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s :p 22 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma14> a r:Extraction;
   r:gives {
     :s :p 33 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma15> a r:Extraction;
   r:gives {
     :s :p 4.4 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma16> a r:Extraction;
   r:gives {
     :s :p 5.5 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma17> a r:Extraction;
   r:gives {
     :s :p 6.6 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma18> a r:Extraction;
   r:gives {
     :s :p 0.77 .
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma19> a r:Extraction;
   r:gives {
     :s :p true.
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma20> a r:Extraction;
   r:gives {
     :s :p false.
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 <#lemma21> a r:Extraction;
   r:gives {
     :s :p "abc".
   };
+<<<<<<< HEAD:programming/n3p/literals-roundtrip-proof.ttl
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/literals.ttl>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/literals.ttl>].
+>>>>>>> master:programming/n3p/literals-roundtrip-proof.ttl
 
 #2018-08-23T10:54:02.131Z in=10 out=10 ent=10 step=10 brake=1 inf=29603 sec=0.080 inf/sec=370038
 #ENDS

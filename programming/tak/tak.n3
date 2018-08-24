@@ -1,6 +1,10 @@
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+<<<<<<< HEAD:programming/tak/tak.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/tak/tak.n3
 
 {(?X ?Y ?Z) :tak ?Z} <= {
 	("=<" ?X ?Y) e:derive true.

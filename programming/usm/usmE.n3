@@ -1,7 +1,13 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/usm/usmE.n3
 #eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/usm/usmP.n3 --query http://josd.github.io/eye/i/usm/usmQ.n3
 
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+#eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/usm/usmP.n3 --query http://josd.github.io/eye/programming/usm/usmQ.n3
+
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/usm/usmE.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -36,7 +42,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     5 :instruction (:halt).
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma4> a r:Extraction;
   r:gives {
@@ -44,7 +54,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_1 :instruction (:halt)} => {?x_0_1 :state (?x_1_1 ?x_2_1).
      ?x_0_1 :instruction (:halt)}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmQ.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma5> a r:Inference;
   r:gives {
@@ -60,14 +74,22 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     1 :instruction (:jpz 2 5 2).
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma7> a r:Extraction;
   r:gives {
     {?x_0_2 :state (?x_1_2 0).
      ?x_0_2 :instruction (:jpz 2 ?x_2_2 ?x_3_2)} => {?x_2_2 :state (?x_1_2 0)}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma8> a r:Inference;
   r:gives {
@@ -84,14 +106,22 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     4 :instruction (:goto 1).
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma10> a r:Extraction;
   r:gives {
     {?x_0_3 :state (?x_1_3 ?x_2_3).
      ?x_0_3 :instruction (:goto ?x_3_3)} => {?x_3_3 :state (?x_1_3 ?x_2_3)}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma11> a r:Inference;
   r:gives {
@@ -108,7 +138,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     3 :instruction (:inc 1 4).
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma13> a r:Inference;
   r:gives {
@@ -125,7 +159,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_4 :instruction (:inc 1 ?x_3_4).
      ?x_1_4 :inc ?x_4_4} => {?x_3_4 :state (?x_4_4 ?x_2_4)}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma15> a r:Inference;
   r:gives {
@@ -142,13 +180,21 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     2 :instruction (:dec 2 3).
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma17> a r:Extraction;
   r:gives {
     0 :inc 1 .
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma18> a r:Extraction;
   r:gives {
@@ -156,7 +202,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_5 :instruction (:dec 2 ?x_3_5).
      ?x_4_5 :inc ?x_2_5} => {?x_3_5 :state (?x_1_5 ?x_4_5)}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma19> a r:Inference;
   r:gives {
@@ -171,7 +221,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_6 :inc ?x_1_6} => {?x_1_6 :inc _:x_2_6}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma21> a r:Inference;
   r:gives {
@@ -189,7 +243,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_3_7 :inc ?x_2_7.
      ?x_0_7 :instruction (:jpz 2 ?x_4_7 ?x_5_7)} => {?x_5_7 :state (?x_1_7 ?x_2_7)}.
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma23> a r:Inference;
   r:gives {
@@ -215,7 +273,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     3 :inc 4 .
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma26> a r:Inference;
   r:gives {
@@ -243,7 +305,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     1 :inc 2 .
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma29> a r:Inference;
   r:gives {
@@ -292,7 +358,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     2 :inc 3 .
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 <#lemma34> a r:Inference;
   r:gives {
@@ -341,7 +411,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     1 :state (3 4).
   };
+<<<<<<< HEAD:programming/usm/usmE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/usm/usmP.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/usm/usmP.n3>].
+>>>>>>> master:programming/usm/usmE.n3
 
 #2018-08-23T10:54:26.632Z in=60 out=2 ent=24 step=88 brake=5 inf=49592 sec=0.088 inf/sec=563545
 #ENDS

@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --n3 http://josd.github.io/eye/i/fcm/fcm-plugin.n3 --n3 http://josd.github.io/eye/i/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/i/fcm/example001P.n3 --n3 http://josd.github.io/eye/i/fcm/example002P.n3 --query http://josd.github.io/eye/i/fcm/example003Q.n3 > fcm_proof.n3
+=======
+eye "$@" --n3 http://josd.github.io/eye/programming/fcm/fcm-plugin.n3 --n3 http://josd.github.io/eye/programming/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/programming/fcm/example001P.n3 --n3 http://josd.github.io/eye/programming/fcm/example002P.n3 --query http://josd.github.io/eye/programming/fcm/example003Q.n3 > fcm_proof.n3
+>>>>>>> master

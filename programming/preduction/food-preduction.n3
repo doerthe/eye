@@ -1,9 +1,16 @@
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+<<<<<<< HEAD:programming/preduction/food-preduction.n3
 PREFIX p: <http://josd.github.io/eye/i/preduction#>
 
 {
 	<http://josd.github.io/eye/i/rpo/rdfs-subClassOf.n3> log:semantics ?F.
+=======
+PREFIX p: <http://josd.github.io/eye/programming/preduction#>
+
+{
+	<http://josd.github.io/eye/programming/rpo/rdfs-subClassOf.n3> log:semantics ?F.
+>>>>>>> master:programming/preduction/food-preduction.n3
 	?F log:includes {?A => {?B a ?C}}.
 	{?A => {?B a ?C}} p:preduce ?D.
 	?D e:graphMember {?S ?P ?O}.

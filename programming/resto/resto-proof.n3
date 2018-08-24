@@ -1,5 +1,9 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/resto/resto-proof.n3
 #eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/resto/resto.n3 --query http://josd.github.io/eye/i/resto/restoG.n3
+=======
+#eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/resto/resto.n3 --query http://josd.github.io/eye/programming/resto/restoG.n3
+>>>>>>> master:programming/resto/resto-proof.n3
 
 PREFIX : <http://example.org/vocab#>
 PREFIX foaf: <http://xmlns.com/foaf/0.1/>
@@ -65,7 +69,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_1_1 resto:place ?x_3_1.
      ?x_3_1 resto:isOutside ?x_4_1}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/restoG.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/restoG.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -95,7 +103,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :RestAppointment resto:hasDate "12/12/12".
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma6> a r:Extraction;
   r:gives {
@@ -111,7 +123,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      _:x_8_2 resto:place _:x_9_2.
      _:x_9_2 resto:isOutside ?x_3_2}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma7> a r:Inference;
   r:gives {
@@ -162,7 +178,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :RestAppointment resto:isOn "<#myAppointments>".
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma11> a r:Extraction;
   r:gives {
@@ -183,7 +203,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      _:x_11_3 resto:reservationList _:x_14_3.
      _:x_15_3 resto:isOutside _:x_12_3}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma12> a r:Inference;
   r:gives {
@@ -209,7 +233,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      _:x_3_4 geo:lat _:x_4_4.
      _:x_3_4 geo:long _:x_5_4}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma14> a r:Extraction;
   r:gives {
@@ -221,7 +249,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_5 meteo:pressure _:x_6_5.
      _:x_6_5 meteo:millibar _:x_5_5}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma15> a r:Extraction;
   r:gives {
@@ -233,13 +265,21 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_6 meteo:temperature _:x_6_6.
      _:x_6_6 meteo:celsius _:x_5_6}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma16> a r:Extraction;
   r:gives {
     :Areeb a foaf:Person.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 <#lemma17> a r:Extraction;
   r:gives {
@@ -250,7 +290,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_7 foaf:based_near _:x_3_7.
      _:x_3_7 a con:Address}.
   };
+<<<<<<< HEAD:programming/resto/resto-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/resto/resto.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/resto/resto.n3>].
+>>>>>>> master:programming/resto/resto-proof.n3
 
 #2018-08-23T10:54:12.201Z in=78 out=4 ent=47 step=7 brake=1 inf=56400 sec=0.100 inf/sec=564000
 #ENDS

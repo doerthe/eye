@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --n3 http://josd.github.io/eye/i/bmi/bmi_instances.n3 --n3 http://josd.github.io/eye/i/bmi/bmi_rules.n3 --n3 http://josd.github.io/eye/i/bmi/weightStatus_rules.n3 --n3 http://josd.github.io/eye/i/bmi/age_rules_backward.n3 --query http://josd.github.io/eye/i/bmi/bmi_query.n3 > bmi_proof.n3
+=======
+eye "$@" --n3 http://josd.github.io/eye/programming/bmi/bmi_instances.n3 --n3 http://josd.github.io/eye/programming/bmi/bmi_rules.n3 --n3 http://josd.github.io/eye/programming/bmi/weightStatus_rules.n3 --n3 http://josd.github.io/eye/programming/bmi/age_rules_backward.n3 --query http://josd.github.io/eye/programming/bmi/bmi_query.n3 > bmi_proof.n3
+>>>>>>> master

@@ -4,4 +4,8 @@ Equations of degree 4
 
 Inspired by http://alain.colmerauer.free.fr/alcol/ArchivesPublications/Equation4/Equation4.pdf
 
+<<<<<<< HEAD:programming/equation4/README
 The tests are at http://josd.github.io/eye/i/equation4/test
+=======
+The tests are at http://josd.github.io/eye/programming/equation4/test
+>>>>>>> master:programming/equation4/README

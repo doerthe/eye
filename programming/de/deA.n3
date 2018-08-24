@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/de/deA.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/de/deA.n3
 
 # assuming the negation of the query so that it can be discharged when the query succeeds
 _:anon :not_saying :C.

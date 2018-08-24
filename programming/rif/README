@@ -4,4 +4,8 @@ RIF Datatypes and Built-Ins
 
 See https://www.w3.org/TR/rif-dtb/
 
+<<<<<<< HEAD:programming/rif/README
 The tests are at http://josd.github.io/eye/i/rif/test
+=======
+The tests are at http://josd.github.io/eye/programming/rif/test
+>>>>>>> master:programming/rif/README

@@ -2,4 +2,8 @@
 Tensor Flow Context
 -------------------
 
+<<<<<<< HEAD
 The tests are at http://josd.github.io/eye/i/tfcontext/test
+=======
+The tests are at http://josd.github.io/eye/programming/tfcontext/test
+>>>>>>> master

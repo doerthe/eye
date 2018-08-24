@@ -1,5 +1,9 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/glass/testE.n3
 #eye --n3 http://josd.github.io/eye/i/glass/test.n3 --query http://josd.github.io/eye/i/glass/testQ.n3
+=======
+#eye --n3 http://josd.github.io/eye/programming/glass/test.n3 --query http://josd.github.io/eye/programming/glass/testQ.n3
+>>>>>>> master:programming/glass/testE.n3
 
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX : <http://example.org/try#>
@@ -109,20 +113,32 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
     {?x_0_1 :p :o.
      ?x_0_1 log:equalTo {?x_1_1 :b :c}} => {:test1 :answer ?x_1_1}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/testQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/testQ.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma9> a r:Extraction;
   r:gives {
     {:r :s :t} :p :o.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/test.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/test.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma10> a r:Extraction;
   r:gives {
     {?x_0_2 :p :o.
      ?x_0_2 log:equalTo {:r ?x_1_2 :t}} => {:test2 :answer ?x_1_2}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/testQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/testQ.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma11> a r:Extraction;
   r:gives {
@@ -130,7 +146,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      :d :e :f.
      :r :s :t} :p :o.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/test.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/test.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma12> a r:Extraction;
   r:gives {
@@ -138,7 +158,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_3 log:equalTo {:d :e :f.
       :r ?x_1_3 :t}} => {:test3 :answer ?x_1_3}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/testQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/testQ.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma13> a r:Extraction;
   r:gives {
@@ -146,7 +170,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_0_4 log:equalTo {:d ?x_1_4 :f.
       :r :s :t}} => {:test4 :answer ?x_1_4}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/testQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/testQ.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma14> a r:Extraction;
   r:gives {
@@ -155,7 +183,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
       :r :s :t.
       :d ?x_1_5 :f}} => {:test5 :answer ?x_1_5}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/testQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/testQ.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma15> a r:Extraction;
   r:gives {
@@ -164,13 +196,21 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
       :r :s :t.
       :d ?x_1_6 :f} log:equalTo ?x_0_6} => {:test6 :answer ?x_1_6}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/testQ.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/testQ.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 <#lemma16> a r:Extraction;
   r:gives {
     {?x_0_7 log:equalTo :b} => {{:a ?x_0_7 :c} :p :o}.
   };
+<<<<<<< HEAD:programming/glass/testE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/glass/test.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/glass/test.n3>].
+>>>>>>> master:programming/glass/testE.n3
 
 #2018-08-23T10:53:43.794Z in=46 out=6 ent=7 step=30 brake=2 inf=43079 sec=0.086 inf/sec=500919
 #ENDS

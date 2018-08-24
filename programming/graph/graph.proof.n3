@@ -1,5 +1,9 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/graph/graph.proof.n3
 #eye --n3 http://josd.github.io/eye/i/graph/graph.axiom.n3 --n3 http://josd.github.io/eye/i/graph/rpo-rules.n3 --query http://josd.github.io/eye/i/graph/graph.filter.n3
+=======
+#eye --n3 http://josd.github.io/eye/programming/graph/graph.axiom.n3 --n3 http://josd.github.io/eye/programming/graph/rpo-rules.n3 --query http://josd.github.io/eye/programming/graph/graph.filter.n3
+>>>>>>> master:programming/graph/graph.proof.n3
 
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX list: <http://www.w3.org/2000/10/swap/list#>
@@ -43,13 +47,21 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {ns2:paris ns2:path ns2:nantes} => {ns2:paris ns2:path ns2:nantes}.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.filter.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.filter.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma4> a r:Extraction;
   r:gives {
     ns2:path a owl:TransitiveProperty.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.axiom.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma5> a r:Inference;
   r:gives {
@@ -78,26 +90,42 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_1_2 ?x_0_2 ?x_2_2.
      ?x_3_2 ?x_0_2 ?x_1_2} => {?x_3_2 ?x_0_2 ?x_2_2}.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/rpo-rules.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/rpo-rules.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma8> a r:Extraction;
   r:gives {
     ns2:oneway rdfs:subPropertyOf ns2:path.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.axiom.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma9> a r:Extraction;
   r:gives {
     ns2:angers ns2:oneway ns2:nantes.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.axiom.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma10> a r:Extraction;
   r:gives {
     {?x_0_3 rdfs:subPropertyOf ?x_1_3.
      ?x_2_3 ?x_0_3 ?x_3_3} => {?x_2_3 ?x_1_3 ?x_3_3}.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/rpo-rules.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/rpo-rules.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma11> a r:Inference;
   r:gives {
@@ -124,7 +152,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     ns2:lemans ns2:oneway ns2:angers.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.axiom.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma14> a r:Inference;
   r:gives {
@@ -150,13 +182,21 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     ns2:chartres ns2:oneway ns2:lemans.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.axiom.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 <#lemma17> a r:Extraction;
   r:gives {
     ns2:paris ns2:oneway ns2:chartres.
   };
+<<<<<<< HEAD:programming/graph/graph.proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/graph/graph.axiom.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/graph/graph.axiom.n3>].
+>>>>>>> master:programming/graph/graph.proof.n3
 
 #2018-08-23T10:53:47.483Z in=171 out=1 ent=24 step=70 brake=2 inf=39702 sec=0.095 inf/sec=417916
 #ENDS

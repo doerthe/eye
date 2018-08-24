@@ -1,3 +1,7 @@
+<<<<<<< HEAD:programming/djiti/query.n3
 @prefix : <http://josd.github.io/eye/i#>.
+=======
+@prefix : <http://josd.github.io/eye/programming#>.
+>>>>>>> master:programming/djiti/query.n3
 
 {(?S1 ?S2 ?S3) :p :o. (?S3 ?S4 ?S5) :p :o} => {:a :b (?S1 ?S2 ?S3 ?S4 ?S5)}.

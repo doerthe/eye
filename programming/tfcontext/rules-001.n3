@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/tfcontext/rules-001.n3
 PREFIX t: <http://josd.github.io/eye/i/tfcontext#>
+=======
+PREFIX t: <http://josd.github.io/eye/programming/tfcontext#>
+>>>>>>> master:programming/tfcontext/rules-001.n3
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 
 {	?C t:position-tensor (?LA ?LO).

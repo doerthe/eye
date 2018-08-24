@@ -1,7 +1,11 @@
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+<<<<<<< HEAD:programming/rs/randomsample-rule.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/rs/randomsample-rule.n3
 
 {(?U ?N) :randomsample ?A} <=
 {

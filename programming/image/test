@@ -1,3 +1,8 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --n3 http://josd.github.io/eye/i/image/year.n3 --n3 http://josd.github.io/eye/i/image/easter.n3 --image ype.pvm
 swipl -x ype.pvm -- "$@" --query http://josd.github.io/eye/i/image/query.n3 > easter-proof.n3
+=======
+eye "$@" --n3 http://josd.github.io/eye/programming/image/year.n3 --n3 http://josd.github.io/eye/programming/image/easter.n3 --image ype.pvm
+swipl -x ype.pvm -- "$@" --query http://josd.github.io/eye/programming/image/query.n3 > easter-proof.n3
+>>>>>>> master

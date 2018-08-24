@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --n3 http://josd.github.io/eye/i/de/de.n3 --n3 http://josd.github.io/eye/i/de/deA.n3 --query http://josd.github.io/eye/i/de/deQ.n3 > deE.n3
+=======
+eye "$@" --n3 http://josd.github.io/eye/programming/de/de.n3 --n3 http://josd.github.io/eye/programming/de/deA.n3 --query http://josd.github.io/eye/programming/de/deQ.n3 > deE.n3
+>>>>>>> master

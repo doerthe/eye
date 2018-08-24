@@ -1,5 +1,9 @@
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+<<<<<<< HEAD:programming/nbbn/nbbn-model.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/nbbn/nbbn-model.n3
 
 ({{:EscherichiaColiInfection :treatedBy :FloxacinTreatment} e:boolean e:T}) e:conditional 0.5.
 

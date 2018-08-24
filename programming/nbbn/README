@@ -4,4 +4,8 @@ Naive Bayesian Belief Networks
 
 Probabilistic reasoning using a method inspired by Bayesian Belief Networks (BBN).
 
+<<<<<<< HEAD:programming/nbbn/README
 The tests are at http://josd.github.io/eye/i/nbbn/test
+=======
+The tests are at http://josd.github.io/eye/programming/nbbn/test
+>>>>>>> master:programming/nbbn/README

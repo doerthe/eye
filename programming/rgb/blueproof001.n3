@@ -1,5 +1,9 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/rgb/blueproof001.n3
 #eye --n3 http://josd.github.io/eye/i/rgb/redgraph001.n3 --query http://josd.github.io/eye/i/rgb/greenquery001.n3
+=======
+#eye --n3 http://josd.github.io/eye/programming/rgb/redgraph001.n3 --query http://josd.github.io/eye/programming/rgb/greenquery001.n3
+>>>>>>> master:programming/rgb/blueproof001.n3
 
 PREFIX : <http://example.org/try#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
@@ -34,19 +38,31 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s :p :o.
   };
+<<<<<<< HEAD:programming/rgb/blueproof001.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rgb/redgraph001.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rgb/redgraph001.n3>].
+>>>>>>> master:programming/rgb/blueproof001.n3
 
 <#lemma4> a r:Extraction;
   r:gives {
     {?x_0_5 :p :o} => {{?x_0_5 :p _:x_1_5} => {?x_0_5 :q _:x_1_5}}.
   };
+<<<<<<< HEAD:programming/rgb/blueproof001.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rgb/greenquery001.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rgb/greenquery001.n3>].
+>>>>>>> master:programming/rgb/blueproof001.n3
 
 <#lemma5> a r:Extraction;
   r:gives {
     {?x_0_6 :p :o} => {{?x_0_6 :q _:x_1_6} => {?x_0_6 :r _:x_1_6}}.
   };
+<<<<<<< HEAD:programming/rgb/blueproof001.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rgb/greenquery001.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rgb/greenquery001.n3>].
+>>>>>>> master:programming/rgb/blueproof001.n3
 
 #2018-08-23T10:54:12.776Z in=13 out=2 ent=2 step=2 brake=1 inf=21938 sec=0.078 inf/sec=281256
 #ENDS

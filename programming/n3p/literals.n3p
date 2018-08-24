@@ -1,5 +1,9 @@
 flag('no-skolem', 'http://josd.github.io/eye/.well-known/genid/7zSBNb7t11kaHweyskpmOMIqFnI#').
+<<<<<<< HEAD:programming/n3p/literals.n3p
 scope('<http://josd.github.io/eye/i/n3p/literals.ttl>').
+=======
+scope('<http://josd.github.io/eye/programming/n3p/literals.ttl>').
+>>>>>>> master:programming/n3p/literals.n3p
 pfx('xsd:',
 						     '<http://www.w3.org/2001/XMLSchema#>').
 pfx(:, '<http://example.org/try#>').

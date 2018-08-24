@@ -1,13 +1,24 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 #eye --wcache http://josd.github.io/eye/i/mq . --turtle http://josd.github.io/eye/i/mq/data.n3 --multi-query
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+#eye --wcache http://josd.github.io/eye/programming/mq . --turtle http://josd.github.io/eye/programming/mq/data.n3 --multi-query
+
+PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.089 [sec] mq=1 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma1>;
@@ -59,25 +70,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i1479 :i3069 :i147.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma5> a r:Extraction;
   r:gives {
     :i147 :i3069 :i5592.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma6> a r:Extraction;
   r:gives {
     :i5592 :i3069 :i779.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma7> a r:Extraction;
   r:gives {
     :i779 :i3069 :i6624.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma8> a r:Extraction;
   r:gives {
@@ -86,47 +113,79 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3069 ?x_3_1.
      ?x_3_1 :i3069 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query2.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query2.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma9> a r:Extraction;
   r:gives {
     :i7333 :i3069 :i1479.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma10> a r:Extraction;
   r:gives {
     :i5296 :i3069 :i2738.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma11> a r:Extraction;
   r:gives {
     :i2738 :i3069 :i7288.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma12> a r:Extraction;
   r:gives {
     :i7288 :i3069 :i1839.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma13> a r:Extraction;
   r:gives {
     :i1839 :i3069 :i2755.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.019 [sec] mq=2 out=3 out/sec=158
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=3 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma14>;
@@ -150,25 +209,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7510 :i990 :i5615.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma16> a r:Extraction;
   r:gives {
     :i5615 :i990 :i8510.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma17> a r:Extraction;
   r:gives {
     :i8510 :i990 :i1565.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma18> a r:Extraction;
   r:gives {
     :i1565 :i990 :i8193.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma19> a r:Extraction;
   r:gives {
@@ -177,12 +252,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i990 ?x_3_1.
      ?x_3_1 :i990 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query4.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query4.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=4 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma20>;
@@ -248,25 +331,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i2225 :i1188 :i5421.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma25> a r:Extraction;
   r:gives {
     :i5421 :i1188 :i9387.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma26> a r:Extraction;
   r:gives {
     :i9387 :i1188 :i9169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma27> a r:Extraction;
   r:gives {
     :i9169 :i1188 :i6025.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma28> a r:Extraction;
   r:gives {
@@ -275,41 +374,69 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i1188 ?x_3_1.
      ?x_3_1 :i1188 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query5.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query5.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma29> a r:Extraction;
   r:gives {
     :i9169 :i1188 :i7628.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma30> a r:Extraction;
   r:gives {
     :i3088 :i1188 :i1452.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma31> a r:Extraction;
   r:gives {
     :i1452 :i1188 :i884.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma32> a r:Extraction;
   r:gives {
     :i884 :i1188 :i9169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.014 [sec] mq=5 out=4 out/sec=286
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=6 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma33>;
@@ -347,25 +474,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5653 :i2574 :i9525.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma36> a r:Extraction;
   r:gives {
     :i9525 :i2574 :i9311.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma37> a r:Extraction;
   r:gives {
     :i9311 :i2574 :i8117.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma38> a r:Extraction;
   r:gives {
     :i8117 :i2574 :i6733.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma39> a r:Extraction;
   r:gives {
@@ -374,36 +517,60 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2574 ?x_3_1.
      ?x_3_1 :i2574 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query7.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query7.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma40> a r:Extraction;
   r:gives {
     :i331 :i2574 :i115.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma41> a r:Extraction;
   r:gives {
     :i115 :i2574 :i3551.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma42> a r:Extraction;
   r:gives {
     :i3551 :i2574 :i2219.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma43> a r:Extraction;
   r:gives {
     :i2219 :i2574 :i902.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=7 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma44>;
@@ -427,25 +594,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i8430 :i5644 :i4773.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma46> a r:Extraction;
   r:gives {
     :i4773 :i5644 :i1782.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma47> a r:Extraction;
   r:gives {
     :i1782 :i5644 :i6944.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma48> a r:Extraction;
   r:gives {
     :i6944 :i5644 :i600.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma49> a r:Extraction;
   r:gives {
@@ -454,12 +637,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5644 ?x_3_1.
      ?x_3_1 :i5644 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query8.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query8.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=8 out=1 out/sec=83
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma50>;
@@ -483,25 +674,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7749 :i7525 :i2110.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma52> a r:Extraction;
   r:gives {
     :i2110 :i7525 :i5254.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma53> a r:Extraction;
   r:gives {
     :i5254 :i7525 :i4872.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma54> a r:Extraction;
   r:gives {
     :i4872 :i7525 :i8958.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma55> a r:Extraction;
   r:gives {
@@ -510,12 +717,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i7525 ?x_3_1.
      ?x_3_1 :i7525 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query9.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query9.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=9 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma56>;
@@ -567,25 +782,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i396 :i4356 :i4479.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma60> a r:Extraction;
   r:gives {
     :i4479 :i4356 :i6652.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma61> a r:Extraction;
   r:gives {
     :i6652 :i4356 :i6867.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma62> a r:Extraction;
   r:gives {
     :i6867 :i4356 :i5654.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma63> a r:Extraction;
   r:gives {
@@ -594,62 +825,106 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4356 ?x_3_1.
      ?x_3_1 :i4356 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query10.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query10.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma64> a r:Extraction;
   r:gives {
     :i55 :i4356 :i7460.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma65> a r:Extraction;
   r:gives {
     :i7460 :i4356 :i8071.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma66> a r:Extraction;
   r:gives {
     :i8071 :i4356 :i3049.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma67> a r:Extraction;
   r:gives {
     :i3049 :i4356 :i6819.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma68> a r:Extraction;
   r:gives {
     :i4185 :i4356 :i396.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.014 [sec] mq=10 out=3 out/sec=214
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=11 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=12 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=13 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=14 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma69>;
@@ -673,25 +948,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5851 :i6733 :i5758.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma71> a r:Extraction;
   r:gives {
     :i5758 :i6733 :i5236.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma72> a r:Extraction;
   r:gives {
     :i5236 :i6733 :i7267.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma73> a r:Extraction;
   r:gives {
     :i7267 :i6733 :i4605.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma74> a r:Extraction;
   r:gives {
@@ -700,12 +991,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i6733 ?x_3_1.
      ?x_3_1 :i6733 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query15.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query15.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=15 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma75>;
@@ -729,25 +1028,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5851 :i6733 :i5758.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma77> a r:Extraction;
   r:gives {
     :i5758 :i6733 :i5236.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma78> a r:Extraction;
   r:gives {
     :i5236 :i6733 :i7267.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma79> a r:Extraction;
   r:gives {
     :i7267 :i6733 :i4605.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma80> a r:Extraction;
   r:gives {
@@ -756,12 +1071,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i6733 ?x_3_1.
      ?x_3_1 :i6733 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query16.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query16.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=16 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma81>;
@@ -785,25 +1108,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6439 :i2178 :i5843.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma83> a r:Extraction;
   r:gives {
     :i5843 :i2178 :i6146.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma84> a r:Extraction;
   r:gives {
     :i6146 :i2178 :i5255.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma85> a r:Extraction;
   r:gives {
     :i5255 :i2178 :i6654.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma86> a r:Extraction;
   r:gives {
@@ -812,17 +1151,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2178 ?x_3_1.
      ?x_3_1 :i2178 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query17.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query17.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=17 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=18 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma87>;
@@ -846,25 +1197,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7749 :i7525 :i2110.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma89> a r:Extraction;
   r:gives {
     :i2110 :i7525 :i5254.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma90> a r:Extraction;
   r:gives {
     :i5254 :i7525 :i4872.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma91> a r:Extraction;
   r:gives {
     :i4872 :i7525 :i8958.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma92> a r:Extraction;
   r:gives {
@@ -873,17 +1240,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i7525 ?x_3_1.
      ?x_3_1 :i7525 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query19.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query19.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=19 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=20 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma93>;
@@ -907,25 +1286,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7202 :i9208 :i7212.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma95> a r:Extraction;
   r:gives {
     :i7212 :i9208 :i4213.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma96> a r:Extraction;
   r:gives {
     :i4213 :i9208 :i423.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma97> a r:Extraction;
   r:gives {
     :i423 :i9208 :i9456.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma98> a r:Extraction;
   r:gives {
@@ -934,12 +1329,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i9208 ?x_3_1.
      ?x_3_1 :i9208 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query21.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query21.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=21 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma99>;
@@ -991,25 +1394,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5434 :i4950 :i558.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma103> a r:Extraction;
   r:gives {
     :i558 :i4950 :i5393.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma104> a r:Extraction;
   r:gives {
     :i5393 :i4950 :i644.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma105> a r:Extraction;
   r:gives {
     :i644 :i4950 :i2060.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma106> a r:Extraction;
   r:gives {
@@ -1018,60 +1437,100 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4950 ?x_3_1.
      ?x_3_1 :i4950 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query22.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query22.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma107> a r:Extraction;
   r:gives {
     :i3133 :i4950 :i7433.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma108> a r:Extraction;
   r:gives {
     :i7433 :i4950 :i7261.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma109> a r:Extraction;
   r:gives {
     :i7261 :i4950 :i6083.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma110> a r:Extraction;
   r:gives {
     :i6083 :i4950 :i4098.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma111> a r:Extraction;
   r:gives {
     :i2760 :i4950 :i7169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma112> a r:Extraction;
   r:gives {
     :i7169 :i4950 :i8700.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma113> a r:Extraction;
   r:gives {
     :i8700 :i4950 :i264.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma114> a r:Extraction;
   r:gives {
     :i264 :i4950 :i685.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.020 [sec] mq=22 out=3 out/sec=150
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma115>;
@@ -1123,7 +1582,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i3568 :i1287 :i3568.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma119> a r:Extraction;
   r:gives {
@@ -1132,42 +1595,70 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i1287 ?x_3_1.
      ?x_3_1 :i1287 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query23.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query23.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma120> a r:Extraction;
   r:gives {
     :i6500 :i1287 :i4586.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma121> a r:Extraction;
   r:gives {
     :i4586 :i1287 :i4513.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma122> a r:Extraction;
   r:gives {
     :i4513 :i1287 :i2743.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma123> a r:Extraction;
   r:gives {
     :i2743 :i1287 :i2645.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma124> a r:Extraction;
   r:gives {
     :i4131 :i1287 :i6500.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.013 [sec] mq=23 out=3 out/sec=231
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma125>;
@@ -1191,25 +1682,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7202 :i9208 :i7212.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma127> a r:Extraction;
   r:gives {
     :i7212 :i9208 :i4213.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma128> a r:Extraction;
   r:gives {
     :i4213 :i9208 :i423.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma129> a r:Extraction;
   r:gives {
     :i423 :i9208 :i9456.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma130> a r:Extraction;
   r:gives {
@@ -1218,12 +1725,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i9208 ?x_3_1.
      ?x_3_1 :i9208 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query24.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query24.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.008 [sec] mq=24 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma131>;
@@ -1247,7 +1762,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i3829 :i5545 :i3829.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma133> a r:Extraction;
   r:gives {
@@ -1256,12 +1775,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5545 ?x_3_1.
      ?x_3_1 :i5545 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query25.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query25.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.008 [sec] mq=25 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma134>;
@@ -1341,25 +1868,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i4421 :i5248 :i5519.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma140> a r:Extraction;
   r:gives {
     :i5519 :i5248 :i659.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma141> a r:Extraction;
   r:gives {
     :i659 :i5248 :i6140.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma142> a r:Extraction;
   r:gives {
     :i6140 :i5248 :i3249.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma143> a r:Extraction;
   r:gives {
@@ -1368,77 +1911,129 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5248 ?x_3_1.
      ?x_3_1 :i5248 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query26.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query26.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma144> a r:Extraction;
   r:gives {
     :i3443 :i5248 :i6657.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma145> a r:Extraction;
   r:gives {
     :i6657 :i5248 :i4637.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma146> a r:Extraction;
   r:gives {
     :i4637 :i5248 :i8113.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma147> a r:Extraction;
   r:gives {
     :i8113 :i5248 :i1278.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma148> a r:Extraction;
   r:gives {
     :i6147 :i5248 :i1781.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma149> a r:Extraction;
   r:gives {
     :i1781 :i5248 :i9242.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma150> a r:Extraction;
   r:gives {
     :i9242 :i5248 :i6756.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma151> a r:Extraction;
   r:gives {
     :i6756 :i5248 :i1347.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma152> a r:Extraction;
   r:gives {
     :i1090 :i5248 :i6657.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma153> a r:Extraction;
   r:gives {
     :i7721 :i5248 :i3443.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.020 [sec] mq=26 out=5 out/sec=250
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=27 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma154>;
@@ -1462,25 +2057,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7510 :i990 :i5615.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma156> a r:Extraction;
   r:gives {
     :i5615 :i990 :i8510.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma157> a r:Extraction;
   r:gives {
     :i8510 :i990 :i1565.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma158> a r:Extraction;
   r:gives {
     :i1565 :i990 :i8193.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma159> a r:Extraction;
   r:gives {
@@ -1489,27 +2100,47 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i990 ?x_3_1.
      ?x_3_1 :i990 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query28.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query28.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=28 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=29 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=30 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=31 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma160>;
@@ -1533,25 +2164,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6872 :i6832 :i3502.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma162> a r:Extraction;
   r:gives {
     :i3502 :i6832 :i7551.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma163> a r:Extraction;
   r:gives {
     :i7551 :i6832 :i6462.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma164> a r:Extraction;
   r:gives {
     :i6462 :i6832 :i3299.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma165> a r:Extraction;
   r:gives {
@@ -1560,17 +2207,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i6832 ?x_3_1.
      ?x_3_1 :i6832 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query32.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query32.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=32 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.004 [sec] mq=33 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma166>;
@@ -1594,25 +2253,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i4770 :i1485 :i1065.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma168> a r:Extraction;
   r:gives {
     :i1065 :i1485 :i5964.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma169> a r:Extraction;
   r:gives {
     :i5964 :i1485 :i3861.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma170> a r:Extraction;
   r:gives {
     :i3861 :i1485 :i7979.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma171> a r:Extraction;
   r:gives {
@@ -1621,12 +2296,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i1485 ?x_3_1.
      ?x_3_1 :i1485 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query34.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query34.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=34 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma172>;
@@ -1650,25 +2333,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5535 :i5149 :i6502.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma174> a r:Extraction;
   r:gives {
     :i6502 :i5149 :i2203.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma175> a r:Extraction;
   r:gives {
     :i2203 :i5149 :i7704.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma176> a r:Extraction;
   r:gives {
     :i7704 :i5149 :i1158.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma177> a r:Extraction;
   r:gives {
@@ -1677,22 +2376,38 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5149 ?x_3_1.
      ?x_3_1 :i5149 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query35.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query35.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=35 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=36 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=37 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma178>;
@@ -1716,25 +2431,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6251 :i2772 :i485.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma180> a r:Extraction;
   r:gives {
     :i485 :i2772 :i5859.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma181> a r:Extraction;
   r:gives {
     :i5859 :i2772 :i5488.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma182> a r:Extraction;
   r:gives {
     :i5488 :i2772 :i5196.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma183> a r:Extraction;
   r:gives {
@@ -1743,12 +2474,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2772 ?x_3_1.
      ?x_3_1 :i2772 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query38.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query38.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.013 [sec] mq=38 out=1 out/sec=77
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma184>;
@@ -1772,25 +2511,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6439 :i2178 :i5843.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma186> a r:Extraction;
   r:gives {
     :i5843 :i2178 :i6146.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma187> a r:Extraction;
   r:gives {
     :i6146 :i2178 :i5255.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma188> a r:Extraction;
   r:gives {
     :i5255 :i2178 :i6654.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma189> a r:Extraction;
   r:gives {
@@ -1799,12 +2554,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2178 ?x_3_1.
      ?x_3_1 :i2178 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query39.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query39.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.008 [sec] mq=39 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma190>;
@@ -1828,25 +2591,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6528 :i3267 :i2798.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma192> a r:Extraction;
   r:gives {
     :i2798 :i3267 :i5041.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma193> a r:Extraction;
   r:gives {
     :i5041 :i3267 :i9722.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma194> a r:Extraction;
   r:gives {
     :i9722 :i3267 :i5820.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma195> a r:Extraction;
   r:gives {
@@ -1855,17 +2634,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3267 ?x_3_1.
      ?x_3_1 :i3267 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query40.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query40.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=40 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=41 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma196>;
@@ -1945,25 +2736,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i2837 :i1683 :i6939.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma202> a r:Extraction;
   r:gives {
     :i6939 :i1683 :i4717.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma203> a r:Extraction;
   r:gives {
     :i4717 :i1683 :i4589.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma204> a r:Extraction;
   r:gives {
     :i4589 :i1683 :i5762.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma205> a r:Extraction;
   r:gives {
@@ -1972,90 +2779,150 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i1683 ?x_3_1.
      ?x_3_1 :i1683 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query42.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query42.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma206> a r:Extraction;
   r:gives {
     :i7710 :i1683 :i867.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma207> a r:Extraction;
   r:gives {
     :i867 :i1683 :i6335.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma208> a r:Extraction;
   r:gives {
     :i6335 :i1683 :i3786.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma209> a r:Extraction;
   r:gives {
     :i3786 :i1683 :i605.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma210> a r:Extraction;
   r:gives {
     :i524 :i1683 :i2556.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma211> a r:Extraction;
   r:gives {
     :i2556 :i1683 :i670.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma212> a r:Extraction;
   r:gives {
     :i670 :i1683 :i9525.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma213> a r:Extraction;
   r:gives {
     :i9525 :i1683 :i3778.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma214> a r:Extraction;
   r:gives {
     :i1704 :i1683 :i1862.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma215> a r:Extraction;
   r:gives {
     :i1862 :i1683 :i9813.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma216> a r:Extraction;
   r:gives {
     :i9813 :i1683 :i7157.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma217> a r:Extraction;
   r:gives {
     :i7157 :i1683 :i4000.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma218> a r:Extraction;
   r:gives {
     :i5762 :i1683 :i9734.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.022 [sec] mq=42 out=5 out/sec=227
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma219>;
@@ -2107,25 +2974,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i3991 :i99 :i5570.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma223> a r:Extraction;
   r:gives {
     :i5570 :i99 :i1655.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma224> a r:Extraction;
   r:gives {
     :i1655 :i99 :i3996.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma225> a r:Extraction;
   r:gives {
     :i3996 :i99 :i4421.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma226> a r:Extraction;
   r:gives {
@@ -2134,48 +3017,80 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i99 ?x_3_1.
      ?x_3_1 :i99 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query43.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query43.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma227> a r:Extraction;
   r:gives {
     :i3833 :i99 :i8065.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma228> a r:Extraction;
   r:gives {
     :i8065 :i99 :i9679.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma229> a r:Extraction;
   r:gives {
     :i9679 :i99 :i1530.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma230> a r:Extraction;
   r:gives {
     :i1530 :i99 :i8900.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma231> a r:Extraction;
   r:gives {
     :i9679 :i99 :i1315.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma232> a r:Extraction;
   r:gives {
     :i1315 :i99 :i8253.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.015 [sec] mq=43 out=3 out/sec=200
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma233>;
@@ -2199,25 +3114,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i101 :i3663 :i9414.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma235> a r:Extraction;
   r:gives {
     :i9414 :i3663 :i6924.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma236> a r:Extraction;
   r:gives {
     :i6924 :i3663 :i2887.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma237> a r:Extraction;
   r:gives {
     :i2887 :i3663 :i5858.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma238> a r:Extraction;
   r:gives {
@@ -2226,27 +3157,47 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3663 ?x_3_1.
      ?x_3_1 :i3663 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query44.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query44.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=44 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=45 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=46 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=47 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma239>;
@@ -2270,7 +3221,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i9573 :i3564 :i9573.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma241> a r:Extraction;
   r:gives {
@@ -2279,17 +3234,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3564 ?x_3_1.
      ?x_3_1 :i3564 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query48.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query48.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=48 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=49 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma242>;
@@ -2341,25 +3308,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5434 :i4950 :i558.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma246> a r:Extraction;
   r:gives {
     :i558 :i4950 :i5393.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma247> a r:Extraction;
   r:gives {
     :i5393 :i4950 :i644.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma248> a r:Extraction;
   r:gives {
     :i644 :i4950 :i2060.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma249> a r:Extraction;
   r:gives {
@@ -2368,60 +3351,100 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4950 ?x_3_1.
      ?x_3_1 :i4950 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query50.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query50.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma250> a r:Extraction;
   r:gives {
     :i3133 :i4950 :i7433.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma251> a r:Extraction;
   r:gives {
     :i7433 :i4950 :i7261.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma252> a r:Extraction;
   r:gives {
     :i7261 :i4950 :i6083.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma253> a r:Extraction;
   r:gives {
     :i6083 :i4950 :i4098.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma254> a r:Extraction;
   r:gives {
     :i2760 :i4950 :i7169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma255> a r:Extraction;
   r:gives {
     :i7169 :i4950 :i8700.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma256> a r:Extraction;
   r:gives {
     :i8700 :i4950 :i264.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma257> a r:Extraction;
   r:gives {
     :i264 :i4950 :i685.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.013 [sec] mq=50 out=3 out/sec=231
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma258>;
@@ -2445,25 +3468,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5851 :i6733 :i5758.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma260> a r:Extraction;
   r:gives {
     :i5758 :i6733 :i5236.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma261> a r:Extraction;
   r:gives {
     :i5236 :i6733 :i7267.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma262> a r:Extraction;
   r:gives {
     :i7267 :i6733 :i4605.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma263> a r:Extraction;
   r:gives {
@@ -2472,12 +3511,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i6733 ?x_3_1.
      ?x_3_1 :i6733 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query51.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query51.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=51 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma264>;
@@ -2501,25 +3548,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7703 :i8911 :i9187.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma266> a r:Extraction;
   r:gives {
     :i9187 :i8911 :i7511.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma267> a r:Extraction;
   r:gives {
     :i7511 :i8911 :i1407.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma268> a r:Extraction;
   r:gives {
     :i1407 :i8911 :i1101.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma269> a r:Extraction;
   r:gives {
@@ -2528,12 +3591,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i8911 ?x_3_1.
      ?x_3_1 :i8911 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query52.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query52.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=52 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma270>;
@@ -2571,7 +3642,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i9606 :i4059 :i9606.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma273> a r:Extraction;
   r:gives {
@@ -2580,41 +3655,69 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4059 ?x_3_1.
      ?x_3_1 :i4059 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query53.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query53.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma274> a r:Extraction;
   r:gives {
     :i6068 :i4059 :i5951.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma275> a r:Extraction;
   r:gives {
     :i5951 :i4059 :i4753.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma276> a r:Extraction;
   r:gives {
     :i4753 :i4059 :i2169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma277> a r:Extraction;
   r:gives {
     :i2169 :i4059 :i4720.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=53 out=2 out/sec=200
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.004 [sec] mq=54 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma278>;
@@ -2694,25 +3797,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5998 :i1782 :i3650.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma284> a r:Extraction;
   r:gives {
     :i3650 :i1782 :i4839.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma285> a r:Extraction;
   r:gives {
     :i4839 :i1782 :i2165.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma286> a r:Extraction;
   r:gives {
     :i2165 :i1782 :i5077.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma287> a r:Extraction;
   r:gives {
@@ -2721,72 +3840,120 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i1782 ?x_3_1.
      ?x_3_1 :i1782 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query55.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query55.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma288> a r:Extraction;
   r:gives {
     :i5512 :i1782 :i188.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma289> a r:Extraction;
   r:gives {
     :i188 :i1782 :i4327.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma290> a r:Extraction;
   r:gives {
     :i4327 :i1782 :i323.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma291> a r:Extraction;
   r:gives {
     :i323 :i1782 :i7581.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma292> a r:Extraction;
   r:gives {
     :i7417 :i1782 :i3219.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma293> a r:Extraction;
   r:gives {
     :i3219 :i1782 :i792.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma294> a r:Extraction;
   r:gives {
     :i792 :i1782 :i3153.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma295> a r:Extraction;
   r:gives {
     :i3153 :i1782 :i5916.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma296> a r:Extraction;
   r:gives {
     :i5077 :i1782 :i2035.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma297> a r:Extraction;
   r:gives {
     :i2035 :i1782 :i7190.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.019 [sec] mq=55 out=5 out/sec=263
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma298>;
@@ -2810,25 +3977,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i2481 :i5842 :i8151.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma300> a r:Extraction;
   r:gives {
     :i8151 :i5842 :i7541.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma301> a r:Extraction;
   r:gives {
     :i7541 :i5842 :i8693.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma302> a r:Extraction;
   r:gives {
     :i8693 :i5842 :i3615.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma303> a r:Extraction;
   r:gives {
@@ -2837,12 +4020,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5842 ?x_3_1.
      ?x_3_1 :i5842 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query56.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query56.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=56 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma304>;
@@ -2866,7 +4057,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i9573 :i3564 :i9573.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma306> a r:Extraction;
   r:gives {
@@ -2875,17 +4070,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3564 ?x_3_1.
      ?x_3_1 :i3564 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query57.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query57.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=57 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=58 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma307>;
@@ -2923,25 +4130,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i4232 :i495 :i3462.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma310> a r:Extraction;
   r:gives {
     :i3462 :i495 :i7143.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma311> a r:Extraction;
   r:gives {
     :i7143 :i495 :i8286.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma312> a r:Extraction;
   r:gives {
     :i8286 :i495 :i134.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma313> a r:Extraction;
   r:gives {
@@ -2950,18 +4173,30 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i495 ?x_3_1.
      ?x_3_1 :i495 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query59.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query59.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma314> a r:Extraction;
   r:gives {
     :i1848 :i495 :i3462.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.013 [sec] mq=59 out=2 out/sec=154
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma315>;
@@ -3013,25 +4248,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i9489 :i2970 :i5594.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma319> a r:Extraction;
   r:gives {
     :i5594 :i2970 :i6656.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma320> a r:Extraction;
   r:gives {
     :i6656 :i2970 :i1759.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma321> a r:Extraction;
   r:gives {
     :i1759 :i2970 :i9987.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma322> a r:Extraction;
   r:gives {
@@ -3040,47 +4291,79 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2970 ?x_3_1.
      ?x_3_1 :i2970 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query60.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query60.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma323> a r:Extraction;
   r:gives {
     :i9987 :i2970 :i1939.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma324> a r:Extraction;
   r:gives {
     :i1181 :i2970 :i7016.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma325> a r:Extraction;
   r:gives {
     :i7016 :i2970 :i8477.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma326> a r:Extraction;
   r:gives {
     :i8477 :i2970 :i2121.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma327> a r:Extraction;
   r:gives {
     :i2121 :i2970 :i1963.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.028 [sec] mq=60 out=3 out/sec=107
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.004 [sec] mq=61 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma328>;
@@ -3160,25 +4443,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i4421 :i5248 :i5519.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma334> a r:Extraction;
   r:gives {
     :i5519 :i5248 :i659.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma335> a r:Extraction;
   r:gives {
     :i659 :i5248 :i6140.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma336> a r:Extraction;
   r:gives {
     :i6140 :i5248 :i3249.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma337> a r:Extraction;
   r:gives {
@@ -3187,82 +4486,138 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5248 ?x_3_1.
      ?x_3_1 :i5248 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query62.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query62.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma338> a r:Extraction;
   r:gives {
     :i3443 :i5248 :i6657.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma339> a r:Extraction;
   r:gives {
     :i6657 :i5248 :i4637.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma340> a r:Extraction;
   r:gives {
     :i4637 :i5248 :i8113.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma341> a r:Extraction;
   r:gives {
     :i8113 :i5248 :i1278.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma342> a r:Extraction;
   r:gives {
     :i6147 :i5248 :i1781.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma343> a r:Extraction;
   r:gives {
     :i1781 :i5248 :i9242.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma344> a r:Extraction;
   r:gives {
     :i9242 :i5248 :i6756.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma345> a r:Extraction;
   r:gives {
     :i6756 :i5248 :i1347.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma346> a r:Extraction;
   r:gives {
     :i1090 :i5248 :i6657.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma347> a r:Extraction;
   r:gives {
     :i7721 :i5248 :i3443.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.017 [sec] mq=62 out=5 out/sec=294
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=63 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=64 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma348>;
@@ -3286,7 +4641,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i9573 :i3564 :i9573.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma350> a r:Extraction;
   r:gives {
@@ -3295,12 +4654,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3564 ?x_3_1.
      ?x_3_1 :i3564 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query65.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query65.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.007 [sec] mq=65 out=1 out/sec=143
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma351>;
@@ -3338,7 +4705,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i9606 :i4059 :i9606.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma354> a r:Extraction;
   r:gives {
@@ -3347,41 +4718,69 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4059 ?x_3_1.
      ?x_3_1 :i4059 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query66.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query66.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma355> a r:Extraction;
   r:gives {
     :i6068 :i4059 :i5951.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma356> a r:Extraction;
   r:gives {
     :i5951 :i4059 :i4753.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma357> a r:Extraction;
   r:gives {
     :i4753 :i4059 :i2169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma358> a r:Extraction;
   r:gives {
     :i2169 :i4059 :i4720.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=66 out=2 out/sec=182
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=67 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma359>;
@@ -3405,25 +4804,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i101 :i3663 :i9414.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma361> a r:Extraction;
   r:gives {
     :i9414 :i3663 :i6924.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma362> a r:Extraction;
   r:gives {
     :i6924 :i3663 :i2887.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma363> a r:Extraction;
   r:gives {
     :i2887 :i3663 :i5858.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma364> a r:Extraction;
   r:gives {
@@ -3432,12 +4847,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3663 ?x_3_1.
      ?x_3_1 :i3663 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query68.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query68.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=68 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma365>;
@@ -3475,25 +4898,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i1773 :i2673 :i1495.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma368> a r:Extraction;
   r:gives {
     :i1495 :i2673 :i8304.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma369> a r:Extraction;
   r:gives {
     :i8304 :i2673 :i2589.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma370> a r:Extraction;
   r:gives {
     :i2589 :i2673 :i8310.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma371> a r:Extraction;
   r:gives {
@@ -3502,41 +4941,69 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2673 ?x_3_1.
      ?x_3_1 :i2673 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query69.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query69.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma372> a r:Extraction;
   r:gives {
     :i1923 :i2673 :i8509.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma373> a r:Extraction;
   r:gives {
     :i8509 :i2673 :i2381.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma374> a r:Extraction;
   r:gives {
     :i2381 :i2673 :i4301.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma375> a r:Extraction;
   r:gives {
     :i4301 :i2673 :i3564.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=69 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=70 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma376>;
@@ -3588,25 +5055,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i8814 :i2871 :i4903.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma380> a r:Extraction;
   r:gives {
     :i4903 :i2871 :i4113.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma381> a r:Extraction;
   r:gives {
     :i4113 :i2871 :i6925.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma382> a r:Extraction;
   r:gives {
     :i6925 :i2871 :i4111.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma383> a r:Extraction;
   r:gives {
@@ -3615,42 +5098,70 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2871 ?x_3_1.
      ?x_3_1 :i2871 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query71.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query71.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma384> a r:Extraction;
   r:gives {
     :i2064 :i2871 :i2064.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma385> a r:Extraction;
   r:gives {
     :i1297 :i2871 :i280.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma386> a r:Extraction;
   r:gives {
     :i280 :i2871 :i520.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma387> a r:Extraction;
   r:gives {
     :i520 :i2871 :i5267.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma388> a r:Extraction;
   r:gives {
     :i5267 :i2871 :i4763.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.016 [sec] mq=71 out=3 out/sec=188
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma389>;
@@ -3702,7 +5213,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7931 :i5347 :i7931.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma393> a r:Extraction;
   r:gives {
@@ -3711,42 +5226,70 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5347 ?x_3_1.
      ?x_3_1 :i5347 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query72.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query72.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma394> a r:Extraction;
   r:gives {
     :i7931 :i5347 :i4791.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma395> a r:Extraction;
   r:gives {
     :i6595 :i5347 :i8938.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma396> a r:Extraction;
   r:gives {
     :i8938 :i5347 :i2832.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma397> a r:Extraction;
   r:gives {
     :i2832 :i5347 :i5520.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma398> a r:Extraction;
   r:gives {
     :i5520 :i5347 :i38.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=72 out=3 out/sec=250
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma399>;
@@ -3784,25 +5327,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i8807 :i8218 :i425.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma402> a r:Extraction;
   r:gives {
     :i425 :i8218 :i2011.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma403> a r:Extraction;
   r:gives {
     :i2011 :i8218 :i7446.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma404> a r:Extraction;
   r:gives {
     :i7446 :i8218 :i7276.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma405> a r:Extraction;
   r:gives {
@@ -3811,18 +5370,30 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i8218 ?x_3_1.
      ?x_3_1 :i8218 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query73.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query73.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma406> a r:Extraction;
   r:gives {
     :i2358 :i8218 :i2358.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=73 out=2 out/sec=200
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma407>;
@@ -3846,25 +5417,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i4350 :i5743 :i6364.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma409> a r:Extraction;
   r:gives {
     :i6364 :i5743 :i2157.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma410> a r:Extraction;
   r:gives {
     :i2157 :i5743 :i7440.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma411> a r:Extraction;
   r:gives {
     :i7440 :i5743 :i4225.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma412> a r:Extraction;
   r:gives {
@@ -3873,12 +5460,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5743 ?x_3_1.
      ?x_3_1 :i5743 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query74.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query74.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=74 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma413>;
@@ -3902,7 +5497,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i3829 :i5545 :i3829.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma415> a r:Extraction;
   r:gives {
@@ -3911,12 +5510,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5545 ?x_3_1.
      ?x_3_1 :i5545 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query75.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query75.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.007 [sec] mq=75 out=1 out/sec=143
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma416>;
@@ -3940,25 +5547,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i868 :i4554 :i440.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma418> a r:Extraction;
   r:gives {
     :i440 :i4554 :i8771.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma419> a r:Extraction;
   r:gives {
     :i8771 :i4554 :i3567.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma420> a r:Extraction;
   r:gives {
     :i3567 :i4554 :i6080.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma421> a r:Extraction;
   r:gives {
@@ -3967,12 +5590,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4554 ?x_3_1.
      ?x_3_1 :i4554 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query76.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query76.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=76 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma422>;
@@ -3996,25 +5627,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i8430 :i5644 :i4773.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma424> a r:Extraction;
   r:gives {
     :i4773 :i5644 :i1782.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma425> a r:Extraction;
   r:gives {
     :i1782 :i5644 :i6944.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma426> a r:Extraction;
   r:gives {
     :i6944 :i5644 :i600.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma427> a r:Extraction;
   r:gives {
@@ -4023,12 +5670,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5644 ?x_3_1.
      ?x_3_1 :i5644 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query77.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query77.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=77 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma428>;
@@ -4108,7 +5763,11 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6126 :i7129 :i6126.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma434> a r:Extraction;
   r:gives {
@@ -4117,72 +5776,120 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i7129 ?x_3_1.
      ?x_3_1 :i7129 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query78.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query78.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma435> a r:Extraction;
   r:gives {
     :i7584 :i7129 :i8103.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma436> a r:Extraction;
   r:gives {
     :i8103 :i7129 :i3525.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma437> a r:Extraction;
   r:gives {
     :i3525 :i7129 :i4287.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma438> a r:Extraction;
   r:gives {
     :i4287 :i7129 :i4574.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma439> a r:Extraction;
   r:gives {
     :i4287 :i7129 :i5366.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma440> a r:Extraction;
   r:gives {
     :i6669 :i7129 :i2723.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma441> a r:Extraction;
   r:gives {
     :i2723 :i7129 :i4813.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma442> a r:Extraction;
   r:gives {
     :i4813 :i7129 :i6120.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma443> a r:Extraction;
   r:gives {
     :i6120 :i7129 :i8306.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma444> a r:Extraction;
   r:gives {
     :i6959 :i7129 :i7584.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.018 [sec] mq=78 out=5 out/sec=278
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma445>;
@@ -4234,25 +5941,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i5434 :i4950 :i558.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma449> a r:Extraction;
   r:gives {
     :i558 :i4950 :i5393.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma450> a r:Extraction;
   r:gives {
     :i5393 :i4950 :i644.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma451> a r:Extraction;
   r:gives {
     :i644 :i4950 :i2060.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma452> a r:Extraction;
   r:gives {
@@ -4261,75 +5984,127 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4950 ?x_3_1.
      ?x_3_1 :i4950 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query79.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query79.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma453> a r:Extraction;
   r:gives {
     :i3133 :i4950 :i7433.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma454> a r:Extraction;
   r:gives {
     :i7433 :i4950 :i7261.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma455> a r:Extraction;
   r:gives {
     :i7261 :i4950 :i6083.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma456> a r:Extraction;
   r:gives {
     :i6083 :i4950 :i4098.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma457> a r:Extraction;
   r:gives {
     :i2760 :i4950 :i7169.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma458> a r:Extraction;
   r:gives {
     :i7169 :i4950 :i8700.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma459> a r:Extraction;
   r:gives {
     :i8700 :i4950 :i264.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma460> a r:Extraction;
   r:gives {
     :i264 :i4950 :i685.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=79 out=3 out/sec=250
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.006 [sec] mq=80 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=81 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=82 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma461>;
@@ -4367,25 +6142,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7054 :i9010 :i8337.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma464> a r:Extraction;
   r:gives {
     :i8337 :i9010 :i9979.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma465> a r:Extraction;
   r:gives {
     :i9979 :i9010 :i2342.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma466> a r:Extraction;
   r:gives {
     :i2342 :i9010 :i4528.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma467> a r:Extraction;
   r:gives {
@@ -4394,28 +6185,48 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i9010 ?x_3_1.
      ?x_3_1 :i9010 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query83.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query83.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma468> a r:Extraction;
   r:gives {
     :i4528 :i9010 :i6201.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=83 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=84 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=85 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma469>;
@@ -4439,25 +6250,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i2508 :i7030 :i6557.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma471> a r:Extraction;
   r:gives {
     :i6557 :i7030 :i7977.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma472> a r:Extraction;
   r:gives {
     :i7977 :i7030 :i4123.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma473> a r:Extraction;
   r:gives {
     :i4123 :i7030 :i1292.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma474> a r:Extraction;
   r:gives {
@@ -4466,17 +6293,29 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i7030 ?x_3_1.
      ?x_3_1 :i7030 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query86.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query86.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=86 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=87 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma475>;
@@ -4500,25 +6339,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i536 :i4257 :i872.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma477> a r:Extraction;
   r:gives {
     :i872 :i4257 :i7956.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma478> a r:Extraction;
   r:gives {
     :i7956 :i4257 :i7346.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma479> a r:Extraction;
   r:gives {
     :i7346 :i4257 :i146.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma480> a r:Extraction;
   r:gives {
@@ -4527,12 +6382,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i4257 ?x_3_1.
      ?x_3_1 :i4257 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query88.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query88.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.011 [sec] mq=88 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma481>;
@@ -4556,25 +6419,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i2508 :i7030 :i6557.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma483> a r:Extraction;
   r:gives {
     :i6557 :i7030 :i7977.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma484> a r:Extraction;
   r:gives {
     :i7977 :i7030 :i4123.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma485> a r:Extraction;
   r:gives {
     :i4123 :i7030 :i1292.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma486> a r:Extraction;
   r:gives {
@@ -4583,12 +6462,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i7030 ?x_3_1.
      ?x_3_1 :i7030 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query89.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query89.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=89 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma487>;
@@ -4612,25 +6499,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i101 :i3663 :i9414.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma489> a r:Extraction;
   r:gives {
     :i9414 :i3663 :i6924.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma490> a r:Extraction;
   r:gives {
     :i6924 :i3663 :i2887.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma491> a r:Extraction;
   r:gives {
     :i2887 :i3663 :i5858.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma492> a r:Extraction;
   r:gives {
@@ -4639,22 +6542,38 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i3663 ?x_3_1.
      ?x_3_1 :i3663 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query90.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query90.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=90 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=91 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=92 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma493>;
@@ -4678,25 +6597,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i6603 :i6238 :i9515.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma495> a r:Extraction;
   r:gives {
     :i9515 :i6238 :i8469.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma496> a r:Extraction;
   r:gives {
     :i8469 :i6238 :i9598.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma497> a r:Extraction;
   r:gives {
     :i9598 :i6238 :i341.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma498> a r:Extraction;
   r:gives {
@@ -4705,12 +6640,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i6238 ?x_3_1.
      ?x_3_1 :i6238 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query93.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query93.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=93 out=1 out/sec=83
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma499>;
@@ -4748,25 +6691,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i7004 :i8317 :i99.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma502> a r:Extraction;
   r:gives {
     :i99 :i8317 :i1653.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma503> a r:Extraction;
   r:gives {
     :i1653 :i8317 :i8804.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma504> a r:Extraction;
   r:gives {
     :i8804 :i8317 :i6099.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma505> a r:Extraction;
   r:gives {
@@ -4775,41 +6734,69 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i8317 ?x_3_1.
      ?x_3_1 :i8317 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query94.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query94.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma506> a r:Extraction;
   r:gives {
     :i8003 :i8317 :i379.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma507> a r:Extraction;
   r:gives {
     :i379 :i8317 :i5537.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma508> a r:Extraction;
   r:gives {
     :i5537 :i8317 :i1838.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma509> a r:Extraction;
   r:gives {
     :i1838 :i8317 :i4729.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.012 [sec] mq=94 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=95 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma510>;
@@ -4833,25 +6820,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i8430 :i5644 :i4773.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma512> a r:Extraction;
   r:gives {
     :i4773 :i5644 :i1782.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma513> a r:Extraction;
   r:gives {
     :i1782 :i5644 :i6944.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma514> a r:Extraction;
   r:gives {
     :i6944 :i5644 :i600.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma515> a r:Extraction;
   r:gives {
@@ -4860,12 +6863,20 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i5644 ?x_3_1.
      ?x_3_1 :i5644 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query96.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query96.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.009 [sec] mq=96 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma516>;
@@ -4903,25 +6914,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i1773 :i2673 :i1495.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma519> a r:Extraction;
   r:gives {
     :i1495 :i2673 :i8304.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma520> a r:Extraction;
   r:gives {
     :i8304 :i2673 :i2589.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma521> a r:Extraction;
   r:gives {
     :i2589 :i2673 :i8310.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma522> a r:Extraction;
   r:gives {
@@ -4930,36 +6957,60 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i2673 ?x_3_1.
      ?x_3_1 :i2673 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query97.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query97.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma523> a r:Extraction;
   r:gives {
     :i1923 :i2673 :i8509.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma524> a r:Extraction;
   r:gives {
     :i8509 :i2673 :i2381.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma525> a r:Extraction;
   r:gives {
     :i2381 :i2673 :i4301.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma526> a r:Extraction;
   r:gives {
     :i4301 :i2673 :i3564.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.010 [sec] mq=97 out=2 out/sec=200
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma527>;
@@ -5039,25 +7090,41 @@ PREFIX : <http://josd.github.io/eye/i#>
   r:gives {
     :i3368 :i6139 :i4660.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma533> a r:Extraction;
   r:gives {
     :i4660 :i6139 :i9982.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma534> a r:Extraction;
   r:gives {
     :i9982 :i6139 :i3471.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma535> a r:Extraction;
   r:gives {
     :i3471 :i6139 :i6353.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma536> a r:Extraction;
   r:gives {
@@ -5066,59 +7133,99 @@ PREFIX : <http://josd.github.io/eye/i#>
      ?x_2_1 :i6139 ?x_3_1.
      ?x_3_1 :i6139 ?x_4_1} => {?x_0_1 :j ?x_4_1}.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/queries/query98.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/queries/query98.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma537> a r:Extraction;
   r:gives {
     :i5407 :i6139 :i3368.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma538> a r:Extraction;
   r:gives {
     :i9982 :i6139 :i2617.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma539> a r:Extraction;
   r:gives {
     :i9392 :i6139 :i1086.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma540> a r:Extraction;
   r:gives {
     :i1086 :i6139 :i8735.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma541> a r:Extraction;
   r:gives {
     :i8735 :i6139 :i2322.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma542> a r:Extraction;
   r:gives {
     :i2322 :i6139 :i4745.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 <#lemma543> a r:Extraction;
   r:gives {
     :i7306 :i6139 :i5407.
   };
+<<<<<<< HEAD:programming/mq/mq_proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/mq/data.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/mq/data.n3>].
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.016 [sec] mq=98 out=5 out/sec=313
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.004 [sec] mq=99 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
+<<<<<<< HEAD:programming/mq/mq_proof.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/mq_proof.n3
 
 #DONE 0.005 [sec] mq=100 out=0 out/sec=0
 

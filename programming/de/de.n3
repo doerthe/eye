@@ -1,5 +1,9 @@
 # disjunction elimination test case using negation predicates
+<<<<<<< HEAD:programming/de/de.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/de/de.n3
 
 # saying A means saying C
 {?S :saying :A} => {?S :saying :C}.

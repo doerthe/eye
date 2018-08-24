@@ -2,7 +2,11 @@
 # See http://en.wikipedia.org/wiki/Prolog#Turing_completeness
 
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+<<<<<<< HEAD:programming/turing/turing.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/turing/turing.n3
 
 {(?Tape0 ?Tape) :turing true} <= {
 	(:q0 () ?Ls ?Tape0 ?Rs) :perform true.

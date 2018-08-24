@@ -4,4 +4,8 @@ Calculate pi using Nilakantha series
 
 See http://www.wikihow.com/Calculate-Pi
 
+<<<<<<< HEAD:programming/pi/README
 The tests are at http://josd.github.io/eye/i/pi/test
+=======
+The tests are at http://josd.github.io/eye/programming/pi/test
+>>>>>>> master:programming/pi/README

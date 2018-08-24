@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 @prefix : <http://josd.github.io/eye/i/witch#>.
+=======
+@prefix : <http://josd.github.io/eye/programming/witch#>.
+>>>>>>> master
 
 { ?S a :WITCH } => { ?S a :WITCH }.

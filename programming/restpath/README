@@ -4,4 +4,8 @@ RESTdesc Path
 
 See https://github.com/RubenVerborgh/RESTdesc-Composition-Benchmark
 
+<<<<<<< HEAD:programming/restpath/README
 The tests are at http://josd.github.io/eye/i/restpath/test
+=======
+The tests are at http://josd.github.io/eye/programming/restpath/test
+>>>>>>> master:programming/restpath/README

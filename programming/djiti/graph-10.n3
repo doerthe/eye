@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/djiti/graph-10.n3
 @prefix : <http://josd.github.io/eye/i#>.
+=======
+@prefix : <http://josd.github.io/eye/programming#>.
+>>>>>>> master:programming/djiti/graph-10.n3
 
 (:i30 :i12 :i33) :p :o.
 (:i61 :i29 :i42) :p :o.

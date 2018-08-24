@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 @prefix ck: <http://josd.github.io/eye/i/ppt-bank/checking#>.
+=======
+@prefix ck: <http://josd.github.io/eye/programming/ppt-bank/checking#>.
+>>>>>>> master
 
 {
 	?A ck:balance ?B.

@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/turing/turingQ.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/turing/turingQ.n3
 
 {((1 1 1) ?Ts) :turing true} => {((1 1 1) ?Ts) :turing true}.
 

@@ -1,5 +1,9 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
 #eye --plugin http://josd.github.io/eye/i/n3p/sample.n3p --pass-all
+=======
+#eye --plugin http://josd.github.io/eye/programming/n3p/sample.n3p --pass-all
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
 PREFIX : <http://example.org/try#>
@@ -181,7 +185,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s :p {:a :b :c}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma14> a r:Extraction;
   r:gives {
@@ -195,19 +203,31 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
     :s :p {:a :b :c.
      :d :e :f}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma16> a r:Extraction;
   r:gives {
     _:t_0 :p {_:t_1 :b :c}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma17> a r:Extraction;
   r:gives {
     :s :p <http://www.w3.org/1999/02/22-rdf-syntax-ns#nil>.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma18> a r:Inference;
   r:gives {
@@ -230,7 +250,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
     {?U_9 :q ?U_10} <= {:u :v ?U_9.
      ?U_10 ?U_11 :z}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma21> a r:Extraction;
   r:gives {
@@ -244,19 +268,31 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?U_12 :p ?U_14.
      ?U_12 :y ?U_15}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma23> a r:Extraction;
   r:gives {
     {?U_16 :r ?U_17} <= {{?U_16 :q ?U_18} <= ?U_17}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 <#lemma24> a r:Extraction;
   r:gives {
     true => {_:x_0_25 :p :o}.
   };
+<<<<<<< HEAD:programming/n3p/sample-roundtrip-proof.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/sample.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/sample.n3>].
+>>>>>>> master:programming/n3p/sample-roundtrip-proof.n3
 
 #2018-08-23T10:54:02.418Z in=12 out=12 ent=13 step=29 brake=2 inf=53839 sec=0.092 inf/sec=585207
 #ENDS

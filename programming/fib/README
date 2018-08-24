@@ -2,4 +2,8 @@
 Fibonacci Numbers
 -----------------
 
+<<<<<<< HEAD
 The tests are at http://josd.github.io/eye/i/fib/test
+=======
+The tests are at http://josd.github.io/eye/programming/fib/test
+>>>>>>> master

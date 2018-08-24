@@ -2,4 +2,8 @@
 Graph Literal ASSemblies
 ------------------------
 
+<<<<<<< HEAD:programming/glass/README
 The tests are at http://josd.github.io/eye/i/glass/test
+=======
+The tests are at http://josd.github.io/eye/programming/glass/test
+>>>>>>> master:programming/glass/README

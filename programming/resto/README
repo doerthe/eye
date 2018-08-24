@@ -4,4 +4,8 @@ RESTdesc Original
 
 See http://restdesc.org/
 
+<<<<<<< HEAD:programming/resto/README
 The tests are at http://josd.github.io/eye/i/resto/test
+=======
+The tests are at http://josd.github.io/eye/programming/resto/test
+>>>>>>> master:programming/resto/README

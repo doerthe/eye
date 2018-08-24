@@ -1,4 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/hanoi/hanoiE.n3
 #eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/hanoi/hanoi.n3 --pass
 
 # Move top disk from <http://josd.github.io/eye/i#left> to <http://josd.github.io/eye/i#right>
@@ -11,6 +12,20 @@
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+#eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/hanoi/hanoi.n3 --pass
+
+# Move top disk from <http://josd.github.io/eye/programming#left> to <http://josd.github.io/eye/programming#right>
+# Move top disk from <http://josd.github.io/eye/programming#left> to <http://josd.github.io/eye/programming#center>
+# Move top disk from <http://josd.github.io/eye/programming#right> to <http://josd.github.io/eye/programming#center>
+# Move top disk from <http://josd.github.io/eye/programming#left> to <http://josd.github.io/eye/programming#right>
+# Move top disk from <http://josd.github.io/eye/programming#center> to <http://josd.github.io/eye/programming#left>
+# Move top disk from <http://josd.github.io/eye/programming#center> to <http://josd.github.io/eye/programming#right>
+# Move top disk from <http://josd.github.io/eye/programming#left> to <http://josd.github.io/eye/programming#right>
+PREFIX math: <http://www.w3.org/2000/10/swap/math#>
+PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/hanoi/hanoiE.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -60,7 +75,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {3 :move (:left :right :center)} => {3 :answer (:left :right :center)}.
   };
+<<<<<<< HEAD:programming/hanoi/hanoiE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/hanoi/hanoi.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/hanoi/hanoi.n3>].
+>>>>>>> master:programming/hanoi/hanoiE.n3
 
 <#lemma6> a r:Inference;
   r:gives {
@@ -96,7 +115,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      1 :move (?x_2_3 ?x_4_3 ?x_5_3).
      ?x_1_3 :move (?x_3_3 ?x_4_3 ?x_2_3)}.
   };
+<<<<<<< HEAD:programming/hanoi/hanoiE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/hanoi/hanoi.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/hanoi/hanoi.n3>].
+>>>>>>> master:programming/hanoi/hanoiE.n3
 
 <#lemma9> a r:Inference;
   r:gives {
@@ -147,7 +170,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {1 :move (?x_0_4 ?x_1_4 ?x_2_4)} <= {("format" "# Move top disk from ~w to ~w~n" (?x_0_4 ?x_1_4)) e:derive true}.
   };
+<<<<<<< HEAD:programming/hanoi/hanoiE.n3
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/hanoi/hanoi.n3>].
+=======
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/hanoi/hanoi.n3>].
+>>>>>>> master:programming/hanoi/hanoiE.n3
 
 #2018-08-23T10:53:48.582Z in=13 out=1 ent=2 step=2 brake=1 inf=34305 sec=0.081 inf/sec=423519
 #ENDS

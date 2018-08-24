@@ -1,3 +1,7 @@
+<<<<<<< HEAD
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master
 
 {?S :saying :C} => {?S :saying :C}.

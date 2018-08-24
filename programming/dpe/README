@@ -2,4 +2,8 @@
 Diamond Property Equality
 -------------------------
 
+<<<<<<< HEAD:programming/dpe/README
 The tests are at http://josd.github.io/eye/i/dpe/test
+=======
+The tests are at http://josd.github.io/eye/programming/dpe/test
+>>>>>>> master:programming/dpe/README

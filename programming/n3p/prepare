@@ -1,5 +1,12 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --n3p http://josd.github.io/eye/i/n3p/simple.ttl > simple.n3p
 eye "$@" --n3p http://josd.github.io/eye/i/n3p/extra.ttl > extra.n3p
 eye "$@" --n3p http://josd.github.io/eye/i/n3p/literals.ttl > literals.n3p
 eye "$@" --n3p http://josd.github.io/eye/i/n3p/sample.n3 > sample.n3p
+=======
+eye "$@" --n3p http://josd.github.io/eye/programming/n3p/simple.ttl > simple.n3p
+eye "$@" --n3p http://josd.github.io/eye/programming/n3p/extra.ttl > extra.n3p
+eye "$@" --n3p http://josd.github.io/eye/programming/n3p/literals.ttl > literals.n3p
+eye "$@" --n3p http://josd.github.io/eye/programming/n3p/sample.n3 > sample.n3p
+>>>>>>> master

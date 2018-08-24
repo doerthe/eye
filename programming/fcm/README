@@ -8,4 +8,8 @@ instead of only the values zero and one. On top of that it allows us to
 denote the relation between two variables with a correlation coefficient.
 Decisions are made by using an iterative algorithm.
 
+<<<<<<< HEAD:programming/fcm/README
 The tests are at http://josd.github.io/eye/i/fcm/test
+=======
+The tests are at http://josd.github.io/eye/programming/fcm/test
+>>>>>>> master:programming/fcm/README

@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --turtle http://josd.github.io/eye/i/h2o/hypothesis-001.n3 --turtle http://josd.github.io/eye/i/h2o/data-001.n3 --n3 http://josd.github.io/eye/i/h2o/rules-001.n3 --query http://josd.github.io/eye/i/h2o/query-001.n3 > proof-001.n3
+=======
+eye "$@" --turtle http://josd.github.io/eye/programming/h2o/hypothesis-001.n3 --turtle http://josd.github.io/eye/programming/h2o/data-001.n3 --n3 http://josd.github.io/eye/programming/h2o/rules-001.n3 --query http://josd.github.io/eye/programming/h2o/query-001.n3 > proof-001.n3
+>>>>>>> master

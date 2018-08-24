@@ -2,4 +2,8 @@
 UTF8 Literals
 -------------
 
+<<<<<<< HEAD
 The tests are at http://josd.github.io/eye/i/utf8/test
+=======
+The tests are at http://josd.github.io/eye/programming/utf8/test
+>>>>>>> master

@@ -4,4 +4,8 @@ Takeuchi Function
 
 See https://en.wikipedia.org/wiki/Tak_(function)
 
+<<<<<<< HEAD:programming/tak/README
 The tests are at http://josd.github.io/eye/i/tak/test
+=======
+The tests are at http://josd.github.io/eye/programming/tak/test
+>>>>>>> master:programming/tak/README

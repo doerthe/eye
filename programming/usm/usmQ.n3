@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/usm/usmQ.n3
 @prefix : <http://josd.github.io/eye/i#>.
+=======
+@prefix : <http://josd.github.io/eye/programming#>.
+>>>>>>> master:programming/usm/usmQ.n3
 
 {?PC :state (?R1 ?R2). ?PC :instruction (:halt)} => {?PC :state (?R1 ?R2). ?PC :instruction (:halt)}.
 

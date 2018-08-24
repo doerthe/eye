@@ -1,6 +1,11 @@
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+<<<<<<< HEAD:programming/preduction/palindrome-preduction.n3
 PREFIX p: <http://josd.github.io/eye/i/preduction#>
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX p: <http://josd.github.io/eye/programming/preduction#>
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/preduction/palindrome-preduction.n3
 
 {
 	{?A :accept true} <= ?B.

@@ -1,4 +1,8 @@
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+<<<<<<< HEAD:programming/preduction/food-declarations.n3
 PREFIX p: <http://josd.github.io/eye/i/preduction#>
+=======
+PREFIX p: <http://josd.github.io/eye/programming/preduction#>
+>>>>>>> master:programming/preduction/food-declarations.n3
 
 {?A rdfs:subClassOf ?B} p:should_unfold true.

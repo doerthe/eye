@@ -11,4 +11,8 @@ is applied we consume the propositions used as premises and produce the
 propositions in the conclusions, thereby effecting an overall change in state.
 ]]
 
+<<<<<<< HEAD:programming/gps/README
 The tests are at http://josd.github.io/eye/i/gps/test
+=======
+The tests are at http://josd.github.io/eye/programming/gps/test
+>>>>>>> master:programming/gps/README

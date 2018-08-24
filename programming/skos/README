@@ -4,4 +4,8 @@ SKOS Mapping Validation
 
 See https://www.w3.org/2004/02/skos/
 
+<<<<<<< HEAD:programming/skos/README
 The tests are at http://josd.github.io/eye/i/skos/test
+=======
+The tests are at http://josd.github.io/eye/programming/skos/test
+>>>>>>> master:programming/skos/README

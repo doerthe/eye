@@ -1,8 +1,15 @@
 #Processed by EYE v18.0515.2100 josd
+<<<<<<< HEAD:programming/swet/swetA11.n3
 #eye --nope --n3 http://josd.github.io/eye/i/swet/swetA.n3 --n3 http://josd.github.io/eye/i/swet/swetD.n3 --query http://josd.github.io/eye/i/swet/swetQ11.n3
 
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
 PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/i#>
+=======
+#eye --nope --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --n3 http://josd.github.io/eye/programming/swet/swetD.n3 --query http://josd.github.io/eye/programming/swet/swetQ11.n3
+
+PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
+PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
+>>>>>>> master:programming/swet/swetA11.n3
 
 _:t_0 e:answer {:obs001 :ascribed :Rain. :obs001 :ascribed :WetGrass}.
 _:t_1 e:answer {:obs003 :ascribed :Rain. :obs003 :ascribed :WetGrass}.

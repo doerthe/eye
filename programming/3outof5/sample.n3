@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/3outof5/sample.n3
 @prefix : <http://josd.github.io/eye/i#>.
+=======
+@prefix : <http://josd.github.io/eye/programming#>.
+>>>>>>> master:programming/3outof5/sample.n3
 
 :s :p1 true.
 #:s :p2 true.

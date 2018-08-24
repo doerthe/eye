@@ -1,2 +1,6 @@
 #!/bin/bash
+<<<<<<< HEAD
 eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/usm/usmP.n3 --query http://josd.github.io/eye/i/usm/usmQ.n3 > usmE.n3
+=======
+eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/usm/usmP.n3 --query http://josd.github.io/eye/programming/usm/usmQ.n3 > usmE.n3
+>>>>>>> master

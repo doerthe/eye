@@ -1,4 +1,8 @@
+<<<<<<< HEAD:programming/cs/data-001.n3
 PREFIX : <http://josd.github.io/eye/i/cs#>
+=======
+PREFIX : <http://josd.github.io/eye/programming/cs#>
+>>>>>>> master:programming/cs/data-001.n3
 
 # input
 :input1 :measurement1 (6 11).

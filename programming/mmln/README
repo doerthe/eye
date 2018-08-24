@@ -6,4 +6,8 @@ Probabilistic reasoning using a method inspired by Markov Logic Networks (MLN).
 
 Inspired by http://espace.library.uq.edu.au/view/UQ:344936/s4086748_phd_submission.pdf
 
+<<<<<<< HEAD:programming/mmln/README
 The tests are at http://josd.github.io/eye/i/mmln/test
+=======
+The tests are at http://josd.github.io/eye/programming/mmln/test
+>>>>>>> master:programming/mmln/README

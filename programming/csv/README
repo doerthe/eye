@@ -2,4 +2,8 @@
 Comma Separated Values
 ----------------------
 
+<<<<<<< HEAD:programming/csv/README
 The tests are at http://josd.github.io/eye/i/csv/test
+=======
+The tests are at http://josd.github.io/eye/programming/csv/test
+>>>>>>> master:programming/csv/README

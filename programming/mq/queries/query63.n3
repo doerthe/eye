@@ -1,3 +1,7 @@
+<<<<<<< HEAD:programming/mq/queries/query63.n3
 PREFIX : <http://josd.github.io/eye/i#>
+=======
+PREFIX : <http://josd.github.io/eye/programming#>
+>>>>>>> master:programming/mq/queries/query63.n3
 
 {?S :i7921 ?A. ?A :i7921 ?B. ?B :i7921 ?C. ?C :i7921 ?O} => {?S :j ?O}.
