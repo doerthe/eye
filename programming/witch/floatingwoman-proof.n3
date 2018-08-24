@@ -104,6 +104,6 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
   };
   r:because [ a r:Parsing; r:source <http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>].
 
-#2018-08-19T21:03:25.372Z in=97 out=1 ent=9 step=43 brake=3 inf=40728 sec=0.043 inf/sec=947163
+#2018-08-24T12:14:37.063Z in=97 out=1 ent=9 step=43 brake=3 inf=41098 sec=0.111 inf/sec=370252
 #ENDS
 

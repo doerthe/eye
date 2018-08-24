@@ -241,6 +241,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/dpe/dpe_theory.n3>].
 
-#2018-08-19T21:02:45.911Z in=52 out=2 ent=32 step=120 brake=4 inf=42399 sec=0.040 inf/sec=1059975
+#2018-08-24T12:09:05.806Z in=52 out=2 ent=32 step=120 brake=4 inf=42571 sec=0.096 inf/sec=443448
 #ENDS
 
