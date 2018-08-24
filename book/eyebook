@@ -57,7 +57,7 @@ function eyebook {
    eye --n3 eyebook.diff --pass > /dev/null
 }
 
-pushd ~/github.com/josd/eye/eyebook
+pushd ~/github.com/josd/eye/book
 eyebook "$@" 2>&1 | tee eyebook.txt
 echo stamp,in,out,ent,step,brake,inf,sec,inf/sec > eyebook.csv
 cat eyebook.txt | grep in= | sed -e 's/in=//' -e 's/out=//' -e 's/ent=//' -e 's/step=//' -e 's/brake=//' -e 's/inf=//' -e 's/sec=//' -e 's/inf\/sec=//' -e 's/ /,/g' >> eyebook.csv

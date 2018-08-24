@@ -377,6 +377,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/preduction/food2.n3>].
 
-#2018-08-24T19:40:12.781Z in=113 out=16 ent=27 step=115 brake=5 inf=54809 sec=0.101 inf/sec=542663
+#2018-08-24T22:16:43.078Z in=113 out=16 ent=27 step=115 brake=5 inf=54809 sec=0.100 inf/sec=548090
 #ENDS
 

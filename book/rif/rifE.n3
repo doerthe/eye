@@ -6221,6 +6221,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/rif/rifP.n3>].
 
-#2018-08-24T19:40:15.853Z in=683 out=222 ent=443 step=1776 brake=4 inf=1533526 sec=0.701 inf/sec=2187626
+#2018-08-24T22:16:46.156Z in=683 out=222 ent=443 step=1776 brake=4 inf=1533526 sec=0.702 inf/sec=2184510
 #ENDS
 

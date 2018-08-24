@@ -867,6 +867,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/lldm/lldmP.n3>].
 
-#2018-08-24T19:39:57.738Z in=356 out=1 ent=39 step=124 brake=4 inf=130114 sec=0.152 inf/sec=856013
+#2018-08-24T22:16:28.588Z in=356 out=1 ent=39 step=124 brake=4 inf=130114 sec=0.149 inf/sec=873248
 #ENDS
 
