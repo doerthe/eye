@@ -309,6 +309,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/restpath/path-9-3.n3>].
 
-#2018-08-24T22:16:43.600Z in=102 out=1 ent=209 step=218 brake=1 inf=78717 sec=0.114 inf/sec=690500
+#2018-08-24T23:19:53.200Z in=102 out=1 ent=209 step=218 brake=1 inf=78565 sec=0.047 inf/sec=1671596
 #ENDS
 

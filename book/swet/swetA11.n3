@@ -59,6 +59,6 @@ _:t_51 e:answer {:obs096 :ascribed :Rain. :obs096 :ascribed :WetGrass}.
 _:t_52 e:answer {:obs098 :ascribed :Rain. :obs098 :ascribed :WetGrass}.
 _:t_53 e:answer {:obs099 :ascribed :Rain. :obs099 :ascribed :WetGrass}.
 
-#2018-08-24T22:16:49.758Z in=608 out=54 ent=54 step=54 brake=1 inf=81806 sec=0.124 inf/sec=659726
+#2018-08-24T23:19:59.185Z in=608 out=54 ent=54 step=54 brake=1 inf=81655 sec=0.048 inf/sec=1701146
 #ENDS
 
