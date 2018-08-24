@@ -295,6 +295,6 @@ PREFIX : <http://josd.github.io/eye/book#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/gps/gps-plugin.n3>].
 
-#2018-08-24T22:16:29.700Z in=309 out=1 ent=10 step=82 brake=4 inf=128077 sec=0.142 inf/sec=901951
+#2018-08-24T23:19:43.565Z in=309 out=1 ent=10 step=82 brake=4 inf=127925 sec=0.074 inf/sec=1728716
 #ENDS
 

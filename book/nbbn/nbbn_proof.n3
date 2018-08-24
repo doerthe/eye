@@ -114,6 +114,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/nbbn/nbbn-plugin.n3>].
 
-#2018-08-24T22:16:37.755Z in=158 out=1 ent=1 step=1 brake=2 inf=71537 sec=0.123 inf/sec=581602
+#2018-08-24T23:19:48.034Z in=158 out=1 ent=1 step=1 brake=2 inf=71161 sec=0.057 inf/sec=1248439
 #ENDS
 

@@ -24,6 +24,6 @@ _:t_16 e:answer {:obs089 :ascribed :Rain. :obs089 :ascribed :Sprinkler. :obs089 
 _:t_17 e:answer {:obs096 :ascribed :Rain. :obs096 :ascribed :Sprinkler. :obs096 :ascribed :WetGrass}.
 _:t_18 e:answer {:obs099 :ascribed :Rain. :obs099 :ascribed :Sprinkler. :obs099 :ascribed :WetGrass}.
 
-#2018-08-24T22:16:50.545Z in=610 out=19 ent=19 step=19 brake=1 inf=54552 sec=0.107 inf/sec=509832
+#2018-08-24T23:19:59.800Z in=610 out=19 ent=19 step=19 brake=1 inf=54401 sec=0.052 inf/sec=1046173
 #ENDS
 

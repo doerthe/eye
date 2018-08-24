@@ -48,6 +48,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/rgb/greenquery001.n3>].
 
-#2018-08-24T22:16:44.403Z in=13 out=2 ent=2 step=2 brake=1 inf=22011 sec=0.078 inf/sec=282192
+#2018-08-24T23:19:54.106Z in=13 out=2 ent=2 step=2 brake=1 inf=21859 sec=0.037 inf/sec=590784
 #ENDS
 
