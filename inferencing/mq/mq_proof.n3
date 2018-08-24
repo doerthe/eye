@@ -4,7 +4,7 @@
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.093 [sec] mq=1 out=0 out/sec=0
+#DONE 0.096 [sec] mq=1 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -118,7 +118,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.015 [sec] mq=2 out=3 out/sec=200
+#DONE 0.020 [sec] mq=2 out=3 out/sec=150
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -179,7 +179,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query4.n3>].
 
-#DONE 0.009 [sec] mq=4 out=1 out/sec=111
+#DONE 0.010 [sec] mq=4 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -400,7 +400,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=7 out=2 out/sec=154
+#DONE 0.015 [sec] mq=7 out=2 out/sec=133
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -456,7 +456,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query8.n3>].
 
-#DONE 0.012 [sec] mq=8 out=1 out/sec=83
+#DONE 0.010 [sec] mq=8 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -512,7 +512,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query9.n3>].
 
-#DONE 0.009 [sec] mq=9 out=1 out/sec=111
+#DONE 0.010 [sec] mq=9 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -626,12 +626,12 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=10 out=3 out/sec=231
+#DONE 0.015 [sec] mq=10 out=3 out/sec=200
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.006 [sec] mq=11 out=0 out/sec=0
+#DONE 0.004 [sec] mq=11 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -641,7 +641,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.006 [sec] mq=13 out=0 out/sec=0
+#DONE 0.007 [sec] mq=13 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -758,7 +758,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query16.n3>].
 
-#DONE 0.011 [sec] mq=16 out=1 out/sec=91
+#DONE 0.008 [sec] mq=16 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -875,12 +875,12 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query19.n3>].
 
-#DONE 0.008 [sec] mq=19 out=1 out/sec=125
+#DONE 0.010 [sec] mq=19 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.006 [sec] mq=20 out=0 out/sec=0
+#DONE 0.005 [sec] mq=20 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -936,7 +936,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query21.n3>].
 
-#DONE 0.011 [sec] mq=21 out=1 out/sec=91
+#DONE 0.010 [sec] mq=21 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1164,7 +1164,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.015 [sec] mq=23 out=3 out/sec=200
+#DONE 0.013 [sec] mq=23 out=3 out/sec=231
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1220,7 +1220,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query24.n3>].
 
-#DONE 0.008 [sec] mq=24 out=1 out/sec=125
+#DONE 0.009 [sec] mq=24 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1435,7 +1435,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.006 [sec] mq=27 out=0 out/sec=0
+#DONE 0.004 [sec] mq=27 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1491,7 +1491,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query28.n3>].
 
-#DONE 0.011 [sec] mq=28 out=1 out/sec=91
+#DONE 0.008 [sec] mq=28 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1562,7 +1562,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query32.n3>].
 
-#DONE 0.015 [sec] mq=32 out=1 out/sec=67
+#DONE 0.011 [sec] mq=32 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1684,7 +1684,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=36 out=0 out/sec=0
+#DONE 0.006 [sec] mq=36 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1745,7 +1745,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query38.n3>].
 
-#DONE 0.012 [sec] mq=38 out=1 out/sec=83
+#DONE 0.011 [sec] mq=38 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1801,7 +1801,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query39.n3>].
 
-#DONE 0.010 [sec] mq=39 out=1 out/sec=100
+#DONE 0.009 [sec] mq=39 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -1857,12 +1857,12 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query40.n3>].
 
-#DONE 0.010 [sec] mq=40 out=1 out/sec=100
+#DONE 0.009 [sec] mq=40 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=41 out=0 out/sec=0
+#DONE 0.006 [sec] mq=41 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2238,7 +2238,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.007 [sec] mq=46 out=0 out/sec=0
+#DONE 0.006 [sec] mq=46 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2418,7 +2418,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.014 [sec] mq=50 out=3 out/sec=214
+#DONE 0.013 [sec] mq=50 out=3 out/sec=231
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2474,7 +2474,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query51.n3>].
 
-#DONE 0.010 [sec] mq=51 out=1 out/sec=100
+#DONE 0.008 [sec] mq=51 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2530,7 +2530,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query52.n3>].
 
-#DONE 0.012 [sec] mq=52 out=1 out/sec=83
+#DONE 0.010 [sec] mq=52 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2606,7 +2606,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=53 out=2 out/sec=154
+#DONE 0.012 [sec] mq=53 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2783,7 +2783,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.021 [sec] mq=55 out=5 out/sec=238
+#DONE 0.019 [sec] mq=55 out=5 out/sec=263
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2839,7 +2839,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query56.n3>].
 
-#DONE 0.009 [sec] mq=56 out=1 out/sec=111
+#DONE 0.008 [sec] mq=56 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -2958,7 +2958,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=59 out=2 out/sec=154
+#DONE 0.014 [sec] mq=59 out=2 out/sec=143
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3072,12 +3072,12 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.031 [sec] mq=60 out=3 out/sec=97
+#DONE 0.029 [sec] mq=60 out=3 out/sec=103
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=61 out=0 out/sec=0
+#DONE 0.004 [sec] mq=61 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3254,7 +3254,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=63 out=0 out/sec=0
+#DONE 0.004 [sec] mq=63 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3297,7 +3297,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query65.n3>].
 
-#DONE 0.010 [sec] mq=65 out=1 out/sec=100
+#DONE 0.008 [sec] mq=65 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3378,7 +3378,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.006 [sec] mq=67 out=0 out/sec=0
+#DONE 0.005 [sec] mq=67 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3528,12 +3528,12 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.014 [sec] mq=69 out=2 out/sec=143
+#DONE 0.013 [sec] mq=69 out=2 out/sec=154
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=70 out=0 out/sec=0
+#DONE 0.006 [sec] mq=70 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3647,7 +3647,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.018 [sec] mq=71 out=3 out/sec=167
+#DONE 0.016 [sec] mq=71 out=3 out/sec=188
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3743,7 +3743,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=72 out=3 out/sec=231
+#DONE 0.011 [sec] mq=72 out=3 out/sec=273
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3819,7 +3819,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.011 [sec] mq=73 out=2 out/sec=182
+#DONE 0.012 [sec] mq=73 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3875,7 +3875,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query74.n3>].
 
-#DONE 0.010 [sec] mq=74 out=1 out/sec=100
+#DONE 0.011 [sec] mq=74 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -3913,7 +3913,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query75.n3>].
 
-#DONE 0.008 [sec] mq=75 out=1 out/sec=125
+#DONE 0.006 [sec] mq=75 out=1 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4025,7 +4025,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query77.n3>].
 
-#DONE 0.010 [sec] mq=77 out=1 out/sec=100
+#DONE 0.008 [sec] mq=77 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4321,7 +4321,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=81 out=0 out/sec=0
+#DONE 0.004 [sec] mq=81 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4402,12 +4402,12 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.015 [sec] mq=83 out=2 out/sec=133
+#DONE 0.012 [sec] mq=83 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=84 out=0 out/sec=0
+#DONE 0.004 [sec] mq=84 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4529,7 +4529,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query88.n3>].
 
-#DONE 0.009 [sec] mq=88 out=1 out/sec=111
+#DONE 0.011 [sec] mq=88 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4641,7 +4641,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query90.n3>].
 
-#DONE 0.011 [sec] mq=90 out=1 out/sec=91
+#DONE 0.009 [sec] mq=90 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4707,7 +4707,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query93.n3>].
 
-#DONE 0.011 [sec] mq=93 out=1 out/sec=91
+#DONE 0.010 [sec] mq=93 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4801,7 +4801,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.014 [sec] mq=94 out=2 out/sec=143
+#DONE 0.013 [sec] mq=94 out=2 out/sec=154
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4862,7 +4862,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/queries/query96.n3>].
 
-#DONE 0.008 [sec] mq=96 out=1 out/sec=125
+#DONE 0.010 [sec] mq=96 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -4956,7 +4956,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=97 out=2 out/sec=154
+#DONE 0.011 [sec] mq=97 out=2 out/sec=182
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -5110,7 +5110,7 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/mq/data.n3>].
 
-#DONE 0.016 [sec] mq=98 out=5 out/sec=313
+#DONE 0.017 [sec] mq=98 out=5 out/sec=294
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
@@ -5120,8 +5120,8 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/inferencing#>
 
-#DONE 0.005 [sec] mq=100 out=0 out/sec=0
+#DONE 0.006 [sec] mq=100 out=0 out/sec=0
 
-#2018-08-24T12:14:10.533Z in=100600 out=117 ent=0 step=0 brake=1 inf=5368667 sec=4.408 inf/sec=1217937
+#2018-08-24T19:40:05.845Z in=100600 out=117 ent=0 step=0 brake=1 inf=5369763 sec=4.329 inf/sec=1240416
 #ENDS
 

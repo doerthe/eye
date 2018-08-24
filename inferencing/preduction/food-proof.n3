@@ -429,6 +429,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/rpo/rdfs-subClassOf.n3>].
 
-#2018-08-24T12:14:19.813Z in=59 out=16 ent=91 step=338 brake=3 inf=69022 sec=0.110 inf/sec=627473
+#2018-08-24T19:40:12.304Z in=59 out=16 ent=91 step=338 brake=3 inf=69020 sec=0.106 inf/sec=651132
 #ENDS
 
