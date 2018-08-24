@@ -94,6 +94,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/crypto/cryptoP.n3>].
 
-#2018-08-24T12:09:01.077Z in=9 out=3 ent=6 step=12 brake=2 inf=27513 sec=0.078 inf/sec=352731
+#2018-08-24T19:39:25.696Z in=9 out=3 ent=6 step=12 brake=2 inf=27485 sec=0.080 inf/sec=343563
 #ENDS
 

@@ -1211,6 +1211,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
       1 log:equalTo _:x_1_20} {1 log:equalTo 1 .
       1 log:equalTo 1}) e:derive true}}}].
 
-#2018-08-24T12:11:40.341Z in=630 out=18 ent=237 step=1917 brake=5 inf=807247 sec=0.537 inf/sec=1503253
+#2018-08-24T19:39:50.198Z in=630 out=18 ent=237 step=1917 brake=5 inf=807246 sec=0.531 inf/sec=1520237
 #ENDS
 

@@ -51865,6 +51865,6 @@ PREFIX : <http://josd.github.io/eye/inferencing#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/djiti/proof-10000.n3>].
 
-#2018-08-24T12:09:17.113Z in=17278 out=966 ent=3682 step=7366 brake=2 inf=8124546 sec=3.926 inf/sec=2069421
+#2018-08-24T19:39:39.393Z in=17278 out=966 ent=3682 step=7366 brake=2 inf=8124535 sec=3.919 inf/sec=2073114
 #ENDS
 

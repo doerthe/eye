@@ -69,6 +69,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/dp/dp.n3>].
 
-#2018-08-24T12:09:04.743Z in=43 out=1 ent=2 step=2 brake=1 inf=31812 sec=0.086 inf/sec=369907
+#2018-08-24T19:39:28.671Z in=43 out=1 ent=2 step=2 brake=1 inf=31780 sec=0.087 inf/sec=365287
 #ENDS
 

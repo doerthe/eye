@@ -102,6 +102,6 @@ _:sk_19 <http://josd.github.io/eye/inferencing#q> true.
 _:sk_19 <http://josd.github.io/eye/inferencing#q> 9.
 (<http://josd.github.io/eye/inferencing#i4181> <http://josd.github.io/eye/inferencing#i8> <http://josd.github.io/eye/inferencing#i9462>) <http://josd.github.io/eye/inferencing#r5> <http://josd.github.io/eye/inferencing#r10>.
 (<http://josd.github.io/eye/inferencing#i8> <http://josd.github.io/eye/inferencing#i9462> 9 <http://josd.github.io/eye/inferencing#i4181>) <http://josd.github.io/eye/inferencing#r9> true.
-#2018-08-24T12:14:28.912Z in=35 out=101 ent=0 step=0 brake=0 inf=27621 sec=0.077 inf/sec=358714
+#2018-08-24T19:40:18.677Z in=35 out=101 ent=0 step=0 brake=0 inf=27622 sec=0.076 inf/sec=363447
 #ENDS
 

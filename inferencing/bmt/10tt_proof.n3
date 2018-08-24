@@ -32573,6 +32573,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/inferencing/bmt/1tt8.n3>].
 
-#2018-08-24T12:09:00.652Z in=10012 out=1518 ent=1518 step=1518 brake=1 inf=4717987 sec=2.342 inf/sec=2014512
+#2018-08-24T19:39:25.375Z in=10012 out=1518 ent=1518 step=1518 brake=1 inf=4717957 sec=2.349 inf/sec=2008496
 #ENDS
 
