@@ -1,4 +1,4 @@
-# EYE Programming
+# EYE Inferencing
 
 Test via
 ```
