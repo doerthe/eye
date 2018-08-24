@@ -1,3 +1,0 @@
-PREFIX : <http://josd.github.io/eye/i2i#>
-
-{?S :i8119 ?A. ?A :i8119 ?B. ?B :i8119 ?C. ?C :i8119 ?O} => {?S :j ?O}.

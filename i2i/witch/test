@@ -1,3 +1,0 @@
-#!/bin/bash
-eye "$@" --n3 http://josd.github.io/eye/i2i/witch/witch.n3 --query http://josd.github.io/eye/i2i/witch/witch-goal.n3 > witch-proof.n3
-eye "$@" --no-genid --n3 http://josd.github.io/eye/i2i/witch/floatingwoman.n3 --proof http://josd.github.io/eye/i2i/witch/witch-proof.n3 --query http://josd.github.io/eye/i2i/witch/floatingwoman-goal.n3 > floatingwoman-proof.n3

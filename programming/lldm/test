@@ -1,0 +1,2 @@
+#!/bin/bash
+eye "$@" --n3 http://josd.github.io/eye/programming/lldm/lldmD.n3 --n3 http://josd.github.io/eye/programming/lldm/lldmP.n3 --query http://josd.github.io/eye/programming/lldm/lldmF.n3 > lldmE.n3

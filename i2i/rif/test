@@ -1,2 +1,0 @@
-#!/bin/bash
-eye "$@" --n3 http://josd.github.io/eye/i2i/rif/rifP.n3 --query http://josd.github.io/eye/i2i/rif/rifQ.n3 > rifE.n3

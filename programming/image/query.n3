@@ -1,0 +1,3 @@
+PREFIX : <http://josd.github.io/eye/programming#>
+
+{?A :easterFor ?B} => {?A :easterFor ?B}.
