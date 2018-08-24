@@ -1,9 +1,0 @@
-PREFIX t: <http://josd.github.io/eye/programming/tfcontext#>
-PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
-
-{	?C t:position-tensor (?LA ?LO).
-}
-=>
-{	?C geo:lat ?LA.
-	?C geo:long ?LO.
-}.

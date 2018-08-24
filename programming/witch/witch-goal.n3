@@ -1,3 +1,0 @@
-@prefix : <http://josd.github.io/eye/programming/witch#>.
-
-{ ?S a :WITCH } => { ?S a :WITCH }.
