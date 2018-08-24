@@ -110,6 +110,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/einstein/einstein.n3>].
 
-#2018-08-19T21:02:53.280Z in=28 out=1 ent=2 step=4 brake=2 inf=671674 sec=0.138 inf/sec=4867203
+#2018-08-24T12:11:30.355Z in=28 out=1 ent=2 step=4 brake=2 inf=671816 sec=0.375 inf/sec=1791509
 #ENDS
 

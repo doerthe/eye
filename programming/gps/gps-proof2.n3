@@ -5872,6 +5872,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   );
   r:rule <#lemma336>.
 
-#2018-08-19T21:03:00.706Z in=201 out=10 ent=10 step=10 brake=2 inf=2319467 sec=0.344 inf/sec=6742637
+#2018-08-24T12:11:46.000Z in=201 out=10 ent=10 step=10 brake=2 inf=2319812 sec=1.063 inf/sec=2182325
 #ENDS
 
