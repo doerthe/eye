@@ -1,9 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-#eye --plugin http://josd.github.io/eye/i/n3p/simple.n3p --pass
-=======
 #eye --plugin http://josd.github.io/eye/programming/n3p/simple.n3p --pass
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 PREFIX : <http://example.org/try#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
@@ -104,11 +100,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s1 :p1 :o1.
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma10> a r:Extraction;
   r:gives {
@@ -120,72 +112,44 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s2 :p2 "We".
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma12> a r:Extraction;
   r:gives {
     :s3 :p3 "run"@en.
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma13> a r:Extraction;
   r:gives {
     :s4 :p4 "LV"^^:dt.
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma14> a r:Extraction;
   r:gives {
     :s5 :p5 5 .
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma15> a r:Extraction;
   r:gives {
     :s6 :p6 (:a :b :c).
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma16> a r:Extraction;
   r:gives {
     :s7 :p7 _:t_0.
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
 <#lemma17> a r:Extraction;
   r:gives {
     _:t_1 :p8 :o7.
   };
-<<<<<<< HEAD:programming/n3p/simple-roundtrip-proof.ttl
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/n3p/simple.ttl>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/n3p/simple.ttl>].
->>>>>>> master:programming/n3p/simple-roundtrip-proof.ttl
 
-#2018-08-23T10:54:01.591Z in=8 out=8 ent=8 step=8 brake=1 inf=32338 sec=0.081 inf/sec=399235
+#2018-08-19T21:03:08.323Z in=8 out=8 ent=8 step=8 brake=1 inf=32255 sec=0.036 inf/sec=895972
 #ENDS
 

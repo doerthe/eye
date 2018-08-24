@@ -1,8 +1,4 @@
-<<<<<<< HEAD:programming/swet/swetD.n3
-@prefix : <http://eulersharp.sourceforge.net/2003/03swap/eye/i#>.
-=======
 @prefix : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>.
->>>>>>> master:programming/swet/swetD.n3
 
 :obs001 :ascribed :Cloudy, :NonSprinkler, :Rain, :WetGrass.
 :obs002 :ascribed :NonCloudy, :Sprinkler, :NonRain, :WetGrass.

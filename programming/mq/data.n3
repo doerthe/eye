@@ -1,8 +1,4 @@
-<<<<<<< HEAD:programming/mq/data.n3
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/mq/data.n3
 
 :i4830 :i1188 :i6033.
 :i4561 :i2871 :i3842.

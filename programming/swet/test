@@ -1,16 +1,7 @@
 #!/bin/bash
-<<<<<<< HEAD
-eye "$@" --nope --n3 http://josd.github.io/eye/i/swet/swetA.n3 --n3 http://josd.github.io/eye/i/swet/swetD.n3 --query=http://josd.github.io/eye/i/swet/swetQ01.n3 > swetA01.n3
-eye "$@" --nope --n3 http://josd.github.io/eye/i/swet/swetA.n3 --n3 http://josd.github.io/eye/i/swet/swetD.n3 --query=http://josd.github.io/eye/i/swet/swetQ11.n3 > swetA11.n3
-eye "$@" --nope --n3 http://josd.github.io/eye/i/swet/swetA.n3 --n3 http://josd.github.io/eye/i/swet/swetD.n3 --query=http://josd.github.io/eye/i/swet/swetQ21.n3 > swetA21.n3
-eye "$@" --nope --n3 http://josd.github.io/eye/i/swet/swetA.n3 --n3 http://josd.github.io/eye/i/swet/swetD.n3 --query=http://josd.github.io/eye/i/swet/swetQ31.n3 > swetA31.n3
-
-eye "$@" --n3 http://josd.github.io/eye/i/swet/swetA.n3 --query=http://josd.github.io/eye/i/swet/swetQ.n3 > swet_proof.n3
-=======
 eye "$@" --nope --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --n3 http://josd.github.io/eye/programming/swet/swetD.n3 --query=http://josd.github.io/eye/programming/swet/swetQ01.n3 > swetA01.n3
 eye "$@" --nope --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --n3 http://josd.github.io/eye/programming/swet/swetD.n3 --query=http://josd.github.io/eye/programming/swet/swetQ11.n3 > swetA11.n3
 eye "$@" --nope --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --n3 http://josd.github.io/eye/programming/swet/swetD.n3 --query=http://josd.github.io/eye/programming/swet/swetQ21.n3 > swetA21.n3
 eye "$@" --nope --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --n3 http://josd.github.io/eye/programming/swet/swetD.n3 --query=http://josd.github.io/eye/programming/swet/swetQ31.n3 > swetA31.n3
 
 eye "$@" --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --query=http://josd.github.io/eye/programming/swet/swetQ.n3 > swet_proof.n3
->>>>>>> master

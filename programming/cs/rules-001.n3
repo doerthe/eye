@@ -1,9 +1,5 @@
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
-<<<<<<< HEAD:programming/cs/rules-001.n3
-PREFIX : <http://josd.github.io/eye/i/cs#>
-=======
 PREFIX : <http://josd.github.io/eye/programming/cs#>
->>>>>>> master:programming/cs/rules-001.n3
 
 # forward rules
 {

@@ -1,9 +1,5 @@
 flag('no-skolem', 'http://josd.github.io/eye/.well-known/genid/oHqTDLVgtIfuflsaH20g4VuWjnk#').
-<<<<<<< HEAD:programming/n3p/extra.n3p
-scope('<http://josd.github.io/eye/i/n3p/extra.ttl>').
-=======
 scope('<http://josd.github.io/eye/programming/n3p/extra.ttl>').
->>>>>>> master:programming/n3p/extra.n3p
 pfx(:, '<http://example.org/try#>').
 '<http://example.org/try#p>'('<http://example.org/try#s>', literal('we \'try zero', type('<http://www.w3.org/2001/XMLSchema#string>'))).
 '<http://example.org/try#p>'('<http://example.org/try#s>', literal('we \\"try one', type('<http://www.w3.org/2001/XMLSchema#string>'))).

@@ -1,13 +1,7 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-#eye --n3 http://josd.github.io/eye/i/witch/witch.n3 --query http://josd.github.io/eye/i/witch/witch-goal.n3
-
-PREFIX : <http://josd.github.io/eye/i/witch#>
-=======
 #eye --n3 http://josd.github.io/eye/programming/witch/witch.n3 --query http://josd.github.io/eye/programming/witch/witch-goal.n3
 
 PREFIX : <http://josd.github.io/eye/programming/witch#>
->>>>>>> master:programming/witch/witch-proof.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -39,11 +33,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_1 a :WITCH} => {?x_0_1 a :WITCH}.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch-goal.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch-goal.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -58,22 +48,14 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :GIRL a :WOMAN.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma6> a r:Extraction;
   r:gives {
     {?x_0_2 a :BURNS.
      ?x_0_2 a :WOMAN} => {?x_0_2 a :WITCH}.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma7> a r:Inference;
   r:gives {
@@ -88,11 +70,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_3 a :ISMADEOFWOOD} => {?x_0_3 a :BURNS}.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma9> a r:Inference;
   r:gives {
@@ -108,43 +86,27 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_4 a :FLOATS} => {?x_0_4 a :ISMADEOFWOOD}.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma11> a r:Extraction;
   r:gives {
     :DUCK a :FLOATS.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma12> a r:Extraction;
   r:gives {
     :DUCK :SAMEWEIGHT :GIRL.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
 <#lemma13> a r:Extraction;
   r:gives {
     {?x_0_5 a :FLOATS.
      ?x_0_5 :SAMEWEIGHT ?x_1_5} => {?x_1_5 a :FLOATS}.
   };
-<<<<<<< HEAD:programming/witch/witch-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch.n3>].
->>>>>>> master:programming/witch/witch-proof.n3
 
-#2018-08-23T10:54:27.717Z in=20 out=1 ent=7 step=25 brake=5 inf=26850 sec=0.080 inf/sec=335625
+#2018-08-19T21:03:24.888Z in=20 out=1 ent=7 step=25 brake=5 inf=26780 sec=0.036 inf/sec=743889
 #ENDS
 

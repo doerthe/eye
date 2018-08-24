@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD:programming/numeral/test
-eye "$@" --strict --no-numerals --turtle http://josd.github.io/eye/i/numeral/numeral.n3 --pass > numeral_proof.n3
-=======
 eye "$@" --strict --no-numerals --turtle http://josd.github.io/eye/programming/numeral/numeral.n3 --pass > numeral_proof.n3
->>>>>>> master:programming/numeral/test

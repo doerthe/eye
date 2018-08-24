@@ -1,15 +1,8 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/fib/fibE.n3
-#eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/fib/fib.n3 --query http://josd.github.io/eye/i/fib/fibQ.n3
-
-PREFIX math: <http://www.w3.org/2000/10/swap/math#>
-PREFIX : <http://josd.github.io/eye/i/fib/try#>
-=======
 #eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/fib/fib.n3 --query http://josd.github.io/eye/programming/fib/fibQ.n3
 
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX : <http://josd.github.io/eye/programming/fib/try#>
->>>>>>> master:programming/fib/fibE.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -40,11 +33,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(100) :fib ?x_0_1} => {(100) :fib ?x_0_1}.
   };
-<<<<<<< HEAD:programming/fib/fibE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fib/fibQ.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fib/fibQ.n3>].
->>>>>>> master:programming/fib/fibE.n3
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -62,11 +51,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(?x_0_2) :fib ?x_1_2} <= {(?x_0_2 0 1) :fib ?x_1_2}.
   };
-<<<<<<< HEAD:programming/fib/fibE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fib/fib.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fib/fib.n3>].
->>>>>>> master:programming/fib/fibE.n3
 
 <#lemma6> a r:Inference;
   r:gives {
@@ -87,11 +72,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      (?x_2_3 ?x_3_3) math:sum ?x_4_3.
      (?x_1_3 ?x_3_3 ?x_4_3) :fib ?x_5_3}.
   };
-<<<<<<< HEAD:programming/fib/fibE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fib/fib.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fib/fib.n3>].
->>>>>>> master:programming/fib/fibE.n3
 
 <#lemma8> a r:Inference;
   r:gives {
@@ -1270,12 +1251,8 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(1 ?x_0_4 ?x_1_4) :fib ?x_1_4} <= true.
   };
-<<<<<<< HEAD:programming/fib/fibE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fib/fib.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fib/fib.n3>].
->>>>>>> master:programming/fib/fibE.n3
 
-#2018-08-23T10:53:41.793Z in=14 out=1 ent=1 step=1 brake=1 inf=148958 sec=0.142 inf/sec=1049000
+#2018-08-19T21:02:58.089Z in=14 out=1 ent=1 step=1 brake=1 inf=148888 sec=0.046 inf/sec=3236696
 #ENDS
 

@@ -1,9 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-#eye --n3 http://josd.github.io/eye/i/fcm/fcm-plugin.n3 --n3 http://josd.github.io/eye/i/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/i/fcm/example001P.n3 --n3 http://josd.github.io/eye/i/fcm/example002P.n3 --query http://josd.github.io/eye/i/fcm/example003Q.n3
-=======
 #eye --n3 http://josd.github.io/eye/programming/fcm/fcm-plugin.n3 --n3 http://josd.github.io/eye/programming/fcm/fl-rules.n3 --n3 http://josd.github.io/eye/programming/fcm/example001P.n3 --n3 http://josd.github.io/eye/programming/fcm/example002P.n3 --query http://josd.github.io/eye/programming/fcm/example003Q.n3
->>>>>>> master:programming/fcm/fcm_proof.n3
 
 PREFIX fcm: <http://eulersharp.sourceforge.net/2006/02swap/fcm-plugin#>
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
@@ -124,11 +120,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(?x_0_1 ?x_1_1) fl:pi ?x_2_1} => {(?x_0_1 ?x_1_1) fl:pi ?x_2_1}.
   };
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fcm/example003Q.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fcm/example003Q.n3>].
->>>>>>> master:programming/fcm/fcm_proof.n3
 
 <#lemma11> a r:Inference;
   r:gives {
@@ -199,11 +191,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 <#lemma18> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("forall" {(_:sk_0 _:sk_1) fl:sigma _:sk_3} {("if_then_else" {(_:sk_0) fcm:fs true} true {("assertz" {(_:sk_0) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:sk_1) fcm:fs true} true {("assertz" {(_:sk_1) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -219,11 +207,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:ChildAge 0.4167000000000005).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi _:sk_12}} {0.4167000000000005 log:equalTo _:sk_12} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true}.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi _:sk_12}} {0.4167000000000005 log:equalTo _:sk_12} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true}.
->>>>>>> master:programming/fcm/fcm_proof.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(?V0 ?V1) fl:mu ?V2} {("if_then_else" {(?V0) fcm:fm true} true {("assertz" {(?V0) fcm:fm true}) e:derive true}) e:derive true.
@@ -242,11 +226,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {?V0 fcm:pi (?V1 ?V2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true}]
     [ a r:Fact; r:gives {:Ann fcm:pi (:ChildAge 0.4167000000000005)}]
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi ?V0}} {0.4167000000000005 log:equalTo ?V0} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true}]
-=======
     [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi ?V0}} {0.4167000000000005 log:equalTo ?V0} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true}]
->>>>>>> master:programming/fcm/fcm_proof.n3
   );
   r:rule [ a r:Fact; r:gives {{("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_2 _:x_1_2) fl:mu _:x_2_2} {("if_then_else" {(_:x_0_2) fcm:fm true} true {("assertz" {(_:x_0_2) fcm:fm true}) e:derive true}) e:derive true.
        ("assertz" {_:x_0_2 fcm:pi (_:x_1_2 _:x_2_2)}) e:derive true}) e:derive true.
@@ -264,11 +244,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {_:x_0_2 fcm:pi (_:x_1_2 _:x_2_2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
     :Ann fcm:pi (:ChildAge 0.4167000000000005).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi _:x_12_2}} {0.4167000000000005 log:equalTo _:x_12_2} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true} => {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_2 _:x_1_2) fl:mu _:x_2_2} {("if_then_else" {(_:x_0_2) fcm:fm true} true {("assertz" {(_:x_0_2) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi _:x_12_2}} {0.4167000000000005 log:equalTo _:x_12_2} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true} => {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_2 _:x_1_2) fl:mu _:x_2_2} {("if_then_else" {(_:x_0_2) fcm:fm true} true {("assertz" {(_:x_0_2) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:x_0_2 fcm:pi (_:x_1_2 _:x_2_2)}) e:derive true}) e:derive true.
        ("forall" {(_:x_0_2 _:x_1_2) fl:sigma _:x_3_2} {("if_then_else" {(_:x_0_2) fcm:fs true} true {("assertz" {(_:x_0_2) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:x_1_2) fcm:fs true} true {("assertz" {(_:x_1_2) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -284,11 +260,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:x_0_2 fcm:pi (_:x_1_2 _:x_2_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:ChildAge 0.4167000000000005).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi _:x_12_2}} {0.4167000000000005 log:equalTo _:x_12_2} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true}}}].
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :ChildAge) fl:pi _:x_12_2}} {0.4167000000000005 log:equalTo _:x_12_2} {0.4167000000000005 log:equalTo 0.4167000000000005}) e:derive true}}}].
->>>>>>> master:programming/fcm/fcm_proof.n3
 
 <#lemma19> a r:Extraction;
   r:gives {
@@ -310,19 +282,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
       ?x_13_3 fcm:pi (?x_14_3 ?x_15_3).
       ("if_then_else" {?x_0_3 e:closure {(?x_13_3 ?x_14_3) fl:pi ?x_16_3}} {?x_17_3 log:equalTo ?x_16_3} {?x_17_3 log:equalTo ?x_15_3}) e:derive true}}.
   };
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fcm/fcm-plugin.n3>].
-
-<#lemma20> a r:Inference;
-  r:gives {
-    ((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fcm/fcm-plugin.n3>].
 
 <#lemma20> a r:Inference;
   r:gives {
     ((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("forall" {(_:sk_0 _:sk_1) fl:sigma _:sk_3} {("if_then_else" {(_:sk_0) fcm:fs true} true {("assertz" {(_:sk_0) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:sk_1) fcm:fs true} true {("assertz" {(_:sk_1) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -338,11 +302,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:AdultAge 0.5832999999999995).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi _:sk_12}} {0.5832999999999995 log:equalTo _:sk_12} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true}.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi _:sk_12}} {0.5832999999999995 log:equalTo _:sk_12} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true}.
->>>>>>> master:programming/fcm/fcm_proof.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(?V0 ?V1) fl:mu ?V2} {("if_then_else" {(?V0) fcm:fm true} true {("assertz" {(?V0) fcm:fm true}) e:derive true}) e:derive true.
@@ -361,11 +321,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {?V0 fcm:pi (?V1 ?V2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true}]
     [ a r:Fact; r:gives {:Ann fcm:pi (:AdultAge 0.5832999999999995)}]
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi ?V0}} {0.5832999999999995 log:equalTo ?V0} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true}]
-=======
     [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi ?V0}} {0.5832999999999995 log:equalTo ?V0} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true}]
->>>>>>> master:programming/fcm/fcm_proof.n3
   );
   r:rule [ a r:Fact; r:gives {{("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_4 _:x_1_4) fl:mu _:x_2_4} {("if_then_else" {(_:x_0_4) fcm:fm true} true {("assertz" {(_:x_0_4) fcm:fm true}) e:derive true}) e:derive true.
        ("assertz" {_:x_0_4 fcm:pi (_:x_1_4 _:x_2_4)}) e:derive true}) e:derive true.
@@ -383,11 +339,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {_:x_0_4 fcm:pi (_:x_1_4 _:x_2_4)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
     :Ann fcm:pi (:AdultAge 0.5832999999999995).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi _:x_12_4}} {0.5832999999999995 log:equalTo _:x_12_4} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true} => {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_4 _:x_1_4) fl:mu _:x_2_4} {("if_then_else" {(_:x_0_4) fcm:fm true} true {("assertz" {(_:x_0_4) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi _:x_12_4}} {0.5832999999999995 log:equalTo _:x_12_4} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true} => {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_4 _:x_1_4) fl:mu _:x_2_4} {("if_then_else" {(_:x_0_4) fcm:fm true} true {("assertz" {(_:x_0_4) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:x_0_4 fcm:pi (_:x_1_4 _:x_2_4)}) e:derive true}) e:derive true.
        ("forall" {(_:x_0_4 _:x_1_4) fl:sigma _:x_3_4} {("if_then_else" {(_:x_0_4) fcm:fs true} true {("assertz" {(_:x_0_4) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:x_1_4) fcm:fs true} true {("assertz" {(_:x_1_4) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -403,19 +355,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:x_0_4 fcm:pi (_:x_1_4 _:x_2_4)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:AdultAge 0.5832999999999995).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi _:x_12_4}} {0.5832999999999995 log:equalTo _:x_12_4} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true}}}].
-
-<#lemma21> a r:Inference;
-  r:gives {
-    ((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :AdultAge) fl:pi _:x_12_4}} {0.5832999999999995 log:equalTo _:x_12_4} {0.5832999999999995 log:equalTo 0.5832999999999995}) e:derive true}}}].
 
 <#lemma21> a r:Inference;
   r:gives {
     ((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("forall" {(_:sk_0 _:sk_1) fl:sigma _:sk_3} {("if_then_else" {(_:sk_0) fcm:fs true} true {("assertz" {(_:sk_0) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:sk_1) fcm:fs true} true {("assertz" {(_:sk_1) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -431,11 +375,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (owl:Thing 1.0).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi _:sk_12}} {1.0 log:equalTo _:sk_12} {1.0 log:equalTo 1.0}) e:derive true}.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi _:sk_12}} {1.0 log:equalTo _:sk_12} {1.0 log:equalTo 1.0}) e:derive true}.
->>>>>>> master:programming/fcm/fcm_proof.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(?V0 ?V1) fl:mu ?V2} {("if_then_else" {(?V0) fcm:fm true} true {("assertz" {(?V0) fcm:fm true}) e:derive true}) e:derive true.
@@ -454,11 +394,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {?V0 fcm:pi (?V1 ?V2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true}]
     [ a r:Fact; r:gives {:Ann fcm:pi (owl:Thing 1.0)}]
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi ?V0}} {1.0 log:equalTo ?V0} {1.0 log:equalTo 1.0}) e:derive true}]
-=======
     [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi ?V0}} {1.0 log:equalTo ?V0} {1.0 log:equalTo 1.0}) e:derive true}]
->>>>>>> master:programming/fcm/fcm_proof.n3
   );
   r:rule [ a r:Fact; r:gives {{("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_5 _:x_1_5) fl:mu _:x_2_5} {("if_then_else" {(_:x_0_5) fcm:fm true} true {("assertz" {(_:x_0_5) fcm:fm true}) e:derive true}) e:derive true.
        ("assertz" {_:x_0_5 fcm:pi (_:x_1_5 _:x_2_5)}) e:derive true}) e:derive true.
@@ -476,11 +412,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {_:x_0_5 fcm:pi (_:x_1_5 _:x_2_5)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
     :Ann fcm:pi (owl:Thing 1.0).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi _:x_12_5}} {1.0 log:equalTo _:x_12_5} {1.0 log:equalTo 1.0}) e:derive true} => {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_5 _:x_1_5) fl:mu _:x_2_5} {("if_then_else" {(_:x_0_5) fcm:fm true} true {("assertz" {(_:x_0_5) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi _:x_12_5}} {1.0 log:equalTo _:x_12_5} {1.0 log:equalTo 1.0}) e:derive true} => {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_5 _:x_1_5) fl:mu _:x_2_5} {("if_then_else" {(_:x_0_5) fcm:fm true} true {("assertz" {(_:x_0_5) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:x_0_5 fcm:pi (_:x_1_5 _:x_2_5)}) e:derive true}) e:derive true.
        ("forall" {(_:x_0_5 _:x_1_5) fl:sigma _:x_3_5} {("if_then_else" {(_:x_0_5) fcm:fs true} true {("assertz" {(_:x_0_5) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:x_1_5) fcm:fs true} true {("assertz" {(_:x_1_5) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -496,19 +428,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:x_0_5 fcm:pi (_:x_1_5 _:x_2_5)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (owl:Thing 1.0).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi _:x_12_5}} {1.0 log:equalTo _:x_12_5} {1.0 log:equalTo 1.0}) e:derive true}}}].
-
-<#lemma22> a r:Inference;
-  r:gives {
-    ((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Thing) fl:pi _:x_12_5}} {1.0 log:equalTo _:x_12_5} {1.0 log:equalTo 1.0}) e:derive true}}}].
 
 <#lemma22> a r:Inference;
   r:gives {
     ((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("forall" {(_:sk_0 _:sk_1) fl:sigma _:sk_3} {("if_then_else" {(_:sk_0) fcm:fs true} true {("assertz" {(_:sk_0) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:sk_1) fcm:fs true} true {("assertz" {(_:sk_1) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -524,11 +448,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (owl:Nothing 0.0).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi _:sk_12}} {0.0 log:equalTo _:sk_12} {0.0 log:equalTo 0.0}) e:derive true}.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi _:sk_12}} {0.0 log:equalTo _:sk_12} {0.0 log:equalTo 0.0}) e:derive true}.
->>>>>>> master:programming/fcm/fcm_proof.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(?V0 ?V1) fl:mu ?V2} {("if_then_else" {(?V0) fcm:fm true} true {("assertz" {(?V0) fcm:fm true}) e:derive true}) e:derive true.
@@ -547,11 +467,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {?V0 fcm:pi (?V1 ?V2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true}]
     [ a r:Fact; r:gives {:Ann fcm:pi (owl:Nothing 0.0)}]
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi ?V0}} {0.0 log:equalTo ?V0} {0.0 log:equalTo 0.0}) e:derive true}]
-=======
     [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi ?V0}} {0.0 log:equalTo ?V0} {0.0 log:equalTo 0.0}) e:derive true}]
->>>>>>> master:programming/fcm/fcm_proof.n3
   );
   r:rule [ a r:Fact; r:gives {{("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_6 _:x_1_6) fl:mu _:x_2_6} {("if_then_else" {(_:x_0_6) fcm:fm true} true {("assertz" {(_:x_0_6) fcm:fm true}) e:derive true}) e:derive true.
        ("assertz" {_:x_0_6 fcm:pi (_:x_1_6 _:x_2_6)}) e:derive true}) e:derive true.
@@ -569,11 +485,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {_:x_0_6 fcm:pi (_:x_1_6 _:x_2_6)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
     :Ann fcm:pi (owl:Nothing 0.0).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi _:x_12_6}} {0.0 log:equalTo _:x_12_6} {0.0 log:equalTo 0.0}) e:derive true} => {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_6 _:x_1_6) fl:mu _:x_2_6} {("if_then_else" {(_:x_0_6) fcm:fm true} true {("assertz" {(_:x_0_6) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi _:x_12_6}} {0.0 log:equalTo _:x_12_6} {0.0 log:equalTo 0.0}) e:derive true} => {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_6 _:x_1_6) fl:mu _:x_2_6} {("if_then_else" {(_:x_0_6) fcm:fm true} true {("assertz" {(_:x_0_6) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:x_0_6 fcm:pi (_:x_1_6 _:x_2_6)}) e:derive true}) e:derive true.
        ("forall" {(_:x_0_6 _:x_1_6) fl:sigma _:x_3_6} {("if_then_else" {(_:x_0_6) fcm:fs true} true {("assertz" {(_:x_0_6) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:x_1_6) fcm:fs true} true {("assertz" {(_:x_1_6) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -589,19 +501,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:x_0_6 fcm:pi (_:x_1_6 _:x_2_6)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (owl:Nothing 0.0).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi _:x_12_6}} {0.0 log:equalTo _:x_12_6} {0.0 log:equalTo 0.0}) e:derive true}}}].
-
-<#lemma23> a r:Inference;
-  r:gives {
-    ((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann owl:Nothing) fl:pi _:x_12_6}} {0.0 log:equalTo _:x_12_6} {0.0 log:equalTo 0.0}) e:derive true}}}].
 
 <#lemma23> a r:Inference;
   r:gives {
     ((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("forall" {(_:sk_0 _:sk_1) fl:sigma _:sk_3} {("if_then_else" {(_:sk_0) fcm:fs true} true {("assertz" {(_:sk_0) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:sk_1) fcm:fs true} true {("assertz" {(_:sk_1) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -617,11 +521,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:NormalIntraocularPressure 0.42055693693538665).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi _:sk_12}} {0.42055693693538665 log:equalTo _:sk_12} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true}.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi _:sk_12}} {0.42055693693538665 log:equalTo _:sk_12} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true}.
->>>>>>> master:programming/fcm/fcm_proof.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(?V0 ?V1) fl:mu ?V2} {("if_then_else" {(?V0) fcm:fm true} true {("assertz" {(?V0) fcm:fm true}) e:derive true}) e:derive true.
@@ -640,11 +540,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {?V0 fcm:pi (?V1 ?V2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true}]
     [ a r:Fact; r:gives {:Ann fcm:pi (:NormalIntraocularPressure 0.42055693693538665)}]
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi ?V0}} {0.42055693693538665 log:equalTo ?V0} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true}]
-=======
     [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi ?V0}} {0.42055693693538665 log:equalTo ?V0} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true}]
->>>>>>> master:programming/fcm/fcm_proof.n3
   );
   r:rule [ a r:Fact; r:gives {{("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_7 _:x_1_7) fl:mu _:x_2_7} {("if_then_else" {(_:x_0_7) fcm:fm true} true {("assertz" {(_:x_0_7) fcm:fm true}) e:derive true}) e:derive true.
        ("assertz" {_:x_0_7 fcm:pi (_:x_1_7 _:x_2_7)}) e:derive true}) e:derive true.
@@ -662,11 +558,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {_:x_0_7 fcm:pi (_:x_1_7 _:x_2_7)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
     :Ann fcm:pi (:NormalIntraocularPressure 0.42055693693538665).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi _:x_12_7}} {0.42055693693538665 log:equalTo _:x_12_7} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true} => {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_7 _:x_1_7) fl:mu _:x_2_7} {("if_then_else" {(_:x_0_7) fcm:fm true} true {("assertz" {(_:x_0_7) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi _:x_12_7}} {0.42055693693538665 log:equalTo _:x_12_7} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true} => {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_7 _:x_1_7) fl:mu _:x_2_7} {("if_then_else" {(_:x_0_7) fcm:fm true} true {("assertz" {(_:x_0_7) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:x_0_7 fcm:pi (_:x_1_7 _:x_2_7)}) e:derive true}) e:derive true.
        ("forall" {(_:x_0_7 _:x_1_7) fl:sigma _:x_3_7} {("if_then_else" {(_:x_0_7) fcm:fs true} true {("assertz" {(_:x_0_7) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:x_1_7) fcm:fs true} true {("assertz" {(_:x_1_7) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -682,19 +574,11 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:x_0_7 fcm:pi (_:x_1_7 _:x_2_7)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:NormalIntraocularPressure 0.42055693693538665).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi _:x_12_7}} {0.42055693693538665 log:equalTo _:x_12_7} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true}}}].
-
-<#lemma24> a r:Inference;
-  r:gives {
-    ((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :NormalIntraocularPressure) fl:pi _:x_12_7}} {0.42055693693538665 log:equalTo _:x_12_7} {0.42055693693538665 log:equalTo 0.42055693693538665}) e:derive true}}}].
 
 <#lemma24> a r:Inference;
   r:gives {
     ((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:sk_0 _:sk_1) fl:mu _:sk_2} {("if_then_else" {(_:sk_0) fcm:fm true} true {("assertz" {(_:sk_0) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("forall" {(_:sk_0 _:sk_1) fl:sigma _:sk_3} {("if_then_else" {(_:sk_0) fcm:fs true} true {("assertz" {(_:sk_0) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:sk_1) fcm:fs true} true {("assertz" {(_:sk_1) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -710,11 +594,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:sk_0 fcm:pi (_:sk_1 _:sk_2)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:IncreasedIntraocularPressure 0.5762688313443307).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi _:sk_12}} {0.5762688313443307 log:equalTo _:sk_12} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true}.
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi _:sk_12}} {0.5762688313443307 log:equalTo _:sk_12} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true}.
->>>>>>> master:programming/fcm/fcm_proof.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(?V0 ?V1) fl:mu ?V2} {("if_then_else" {(?V0) fcm:fm true} true {("assertz" {(?V0) fcm:fm true}) e:derive true}) e:derive true.
@@ -733,11 +613,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {?V0 fcm:pi (?V1 ?V2)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true}]
     [ a r:Fact; r:gives {:Ann fcm:pi (:IncreasedIntraocularPressure 0.5762688313443307)}]
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi ?V0}} {0.5762688313443307 log:equalTo ?V0} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true}]
-=======
     [ a r:Fact; r:gives {("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi ?V0}} {0.5762688313443307 log:equalTo ?V0} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true}]
->>>>>>> master:programming/fcm/fcm_proof.n3
   );
   r:rule [ a r:Fact; r:gives {{("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_8 _:x_1_8) fl:mu _:x_2_8} {("if_then_else" {(_:x_0_8) fcm:fm true} true {("assertz" {(_:x_0_8) fcm:fm true}) e:derive true}) e:derive true.
        ("assertz" {_:x_0_8 fcm:pi (_:x_1_8 _:x_2_8)}) e:derive true}) e:derive true.
@@ -755,11 +631,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
        ("assertz" {_:x_0_8 fcm:pi (_:x_1_8 _:x_2_8)}) e:derive true}) e:derive true.
       ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
     :Ann fcm:pi (:IncreasedIntraocularPressure 0.5762688313443307).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-    ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi _:x_12_8}} {0.5762688313443307 log:equalTo _:x_12_8} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true} => {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_8 _:x_1_8) fl:mu _:x_2_8} {("if_then_else" {(_:x_0_8) fcm:fm true} true {("assertz" {(_:x_0_8) fcm:fm true}) e:derive true}) e:derive true.
-=======
     ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi _:x_12_8}} {0.5762688313443307 log:equalTo _:x_12_8} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true} => {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:call {("if_then_else" {("nb_getval" "fnet" "done") e:derive true} true {(";" {("forall" {(_:x_0_8 _:x_1_8) fl:mu _:x_2_8} {("if_then_else" {(_:x_0_8) fcm:fm true} true {("assertz" {(_:x_0_8) fcm:fm true}) e:derive true}) e:derive true.
->>>>>>> master:programming/fcm/fcm_proof.n3
         ("assertz" {_:x_0_8 fcm:pi (_:x_1_8 _:x_2_8)}) e:derive true}) e:derive true.
        ("forall" {(_:x_0_8 _:x_1_8) fl:sigma _:x_3_8} {("if_then_else" {(_:x_0_8) fcm:fs true} true {("assertz" {(_:x_0_8) fcm:fs true}) e:derive true}) e:derive true.
         ("if_then_else" {(_:x_1_8) fcm:fs true} true {("assertz" {(_:x_1_8) fcm:fs true}) e:derive true}) e:derive true}) e:derive true.
@@ -775,21 +647,13 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
         ("assertz" {_:x_0_8 fcm:pi (_:x_1_8 _:x_2_8)}) e:derive true}) e:derive true.
        ("fail") e:derive true} {("nb_setval" "fnet" "done") e:derive true}) e:derive true}) e:derive true.
      :Ann fcm:pi (:IncreasedIntraocularPressure 0.5762688313443307).
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-     ("if_then_else" {((<http://josd.github.io/eye/i/fcm/fcm-plugin.n3> <http://josd.github.io/eye/i/fcm/fl-rules.n3> <http://josd.github.io/eye/i/fcm/example001P.n3> <http://josd.github.io/eye/i/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi _:x_12_8}} {0.5762688313443307 log:equalTo _:x_12_8} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true}}}].
-=======
      ("if_then_else" {((<http://josd.github.io/eye/programming/fcm/fcm-plugin.n3> <http://josd.github.io/eye/programming/fcm/fl-rules.n3> <http://josd.github.io/eye/programming/fcm/example001P.n3> <http://josd.github.io/eye/programming/fcm/example002P.n3>) 1) e:closure {(:Ann :IncreasedIntraocularPressure) fl:pi _:x_12_8}} {0.5762688313443307 log:equalTo _:x_12_8} {0.5762688313443307 log:equalTo 0.5762688313443307}) e:derive true}}}].
->>>>>>> master:programming/fcm/fcm_proof.n3
 
 <#lemma25> a r:Extraction;
   r:gives {
     :NonNormalIntraocularPressure owl:complementOf :NormalIntraocularPressure.
   };
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fcm/example002P.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fcm/example002P.n3>].
->>>>>>> master:programming/fcm/fcm_proof.n3
 
 <#lemma26> a r:Extraction;
   r:gives {
@@ -797,22 +661,14 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      (?x_2_9 ?x_1_9) fl:pi ?x_3_9.
      (1.0 ?x_3_9) math:difference ?x_4_9} => {(?x_2_9 ?x_0_9) fl:pi ?x_4_9}.
   };
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fcm/fl-rules.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fcm/fl-rules.n3>].
->>>>>>> master:programming/fcm/fcm_proof.n3
 
 <#lemma27> a r:Extraction;
   r:gives {
     :NonIncreasedIntraocularPressure owl:complementOf :IncreasedIntraocularPressure.
   };
-<<<<<<< HEAD:programming/fcm/fcm_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/fcm/example002P.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/fcm/example002P.n3>].
->>>>>>> master:programming/fcm/fcm_proof.n3
 
-#2018-08-23T10:53:39.684Z in=260 out=8 ent=50 step=307 brake=6 inf=467490 sec=0.283 inf/sec=1651908
+#2018-08-19T21:02:56.687Z in=260 out=8 ent=50 step=307 brake=6 inf=467281 sec=0.105 inf/sec=4450295
 #ENDS
 

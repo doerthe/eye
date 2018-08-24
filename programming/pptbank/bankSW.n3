@@ -1,12 +1,6 @@
-<<<<<<< HEAD
-@prefix my: <http://josd.github.io/eye/i/ppt-bank/acct3#>.
-@prefix ck: <http://josd.github.io/eye/i/ppt-bank/checking#>.
-@prefix bk: <http://josd.github.io/eye/i/ppt-bank/banking#>.
-=======
 @prefix my: <http://josd.github.io/eye/programming/ppt-bank/acct3#>.
 @prefix ck: <http://josd.github.io/eye/programming/ppt-bank/checking#>.
 @prefix bk: <http://josd.github.io/eye/programming/ppt-bank/banking#>.
->>>>>>> master
 
 my:account a ck:Account;
 	bk:statements (<acct3start.n3>);

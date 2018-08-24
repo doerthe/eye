@@ -1,9 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/socrates/socrates_proof.n3
-#eye --n3 http://josd.github.io/eye/i/socrates/socrates.n3 --query http://josd.github.io/eye/i/socrates/socratesF.n3
-=======
 #eye --n3 http://josd.github.io/eye/programming/socrates/socrates.n3 --query http://josd.github.io/eye/programming/socrates/socratesF.n3
->>>>>>> master:programming/socrates/socrates_proof.n3
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
@@ -42,21 +38,13 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :Socrates a :Man.
   };
-<<<<<<< HEAD:programming/socrates/socrates_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/socrates/socrates.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/socrates/socrates.n3>].
->>>>>>> master:programming/socrates/socrates_proof.n3
 
 <#lemma4> a r:Extraction;
   r:gives {
     {?x_0_1 a ?x_1_1} => {?x_0_1 a ?x_1_1}.
   };
-<<<<<<< HEAD:programming/socrates/socrates_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/socrates/socratesF.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/socrates/socratesF.n3>].
->>>>>>> master:programming/socrates/socrates_proof.n3
 
 <#lemma5> a r:Inference;
   r:gives {
@@ -72,23 +60,15 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :Man rdfs:subClassOf :Mortal.
   };
-<<<<<<< HEAD:programming/socrates/socrates_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/socrates/socrates.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/socrates/socrates.n3>].
->>>>>>> master:programming/socrates/socrates_proof.n3
 
 <#lemma7> a r:Extraction;
   r:gives {
     {?x_0_2 rdfs:subClassOf ?x_1_2.
      ?x_2_2 a ?x_0_2} => {?x_2_2 a ?x_1_2}.
   };
-<<<<<<< HEAD:programming/socrates/socrates_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/socrates/socrates.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/socrates/socrates.n3>].
->>>>>>> master:programming/socrates/socrates_proof.n3
 
-#2018-08-23T10:54:18.987Z in=9 out=2 ent=3 step=6 brake=2 inf=21948 sec=0.080 inf/sec=274350
+#2018-08-19T21:03:19.514Z in=9 out=2 ent=3 step=6 brake=2 inf=21879 sec=0.031 inf/sec=705774
 #ENDS
 

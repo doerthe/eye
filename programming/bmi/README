@@ -4,8 +4,4 @@ Body Mass Index
 
 Calculation of the body mass index.
 
-<<<<<<< HEAD:programming/bmi/README
-The tests are at http://josd.github.io/eye/i/bmi/test
-=======
 The tests are at http://josd.github.io/eye/programming/bmi/test
->>>>>>> master:programming/bmi/README

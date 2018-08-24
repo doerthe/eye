@@ -1,9 +1,5 @@
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-<<<<<<< HEAD:programming/swet/swetQ01.n3
-@prefix : <http://eulersharp.sourceforge.net/2003/03swap/eye/i#>.
-=======
 @prefix : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>.
->>>>>>> master:programming/swet/swetQ01.n3
 
 {	?S e:answer {:obs :like ?OBS}.
 	?OBS :ascribed :WetGrass.

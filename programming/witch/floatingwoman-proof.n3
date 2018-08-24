@@ -1,15 +1,8 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/witch/floatingwoman-proof.n3
-#eye --no-genid --n3 http://josd.github.io/eye/i/witch/floatingwoman.n3 --proof http://josd.github.io/eye/i/witch/witch-proof.n3 --query http://josd.github.io/eye/i/witch/floatingwoman-goal.n3
-
-PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
-PREFIX : <http://josd.github.io/eye/i/witch#>
-=======
 #eye --no-genid --n3 http://josd.github.io/eye/programming/witch/floatingwoman.n3 --proof http://josd.github.io/eye/programming/witch/witch-proof.n3 --query http://josd.github.io/eye/programming/witch/floatingwoman-goal.n3
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/programming/witch#>
->>>>>>> master:programming/witch/floatingwoman-proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma1>;
@@ -40,11 +33,7 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
   r:gives {
     {?x_0_1 a :FLOATINGWOMAN} => {?x_0_1 a :FLOATINGWOMAN}.
   };
-<<<<<<< HEAD:programming/witch/floatingwoman-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/floatingwoman-goal.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/floatingwoman-goal.n3>].
->>>>>>> master:programming/witch/floatingwoman-proof.n3
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -73,21 +62,6 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
     {?x_0_2 a :FLOATS.
      ?x_0_2 a :WOMAN} => {?x_0_2 a :FLOATINGWOMAN}.
   };
-<<<<<<< HEAD:programming/witch/floatingwoman-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/floatingwoman.n3>].
-
-<#lemma7> a r:Extraction;
-  r:gives {
-    <http://josd.github.io/eye/i/witch/witch-proof.n3#lemma9> a r:Inference.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch-proof.n3>].
-
-<#lemma8> a r:Extraction;
-  r:gives {
-    <http://josd.github.io/eye/i/witch/witch-proof.n3#lemma9> r:gives {:GIRL a :FLOATS}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch-proof.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/floatingwoman.n3>].
 
 <#lemma7> a r:Extraction;
@@ -101,7 +75,6 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
     <http://josd.github.io/eye/programming/witch/witch-proof.n3#lemma9> r:gives {:GIRL a :FLOATS}.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch-proof.n3>].
->>>>>>> master:programming/witch/floatingwoman-proof.n3
 
 <#lemma9> a r:Extraction;
   r:gives {
@@ -113,17 +86,6 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
 
 <#lemma10> a r:Extraction;
   r:gives {
-<<<<<<< HEAD:programming/witch/floatingwoman-proof.n3
-    <http://josd.github.io/eye/i/witch/witch-proof.n3#lemma5> a r:Extraction.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch-proof.n3>].
-
-<#lemma11> a r:Extraction;
-  r:gives {
-    <http://josd.github.io/eye/i/witch/witch-proof.n3#lemma5> r:gives {:GIRL a :WOMAN}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/witch/witch-proof.n3>].
-=======
     <http://josd.github.io/eye/programming/witch/witch-proof.n3#lemma5> a r:Extraction.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch-proof.n3>].
@@ -133,7 +95,6 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
     <http://josd.github.io/eye/programming/witch/witch-proof.n3#lemma5> r:gives {:GIRL a :WOMAN}.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/witch/witch-proof.n3>].
->>>>>>> master:programming/witch/floatingwoman-proof.n3
 
 <#lemma12> a r:Extraction;
   r:gives {
@@ -143,6 +104,6 @@ PREFIX : <http://josd.github.io/eye/programming/witch#>
   };
   r:because [ a r:Parsing; r:source <http://eulersharp.sourceforge.net/2003/03swap/proof-lemma>].
 
-#2018-08-23T10:54:28.388Z in=97 out=1 ent=9 step=43 brake=3 inf=40934 sec=0.112 inf/sec=365482
+#2018-08-19T21:03:25.372Z in=97 out=1 ent=9 step=43 brake=3 inf=40728 sec=0.043 inf/sec=947163
 #ENDS
 

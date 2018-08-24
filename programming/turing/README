@@ -5,8 +5,4 @@ Turing Machine
 Turing completeness test case.
 See http://en.wikipedia.org/wiki/Prolog#Turing_completeness
 
-<<<<<<< HEAD:programming/turing/README
-The tests are at http://josd.github.io/eye/i/turing/test
-=======
 The tests are at http://josd.github.io/eye/programming/turing/test
->>>>>>> master:programming/turing/README

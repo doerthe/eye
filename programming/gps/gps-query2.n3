@@ -1,10 +1,5 @@
-<<<<<<< HEAD:programming/gps/gps-query2.n3
-PREFIX gps: <http://josd.github.io/eye/i/gps/gps-schema#>
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX gps: <http://josd.github.io/eye/programming/gps/gps-schema#>
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/gps/gps-query2.n3
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 
 {

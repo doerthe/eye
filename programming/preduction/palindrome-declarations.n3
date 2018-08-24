@@ -1,12 +1,7 @@
 # Palindrome fold/unfold declarations - The Art of Prolog Chapter 18
 
-<<<<<<< HEAD:programming/preduction/palindrome-declarations.n3
-PREFIX p: <http://josd.github.io/eye/i/preduction#>
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX p: <http://josd.github.io/eye/programming/preduction#>
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/preduction/palindrome-declarations.n3
 
 {(?Xs) :accept true} p:should_fold {(?Xs) :palindrome true}.
 {(?Q ?Xs ?Q1) :accept true} p:should_fold {(?Q ?Xs ?Q1) :palindrome true}.

@@ -1,9 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-#eye --n3 http://josd.github.io/eye/i/rpo/food-example.n3 --n3 http://josd.github.io/eye/i/rpo/food.n3 --n3 http://josd.github.io/eye/i/rpo/rdfs-subClassOf.n3 --query http://josd.github.io/eye/i/rpo/food-query.n3
-=======
 #eye --n3 http://josd.github.io/eye/programming/rpo/food-example.n3 --n3 http://josd.github.io/eye/programming/rpo/food.n3 --n3 http://josd.github.io/eye/programming/rpo/rdfs-subClassOf.n3 --query http://josd.github.io/eye/programming/rpo/food-query.n3
->>>>>>> master:programming/rpo/food-proof.n3
 
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX food: <http://www.w3.org/2002/03owlt/miscellaneous/consistent002#>
@@ -193,61 +189,37 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     _:t_0 a food:Grape.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food-example.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food-example.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma18> a r:Extraction;
   r:gives {
     {?x_0_1 a ?x_1_1} => {?x_0_1 a ?x_1_1}.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food-query.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food-query.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma19> a r:Extraction;
   r:gives {
     _:t_1 a food:CheeseNutsDessert.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food-example.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food-example.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma20> a r:Extraction;
   r:gives {
     _:t_2 a food:PastaWithLightCreamSauce.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food-example.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food-example.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma21> a r:Extraction;
   r:gives {
     _:t_3 a food:ConsumableThing.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food-example.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food-example.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma22> a r:Extraction;
   r:gives {
     _:t_4 a food:Meal.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food-example.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food-example.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma23> a r:Inference;
   r:gives {
@@ -363,92 +335,56 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     food:Grape rdfs:subClassOf food:SweetFruit.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma35> a r:Extraction;
   r:gives {
     {?x_0_2 rdfs:subClassOf ?x_1_2.
      ?x_2_2 a ?x_0_2} => {?x_2_2 a ?x_1_2}.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/rdfs-subClassOf.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/rdfs-subClassOf.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma36> a r:Extraction;
   r:gives {
     food:PastaWithLightCreamSauce rdfs:subClassOf food:PastaWithWhiteSauce.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma37> a r:Extraction;
   r:gives {
     food:Meal rdfs:subClassOf food:ConsumableThing.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma38> a r:Extraction;
   r:gives {
     food:SweetFruit rdfs:subClassOf food:EdibleThing.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma39> a r:Extraction;
   r:gives {
     food:CheeseNutsDessert rdfs:subClassOf food:Dessert.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma40> a r:Extraction;
   r:gives {
     food:EdibleThing rdfs:subClassOf food:ConsumableThing.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma41> a r:Extraction;
   r:gives {
     food:PastaWithWhiteSauce rdfs:subClassOf food:Pasta.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma42> a r:Extraction;
   r:gives {
     food:Dessert rdfs:subClassOf food:EdibleThing.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma43> a r:Inference;
   r:gives {
@@ -484,23 +420,15 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     food:Pasta rdfs:subClassOf food:EdibleThing.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/food.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/food.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
 <#lemma47> a r:Extraction;
   r:gives {
     {?x_0_3 rdfs:subClassOf ?x_1_3.
      ?x_1_3 rdfs:subClassOf ?x_2_3} => {?x_0_3 rdfs:subClassOf ?x_2_3}.
   };
-<<<<<<< HEAD:programming/rpo/food-proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/rpo/rdfs-subClassOf.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/rpo/rdfs-subClassOf.n3>].
->>>>>>> master:programming/rpo/food-proof.n3
 
-#2018-08-23T10:54:16.130Z in=59 out=16 ent=91 step=338 brake=3 inf=68993 sec=0.110 inf/sec=627209
+#2018-08-19T21:03:17.648Z in=59 out=16 ent=91 step=338 brake=3 inf=68924 sec=0.049 inf/sec=1406612
 #ENDS
 

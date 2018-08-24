@@ -2,11 +2,7 @@
 
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-<<<<<<< HEAD:programming/image/easter.n3
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/image/easter.n3
 
 <> rdfs:comment """
               Divide            by      Quotient  Remainder

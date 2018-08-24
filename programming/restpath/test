@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD
-eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/restpath/initial.n3 --n3 http://josd.github.io/eye/i/restpath/path-9-3.n3 --query http://josd.github.io/eye/i/restpath/goal.n3 > path-9-3-proof.n3
-=======
 eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/restpath/initial.n3 --n3 http://josd.github.io/eye/programming/restpath/path-9-3.n3 --query http://josd.github.io/eye/programming/restpath/goal.n3 > path-9-3-proof.n3
->>>>>>> master

@@ -1,15 +1,8 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-#eye --n3 http://josd.github.io/eye/i/turing/turing.n3 --query http://josd.github.io/eye/i/turing/turingQ.n3
-
-PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 #eye --n3 http://josd.github.io/eye/programming/turing/turing.n3 --query http://josd.github.io/eye/programming/turing/turingQ.n3
 
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/turing/turing_proof.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -42,11 +35,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {((1 1 1) ?x_0_1) :turing true} => {((1 1 1) ?x_0_1) :turing true}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turingQ.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turingQ.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -87,11 +76,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      (?x_0_2 ?x_3_2) :reverse true.
      (?x_3_2 ?x_2_2 ?x_4_2) :append true}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma8> a r:Inference;
   r:gives {
@@ -106,11 +91,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     (:q0 1 :q0 1 :right) :rule true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma10> a r:Inference;
   r:gives {
@@ -143,11 +124,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      (?x_6_3 ?x_8_3 ?x_9_3 ?x_7_3 ?x_10_3) :action true.
      (?x_4_3 ?x_9_3 ?x_11_3 ?x_10_3 ?x_12_3) :perform true}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma13> a r:Inference;
   r:gives {
@@ -164,11 +141,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(?x_0_4 ?x_1_4) :reverse true} <= {(?x_0_4 () ?x_1_4) :reverse true}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma15> a r:Inference;
   r:gives {
@@ -187,32 +160,20 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_3_5 e:firstRest (?x_1_5 ?x_4_5).
      (?x_2_5 ?x_5_5 ?x_4_5) :append true}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma17> a r:Extraction;
   r:gives {
     {(?x_0_6 ?x_1_6 ?x_2_6) :symbol true} <= {?x_0_6 e:firstRest (?x_1_6 ?x_2_6)}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma18> a r:Extraction;
   r:gives {
     {(:right ?x_2_7 ?x_0_7 ?x_3_7 ?x_4_7) :action true} <= {?x_0_7 e:firstRest (?x_1_7 ?x_2_7).
      ?x_3_7 e:firstRest (?x_1_7 ?x_4_7)}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma19> a r:Inference;
   r:gives {
@@ -263,11 +224,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_3_8 e:firstRest (?x_1_8 ?x_4_8).
      (?x_2_8 ?x_3_8 ?x_5_8) :reverse true}.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma24> a r:Inference;
   r:gives {
@@ -345,11 +302,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     (:q0 :b :qf 1 :stay) :rule true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma32> a r:Inference;
   r:gives {
@@ -382,52 +335,32 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(() ?x_0_9 ?x_0_9) :append true} <= true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma36> a r:Extraction;
   r:gives {
     {(() :b ()) :symbol true} <= true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma37> a r:Extraction;
   r:gives {
     {(:stay ?x_0_11 ?x_0_11 ?x_1_11 ?x_1_11) :action true} <= true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma38> a r:Extraction;
   r:gives {
     {(:qf ?x_0_12 ?x_0_12 ?x_1_12 ?x_1_12) :perform true} <= true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
 <#lemma39> a r:Extraction;
   r:gives {
     {(() ?x_0_13 ?x_0_13) :reverse true} <= true.
   };
-<<<<<<< HEAD:programming/turing/turing_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/turing/turing.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/turing/turing.n3>].
->>>>>>> master:programming/turing/turing_proof.n3
 
-#2018-08-23T10:54:26.069Z in=57 out=1 ent=1 step=1 brake=1 inf=63458 sec=0.103 inf/sec=616097
+#2018-08-19T21:03:23.794Z in=57 out=1 ent=1 step=1 brake=1 inf=63388 sec=0.046 inf/sec=1378000
 #ENDS
 

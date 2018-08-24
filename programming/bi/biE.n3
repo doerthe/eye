@@ -1,9 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/bi/biE.n3
-#eye --n3 http://josd.github.io/eye/i/bi/biP.n3 --query http://josd.github.io/eye/i/bi/biQ.n3
-=======
 #eye --n3 http://josd.github.io/eye/programming/bi/biP.n3 --query http://josd.github.io/eye/programming/bi/biQ.n3
->>>>>>> master:programming/bi/biE.n3
 
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX list: <http://www.w3.org/2000/10/swap/list#>
@@ -166,11 +162,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     {{(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)} => {:eme1 :result true}} a :PASS.
     {{(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)} => {:emn1 :result true}} a :PASS.
     {{:a :b :d.
-<<<<<<< HEAD:programming/bi/biE.n3
-      ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}} => {:eo1 :result true}} a :PASS.
-=======
       ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}} => {:eo1 :result true}} a :PASS.
->>>>>>> master:programming/bi/biE.n3
     {{((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc 0.9569729506311461 .
       0.9569729506311461 math:equalTo 0.9569729506311461} => {:ep1 :result true}} a :PASS.
     {{((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))} => {:erv1 :result true}} a :PASS.
@@ -183,11 +175,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     {{"\"test\n" e:stringEscape "\\\"test\\n"} => {:ese1 :result true}} a :PASS.
     {{("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")} => {:ess1 :result true}} a :PASS.
     {{(1 2 3 4 5) e:subsequence (1 2 4)} => {:esl1 :result true}} a :PASS.
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}} a :PASS.
-=======
     {{((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}} a :PASS.
->>>>>>> master:programming/bi/biE.n3
     {{() e:subsequence ()} => {:esl3 :result true}} a :PASS.
     {{((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))} => {:et1 :result true}} a :PASS.
     {{:c e:whenGround {:a :b :d}.
@@ -211,15 +199,9 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     {{(:a :b) log:equalTo (:a :b)} => {:loge1 :result true}} a :PASS.
     {{{:a :b :c} log:equalTo {:a :b :c}} => {:loged0 :result true}} a :PASS.
     {{{:a :b :_c} log:equalTo {:a :b :_c}} => {:loged3 :result true}} a :PASS.
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b :c} log:equalTo {:a :b :c}} => {:loges0 :result true}} a :PASS.
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-=======
     {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b :c} log:equalTo {:a :b :c}} => {:loges0 :result true}} a :PASS.
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
->>>>>>> master:programming/bi/biE.n3
       {:a :b _:t_0} log:equalTo {:a :b _:t_0}} => {:loges3 :result true}} a :PASS.
     {{{:b :a :c.
        :e :d :f.
@@ -229,35 +211,20 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     {{{:a :b :c} log:includes {:a :b :c}} => {:logid0 :result true}} a :PASS.
     {{{:a :b :c} log:includes {:a :b :c}} => {:logid1 :result true}} a :PASS.
     {{{:a :b :_c} log:includes {:a :b :_c}} => {:logid3 :result true}} a :PASS.
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b :c} log:includes {:a :b :c}} => {:logis0 :result true}} a :PASS.
-    {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b :c} log:includes {:a :b :c}} => {:logis1 :result true}} a :PASS.
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-=======
     {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b :c} log:includes {:a :b :c}} => {:logis0 :result true}} a :PASS.
     {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b :c} log:includes {:a :b :c}} => {:logis1 :result true}} a :PASS.
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
->>>>>>> master:programming/bi/biE.n3
       {:a :b _:t_0} log:includes {:a :b _:t_0}} => {:logis3 :result true}} a :PASS.
     {{:a log:notEqualTo :b} => {:logne1 :result true}} a :PASS.
     {{{:a :b :c} log:notEqualTo {:a :b :_c}} => {:logned1 :result true}} a :PASS.
     {{{:a :b :_c} log:notEqualTo {:a :b :c}} => {:logned2 :result true}} a :PASS.
     {{{:a :b :_c} log:notIncludes {:a :b :c}} => {:lognid2 :result true}} a :PASS.
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-      {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis2 :result true}} a :PASS.
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-      <http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
       {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis2 :result true}} a :PASS.
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
       <http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
       {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis3 :result true}} a :PASS.
     {{med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"} => {:logu1 :result true}} a :PASS.
     {{:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"} => {:logu2 :result true}} a :PASS.
@@ -598,19 +565,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 <#lemma24> a r:Inference;
   r:gives {
     {{:a :b :d.
-<<<<<<< HEAD:programming/bi/biE.n3
-      ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}} => {:eo1 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{:a :b :d.
-     ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}} => {:eo1 :result true}}]
-=======
       ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}} => {:eo1 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :d.
      ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}} => {:eo1 :result true}}]
->>>>>>> master:programming/bi/biE.n3
     <#lemma145>
     <#lemma146>
   );
@@ -723,17 +682,10 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma34> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}}]
-=======
     {{((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}}]
->>>>>>> master:programming/bi/biE.n3
     <#lemma165>
     <#lemma166>
   );
@@ -949,19 +901,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma53> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b :c} log:equalTo {:a :b :c}} => {:loges0 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b :c} log:equalTo {:a :b :c}} => {:loges0 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b :c} log:equalTo {:a :b :c}} => {:loges0 :result true}}]
     <#lemma202>
     <#lemma203>
@@ -970,19 +914,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma54> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-      {:a :b _:t_0} log:equalTo {:a :b _:t_0}} => {:loges3 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
-=======
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
       {:a :b _:t_0} log:equalTo {:a :b _:t_0}} => {:loges3 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b ?t_0} log:equalTo {:a :b ?t_0}} => {:loges3 :result true}}]
     <#lemma204>
     <#lemma205>
@@ -1043,19 +979,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma59> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b :c} log:includes {:a :b :c}} => {:logis0 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b :c} log:includes {:a :b :c}} => {:logis0 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b :c} log:includes {:a :b :c}} => {:logis0 :result true}}]
     <#lemma213>
     <#lemma214>
@@ -1064,19 +992,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma60> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b :c} log:includes {:a :b :c}} => {:logis1 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b :c} log:includes {:a :b :c}} => {:logis1 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b :c} log:includes {:a :b :c}} => {:logis1 :result true}}]
     <#lemma215>
     <#lemma214>
@@ -1085,19 +1005,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma61> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-      {:a :b _:t_0} log:includes {:a :b _:t_0}} => {:logis3 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
-=======
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
       {:a :b _:t_0} log:includes {:a :b _:t_0}} => {:logis3 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b ?t_0} log:includes {:a :b ?t_0}} => {:logis3 :result true}}]
     <#lemma216>
     <#lemma217>
@@ -1150,19 +1062,11 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma66> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-      {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis2 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
-=======
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
       {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis2 :result true}} a :PASS.
   };
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b ?t_0} log:notIncludes {:a :b :c}} => {:lognis2 :result true}}]
     <#lemma226>
     <#lemma227>
@@ -1171,15 +1075,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma67> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-      <http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-      {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis3 :result true}} a :PASS.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
-     <http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
       <http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
       {:a :b _:t_0} log:notIncludes {:a :b :c}} => {:lognis3 :result true}} a :PASS.
@@ -1187,7 +1082,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   r:evidence (
     [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b ?t_0}.
      <http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b ?t_0} log:notIncludes {:a :b :c}} => {:lognis3 :result true}}]
     <#lemma228>
     <#lemma229>
@@ -1542,11 +1436,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma99> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:avg 68.5 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:avg 68.5 .
->>>>>>> master:programming/bi/biE.n3
      68.5 math:equalTo 68.5}.
   };
   r:evidence (
@@ -1554,11 +1444,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {68.5 math:equalTo 68.5}]
   );
   r:rule [ a r:Fact; r:gives {{(55 66 72 87 56 77 73 69 74 56) e:avg 68.5 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    68.5 math:equalTo 68.5} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:avg 68.5 .
-=======
     68.5 math:equalTo 68.5} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:avg 68.5 .
->>>>>>> master:programming/bi/biE.n3
      68.5 math:equalTo 68.5}}}].
 
 <#lemma100> a r:Extraction;
@@ -1567,11 +1453,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      ?x_1_293 :result ?x_2_293.
      ?x_3_293 e:call ?x_0_293} => {{?x_0_293 => {?x_1_293 :result ?x_2_293}} a :PASS}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biQ.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biQ.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma101> a r:Inference;
   r:gives {
@@ -1585,11 +1467,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma102> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("1+1") e:calculate 2 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("1+1") e:calculate 2 .
->>>>>>> master:programming/bi/biE.n3
      2 math:equalTo 2}.
   };
   r:evidence (
@@ -1597,11 +1475,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {2 math:equalTo 2}]
   );
   r:rule [ a r:Fact; r:gives {{("1+1") e:calculate 2 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    2 math:equalTo 2} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("1+1") e:calculate 2 .
-=======
     2 math:equalTo 2} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("1+1") e:calculate 2 .
->>>>>>> master:programming/bi/biE.n3
      2 math:equalTo 2}}}].
 
 <#lemma103> a r:Inference;
@@ -1617,11 +1491,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma104> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {3 log:equalTo 3 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {3 log:equalTo 3 .
->>>>>>> master:programming/bi/biE.n3
      ("sqrt(_width^2+_length^2)" 3 4) e:calculate 5.0 .
      5.0 math:equalTo 5.0}.
   };
@@ -1632,11 +1502,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{3 log:equalTo 3 .
     ("sqrt(_width^2+_length^2)" 3 4) e:calculate 5.0 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    5.0 math:equalTo 5.0} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {3 log:equalTo 3 .
-=======
     5.0 math:equalTo 5.0} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {3 log:equalTo 3 .
->>>>>>> master:programming/bi/biE.n3
      ("sqrt(_width^2+_length^2)" 3 4) e:calculate 5.0 .
      5.0 math:equalTo 5.0}}}].
 
@@ -1652,11 +1518,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma106> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("_period-250" "PT5M2S"^^xsd:dayTimeDuration) e:calculate 52.0 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("_period-250" "PT5M2S"^^xsd:dayTimeDuration) e:calculate 52.0 .
->>>>>>> master:programming/bi/biE.n3
      52.0 math:equalTo 52.0}.
   };
   r:evidence (
@@ -1664,11 +1526,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {52.0 math:equalTo 52.0}]
   );
   r:rule [ a r:Fact; r:gives {{("_period-250" "PT5M2S"^^xsd:dayTimeDuration) e:calculate 52.0 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    52.0 math:equalTo 52.0} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("_period-250" "PT5M2S"^^xsd:dayTimeDuration) e:calculate 52.0 .
-=======
     52.0 math:equalTo 52.0} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("_period-250" "PT5M2S"^^xsd:dayTimeDuration) e:calculate 52.0 .
->>>>>>> master:programming/bi/biE.n3
      52.0 math:equalTo 52.0}}}].
 
 <#lemma107> a r:Inference;
@@ -1683,11 +1541,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma108> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:cov 0.992777777777778 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:cov 0.992777777777778 .
->>>>>>> master:programming/bi/biE.n3
      0.992777777777778 math:equalTo 0.992777777777778}.
   };
   r:evidence (
@@ -1695,11 +1549,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {0.992777777777778 math:equalTo 0.992777777777778}]
   );
   r:rule [ a r:Fact; r:gives {{((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:cov 0.992777777777778 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    0.992777777777778 math:equalTo 0.992777777777778} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:cov 0.992777777777778 .
-=======
     0.992777777777778 math:equalTo 0.992777777777778} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:cov 0.992777777777778 .
->>>>>>> master:programming/bi/biE.n3
      0.992777777777778 math:equalTo 0.992777777777778}}}].
 
 <#lemma109> a r:Inference;
@@ -1713,20 +1563,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma110> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("atom_codes" "HOME" (72 79 77 69)) e:derive true}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("atom_codes" "HOME" (72 79 77 69)) e:derive true}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("atom_codes" "HOME" (72 79 77 69)) e:derive true}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("atom_codes" "HOME" (72 79 77 69)) e:derive true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("atom_codes" "HOME" (72 79 77 69)) e:derive true}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("atom_codes" "HOME" (72 79 77 69)) e:derive true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("atom_codes" "HOME" (72 79 77 69)) e:derive true}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma111> a r:Inference;
   r:gives {
@@ -1741,11 +1583,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma112> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("date(1970, 1, 1, 0, 0, 0.0, 0, 'UTC', -)") e:compoundTerm "date(1970,1,1,0,0,0.0,0,'UTC',-)".
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("date(1970, 1, 1, 0, 0, 0.0, 0, 'UTC', -)") e:compoundTerm "date(1970,1,1,0,0,0.0,0,'UTC',-)".
->>>>>>> master:programming/bi/biE.n3
      ("date_time_stamp" "date(1970,1,1,0,0,0.0,0,'UTC',-)" 0.0) e:derive true.
      0.0 math:equalTo 0.0}.
   };
@@ -1756,11 +1594,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{("date(1970, 1, 1, 0, 0, 0.0, 0, 'UTC', -)") e:compoundTerm "date(1970,1,1,0,0,0.0,0,'UTC',-)".
     ("date_time_stamp" "date(1970,1,1,0,0,0.0,0,'UTC',-)" 0.0) e:derive true.
-<<<<<<< HEAD:programming/bi/biE.n3
-    0.0 math:equalTo 0.0} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("date(1970, 1, 1, 0, 0, 0.0, 0, 'UTC', -)") e:compoundTerm "date(1970,1,1,0,0,0.0,0,'UTC',-)".
-=======
     0.0 math:equalTo 0.0} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("date(1970, 1, 1, 0, 0, 0.0, 0, 'UTC', -)") e:compoundTerm "date(1970,1,1,0,0,0.0,0,'UTC',-)".
->>>>>>> master:programming/bi/biE.n3
      ("date_time_stamp" "date(1970,1,1,0,0,0.0,0,'UTC',-)" 0.0) e:derive true.
      0.0 math:equalTo 0.0}}}].
 
@@ -1775,20 +1609,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma114> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma115> a r:Inference;
   r:gives {
@@ -1803,11 +1629,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma116> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f} true) e:graphDifference {:a :b :c.
       :d :e :f}}.
   };
@@ -1818,11 +1640,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{({:a :b :c.
      :d :e :f} true) e:graphDifference {:a :b :c.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :d :e :f}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
      :d :e :f}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f} true) e:graphDifference {:a :b :c.
       :d :e :f}}}}].
 
@@ -1837,20 +1655,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma118> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphDifference true}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphDifference true}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(true {:d :e :f}) e:graphDifference true}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(true {:d :e :f}) e:graphDifference true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphDifference true}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(true {:d :e :f}) e:graphDifference true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphDifference true}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma119> a r:Inference;
   r:gives {
@@ -1864,11 +1674,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma120> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}}.
   };
   r:evidence (
@@ -1876,11 +1682,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}}]
   );
   r:rule [ a r:Fact; r:gives {{({:a :b :c.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
      :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}}}}].
 
 <#lemma121> a r:Inference;
@@ -1897,11 +1699,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma122> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f.
       :g :h :i} {:d :e :f}) e:graphDifference {:a :b :c.
       :g :h :i}}.
@@ -1915,11 +1713,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   r:rule [ a r:Fact; r:gives {{({:a :b :c.
      :d :e :f.
      :g :h :i} {:d :e :f}) e:graphDifference {:a :b :c.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :g :h :i}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
      :g :h :i}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f.
       :g :h :i} {:d :e :f}) e:graphDifference {:a :b :c.
       :g :h :i}}}}].
@@ -1937,11 +1731,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma124> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c} {:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c} {:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :u :v :w.
       :x :y :z}) e:graphDifference true}.
   };
@@ -1952,11 +1742,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{({:a :b :c} {:a :b :c.
      :u :v :w.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :x :y :z}) e:graphDifference true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c} {:a :b :c.
-=======
      :x :y :z}) e:graphDifference true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c} {:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :u :v :w.
       :x :y :z}) e:graphDifference true}}}].
 
@@ -1971,20 +1757,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma126> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true) e:graphIntersection true}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true) e:graphIntersection true}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(true) e:graphIntersection true}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(true) e:graphIntersection true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true) e:graphIntersection true}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(true) e:graphIntersection true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true) e:graphIntersection true}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma127> a r:Inference;
   r:gives {
@@ -1997,20 +1775,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma128> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphIntersection true}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphIntersection true}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(true {:d :e :f}) e:graphIntersection true}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(true {:d :e :f}) e:graphIntersection true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphIntersection true}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(true {:d :e :f}) e:graphIntersection true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:d :e :f}) e:graphIntersection true}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma129> a r:Inference;
   r:gives {
@@ -2025,11 +1795,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma130> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f.
       :g :h :i} true) e:graphIntersection true}.
   };
@@ -2040,11 +1806,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{({:a :b :c.
      :d :e :f.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :g :h :i} true) e:graphIntersection true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
      :g :h :i} true) e:graphIntersection true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f.
       :g :h :i} true) e:graphIntersection true}}}].
 
@@ -2060,11 +1822,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma132> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f} {:d :e :f}) e:graphIntersection {:d :e :f}}.
   };
   r:evidence (
@@ -2072,11 +1830,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      :d :e :f} {:d :e :f}) e:graphIntersection {:d :e :f}}]
   );
   r:rule [ a r:Fact; r:gives {{({:a :b :c.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :d :e :f} {:d :e :f}) e:graphIntersection {:d :e :f}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
      :d :e :f} {:d :e :f}) e:graphIntersection {:d :e :f}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f} {:d :e :f}) e:graphIntersection {:d :e :f}}}}].
 
 <#lemma133> a r:Inference;
@@ -2095,11 +1849,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma134> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f.
       :g :h :i} {:g :h :i.
       :d :e :f} {:d :e :f.
@@ -2119,11 +1869,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      :g :h :i} {:g :h :i.
      :d :e :f} {:d :e :f.
      :g :h :i}) e:graphIntersection {:d :e :f.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :g :h :i}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {({:a :b :c.
-=======
      :g :h :i}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {({:a :b :c.
->>>>>>> master:programming/bi/biE.n3
       :d :e :f.
       :g :h :i} {:g :h :i.
       :d :e :f} {:d :e :f.
@@ -2141,20 +1887,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma136> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6}}}].
-=======
   r:rule [ a r:Fact; r:gives {{((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma137> a r:Inference;
   r:gives {
@@ -2167,20 +1905,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma138> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:max 9}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:max 9}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(8 5 6 7 9 4) e:max 9}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(8 5 6 7 9 4) e:max 9} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:max 9}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(8 5 6 7 9 4) e:max 9} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:max 9}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma139> a r:Inference;
   r:gives {
@@ -2193,20 +1923,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma140> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:min 4}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:min 4}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(8 5 6 7 9 4) e:min 4}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(8 5 6 7 9 4) e:min 4} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:min 4}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(8 5 6 7 9 4) e:min 4} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(8 5 6 7 9 4) e:min 4}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma141> a r:Inference;
   r:gives {
@@ -2219,20 +1941,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma142> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma143> a r:Inference;
   r:gives {
@@ -2245,20 +1959,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma144> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma145> a r:Inference;
   r:gives {
@@ -2266,28 +1972,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   };
   r:evidence (
     <#lemma313>
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}}]
->>>>>>> master:programming/bi/biE.n3
   );
   r:rule <#lemma314>.
 
 <#lemma146> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:a :b :d.
-     ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}}.
-  };
-  r:evidence (
-    <#lemma313>
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}}]
-  );
-  r:rule [ a r:Fact; r:gives {{:a :b :d.
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:a :b :d.
-     ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:optional {:g :h :i}}}}].
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:a :b :d.
      ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}}.
   };
@@ -2298,7 +1988,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   r:rule [ a r:Fact; r:gives {{:a :b :d.
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:a :b :d.
      ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:optional {:g :h :i}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma147> a r:Inference;
   r:gives {
@@ -2312,11 +2001,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma148> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc 0.9569729506311461 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc 0.9569729506311461 .
->>>>>>> master:programming/bi/biE.n3
      0.9569729506311461 math:equalTo 0.9569729506311461}.
   };
   r:evidence (
@@ -2324,11 +2009,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {0.9569729506311461 math:equalTo 0.9569729506311461}]
   );
   r:rule [ a r:Fact; r:gives {{((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc 0.9569729506311461 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    0.9569729506311461 math:equalTo 0.9569729506311461} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc 0.9569729506311461 .
-=======
     0.9569729506311461 math:equalTo 0.9569729506311461} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc 0.9569729506311461 .
->>>>>>> master:programming/bi/biE.n3
      0.9569729506311461 math:equalTo 0.9569729506311461}}}].
 
 <#lemma149> a r:Inference;
@@ -2342,20 +2023,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma150> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))}}}].
-=======
   r:rule [ a r:Fact; r:gives {{((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma151> a r:Inference;
   r:gives {
@@ -2369,11 +2042,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma152> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:rms 69.2105483289939 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:rms 69.2105483289939 .
->>>>>>> master:programming/bi/biE.n3
      69.2105483289939 math:equalTo 69.2105483289939}.
   };
   r:evidence (
@@ -2381,11 +2050,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {69.2105483289939 math:equalTo 69.2105483289939}]
   );
   r:rule [ a r:Fact; r:gives {{(55 66 72 87 56 77 73 69 74 56) e:rms 69.2105483289939 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    69.2105483289939 math:equalTo 69.2105483289939} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:rms 69.2105483289939 .
-=======
     69.2105483289939 math:equalTo 69.2105483289939} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:rms 69.2105483289939 .
->>>>>>> master:programming/bi/biE.n3
      69.2105483289939 math:equalTo 69.2105483289939}}}].
 
 <#lemma153> a r:Inference;
@@ -2399,20 +2064,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma154> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))}}}].
-=======
   r:rule [ a r:Fact; r:gives {{((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma155> a r:Inference;
   r:gives {
@@ -2425,20 +2082,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma156> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma157> a r:Inference;
   r:gives {
@@ -2452,11 +2101,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma158> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:std 10.426994879744703 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:std 10.426994879744703 .
->>>>>>> master:programming/bi/biE.n3
      10.426994879744703 math:equalTo 10.426994879744703}.
   };
   r:evidence (
@@ -2464,11 +2109,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {10.426994879744703 math:equalTo 10.426994879744703}]
   );
   r:rule [ a r:Fact; r:gives {{(55 66 72 87 56 77 73 69 74 56) e:std 10.426994879744703 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    10.426994879744703 math:equalTo 10.426994879744703} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:std 10.426994879744703 .
-=======
     10.426994879744703 math:equalTo 10.426994879744703} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(55 66 72 87 56 77 73 69 74 56) e:std 10.426994879744703 .
->>>>>>> master:programming/bi/biE.n3
      10.426994879744703 math:equalTo 10.426994879744703}}}].
 
 <#lemma159> a r:Inference;
@@ -2482,20 +2123,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma160> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"\"test\n" e:stringEscape "\\\"test\\n"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"\"test\n" e:stringEscape "\\\"test\\n"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"\"test\n" e:stringEscape "\\\"test\\n"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"\"test\n" e:stringEscape "\\\"test\\n"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"\"test\n" e:stringEscape "\\\"test\\n"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"\"test\n" e:stringEscape "\\\"test\\n"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"\"test\n" e:stringEscape "\\\"test\\n"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma161> a r:Inference;
   r:gives {
@@ -2508,20 +2141,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma162> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma163> a r:Inference;
   r:gives {
@@ -2534,51 +2159,30 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma164> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 2 3 4 5) e:subsequence (1 2 4)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 2 3 4 5) e:subsequence (1 2 4)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(1 2 3 4 5) e:subsequence (1 2 4)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(1 2 3 4 5) e:subsequence (1 2 4)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 2 3 4 5) e:subsequence (1 2 4)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(1 2 3 4 5) e:subsequence (1 2 4)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 2 3 4 5) e:subsequence (1 2 4)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma165> a r:Inference;
   r:gives {
     :esl2 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}]
->>>>>>> master:programming/bi/biE.n3
   );
   r:rule <#lemma324>.
 
 <#lemma166> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}]
-  );
-  r:rule [ a r:Fact; r:gives {{((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}}}].
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}.
   };
   r:evidence (
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}]
   );
   r:rule [ a r:Fact; r:gives {{((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma167> a r:Inference;
   r:gives {
@@ -2591,20 +2195,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma168> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {() e:subsequence ()}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {() e:subsequence ()}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {() e:subsequence ()}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{() e:subsequence ()} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {() e:subsequence ()}}}].
-=======
   r:rule [ a r:Fact; r:gives {{() e:subsequence ()} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {() e:subsequence ()}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma169> a r:Inference;
   r:gives {
@@ -2617,20 +2213,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma170> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))}}}].
-=======
   r:rule [ a r:Fact; r:gives {{((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma171> a r:Inference;
   r:gives {
@@ -2644,11 +2232,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma172> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:c e:whenGround {:a :b :d}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:c e:whenGround {:a :b :d}.
->>>>>>> master:programming/bi/biE.n3
      :a :b :c}.
   };
   r:evidence (
@@ -2656,20 +2240,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     <#lemma327>
   );
   r:rule [ a r:Fact; r:gives {{:c e:whenGround {:a :b :d}.
-<<<<<<< HEAD:programming/bi/biE.n3
-    :a :b :c} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:c e:whenGround {:a :b :d}.
-=======
     :a :b :c} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:c e:whenGround {:a :b :d}.
->>>>>>> master:programming/bi/biE.n3
      :a :b :c}}}].
 
 <#lemma173> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:d e:whenGround {:a :b :d}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:d e:whenGround {:a :b :d}.
->>>>>>> master:programming/bi/biE.n3
      :a :b :d}.
   };
   r:evidence (
@@ -2677,11 +2253,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     <#lemma313>
   );
   r:rule [ a r:Fact; r:gives {{:d e:whenGround {:a :b :d}.
-<<<<<<< HEAD:programming/bi/biE.n3
-    :a :b :d} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:d e:whenGround {:a :b :d}.
-=======
     :a :b :d} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:d e:whenGround {:a :b :d}.
->>>>>>> master:programming/bi/biE.n3
      :a :b :d}}}].
 
 <#lemma174> a r:Inference;
@@ -2695,20 +2267,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma175> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma176> a r:Inference;
   r:gives {
@@ -2721,20 +2285,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma177> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Hello World!" e:wwwFormEncode "Hello+World%21"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Hello World!" e:wwwFormEncode "Hello+World%21"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"Hello World!" e:wwwFormEncode "Hello+World%21"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"Hello World!" e:wwwFormEncode "Hello+World%21"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Hello World!" e:wwwFormEncode "Hello+World%21"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"Hello World!" e:wwwFormEncode "Hello+World%21"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Hello World!" e:wwwFormEncode "Hello+World%21"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma178> a r:Inference;
   r:gives {
@@ -2747,20 +2303,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma179> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma180> a r:Inference;
   r:gives {
@@ -2773,20 +2321,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma181> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c) list:first :a}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c) list:first :a}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:a :b :c) list:first :a}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:a :b :c) list:first :a} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c) list:first :a}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:a :b :c) list:first :a} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c) list:first :a}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma182> a r:Inference;
   r:gives {
@@ -2799,20 +2339,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma183> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:c list:in (:a :b :c)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:c list:in (:a :b :c)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {:c list:in (:a :b :c)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{:c list:in (:a :b :c)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:c list:in (:a :b :c)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{:c list:in (:a :b :c)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:c list:in (:a :b :c)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma184> a r:Inference;
   r:gives {
@@ -2825,20 +2357,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma185> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c) list:last :c}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c) list:last :c}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:a :b :c) list:last :c}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:a :b :c) list:last :c} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c) list:last :c}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:a :b :c) list:last :c} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c) list:last :c}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma186> a r:Inference;
   r:gives {
@@ -2851,20 +2375,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma187> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c :d) list:member :b}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c :d) list:member :b}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:a :b :c :d) list:member :b}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:a :b :c :d) list:member :b} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c :d) list:member :b}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:a :b :c :d) list:member :b} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c :d) list:member :b}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma188> a r:Inference;
   r:gives {
@@ -2877,20 +2393,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma189> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c) list:rest (:b :c)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c) list:rest (:b :c)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:a :b :c) list:rest (:b :c)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:a :b :c) list:rest (:b :c)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b :c) list:rest (:b :c)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:a :b :c) list:rest (:b :c)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b :c) list:rest (:b :c)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma190> a r:Inference;
   r:gives {
@@ -2903,20 +2411,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma191> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true) log:conjunction true}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true) log:conjunction true}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(true) log:conjunction true}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(true) log:conjunction true} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true) log:conjunction true}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(true) log:conjunction true} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true) log:conjunction true}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma192> a r:Inference;
   r:gives {
@@ -2932,11 +2432,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma193> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:u :v :w} {:x :y :z.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:u :v :w} {:x :y :z.
->>>>>>> master:programming/bi/biE.n3
       :j :k :l}) log:conjunction {:u :v :w.
       :x :y :z.
       :j :k :l}}.
@@ -2950,11 +2446,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   r:rule [ a r:Fact; r:gives {{(true {:u :v :w} {:x :y :z.
      :j :k :l}) log:conjunction {:u :v :w.
      :x :y :z.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :j :k :l}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:u :v :w} {:x :y :z.
-=======
      :j :k :l}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:u :v :w} {:x :y :z.
->>>>>>> master:programming/bi/biE.n3
       :j :k :l}) log:conjunction {:u :v :w.
       :x :y :z.
       :j :k :l}}}}].
@@ -2970,20 +2462,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma195> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:u :v :w} true true) log:conjunction {:u :v :w}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:u :v :w} true true) log:conjunction {:u :v :w}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(true {:u :v :w} true true) log:conjunction {:u :v :w}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(true {:u :v :w} true true) log:conjunction {:u :v :w}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(true {:u :v :w} true true) log:conjunction {:u :v :w}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(true {:u :v :w} true true) log:conjunction {:u :v :w}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(true {:u :v :w} true true) log:conjunction {:u :v :w}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma196> a r:Inference;
   r:gives {
@@ -2996,20 +2480,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma197> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b) log:equalTo (:a :b)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b) log:equalTo (:a :b)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:a :b) log:equalTo (:a :b)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:a :b) log:equalTo (:a :b)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:a :b) log:equalTo (:a :b)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:a :b) log:equalTo (:a :b)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:a :b) log:equalTo (:a :b)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma198> a r:Inference;
   r:gives {
@@ -3022,20 +2498,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma199> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :c} log:equalTo {:a :b :c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :c} log:equalTo {:a :b :c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :c} log:equalTo {:a :b :c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :c} log:equalTo {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :c} log:equalTo {:a :b :c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :c} log:equalTo {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :c} log:equalTo {:a :b :c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma200> a r:Inference;
   r:gives {
@@ -3048,48 +2516,25 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma201> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:equalTo {:a :b :_c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:equalTo {:a :b :_c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :_c} log:equalTo {:a :b :_c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:equalTo {:a :b :_c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:equalTo {:a :b :_c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:equalTo {:a :b :_c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:equalTo {:a :b :_c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma202> a r:Inference;
   r:gives {
     :loges0 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b :c} log:equalTo {:a :b :c}}]
   );
   r:rule <#lemma343>.
 
 <#lemma203> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-     {:a :b :c} log:equalTo {:a :b :c}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-    [ a r:Fact; r:gives {{:a :b :c} log:equalTo {:a :b :c}}]
-  );
-  r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-    {:a :b :c} log:equalTo {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
      {:a :b :c} log:equalTo {:a :b :c}}.
   };
@@ -3099,7 +2544,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
     {:a :b :c} log:equalTo {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b :c} log:equalTo {:a :b :c}}}}].
 
 <#lemma204> a r:Inference;
@@ -3107,28 +2551,13 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     :loges3 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b _:t_0} log:equalTo {:a :b _:t_0}}]
   );
   r:rule <#lemma344>.
 
 <#lemma205> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-     {:a :b _:t_0} log:equalTo {:a :b _:t_0}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-    [ a r:Fact; r:gives {{:a :b _:t_0} log:equalTo {:a :b _:t_0}}]
-  );
-  r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-    {:a :b _:t_0} log:equalTo {:a :b _:t_0}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
      {:a :b _:t_0} log:equalTo {:a :b _:t_0}}.
   };
@@ -3138,7 +2567,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
     {:a :b _:t_0} log:equalTo {:a :b _:t_0}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b _:t_0} log:equalTo {:a :b _:t_0}}}}].
 
 <#lemma206> a r:Inference;
@@ -3156,11 +2584,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma207> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:b :a :c.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:b :a :c.
->>>>>>> master:programming/bi/biE.n3
       :e :d :f.
       :h :g :i.
       :k :j :l} log:includes {:k :j :l.
@@ -3177,11 +2601,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      :e :d :f.
      :h :g :i.
      :k :j :l} log:includes {:k :j :l.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :e :d :f}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:b :a :c.
-=======
      :e :d :f}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:b :a :c.
->>>>>>> master:programming/bi/biE.n3
       :e :d :f.
       :h :g :i.
       :k :j :l} log:includes {:k :j :l.
@@ -3198,20 +2618,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma209> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :c} log:includes {:a :b :c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :c} log:includes {:a :b :c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :c} log:includes {:a :b :c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :c} log:includes {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :c} log:includes {:a :b :c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :c} log:includes {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :c} log:includes {:a :b :c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma210> a r:Inference;
   r:gives {
@@ -3233,48 +2645,25 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma212> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:includes {:a :b :_c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:includes {:a :b :_c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :_c} log:includes {:a :b :_c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:includes {:a :b :_c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:includes {:a :b :_c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:includes {:a :b :_c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:includes {:a :b :_c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma213> a r:Inference;
   r:gives {
     :logis0 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b :c} log:includes {:a :b :c}}]
   );
   r:rule <#lemma349>.
 
 <#lemma214> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-     {:a :b :c} log:includes {:a :b :c}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-    [ a r:Fact; r:gives {{:a :b :c} log:includes {:a :b :c}}]
-  );
-  r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-    {:a :b :c} log:includes {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
      {:a :b :c} log:includes {:a :b :c}}.
   };
@@ -3284,7 +2673,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
     {:a :b :c} log:includes {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b :c} log:includes {:a :b :c}}}}].
 
 <#lemma215> a r:Inference;
@@ -3292,11 +2680,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     :logis1 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b :c} log:includes {:a :b :c}}]
   );
   r:rule <#lemma350>.
@@ -3306,28 +2690,13 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     :logis3 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b _:t_0} log:includes {:a :b _:t_0}}]
   );
   r:rule <#lemma351>.
 
 <#lemma217> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-     {:a :b _:t_0} log:includes {:a :b _:t_0}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-    [ a r:Fact; r:gives {{:a :b _:t_0} log:includes {:a :b _:t_0}}]
-  );
-  r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-    {:a :b _:t_0} log:includes {:a :b _:t_0}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
      {:a :b _:t_0} log:includes {:a :b _:t_0}}.
   };
@@ -3337,7 +2706,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
     {:a :b _:t_0} log:includes {:a :b _:t_0}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b _:t_0} log:includes {:a :b _:t_0}}}}].
 
 <#lemma218> a r:Inference;
@@ -3351,20 +2719,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma219> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:a log:notEqualTo :b}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:a log:notEqualTo :b}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {:a log:notEqualTo :b}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{:a log:notEqualTo :b} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:a log:notEqualTo :b}}}].
-=======
   r:rule [ a r:Fact; r:gives {{:a log:notEqualTo :b} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:a log:notEqualTo :b}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma220> a r:Inference;
   r:gives {
@@ -3377,20 +2737,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma221> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :c} log:notEqualTo {:a :b :_c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :c} log:notEqualTo {:a :b :_c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :c} log:notEqualTo {:a :b :_c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :c} log:notEqualTo {:a :b :_c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :c} log:notEqualTo {:a :b :_c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :c} log:notEqualTo {:a :b :_c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :c} log:notEqualTo {:a :b :_c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma222> a r:Inference;
   r:gives {
@@ -3403,20 +2755,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma223> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notEqualTo {:a :b :c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notEqualTo {:a :b :c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :_c} log:notEqualTo {:a :b :c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:notEqualTo {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notEqualTo {:a :b :c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:notEqualTo {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notEqualTo {:a :b :c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma224> a r:Inference;
   r:gives {
@@ -3429,48 +2773,25 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma225> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notIncludes {:a :b :c}}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notIncludes {:a :b :c}}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {{:a :b :_c} log:notIncludes {:a :b :c}}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:notIncludes {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notIncludes {:a :b :c}}}}].
-=======
   r:rule [ a r:Fact; r:gives {{{:a :b :_c} log:notIncludes {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:a :b :_c} log:notIncludes {:a :b :c}}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma226> a r:Inference;
   r:gives {
     :lognis2 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b _:t_0} log:notIncludes {:a :b :c}}]
   );
   r:rule <#lemma356>.
 
 <#lemma227> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-     {:a :b _:t_0} log:notIncludes {:a :b :c}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-    [ a r:Fact; r:gives {{:a :b _:t_0} log:notIncludes {:a :b :c}}]
-  );
-  r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-    {:a :b _:t_0} log:notIncludes {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
      {:a :b _:t_0} log:notIncludes {:a :b :c}}.
   };
@@ -3480,7 +2801,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
     {:a :b _:t_0} log:notIncludes {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b _:t_0} log:notIncludes {:a :b :c}}}}].
 
 <#lemma228> a r:Inference;
@@ -3488,34 +2808,14 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     :lognis3 :result true.
   };
   r:evidence (
-<<<<<<< HEAD:programming/bi/biE.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}}]
->>>>>>> master:programming/bi/biE.n3
     [ a r:Fact; r:gives {{:a :b _:t_0} log:notIncludes {:a :b :c}}]
   );
   r:rule <#lemma357>.
 
 <#lemma229> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-     <http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-     {:a :b _:t_0} log:notIncludes {:a :b :c}}.
-  };
-  r:evidence (
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}}]
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}}]
-    [ a r:Fact; r:gives {{:a :b _:t_0} log:notIncludes {:a :b :c}}]
-  );
-  r:rule [ a r:Fact; r:gives {{<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-    <http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-    {:a :b _:t_0} log:notIncludes {:a :b :c}} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
-     <http://josd.github.io/eye/i/bi/abc.n3> log:semantics {:a :b :c}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
      <http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
      {:a :b _:t_0} log:notIncludes {:a :b :c}}.
@@ -3529,7 +2829,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     <http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
     {:a :b _:t_0} log:notIncludes {:a :b :c}} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {<http://josd.github.io/eye/programming/bi/ab_c.n3> log:semantics {:a :b _:t_0}.
      <http://josd.github.io/eye/programming/bi/abc.n3> log:semantics {:a :b :c}.
->>>>>>> master:programming/bi/biE.n3
      {:a :b _:t_0} log:notIncludes {:a :b :c}}}}].
 
 <#lemma230> a r:Inference;
@@ -3543,20 +2842,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma231> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma232> a r:Inference;
   r:gives {
@@ -3569,20 +2860,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma233> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma234> a r:Inference;
   r:gives {
@@ -3595,20 +2878,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma235> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 1) math:difference 0}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 1) math:difference 0}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(1 1) math:difference 0}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(1 1) math:difference 0} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 1) math:difference 0}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(1 1) math:difference 0} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 1) math:difference 0}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma236> a r:Inference;
   r:gives {
@@ -3621,20 +2896,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma237> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma238> a r:Inference;
   r:gives {
@@ -3648,11 +2915,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma239> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(2 3.0) math:exponentiation 8.0 .
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(2 3.0) math:exponentiation 8.0 .
->>>>>>> master:programming/bi/biE.n3
      (4.0 3.0) math:product 12.0}.
   };
   r:evidence (
@@ -3660,11 +2923,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
     [ a r:Fact; r:gives {(4.0 3.0) math:product 12.0}]
   );
   r:rule [ a r:Fact; r:gives {{(2 3.0) math:exponentiation 8.0 .
-<<<<<<< HEAD:programming/bi/biE.n3
-    (4.0 3.0) math:product 12.0} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(2 3.0) math:exponentiation 8.0 .
-=======
     (4.0 3.0) math:product 12.0} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(2 3.0) math:exponentiation 8.0 .
->>>>>>> master:programming/bi/biE.n3
      (4.0 3.0) math:product 12.0}}}].
 
 <#lemma240> a r:Inference;
@@ -3678,20 +2937,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma241> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {2 math:greaterThan 1}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {2 math:greaterThan 1}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {2 math:greaterThan 1}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{2 math:greaterThan 1} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {2 math:greaterThan 1}}}].
-=======
   r:rule [ a r:Fact; r:gives {{2 math:greaterThan 1} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {2 math:greaterThan 1}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma242> a r:Inference;
   r:gives {
@@ -3704,20 +2955,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma243> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"02" math:greaterThan "1"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"02" math:greaterThan "1"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"02" math:greaterThan "1"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"02" math:greaterThan "1"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"02" math:greaterThan "1"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"02" math:greaterThan "1"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"02" math:greaterThan "1"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma244> a r:Inference;
   r:gives {
@@ -3730,20 +2973,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma245> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:u :v :u) math:memberCount 3}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:u :v :u) math:memberCount 3}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:u :v :u) math:memberCount 3}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:u :v :u) math:memberCount 3} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:u :v :u) math:memberCount 3}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:u :v :u) math:memberCount 3} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:u :v :u) math:memberCount 3}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma246> a r:Inference;
   r:gives {
@@ -3758,11 +2993,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma247> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:s :p :o1.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:s :p :o1.
->>>>>>> master:programming/bi/biE.n3
       :s :p :o2.
       :s :p :o1} math:memberCount 2}.
   };
@@ -3773,11 +3004,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
   );
   r:rule [ a r:Fact; r:gives {{{:s :p :o1.
      :s :p :o2.
-<<<<<<< HEAD:programming/bi/biE.n3
-     :s :p :o1} math:memberCount 2} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {{:s :p :o1.
-=======
      :s :p :o1} math:memberCount 2} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {{:s :p :o1.
->>>>>>> master:programming/bi/biE.n3
       :s :p :o2.
       :s :p :o1} math:memberCount 2}}}].
 
@@ -3792,20 +3019,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma249> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {7 math:notLessThan 5}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {7 math:notLessThan 5}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {7 math:notLessThan 5}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{7 math:notLessThan 5} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {7 math:notLessThan 5}}}].
-=======
   r:rule [ a r:Fact; r:gives {{7 math:notLessThan 5} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {7 math:notLessThan 5}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma250> a r:Inference;
   r:gives {
@@ -3818,20 +3037,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma251> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 1) math:sum 2}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 1) math:sum 2}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(1 1) math:sum 2}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(1 1) math:sum 2} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(1 1) math:sum 2}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(1 1) math:sum 2} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(1 1) math:sum 2}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma252> a r:Inference;
   r:gives {
@@ -3844,20 +3055,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma253> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("1" "1") math:sum 2}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("1" "1") math:sum 2}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("1" "1") math:sum 2}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("1" "1") math:sum 2} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("1" "1") math:sum 2}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("1" "1") math:sum 2} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("1" "1") math:sum 2}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma254> a r:Inference;
   r:gives {
@@ -3870,20 +3073,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma255> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma256> a r:Inference;
   r:gives {
@@ -3896,20 +3091,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma257> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("P1D"^^xsd:duration) math:sum 86400.0}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("P1D"^^xsd:duration) math:sum 86400.0}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("P1D"^^xsd:duration) math:sum 86400.0}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("P1D"^^xsd:duration) math:sum 86400.0} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("P1D"^^xsd:duration) math:sum 86400.0}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("P1D"^^xsd:duration) math:sum 86400.0} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("P1D"^^xsd:duration) math:sum 86400.0}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma258> a r:Inference;
   r:gives {
@@ -3922,20 +3109,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma259> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:f :g) rdf:first :f}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:f :g) rdf:first :f}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:f :g) rdf:first :f}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:f :g) rdf:first :f} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:f :g) rdf:first :f}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:f :g) rdf:first :f} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:f :g) rdf:first :f}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma260> a r:Inference;
   r:gives {
@@ -3948,20 +3127,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma261> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:f :g) rdf:rest (:g)}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:f :g) rdf:rest (:g)}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {(:f :g) rdf:rest (:g)}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{(:f :g) rdf:rest (:g)} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {(:f :g) rdf:rest (:g)}}}].
-=======
   r:rule [ a r:Fact; r:gives {{(:f :g) rdf:rest (:g)} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {(:f :g) rdf:rest (:g)}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma262> a r:Inference;
   r:gives {
@@ -3974,20 +3145,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma263> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("eul" "er") string:concatenation "euler"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("eul" "er") string:concatenation "euler"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("eul" "er") string:concatenation "euler"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("eul" "er") string:concatenation "euler"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("eul" "er") string:concatenation "euler"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("eul" "er") string:concatenation "euler"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("eul" "er") string:concatenation "euler"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma264> a r:Inference;
   r:gives {
@@ -4000,20 +3163,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma265> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("€" "Ø"@en-US) string:concatenation "€Ø"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("€" "Ø"@en-US) string:concatenation "€Ø"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("€" "Ø"@en-US) string:concatenation "€Ø"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("€" "Ø"@en-US) string:concatenation "€Ø"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("€" "Ø"@en-US) string:concatenation "€Ø"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("€" "Ø"@en-US) string:concatenation "€Ø"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("€" "Ø"@en-US) string:concatenation "€Ø"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma266> a r:Inference;
   r:gives {
@@ -4026,20 +3181,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma267> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("test " "is \"ok\"") string:concatenation "test is \"ok\""}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("test " "is \"ok\"") string:concatenation "test is \"ok\""}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("test " "is \"ok\"") string:concatenation "test is \"ok\""}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("test " "is \"ok\"") string:concatenation "test is \"ok\""} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("test " "is \"ok\"") string:concatenation "test is \"ok\""}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("test " "is \"ok\"") string:concatenation "test is \"ok\""} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("test " "is \"ok\"") string:concatenation "test is \"ok\""}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma268> a r:Inference;
   r:gives {
@@ -4052,20 +3199,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma269> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Rob Smith" string:contains "Smith"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Rob Smith" string:contains "Smith"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"Rob Smith" string:contains "Smith"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"Rob Smith" string:contains "Smith"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Rob Smith" string:contains "Smith"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"Rob Smith" string:contains "Smith"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Rob Smith" string:contains "Smith"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma270> a r:Inference;
   r:gives {
@@ -4078,20 +3217,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma271> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Rob Smith"@en string:contains "Smith"@en}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Rob Smith"@en string:contains "Smith"@en}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"Rob Smith"@en string:contains "Smith"@en}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"Rob Smith"@en string:contains "Smith"@en} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Rob Smith"@en string:contains "Smith"@en}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"Rob Smith"@en string:contains "Smith"@en} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Rob Smith"@en string:contains "Smith"@en}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma272> a r:Inference;
   r:gives {
@@ -4104,20 +3235,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma273> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Tim" string:containsIgnoringCase "IM"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Tim" string:containsIgnoringCase "IM"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"Tim" string:containsIgnoringCase "IM"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"Tim" string:containsIgnoringCase "IM"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"Tim" string:containsIgnoringCase "IM"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"Tim" string:containsIgnoringCase "IM"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"Tim" string:containsIgnoringCase "IM"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma274> a r:Inference;
   r:gives {
@@ -4130,20 +3253,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma275> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"abracadabra" string:matches "(a|b|r|c|d)+"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"abracadabra" string:matches "(a|b|r|c|d)+"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"abracadabra" string:matches "(a|b|r|c|d)+"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"abracadabra" string:matches "(a|b|r|c|d)+"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"abracadabra" string:matches "(a|b|r|c|d)+"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"abracadabra" string:matches "(a|b|r|c|d)+"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"abracadabra" string:matches "(a|b|r|c|d)+"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma276> a r:Inference;
   r:gives {
@@ -4156,20 +3271,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma277> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma278> a r:Inference;
   r:gives {
@@ -4182,20 +3289,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma279> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("{x" "{(.)") string:scrape "x"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("{x" "{(.)") string:scrape "x"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("{x" "{(.)") string:scrape "x"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("{x" "{(.)") string:scrape "x"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("{x" "{(.)") string:scrape "x"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("{x" "{(.)") string:scrape "x"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("{x" "{(.)") string:scrape "x"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma280> a r:Inference;
   r:gives {
@@ -4208,20 +3307,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma281> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")}}}].
-=======
   r:rule [ a r:Fact; r:gives {{("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma282> a r:Inference;
   r:gives {
@@ -4234,20 +3325,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma283> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"euler" string:startsWith "eu"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"euler" string:startsWith "eu"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"euler" string:startsWith "eu"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"euler" string:startsWith "eu"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"euler" string:startsWith "eu"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"euler" string:startsWith "eu"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"euler" string:startsWith "eu"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma284> a r:Inference;
   r:gives {
@@ -4260,20 +3343,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma285> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:day "14"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:day "14"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"2006-12-14"^^xsd:date time:day "14"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"2006-12-14"^^xsd:date time:day "14"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:day "14"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"2006-12-14"^^xsd:date time:day "14"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:day "14"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma286> a r:Inference;
   r:gives {
@@ -4286,20 +3361,12 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma287> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:month "12"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:month "12"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"2006-12-14"^^xsd:date time:month "12"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"2006-12-14"^^xsd:date time:month "12"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:month "12"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"2006-12-14"^^xsd:date time:month "12"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:month "12"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma288> a r:Inference;
   r:gives {
@@ -4312,42 +3379,26 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
 
 <#lemma289> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/bi/biE.n3
-    ((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:year "2006"}.
-=======
     ((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:year "2006"}.
->>>>>>> master:programming/bi/biE.n3
   };
   r:evidence (
     [ a r:Fact; r:gives {"2006-12-14"^^xsd:date time:year "2006"}]
   );
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:rule [ a r:Fact; r:gives {{"2006-12-14"^^xsd:date time:year "2006"} => {((<http://josd.github.io/eye/i/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:year "2006"}}}].
-=======
   r:rule [ a r:Fact; r:gives {{"2006-12-14"^^xsd:date time:year "2006"} => {((<http://josd.github.io/eye/programming/bi/biP.n3>) 1) e:call {"2006-12-14"^^xsd:date time:year "2006"}}}].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma290> a r:Extraction;
   r:gives {
     {(55 66 72 87 56 77 73 69 74 56) e:avg ?x_0_388.
      ?x_0_388 math:equalTo 68.5} => {:ea1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma291> a r:Extraction;
   r:gives {
     {("1+1") e:calculate ?x_0_389.
      ?x_0_389 math:equalTo 2} => {:ec1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma292> a r:Extraction;
   r:gives {
@@ -4355,43 +3406,27 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      ("sqrt(_width^2+_length^2)" ?x_0_390 4) e:calculate ?x_1_390.
      ?x_1_390 math:equalTo 5.0} => {:ec2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma293> a r:Extraction;
   r:gives {
     {("_period-250" "PT5M2S"^^xsd:dayTimeDuration) e:calculate ?x_0_391.
      ?x_0_391 math:equalTo 52.0} => {:ec3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma294> a r:Extraction;
   r:gives {
     {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:cov ?x_0_392.
      ?x_0_392 math:equalTo 0.992777777777778} => {:eco1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma295> a r:Extraction;
   r:gives {
     {("atom_codes" "HOME" (72 79 77 69)) e:derive true} => {:epac1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma296> a r:Extraction;
   r:gives {
@@ -4399,21 +3434,13 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      ("date_time_stamp" ?x_0_394 ?x_1_394) e:derive true.
      ?x_1_394 math:equalTo 0.0} => {:epdts1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma297> a r:Extraction;
   r:gives {
     {("This is a ~w with number ~w and with an escaped linefeed \n" "test" 5) e:format "This is a test with number 5 and with an escaped linefeed \n"} => {:ef4 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma298> a r:Extraction;
   r:gives {
@@ -4421,32 +3448,20 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :d :e :f} true) e:graphDifference {:a :b :c.
       :d :e :f}} => {:egd1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma299> a r:Extraction;
   r:gives {
     {(true {:d :e :f}) e:graphDifference true} => {:egd2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma300> a r:Extraction;
   r:gives {
     {({:a :b :c.
       :d :e :f} {:d :e :f}) e:graphDifference {:a :b :c}} => {:egd3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma301> a r:Extraction;
   r:gives {
@@ -4455,11 +3470,7 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :g :h :i} {?x_0_399 :e :f}) e:graphDifference {:a :b :c.
       :g :h :i}} => {:egd4 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma302> a r:Extraction;
   r:gives {
@@ -4467,31 +3478,19 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :u :v :w.
       :x :y :z}) e:graphDifference true} => {:egd5 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma303> a r:Extraction;
   r:gives {
     {(true) e:graphIntersection true} => {:egi1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma304> a r:Extraction;
   r:gives {
     {(true {:d :e :f}) e:graphIntersection true} => {:egi2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma305> a r:Extraction;
   r:gives {
@@ -4499,22 +3498,14 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :d :e :f.
       :g :h :i} true) e:graphIntersection true} => {:egi3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma306> a r:Extraction;
   r:gives {
     {({:a :b :c.
       :d :e :f} {:d :e :f}) e:graphIntersection {:d :e :f}} => {:egi4 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma307> a r:Extraction;
   r:gives {
@@ -4525,316 +3516,192 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :g :h :i}) e:graphIntersection {?x_0_405 :e :f.
       :g :h :i}} => {:egi5 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma308> a r:Extraction;
   r:gives {
     {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:length 6} => {:el1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma309> a r:Extraction;
   r:gives {
     {(8 5 6 7 9 4) e:max 9} => {:em1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma310> a r:Extraction;
   r:gives {
     {(8 5 6 7 9 4) e:min 4} => {:em2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma311> a r:Extraction;
   r:gives {
     {(1 3 6 6 7 2 3) e:multisetEqualTo (3 3 7 6 6 2 1)} => {:eme1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma312> a r:Extraction;
   r:gives {
     {(1 3 6 6 7 2 3) e:multisetNotEqualTo (3 3 7 6 2 1)} => {:emn1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma313> a r:Extraction;
   r:gives {
     :a :b :d.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma314> a r:Extraction;
   r:gives {
     {:a :b :d.
      ?x_0_411 e:optional {:g :h :i}} => {:eo1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma315> a r:Extraction;
   r:gives {
     {((55 66 72 87 56 77 73 69 74 56) (1.66 1.78 1.87 1.92 1.66 1.89 1.86 1.79 1.8 1.66)) e:pcc ?x_0_412.
      ?x_0_412 math:equalTo 0.9569729506311461} => {:ep1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma316> a r:Extraction;
   r:gives {
     {((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d)) e:reverse ((9 :d) (8 :d) (7 :a) (6 :b) (5 :a) (4 :d))} => {:erv1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma317> a r:Extraction;
   r:gives {
     {(55 66 72 87 56 77 73 69 74 56) e:rms ?x_0_414.
      ?x_0_414 math:equalTo 69.2105483289939} => {:erm1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma318> a r:Extraction;
   r:gives {
     {((8 :d) (5 :a) (6 :b) (7 :a) (9 :d) (4 :d)) e:sort ((4 :d) (5 :a) (6 :b) (7 :a) (8 :d) (9 :d))} => {:es1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma319> a r:Extraction;
   r:gives {
     {(9 3 8 3 5 7 7 9 9 2) e:sort (2 3 3 5 7 7 8 9 9 9)} => {:es2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma320> a r:Extraction;
   r:gives {
     {(55 66 72 87 56 77 73 69 74 56) e:std ?x_0_417.
      ?x_0_417 math:equalTo 10.426994879744703} => {:est1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma321> a r:Extraction;
   r:gives {
     {"\"test\n" e:stringEscape "\\\"test\\n"} => {:ese1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma322> a r:Extraction;
   r:gives {
     {("a-b/c-d/e" "-/") e:stringSplit ("a" "b" "c" "d" "e")} => {:ess1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma323> a r:Extraction;
   r:gives {
     {(1 2 3 4 5) e:subsequence (1 2 4)} => {:esl1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma324> a r:Extraction;
   r:gives {
     {?x_0_421 e:fail {(1 2 3 4 5) e:subsequence (4 2 1)}} => {:esl2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma325> a r:Extraction;
   r:gives {
     {() e:subsequence ()} => {:esl3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma326> a r:Extraction;
   r:gives {
     {((0 1) (2 3) (4 5)) e:transpose ((0 2 4) (1 3 5))} => {:et1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma327> a r:Extraction;
   r:gives {
     :a :b :c.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma328> a r:Extraction;
   r:gives {
     {?x_0_424 e:whenGround {:a :b :d}.
      :a :b ?x_0_424} => {:ewg1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma329> a r:Extraction;
   r:gives {
     {"http://www.agfa.com/w3c/euler" e:wwwFormEncode "http%3a%2f%2fwww.agfa.com%2fw3c%2feuler"} => {:ew1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma330> a r:Extraction;
   r:gives {
     {"Hello World!" e:wwwFormEncode "Hello+World%21"} => {:ew2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma331> a r:Extraction;
   r:gives {
     {((:a :b :c) (:d :e)) list:append (:a :b :c :d :e)} => {:lista1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma332> a r:Extraction;
   r:gives {
     {(:a :b :c) list:first :a} => {:listf1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma333> a r:Extraction;
   r:gives {
     {:c list:in (:a :b :c)} => {:listi1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma334> a r:Extraction;
   r:gives {
     {(:a :b :c) list:last :c} => {:listl1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma335> a r:Extraction;
   r:gives {
     {(:a :b :c :d) list:member :b} => {:listm1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma336> a r:Extraction;
   r:gives {
     {(:a :b :c) list:rest (:b :c)} => {:listr1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma337> a r:Extraction;
   r:gives {
     {(true) log:conjunction true} => {:logc1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma338> a r:Extraction;
   r:gives {
@@ -4843,63 +3710,30 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :x :y :z.
       :j :k :l}} => {:logc2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma339> a r:Extraction;
   r:gives {
     {(true {:u :v :w} true true) log:conjunction {:u :v :w}} => {:logc3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma340> a r:Extraction;
   r:gives {
     {(:a ?x_0_436) log:equalTo (?x_1_436 :b)} => {:loge1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma341> a r:Extraction;
   r:gives {
     {{:a :b :c} log:equalTo {:a :b :c}} => {:loged0 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma342> a r:Extraction;
   r:gives {
     {{:a :b :_c} log:equalTo {:a :b ?x_0_438}} => {:loged3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma343> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics ?x_0_439.
-     ?x_0_439 log:equalTo {:a :b :c}} => {:loges0 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma344> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics ?x_0_440.
-     ?x_0_440 log:equalTo {:a :b ?x_1_440}} => {:loges3 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
 
 <#lemma343> a r:Extraction;
@@ -4915,7 +3749,6 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      ?x_0_440 log:equalTo {:a :b ?x_1_440}} => {:loges3 :result true}.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma345> a r:Extraction;
   r:gives {
@@ -4925,60 +3758,24 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :k :j :l} log:includes {:k :j :l.
       ?x_0_441 :d ?x_1_441}} => {:logi1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma346> a r:Extraction;
   r:gives {
     {{:a :b :c} log:includes {:a :b :c}} => {:logid0 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma347> a r:Extraction;
   r:gives {
     {{:a :b :c} log:includes {:a :b ?x_0_443}} => {:logid1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma348> a r:Extraction;
   r:gives {
     {{:a :b :_c} log:includes {:a :b ?x_0_444}} => {:logid3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma349> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics ?x_0_445.
-     ?x_0_445 log:includes {:a :b :c}} => {:logis0 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma350> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/abc.n3> log:semantics ?x_0_446.
-     ?x_0_446 log:includes {:a :b ?x_1_446}} => {:logis1 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma351> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics ?x_0_447.
-     ?x_0_447 log:includes {:a :b ?x_1_447}} => {:logis3 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
 
 <#lemma349> a r:Extraction;
@@ -5001,60 +3798,29 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      ?x_0_447 log:includes {:a :b ?x_1_447}} => {:logis3 :result true}.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma352> a r:Extraction;
   r:gives {
     {:a log:notEqualTo :b} => {:logne1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma353> a r:Extraction;
   r:gives {
     {{:a :b :c} log:notEqualTo {:a :b :_c}} => {:logned1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma354> a r:Extraction;
   r:gives {
     {{:a :b :_c} log:notEqualTo {:a :b :c}} => {:logned2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma355> a r:Extraction;
   r:gives {
     {{:a :b :_c} log:notIncludes {:a :b :c}} => {:lognid2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma356> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics ?x_0_452.
-     ?x_0_452 log:notIncludes {:a :b :c}} => {:lognis2 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-
-<#lemma357> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/bi/ab_c.n3> log:semantics ?x_0_453.
-     <http://josd.github.io/eye/i/bi/abc.n3> log:semantics ?x_1_453.
-     ?x_0_453 log:notIncludes ?x_1_453} => {:lognis3 :result true}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
 
 <#lemma356> a r:Extraction;
@@ -5071,88 +3837,55 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
      ?x_0_453 log:notIncludes ?x_1_453} => {:lognis3 :result true}.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma358> a r:Extraction;
   r:gives {
     {med:Fever log:uri "http://eulersharp.sourceforge.net/2006/02swap/med#Fever"} => {:logu1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma359> a r:Extraction;
   r:gives {
     {:betaBlocker log:uri "http://eulersharp.sourceforge.net/2007/07test#betaBlocker"} => {:logu2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma360> a r:Extraction;
   r:gives {
     {(1 1) math:difference 0} => {:mathd1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma361> a r:Extraction;
   r:gives {
     {("2009-01-25T12:00:00"^^xsd:dateTime "1970-01-01T00:00:00"^^xsd:dateTime) math:difference 1232884800} => {:mathd2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma362> a r:Extraction;
   r:gives {
     {(2 ?x_0_458) math:exponentiation 8.0 .
      (4.0 ?x_0_458) math:product 12.0} => {:mathe1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma363> a r:Extraction;
   r:gives {
     {2 math:greaterThan 1} => {:mathg1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma364> a r:Extraction;
   r:gives {
     {"02" math:greaterThan "1"} => {:mathg2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma365> a r:Extraction;
   r:gives {
     {(:u :v :u) math:memberCount 3} => {:mathm1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma366> a r:Extraction;
   r:gives {
@@ -5160,222 +3893,134 @@ PREFIX fl: <http://eulersharp.sourceforge.net/2003/03swap/fl-rules#>
       :s :p :o2.
       :s :p :o1} math:memberCount 2} => {:mathm2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma367> a r:Extraction;
   r:gives {
     {7 math:notLessThan 5} => {:mathnl1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma368> a r:Extraction;
   r:gives {
     {(1 1) math:sum 2} => {:maths1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma369> a r:Extraction;
   r:gives {
     {("1" "1") math:sum 2} => {:maths2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma370> a r:Extraction;
   r:gives {
     {("1970-01-01T00:00:00+01:00"^^xsd:dateTime) math:sum -3600} => {:maths3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma371> a r:Extraction;
   r:gives {
     {("P1D"^^xsd:duration) math:sum 86400.0} => {:maths4 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma372> a r:Extraction;
   r:gives {
     {(:f :g) rdf:first :f} => {:rdff1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma373> a r:Extraction;
   r:gives {
     {(:f :g) rdf:rest (:g)} => {:rdfr1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma374> a r:Extraction;
   r:gives {
     {("eul" "er") string:concatenation "euler"} => {:strc1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma375> a r:Extraction;
   r:gives {
     {("€" "Ø"@en-US) string:concatenation "€Ø"} => {:strc2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma376> a r:Extraction;
   r:gives {
     {("test " "is \"ok\"") string:concatenation "test is \"ok\""} => {:strc3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma377> a r:Extraction;
   r:gives {
     {"Rob Smith" string:contains "Smith"} => {:strcn1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma378> a r:Extraction;
   r:gives {
     {"Rob Smith"@en string:contains "Smith"@en} => {:strcn2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma379> a r:Extraction;
   r:gives {
     {"Tim" string:containsIgnoringCase "IM"} => {:strci1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma380> a r:Extraction;
   r:gives {
     {"abracadabra" string:matches "(a|b|r|c|d)+"} => {:strm1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma381> a r:Extraction;
   r:gives {
     {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:scrape "example.org"} => {:strs1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma382> a r:Extraction;
   r:gives {
     {("{x" "{(.)") string:scrape "x"} => {:strs2 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma383> a r:Extraction;
   r:gives {
     {("http://example.org/1995/manifesto" "http://([^/]+)/([^/]+)") string:search ("example.org" "1995")} => {:strs3 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma384> a r:Extraction;
   r:gives {
     {"euler" string:startsWith "eu"} => {:strs4 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma385> a r:Extraction;
   r:gives {
     {"2006-12-14"^^xsd:date time:day "14"} => {:timed1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma386> a r:Extraction;
   r:gives {
     {"2006-12-14"^^xsd:date time:month "12"} => {:timem1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
 <#lemma387> a r:Extraction;
   r:gives {
     {"2006-12-14"^^xsd:date time:year "2006"} => {:timey1 :result true}.
   };
-<<<<<<< HEAD:programming/bi/biE.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/bi/biP.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/bi/biP.n3>].
->>>>>>> master:programming/bi/biE.n3
 
-#2018-08-23T10:53:06.883Z in=470 out=97 ent=145 step=755 brake=4 inf=957807 sec=0.502 inf/sec=1907982
+#2018-08-19T21:02:38.607Z in=470 out=97 ent=145 step=755 brake=4 inf=957580 sec=0.177 inf/sec=5410056
 #ENDS
 

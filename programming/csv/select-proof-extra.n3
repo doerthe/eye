@@ -1,9 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-#eye --n3 http://josd.github.io/eye/i/csv/select-data-extra.n3 --query http://josd.github.io/eye/i/csv/select-query.n3
-=======
 #eye --n3 http://josd.github.io/eye/programming/csv/select-data-extra.n3 --query http://josd.github.io/eye/programming/csv/select-query.n3
->>>>>>> master:programming/csv/select-proof-extra.n3
 
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
@@ -32,11 +28,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:evidence (
     <#lemma6>
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/csv/select-data-extra.n3>) 1) e:optional {_:sk_0 :b _:sk_1}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/csv/select-data-extra.n3>) 1) e:optional {_:sk_0 :b _:sk_1}}]
->>>>>>> master:programming/csv/select-proof-extra.n3
   );
   r:rule <#lemma7>.
 
@@ -46,11 +38,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:evidence (
     <#lemma8>
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/csv/select-data-extra.n3>) 1) e:optional {_:sk_3 :b _:sk_4}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/csv/select-data-extra.n3>) 1) e:optional {_:sk_3 :b _:sk_4}}]
->>>>>>> master:programming/csv/select-proof-extra.n3
   );
   r:rule <#lemma7>.
 
@@ -61,11 +49,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:evidence (
     <#lemma9>
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/csv/select-data-extra.n3>) 1) e:optional {_:sk_6 :b _:sk_7}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/csv/select-data-extra.n3>) 1) e:optional {_:sk_6 :b _:sk_7}}]
->>>>>>> master:programming/csv/select-proof-extra.n3
   );
   r:rule <#lemma7>.
 
@@ -76,11 +60,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:evidence (
     <#lemma10>
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/csv/select-data-extra.n3>) 1) e:optional {_:sk_9 :b _:sk_10}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/csv/select-data-extra.n3>) 1) e:optional {_:sk_9 :b _:sk_10}}]
->>>>>>> master:programming/csv/select-proof-extra.n3
   );
   r:rule <#lemma7>.
 
@@ -90,11 +70,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:evidence (
     <#lemma11>
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-    [ a r:Fact; r:gives {((<http://josd.github.io/eye/i/csv/select-data-extra.n3>) 1) e:optional {_:sk_12 :b _:sk_13}}]
-=======
     [ a r:Fact; r:gives {((<http://josd.github.io/eye/programming/csv/select-data-extra.n3>) 1) e:optional {_:sk_12 :b _:sk_13}}]
->>>>>>> master:programming/csv/select-proof-extra.n3
   );
   r:rule <#lemma7>.
 
@@ -102,65 +78,41 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s :p101 (:a :b :c).
   };
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/csv/select-data-extra.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/csv/select-data-extra.n3>].
->>>>>>> master:programming/csv/select-proof-extra.n3
 
 <#lemma7> a r:Extraction;
   r:gives {
     {?x_1_1 ?x_0_1 ?x_2_1.
      ?x_3_1 e:optional {?x_4_1 :b ?x_5_1}} => {_:x_6_1 e:csvTuple (?x_1_1 ?x_0_1 ?x_4_1 ?x_2_1 ?x_5_1)}.
   };
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/csv/select-query.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/csv/select-query.n3>].
->>>>>>> master:programming/csv/select-proof-extra.n3
 
 <#lemma8> a r:Extraction;
   r:gives {
     :s :p102 {:d :e :f}.
   };
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/csv/select-data-extra.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/csv/select-data-extra.n3>].
->>>>>>> master:programming/csv/select-proof-extra.n3
 
 <#lemma9> a r:Extraction;
   r:gives {
     :s :p103 {:g :h :i.
      :j :k :l}.
   };
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/csv/select-data-extra.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/csv/select-data-extra.n3>].
->>>>>>> master:programming/csv/select-proof-extra.n3
 
 <#lemma10> a r:Extraction;
   r:gives {
     :s :p104 {:m :n :o.
      (:p :q :r) :s :t}.
   };
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/csv/select-data-extra.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/csv/select-data-extra.n3>].
->>>>>>> master:programming/csv/select-proof-extra.n3
 
 <#lemma11> a r:Extraction;
   r:gives {
     :s :p105 {(:u :v) :w {:x :y :z}}.
   };
-<<<<<<< HEAD:programming/csv/select-proof-extra.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/csv/select-data-extra.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/csv/select-data-extra.n3>].
->>>>>>> master:programming/csv/select-proof-extra.n3
 
-#2018-08-23T10:53:15.565Z in=17 out=5 ent=5 step=5 brake=2 inf=48367 sec=0.107 inf/sec=452028
+#2018-08-19T21:02:43.771Z in=17 out=5 ent=5 step=5 brake=2 inf=48156 sec=0.048 inf/sec=1003250
 #ENDS
 

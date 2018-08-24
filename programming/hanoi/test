@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD:programming/hanoi/test
-eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/hanoi/hanoi.n3 --pass > hanoiE.n3
-=======
 eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/hanoi/hanoi.n3 --pass > hanoiE.n3
->>>>>>> master:programming/hanoi/test

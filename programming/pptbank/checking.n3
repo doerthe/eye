@@ -2,13 +2,8 @@
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
 @prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
-<<<<<<< HEAD:programming/pptbank/checking.n3
-@prefix bk: <http://josd.github.io/eye/i/ppt-bank/banking#>.
-@prefix ck: <http://josd.github.io/eye/i/ppt-bank/checking#>.
-=======
 @prefix bk: <http://josd.github.io/eye/programming/ppt-bank/banking#>.
 @prefix ck: <http://josd.github.io/eye/programming/ppt-bank/checking#>.
->>>>>>> master:programming/pptbank/checking.n3
 
 {
 	?ACCT bk:statements (?ST).

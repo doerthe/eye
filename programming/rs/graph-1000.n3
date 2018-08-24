@@ -1,8 +1,4 @@
-<<<<<<< HEAD:programming/rs/graph-1000.n3
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/rs/graph-1000.n3
 
 :i3642 :i89 :i4670.
 :i1343 :i74 :i4122.

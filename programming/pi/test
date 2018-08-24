@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD
-eye "$@" --n3 http://josd.github.io/eye/i/pi/pi.n3 --query http://josd.github.io/eye/i/pi/pi-query.n3 > pi-proof.n3
-=======
 eye "$@" --n3 http://josd.github.io/eye/programming/pi/pi.n3 --query http://josd.github.io/eye/programming/pi/pi-query.n3 > pi-proof.n3
->>>>>>> master

@@ -1,13 +1,7 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/djiti/proof-10.n3
-#eye --turtle http://josd.github.io/eye/i/djiti/graph-10.n3 --query http://josd.github.io/eye/i/djiti/query.n3
-
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 #eye --turtle http://josd.github.io/eye/programming/djiti/graph-10.n3 --query http://josd.github.io/eye/programming/djiti/query.n3
 
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/djiti/proof-10.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -42,53 +36,33 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     (:i22 :i9 :i61) :p :o.
   };
-<<<<<<< HEAD:programming/djiti/proof-10.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/djiti/graph-10.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/djiti/graph-10.n3>].
->>>>>>> master:programming/djiti/proof-10.n3
 
 <#lemma4> a r:Extraction;
   r:gives {
     (:i61 :i29 :i42) :p :o.
   };
-<<<<<<< HEAD:programming/djiti/proof-10.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/djiti/graph-10.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/djiti/graph-10.n3>].
->>>>>>> master:programming/djiti/proof-10.n3
 
 <#lemma5> a r:Extraction;
   r:gives {
     {(?x_0_1 ?x_1_1 ?x_2_1) :p :o.
      (?x_2_1 ?x_3_1 ?x_4_1) :p :o} => {:a :b (?x_0_1 ?x_1_1 ?x_2_1 ?x_3_1 ?x_4_1)}.
   };
-<<<<<<< HEAD:programming/djiti/proof-10.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/djiti/query.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/djiti/query.n3>].
->>>>>>> master:programming/djiti/proof-10.n3
 
 <#lemma6> a r:Extraction;
   r:gives {
     (:i72 :i12 :i67) :p :o.
   };
-<<<<<<< HEAD:programming/djiti/proof-10.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/djiti/graph-10.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/djiti/graph-10.n3>].
->>>>>>> master:programming/djiti/proof-10.n3
 
 <#lemma7> a r:Extraction;
   r:gives {
     (:i67 :i19 :i73) :p :o.
   };
-<<<<<<< HEAD:programming/djiti/proof-10.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/djiti/graph-10.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/djiti/graph-10.n3>].
->>>>>>> master:programming/djiti/proof-10.n3
 
-#2018-08-23T10:53:18.910Z in=14 out=2 ent=2 step=2 brake=1 inf=25861 sec=0.083 inf/sec=311578
+#2018-08-19T21:02:46.356Z in=14 out=2 ent=2 step=2 brake=1 inf=25789 sec=0.037 inf/sec=697000
 #ENDS
 

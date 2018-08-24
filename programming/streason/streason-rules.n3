@@ -1,9 +1,5 @@
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
-<<<<<<< HEAD:programming/streason/streason-rules.n3
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/streason/streason-rules.n3
 
 :a :b :c.
 {?C :y ?A} <= {?A :b ?C}.

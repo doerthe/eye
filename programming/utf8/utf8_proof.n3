@@ -1,13 +1,7 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-#eye --n3 http://josd.github.io/eye/i/utf8/utf8.n3 --pass
-
-PREFIX : <http://josd.github.io/eye/i/utf8/try#>
-=======
 #eye --n3 http://josd.github.io/eye/programming/utf8/utf8.n3 --pass
 
 PREFIX : <http://josd.github.io/eye/programming/utf8/try#>
->>>>>>> master:programming/utf8/utf8_proof.n3
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -17,11 +11,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:component <#lemma4>;
   r:component <#lemma5>;
   r:gives {
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-    :s :p <http://josd.github.io/eye/i/utf8/try#béc>.
-=======
     :s :p <http://josd.github.io/eye/programming/utf8/try#béc>.
->>>>>>> master:programming/utf8/utf8_proof.n3
     :s :p "€".
     :s :p "𝟋"@en-US.
     :s :p "Ø".
@@ -30,11 +20,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 <#lemma1> a r:Inference;
   r:gives {
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-    :s :p <http://josd.github.io/eye/i/utf8/try#béc>.
-=======
     :s :p <http://josd.github.io/eye/programming/utf8/try#béc>.
->>>>>>> master:programming/utf8/utf8_proof.n3
   };
   r:evidence (
     <#lemma6>
@@ -79,15 +65,9 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 <#lemma6> a r:Extraction;
   r:gives {
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-    :s :p <http://josd.github.io/eye/i/utf8/try#béc>.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/utf8/utf8.n3>].
-=======
     :s :p <http://josd.github.io/eye/programming/utf8/try#béc>.
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/utf8/utf8.n3>].
->>>>>>> master:programming/utf8/utf8_proof.n3
 
 <#lemma7> a r:Extraction;
   r:gives {
@@ -99,42 +79,26 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     :s :p "€".
   };
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/utf8/utf8.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/utf8/utf8.n3>].
->>>>>>> master:programming/utf8/utf8_proof.n3
 
 <#lemma9> a r:Extraction;
   r:gives {
     :s :p "𝟋"@en-US.
   };
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/utf8/utf8.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/utf8/utf8.n3>].
->>>>>>> master:programming/utf8/utf8_proof.n3
 
 <#lemma10> a r:Extraction;
   r:gives {
     :s :p "Ø".
   };
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/utf8/utf8.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/utf8/utf8.n3>].
->>>>>>> master:programming/utf8/utf8_proof.n3
 
 <#lemma11> a r:Extraction;
   r:gives {
     :s :p "the “test” is ok".
   };
-<<<<<<< HEAD:programming/utf8/utf8_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/utf8/utf8.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/utf8/utf8.n3>].
->>>>>>> master:programming/utf8/utf8_proof.n3
 
-#2018-08-23T10:54:27.016Z in=5 out=5 ent=5 step=5 brake=1 inf=25039 sec=0.076 inf/sec=329461
+#2018-08-19T21:03:24.549Z in=5 out=5 ent=5 step=5 brake=1 inf=24971 sec=0.034 inf/sec=734441
 #ENDS
 

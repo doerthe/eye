@@ -1,11 +1,6 @@
 PREFIX list: <http://www.w3.org/2000/10/swap/list#>
-<<<<<<< HEAD:programming/h2o/rules-001.n3
-PREFIX t: <http://josd.github.io/eye/i/tfcontext#>
-PREFIX h: <http://josd.github.io/eye/i/h2o#>
-=======
 PREFIX t: <http://josd.github.io/eye/programming/tfcontext#>
 PREFIX h: <http://josd.github.io/eye/programming/h2o#>
->>>>>>> master:programming/h2o/rules-001.n3
 
 {
 	?T h:inOneOf ?LIST.

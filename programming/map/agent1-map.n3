@@ -1,10 +1,5 @@
-<<<<<<< HEAD:programming/map/agent1-map.n3
-PREFIX gps: <http://josd.github.io/eye/i/gps/gps-schema#>
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX gps: <http://josd.github.io/eye/programming/gps/gps-schema#>
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/map/agent1-map.n3
 
 # current state
 :i1 :location :Gent.

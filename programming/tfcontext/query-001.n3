@@ -1,11 +1,7 @@
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
-<<<<<<< HEAD:programming/tfcontext/query-001.n3
-PREFIX t: <http://josd.github.io/eye/i/tfcontext#>
-=======
 PREFIX t: <http://josd.github.io/eye/programming/tfcontext#>
->>>>>>> master:programming/tfcontext/query-001.n3
 PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>
 
 {	?C geo:lat ?LAC.

@@ -1,4 +1,4 @@
-PREFIX : <http://josd.github.io/eye/i/cs#>
+PREFIX : <http://josd.github.io/eye/programming/cs#>
 
 {
 	?O :control1 ?C.

@@ -1,19 +1,11 @@
 #Processed by EYE v18.0515.2100 josd
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-#eye --n3 http://josd.github.io/eye/i/swet/swetA.n3 --query http://josd.github.io/eye/i/swet/swetQ.n3
-=======
 #eye --n3 http://josd.github.io/eye/programming/swet/swetA.n3 --query http://josd.github.io/eye/programming/swet/swetQ.n3
->>>>>>> master:programming/swet/swet_proof.n3
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/i#>
-=======
 PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
->>>>>>> master:programming/swet/swet_proof.n3
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma1>;
@@ -31,11 +23,7 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
     {{:obs :ascribed :Rain} :given {:obs :ascribed :WetGrass}} e:possibility 0.6666666666666666 .
   };
   r:evidence (
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/swet/swetA11.n3> log:semantics {_:t_0 e:answer {:obs001 :ascribed :Rain.
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/swet/swetA11.n3> log:semantics {_:t_0 e:answer {:obs001 :ascribed :Rain.
->>>>>>> master:programming/swet/swet_proof.n3
       :obs001 :ascribed :WetGrass}.
      _:t_1 e:answer {:obs003 :ascribed :Rain.
       :obs003 :ascribed :WetGrass}.
@@ -251,11 +239,7 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
       :obs098 :ascribed :WetGrass}.
      _:t_53 e:answer {:obs099 :ascribed :Rain.
       :obs099 :ascribed :WetGrass}} math:memberCount 54}]
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/swet/swetA01.n3> log:semantics {_:t_54 e:answer {:obs001 :ascribed :WetGrass}.
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/swet/swetA01.n3> log:semantics {_:t_54 e:answer {:obs001 :ascribed :WetGrass}.
->>>>>>> master:programming/swet/swet_proof.n3
      _:t_55 e:answer {:obs002 :ascribed :WetGrass}.
      _:t_56 e:answer {:obs003 :ascribed :WetGrass}.
      _:t_57 e:answer {:obs004 :ascribed :WetGrass}.
@@ -426,11 +410,7 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
     {{:obs :ascribed :Sprinkler} :given {:obs :ascribed :WetGrass}} e:possibility 0.5679012345679012 .
   };
   r:evidence (
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/swet/swetA21.n3> log:semantics {_:t_135 e:answer {:obs002 :ascribed :Sprinkler.
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/swet/swetA21.n3> log:semantics {_:t_135 e:answer {:obs002 :ascribed :Sprinkler.
->>>>>>> master:programming/swet/swet_proof.n3
       :obs002 :ascribed :WetGrass}.
      _:t_136 e:answer {:obs004 :ascribed :Sprinkler.
       :obs004 :ascribed :WetGrass}.
@@ -614,11 +594,7 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
       :obs099 :ascribed :WetGrass}.
      _:t_180 e:answer {:obs100 :ascribed :Sprinkler.
       :obs100 :ascribed :WetGrass}} math:memberCount 46}]
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/swet/swetA01.n3> log:semantics {_:t_54 e:answer {:obs001 :ascribed :WetGrass}.
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/swet/swetA01.n3> log:semantics {_:t_54 e:answer {:obs001 :ascribed :WetGrass}.
->>>>>>> master:programming/swet/swet_proof.n3
      _:t_55 e:answer {:obs002 :ascribed :WetGrass}.
      _:t_56 e:answer {:obs003 :ascribed :WetGrass}.
      _:t_57 e:answer {:obs004 :ascribed :WetGrass}.
@@ -790,11 +766,7 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
       :obs :ascribed :Sprinkler} :given {:obs :ascribed :WetGrass}} e:possibility 0.2345679012345679 .
   };
   r:evidence (
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/swet/swetA31.n3> log:semantics {_:t_181 e:answer {:obs004 :ascribed :Rain.
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/swet/swetA31.n3> log:semantics {_:t_181 e:answer {:obs004 :ascribed :Rain.
->>>>>>> master:programming/swet/swet_proof.n3
       :obs004 :ascribed :Sprinkler.
       :obs004 :ascribed :WetGrass}.
      _:t_182 e:answer {:obs014 :ascribed :Rain.
@@ -908,11 +880,7 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
      _:t_199 e:answer {:obs099 :ascribed :Rain.
       :obs099 :ascribed :Sprinkler.
       :obs099 :ascribed :WetGrass}} math:memberCount 19}]
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    [ a r:Fact; r:gives {<http://josd.github.io/eye/i/swet/swetA01.n3> log:semantics {_:t_54 e:answer {:obs001 :ascribed :WetGrass}.
-=======
     [ a r:Fact; r:gives {<http://josd.github.io/eye/programming/swet/swetA01.n3> log:semantics {_:t_54 e:answer {:obs001 :ascribed :WetGrass}.
->>>>>>> master:programming/swet/swet_proof.n3
      _:t_55 e:answer {:obs002 :ascribed :WetGrass}.
      _:t_56 e:answer {:obs003 :ascribed :WetGrass}.
      _:t_57 e:answer {:obs004 :ascribed :WetGrass}.
@@ -1080,31 +1048,6 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
 
 <#lemma4> a r:Extraction;
   r:gives {
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-    {<http://josd.github.io/eye/i/swet/swetA11.n3> log:semantics ?x_0_1.
-     ?x_0_1 math:memberCount ?x_1_1.
-     <http://josd.github.io/eye/i/swet/swetA01.n3> log:semantics ?x_2_1.
-     ?x_2_1 math:memberCount ?x_3_1.
-     (?x_1_1 ?x_3_1) math:quotient ?x_4_1} => {{{:obs :ascribed :Rain} :given {:obs :ascribed :WetGrass}} e:possibility ?x_4_1}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/swet/swetQ.n3>].
-
-<#lemma5> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/swet/swetA21.n3> log:semantics ?x_0_2.
-     ?x_0_2 math:memberCount ?x_1_2.
-     <http://josd.github.io/eye/i/swet/swetA01.n3> log:semantics ?x_2_2.
-     ?x_2_2 math:memberCount ?x_3_2.
-     (?x_1_2 ?x_3_2) math:quotient ?x_4_2} => {{{:obs :ascribed :Sprinkler} :given {:obs :ascribed :WetGrass}} e:possibility ?x_4_2}.
-  };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/swet/swetQ.n3>].
-
-<#lemma6> a r:Extraction;
-  r:gives {
-    {<http://josd.github.io/eye/i/swet/swetA31.n3> log:semantics ?x_0_3.
-     ?x_0_3 math:memberCount ?x_1_3.
-     <http://josd.github.io/eye/i/swet/swetA01.n3> log:semantics ?x_2_3.
-=======
     {<http://josd.github.io/eye/programming/swet/swetA11.n3> log:semantics ?x_0_1.
      ?x_0_1 math:memberCount ?x_1_1.
      <http://josd.github.io/eye/programming/swet/swetA01.n3> log:semantics ?x_2_1.
@@ -1128,17 +1071,12 @@ PREFIX : <http://eulersharp.sourceforge.net/2003/03swap/eye/programming#>
     {<http://josd.github.io/eye/programming/swet/swetA31.n3> log:semantics ?x_0_3.
      ?x_0_3 math:memberCount ?x_1_3.
      <http://josd.github.io/eye/programming/swet/swetA01.n3> log:semantics ?x_2_3.
->>>>>>> master:programming/swet/swet_proof.n3
      ?x_2_3 math:memberCount ?x_3_3.
      (?x_1_3 ?x_3_3) math:quotient ?x_4_3} => {{{:obs :ascribed :Rain.
        :obs :ascribed :Sprinkler} :given {:obs :ascribed :WetGrass}} e:possibility ?x_4_3}.
   };
-<<<<<<< HEAD:programming/swet/swet_proof.n3
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/i/swet/swetQ.n3>].
-=======
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/programming/swet/swetQ.n3>].
->>>>>>> master:programming/swet/swet_proof.n3
 
-#2018-08-23T10:54:23.293Z in=769 out=3 ent=1 step=1 brake=0 inf=336877 sec=0.232 inf/sec=1452056
+#2018-08-19T21:03:22.085Z in=769 out=3 ent=1 step=1 brake=0 inf=336811 sec=0.099 inf/sec=3402131
 #ENDS
 

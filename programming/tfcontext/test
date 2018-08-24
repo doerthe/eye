@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD
-eye "$@" --turtle http://josd.github.io/eye/i/tfcontext/data-001.n3 --n3 http://josd.github.io/eye/i/tfcontext/rules-001.n3 --query http://josd.github.io/eye/i/tfcontext/query-001.n3 > proof-001.n3
-=======
 eye "$@" --turtle http://josd.github.io/eye/programming/tfcontext/data-001.n3 --n3 http://josd.github.io/eye/programming/tfcontext/rules-001.n3 --query http://josd.github.io/eye/programming/tfcontext/query-001.n3 > proof-001.n3
->>>>>>> master

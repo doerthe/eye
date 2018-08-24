@@ -1,6 +1,2 @@
 #!/bin/bash
-<<<<<<< HEAD
-eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/i/rs/randomsample-rule.n3 --query http://josd.github.io/eye/i/rs/randomsample-query.n3 > randomsample-proof.n3
-=======
 eye "$@" --tactic limited-answer 1 --n3 http://josd.github.io/eye/programming/rs/randomsample-rule.n3 --query http://josd.github.io/eye/programming/rs/randomsample-query.n3 > randomsample-proof.n3
->>>>>>> master

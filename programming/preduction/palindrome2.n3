@@ -3,13 +3,8 @@
 
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
-<<<<<<< HEAD:programming/preduction/palindrome2.n3
-PREFIX p: <http://josd.github.io/eye/i/preduction#>
-PREFIX : <http://josd.github.io/eye/i#>
-=======
 PREFIX p: <http://josd.github.io/eye/programming/preduction#>
 PREFIX : <http://josd.github.io/eye/programming#>
->>>>>>> master:programming/preduction/palindrome2.n3
 
 {(?U_0) :palindrome true} <= {(?U_0 :push ()) :palindrome true}.
 {(?U_1 :push ?U_2) :palindrome true} <= {?U_1 e:firstRest (?U_3 ?U_4). ?U_5 e:firstRest (?U_3 ?U_2). (?U_4 :push ?U_5) :palindrome true}.
@@ -18,6 +13,6 @@ PREFIX : <http://josd.github.io/eye/programming#>
 {(?U_15 :pop ?U_16) :palindrome true} <= {?U_15 e:firstRest (?U_17 ?U_18). ?U_16 e:firstRest (?U_17 ?U_19). (?U_18 :pop ?U_19) :palindrome true}.
 (() :pop ()) :palindrome true.
 
-#2018-08-23T10:54:07.217Z in=88 out=6 ent=6 step=6 brake=1 inf=26698 sec=0.080 inf/sec=333725
+#2018-08-19T21:03:11.764Z in=88 out=6 ent=6 step=6 brake=1 inf=26688 sec=0.033 inf/sec=808727
 #ENDS
 
