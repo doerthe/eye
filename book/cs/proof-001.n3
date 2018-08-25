@@ -158,6 +158,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/cs/rules-001.n3>].
 
-#2018-08-24T23:19:21.262Z in=43 out=2 ent=4 step=8 brake=2 inf=41090 sec=0.038 inf/sec=1081316
+#2018-08-25T21:37:55.117Z in=43 out=2 ent=4 step=8 brake=2 inf=41242 sec=0.093 inf/sec=443462
 #ENDS
 
