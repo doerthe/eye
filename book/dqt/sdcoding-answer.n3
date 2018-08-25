@@ -1,5 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --no-distinct-input --nope --n3 sdcoding-a.n3 --query sdcoding-query.n3
+#eye --no-distinct-input --nope --n3 http://josd.github.io/eye/book/dqt/sdcoding-a.n3 --query http://josd.github.io/eye/book/dqt/sdcoding-query.n3
 
 PREFIX dqt: <http://josd.github.io/eye/book/dqt#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
@@ -10,6 +10,6 @@ PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 0 dqt:sdcoding 0 .
 2 dqt:sdcoding 2 .
 
-#2018-08-25T21:08:30.259Z in=31 out=4 ent=4 step=4 brake=2 inf=17340 sec=0.067 inf/sec=258806
+#2018-08-25T21:25:23.315Z in=31 out=4 ent=4 step=4 brake=2 inf=15879 sec=0.073 inf/sec=217521
 #ENDS
 
