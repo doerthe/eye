@@ -13,6 +13,6 @@ PREFIX : <http://josd.github.io/eye/book#>
 {(?U_15 :pop ?U_16) :palindrome true} <= {?U_15 e:firstRest (?U_17 ?U_18). ?U_16 e:firstRest (?U_17 ?U_19). (?U_18 :pop ?U_19) :palindrome true}.
 (() :pop ()) :palindrome true.
 
-#2018-08-24T23:19:50.281Z in=88 out=6 ent=6 step=6 brake=1 inf=26718 sec=0.025 inf/sec=1068720
+#2018-08-25T21:38:49.556Z in=88 out=6 ent=6 step=6 brake=1 inf=26870 sec=0.078 inf/sec=344487
 #ENDS
 

@@ -18057,6 +18057,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/pi/pi.n3>].
 
-#2018-08-24T23:19:49.069Z in=22 out=1 ent=1 step=1 brake=1 inf=2902473 sec=0.382 inf/sec=7598097
+#2018-08-25T21:38:48.028Z in=22 out=1 ent=1 step=1 brake=1 inf=2902626 sec=1.297 inf/sec=2237954
 #ENDS
 

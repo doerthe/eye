@@ -43,6 +43,6 @@ PREFIX p: <http://josd.github.io/eye/book/preduction#>
 {?U_441 a food:RedMeat} => {?U_441 a food:Meat}.
 {?U_454 a food:EatingGrape} => {?U_454 a food:Grape}.
 
-#2018-08-24T23:19:51.517Z in=106 out=35 ent=35 step=35 brake=0 inf=66707 sec=0.043 inf/sec=1551326
+#2018-08-25T21:38:51.205Z in=106 out=35 ent=35 step=35 brake=0 inf=66859 sec=0.102 inf/sec=655480
 #ENDS
 
