@@ -172,6 +172,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/glass/test.n3>].
 
-#2018-08-25T21:38:26.230Z in=46 out=6 ent=7 step=30 brake=2 inf=43151 sec=0.092 inf/sec=469033
+#2018-08-26T09:35:50.654Z in=46 out=6 ent=7 step=30 brake=2 inf=43161 sec=0.095 inf/sec=454326
 #ENDS
 

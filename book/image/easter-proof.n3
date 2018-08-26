@@ -6534,6 +6534,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/image/year.n3>].
 
-#2018-08-25T21:38:32.992Z in=46 out=101 ent=202 step=404 brake=2 inf=1216680 sec=0.561 inf/sec=2168770
+#2018-08-26T09:35:55.594Z in=46 out=101 ent=202 step=404 brake=2 inf=1216690 sec=0.561 inf/sec=2168788
 #ENDS
 

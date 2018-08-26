@@ -258,6 +258,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/n3p/sample.n3>].
 
-#2018-08-25T21:38:44.908Z in=12 out=12 ent=13 step=29 brake=2 inf=53894 sec=0.090 inf/sec=598822
+#2018-08-26T09:36:05.224Z in=12 out=12 ent=13 step=29 brake=2 inf=53924 sec=0.093 inf/sec=579828
 #ENDS
 
