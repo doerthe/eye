@@ -100,6 +100,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/medic/medic.n3>].
 
-#2018-08-25T21:38:37.034Z in=30 out=2 ent=4 step=8 brake=4 inf=34771 sec=0.091 inf/sec=382099
+#2018-08-26T09:35:58.129Z in=30 out=2 ent=4 step=8 brake=4 inf=34782 sec=0.085 inf/sec=409200
 #ENDS
 

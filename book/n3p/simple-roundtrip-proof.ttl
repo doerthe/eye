@@ -150,6 +150,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/n3p/simple.ttl>].
 
-#2018-08-25T21:38:44.067Z in=8 out=8 ent=8 step=8 brake=1 inf=32378 sec=0.081 inf/sec=399728
+#2018-08-26T09:36:04.650Z in=8 out=8 ent=8 step=8 brake=1 inf=32404 sec=0.083 inf/sec=390410
 #ENDS
 

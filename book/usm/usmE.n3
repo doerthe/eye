@@ -343,6 +343,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/book/usm/usmP.n3>].
 
-#2018-08-25T21:39:08.141Z in=60 out=2 ent=24 step=88 brake=5 inf=49686 sec=0.093 inf/sec=534258
+#2018-08-26T09:36:21.871Z in=60 out=2 ent=24 step=88 brake=5 inf=49674 sec=0.097 inf/sec=512103
 #ENDS
 
