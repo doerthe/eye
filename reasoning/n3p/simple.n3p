@@ -1,5 +1,5 @@
 flag('no-skolem', 'http://josd.github.io/eye/.well-known/genid/ef6Oe6:rXRjjelbBfeFy1I9ixk0#').
-scope('<http://josd.github.io/eye/eyereasoning/n3p/simple.ttl>').
+scope('<http://josd.github.io/eye/reasoning/n3p/simple.ttl>').
 pfx((:),
 						   '<http://example.org/try#>').
 '<http://example.org/try#p1>'('<http://example.org/try#s1>', '<http://example.org/try#o1>').

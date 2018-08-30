@@ -1,7 +1,7 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --n3 http://josd.github.io/eye/eyereasoning/de/de.n3 --n3 http://josd.github.io/eye/eyereasoning/de/deA.n3 --query http://josd.github.io/eye/eyereasoning/de/deQ.n3
+#eye --n3 http://josd.github.io/eye/reasoning/de/de.n3 --n3 http://josd.github.io/eye/reasoning/de/deA.n3 --query http://josd.github.io/eye/reasoning/de/deQ.n3
 
-PREFIX : <http://josd.github.io/eye/eyereasoning#>
+PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -32,7 +32,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_1 :saying :C} => {?x_0_1 :saying :C}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/de/deQ.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/de/deQ.n3>].
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -47,7 +47,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_2 :saying :A} => {?x_0_2 :saying :C}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/de/de.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/de/de.n3>].
 
 <#lemma6> a r:Inference;
   r:gives {
@@ -62,19 +62,19 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {?x_0_3 :not_saying :B} => {?x_0_3 :saying :A}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/de/de.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/de/de.n3>].
 
 <#lemma8> a r:Extraction;
   r:gives {
     _:t_0 :not_saying :C.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/de/deA.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/de/deA.n3>].
 
 <#lemma9> a r:Extraction;
   r:gives {
     {?x_0_4 :not_saying :C} => {?x_0_4 :not_saying :B}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/de/de.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/de/de.n3>].
 
 #2018-08-26T09:35:26.310Z in=22 out=1 ent=6 step=18 brake=3 inf=24576 sec=0.083 inf/sec=296096
 #ENDS

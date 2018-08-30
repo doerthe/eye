@@ -1,10 +1,10 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --n3 http://josd.github.io/eye/eyereasoning/preduction/palindrome2.n3 --query http://josd.github.io/eye/eyereasoning/preduction/palindrome2-query.n3
+#eye --n3 http://josd.github.io/eye/reasoning/preduction/palindrome2.n3 --query http://josd.github.io/eye/reasoning/preduction/palindrome2-query.n3
 
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
-PREFIX p: <http://josd.github.io/eye/eyereasoning/preduction#>
+PREFIX p: <http://josd.github.io/eye/reasoning/preduction#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
-PREFIX : <http://josd.github.io/eye/eyereasoning#>
+PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -37,7 +37,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
     {("atom_codes" "ingirumimusnocteetconsumimurigni" ?x_0_1) e:derive true.
      (?x_0_1) :palindrome true} => {"ingirumimusnocteetconsumimurigni" a :Palindrome}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/preduction/palindrome2-query.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/preduction/palindrome2-query.n3>].
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -54,7 +54,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(?x_0_2) :palindrome true} <= {(?x_0_2 :push ()) :palindrome true}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/preduction/palindrome2.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/preduction/palindrome2.n3>].
 
 <#lemma6> a r:Inference;
   r:gives {
@@ -73,7 +73,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_3_3 e:firstRest (?x_1_3 ?x_4_3).
      (?x_2_3 :push ?x_3_3) :palindrome true}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/preduction/palindrome2.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/preduction/palindrome2.n3>].
 
 <#lemma8> a r:Inference;
   r:gives {
@@ -246,7 +246,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_3_4 e:firstRest (?x_1_4 ?x_4_4).
      (?x_2_4 :pop ?x_3_4) :palindrome true}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/preduction/palindrome2.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/preduction/palindrome2.n3>].
 
 <#lemma24> a r:Inference;
   r:gives {
@@ -265,7 +265,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      ?x_3_5 e:firstRest (?x_1_5 ?x_4_5).
      (?x_2_5 :pop ?x_4_5) :palindrome true}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/preduction/palindrome2.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/preduction/palindrome2.n3>].
 
 <#lemma26> a r:Inference;
   r:gives {
@@ -425,7 +425,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     (() :pop ()) :palindrome true.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/preduction/palindrome2.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/preduction/palindrome2.n3>].
 
 #2018-08-26T09:36:09.525Z in=27 out=1 ent=1 step=1 brake=1 inf=114981 sec=0.120 inf/sec=958175
 #ENDS

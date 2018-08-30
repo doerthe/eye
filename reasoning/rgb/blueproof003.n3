@@ -1,5 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --n3 http://josd.github.io/eye/eyereasoning/rgb/redgraph003.n3 --query http://josd.github.io/eye/eyereasoning/rgb/greenquery003.n3
+#eye --n3 http://josd.github.io/eye/reasoning/rgb/redgraph003.n3 --query http://josd.github.io/eye/reasoning/rgb/greenquery003.n3
 
 PREFIX : <http://example.org/try#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
@@ -34,13 +34,13 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     true => {{_:x_0_5 :p _:x_1_5} => {_:x_0_5 :q _:x_1_5}}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/rgb/greenquery003.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/rgb/greenquery003.n3>].
 
 <#lemma4> a r:Extraction;
   r:gives {
     true => {{_:x_0_6 :q _:x_1_6} => {_:x_0_6 :r _:x_1_6}}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/rgb/greenquery003.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/rgb/greenquery003.n3>].
 
 #2018-08-26T09:36:12.898Z in=11 out=2 ent=2 step=2 brake=1 inf=21210 sec=0.078 inf/sec=271923
 #ENDS
