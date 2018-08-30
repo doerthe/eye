@@ -1,3 +1,0 @@
-#!/bin/bash
-eye "$@" --no-distinct-output --nope --n3 http://josd.github.io/eye/book/dqt/sdcoding.n3 --query http://josd.github.io/eye/book/dqt/sdcoding-q.n3 > sdcoding-a.n3
-eye "$@" --no-distinct-input --nope --n3 http://josd.github.io/eye/book/dqt/sdcoding-a.n3 --query http://josd.github.io/eye/book/dqt/sdcoding-query.n3 > sdcoding-answer.n3

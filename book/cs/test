@@ -1,2 +1,0 @@
-#!/bin/bash
-eye "$@" --turtle http://josd.github.io/eye/book/cs/data-001.n3 --n3 http://josd.github.io/eye/book/cs/rules-001.n3 --query http://josd.github.io/eye/book/cs/query-001.n3 > proof-001.n3
