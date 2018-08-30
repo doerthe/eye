@@ -1,0 +1,107 @@
+#Processed by EYE v18.0515.2100 josd
+#eye --nope --n3 http://josd.github.io/eye/eyereasoning/streason/streason-rules.n3 --turtle - --streaming-reasoning
+
+<http://josd.github.io/eye/eyereasoning#i8453> <http://josd.github.io/eye/eyereasoning#i32> <http://josd.github.io/eye/eyereasoning#i7808>.
+<http://josd.github.io/eye/eyereasoning#i7808> <http://josd.github.io/eye/eyereasoning#i32> _:sk_0.
+_:sk_0 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i8453>.
+_:sk_0 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i7808> <http://josd.github.io/eye/eyereasoning#i32> "s5".
+<http://josd.github.io/eye/eyereasoning#i7808> <http://josd.github.io/eye/eyereasoning#i32> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i7808> <http://josd.github.io/eye/eyereasoning#i32> _:sk_1.
+_:sk_1 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i8453>.
+_:sk_1 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i7808> <http://josd.github.io/eye/eyereasoning#i32> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i6833> <http://josd.github.io/eye/eyereasoning#i58> <http://josd.github.io/eye/eyereasoning#i8560>.
+<http://josd.github.io/eye/eyereasoning#i8560> <http://josd.github.io/eye/eyereasoning#i58> _:sk_2.
+_:sk_2 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i6833>.
+_:sk_2 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i8560> <http://josd.github.io/eye/eyereasoning#i58> "s5".
+<http://josd.github.io/eye/eyereasoning#i8560> <http://josd.github.io/eye/eyereasoning#i58> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i8560> <http://josd.github.io/eye/eyereasoning#i58> _:sk_3.
+_:sk_3 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i6833>.
+_:sk_3 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i8560> <http://josd.github.io/eye/eyereasoning#i58> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i4042> <http://josd.github.io/eye/eyereasoning#i87> <http://josd.github.io/eye/eyereasoning#i9347>.
+<http://josd.github.io/eye/eyereasoning#i9347> <http://josd.github.io/eye/eyereasoning#i87> _:sk_4.
+_:sk_4 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i4042>.
+_:sk_4 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i9347> <http://josd.github.io/eye/eyereasoning#i87> "s5".
+<http://josd.github.io/eye/eyereasoning#i9347> <http://josd.github.io/eye/eyereasoning#i87> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i9347> <http://josd.github.io/eye/eyereasoning#i87> _:sk_5.
+_:sk_5 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i4042>.
+_:sk_5 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i9347> <http://josd.github.io/eye/eyereasoning#i87> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i5058> <http://josd.github.io/eye/eyereasoning#i20> <http://josd.github.io/eye/eyereasoning#i8380>.
+<http://josd.github.io/eye/eyereasoning#i8380> <http://josd.github.io/eye/eyereasoning#i20> _:sk_6.
+_:sk_6 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i5058>.
+_:sk_6 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i8380> <http://josd.github.io/eye/eyereasoning#i20> "s5".
+<http://josd.github.io/eye/eyereasoning#i8380> <http://josd.github.io/eye/eyereasoning#i20> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i8380> <http://josd.github.io/eye/eyereasoning#i20> _:sk_7.
+_:sk_7 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i5058>.
+_:sk_7 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i8380> <http://josd.github.io/eye/eyereasoning#i20> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i5510> <http://josd.github.io/eye/eyereasoning#i29> <http://josd.github.io/eye/eyereasoning#i5705>.
+<http://josd.github.io/eye/eyereasoning#i5705> <http://josd.github.io/eye/eyereasoning#i29> _:sk_8.
+_:sk_8 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i5510>.
+_:sk_8 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i5705> <http://josd.github.io/eye/eyereasoning#i29> "s5".
+<http://josd.github.io/eye/eyereasoning#i5705> <http://josd.github.io/eye/eyereasoning#i29> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i5705> <http://josd.github.io/eye/eyereasoning#i29> _:sk_9.
+_:sk_9 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i5510>.
+_:sk_9 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i5705> <http://josd.github.io/eye/eyereasoning#i29> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i4137> <http://josd.github.io/eye/eyereasoning#i87> <http://josd.github.io/eye/eyereasoning#i7913>.
+<http://josd.github.io/eye/eyereasoning#i7913> <http://josd.github.io/eye/eyereasoning#i87> _:sk_10.
+_:sk_10 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i4137>.
+_:sk_10 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i7913> <http://josd.github.io/eye/eyereasoning#i87> "s5".
+<http://josd.github.io/eye/eyereasoning#i7913> <http://josd.github.io/eye/eyereasoning#i87> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i7913> <http://josd.github.io/eye/eyereasoning#i87> _:sk_11.
+_:sk_11 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i4137>.
+_:sk_11 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i7913> <http://josd.github.io/eye/eyereasoning#i87> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i8925> <http://josd.github.io/eye/eyereasoning#i4> <http://josd.github.io/eye/eyereasoning#i8172>.
+<http://josd.github.io/eye/eyereasoning#i8172> <http://josd.github.io/eye/eyereasoning#i4> _:sk_12.
+_:sk_12 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i8925>.
+_:sk_12 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i8172> <http://josd.github.io/eye/eyereasoning#i4> "s5".
+<http://josd.github.io/eye/eyereasoning#i8172> <http://josd.github.io/eye/eyereasoning#i4> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i8172> <http://josd.github.io/eye/eyereasoning#i4> _:sk_13.
+_:sk_13 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i8925>.
+_:sk_13 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i8172> <http://josd.github.io/eye/eyereasoning#i4> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i8606> <http://josd.github.io/eye/eyereasoning#i58> <http://josd.github.io/eye/eyereasoning#i8307>.
+<http://josd.github.io/eye/eyereasoning#i8307> <http://josd.github.io/eye/eyereasoning#i58> _:sk_14.
+_:sk_14 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i8606>.
+_:sk_14 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i8307> <http://josd.github.io/eye/eyereasoning#i58> "s5".
+<http://josd.github.io/eye/eyereasoning#i8307> <http://josd.github.io/eye/eyereasoning#i58> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i8307> <http://josd.github.io/eye/eyereasoning#i58> _:sk_15.
+_:sk_15 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i8606>.
+_:sk_15 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i8307> <http://josd.github.io/eye/eyereasoning#i58> <http://josd.github.io/eye/eyereasoning#r10>.
+<http://josd.github.io/eye/eyereasoning#i6433> <http://josd.github.io/eye/eyereasoning#i38> <http://josd.github.io/eye/eyereasoning#i5952>.
+<http://josd.github.io/eye/eyereasoning#i5952> <http://josd.github.io/eye/eyereasoning#i38> _:sk_16.
+_:sk_16 <http://josd.github.io/eye/eyereasoning#p> <http://josd.github.io/eye/eyereasoning#i6433>.
+_:sk_16 <http://josd.github.io/eye/eyereasoning#p> 4.
+<http://josd.github.io/eye/eyereasoning#i5952> <http://josd.github.io/eye/eyereasoning#i38> "s5".
+<http://josd.github.io/eye/eyereasoning#i5952> <http://josd.github.io/eye/eyereasoning#i38> <http://josd.github.io/eye/eyereasoning#a>.
+<http://josd.github.io/eye/eyereasoning#i5952> <http://josd.github.io/eye/eyereasoning#i38> _:sk_17.
+_:sk_17 <http://josd.github.io/eye/eyereasoning#q> <http://josd.github.io/eye/eyereasoning#i6433>.
+_:sk_17 <http://josd.github.io/eye/eyereasoning#q> 9.
+<http://josd.github.io/eye/eyereasoning#i5952> <http://josd.github.io/eye/eyereasoning#i38> <http://josd.github.io/eye/eyereasoning#r10>.
+true <http://josd.github.io/eye/eyereasoning#r5> (<http://josd.github.io/eye/eyereasoning#i4181> <http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462>).
+(<http://josd.github.io/eye/eyereasoning#i4181> <http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462>) <http://josd.github.io/eye/eyereasoning#r5> _:sk_18.
+_:sk_18 <http://josd.github.io/eye/eyereasoning#p> true.
+_:sk_18 <http://josd.github.io/eye/eyereasoning#p> 4.
+(<http://josd.github.io/eye/eyereasoning#i4181> <http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462>) <http://josd.github.io/eye/eyereasoning#r5> "s5".
+(<http://josd.github.io/eye/eyereasoning#i4181> <http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462>) <http://josd.github.io/eye/eyereasoning#r5> <http://josd.github.io/eye/eyereasoning#a>.
+(<http://josd.github.io/eye/eyereasoning#i4181> <http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462>) <http://josd.github.io/eye/eyereasoning#r5> _:sk_19.
+_:sk_19 <http://josd.github.io/eye/eyereasoning#q> true.
+_:sk_19 <http://josd.github.io/eye/eyereasoning#q> 9.
+(<http://josd.github.io/eye/eyereasoning#i4181> <http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462>) <http://josd.github.io/eye/eyereasoning#r5> <http://josd.github.io/eye/eyereasoning#r10>.
+(<http://josd.github.io/eye/eyereasoning#i8> <http://josd.github.io/eye/eyereasoning#i9462> 9 <http://josd.github.io/eye/eyereasoning#i4181>) <http://josd.github.io/eye/eyereasoning#r9> true.
+#2018-08-26T09:36:16.885Z in=35 out=101 ent=0 step=0 brake=0 inf=27633 sec=0.078 inf/sec=354269
+#ENDS
+

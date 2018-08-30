@@ -1,3 +1,0 @@
-@prefix : <http://josd.github.io/eye/book/witch#>.
-
-{?S a :FLOATINGWOMAN} => {?S a :FLOATINGWOMAN}.

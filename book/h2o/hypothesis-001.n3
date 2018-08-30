@@ -1,4 +1,0 @@
-PREFIX t: <http://josd.github.io/eye/book/tfcontext#>
-PREFIX h: <http://josd.github.io/eye/book/h2o#>
-
-h:traveler1 h:inOneOf (t:Antwerp-Belgium t:Boston-USA t:Cambridge-USA t:Ghent-Belgium t:Ostend-Belgium).

@@ -1,8 +1,0 @@
-PREFIX dqt: <http://josd.github.io/eye/book/dqt#>
-
-# first ask for all answers
-{
-	?X dqt:sdcoding ?Y.
-} => {
-	?X dqt:sdcoding ?Y.
-}.
