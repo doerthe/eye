@@ -15034,6 +15034,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/dt/test-dt-1000.n3>].
 
-#2018-08-30T10:01:19.449Z in=9008 out=1 ent=2999 step=5998 brake=2 inf=1940940 sec=1.099 inf/sec=1766096
+#2018-08-30T11:22:53.414Z in=9008 out=1 ent=2999 step=5998 brake=2 inf=1940931 sec=1.209 inf/sec=1605402
 #ENDS
 
