@@ -669,6 +669,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/fcm/example002P.n3>].
 
-#2018-08-30T10:01:27.657Z in=260 out=8 ent=50 step=307 brake=6 inf=467654 sec=0.280 inf/sec=1670193
+#2018-08-30T11:23:03.629Z in=260 out=8 ent=50 step=307 brake=6 inf=467664 sec=0.277 inf/sec=1688318
 #ENDS
 

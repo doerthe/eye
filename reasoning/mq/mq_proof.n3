@@ -4,7 +4,7 @@
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.089 [sec] mq=1 out=0 out/sec=0
+#DONE 0.092 [sec] mq=1 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -118,7 +118,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.019 [sec] mq=2 out=3 out/sec=158
+#DONE 0.016 [sec] mq=2 out=3 out/sec=188
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -306,7 +306,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.006 [sec] mq=6 out=0 out/sec=0
+#DONE 0.005 [sec] mq=6 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -626,12 +626,12 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.014 [sec] mq=10 out=3 out/sec=214
+#DONE 0.015 [sec] mq=10 out=3 out/sec=200
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=11 out=0 out/sec=0
+#DONE 0.006 [sec] mq=11 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -702,7 +702,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query15.n3>].
 
-#DONE 0.010 [sec] mq=15 out=1 out/sec=100
+#DONE 0.011 [sec] mq=15 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -814,7 +814,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query17.n3>].
 
-#DONE 0.009 [sec] mq=17 out=1 out/sec=111
+#DONE 0.012 [sec] mq=17 out=1 out/sec=83
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -880,7 +880,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.004 [sec] mq=20 out=0 out/sec=0
+#DONE 0.005 [sec] mq=20 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -936,7 +936,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query21.n3>].
 
-#DONE 0.009 [sec] mq=21 out=1 out/sec=111
+#DONE 0.010 [sec] mq=21 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1068,7 +1068,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.017 [sec] mq=22 out=3 out/sec=176
+#DONE 0.016 [sec] mq=22 out=3 out/sec=188
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1164,7 +1164,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.015 [sec] mq=23 out=3 out/sec=200
+#DONE 0.011 [sec] mq=23 out=3 out/sec=273
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1258,7 +1258,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query25.n3>].
 
-#DONE 0.009 [sec] mq=25 out=1 out/sec=111
+#DONE 0.008 [sec] mq=25 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1491,17 +1491,17 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query28.n3>].
 
-#DONE 0.009 [sec] mq=28 out=1 out/sec=111
+#DONE 0.007 [sec] mq=28 out=1 out/sec=143
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.004 [sec] mq=29 out=0 out/sec=0
+#DONE 0.005 [sec] mq=29 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.004 [sec] mq=30 out=0 out/sec=0
+#DONE 0.005 [sec] mq=30 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1623,7 +1623,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query34.n3>].
 
-#DONE 0.011 [sec] mq=34 out=1 out/sec=91
+#DONE 0.013 [sec] mq=34 out=1 out/sec=77
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1684,7 +1684,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=36 out=0 out/sec=0
+#DONE 0.006 [sec] mq=36 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -1745,7 +1745,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query38.n3>].
 
-#DONE 0.013 [sec] mq=38 out=1 out/sec=77
+#DONE 0.012 [sec] mq=38 out=1 out/sec=83
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2052,7 +2052,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.020 [sec] mq=42 out=5 out/sec=250
+#DONE 0.023 [sec] mq=42 out=5 out/sec=217
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2228,17 +2228,17 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query44.n3>].
 
-#DONE 0.010 [sec] mq=44 out=1 out/sec=100
+#DONE 0.008 [sec] mq=44 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=45 out=0 out/sec=0
+#DONE 0.006 [sec] mq=45 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.006 [sec] mq=46 out=0 out/sec=0
+#DONE 0.007 [sec] mq=46 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2281,12 +2281,12 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query48.n3>].
 
-#DONE 0.009 [sec] mq=48 out=1 out/sec=111
+#DONE 0.008 [sec] mq=48 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.007 [sec] mq=49 out=0 out/sec=0
+#DONE 0.005 [sec] mq=49 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2418,7 +2418,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.014 [sec] mq=50 out=3 out/sec=214
+#DONE 0.013 [sec] mq=50 out=3 out/sec=231
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2474,7 +2474,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query51.n3>].
 
-#DONE 0.008 [sec] mq=51 out=1 out/sec=125
+#DONE 0.011 [sec] mq=51 out=1 out/sec=91
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2530,7 +2530,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query52.n3>].
 
-#DONE 0.012 [sec] mq=52 out=1 out/sec=83
+#DONE 0.009 [sec] mq=52 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2606,12 +2606,12 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.011 [sec] mq=53 out=2 out/sec=182
+#DONE 0.013 [sec] mq=53 out=2 out/sec=154
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=54 out=0 out/sec=0
+#DONE 0.006 [sec] mq=54 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2783,7 +2783,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.018 [sec] mq=55 out=5 out/sec=278
+#DONE 0.019 [sec] mq=55 out=5 out/sec=263
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2839,7 +2839,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query56.n3>].
 
-#DONE 0.008 [sec] mq=56 out=1 out/sec=125
+#DONE 0.010 [sec] mq=56 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -2958,7 +2958,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.015 [sec] mq=59 out=2 out/sec=133
+#DONE 0.012 [sec] mq=59 out=2 out/sec=167
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3072,12 +3072,12 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.027 [sec] mq=60 out=3 out/sec=111
+#DONE 0.030 [sec] mq=60 out=3 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.007 [sec] mq=61 out=0 out/sec=0
+#DONE 0.005 [sec] mq=61 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3254,7 +3254,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=63 out=0 out/sec=0
+#DONE 0.006 [sec] mq=63 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3528,7 +3528,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.012 [sec] mq=69 out=2 out/sec=167
+#DONE 0.015 [sec] mq=69 out=2 out/sec=133
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3647,7 +3647,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.017 [sec] mq=71 out=3 out/sec=176
+#DONE 0.016 [sec] mq=71 out=3 out/sec=188
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3743,7 +3743,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.010 [sec] mq=72 out=3 out/sec=300
+#DONE 0.013 [sec] mq=72 out=3 out/sec=231
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3819,7 +3819,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.011 [sec] mq=73 out=2 out/sec=182
+#DONE 0.013 [sec] mq=73 out=2 out/sec=154
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3913,7 +3913,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query75.n3>].
 
-#DONE 0.007 [sec] mq=75 out=1 out/sec=143
+#DONE 0.009 [sec] mq=75 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -3969,7 +3969,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query76.n3>].
 
-#DONE 0.010 [sec] mq=76 out=1 out/sec=100
+#DONE 0.009 [sec] mq=76 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4025,7 +4025,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query77.n3>].
 
-#DONE 0.008 [sec] mq=77 out=1 out/sec=125
+#DONE 0.009 [sec] mq=77 out=1 out/sec=111
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4179,7 +4179,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.018 [sec] mq=78 out=5 out/sec=278
+#DONE 0.020 [sec] mq=78 out=5 out/sec=250
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4311,22 +4311,22 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.010 [sec] mq=79 out=3 out/sec=300
+#DONE 0.016 [sec] mq=79 out=3 out/sec=188
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=80 out=0 out/sec=0
+#DONE 0.006 [sec] mq=80 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=81 out=0 out/sec=0
+#DONE 0.006 [sec] mq=81 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.004 [sec] mq=82 out=0 out/sec=0
+#DONE 0.005 [sec] mq=82 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4402,17 +4402,17 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.012 [sec] mq=83 out=2 out/sec=167
+#DONE 0.014 [sec] mq=83 out=2 out/sec=143
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.004 [sec] mq=84 out=0 out/sec=0
+#DONE 0.005 [sec] mq=84 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.006 [sec] mq=85 out=0 out/sec=0
+#DONE 0.005 [sec] mq=85 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4468,12 +4468,12 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query86.n3>].
 
-#DONE 0.011 [sec] mq=86 out=1 out/sec=91
+#DONE 0.013 [sec] mq=86 out=1 out/sec=77
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.006 [sec] mq=87 out=0 out/sec=0
+#DONE 0.005 [sec] mq=87 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4641,17 +4641,17 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query90.n3>].
 
-#DONE 0.011 [sec] mq=90 out=1 out/sec=91
+#DONE 0.010 [sec] mq=90 out=1 out/sec=100
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=91 out=0 out/sec=0
+#DONE 0.006 [sec] mq=91 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=92 out=0 out/sec=0
+#DONE 0.006 [sec] mq=92 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4801,7 +4801,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.013 [sec] mq=94 out=2 out/sec=154
+#DONE 0.014 [sec] mq=94 out=2 out/sec=143
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4862,7 +4862,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/queries/query96.n3>].
 
-#DONE 0.009 [sec] mq=96 out=1 out/sec=111
+#DONE 0.008 [sec] mq=96 out=1 out/sec=125
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -4956,7 +4956,7 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.012 [sec] mq=97 out=2 out/sec=167
+#DONE 0.013 [sec] mq=97 out=2 out/sec=154
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
@@ -5110,18 +5110,18 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mq/data.n3>].
 
-#DONE 0.016 [sec] mq=98 out=5 out/sec=313
+#DONE 0.017 [sec] mq=98 out=5 out/sec=294
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.004 [sec] mq=99 out=0 out/sec=0
+#DONE 0.005 [sec] mq=99 out=0 out/sec=0
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 PREFIX : <http://josd.github.io/eye/reasoning#>
 
-#DONE 0.005 [sec] mq=100 out=0 out/sec=0
+#DONE 0.004 [sec] mq=100 out=0 out/sec=0
 
-#2018-08-30T10:01:44.098Z in=100600 out=117 ent=0 step=0 brake=1 inf=5368699 sec=4.356 inf/sec=1232484
+#2018-08-30T11:23:25.891Z in=100600 out=117 ent=0 step=0 brake=1 inf=5367695 sec=4.895 inf/sec=1096567
 #ENDS
 

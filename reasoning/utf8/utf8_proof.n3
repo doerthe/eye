@@ -99,6 +99,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/utf8/utf8.n3>].
 
-#2018-08-30T10:02:01.840Z in=5 out=5 ent=5 step=5 brake=1 inf=25142 sec=0.079 inf/sec=318253
+#2018-08-30T11:23:51.775Z in=5 out=5 ent=5 step=5 brake=1 inf=25113 sec=0.077 inf/sec=326143
 #ENDS
 
