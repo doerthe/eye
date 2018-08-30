@@ -76,6 +76,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/de/de.n3>].
 
-#2018-08-26T09:35:26.310Z in=22 out=1 ent=6 step=18 brake=3 inf=24576 sec=0.083 inf/sec=296096
+#2018-08-30T10:01:05.253Z in=22 out=1 ent=6 step=18 brake=3 inf=24596 sec=0.081 inf/sec=303654
 #ENDS
 
