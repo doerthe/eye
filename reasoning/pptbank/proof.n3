@@ -80,6 +80,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/pptbank/checking.n3>].
 
-#2018-08-26T09:36:08.442Z in=34 out=1 ent=2 step=4 brake=1 inf=32946 sec=0.098 inf/sec=336184
+#2018-08-30T10:01:48.236Z in=34 out=1 ent=2 step=4 brake=1 inf=32930 sec=0.095 inf/sec=346632
 #ENDS
 

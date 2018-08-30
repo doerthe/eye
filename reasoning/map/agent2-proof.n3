@@ -295,6 +295,6 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/gps/gps-plugin.n3>].
 
-#2018-08-26T09:35:57.739Z in=309 out=1 ent=10 step=82 brake=4 inf=128088 sec=0.142 inf/sec=902028
+#2018-08-30T10:01:37.292Z in=309 out=1 ent=10 step=82 brake=4 inf=128088 sec=0.145 inf/sec=883366
 #ENDS
 

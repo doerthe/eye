@@ -107,6 +107,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/witch.n3>].
 
-#2018-08-26T09:36:22.465Z in=20 out=1 ent=7 step=25 brake=5 inf=26930 sec=0.079 inf/sec=340886
+#2018-08-30T10:02:02.098Z in=20 out=1 ent=7 step=25 brake=5 inf=26952 sec=0.075 inf/sec=359360
 #ENDS
 

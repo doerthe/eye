@@ -5060,6 +5060,6 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/djiti/proof-1000.n3>].
 
-#2018-08-26T09:35:31.752Z in=1686 out=92 ent=355 step=712 brake=2 inf=805049 sec=0.453 inf/sec=1777150
+#2018-08-30T10:01:10.671Z in=1686 out=92 ent=355 step=712 brake=2 inf=805049 sec=0.447 inf/sec=1801004
 #ENDS
 

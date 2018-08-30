@@ -361,6 +361,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/turing/turing.n3>].
 
-#2018-08-26T09:36:21.467Z in=57 out=1 ent=1 step=1 brake=1 inf=63540 sec=0.103 inf/sec=616893
+#2018-08-30T10:02:01.142Z in=57 out=1 ent=1 step=1 brake=1 inf=63560 sec=0.105 inf/sec=605333
 #ENDS
 
