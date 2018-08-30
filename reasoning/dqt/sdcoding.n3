@@ -1,4 +1,4 @@
-PREFIX dqt: <http://josd.github.io/eye/eyereasoning/dqt#>
+PREFIX dqt: <http://josd.github.io/eye/reasoning/dqt#>
 
 false dqt:r false.
 true dqt:r true.

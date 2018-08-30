@@ -1,8 +1,8 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/eyereasoning/fib/fib.n3 --query http://josd.github.io/eye/eyereasoning/fib/fibQ.n3
+#eye --tactic limited-answer 1 --n3 http://josd.github.io/eye/reasoning/fib/fib.n3 --query http://josd.github.io/eye/reasoning/fib/fibQ.n3
 
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
-PREFIX : <http://josd.github.io/eye/eyereasoning/fib/try#>
+PREFIX : <http://josd.github.io/eye/reasoning/fib/try#>
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
 
 [] a r:Proof, r:Conjunction;
@@ -33,7 +33,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(100) :fib ?x_0_1} => {(100) :fib ?x_0_1}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/fib/fibQ.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/fib/fibQ.n3>].
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -51,7 +51,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(?x_0_2) :fib ?x_1_2} <= {(?x_0_2 0 1) :fib ?x_1_2}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/fib/fib.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/fib/fib.n3>].
 
 <#lemma6> a r:Inference;
   r:gives {
@@ -72,7 +72,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
      (?x_2_3 ?x_3_3) math:sum ?x_4_3.
      (?x_1_3 ?x_3_3 ?x_4_3) :fib ?x_5_3}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/fib/fib.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/fib/fib.n3>].
 
 <#lemma8> a r:Inference;
   r:gives {
@@ -1251,7 +1251,7 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {(1 ?x_0_4 ?x_1_4) :fib ?x_1_4} <= true.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/fib/fib.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/fib/fib.n3>].
 
 #2018-08-26T09:35:49.506Z in=14 out=1 ent=1 step=1 brake=1 inf=149039 sec=0.139 inf/sec=1072223
 #ENDS

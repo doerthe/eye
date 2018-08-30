@@ -5,7 +5,7 @@ PREFIX food: <http://www.w3.org/2002/03owlt/miscellaneous/consistent002#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX log: <http://www.w3.org/2000/10/swap/log#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
-PREFIX p: <http://josd.github.io/eye/eyereasoning/preduction#>
+PREFIX p: <http://josd.github.io/eye/reasoning/preduction#>
 
 {?U_12 a food:EdibleThing} => {?U_12 a food:ConsumableThing}.
 {?U_25 a food:PotableLiquid} => {?U_25 a food:ConsumableThing}.

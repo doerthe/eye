@@ -1,8 +1,8 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --no-genid --n3 http://josd.github.io/eye/eyereasoning/witch/floatingwoman.n3 --proof http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3 --query http://josd.github.io/eye/eyereasoning/witch/floatingwoman-goal.n3
+#eye --no-genid --n3 http://josd.github.io/eye/reasoning/witch/floatingwoman.n3 --proof http://josd.github.io/eye/reasoning/witch/witch-proof.n3 --query http://josd.github.io/eye/reasoning/witch/floatingwoman-goal.n3
 
 PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
-PREFIX : <http://josd.github.io/eye/eyereasoning/witch#>
+PREFIX : <http://josd.github.io/eye/reasoning/witch#>
 
 [] a r:Proof, r:Conjunction;
   r:component <#lemma1>;
@@ -33,7 +33,7 @@ PREFIX : <http://josd.github.io/eye/eyereasoning/witch#>
   r:gives {
     {?x_0_1 a :FLOATINGWOMAN} => {?x_0_1 a :FLOATINGWOMAN}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/witch/floatingwoman-goal.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/floatingwoman-goal.n3>].
 
 <#lemma4> a r:Inference;
   r:gives {
@@ -62,19 +62,19 @@ PREFIX : <http://josd.github.io/eye/eyereasoning/witch#>
     {?x_0_2 a :FLOATS.
      ?x_0_2 a :WOMAN} => {?x_0_2 a :FLOATINGWOMAN}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/witch/floatingwoman.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/floatingwoman.n3>].
 
 <#lemma7> a r:Extraction;
   r:gives {
-    <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3#lemma9> a r:Inference.
+    <http://josd.github.io/eye/reasoning/witch/witch-proof.n3#lemma9> a r:Inference.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/witch-proof.n3>].
 
 <#lemma8> a r:Extraction;
   r:gives {
-    <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3#lemma9> r:gives {:GIRL a :FLOATS}.
+    <http://josd.github.io/eye/reasoning/witch/witch-proof.n3#lemma9> r:gives {:GIRL a :FLOATS}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/witch-proof.n3>].
 
 <#lemma9> a r:Extraction;
   r:gives {
@@ -86,15 +86,15 @@ PREFIX : <http://josd.github.io/eye/eyereasoning/witch#>
 
 <#lemma10> a r:Extraction;
   r:gives {
-    <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3#lemma5> a r:Extraction.
+    <http://josd.github.io/eye/reasoning/witch/witch-proof.n3#lemma5> a r:Extraction.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/witch-proof.n3>].
 
 <#lemma11> a r:Extraction;
   r:gives {
-    <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3#lemma5> r:gives {:GIRL a :WOMAN}.
+    <http://josd.github.io/eye/reasoning/witch/witch-proof.n3#lemma5> r:gives {:GIRL a :WOMAN}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/witch/witch-proof.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/witch/witch-proof.n3>].
 
 <#lemma12> a r:Extraction;
   r:gives {

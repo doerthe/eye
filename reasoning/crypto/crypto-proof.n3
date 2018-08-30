@@ -1,5 +1,5 @@
 #Processed by EYE v18.0515.2100 josd
-#eye --hmac-key k123 --n3 http://josd.github.io/eye/eyereasoning/crypto/cryptoP.n3 --pass
+#eye --hmac-key k123 --n3 http://josd.github.io/eye/reasoning/crypto/cryptoP.n3 --pass
 
 PREFIX crypto: <http://www.w3.org/2000/10/swap/crypto#>
 PREFIX e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>
@@ -80,19 +80,19 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   r:gives {
     {"blargh" crypto:sha ?x_0_2} => {:s1 :p ?x_0_2}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/crypto/cryptoP.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/crypto/cryptoP.n3>].
 
 <#lemma9> a r:Extraction;
   r:gives {
     {"blargh" e:sha ?x_0_3} => {:s2 :p ?x_0_3}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/crypto/cryptoP.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/crypto/cryptoP.n3>].
 
 <#lemma10> a r:Extraction;
   r:gives {
     {"blargh" e:hmac-sha ?x_0_4} => {:s3 :p ?x_0_4}.
   };
-  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/eyereasoning/crypto/cryptoP.n3>].
+  r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/crypto/cryptoP.n3>].
 
 #2018-08-26T09:35:24.480Z in=9 out=3 ent=6 step=12 brake=2 inf=27496 sec=0.079 inf/sec=348051
 #ENDS

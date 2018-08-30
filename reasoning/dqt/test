@@ -1,3 +1,3 @@
 #!/bin/bash
-eye "$@" --no-distinct-output --nope --n3 http://josd.github.io/eye/eyereasoning/dqt/sdcoding.n3 --query http://josd.github.io/eye/eyereasoning/dqt/sdcoding-q.n3 > sdcoding-a.n3
-eye "$@" --no-distinct-input --nope --n3 http://josd.github.io/eye/eyereasoning/dqt/sdcoding-a.n3 --query http://josd.github.io/eye/eyereasoning/dqt/sdcoding-query.n3 > sdcoding-answer.n3
+eye "$@" --no-distinct-output --nope --n3 http://josd.github.io/eye/reasoning/dqt/sdcoding.n3 --query http://josd.github.io/eye/reasoning/dqt/sdcoding-q.n3 > sdcoding-a.n3
+eye "$@" --no-distinct-input --nope --n3 http://josd.github.io/eye/reasoning/dqt/sdcoding-a.n3 --query http://josd.github.io/eye/reasoning/dqt/sdcoding-query.n3 > sdcoding-answer.n3

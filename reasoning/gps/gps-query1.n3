@@ -1,5 +1,5 @@
-PREFIX gps: <http://josd.github.io/eye/eyereasoning/gps/gps-schema#>
-PREFIX : <http://josd.github.io/eye/eyereasoning#>
+PREFIX gps: <http://josd.github.io/eye/reasoning/gps/gps-schema#>
+PREFIX : <http://josd.github.io/eye/reasoning#>
 PREFIX math: <http://www.w3.org/2000/10/swap/math#>
 
 {
