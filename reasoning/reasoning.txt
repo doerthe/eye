@@ -1991,11 +1991,11 @@ reasoning 36 [msec cputime] 36 [msec walltime]
 2018-08-30T10:02:02.507Z in=97 out=1 ent=9 step=43 brake=3 inf=41122 sec=0.111 inf/sec=370468
 
 ~/github.com/josd/eye/reasoning ~/github.com/josd/eye/reasoning
-eye --n3 eyereasoning.diff --pass
+eye --n3 reasoning.diff --pass
 EYE v18.0515.2100 josd
 SWI-Prolog 7.7.18 (x86_64-linux): Aug 23 2018, 12:57:49
 starting 62 [msec cputime] 81 [msec walltime]
-GET file:///home/jdroo/github.com/josd/eye/reasoning/eyereasoning.diff translating file:///home/jdroo/github.com/josd/eye/reasoning/eyereasoning.diff
+GET file:///home/jdroo/github.com/josd/eye/reasoning/reasoning.diff translating file:///home/jdroo/github.com/josd/eye/reasoning/reasoning.diff
 Done: translated 0 triples
 SC=0
 networking 2 [msec cputime] 4 [msec walltime]
