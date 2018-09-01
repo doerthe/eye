@@ -1,0 +1,88 @@
+PREFIX dqc: <http://josd.github.io/eye/reasoning/dqc#>
+
+false dqc:r false.
+true dqc:r true.
+
+false dqc:s true.
+true dqc:s false.
+
+false dqc:u false.
+false dqc:u true.
+true dqc:u true.
+
+false dqc:v false.
+false dqc:v true.
+true dqc:v false.
+
+false dqc:rd true.
+true dqc:rd false.
+true dqc:rd true.
+
+false dqc:sd false.
+true dqc:sd false.
+true dqc:sd true.
+
+false dqc:ud true.
+true dqc:ud false.
+
+false dqc:vd false.
+true dqc:vd true.
+
+false dqc:eq false.
+true dqc:eq true.
+
+false dqc:id false.
+true dqc:id true.
+
+false dqc:g true.
+true dqc:g false.
+
+false dqc:k false.
+true dqc:k false.
+true dqc:k true.
+
+{?X dqc:gk ?Y} <= {
+	?X dqc:g ?Z.
+	?Z dqc:k ?Y.
+}.
+
+{0 dqc:alice (?X ?Y)} <= {
+	?X dqc:id ?Y.
+}.
+{1 dqc:alice (?X ?Y)} <= {
+	?X dqc:g ?Y.
+}.
+{2 dqc:alice (?X ?Y)} <= {
+	?X dqc:k ?Y.
+}.
+{3 dqc:alice (?X ?Y)} <= {
+	?X dqc:gk ?Y.
+}.
+
+{?N dqc:sdcoding ?M} <= {
+	?X dqc:r ?Y.
+	?N dqc:alice (?X ?B).
+	(?B ?Y) dqc:measure ?M.
+}.
+
+{(?S1 ?S2) dqc:measure 0} <= {
+	?B1 dqc:rd ?B2.
+	(?B1 ?B2) dqc:dotP (?S1 ?S2).
+}.
+{(?S1 ?S2) dqc:measure 1} <= {
+	?B1 dqc:sd ?B2.
+	(?B1 ?B2) dqc:dotP (?S1 ?S2).
+}.
+{(?S1 ?S2) dqc:measure 2} <= {
+	?B1 dqc:ud ?B2.
+	(?B1 ?B2) dqc:dotP (?S1 ?S2).
+}.
+{(?S1 ?S2) dqc:measure 3} <= {
+	?B1 dqc:vd ?B2.
+	(?B1 ?B2) dqc:dotP (?S1 ?S2).
+}.
+
+{(?B1 ?B2) dqc:dotP (?S1 ?S2)} <= {
+	?B1 dqc:eq ?S1.
+	?B2 dqc:eq ?S2.
+}.
