@@ -69,6 +69,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/socrates/socrates.n3>].
 
-#2018-08-30T11:23:43.575Z in=9 out=2 ent=3 step=6 brake=2 inf=22018 sec=0.078 inf/sec=282282
+#2018-09-01T23:15:16.150Z in=9 out=2 ent=3 step=6 brake=2 inf=21878 sec=0.038 inf/sec=575737
 #ENDS
 

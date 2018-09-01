@@ -158,6 +158,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/graph/graph.axiom.n3>].
 
-#2018-08-30T11:23:11.223Z in=171 out=1 ent=24 step=70 brake=2 inf=39776 sec=0.092 inf/sec=432348
+#2018-09-01T23:14:57.232Z in=171 out=1 ent=24 step=70 brake=2 inf=39633 sec=0.041 inf/sec=966659
 #ENDS
 

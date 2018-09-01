@@ -252,6 +252,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/resto/resto.n3>].
 
-#2018-08-30T11:23:36.460Z in=78 out=4 ent=47 step=7 brake=1 inf=56474 sec=0.099 inf/sec=570444
+#2018-09-01T23:15:11.721Z in=78 out=4 ent=47 step=7 brake=1 inf=56331 sec=0.046 inf/sec=1224587
 #ENDS
 
