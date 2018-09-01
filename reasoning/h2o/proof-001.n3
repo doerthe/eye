@@ -58,6 +58,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/h2o/rules-001.n3>].
 
-#2018-08-30T11:23:12.068Z in=16 out=1 ent=6 step=12 brake=2 inf=27609 sec=0.087 inf/sec=317345
+#2018-09-01T23:14:57.868Z in=16 out=1 ent=6 step=12 brake=2 inf=27467 sec=0.036 inf/sec=762972
 #ENDS
 

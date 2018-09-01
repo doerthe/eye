@@ -113,6 +113,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/csv/select-data-extra.n3>].
 
-#2018-08-30T11:22:35.647Z in=17 out=5 ent=5 step=5 brake=2 inf=48521 sec=0.106 inf/sec=457745
+#2018-09-01T23:14:38.970Z in=17 out=5 ent=5 step=5 brake=2 inf=48159 sec=0.047 inf/sec=1024660
 #ENDS
 

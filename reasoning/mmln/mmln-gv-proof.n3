@@ -1538,6 +1538,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/mmln/mmln-plugin.n3>].
 
-#2018-08-30T11:23:20.529Z in=1546 out=47 ent=105 step=330 brake=4 inf=1536748 sec=1.029 inf/sec=1493438
+#2018-09-01T23:15:02.504Z in=1546 out=47 ent=105 step=330 brake=4 inf=1536624 sec=0.257 inf/sec=5979082
 #ENDS
 

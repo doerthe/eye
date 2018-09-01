@@ -151,6 +151,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/numeral/numeral.n3>].
 
-#2018-08-30T11:23:28.344Z in=8 out=8 ent=8 step=8 brake=1 inf=31307 sec=0.078 inf/sec=401372
+#2018-09-01T23:15:05.781Z in=8 out=8 ent=8 step=8 brake=1 inf=31187 sec=0.042 inf/sec=742548
 #ENDS
 

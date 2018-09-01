@@ -2149,6 +2149,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/rs/randomsample-rule.n3>].
 
-#2018-08-30T11:23:42.193Z in=1013 out=1 ent=1 step=1 brake=1 inf=1396629 sec=0.639 inf/sec=2185648
+#2018-09-01T23:15:15.114Z in=1013 out=1 ent=1 step=1 brake=1 inf=1396485 sec=0.218 inf/sec=6405894
 #ENDS
 

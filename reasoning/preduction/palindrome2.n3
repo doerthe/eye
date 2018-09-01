@@ -13,6 +13,6 @@ PREFIX : <http://josd.github.io/eye/reasoning#>
 {(?U_15 :pop ?U_16) :palindrome true} <= {?U_15 e:firstRest (?U_17 ?U_18). ?U_16 e:firstRest (?U_17 ?U_19). (?U_18 :pop ?U_19) :palindrome true}.
 (() :pop ()) :palindrome true.
 
-#2018-08-30T11:23:31.835Z in=88 out=6 ent=6 step=6 brake=1 inf=27070 sec=0.076 inf/sec=356184
+#2018-09-01T23:15:07.719Z in=88 out=6 ent=6 step=6 brake=1 inf=26948 sec=0.025 inf/sec=1077920
 #ENDS
 

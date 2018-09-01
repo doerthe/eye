@@ -120,6 +120,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/skos/skos-mapping-sample-snomed-icd10.n3>].
 
-#2018-08-30T11:23:43.015Z in=288 out=1 ent=12 step=28 brake=2 inf=40214 sec=0.098 inf/sec=410347
+#2018-09-01T23:15:15.716Z in=288 out=1 ent=12 step=28 brake=2 inf=40072 sec=0.047 inf/sec=852596
 #ENDS
 

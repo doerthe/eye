@@ -185,6 +185,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/n3p/literals.ttl>].
 
-#2018-08-30T11:23:26.866Z in=10 out=10 ent=10 step=10 brake=1 inf=29655 sec=0.080 inf/sec=370688
+#2018-09-01T23:15:04.672Z in=10 out=10 ent=10 step=10 brake=1 inf=29534 sec=0.033 inf/sec=894970
 #ENDS
 

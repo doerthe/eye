@@ -1016,6 +1016,6 @@ PREFIX r: <http://www.w3.org/2000/10/swap/reason#>
   };
   r:because [ a r:Parsing; r:source <http://josd.github.io/eye/reasoning/easter/easterP.n3>].
 
-#2018-08-30T11:22:54.074Z in=57 out=16 ent=32 step=64 brake=2 inf=200689 sec=0.157 inf/sec=1278274
+#2018-09-01T23:14:48.481Z in=57 out=16 ent=32 step=64 brake=2 inf=200546 sec=0.056 inf/sec=3581179
 #ENDS
 
