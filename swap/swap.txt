@@ -1,6 +1,3 @@
-# ======================================================
-# testing eye.py http://josd.github.io/eye/swap/graph.n3
-# ======================================================
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -12,9 +9,7 @@
 :case001 :instantiate (:takeRoad :Lemans :Angers).
 :case001 :instantiate (:takeRoad :Lemans :Tours).
 
-# =======================================================
-# testing eye.py http://josd.github.io/eye/swap/grapht.n3
-# =======================================================
+#ENDS http://josd.github.io/eye/swap/graph.n3 [16 triples] [61 steps/0.20285677909851074 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -28,9 +23,7 @@
 :Chartres :path :Nantes.
 :Paris :path :Nantes.
 
-# =====================================================
-# testing eye.py http://josd.github.io/eye/swap/list.n3
-# =====================================================
+#ENDS http://josd.github.io/eye/swap/grapht.n3 [14 triples] [101 steps/0.22046661376953125 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -55,9 +48,7 @@
 
 ((:a :b :c :d :e :f :g) (:g :f :b :e)) :difference (:a :c :d).
 
-# =========================================================
-# testing eye.py http://josd.github.io/eye/swap/socrates.n3
-# =========================================================
+#ENDS http://josd.github.io/eye/swap/list.n3 [13 triples] [218 steps/0.2297055721282959 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -69,9 +60,7 @@
 :Socrates a :Mortal.
 :Tim a :Mortal.
 
-# =====================================================
-# testing eye.py http://josd.github.io/eye/swap/tree.n3
-# =====================================================
+#ENDS http://josd.github.io/eye/swap/socrates.n3 [3 triples] [8 steps/0.2520906925201416 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -91,9 +80,7 @@
 :Veerle :descendant :Frans.
 :Veerle :descendant :Maria.
 
-# =========================================================
-# testing eye.py http://josd.github.io/eye/swap/einstein.n3
-# =========================================================
+#ENDS http://josd.github.io/eye/swap/tree.n3 [16 triples] [341 steps/0.227799654006958 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -104,9 +91,19 @@
 
 :german :eats :fish.
 
-# ===========================================================
-# testing eye.py http://www.agfa.com/w3c/euler/example003P.n3
-# ===========================================================
+#ENDS http://josd.github.io/eye/swap/einstein.n3 [18 triples] [191 steps/0.5071094036102295 sec]
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix : <http://josd.github.io/eye/swap/xanthippe#>.
+
+:Xanthippe a (:Mortal :Woman).
+
+#ENDS http://josd.github.io/eye/swap/xanthippe.n3 [5 triples] [26 steps/0.27741241455078125 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -127,9 +124,7 @@
 (:Ann :AdultAgeOrIncreasedIntraocularPressure) rpo:mu 0.7222222222222227.
 (:Ann :NonIncreasedIntraocularPressure) rpo:mu 0.27777777777777735.
 
-# ====================================================
-# testing eye.py http://www.agfa.com/w3c/euler/medI.n3
-# ====================================================
+#ENDS http://www.agfa.com/w3c/euler/example003P.n3 [61 triples] [369 steps/0.13439631462097168 sec]
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
@@ -144,17 +139,4 @@
 
 :Ann :isPrescribed :aspirin.
 
-# ==========================================================
-# testing eye.py http://josd.github.io/eye/swap/xanthippe.n3
-# ==========================================================
-@prefix log: <http://www.w3.org/2000/10/swap/log#>.
-@prefix math: <http://www.w3.org/2000/10/swap/math#>.
-@prefix owl: <http://www.w3.org/2002/07/owl#>.
-@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#>.
-@prefix : <http://josd.github.io/eye/swap/xanthippe#>.
-
-:Xanthippe a (:Mortal :Woman).
-
+#ENDS http://www.agfa.com/w3c/euler/medI.n3 [54 triples] [52 steps/0.08850312232971191 sec]

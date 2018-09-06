@@ -464,20 +464,17 @@ def run(args):
     print()
     for g in goals:
         print(prove(g, rules, why, once, count))
-
+    sys.stdout.flush()
+    
     sys.stderr.write('#ENDS %s [%s triples] [%s steps/%s sec]\n' %
           (args[-1], triple, step[0], time.time()-ts))
+    sys.stderr.flush()
 
 def _test():
     import doctest
     doctest.testmod()
 
 if __name__ == '__main__':
-    try:
-        import psyco
-        if str(sys.modules['__main__']).find('profile.py') == -1: psyco.full()
-    except ImportError: pass
-
     if '--test' in sys.argv:
         _test()
         sys.exit(0)
