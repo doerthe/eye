@@ -7,7 +7,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+@prefix : <http://josd.github.io/eye/swap/graph#>.
 
 :case001 :instantiate (:takeRoad :Lemans :Angers).
 :case001 :instantiate (:takeRoad :Lemans :Tours).
@@ -21,7 +21,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+@prefix : <http://josd.github.io/eye/swap/graph#>.
 
 :Angers :path :Nantes.
 :Lemans :path :Nantes.
@@ -37,18 +37,17 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/list#>.
+@prefix : <http://josd.github.io/eye/swap/list#>.
 
-:a list:in (:a :b :c :d :e :f :g).
-:b list:in (:a :b :c :d :e :f :g).
-:c list:in (:a :b :c :d :e :f :g).
-:d list:in (:a :b :c :d :e :f :g).
-:e list:in (:a :b :c :d :e :f :g).
-:f list:in (:a :b :c :d :e :f :g).
-:g list:in (:a :b :c :d :e :f :g).
+:a :in (:a :b :c :d :e :f :g).
+:b :in (:a :b :c :d :e :f :g).
+:c :in (:a :b :c :d :e :f :g).
+:d :in (:a :b :c :d :e :f :g).
+:e :in (:a :b :c :d :e :f :g).
+:f :in (:a :b :c :d :e :f :g).
+:g :in (:a :b :c :d :e :f :g).
 
-:g list:last (:a :b :c :d :e :f :g).
+:g :last (:a :b :c :d :e :f :g).
 
 (:a :b :c :d :e :f :g) :length 7.0.
 
@@ -65,7 +64,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/socrates#>.
+@prefix : <http://josd.github.io/eye/swap/socrates#>.
 
 :Socrates a :Mortal.
 :Tim a :Mortal.
@@ -79,7 +78,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/tree#>.
+@prefix : <http://josd.github.io/eye/swap/tree#>.
 
 :Frans :ancestor :Jos.
 :Frans :ancestor :Goedele.
@@ -101,7 +100,7 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/einstein#>.
+@prefix : <http://josd.github.io/eye/swap/einstein#>.
 
 :german :eats :fish.
 
@@ -155,7 +154,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/xanthippe#>.
+@prefix : <http://josd.github.io/eye/swap/xanthippe#>.
 
 :Xanthippe a (:Mortal :Woman).
 
