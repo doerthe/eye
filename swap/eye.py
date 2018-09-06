@@ -51,7 +51,7 @@ class Triple:
                 pcs = tokenize(s[1:-1], '/')
                 if len(pcs) == 2:
                     self.arc = '.'
-                    self.nodes = list(map(Triple, list(map(string.strip, pcs))))
+                    self.nodes = list(map(Triple, list(map(str.strip, pcs))))
                 else:
                     pcs = tokenize(s[1:-1], ' ')
                     pcs.reverse()
