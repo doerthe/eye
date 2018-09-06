@@ -1,14 +1,13 @@
 @prefix math: <http://www.w3.org/2000/10/swap/math#>.
 @prefix log: <http://www.w3.org/2000/10/swap/log#>.
-@prefix list: <http://www.w3.org/2000/10/swap/list#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/list#>.
+@prefix : <http://josd.github.io/eye/swap/list#>.
 
-{?L rdf:first ?I} => {?I list:in ?L}.
-{?L rdf:rest ?R. ?I list:in ?R} => {?I list:in ?L}.
+{?L rdf:first ?I} => {?I :in ?L}.
+{?L rdf:rest ?R. ?I :in ?R} => {?I :in ?L}.
 
-{?L rdf:rest (). ?L rdf:first ?I} => {?I list:last ?L}.
-{?L rdf:rest ?R. ?I list:last ?R} => {?I list:last ?L}.
+{?L rdf:rest (). ?L rdf:first ?I} => {?I :last ?L}.
+{?L rdf:rest ?R. ?I :last ?R} => {?I :last ?L}.
 
 () :length 0.
 {?L rdf:rest ?T. ?T :length ?M. (?M 1) math:sum ?N} => {?L :length ?N}.
@@ -23,8 +22,8 @@
 (?L ()) :difference ?L.
 {(?L1 ?A) :remove ?R. (?R ?L2) :difference ?L} => {(?L1 (?A/?L2)) :difference ?L}.
 
-{?X list:in (:a :b :c :d :e :f :g)} => [].
-{?X list:last (:a :b :c :d :e :f :g)} => [].
+{?X :in (:a :b :c :d :e :f :g)} => [].
+{?X :last (:a :b :c :d :e :f :g)} => [].
 {(:a :b :c :d :e :f :g) :length ?X} => [].
 {((:a :b :c) (:d :e :f :g)) :sum ?X} => [].
 {((:a :b :c :d :e :f :g) (:g :f :b :e)) :difference ?X} => [].
