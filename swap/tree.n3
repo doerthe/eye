@@ -1,4 +1,4 @@
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/tree#>.
+@prefix : <http://josd.github.io/eye/swap/tree#>.
 
 :Frans :father :Jos.
 :Maria :mother :Jos.

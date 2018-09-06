@@ -1,4 +1,4 @@
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/socrates#>.
+@prefix : <http://josd.github.io/eye/swap/socrates#>.
 
 :Socrates a :Man.
 :Tim a :Man.

@@ -1,6 +1,6 @@
 @prefix owl: <http://www.w3.org/2002/07/owl#>.
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+@prefix : <http://josd.github.io/eye/swap/graph#>.
 
 :Paris :oneway :Orleans.
 :Paris :oneway :Chartres.

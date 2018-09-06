@@ -1,6 +1,6 @@
 @prefix list: <http://www.w3.org/2000/10/swap/list#>.
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
-@prefix : <http://eulersharp.sourceforge.net/2005/11swap/xanthippe#>.
+@prefix : <http://josd.github.io/eye/swap/xanthippe#>.
 
 :me :says ((:Tim a :Man) (:Dan a :Man)).
 :he :says ((:Socrates a :Man) (:Xanthippe a :Woman)).
