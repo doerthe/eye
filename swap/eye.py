@@ -1,5 +1,12 @@
 #!/usr/bin/python3
 
+# -----------------------------
+# SWAP EYE Python -- Jos De Roo
+# -----------------------------
+#
+# See http://github.com/josd/eye/swap
+#
+
 import copy, math, string, sys, time, urllib.request, urllib.error, urllib.parse
 
 class Triple:
@@ -476,5 +483,5 @@ if __name__ == '__main__':
         sys.exit(0)
 
     if len(sys.argv) == 1:
-        print('Usage: python euler.py [--why] [--once] [--debug] triples')
+        print('Usage: eye.py [--why] [--once] [--debug] triples')
     else: run(sys.argv[1:])
