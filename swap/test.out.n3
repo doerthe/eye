@@ -1,0 +1,304 @@
+# =====================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/graph.n3
+# =====================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+:case001 :instantiate (:takeRoad :Lemans :Angers).
+:case001 :instantiate (:takeRoad :Lemans :Tours).
+
+# ===========================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/graph.n3
+# ===========================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+{:case001 :wantGo (:Paris :Nantes). :case001 :onRoad (:Chartres :Lemans). :Lemans :oneway :Angers. {:Angers :oneway :Nantes} => {:Angers :path :Nantes}} => {:case001 :instantiate (:takeRoad :Lemans :Angers)}.
+{:case001 :wantGo (:Paris :Nantes). :case001 :onRoad (:Chartres :Lemans). :Lemans :oneway :Tours. {{:Tours :oneway :Lemans} => {:Tours :path :Lemans}. {{:Lemans :oneway :Angers} => {:Lemans :path :Angers}. {:Angers :oneway :Nantes} => {:Angers :path :Nantes}} => {:Lemans :path :Nantes}} => {:Tours :path :Nantes}} => {:case001 :instantiate (:takeRoad :Lemans :Tours)}.
+
+# ======================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/grapht.n3
+# ======================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+:Angers :path :Nantes.
+:Lemans :path :Nantes.
+:Chartres :path :Nantes.
+:Paris :path :Nantes.
+
+# ============================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/grapht.n3
+# ============================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/graph#>.
+{:oneway rdfs:subPropertyOf :path. (:Angers :oneway :Nantes)} => {(:Angers :path :Nantes)}.
+{:path a owl:TransitiveProperty. {:oneway rdfs:subPropertyOf :path. (:Angers :oneway :Nantes)} => {(:Angers :path :Nantes)}. {:oneway rdfs:subPropertyOf :path. (:Lemans :oneway :Angers)} => {(:Lemans :path :Angers)}} => {(:Lemans :path :Nantes)}.
+{:path a owl:TransitiveProperty. {:oneway rdfs:subPropertyOf :path. (:Angers :oneway :Nantes)} => {(:Angers :path :Nantes)}. {:path a owl:TransitiveProperty. {:oneway rdfs:subPropertyOf :path. (:Lemans :oneway :Angers)} => {(:Lemans :path :Angers)}. {:oneway rdfs:subPropertyOf :path. (:Chartres :oneway :Lemans)} => {(:Chartres :path :Lemans)}} => {(:Chartres :path :Angers)}} => {(:Chartres :path :Nantes)}.
+{:path a owl:TransitiveProperty. {:oneway rdfs:subPropertyOf :path. (:Angers :oneway :Nantes)} => {(:Angers :path :Nantes)}. {:path a owl:TransitiveProperty. {:oneway rdfs:subPropertyOf :path. (:Lemans :oneway :Angers)} => {(:Lemans :path :Angers)}. {:path a owl:TransitiveProperty. {:oneway rdfs:subPropertyOf :path. (:Chartres :oneway :Lemans)} => {(:Chartres :path :Lemans)}. {:oneway rdfs:subPropertyOf :path. (:Paris :oneway :Chartres)} => {(:Paris :path :Chartres)}} => {(:Paris :path :Lemans)}} => {(:Paris :path :Angers)}} => {(:Paris :path :Nantes)}.
+
+# ====================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/list.n3
+# ====================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/list#>.
+:a list:in (:a :b :c :d :e :f :g).
+:b list:in (:a :b :c :d :e :f :g).
+:c list:in (:a :b :c :d :e :f :g).
+:d list:in (:a :b :c :d :e :f :g).
+:e list:in (:a :b :c :d :e :f :g).
+:f list:in (:a :b :c :d :e :f :g).
+:g list:in (:a :b :c :d :e :f :g).
+
+:g list:last (:a :b :c :d :e :f :g).
+
+(:a :b :c :d :e :f :g) :length 7.0.
+
+((:a :b :c) (:d :e :f :g)) :sum (:a :b :c :d :e :f :g).
+
+((:a :b :c :d :e :f :g) (:g :f :b :e)) :difference (:a :c :d).
+
+# ==========================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/list.n3
+# ==========================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/list#>.
+{(:a :b :c :d :e :f :g) rdf:first :a} => {:a list:in (:a :b :c :d :e :f :g)}.
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:first :b} => {:b list:in (:b :c :d :e :f :g)}} => {:b list:in (:a :b :c :d :e :f :g)}.
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:first :c} => {:c list:in (:c :d :e :f :g)}} => {:c list:in (:b :c :d :e :f :g)}} => {:c list:in (:a :b :c :d :e :f :g)}.
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:rest (:d :e :f :g). {(:d :e :f :g) rdf:first :d} => {:d list:in (:d :e :f :g)}} => {:d list:in (:c :d :e :f :g)}} => {:d list:in (:b :c :d :e :f :g)}} => {:d list:in (:a :b :c :d :e :f :g)}.
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:rest (:d :e :f :g). {(:d :e :f :g) rdf:rest (:e :f :g). {(:e :f :g) rdf:first :e} => {:e list:in (:e :f :g)}} => {:e list:in (:d :e :f :g)}} => {:e list:in (:c :d :e :f :g)}} => {:e list:in (:b :c :d :e :f :g)}} => {:e list:in (:a :b :c :d :e :f :g)}.
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:rest (:d :e :f :g). {(:d :e :f :g) rdf:rest (:e :f :g). {(:e :f :g) rdf:rest (:f :g). {(:f :g) rdf:first :f} => {:f list:in (:f :g)}} => {:f list:in (:e :f :g)}} => {:f list:in (:d :e :f :g)}} => {:f list:in (:c :d :e :f :g)}} => {:f list:in (:b :c :d :e :f :g)}} => {:f list:in (:a :b :c :d :e :f :g)}.
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:rest (:d :e :f :g). {(:d :e :f :g) rdf:rest (:e :f :g). {(:e :f :g) rdf:rest (:f :g). {(:f :g) rdf:rest (:g). {(:g) rdf:first :g} => {:g list:in (:g)}} => {:g list:in (:f :g)}} => {:g list:in (:e :f :g)}} => {:g list:in (:d :e :f :g)}} => {:g list:in (:c :d :e :f :g)}} => {:g list:in (:b :c :d :e :f :g)}} => {:g list:in (:a :b :c :d :e :f :g)}.
+
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:rest (:d :e :f :g). {(:d :e :f :g) rdf:rest (:e :f :g). {(:e :f :g) rdf:rest (:f :g). {(:f :g) rdf:rest (:g). {(:g) rdf:rest (). (:g) rdf:first :g} => {:g list:last (:g)}} => {:g list:last (:f :g)}} => {:g list:last (:e :f :g)}} => {:g list:last (:d :e :f :g)}} => {:g list:last (:c :d :e :f :g)}} => {:g list:last (:b :c :d :e :f :g)}} => {:g list:last (:a :b :c :d :e :f :g)}.
+
+{(:a :b :c :d :e :f :g) rdf:rest (:b :c :d :e :f :g). {(:b :c :d :e :f :g) rdf:rest (:c :d :e :f :g). {(:c :d :e :f :g) rdf:rest (:d :e :f :g). {(:d :e :f :g) rdf:rest (:e :f :g). {(:e :f :g) rdf:rest (:f :g). {(:f :g) rdf:rest (:g). {(:g) rdf:rest (). () :length 0. (0 1) math:sum 1.0} => {(:g) :length 1.0}. (1.0 1) math:sum 2.0} => {(:f :g) :length 2.0}. (2.0 1) math:sum 3.0} => {(:e :f :g) :length 3.0}. (3.0 1) math:sum 4.0} => {(:d :e :f :g) :length 4.0}. (4.0 1) math:sum 5.0} => {(:c :d :e :f :g) :length 5.0}. (5.0 1) math:sum 6.0} => {(:b :c :d :e :f :g) :length 6.0}. (6.0 1) math:sum 7.0} => {(:a :b :c :d :e :f :g) :length 7.0}.
+
+{{{(() (:d :e :f :g)) :sum (:d :e :f :g)} => {((:c) (:d :e :f :g)) :sum (:c :d :e :f :g)}} => {((:b :c) (:d :e :f :g)) :sum (:b :c :d :e :f :g)}} => {((:a :b :c) (:d :e :f :g)) :sum (:a :b :c :d :e :f :g)}.
+
+{{:g log:notEqualTo :a. {:g log:notEqualTo :b. {:g log:notEqualTo :c. {:g log:notEqualTo :d. {:g log:notEqualTo :e. {:g log:notEqualTo :f. {(() :g) :remove ()} => {((:g) :g) :remove ()}} => {((:f :g) :g) :remove (:f)}} => {((:e :f :g) :g) :remove (:e :f)}} => {((:d :e :f :g) :g) :remove (:d :e :f)}} => {((:c :d :e :f :g) :g) :remove (:c :d :e :f)}} => {((:b :c :d :e :f :g) :g) :remove (:b :c :d :e :f)}} => {((:a :b :c :d :e :f :g) :g) :remove (:a :b :c :d :e :f)}. {{:f log:notEqualTo :a. {:f log:notEqualTo :b. {:f log:notEqualTo :c. {:f log:notEqualTo :d. {:f log:notEqualTo :e. {(() :f) :remove ()} => {((:f) :f) :remove ()}} => {((:e :f) :f) :remove (:e)}} => {((:d :e :f) :f) :remove (:d :e)}} => {((:c :d :e :f) :f) :remove (:c :d :e)}} => {((:b :c :d :e :f) :f) :remove (:b :c :d :e)}} => {((:a :b :c :d :e :f) :f) :remove (:a :b :c :d :e)}. {{:b log:notEqualTo :a. {{:b log:notEqualTo :c. {:b log:notEqualTo :d. {:b log:notEqualTo :e. (() :b) :remove ()} => {((:e) :b) :remove (:e)}} => {((:d :e) :b) :remove (:d :e)}} => {((:c :d :e) :b) :remove (:c :d :e)}} => {((:b :c :d :e) :b) :remove (:c :d :e)}} => {((:a :b :c :d :e) :b) :remove (:a :c :d :e)}. {{:e log:notEqualTo :a. {:e log:notEqualTo :c. {:e log:notEqualTo :d. {(() :e) :remove ()} => {((:e) :e) :remove ()}} => {((:d :e) :e) :remove (:d)}} => {((:c :d :e) :e) :remove (:c :d)}} => {((:a :c :d :e) :e) :remove (:a :c :d)}. ((:a :c :d) ()) :difference (:a :c :d)} => {((:a :c :d :e) (:e)) :difference (:a :c :d)}} => {((:a :b :c :d :e) (:b :e)) :difference (:a :c :d)}} => {((:a :b :c :d :e :f) (:f :b :e)) :difference (:a :c :d)}} => {((:a :b :c :d :e :f :g) (:g :f :b :e)) :difference (:a :c :d)}.
+
+# ========================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/socrates.n3
+# ========================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/socrates#>.
+:Socrates a :Mortal.
+:Tim a :Mortal.
+
+# ==============================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/socrates.n3
+# ==============================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/socrates#>.
+{:Socrates a :Man} => {:Socrates a :Mortal}.
+{:Tim a :Man} => {:Tim a :Mortal}.
+
+# ====================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/tree.n3
+# ====================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/tree#>.
+:Frans :ancestor :Jos.
+:Frans :ancestor :Goedele.
+:Frans :ancestor :Veerle.
+:Frans :ancestor :Nele.
+:Frans :ancestor :Karel.
+
+:Veerle :descendant :Jos.
+:Veerle :descendant :Maaike.
+:Veerle :descendant :Frans.
+:Veerle :descendant :Maria.
+
+# ==========================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/tree.n3
+# ==========================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/tree#>.
+{{:Frans :father :Jos} => {:Frans :parent :Jos}} => {:Frans :ancestor :Jos}.
+{{{:Frans :father :Jos} => {:Frans :parent :Jos}} => {:Frans :ancestor :Jos}. {{:Jos :father :Goedele} => {:Jos :parent :Goedele}} => {:Jos :ancestor :Goedele}} => {:Frans :ancestor :Goedele}.
+{{{:Frans :father :Jos} => {:Frans :parent :Jos}} => {:Frans :ancestor :Jos}. {{:Jos :father :Veerle} => {:Jos :parent :Veerle}} => {:Jos :ancestor :Veerle}} => {:Frans :ancestor :Veerle}.
+{{{:Frans :father :Jos} => {:Frans :parent :Jos}} => {:Frans :ancestor :Jos}. {{:Jos :father :Nele} => {:Jos :parent :Nele}} => {:Jos :ancestor :Nele}} => {:Frans :ancestor :Nele}.
+{{{:Frans :father :Jos} => {:Frans :parent :Jos}} => {:Frans :ancestor :Jos}. {{:Jos :father :Karel} => {:Jos :parent :Karel}} => {:Jos :ancestor :Karel}} => {:Frans :ancestor :Karel}.
+
+{{{:Jos :father :Veerle} => {:Jos :parent :Veerle}} => {:Jos :ancestor :Veerle}} => {:Veerle :descendant :Jos}.
+{{{:Maaike :mother :Veerle} => {:Maaike :parent :Veerle}} => {:Maaike :ancestor :Veerle}} => {:Veerle :descendant :Maaike}.
+{{{{:Frans :father :Jos} => {:Frans :parent :Jos}} => {:Frans :ancestor :Jos}. {{:Jos :father :Veerle} => {:Jos :parent :Veerle}} => {:Jos :ancestor :Veerle}} => {:Frans :ancestor :Veerle}} => {:Veerle :descendant :Frans}.
+{{{{:Maria :mother :Jos} => {:Maria :parent :Jos}} => {:Maria :ancestor :Jos}. {{:Jos :father :Veerle} => {:Jos :parent :Veerle}} => {:Jos :ancestor :Veerle}} => {:Maria :ancestor :Veerle}} => {:Veerle :descendant :Maria}.
+
+# ========================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/einstein.n3
+# ========================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/einstein#>.
+:german :eats :fish.
+
+# ==============================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/einstein.n3
+# ==============================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/einstein#>.
+{((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea ?C2) (?N3 ?P3 ?S3 :milk ?C3) (?N4 ?P4 ?S4 ?D4 ?C4) (?N5 ?P5 ?S5 ?D5 ?C5)) :item (:dane ?P2 ?S2 :tea ?C2). ((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea ?C2) (?N3 ?P3 ?S3 :milk ?C3) (?N4 ?P4 ?S4 ?D4 ?C4) (:swede :dog ?S5 ?D5 ?C5)) :item (:swede :dog ?S5 ?D5 ?C5). ((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea ?C2) (:brit ?P3 ?S3 :milk :red) (?N4 ?P4 ?S4 ?D4 ?C4) (:swede :dog ?S5 ?D5 ?C5)) :item (:brit ?P3 ?S3 :milk :red). ((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea ?C2) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans ?D4 ?C4) (:swede :dog ?S5 ?D5 ?C5)) :item (:german ?P4 :rothmans ?D4 ?C4). ((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea :blue) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans ?D4 ?C4) (:swede :dog ?S5 ?D5 ?C5)) :near ((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea :blue)). ((:norwegian ?P1 ?S1 ?D1 ?C1) (:dane ?P2 ?S2 :tea :blue) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans ?D4 :green) (:swede :dog ?S5 ?D5 :white)) :next ((:german ?P4 :rothmans ?D4 :green) (:swede :dog ?S5 ?D5 :white)). ((:norwegian ?P1 :dunhill ?D1 :yellow) (:dane ?P2 ?S2 :tea :blue) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans ?D4 :green) (:swede :dog ?S5 ?D5 :white)) :item (:norwegian ?P1 :dunhill ?D1 :yellow). ((:norwegian ?P1 :dunhill ?D1 :yellow) (:dane ?P2 ?S2 :tea :blue) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog ?S5 ?D5 :white)) :item (:german ?P4 :rothmans :coffee :green). ((:norwegian ?P1 :dunhill ?D1 :yellow) (:dane ?P2 ?S2 :tea :blue) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :item (:swede :dog :winfield :beer :white). ((:norwegian ?P1 :dunhill :water :yellow) (:dane ?P2 :marlboro :tea :blue) (:brit ?P3 ?S3 :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :near ((:dane ?P2 :marlboro :tea :blue) (:norwegian ?P1 :dunhill :water :yellow)). ((:norwegian ?P1 :dunhill :water :yellow) (:dane ?P2 :marlboro :tea :blue) (:brit :bird :pallmall :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :item (:brit :bird :pallmall :milk :red). ((:norwegian :cat :dunhill :water :yellow) (:dane ?P2 :marlboro :tea :blue) (:brit :bird :pallmall :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :near ((:dane ?P2 :marlboro :tea :blue) (:norwegian :cat :dunhill :water :yellow)). ((:norwegian :cat :dunhill :water :yellow) (:dane :horse :marlboro :tea :blue) (:brit :bird :pallmall :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :near ((:norwegian :cat :dunhill :water :yellow) (:dane :horse :marlboro :tea :blue)). ((:norwegian :cat :dunhill :water :yellow) (:dane :horse :marlboro :tea :blue) (:brit :bird :pallmall :milk :red) (:german ?P4 :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :item (:brit :bird :pallmall :milk :red). ((:norwegian :cat :dunhill :water :yellow) (:dane :horse :marlboro :tea :blue) (:brit :bird :pallmall :milk :red) (:german :fish :rothmans :coffee :green) (:swede :dog :winfield :beer :white)) :item (:german :fish :rothmans :coffee :green)} => {:german :eats :fish}.
+
+# ===========================================================
+# testing euler3 http://www.agfa.com/w3c/euler/example003P.n3
+# ===========================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix rpo: <http://eulersharp.sourceforge.net/2003/03swap/rpo-rules#>.
+@prefix q: <http://www.w3.org/2004/ql#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://www.agfa.com/w3c/euler/case001#>.
+(:Ann :ChildAge) rpo:mu 0.4167.
+(:Ann :AdultAge) rpo:mu 0.5833.
+(:Ann :NormalIntraocularPressure) rpo:mu 0.277777777778.
+(:Ann :IncreasedIntraocularPressure) rpo:mu 0.722222222222.
+(:Ann :ChildAgeAndIncreasedIntraocularPressure) rpo:mu 0.4167.
+(:Ann :AdultAgeOrIncreasedIntraocularPressure) rpo:mu 0.722222222222.
+(:Ann :NonIncreasedIntraocularPressure) rpo:mu 0.277777777778.
+
+# =================================================================
+# testing euler3 --why http://www.agfa.com/w3c/euler/example003P.n3
+# =================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix rpo: <http://eulersharp.sourceforge.net/2003/03swap/rpo-rules#>.
+@prefix q: <http://www.w3.org/2004/ql#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://www.agfa.com/w3c/euler/case001#>.
+{{:Ann a :Person. :Ann :age 18.1666. 18.1666 math:notLessThan 17. 18.1666 math:lessThan 19. (18.1666 17) math:difference 1.1666. (1.1666 2) math:quotient 0.5833. (1.0 0.5833) math:difference 0.4167} => {(:Ann :ChildAge) rpo:mu 0.4167}} => {((:Ann :ChildAge) rpo:mu 0.4167)}.
+{{:Ann a :Person. :Ann :age 18.1666. 18.1666 math:notLessThan 17. 18.1666 math:lessThan 19. (18.1666 17) math:difference 1.1666. (1.1666 2) math:quotient 0.5833} => {(:Ann :AdultAge) rpo:mu 0.5833}} => {((:Ann :AdultAge) rpo:mu 0.5833)}.
+{{:Ann :intraocularPressure 21.5. 21.5 math:notLessThan 20.2. 21.5 math:lessThan 22. (21.5 20.2) math:difference 1.3. (1.3 1.8) math:quotient 0.722222222222. (1.0 0.722222222222) math:difference 0.277777777778} => {(:Ann :NormalIntraocularPressure) rpo:mu 0.277777777778}} => {((:Ann :NormalIntraocularPressure) rpo:mu 0.277777777778)}.
+{{:Ann :intraocularPressure 21.5. 21.5 math:notLessThan 20.2. 21.5 math:lessThan 22. (21.5 20.2) math:difference 1.3. (1.3 1.8) math:quotient 0.722222222222} => {(:Ann :IncreasedIntraocularPressure) rpo:mu 0.722222222222}} => {((:Ann :IncreasedIntraocularPressure) rpo:mu 0.722222222222)}.
+{{:ChildAgeAndIncreasedIntraocularPressure owl:intersectionOf (:ChildAge :IncreasedIntraocularPressure). {:Ann a :Person. :Ann :age 18.1666. 18.1666 math:notLessThan 17. 18.1666 math:lessThan 19. (18.1666 17) math:difference 1.1666. (1.1666 2) math:quotient 0.5833. (1.0 0.5833) math:difference 0.4167} => {(:Ann :ChildAge) rpo:mu 0.4167}. {:Ann :intraocularPressure 21.5. 21.5 math:notLessThan 20.2. 21.5 math:lessThan 22. (21.5 20.2) math:difference 1.3. (1.3 1.8) math:quotient 0.722222222222} => {(:Ann :IncreasedIntraocularPressure) rpo:mu 0.722222222222}. 0.4167 math:lessThan 0.722222222222} => {(:Ann :ChildAgeAndIncreasedIntraocularPressure) rpo:mu 0.4167}} => {((:Ann :ChildAgeAndIncreasedIntraocularPressure) rpo:mu 0.4167)}.
+{{:AdultAgeOrIncreasedIntraocularPressure owl:unionOf (:AdultAge :IncreasedIntraocularPressure). {:Ann a :Person. :Ann :age 18.1666. 18.1666 math:notLessThan 17. 18.1666 math:lessThan 19. (18.1666 17) math:difference 1.1666. (1.1666 2) math:quotient 0.5833} => {(:Ann :AdultAge) rpo:mu 0.5833}. {:Ann :intraocularPressure 21.5. 21.5 math:notLessThan 20.2. 21.5 math:lessThan 22. (21.5 20.2) math:difference 1.3. (1.3 1.8) math:quotient 0.722222222222} => {(:Ann :IncreasedIntraocularPressure) rpo:mu 0.722222222222}. 0.5833 math:lessThan 0.722222222222} => {(:Ann :AdultAgeOrIncreasedIntraocularPressure) rpo:mu 0.722222222222}} => {((:Ann :AdultAgeOrIncreasedIntraocularPressure) rpo:mu 0.722222222222)}.
+{{:NonIncreasedIntraocularPressure owl:complementOf :IncreasedIntraocularPressure. {:Ann :intraocularPressure 21.5. 21.5 math:notLessThan 20.2. 21.5 math:lessThan 22. (21.5 20.2) math:difference 1.3. (1.3 1.8) math:quotient 0.722222222222} => {(:Ann :IncreasedIntraocularPressure) rpo:mu 0.722222222222}. (1.0 0.722222222222) math:difference 0.277777777778} => {(:Ann :NonIncreasedIntraocularPressure) rpo:mu 0.277777777778}} => {((:Ann :NonIncreasedIntraocularPressure) rpo:mu 0.277777777778)}.
+
+# ====================================================
+# testing euler3 http://www.agfa.com/w3c/euler/medI.n3
+# ====================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix rpo: <http://eulersharp.sourceforge.net/2003/03swap/rpo-rules#>.
+@prefix q: <http://www.w3.org/2004/ql#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://www.agfa.com/w3c/euler/medP#>.
+:Ann :isPrescribed :aspirin.
+
+# ==========================================================
+# testing euler3 --why http://www.agfa.com/w3c/euler/medI.n3
+# ==========================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix rpo: <http://eulersharp.sourceforge.net/2003/03swap/rpo-rules#>.
+@prefix q: <http://www.w3.org/2004/ql#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix e: <http://eulersharp.sourceforge.net/2003/03swap/log-rules#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://www.agfa.com/w3c/euler/medP#>.
+{{:aspirin :prescribedFor :GastroEntritis. :aspirin :excludedFor (:GastricUlcer :PostSurgery). {(:GastricUlcer :PostSurgery) rdf:first :GastricUlcer. (:GastricUlcer :PostSurgery) a rdf:List. (:Ann :GastricUlcer) rpo:mu 0.006. 0.006 math:lessThan 0.01. (:GastricUlcer :PostSurgery) rdf:rest (:PostSurgery). {(:PostSurgery) rdf:first :PostSurgery. (:PostSurgery) a rdf:List. (:Ann :PostSurgery) rpo:mu 0. 0 math:lessThan 0.01. (:PostSurgery) rdf:rest (). {:Ann a :Patient} => {:Ann :fineWith ()}} => {:Ann :fineWith (:PostSurgery)}} => {:Ann :fineWith (:GastricUlcer :PostSurgery)}. (:Ann :GastroEntritis) rpo:mu 0.8. 0.8 math:greaterThan 0.7} => {:Ann :isPrescribed :aspirin}} => {(:Ann :isPrescribed :aspirin)}.
+
+# =========================================================================
+# testing euler3 http://eulersharp.sourceforge.net/2005/11swap/xanthippe.n3
+# =========================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/xanthippe#>.
+:Xanthippe a (:Mortal :Woman).
+
+# ===============================================================================
+# testing euler3 --why http://eulersharp.sourceforge.net/2005/11swap/xanthippe.n3
+# ===============================================================================
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@prefix list: <http://www.w3.org/2000/10/swap/list#>.
+@prefix log: <http://www.w3.org/2000/10/swap/log#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+@prefix math: <http://www.w3.org/2000/10/swap/math#>.
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.
+@prefix owl: <http://www.w3.org/2002/07/owl#>.
+@prefix : <http://eulersharp.sourceforge.net/2005/11swap/xanthippe#>.
+{:he :says ((:Socrates a :Man) (:Xanthippe a :Woman)). {((:Socrates a :Man) (:Xanthippe a :Woman)) rdf:rest ((:Xanthippe a :Woman)). {((:Xanthippe a :Woman)) rdf:first (:Xanthippe a :Woman)} => {(:Xanthippe a :Woman) list:in ((:Xanthippe a :Woman))}} => {(:Xanthippe a :Woman) list:in ((:Socrates a :Man) (:Xanthippe a :Woman))}} => {:Xanthippe a (:Mortal :Woman)}.
+
