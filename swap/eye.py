@@ -4,8 +4,8 @@
 # SWAP EYE Python -- Jos De Roo
 # -----------------------------
 #
-# See http://github.com/josd/eye/swap
-#
+# See http://github.com/josd/eye/swap/README
+# Thanks to Tim Berners-Lee and Dan Connolly
 
 import copy, math, string, sys, time, urllib.request, urllib.error, urllib.parse
 

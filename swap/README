@@ -4,9 +4,10 @@ SWAP EYE Python
 
 N3 proof engine inspired by http://www.ibiblio.org/obp/py4fun/prolog/prolog3.py
 and is with depth first search and euler path anti-looping detection.
+Thanks to 
 
 Usage: eye.py [--why] [--once] [--debug] triples
-Test:  eye.py -why http://josd.github.io/eye/swap/tree.n3
+Test:  eye.py --why http://josd.github.io/eye/swap/tree.n3
 
 Remark that the N3 that is actually understood is very limited:
 qnames, () lists, facts and => rules on a single line and not yet [] ; , ^ ! ^^ @
